@@ -14107,6 +14107,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svGetAvailableTokens" : {
+    "_id" : "wm-svGetAvailableTokens-wm.ServiceVariable-1492626742750",
+    "name" : "svGetAvailableTokens",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formTypeId",
+      "value" : "bind:Variables.CurrentFormObj.dataSet.data[$i].id",
+      "type" : "integer"
+    } ],
+    "type" : "string",
+    "service" : "LetterService",
+    "operation" : "getAvailableTokens",
+    "operationId" : "LetterController_getAvailableTokens",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "onSuccess" : "svGetAvailableTokensonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Letter"
+  },
   "svGetListOfMunicipalityEmployees" : {
     "_id" : "wm-svGetListOfMunicipalityEmployees-wm.ServiceVariable-1490701161134",
     "name" : "svGetListOfMunicipalityEmployees",

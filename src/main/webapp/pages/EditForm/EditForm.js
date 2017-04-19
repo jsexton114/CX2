@@ -35,6 +35,9 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
             }
         }
     };
+
+    $scope.svGetAvailableTokensonSuccess = function(variable, data) {};
+
 }]);
 
 Application.$controller("liveformUpdateFormTypeController", ["$scope",

@@ -7,42 +7,44 @@
 /*global WM,_,google,Application*/
 
 Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 'NgMap', '$timeout', '$http', 'wmToaster', 'CONSTANTS', '$compile',
-    function ($s, Utils, $el, NgMap, $timeout, $http, wmToaster, CONSTANTS, $compile) {
+    function($s, Utils, $el, NgMap, $timeout, $http, wmToaster, CONSTANTS, $compile) {
         'use strict';
         var prefabScope,
             _locations = [],
             _icon = '',
-            _lat  = '',
-            _lng  = '',
-            latSum      = 0,
-            lngSum      = 0,
+            _lat = '',
+            _lng = '',
+            latSum = 0,
+            lngSum = 0,
             latNaNCount = 0,
             lngNaNCount = 0,
             markerIndex = 0,
             infoWindow,
             customMarker,
-            customMarkers       = [],
-            defaultCenter       = 'current-position',
-            _oldBoundLocations  = -1,
+            customMarkers = [],
+            defaultCenter = 'current-position',
+            _oldBoundLocations = -1,
             _buildMap,
             _updateDirections,
             _refreshMap,
-            _deregisterFns = {'directions': _.noop},
-            invalidMarker  = 0,
+            _deregisterFns = {
+                'directions': _.noop
+            },
+            invalidMarker = 0,
             heatmap,
             heatmapHidden = false,
             _checkMapStatus;
-        $s.isMapLoading     = true;
-        $s.heatmapData      = [];
-        $s.maps             = [];
-        $s.markersData      = [];
-        $s.directionsData   = [];
-        $s.onMapLoad        = _refreshMap; //needed whenever the performance is too low on browser.
+        $s.isMapLoading = true;
+        $s.heatmapData = [];
+        $s.maps = [];
+        $s.markersData = [];
+        $s.directionsData = [];
+        $s.onMapLoad = _refreshMap; //needed whenever the performance is too low on browser.
         //sets the heat map layer properties
         function assignHeatMapLayers() {
-            heatmap = _.get($s, 'maps[0].heatmapLayers.heatmapLayer');
-        }
-        //returns the LatLng Object required for mapping the markers
+                heatmap = _.get($s, 'maps[0].heatmapLayers.heatmapLayer');
+            }
+            //returns the LatLng Object required for mapping the markers
         function constructLatLngObject(lat, lng) {
             if (google) {
                 return new google.maps.LatLng(lat, lng);
@@ -60,10 +62,10 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             clearNoIdMarker();
             var latlngObj = constructLatLngObject(lat, lng);
             customMarker = new google.maps.Marker({
-                'position'  : latlngObj,
-                'map'       : $s.maps[0],
-                'draggable' : true,
-                'animation' : google.maps.Animation.DROP
+                'position': latlngObj,
+                'map': $s.maps[0],
+                'draggable': true,
+                'animation': google.maps.Animation.DROP
             });
             $s.maps[0].panTo(latlngObj);
             if (markerId) {
@@ -72,15 +74,15 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             customMarkers.push(customMarker);
         }
 
-        function markAddress(address, markerId) {//points the marker based on address , can also be used when lat&lng is in the same string
+        function markAddress(address, markerId) { //points the marker based on address , can also be used when lat&lng is in the same string
             var baseUrl,
                 results,
                 geometryLocations;
             if (!address) {
                 return;
             }
-            baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-            $http.get(baseUrl + address).then(function (response) {
+            baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD2_JCmxN_aqsdSrnz7Lpt9bpyV8XLoE3Y&address=';
+            $http.get(baseUrl + address).then(function(response) {
                 results = response.data.results[0];
                 if (!results) {
                     return;
@@ -92,13 +94,13 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
 
         function _removeMarkers(markerArray) { //removes all the markers if the markerArray is not passed
             if (!markerArray) {
-                _.forEach(customMarkers, function (marker) {
+                _.forEach(customMarkers, function(marker) {
                     marker.setMap(null);
                     marker = null;
                 });
                 customMarkers = [];
             } else {
-                _.forEach(customMarkers, function (marker, index) {
+                _.forEach(customMarkers, function(marker, index) {
                     if (marker) {
                         if (_.includes(markerArray, marker.$$id.toString())) {
                             marker.setMap(null);
@@ -111,7 +113,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         }
 
         function clearNoIdMarker() {
-            _.forEach(customMarkers, function (marker, index) {
+            _.forEach(customMarkers, function(marker, index) {
                 if (marker) {
                     if (!marker.$$id) {
                         marker.setMap(null);
@@ -171,7 +173,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             _refreshMap();
         }
 
-        function alterMarkersObject(responseLatLng) {        //alter the already prepared marker object's latlng property
+        function alterMarkersObject(responseLatLng) { //alter the already prepared marker object's latlng property
             if ($s.markersData[markerIndex]) {
                 $s.markersData[markerIndex].latlng = responseLatLng;
                 markerIndex++;
@@ -181,30 +183,30 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             }
         }
 
-        function getLatLng(address) {               //this function fetches the lat and lng and constructs the marker Object
-            var lat, lng;
-            if (!address) {
-                invalidMarker++;
-                return;
-            }
-            $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address).then(function (response) {
-                var resultdataSet = response.data.results[0],
-                    geometryLocations,
-                    latlng;
-                if (resultdataSet) {
-                    geometryLocations = resultdataSet.geometry.location;
-                    lat     = geometryLocations.lat;
-                    lng     = geometryLocations.lng;
-                    latlng  = prepareLatLngData(lat, lng);
-                    alterMarkersObject(latlng);
-                } else {
+        function getLatLng(address) { //this function fetches the lat and lng and constructs the marker Object
+                var lat, lng;
+                if (!address) {
                     invalidMarker++;
+                    return;
                 }
-            });
-        }
-        //selects the activeMarker based on markerindex
+                $http.get('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD2_JCmxN_aqsdSrnz7Lpt9bpyV8XLoE3Y&address=' + address).then(function(response) {
+                    var resultdataSet = response.data.results[0],
+                        geometryLocations,
+                        latlng;
+                    if (resultdataSet) {
+                        geometryLocations = resultdataSet.geometry.location;
+                        lat = geometryLocations.lat;
+                        lng = geometryLocations.lng;
+                        latlng = prepareLatLngData(lat, lng);
+                        alterMarkersObject(latlng);
+                    } else {
+                        invalidMarker++;
+                    }
+                });
+            }
+            //selects the activeMarker based on markerindex
         function assignActiveMarker(p) {
-            _.forEach(_locations, function (marker) {
+            _.forEach(_locations, function(marker) {
                 if (marker.markerIndex === p.markerIndex) {
                     prefabScope.activeMarker = marker;
                     return false;
@@ -212,17 +214,21 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             });
         }
 
-        $s.onMarkerHover = function (event, p) {
+        $s.onMarkerHover = function(event, p) {
             assignActiveMarker(p);
-            Utils.triggerFn($s.onMarkerhover, {$isolateScope: $s});
+            Utils.triggerFn($s.onMarkerhover, {
+                $isolateScope: $s
+            });
         };
 
-        $s.onMarkerClick = function (event, p) {
-            Utils.triggerFn($s.onMarkerclick, {$isolateScope: $s});
+        $s.onMarkerClick = function(event, p) {
+            Utils.triggerFn($s.onMarkerclick, {
+                $isolateScope: $s
+            });
             $s.showInfoWindow(event, p);
         };
 
-        $s.showInfoWindow = function (event, p) { //opens the info-window specific to the marker , fixes the bug 'info-window' directive fails to load the info
+        $s.showInfoWindow = function(event, p) { //opens the info-window specific to the marker , fixes the bug 'info-window' directive fails to load the info
             if (!($s.info || $s.setInfoWindow) || !google || !p.latlng) {
                 return;
             }
@@ -247,31 +253,31 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
 
         //resets the map and when the binded dataset is empty, sets the defaultCenter
         function resetMap(dataset) {
-            markerIndex = latSum = lngSum = latNaNCount = lngNaNCount = 0;
-            $s.heatmapData.length = 0;
-            $s.markersData.length = 0;
-            assignHeatMapLayers();
-            if (heatmap) {
-                heatmap.setMap(heatmap.getMap() ? null : $s.maps[0]);
-                heatmapHidden = true;
+                markerIndex = latSum = lngSum = latNaNCount = lngNaNCount = 0;
+                $s.heatmapData.length = 0;
+                $s.markersData.length = 0;
+                assignHeatMapLayers();
+                if (heatmap) {
+                    heatmap.setMap(heatmap.getMap() ? null : $s.maps[0]);
+                    heatmapHidden = true;
+                }
+                if (!dataset) {
+                    $s.center = '[0,0]';
+                    $s.centerData = {
+                        lat: 0,
+                        lng: 0
+                    };
+                    _refreshMap();
+                    return false;
+                }
+                return true;
             }
-            if (!dataset) {
-                $s.center     = '[0,0]';
-                $s.centerData = {
-                    lat: 0,
-                    lng: 0
-                };
-                _refreshMap();
-                return false;
-            }
-            return true;
-        }
-        //constructs the marker object
+            //constructs the marker object
         function constructMarkersModel() {
             var lat,
                 lng,
                 latlng,
-                address     = '',
+                address = '',
                 markerIndex = 0;
             if (!resetMap(_locations)) {
                 return;
@@ -301,13 +307,13 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                     latlng = prepareLatLngData(lat, lng);
                 }
                 $s.markersData.push({
-                    'latlng'        : latlng,
-                    'iconData'      : _icon ? Utils.findValueOf(marker, _icon) : '',
-                    'information'   : $s.info ? Utils.findValueOf(marker, $s.info) : '',
-                    'id'            : $s.$id + '_' + index,
-                    'color'         : $s.shade ? Utils.findValueOf(marker, $s.shade) : '',
-                    'radius'        : $s.radius ? Utils.findValueOf(marker, $s.radius) : '',
-                    'markerIndex'   : markerIndex
+                    'latlng': latlng,
+                    'iconData': _icon ? Utils.findValueOf(marker, _icon) : '',
+                    'information': $s.info ? Utils.findValueOf(marker, $s.info) : '',
+                    'id': $s.$id + '_' + index,
+                    'color': $s.shade ? Utils.findValueOf(marker, $s.shade) : '',
+                    'radius': $s.radius ? Utils.findValueOf(marker, $s.radius) : '',
+                    'markerIndex': markerIndex
                 });
                 markerIndex++;
             });
@@ -358,7 +364,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         function assignLocations(dataset, options, columns, wp) {
             var TypeUtils;
 
-            dataset    = WM.copy(dataset);
+            dataset = WM.copy(dataset);
             _locations = [];
 
             if (WM.isArray(dataset)) {
@@ -374,16 +380,16 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             if ($s.widgetid) {
 
                 TypeUtils = Utils.getService('TypeUtils');
-                columns   = TypeUtils.getFieldsForExpr($s.bindlocations);
-                options   = [''];
+                columns = TypeUtils.getFieldsForExpr($s.bindlocations);
+                options = [''];
 
-                wp.lat.options      = options;
-                wp.lng.options      = options;
-                wp.icon.options     = options;
-                wp.info.options     = options;
-                wp.shade.options    = options;
-                wp.radius.options   = options;
-                wp.address.options  = options;
+                wp.lat.options = options;
+                wp.lng.options = options;
+                wp.icon.options = options;
+                wp.info.options = options;
+                wp.shade.options = options;
+                wp.radius.options = options;
+                wp.address.options = options;
 
                 if (columns.length > 0) {
                     _.forEach(columns, function(key) {
@@ -411,21 +417,21 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                 if ((_oldBoundLocations !== -1) && (_oldBoundLocations !== $s.bindlocations)) {
                     /*Remove the attributes from the markup*/
                     $s.$root.$emit('set-markup-attr', $s.$parent.widgetid, {
-                        'lat'       : '',
-                        'lng'       : '',
-                        'icon'      : '',
-                        'info'      : '',
-                        'shade'     : '',
-                        'radius'    : '',
-                        'address'   : ''
+                        'lat': '',
+                        'lng': '',
+                        'icon': '',
+                        'info': '',
+                        'shade': '',
+                        'radius': '',
+                        'address': ''
                     });
-                    $s.lat        = '';
-                    $s.lng        = '';
-                    $s.icon       = '';
-                    $s.info       = '';
-                    $s.shade      = '';
-                    $s.radius     = '';
-                    $s.address    = '';
+                    $s.lat = '';
+                    $s.lng = '';
+                    $s.icon = '';
+                    $s.info = '';
+                    $s.shade = '';
+                    $s.radius = '';
+                    $s.address = '';
 
                     _oldBoundLocations = $s.bindlocations;
                 }
@@ -463,8 +469,8 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                         });
                     });
 
-                    distance = distance ? _.round(distance/1000, 2) : '';
-                    duration = duration ? _.round(duration/3600, 2) : '';
+                    distance = distance ? _.round(distance / 1000, 2) : '';
+                    duration = duration ? _.round(duration / 3600, 2) : '';
 
                     $s.distance = distance;
                     $s.duration = duration;
@@ -475,27 +481,27 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         _updateDirections = _.debounce(updateDirections, 50);
 
         function prepareWayPoints(wayPointsObj) {
-            if ($s.waypoints) {
-                var newWayPoints = [],
-                    showStopOver;
-                if (WM.isArray($s.waypoints)) {
-                    $s.directionsData.wayPoints = [];
-                    showStopOver = true;
-                    if (wayPointsObj) {
-                        _.forEach(wayPointsObj, function(wayPoint) {
-                            wayPoint.stopover = $s.stopover;
-                            newWayPoints.push(wayPoint);
-                        });
-                        $s.directionsData.wayPoints = newWayPoints;
+                if ($s.waypoints) {
+                    var newWayPoints = [],
+                        showStopOver;
+                    if (WM.isArray($s.waypoints)) {
+                        $s.directionsData.wayPoints = [];
+                        showStopOver = true;
+                        if (wayPointsObj) {
+                            _.forEach(wayPointsObj, function(wayPoint) {
+                                wayPoint.stopover = $s.stopover;
+                                newWayPoints.push(wayPoint);
+                            });
+                            $s.directionsData.wayPoints = newWayPoints;
+                        }
+                    } else if (WM.isString($s.waypoints) && CONSTANTS.isStudioMode) {
+                        showStopOver = false;
+                        wmToaster.warn('Waypoints bound cannot be of string type, Please refer documentation for more details');
                     }
-                } else if (WM.isString($s.waypoints) && CONSTANTS.isStudioMode) {
-                    showStopOver = false;
-                    wmToaster.warn('Waypoints bound cannot be of string type, Please refer documentation for more details');
+                    $s.widgetProps.stopover.show = showStopOver;
                 }
-                $s.widgetProps.stopover.show = showStopOver;
             }
-        }
-        //prepare the params necessary for the heat map
+            //prepare the params necessary for the heat map
         function prepareHeatMapData(newVal) {
             var wp = $s.widgetProps,
                 columns = [],
@@ -513,8 +519,8 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                     return;
                 }
                 var loc = {};
-                loc.latitude    = Utils.findValueOf(location, _lat);
-                loc.longitude   = Utils.findValueOf(location, _lng);
+                loc.latitude = Utils.findValueOf(location, _lat);
+                loc.longitude = Utils.findValueOf(location, _lng);
                 if (!loc.latitude || !loc.longitude) {
                     return;
                 }
@@ -529,81 +535,82 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                 heatmapHidden = false;
             }
         }
+
         function changeMapType(type) {
-            if (type === 'Markers') {
-                onLocationsChange($s.locations);
-            } else if (type === 'Heatmap') {
-                prepareHeatMapData($s.locations);
+                if (type === 'Markers') {
+                    onLocationsChange($s.locations);
+                } else if (type === 'Heatmap') {
+                    prepareHeatMapData($s.locations);
+                }
             }
-        }
-        //depending on map type set the paramters and other properties
+            //depending on map type set the paramters and other properties
         function mapTypeOperations(newVal) {
-            if ($s.widgetid) {
-                var wp = $s.widgetProps,
-                    markerProps  = ['onMarkerclick', 'onMarkerhover', 'onClick', 'radius', 'shade', 'info', 'icon', 'markertype', 'locations', 'lat', 'lng'],
-                    heatmapProps = ['locations', 'lat', 'lng', 'gradient', 'pixeldensity', 'opacity'],
-                    routeProps   = ['origin', 'destination', 'trafficlayer', 'transitlayer', 'travelmode', 'waypoints', 'stopover'],
-                    commonProps  = ['name', 'tabindex', 'maptype', 'zoom', 'height', 'width', 'show', 'animation', 'onLoad', 'onDestroy', 'accessroles', 'class', 'margin', 'active', 'debugurl', 'showindevice'],
-                    maptypeProps;
+                if ($s.widgetid) {
+                    var wp = $s.widgetProps,
+                        markerProps = ['onMarkerclick', 'onMarkerhover', 'onClick', 'radius', 'shade', 'info', 'icon', 'markertype', 'locations', 'lat', 'lng'],
+                        heatmapProps = ['locations', 'lat', 'lng', 'gradient', 'pixeldensity', 'opacity'],
+                        routeProps = ['origin', 'destination', 'trafficlayer', 'transitlayer', 'travelmode', 'waypoints', 'stopover'],
+                        commonProps = ['name', 'tabindex', 'maptype', 'zoom', 'height', 'width', 'show', 'animation', 'onLoad', 'onDestroy', 'accessroles', 'class', 'margin', 'active', 'debugurl', 'showindevice'],
+                        maptypeProps;
 
-                wp.zoom.options = ['Auto', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                    wp.zoom.options = ['Auto', 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
 
-                if (newVal === 'Markers') {
-                    wp.lat.displayName = 'Marker Latitude';
-                    wp.lng.displayName = 'Marker Longitude';
-                    maptypeProps = markerProps;
-                } else if (newVal === 'Heatmap') {
-                    wp.lat.displayName = 'Latitude';
-                    wp.lng.displayName = 'Longitude';
-                    maptypeProps = heatmapProps;
-                } else {
-                    maptypeProps = routeProps;
-                }
-                _.forEach(wp, function(property, key){
-                    if(_.includes(maptypeProps, key)) {
-                        property.show = true;
-                    } else if (!_.includes(commonProps, key)){
-                        property.show = false;
-                    }
-                });
-                //set the Address , LatLng properties based on maptype and location type
-                if (newVal === 'Markers') {
-                    if ($s.markertype === 'Address') {
-                        wp.lat.show = wp.lng.show = false;
-                        wp.address.show = true;
+                    if (newVal === 'Markers') {
+                        wp.lat.displayName = 'Marker Latitude';
+                        wp.lng.displayName = 'Marker Longitude';
+                        maptypeProps = markerProps;
+                    } else if (newVal === 'Heatmap') {
+                        wp.lat.displayName = 'Latitude';
+                        wp.lng.displayName = 'Longitude';
+                        maptypeProps = heatmapProps;
                     } else {
-                        wp.address.show = false;
-                        wp.lat.show = wp.lng.show = true;
+                        maptypeProps = routeProps;
+                    }
+                    _.forEach(wp, function(property, key) {
+                        if (_.includes(maptypeProps, key)) {
+                            property.show = true;
+                        } else if (!_.includes(commonProps, key)) {
+                            property.show = false;
+                        }
+                    });
+                    //set the Address , LatLng properties based on maptype and location type
+                    if (newVal === 'Markers') {
+                        if ($s.markertype === 'Address') {
+                            wp.lat.show = wp.lng.show = false;
+                            wp.address.show = true;
+                        } else {
+                            wp.address.show = false;
+                            wp.lat.show = wp.lng.show = true;
+                        }
+                    }
+                    if (newVal !== 'Route') {
+                        resetMap();
+                        $s.directionsData.length = 0;
+                    } else {
+                        $s.markersData.length = 0;
+                        $s.heatmapData.length = 0;
                     }
                 }
-                if (newVal !== 'Route') {
-                    resetMap();
-                    $s.directionsData.length = 0;
-                } else {
-                    $s.markersData.length = 0;
-                    $s.heatmapData.length = 0;
-                }
+                changeMapType(newVal);
             }
-            changeMapType(newVal);
-        }
-        //handles the property value changes made to gradient,opacity, pixel density
+            //handles the property value changes made to gradient,opacity, pixel density
         function handleHeatMapPropChanges(key, value) {
-            assignHeatMapLayers();
-            if (!key && heatmap) {
-                heatmap.set('gradient', heatmap.get('gradient') ? null : $s.gradient);
-                heatmap.set('opacity', heatmap.get('opacity') ? null : $s.opacity);
-                heatmap.set('radius', heatmap.get('radius') ? null : $s.pixeldensity);
-                return;
+                assignHeatMapLayers();
+                if (!key && heatmap) {
+                    heatmap.set('gradient', heatmap.get('gradient') ? null : $s.gradient);
+                    heatmap.set('opacity', heatmap.get('opacity') ? null : $s.opacity);
+                    heatmap.set('radius', heatmap.get('radius') ? null : $s.pixeldensity);
+                    return;
+                }
+                if (!heatmap || !value) {
+                    return;
+                }
+                if (key === 'pixeldensity') {
+                    key = 'radius';
+                }
+                heatmap.set(key, heatmap.get(key) ? null : value);
             }
-            if (!heatmap || !value) {
-                return;
-            }
-            if (key === 'pixeldensity') {
-                key = 'radius';
-            }
-            heatmap.set(key, heatmap.get(key) ? null : value);
-        }
-        //on Location change prepare data based on map type
+            //on Location change prepare data based on map type
         function triggerLocationFn(dataset) {
             if ($s.maptype === 'Markers') {
                 onLocationsChange(dataset);
@@ -613,13 +620,13 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         }
 
         function triggerLatLngChanges() {
-            if ($s.maptype === 'Markers') {
-                _buildMap();
-            } else if ($s.maptype === 'Heatmap') {
-                prepareHeatMapData($s.locations);
+                if ($s.maptype === 'Markers') {
+                    _buildMap();
+                } else if ($s.maptype === 'Heatmap') {
+                    prepareHeatMapData($s.locations);
+                }
             }
-        }
-        /* Define the property change handler. This function will be triggered when there is a change in the prefab property */
+            /* Define the property change handler. This function will be triggered when there is a change in the prefab property */
         function propertyChangeHandler(key, newVal) {
             switch (key) {
                 case 'maptype':
@@ -697,31 +704,31 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
         }
 
         function refresh() {
-            //check if the maps object is formed and then refresh
-            if (!$s.maps[0]) {
-                return;
-            }
-            var mapData = $s.maps[0];
-            //re-size the map whenever the map is loaded in any container like dialog, tabs or any hidden elements
-            $timeout(function() {
-                google.maps.event.trigger(mapData, 'resize');
-                //check for the lat, lng values if they're NaN and they exist
-                if ($s.centerData && (!(isNaN($s.centerData.lat) || isNaN($s.centerData.lng)))) {
-                    mapData.panTo(constructLatLngObject($s.centerData.lat, $s.centerData.lng));
+                //check if the maps object is formed and then refresh
+                if (!$s.maps[0]) {
+                    return;
                 }
-            }, 100);
-        }
-        /* register the property change handler */
+                var mapData = $s.maps[0];
+                //re-size the map whenever the map is loaded in any container like dialog, tabs or any hidden elements
+                $timeout(function() {
+                    google.maps.event.trigger(mapData, 'resize');
+                    //check for the lat, lng values if they're NaN and they exist
+                    if ($s.centerData && (!(isNaN($s.centerData.lat) || isNaN($s.centerData.lng)))) {
+                        mapData.panTo(constructLatLngObject($s.centerData.lat, $s.centerData.lng));
+                    }
+                }, 100);
+            }
+            /* register the property change handler */
         $s.propertyManager.add($s.propertyManager.ACTIONS.CHANGE, propertyChangeHandler);
 
         _refreshMap = _.debounce(refresh, 80);
         //toggle the loader visibility based on the requirement
         function toggleLoader(visibility) {
-            $timeout(function() {
-                $s.isMapLoading = visibility;
-            });
-        }
-        //checks if the map is back to the idle state by comparing the bounds i.e checking if the map tiles are loaded
+                $timeout(function() {
+                    $s.isMapLoading = visibility;
+                });
+            }
+            //checks if the map is back to the idle state by comparing the bounds i.e checking if the map tiles are loaded
         function checkMapStatus() {
             if ($s.maps[0].lastBounds == $s.maps[0].getBounds()) {
                 toggleLoader(false);
@@ -733,7 +740,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
 
         _checkMapStatus = _.debounce(checkMapStatus, 500);
 
-        $s.$on('mapInitialized', function (event, evtMap) {
+        $s.$on('mapInitialized', function(event, evtMap) {
             $s.maps.push(evtMap);
             $el.find('div[name=googlemapview]').css('z-index', '15'); //over-rides the prefab default z-index //needed when the search widget is on top of the map, results are overlapped by map
             handleHeatMapPropChanges();
@@ -750,20 +757,20 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             });
             //this function places the marker based on the click event lat/lng values
             function placeMarker(location) {
-                var marker = new google.maps.Marker({
-                    position: location,
-                    map: evtMap
-                });
-                evtMap.panTo(location);
-                google.maps.event.addListener(marker, 'click', function(event) {
-                    prefabScope.activeMarker = {
-                        'event' : event,
-                        'marker': marker
-                    };
-                    Utils.triggerFn($s.onMarkerClick.bind(event, event.latLng));
-                });
-            }
-            //if the onClick event is specified then add a active click listener on the map
+                    var marker = new google.maps.Marker({
+                        position: location,
+                        map: evtMap
+                    });
+                    evtMap.panTo(location);
+                    google.maps.event.addListener(marker, 'click', function(event) {
+                        prefabScope.activeMarker = {
+                            'event': event,
+                            'marker': marker
+                        };
+                        Utils.triggerFn($s.onMarkerClick.bind(event, event.latLng));
+                    });
+                }
+                //if the onClick event is specified then add a active click listener on the map
             if ($s.onClick) {
                 Utils.triggerFn(function() {
                     google.maps.event.addListener(evtMap, 'click', function(event) {
@@ -788,7 +795,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             _checkMapStatus();
         });
 
-        $s.$on('$destroy', function (){
+        $s.$on('$destroy', function() {
             assignHeatMapLayers();
             if (heatmap) {
                 heatmap.setMap(null);
@@ -803,15 +810,16 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             */
             $s.map.heatmapLayer = undefined;
         });
-        $s.refresh                  = _refreshMap;
-        prefabScope                 = $el.closest('.app-prefab').isolateScope();
-        prefabScope.redraw          = _refreshMap;
-        prefabScope.markLatLng      = markLatLng;
-        prefabScope.markAddress     = markAddress;
-        prefabScope.removeMarker    = removeMarker;
+        $s.refresh = _refreshMap;
+        prefabScope = $el.closest('.app-prefab').isolateScope();
+        prefabScope.redraw = _refreshMap;
+        prefabScope.markLatLng = markLatLng;
+        prefabScope.markAddress = markAddress;
+        prefabScope.removeMarker = removeMarker;
         prefabScope.clearAllMarkers = _removeMarkers;
-        prefabScope.showInfoWindow  = $s.showInfoWindow;
-    }]);
+        prefabScope.showInfoWindow = $s.showInfoWindow;
+    }
+]);
 </script>
 <script id="Main.variables.json">
 var _MainPage_Variables_ ={ }

@@ -555,6 +555,14 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
+                                <wm-tabpane name="tabpaneLetters" title="LETTERS">
+                                    <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters">
+                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="createLetter" action="Variables.svCreateLetter.invoke()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-tabpane>
                             </wm-tabs>
                         </wm-panel>
                     </wm-gridcolumn>
