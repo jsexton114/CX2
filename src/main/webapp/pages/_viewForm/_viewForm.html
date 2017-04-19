@@ -833,7 +833,8 @@
                     <wm-gridcolumn columnwidth="1" name="gridcolumn158"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn159">
                         <wm-composite name="composite5_1">
-                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxPrimaryVendor" checkedvalue="true" uncheckedvalue="false" datavalue="bind:!Variables.Cx2Vendors2formData.dataSet.data.length" show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors"></wm-checkbox>
+                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxPrimaryVendor" checkedvalue="true" uncheckedvalue="false" datavalue="bind:!Variables.Cx2Vendors2formData.dataSet.data.length" show="bind:Variables.Cx2Vendors2formData.dataSet.data.length > 0"
+                            disabled="bind:!Variables.Cx2Vendors2formData.dataSet.data.length"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn160"></wm-gridcolumn>

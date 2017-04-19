@@ -205,9 +205,9 @@
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogDeleteVendorConfrim.open()"
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="Widgets.dialogVendorDetails.open()"
                                                         disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="ViewVendor" action="Widgets.dialogVendorDetails.open()"
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogDeleteVendorConfrim.open()"
                                                         disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                 </wm-livegrid>
@@ -959,7 +959,8 @@
                     <wm-gridcolumn columnwidth="1" name="gridcolumn158"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="10" name="gridcolumn159">
                         <wm-composite name="composite5_1">
-                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxPrimaryVendor" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.stvDefaultPrimaryVendor.dataSet.dataValue"></wm-checkbox>
+                            <wm-checkbox caption="Set as Primary Contractor" name="checkboxPrimaryVendor" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.stvDefaultPrimaryVendor.dataSet.dataValue" disabled="bind:Variables.stvDefaultPrimaryVendor.dataSet.dataValue"
+                            show="bind:!Variables.stvDefaultPrimaryVendor.dataSet.dataValue"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="1" name="gridcolumn160"></wm-gridcolumn>
@@ -987,7 +988,8 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewDeleteVendorConfrim">
-        <wm-confirmdialog name="confirmdialogDeleteVendorConfrim" on-cancel="Widgets.confirmdialogDeleteVendorConfrim.close()" on-ok="Variables.lvDeleteVendorFromProject.deleteRecord()" message="Are you sure you want to delete this contractor?"></wm-confirmdialog>
+        <wm-confirmdialog name="confirmdialogDeleteVendorConfrim" on-cancel="Widgets.confirmdialogDeleteVendorConfrim.close()" on-ok="Variables.lvDeleteVendorFromProject.deleteRecord()" message="Are you sure you want to delete this contractor?" title="Delete Contractor"
+        iconclass="wi wi-trash"></wm-confirmdialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewVendorDetails">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Contractor Details" iconclass="wi wi-work" name="dialogVendorDetails">
