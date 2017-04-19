@@ -34,7 +34,7 @@
     } ],
     "operation" : "read",
     "dataSet" : [ ],
-    "type" : "CodeList",
+    "type" : "Code",
     "isList" : false,
     "saveInPhonegap" : false,
     "maxResults" : 20,
@@ -46,7 +46,6 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "codeId asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "codeSets",
@@ -63,7 +62,7 @@
         "relatedTableName" : "CodeSets",
         "relatedEntityName" : "CodeSets",
         "relatedColumnName" : "codeSetId",
-        "relatedFieldName" : "codeSets.codeSetId",
+        "relatedFieldName" : "codeSets.id",
         "isList" : false,
         "targetTable" : "CodeSets",
         "scale" : 0,
@@ -115,10 +114,10 @@
           "systemUpdated" : true,
           "scale" : 0
         }, {
-          "fieldName" : "codeSetId",
+          "fieldName" : "id",
           "type" : "integer",
           "fullyQualifiedType" : "integer",
-          "columnName" : "CodeSetId",
+          "columnName" : "ID",
           "isPrimaryKey" : true,
           "notNull" : true,
           "length" : 0,
@@ -353,7 +352,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -367,7 +366,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -378,11 +377,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -430,7 +430,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "DifferentBillingInfo",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -609,7 +609,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -623,7 +623,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -634,11 +634,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -686,7 +687,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "DifferentBillingInfo",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -695,10 +696,10 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "codeId",
+        "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
-        "columnName" : "CodeId",
+        "columnName" : "ID",
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
@@ -787,13 +788,13 @@
         "systemUpdated" : true,
         "scale" : 0
       } ],
-      "entityName" : "CodeList",
-      "fullyQualifiedName" : "com.civicxpress.cx2.CodeList",
+      "entityName" : "Code",
+      "fullyQualifiedName" : "com.civicxpress.cx2.Code",
       "tableType" : "TABLE",
-      "primaryFields" : [ "codeId" ]
+      "primaryFields" : [ "id" ]
     },
     "spinnerContext" : "page",
-    "tableName" : "CodeList",
+    "tableName" : "Code",
     "tableType" : "TABLE",
     "properties" : [ "codeSets", "usersByCreatedBy", "usersByUpdatedBy" ],
     "relatedTables" : [ {
@@ -801,22 +802,22 @@
       "relationName" : "codeSets",
       "type" : "CodeSets",
       "watchOn" : "Cx2CodeSetsData",
-      "package" : "com.civicxpress.cx2.CodeList"
+      "package" : "com.civicxpress.cx2.Code"
     }, {
       "columnName" : "usersByCreatedBy",
       "relationName" : "usersByCreatedBy",
       "type" : "Users",
       "watchOn" : "Cx2UsersData",
-      "package" : "com.civicxpress.cx2.CodeList"
+      "package" : "com.civicxpress.cx2.Code"
     }, {
       "columnName" : "usersByUpdatedBy",
       "relationName" : "usersByUpdatedBy",
       "type" : "Users",
       "watchOn" : "Cx2UsersData",
-      "package" : "com.civicxpress.cx2.CodeList"
+      "package" : "com.civicxpress.cx2.Code"
     } ],
     "filterFields" : { },
-    "package" : "com.civicxpress.cx2.CodeList"
+    "package" : "com.civicxpress.cx2.Code"
   },
   "lvCurrentCodeSetObj" : {
     "_id" : "wm-lvCurrentCodeSetObj-wm.LiveVariable-1491308822611",
@@ -824,7 +825,7 @@
     "owner" : "Page",
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
-      "target" : "codeSetId",
+      "target" : "id",
       "value" : "bind:pageParams.CodeSetId",
       "type" : "number"
     } ],
@@ -842,7 +843,6 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "codeSetId asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalities",
@@ -1054,7 +1054,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1260,7 +1260,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "AllowOfflineCC",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1439,7 +1439,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1453,7 +1453,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1464,11 +1464,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -1516,7 +1517,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "DifferentBillingInfo",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1695,7 +1696,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1709,7 +1710,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1720,11 +1721,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -1772,7 +1774,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "DifferentBillingInfo",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1781,10 +1783,10 @@
           "scale" : 0
         } ]
       }, {
-        "fieldName" : "codeSetId",
+        "fieldName" : "id",
         "type" : "integer",
         "fullyQualifiedType" : "integer",
-        "columnName" : "CodeSetId",
+        "columnName" : "ID",
         "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
@@ -1851,7 +1853,7 @@
       "entityName" : "CodeSets",
       "fullyQualifiedName" : "com.civicxpress.cx2.CodeSets",
       "tableType" : "TABLE",
-      "primaryFields" : [ "codeSetId" ]
+      "primaryFields" : [ "id" ]
     },
     "spinnerContext" : "page",
     "tableName" : "CodeSets",
