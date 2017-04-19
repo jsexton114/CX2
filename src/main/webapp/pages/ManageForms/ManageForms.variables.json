@@ -1144,6 +1144,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "category asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalities",
@@ -1666,7 +1667,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "id asc",
+    "orderBy" : "formTypes.formType asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "formCategories",

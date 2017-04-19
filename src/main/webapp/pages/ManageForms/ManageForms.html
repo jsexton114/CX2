@@ -71,8 +71,9 @@
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="New Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="View Forms" action="Widgets.dialogFormsInCategory.open()"
+                                                disabled="false"></wm-grid-row-action>
                                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" title="Details" value="" iconclass="wi wi-details" class="btn-transparent" show="true" action="Widgets.dialogFormsInCategory.open()"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="" title="Form Category Details" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.FormCategoriesData.dataSet" captionalign="left" captionposition="top"
                                             name="liveform3">
@@ -154,22 +155,22 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewFormsInCategory">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Forms" iconclass="wi wi-file-text" name="dialogFormsInCategory" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Forms in Category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
             <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button3"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-livegrid formlayout="dialog" name="livegridFormsInCategory">
-                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?">
-                    <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="formTypes.description" caption="Types Description" type="text" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true"
-                    related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="formTypes.createdDate" caption="Created Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?"
+                filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                    <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                    <wm-grid-column binding="formTypes.description" caption="Description" type="text" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                    <wm-grid-column binding="formTypes.createdDate" caption="Date Created" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
-                <wm-liveform novalidate="false" errormessage="" title="Forms" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" captionalign="left" captionposition="top" name="liveformFormsInCategory">
+                <wm-liveform novalidate="false" errormessage="" title="Add Form to Category" formlayout="dialog" iconclass="wi wi-payment" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" captionalign="left" captionposition="top" name="liveformFormsInCategory">
                     <wm-layoutgrid columns="1" name="layoutgrid8">
                         <wm-gridrow name="gridrow15_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn18">
@@ -179,16 +180,16 @@
                         </wm-gridrow>
                         <wm-gridrow name="gridrow16_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                                <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
-                                dataset="bind:Variables.lvGetFormTypes.dataSet" datafield="All Fields" displayfield="formType"></wm-form-field>
+                                <wm-form-field name="formTypes" displayname="Which form would you like to add to this category?" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="true"
+                                widget="select" placeholder="Select value" dataset="bind:Variables.lvGetFormTypes.dataSet" datafield="All Fields" displayfield="formType" orderby="formType:asc"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
+                    <wm-form-field name="formCategories" displayname="Form Categories" show="false" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
+                    dataset="bind:Widgets.gridFormsInCategory.selecteditem.formCategories" datafield="All Fields" displayfield="category" defaultvalue="bind:Widgets.gridFormsInCategory.selecteditem.formCategories"></wm-form-field>
                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                    <wm-form-field name="formCategories" displayname="Form Categories" show="false" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" readonly="false" required="false" widget="select"
-                    placeholder="Select value" dataset="bind:Widgets.gridFormsInCategory.selecteditem.formCategories" datafield="All Fields" displayfield="category" defaultvalue="bind:Widgets.gridFormsInCategory.selecteditem.formCategories"></wm-form-field>
+                    <wm-form-action key="save" display-name="Add Form" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Form" disabled="false" type="submit" update-mode="true"></wm-form-action>
                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                 </wm-liveform>
             </wm-livegrid>
         </wm-dialog>
