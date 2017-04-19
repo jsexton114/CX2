@@ -1,4 +1,4 @@
-Application.$controller("_viewFormPageController", ["$scope", function($scope) {
+Application.$controller("_viewFormPageController", ["$scope", "$timeout", function($scope, $timeout) {
     "use strict";
 
     var currentBreadCrumb = null;
