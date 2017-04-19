@@ -59,6 +59,7 @@
                                     <wm-grid-action key="addNewRow" display-name="New Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" title="Details" value="" iconclass="wi wi-details" class="btn-transparent" show="true" action="Widgets.dialogInspectionWithCategory.open()"></wm-grid-row-action>
                                 </wm-grid>
                                 <wm-liveform novalidate="false" errormessage="" title="Inspection Category Details" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.InspectionCategoriesData.dataSet" captionalign="left" captionposition="top"
                                 name="liveformInspectioncategories">
@@ -133,6 +134,44 @@
                 <wm-button class="btn-primary" caption="OK" on-click="closeDialog();Variables.svDeleteInspectionDesign.invoke()" name="button3" iconclass="wi wi-check"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button4" iconclass="wi wi-cancel" on-click="Widgets.dlgDeleteInspectionDesign.close()"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewInspectionWithCategory">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Inspections" iconclass="wi wi-file-text" name="dialogInspectionWithCategory" width="60%">
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button5"></wm-button>
+            </wm-dialogactions>
+            <wm-livegrid formlayout="dialog" name="livegridInspectionWithCategory">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvInspectionCategoryMappingData.dataSet" navigation="Classic" name="gridInspectionWithCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?">
+                    <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
+                    <wm-grid-column binding="inspectionDesign.description" caption="Design Description" type="text" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
+                    <wm-grid-column binding="inspectionDesign.createdAt" caption="Created At" type="timestamp" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="timestamp" show="true"
+                    related-entity-name="InspectionDesign"></wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngGoToInspection.invoke()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                </wm-grid>
+                <wm-liveform novalidate="false" errormessage="" title="Inspections" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvInspectionCategoryMappingData.dataSet" captionalign="left" captionposition="top" name="liveformInspectionWithCategory">
+                    <wm-layoutgrid columns="1" name="layoutgrid6">
+                        <wm-gridrow name="gridrow12">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                                <wm-form-field name="inspectionCategories" displayname="Inspection Categories" required="false" show="false" generator="assigned" primary-key="false" key="inspectionCategories" type="list" is-related="true" pc-display="true"
+                                mobile-display="true" widget="select" dataset="bind:Widgets.gridInspectioncategories.selecteditem" datafield="All Fields" displayfield="inspectionCategory" defaultvalue="bind:Widgets.gridInspectioncategories.selecteditem"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow13">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn16">
+                                <wm-form-field name="inspectionDesign" displayname="Inspection Design" required="false" show="true" generator="assigned" primary-key="false" key="inspectionDesign" type="list" is-related="true" pc-display="true" mobile-display="true"
+                                widget="select" dataset="bind:Variables.lvGetInspectionDesigns.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.lvGetInspectionDesigns.firstRecord"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livegrid>
         </wm-dialog>
     </wm-view>
 </wm-page>
