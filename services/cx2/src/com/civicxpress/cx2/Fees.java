@@ -51,6 +51,7 @@ public class Fees implements Serializable {
     private String itemTitle;
     private String formGuid;
     private BigDecimal amount;
+    private String transactionComments;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
     private Projects projects;
@@ -223,6 +224,15 @@ public class Fees implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    @Column(name = "`TransactionComments`", nullable = true, length = 255)
+    public String getTransactionComments() {
+        return this.transactionComments;
+    }
+
+    public void setTransactionComments(String transactionComments) {
+        this.transactionComments = transactionComments;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -440,7 +440,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -838,7 +838,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1094,7 +1094,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1443,7 +1443,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1625,12 +1625,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Active",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
-        "defaultValue" : "",
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Projects",
@@ -2114,7 +2114,7 @@
         "columnName" : "Photo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -2424,7 +2424,7 @@
         "columnName" : "Photo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -2749,7 +2749,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -3204,7 +3204,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -3486,7 +3486,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -4054,10 +4054,10 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "use",
+        "fieldName" : "usedFor",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "Use",
+        "columnName" : "UsedFor",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 1000,
@@ -4407,7 +4407,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -4689,7 +4689,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -5257,10 +5257,10 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "use",
+        "fieldName" : "usedFor",
         "type" : "string",
         "fullyQualifiedType" : "string",
-        "columnName" : "Use",
+        "columnName" : "UsedFor",
         "isPrimaryKey" : false,
         "notNull" : false,
         "length" : 1000,
@@ -5623,7 +5623,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -6122,12 +6122,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -6337,12 +6337,12 @@
             "fullyQualifiedType" : "boolean",
             "columnName" : "Active",
             "isPrimaryKey" : false,
-            "notNull" : false,
+            "notNull" : true,
             "length" : 0,
             "precision" : 0,
             "generator" : "assigned",
             "isRelated" : false,
-            "defaultValue" : "",
+            "defaultValue" : "false",
             "scale" : 0
           } ]
         }, {
@@ -6684,7 +6684,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -6940,7 +6940,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -7171,7 +7171,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.lvVendorsToProjects.listRecords()",
+    "onSuccess" : "Variables.lvVendorsToProjects.listRecords();Variables.nvDeleteVendor.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -7370,12 +7370,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -7655,7 +7655,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -7819,7 +7819,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Widgets.dialogAddVendor.close();Variables.lvVendorsToProjects.listRecords()",
+    "onSuccess" : "Widgets.dialogAddVendor.close();Variables.lvVendorsToProjects.listRecords();Variables.nvVendorAdded.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
@@ -8018,12 +8018,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -8303,7 +8303,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -9214,12 +9214,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -9406,7 +9406,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -9585,6 +9585,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onSuccess" : "lvVendorsToProjectsonSuccess($event, $scope)",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : true,
@@ -9783,12 +9784,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -10068,7 +10069,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -10267,6 +10268,62 @@
     }, {
       "target" : "class",
       "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "nvDeleteVendor" : {
+    "_id" : "wm-nvDeleteVendor-wm.NotificationVariable-1492598882501",
+    "name" : "nvDeleteVendor",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "Contractor Delete",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
+  "nvVendorAdded" : {
+    "_id" : "wm-nvVendorAdded-wm.NotificationVariable-1492598982161",
+    "name" : "nvVendorAdded",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "The contractor has been added to the project",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
       "type" : "string"
     }, {
       "target" : "toasterPosition",
@@ -11116,12 +11173,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -11308,7 +11365,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -11686,12 +11743,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -11901,12 +11958,12 @@
             "fullyQualifiedType" : "boolean",
             "columnName" : "Active",
             "isPrimaryKey" : false,
-            "notNull" : false,
+            "notNull" : true,
             "length" : 0,
             "precision" : 0,
             "generator" : "assigned",
             "isRelated" : false,
-            "defaultValue" : "",
+            "defaultValue" : "false",
             "scale" : 0
           } ]
         }, {
@@ -12248,7 +12305,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -12504,7 +12561,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -13546,12 +13603,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -13738,7 +13795,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -14110,7 +14167,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -14371,12 +14428,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -14563,7 +14620,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -14908,12 +14965,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -15123,12 +15180,12 @@
             "fullyQualifiedType" : "boolean",
             "columnName" : "Active",
             "isPrimaryKey" : false,
-            "notNull" : false,
+            "notNull" : true,
             "length" : 0,
             "precision" : 0,
             "generator" : "assigned",
             "isRelated" : false,
-            "defaultValue" : "",
+            "defaultValue" : "false",
             "scale" : 0
           } ]
         }, {
@@ -15470,7 +15527,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -15726,7 +15783,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -15967,6 +16024,19 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "stvDefaultPrimaryVendor" : {
+    "_id" : "wm-stvDefaultPrimaryVendor-wm.Variable-1492600835919",
+    "name" : "stvDefaultPrimaryVendor",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : true
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
   },
   "stvTagSelection" : {
     "_id" : "wm-stvTagSelection-wm.Variable-1490344967439",
@@ -16216,7 +16286,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -17099,12 +17169,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
-          "defaultValue" : "",
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -17314,12 +17384,12 @@
             "fullyQualifiedType" : "boolean",
             "columnName" : "Active",
             "isPrimaryKey" : false,
-            "notNull" : false,
+            "notNull" : true,
             "length" : 0,
             "precision" : 0,
             "generator" : "assigned",
             "isRelated" : false,
-            "defaultValue" : "",
+            "defaultValue" : "false",
             "scale" : 0
           } ]
         }, {
@@ -17661,7 +17731,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -17917,7 +17987,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,

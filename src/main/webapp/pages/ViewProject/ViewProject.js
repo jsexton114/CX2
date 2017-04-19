@@ -193,6 +193,16 @@ Application.$controller("ViewProjectPageController", ["$scope", function($scope)
         $scope.Variables.PeopleList.dataSet = [];
     };
 
+
+    $scope.lvVendorsToProjectsonSuccess = function(variable, data) {
+
+        if (data.length > 0) {
+            $scope.Variables.stvDefaultPrimaryVendor.dataSet.dataValue = false
+        } else {
+            $scope.Variables.stvDefaultPrimaryVendor.dataSet.dataValue = true
+        }
+    };
+
 }]);
 
 
@@ -429,4 +439,18 @@ Application.$controller("dialogAddVendorController", ["$scope",
 
 
     }
+]);
+
+Application.$controller("confirmdialogDeleteVendorConfrimController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogVendorDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

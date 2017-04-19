@@ -12748,7 +12748,7 @@
     "name" : "updateMultipleFeeComments",
     "description" : "updateMultipleFeeComments",
     "version" : "V2",
-    "queryString" : "Update Fees SET Comments=:comments where ID IN(:feeList)",
+    "queryString" : "Update Fees SET TransactionComments=:comments where ID IN(:feeList)",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -12765,7 +12765,7 @@
       "type" : "integer",
       "list" : true,
       "variableType" : "PROMPT",
-      "testValue" : [ "1", "2" ],
+      "testValue" : [ "1", "2", "3", "4" ],
       "required" : true
     } ],
     "request" : {

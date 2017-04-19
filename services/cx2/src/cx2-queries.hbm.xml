@@ -86,7 +86,7 @@ Order By inspectionZone DESC
 
     <sql-query name="updateMultipleFeeComments">
         <![CDATA[
-        Update Fees SET Comments=:comments where ID IN(:feeList)
+        Update Fees SET TransactionComments=:comments where ID IN(:feeList)
         ]]>
     <query-param name="comments" type="java.lang.String"/>
     <query-param name="feeList" type="java.lang.Integer"/>
