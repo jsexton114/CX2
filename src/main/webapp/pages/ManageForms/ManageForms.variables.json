@@ -248,7 +248,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1354,7 +1354,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2679,7 +2679,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -3507,6 +3507,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "bindCount" : 1,
     "spinnerContext" : "page",
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
@@ -3756,7 +3757,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -4647,6 +4648,24 @@
     } ],
     "operation" : "toast"
   },
+  "nvGotoEditForm" : {
+    "_id" : "wm-nvGotoEditForm-wm.NavigationVariable-1492584725378",
+    "name" : "nvGotoEditForm",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "EditForm",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "FormTypeId",
+      "value" : "bind:Widgets.gridFormsInCategory.selecteditem.formTypeId"
+    } ],
+    "pageTransitions" : "none"
+  },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1480067517718",
     "name" : "SelectedMunicipalityObj",
@@ -4894,7 +4913,7 @@
         "columnName" : "Logo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

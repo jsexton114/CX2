@@ -154,19 +154,19 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewFormsInCategory">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Forms" iconclass="wi wi-file-text" name="dialogFormsInCategory">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Forms" iconclass="wi wi-file-text" name="dialogFormsInCategory" width="60%">
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button3"></wm-button>
             </wm-dialogactions>
             <wm-livegrid formlayout="dialog" name="livegridFormsInCategory">
-                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory">
+                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?">
                     <wm-grid-column binding="formTypes.formType" caption="Form Type" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="formTypes.description" caption="Types Description" type="text" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true"
                     related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="formTypes.createdDate" caption="Created Date" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
                 <wm-liveform novalidate="false" errormessage="" title="Forms" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" captionalign="left" captionposition="top" name="liveformFormsInCategory">
@@ -179,7 +179,8 @@
                         </wm-gridrow>
                         <wm-gridrow name="gridrow16_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                                <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"></wm-form-field>
+                                <wm-form-field name="formTypes" displayname="Form Types" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
+                                dataset="bind:Variables.lvGetFormTypes.dataSet" datafield="All Fields" displayfield="formType"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
