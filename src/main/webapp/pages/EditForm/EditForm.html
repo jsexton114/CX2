@@ -690,8 +690,15 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow100">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn144">
-                                                    <wm-label class="col-md-3 form-control-static" name="label5_____1" caption="Available Fields" fontweight="bold"></wm-label>
-                                                    <span class="" ng-repeat="token in Variables.svGetAvailableTokens.dataSet" margin="unset 0.5em">{{token}} </span>
+                                                    <wm-label class="col-md-12 form-control-static clearfix" name="label5_____1" caption="Available Fields" fontweight="bold"></wm-label>
+                                                    <br />
+                                                    <div class="app-grid-layout clearfix" name="layoutgridFieldTokens">
+                                                        <wm-gridrow name="gridrow9__9" ng-repeat="tokenSet in $parent.$parent.tokensByTwo">
+                                                            <div ng-repeat="token in tokenSet" class="app-grid-column dynamic-field-column col-sm-6" name="fieldTokenColumn{{$index}}">
+                                                                <wm-button class="btn-primary" caption="{{token}}" type="button" margin="unset 0.5em" name="buttonAddToken{{token}}" ng-click="insertField(token)" horizontalalign="right"></wm-button>
+                                                            </div>
+                                                        </wm-gridrow>
+                                                    </div>
                                                     <wm-form-field name="letterBody" displayname="Letter Body" show="true" primary-key="false" generator="assigned" key="letterBody" type="text" readonly="false" required="false" widget="textarea" maxchars="2147483647" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
@@ -729,7 +736,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow29">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn64" padding="1em unset" horizontalalign="right">
-                                            <wm-button class="btn-default btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateDevDetails" iconclass="wi wi-update" on-click="Variables.UpdateDevFormDetailsForCXAdmin.invoke()" horizontalalign="right"></wm-button>
+                                            <wm-button class="btn-primary" caption="Update" type="button" margin="unset 0.5em" name="buttonUpdateDevDetails" iconclass="wi wi-update" on-click="Variables.UpdateDevFormDetailsForCXAdmin.invoke()" horizontalalign="right"></wm-button>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>

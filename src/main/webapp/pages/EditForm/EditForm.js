@@ -1,6 +1,8 @@
 Application.$controller("EditFormPageController", ["$scope", "wmToaster", function($scope, wmToaster) {
     "use strict";
 
+    $scope.tokensByTwo = [];
+
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
 
@@ -36,8 +38,17 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
         }
     };
 
-    $scope.svGetAvailableTokensonSuccess = function(variable, data) {};
+    $scope.svGetAvailableTokensonSuccess = function(variable, data) {
+        $scope.tokensByTwo = [];
 
+        data.forEach(function(token, index) {
+            if (index % 2 === 0) {
+                $scope.tokensByTwo.push([]);
+            }
+
+            $scope.tokensByTwo[$scope.tokensByTwo.length - 1].push(token);
+        });
+    };
 }]);
 
 Application.$controller("liveformUpdateFormTypeController", ["$scope",
@@ -108,7 +119,6 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
                 $scope.Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue = 365;
             }
         };
-
     }
 ]);
 
@@ -211,18 +221,12 @@ Application.$controller("gridGroupMembersController", ["$scope",
     }
 ]);
 
-
-
 Application.$controller("dialogAddUserToGroupController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
     }
 ]);
-
-
-
-
 
 Application.$controller("gridLettersController", ["$scope",
     function($scope) {
@@ -235,12 +239,35 @@ Application.$controller("liveformLettersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.insertField = function(field) {
+            insertAtCursor($('textarea[name=letterBody_formWidget]')[0], field);
+        };
+
+        function insertAtCursor(myField, myValue) { // http://stackoverflow.com/a/41426040
+            if (document.selection) { // IE support
+                sel = document.selection.createRange();
+                sel.text = myValue;
+            } else if (window.navigator.userAgent.indexOf("Edge") > -1) { // Microsoft Edge
+                let startPos = myField.selectionStart;
+                let endPos = myField.selectionEnd;
+
+                myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
+
+                var pos = startPos + myValue.length;
+                myField.setSelectionRange(pos, pos);
+            } else if (myField.selectionStart || myField.selectionStart == '0') { // MOZILLA and others
+                let startPos = myField.selectionStart;
+                let endPos = myField.selectionEnd;
+                myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
+            } else {
+                myField.value += myValue;
+            }
+
+            myField.focus();
+        }
     }
 ]);
-
-
-
-
 
 Application.$controller("gridCodeSetsController", ["$scope",
     function($scope) {

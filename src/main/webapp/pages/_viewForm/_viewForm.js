@@ -803,8 +803,8 @@ Application.$controller("dialogViewInspectionController", ["$scope",
 ]);
 
 Application.$controller("gridLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
