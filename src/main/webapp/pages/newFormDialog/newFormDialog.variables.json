@@ -4,15 +4,7 @@
     "name" : "lvFormCategories",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.selectMunicipality.datavalue",
-      "type" : "number"
-    }, {
-      "target" : "municipalityInternalCategory",
-      "value" : "bind:Widgets.selectType.datavalue=='Internal'",
-      "type" : "boolean"
-    } ],
+    "dataBinding" : [ ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "FormCategories",
@@ -22,7 +14,7 @@
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "transformationRequired" : false,
     "liveSource" : "cx2",
     "ignoreCase" : true,
@@ -238,7 +230,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -530,23 +522,7 @@
     "name" : "svFormTypes",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "formCategory",
-      "value" : "bind:Widgets.selectCategory.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "municipalityId",
-      "value" : "bind:Widgets.selectMunicipality.datavalue",
-      "type" : "integer"
-    }, {
-      "target" : "userId",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    }, {
-      "target" : "codeEnforcement",
-      "value" : "bind:pageParams.isCase",
-      "type" : "boolean"
-    } ],
+    "dataBinding" : [ ],
     "type" : "com.civicxpress.cx2.models.query.GetFormTypesByCategoriesAndMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeGetFormTypesByCategoriesAndMunicipalities",
@@ -558,7 +534,7 @@
     "maxResults" : 9001,
     "designMaxResults" : 10,
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,

@@ -5,17 +5,7 @@
                 <wm-composite name="composite4_1" show="bind:Variables.StandardUserMunicipalities.dataSet.content.length > 1" padding="unset unset 2em unset">
                     <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container4" width="240px">
-                        <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="ID" displayfield="MunicipalityName" name="selectMunicipality" orderby="MunicipalityName:asc" placeholder="Select Municipality" on-change="Variables.svFormTypes.invoke()"></wm-select>
-                    </wm-container>
-                </wm-composite>
-            </wm-gridcolumn>
-        </wm-gridrow>
-        <wm-gridrow name="gridrow4">
-            <wm-gridcolumn columnwidth="12" name="gridcolumn4">
-                <wm-composite name="composite4_2" accessroles="CXAdmin,MunicipalityEmployee,MunicipalityAdmin,InspectorManager,Inspector,CodeOfficer,CodeManager" padding="unset unset 2em unset">
-                    <wm-label class="col-md-3 form-control-static" name="label4" width="160px" caption="Select Category Type" fontweight="bold"></wm-label>
-                    <wm-container class="col-md-9" name="container4_1" width="240px">
-                        <wm-select name="selectType" dataset="Public,Internal" datavalue="Public"></wm-select>
+                        <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="ID" displayfield="MunicipalityName" name="selectMunicipality" orderby="MunicipalityName:asc" placeholder="Select Municipality" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>
@@ -25,7 +15,7 @@
                 <wm-composite name="composite3" show="bind:!!Widgets.selectMunicipality.datavalue" padding="unset unset 2em unset">
                     <wm-label class="col-md-3 form-control-static" name="label18" caption="Filter by Category" width="160px" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container2" width="240px">
-                        <wm-select name="selectCategory" datafield="id" placeholder="All Categories" dataset="bind:Variables.lvFormCategories.dataSet" displayfield="category" on-change="Variables.svFormTypes.invoke()"></wm-select>
+                        <wm-select name="selectCategory" datafield="id" placeholder="All Categories" dataset="bind:Variables.lvFormCategories.dataSet" displayfield="category" on-change="selectCategoryChange($event, $scope, newVal, oldVal)"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>

@@ -650,13 +650,12 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Boolean codeEnforcement, Integer userId) {
-        Map params = new HashMap(4);
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Boolean municipalityInternalForm) {
+        Map params = new HashMap(3);
 
         params.put("formCategory", formCategory);
         params.put("municipalityId", municipalityId);
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("userId", userId);
+        params.put("municipalityInternalForm", municipalityInternalForm);
 
         return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, Object.class, pageable);
     }

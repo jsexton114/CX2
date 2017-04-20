@@ -165,6 +165,9 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
     @JsonProperty("ExpirationStatusId")
     @ColumnAlias("ExpirationStatusId")
     private Integer expirationStatusId;
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
 
     public Integer getId() {
         return this.id;
@@ -542,6 +545,14 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
         this.expirationStatusId = expirationStatusId;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -593,7 +604,8 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 Objects.equals(getPropertyType(), getFormTypesByCategoriesAndMunicipalitiesResponse.getPropertyType()) &&
                 Objects.equals(getExpirationType(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationType()) &&
                 Objects.equals(getExpirationDays(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationDays()) &&
-                Objects.equals(getExpirationStatusId(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationStatusId());
+                Objects.equals(getExpirationStatusId(), getFormTypesByCategoriesAndMunicipalitiesResponse.getExpirationStatusId()) &&
+                Objects.equals(getDescription(), getFormTypesByCategoriesAndMunicipalitiesResponse.getDescription());
     }
 
     @Override
@@ -644,6 +656,7 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
                 getPropertyType(),
                 getExpirationType(),
                 getExpirationDays(),
-                getExpirationStatusId());
+                getExpirationStatusId(),
+                getDescription());
     }
 }

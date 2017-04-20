@@ -4516,8 +4516,8 @@
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : "GetFormTypesByCategoriesAndMunicipalities",
     "version" : "V1",
-    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand FT.CodeEnforcement=:codeEnforcement\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))",
-    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand FT.CodeEnforcement=:codeEnforcement\nand (FT.MunicipalityInternalForm=0\n\t\tOR EXISTS (SELECT RoleName from Roles where\n\t\t\t\t\tUserId=:userId\n\t\t\t\t\tand (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable",
+    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)",
+    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4526,29 +4526,22 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "18",
+      "testValue" : "6",
       "required" : false
     }, {
       "name" : "municipalityId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2",
-      "required" : false
+      "testValue" : "1",
+      "required" : true
     }, {
-      "name" : "codeEnforcement",
+      "name" : "municipalityInternalForm",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : false,
-      "required" : true
-    }, {
-      "name" : "userId",
-      "type" : "integer",
-      "list" : false,
-      "variableType" : "PROMPT",
-      "testValue" : "1",
-      "required" : true
+      "testValue" : true,
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,
@@ -4980,6 +4973,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Description",
+        "fieldName" : "description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]

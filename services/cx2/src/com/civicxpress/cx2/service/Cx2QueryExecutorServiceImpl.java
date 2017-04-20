@@ -1674,26 +1674,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean codeEnforcement, Integer userId, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean municipalityInternalForm, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("formCategory", formCategory);
         params.put("municipalityId", municipalityId);
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("userId", userId);
+        params.put("municipalityInternalForm", municipalityInternalForm);
 
         return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean codeEnforcement, Integer userId, Pageable pageable) {
-        Map params = new HashMap(4);
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean municipalityInternalForm, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("formCategory", formCategory);
         params.put("municipalityId", municipalityId);
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("userId", userId);
+        params.put("municipalityInternalForm", municipalityInternalForm);
 
         return queryExecutor.exportNamedQueryData("GetFormTypesByCategoriesAndMunicipalities", params, exportType, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
     }

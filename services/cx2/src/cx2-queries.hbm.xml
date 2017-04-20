@@ -1519,16 +1519,12 @@ where MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:munic
 WHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))
 and FM.FormTypeId=FT.ID
 and FT.Active=1
-and FT.CodeEnforcement=:codeEnforcement
-and (FT.MunicipalityInternalForm=0
-		OR EXISTS (SELECT RoleName from Roles where
-					UserId=:userId
-					and (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))
+and (:municipalityInternalForm IS NULL OR 
+    FT.MunicipalityInternalForm=:municipalityInternalForm)
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
-    <query-param name="userId" type="java.lang.Integer"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     </sql-query>
 
     <sql-query name="GetFormTypesByCategoriesAndMunicipalities__count">
@@ -1537,16 +1533,12 @@ and (FT.MunicipalityInternalForm=0
 WHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))
 and FM.FormTypeId=FT.ID
 and FT.Active=1
-and FT.CodeEnforcement=:codeEnforcement
-and (FT.MunicipalityInternalForm=0
-		OR EXISTS (SELECT RoleName from Roles where
-					UserId=:userId
-					and (MunicipalityId=FT.MunicipalityId and (RoleName='MunicipalityEmployee' or RoleName='MunicipalityAdmin')) or RoleName='CXAdmin'))) wmTempTable
+and (:municipalityInternalForm IS NULL OR 
+    FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
-    <query-param name="userId" type="java.lang.Integer"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     </sql-query>
 
     <sql-query name="DeleteRoleForMuncipality">

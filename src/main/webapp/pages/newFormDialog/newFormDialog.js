@@ -2,16 +2,65 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     "use strict";
 
     /* perform any action on widgets/variables within this block */
+    $scope.temp;
+    $scope.isEmployee;
+
+    function userFilter() {
+
+        //setting inputs for categories
+        $scope.Variables.lvFormCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'municipalityInternalCategory': false,
+        });
+        $scope.Variables.lvFormCategories.update();
+
+        //setting inputs for forms
+        $scope.Variables.svFormTypes.setInput({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'formCategory': $scope.Widgets.selectCategory.datavalue,
+            'municipalityInternalForm': false
+        });
+        $scope.Variables.svFormTypes.update();
+    }
+
+    function employeeFilter() {
+
+        //setting inputs for categories
+        $scope.Variables.lvFormCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'municipalityInternalCategory': undefined
+        });
+        $scope.Variables.lvFormCategories.update();
+
+        //setting inputs for forms
+        $scope.Variables.svFormTypes.setInput({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'formCategory': $scope.Widgets.selectCategory.datavalue,
+            'municipalityInternalForm': undefined
+        });
+        $scope.Variables.svFormTypes.update();
+    }
+
+    function filterResults() {
+
+        if ($scope.isEmployee) {
+            employeeFilter();
+        } else {
+            userFilter();
+        }
+    }
+
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+        $scope.temp = $scope.Variables.loggedInUser.dataSet.roles;
+        $scope.isEmployee = false;
+        for (let i = 0; i < $scope.temp.length; i++) {
+            if (($scope.temp[i] == "MunicipalityEmployee")) {
+                $scope.isEmployee = true;
+            }
+        }
+
+
+
     };
 
     $scope.closeDlg = function() {
@@ -34,6 +83,16 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
 
     $scope.buttonCreateClick = function($event, $isolateScope) {
         $location.path("/NewForm").search("formTypeId", $scope.Widgets.selectForm.datavalue);
+    };
+
+
+    $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+        filterResults();
+    };
+
+
+    $scope.selectCategoryChange = function($event, $isolateScope, newVal, oldVal) {
+        filterResults();
     };
 
 }]);
