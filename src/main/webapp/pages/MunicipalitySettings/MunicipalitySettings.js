@@ -14,11 +14,9 @@ Application.$controller("MunicipalitySettingsPageController", ["$scope", functio
          */
     };
 
-
     $scope.UpdateLogoMunicipalitiesonSuccess = function(variable, data) {
         $scope.Widgets.picture1.picturesource = "services/cx2/Municipalities/" + data.id + "/content/logo?" + moment().valueOf();
     };
-
 }]);
 
 
@@ -27,25 +25,28 @@ Application.$controller("dialog1Controller", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        function readURL(input) {
-            if (input.files && input.files[0]) {
+        $scope.newMunicipalityLogo = {};
+        var newLogo;
+
+        $scope.$watch('newMunicipalityLogo.Contents', function(newVal, oldVal) {
+            if (!!newVal && !!newVal) {
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
-                    $scope.Widgets.picture2.picturesource = e.target.result;
+                    newLogo = e.target.result;
+                    $scope.Widgets.picture2.picturesource = newLogo;
                     $scope.$root.$safeApply($scope);
                 };
 
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(newVal);
             }
-        }
+        });
 
-        $scope.dialog1Opened = function($event, $isolateScope) {
-            $('[name="dialog1"]').on('change', '.app-blob-upload', function() {
-                readURL(this);
-            })
+        $scope.buttonSaveClick = function($event, $isolateScope) {
+            $scope.Variables.svUpdateLogo.setInput('photo', [$scope.newMunicipalityLogo.Contents]);
+            $scope.Variables.svUpdateLogo.update();
+            $scope.Widgets.picture1.picturesource = newLogo;
         };
-
     }
 ]);
 
@@ -53,5 +54,9 @@ Application.$controller("liveformUpdateLogoController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.logoChange = function($event, $isolateScope, newVal, oldVal) {
+            console.log(newVal);
+        };
     }
 ]);

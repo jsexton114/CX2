@@ -1,31 +1,4 @@
 {
-  "AdminsMunicipalities" : {
-    "_id" : "wm-AdminsMunicipalities-wm.ServiceVariable-1479464516252",
-    "name" : "AdminsMunicipalities",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "user",
-      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
-      "type" : "integer"
-    } ],
-    "type" : "com.civicxpress.cx2.models.query.AdminsMunicipalitiesResponse",
-    "service" : "cx2",
-    "operation" : "executeAdminsMunicipalities",
-    "operationId" : "QueryExecutionController_executeAdminsMunicipalities",
-    "operationType" : "get",
-    "serviceType" : "DataService",
-    "dataSet" : [ ],
-    "isList" : true,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : true,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
-  },
   "AllSates" : {
     "_id" : "wm-AllSates-wm.LiveVariable-1479636533779",
     "name" : "AllSates",
@@ -409,7 +382,7 @@
         "columnName" : "Logo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -609,6 +582,19 @@
         "isRelated" : false,
         "defaultValue" : "5",
         "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",
@@ -628,6 +614,32 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "svUpdateLogo" : {
+    "_id" : "wm-svUpateLogo-wm.ServiceVariable-1492720747289",
+    "name" : "svUpdateLogo",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].id",
+      "type" : "integer"
+    } ],
+    "service" : "UserService",
+    "operation" : "saveMunicipalityLogo",
+    "operationId" : "UserController_saveMunicipalityLogo",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Widgets.dialog1.close()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "User"
   },
   "UpdateGlobalEmailSig" : {
     "_id" : "wm-UpdateGlobalEmailSig-wm.ServiceVariable-1479638385550",
@@ -909,7 +921,7 @@
         "columnName" : "Logo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -1108,6 +1120,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "5",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",

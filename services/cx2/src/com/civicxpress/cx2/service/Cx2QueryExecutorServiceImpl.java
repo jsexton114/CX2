@@ -703,6 +703,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
+        Map params = new HashMap(2);
+
+        params.put("logoBytes", updateMunicipalityLogoRequest.getLogoBytes());
+        params.put("municipalityId", updateMunicipalityLogoRequest.getMunicipalityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMunicipalityLogo", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor) {
         Map params = new HashMap(2);
 

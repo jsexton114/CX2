@@ -12837,6 +12837,41 @@
       "responseType" : "SINGLE"
     }
   },
+  "updateMunicipalityLogo" : {
+    "name" : "updateMunicipalityLogo",
+    "description" : "sdkfjksjdfj",
+    "version" : "V2",
+    "queryString" : "update Municipalities set logo=:logoBytes where ID=:municipalityId",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "logoBytes",
+      "type" : "byte",
+      "list" : true,
+      "variableType" : "PROMPT",
+      "testValue" : [ "11" ],
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "27",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateMunicipalityLogoRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "updateTrackViolations" : {
     "name" : "updateTrackViolations",
     "description" : "updateTrackViolations",

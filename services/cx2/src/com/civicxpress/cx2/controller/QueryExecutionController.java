@@ -630,6 +630,16 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/updateMunicipalityLogo", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "sdkfjksjdfj")
+    public IntegerWrapper executeUpdateMunicipalityLogo(@Valid @RequestBody UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
+        LOGGER.debug("Executing named query: updateMunicipalityLogo");
+        Integer _result = queryService.executeUpdateMunicipalityLogo(updateMunicipalityLogoRequest);
+        LOGGER.debug("got the result for named query: updateMunicipalityLogo, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/DeleteFromVendorAdmins", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteFromVendorAdmins")

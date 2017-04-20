@@ -75,7 +75,6 @@ public class UserService {
     	}
     	
     	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE Municipalities SET logo=:newPhoto WHERE ID=:municipalityId", queryParams);
-    	cx2Conn.close();
     }
     
     public void saveUserPhoto(MultipartFile photo[], Long userId) throws Exception {
@@ -94,6 +93,5 @@ public class UserService {
     	}
     	
     	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE Users SET photo=:newPhoto WHERE ID=:userId", queryParams);
-    	cx2Conn.close();
     }
 }

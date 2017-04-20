@@ -49,7 +49,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
             //Sending mail to  CreatedBy
             $scope.Variables.svSendOutcomeUpdate.setInput({
                 'formLink': tempLink,
-
             });
             $scope.Variables.svSendOutcomeUpdate.update();
         }

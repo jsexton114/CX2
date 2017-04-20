@@ -21,6 +21,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/saveMunicipalityLogo", method = RequestMethod.POST, consumes = "multipart/form-data")
+    public void saveMunicipalityLogo(@RequestPart(value = "photo") MultipartFile[] photo, @RequestParam(value = "municipalityId", required = false) Long municipalityId) throws Exception {
+        userService.saveMunicipalityLogo(photo, municipalityId);
+    }
+
     @RequestMapping(value = "/saveUserPhoto", method = RequestMethod.POST, consumes = "multipart/form-data")
     public void saveUserPhoto(@RequestPart(value = "photo") MultipartFile[] photo, @RequestParam(value = "userId", required = false) Long userId) throws Exception {
         userService.saveUserPhoto(photo, userId);

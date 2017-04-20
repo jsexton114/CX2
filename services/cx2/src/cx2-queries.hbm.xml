@@ -547,6 +547,14 @@ AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
     <query-param name="formType" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="updateMunicipalityLogo">
+        <![CDATA[
+        update Municipalities set logo=:logoBytes where ID=:municipalityId
+        ]]>
+    <query-param name="logoBytes" type="java.lang.Byte"/>
+    <query-param name="municipalityId" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="DeleteFromVendorAdmins">
         <![CDATA[
         delete from VendorAdmins where UserId=:user and VendorId=:vendor

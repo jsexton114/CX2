@@ -148,6 +148,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateTrackViolations(UpdateTrackViolationsRequest updateTrackViolationsRequest);
 
+    Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest);
+
     Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor);
 
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);

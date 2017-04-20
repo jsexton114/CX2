@@ -24,7 +24,6 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     }
 
     function employeeFilter() {
-
         //setting inputs for categories
         $scope.Variables.lvFormCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
@@ -42,7 +41,6 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     }
 
     function filterResults() {
-
         if ($scope.isEmployee) {
             employeeFilter();
         } else {
@@ -58,9 +56,6 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
                 $scope.isEmployee = true;
             }
         }
-
-
-
     };
 
     $scope.closeDlg = function() {
@@ -85,14 +80,11 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
         $location.path("/NewForm").search("formTypeId", $scope.Widgets.selectForm.datavalue);
     };
 
-
     $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
         filterResults();
     };
 
-
     $scope.selectCategoryChange = function($event, $isolateScope, newVal, oldVal) {
         filterResults();
     };
-
 }]);
