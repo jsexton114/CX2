@@ -2472,9 +2472,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InspectionDesignForCategoriesMappedToForms")
-    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(@RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(@RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
         LOGGER.debug("Executing named query: InspectionDesignForCategoriesMappedToForms");
-        Page<InspectionDesign> _result = queryService.executeInspectionDesignForCategoriesMappedToForms(formTypeId, pageable);
+        Page<InspectionDesign> _result = queryService.executeInspectionDesignForCategoriesMappedToForms(formTypeId, active, pageable);
         LOGGER.debug("got the result for named query: InspectionDesignForCategoriesMappedToForms, result:{}", _result);
         return _result;
     }
@@ -2482,10 +2482,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query InspectionDesignForCategoriesMappedToForms")
     @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportInspectionDesignForCategoriesMappedToForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, Pageable pageable) {
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
         LOGGER.debug("Exporting named query: InspectionDesignForCategoriesMappedToForms");
 
-        return queryService.exportInspectionDesignForCategoriesMappedToForms(exportType, formTypeId, pageable);
+        return queryService.exportInspectionDesignForCategoriesMappedToForms(exportType, formTypeId, active, pageable);
     }
 
     @RequestMapping(value = "/queries/GetGis2formsByForm", method = RequestMethod.GET)

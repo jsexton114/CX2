@@ -6637,8 +6637,8 @@
     "name" : "InspectionDesignForCategoriesMappedToForms",
     "description" : "InspectionDesignForCategoriesMappedToForms",
     "version" : "V2",
-    "queryString" : "from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))",
-    "countQueryString" : "select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))",
+    "queryString" : "from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId)) and active=:active",
+    "countQueryString" : "select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId)) and active=:active",
     "nativeSql" : false,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -6648,6 +6648,13 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "58",
+      "required" : true
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
       "required" : true
     } ],
     "request" : {

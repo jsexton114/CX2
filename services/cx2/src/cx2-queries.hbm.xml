@@ -2536,16 +2536,18 @@ from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and dat
 
     <query name="InspectionDesignForCategoriesMappedToForms">
         <![CDATA[
-        from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))
+        from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId)) and active=:active
         ]]>
     <query-param name="formTypeId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
     </query>
 
     <query name="InspectionDesignForCategoriesMappedToForms__count">
         <![CDATA[
-        select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId))
+        select count(*) from InspectionDesign where id IN(select inspectionDesignId from InspectionCategoryMapping where inspectionCategoryId IN(select inspectionCategoryId from FormToInspectionCategoryMapping where formTypeId= :formTypeId)) and active=:active
         ]]>
     <query-param name="formTypeId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
     </query>
 
     <query name="GetGis2formsByForm">

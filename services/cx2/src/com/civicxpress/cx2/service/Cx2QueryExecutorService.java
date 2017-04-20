@@ -530,9 +530,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteProjectForms(Integer projectForm);
 
-    Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable);
+    Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Boolean active, Pageable pageable);
 
-    Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable);
+    Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable);
 
     Page<GetGis2formsByFormResponse> executeGetGis2formsByForm(String relatedFormGuid, Pageable pageable);
 

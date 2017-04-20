@@ -2872,20 +2872,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
         params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
         return queryExecutor.executeNamedQuery("InspectionDesignForCategoriesMappedToForms", params, InspectionDesign.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
         params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
         return queryExecutor.exportNamedQueryData("InspectionDesignForCategoriesMappedToForms", params, exportType, InspectionDesign.class, pageable);
     }
