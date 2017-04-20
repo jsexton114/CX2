@@ -32,7 +32,7 @@ public class LetterService {
     private SecurityService securityService;
     
     @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
+    private String sqlUrl = "jdbc:sqlserver://192.168.2.211:1433;databaseName=CX2_DEV";
 
     public List<String> getAvailableTokens(int formTypeId) {
     	Cx2DataAccess.setSqlUrl(sqlUrl);

@@ -17,6 +17,7 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 
 import com.civicxpress.LetterTemplate;
 import com.civicxpress.SectionalTemplatePdf;
+import com.civicxpress.Cx2DataAccess;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -34,12 +35,14 @@ public class LetterService {
     private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
 
     public List<String> getAvailableTokens(int formTypeId) {
+    	Cx2DataAccess.setSqlUrl(sqlUrl);
         List<String> availableTokens = null;
         availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
         return availableTokens;
     }
    
     public DownloadResponse createLetter(Long formTypeId, String formGuid, String bodyTopRightCustomTextTemplate) {
+    	Cx2DataAccess.setSqlUrl(sqlUrl);
         String bodyTopLeftTitleTemplate = "LOT NO.";
         String bodyTopLeftCustomTextTemplate = "12";
         String bodyBottomTitleTemplate = "OPEN BURNING PROHIBITED";

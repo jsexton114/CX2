@@ -39,11 +39,9 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
         // $scope.Variables.svRecordHistory.update();
     };
 
-
     $scope.lvDocumentsonSuccess = function(variable, data) {
 
     };
-
 
     $scope.svSetInspectionOutcomeonSuccess = function(variable, data) {
         if ($scope.Widgets.selectOutcome.datavalue.sendEmail) {
@@ -132,7 +130,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
         $scope.Variables.GetTaggedPeopleListByMessage.update();
     };
 
-
     $scope.buttonTagPeopleClick = function($event, $isolateScope) {
         $scope.Variables.stvTagSelection.dataSet.dataValue = 'users';
         $scope.Widgets.dialogTagPeople.open();
@@ -170,10 +167,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
             }
         }
     };
-
-
-
-
 }]);
 
 var liveformFeesScope = {};
@@ -234,7 +227,6 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
             $scope.docsToUpload = [];
             $scope.Widgets.dialogUploadDocument.close();
         };
-
     }
 ]);
 
@@ -279,7 +271,6 @@ Application.$controller("gridInspectionHistoryController", ["$scope",
     }
 ]);
 
-
 Application.$controller("dialogTagPeopleController", ["$scope",
     function($scope) {
         "use strict";
@@ -293,10 +284,10 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                 temp = $scope.Widgets.textSearchPeople.datavalue;
             }
             // Pushing selected users to List(Static Variable)
-            if (temp != "") {
+            if (temp !== "") {
                 var data = $scope.Variables.PeopleList.dataSet;
                 // checking for any people in PeopleList variable, if not add from search 
-                if (data.length == 0) {
+                if (!data.length) {
                     data.push(temp);
                     // clear search after pushing
                     $scope.Widgets.textSearchPeople.datavalue = "";
@@ -324,7 +315,6 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             }
         };
 
-
         $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
             // Removing the deleted People
             _.remove($scope.Variables.PeopleList.dataSet, {
@@ -333,7 +323,6 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             // Setting for adding to subscriptions
             selectedPeople = $scope.Variables.PeopleList.dataSet;
         };
-
     }
 ]);
 
@@ -411,20 +400,19 @@ Application.$controller("dialogViolationController", ["$scope",
 
             $scope.Widgets.dialogViolation.close();
         };
-
     }
 ]);
 
 Application.$controller("dialogViewViolationController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogRemoveViolationController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
