@@ -49,14 +49,3 @@ Application.$controller("dialog1Controller", ["$scope",
         };
     }
 ]);
-
-Application.$controller("liveformUpdateLogoController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.logoChange = function($event, $isolateScope, newVal, oldVal) {
-            console.log(newVal);
-        };
-    }
-]);
