@@ -693,7 +693,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.minDaysForInspection = moment().startOf('day').valueOf();
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
 
-        $scope.canAddInspection = function() {
+        $scope.cannotAddInspection = function() {
             return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || ((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling)");
         };
 
