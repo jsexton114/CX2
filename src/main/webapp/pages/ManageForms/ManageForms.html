@@ -155,7 +155,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewFormsInCategory">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Forms in Category:&quot; +Widgets.gridFormcategories.selecteditem.category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Forms in Category: &quot; +Widgets.gridFormcategories.selecteditem.category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
@@ -164,8 +164,9 @@
                 filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                     <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="formTypes.description" caption="Description" type="text" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="formTypes.createdDate" caption="Date Created" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                    <wm-grid-column binding="formTypes.createdDate" caption="Date Created" type="date" generator="assigned" readonly="true" edit-widget-type="date" show="true" related-entity-name="FormTypes">{{row.getProperty('formTypes.createdDate') | toLocalDateString:true}}</wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false"
+                    show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -174,14 +175,14 @@
                     <wm-layoutgrid columns="1" name="layoutgrid8">
                         <wm-gridrow name="gridrow15_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn18">
-                                <wm-form-field name="customCategory" key="custom" displayname="Category" show="true" type="string" widget="select" placeholder="Select value" dataset="bind:Variables.stvCategoryType.dataSet" datafield="value" displayfield="type"
-                                defaultvalue="bind:Variables.stvCategoryType.dataSet[0].value"></wm-form-field>
+                                <wm-form-field name="customCategory" key="custom" displayname="Filter by Form Visibility" show="true" type="string" widget="select" placeholder="All Forms" dataset="bind:Variables.stvCategoryType.dataSet" datafield="value"
+                                displayfield="type" defaultvalue="bind:Variables.stvCategoryType.dataSet[0].value"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow16_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                                <wm-form-field name="formTypes" displayname="Which form would you like to add to this category?" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="true"
-                                widget="select" placeholder="Select value" dataset="bind:Variables.lvGetFormTypes.dataSet" datafield="All Fields" displayfield="formType" orderby="formType:asc"></wm-form-field>
+                                <wm-form-field name="formTypes" displayname="Select Form" show="true" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="true" widget="select" placeholder="Select value"
+                                dataset="bind:Variables.lvGetFormTypes.dataSet" datafield="All Fields" displayfield="formType" orderby="formType:asc"></wm-form-field>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
