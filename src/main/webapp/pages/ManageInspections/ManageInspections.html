@@ -147,9 +147,14 @@
                 filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                     <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Inspection" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
                     <wm-grid-column binding="inspectionDesign.description" caption="Description" type="text" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
-                    <wm-grid-column binding="inspectionDesign.createdAt" caption="Date Created" type="timestamp" generator="assigned" readonly="true" edit-widget-type="timestamp" show="true" filterwidget="date" related-entity-name="InspectionDesign">{{row.getProperty('inspectionDesign.createdAt') | toLocalDateString:true}}</wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
-                    searchable="false" show="true"></wm-grid-column>
+                    <wm-grid-column binding="inspectionDesign.active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="InspectionDesign">
+                        <wm-checkbox scopedatavalue="row['inspectionDesign.active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                    </wm-grid-column>
+                    <wm-grid-column binding="inspectionDesign.municipalityInternalInspection" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true"
+                    related-entity-name="InspectionDesign">
+                        <wm-checkbox scopedatavalue="row['inspectionDesign.municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                    </wm-grid-column>
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Inspection" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngGoToInspection.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
