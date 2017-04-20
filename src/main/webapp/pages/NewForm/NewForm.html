@@ -213,8 +213,7 @@
                                     <wm-gridrow name="gridrow42">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
                                             <wm-composite name="composite4" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection || Variables.svGetOwners.dataSet.content.length > 0">
-                                                <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="bind:!Variables.lvFormType.dataSet.data[$i].vendorSelection &amp;&amp; !Variables.svGetOwners.dataSet.content.length"
-                                                on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                                <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="false" on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
                                             </wm-composite>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn83">

@@ -370,7 +370,12 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     $scope.wizardstep9Load = function($isolateScope, stepIndex) {
         if (!$scope.Widgets.checkboxOtherOwner.datavalue) {
-            setLFFieldsRO($scope.Widgets.lfOwner, true);
+            let defaultOtherOwner = $scope.$eval("vendorInfo === false && !Variables.svGetOwners.dataSet.content.length");
+            $scope.Widgets.checkboxOtherOwner.datavalue = defaultOtherOwner;
+
+            if (!defaultOtherOwner) {
+                setLFFieldsRO($scope.Widgets.lfOwner, true);
+            }
         }
 
         if ($scope.Widgets.gridOwners.gridData.length === 1) {
