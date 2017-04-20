@@ -155,7 +155,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewFormsInCategory">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Forms in Category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Forms in Category:&quot; +Widgets.gridFormcategories.selecteditem.category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
@@ -163,8 +163,8 @@
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?"
                 filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                     <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="formTypes.description" caption="Description" type="text" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                    <wm-grid-column binding="formTypes.createdDate" caption="Date Created" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                    <wm-grid-column binding="formTypes.description" caption="Description" type="text" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                    <wm-grid-column binding="formTypes.createdDate" caption="Date Created" type="date" generator="assigned" readonly="true" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="date" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
