@@ -641,6 +641,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("countProjectsByVendors", params, CountProjectsByVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("countProjectsByVendors", params, exportType, CountProjectsByVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CountOfCompnayFormsByVendorIdResponse> executeCountOfCompnayFormsByVendorId(Boolean closed, Integer vendorId, Pageable pageable) {
         Map params = new HashMap(2);
 

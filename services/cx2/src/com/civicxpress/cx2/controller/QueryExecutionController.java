@@ -572,6 +572,25 @@ public class QueryExecutionController {
         return queryService.exportSearchWithFormTitle(exportType, codeEnforcement, municipalityId, formTitle, pageable);
     }
 
+    @RequestMapping(value = "/queries/countProjectsByVendors", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countProjectsByVendors")
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: countProjectsByVendors");
+        Page<CountProjectsByVendorsResponse> _result = queryService.executeCountProjectsByVendors(vendorId, active, pageable);
+        LOGGER.debug("got the result for named query: countProjectsByVendors, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countProjectsByVendors")
+    @RequestMapping(value = "/queries/countProjectsByVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountProjectsByVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countProjectsByVendors");
+
+        return queryService.exportCountProjectsByVendors(exportType, vendorId, active, pageable);
+    }
+
     @RequestMapping(value = "/queries/CountOfCompnayFormsByVendorId", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfCompnayFormsByVendorId")

@@ -10754,6 +10754,51 @@
       } ]
     }
   },
+  "countProjectsByVendors" : {
+    "name" : "countProjectsByVendors",
+    "description" : "countProjectsByVendors",
+    "version" : "V2",
+    "queryString" : "select count(*) as projectsCount\nfrom VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "vendorId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "26",
+      "required" : true
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountProjectsByVendorsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "projectsCount",
+        "fieldName" : "projectsCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Long",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "deleteInspectionDesign" : {
     "name" : "deleteInspectionDesign",
     "description" : "df",

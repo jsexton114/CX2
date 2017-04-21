@@ -501,6 +501,16 @@ AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
 
+    <query name="countProjectsByVendors">
+        <![CDATA[
+        select count(*) as projectsCount
+from VendorsToProject
+where vendorId=:vendorId and projects.active=:active
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
+
     <sql-query name="CountOfCompnayFormsByVendorId">
         <![CDATA[
         select count(*) as count from MasterForms where Closed=:closed and  FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId )

@@ -114,5 +114,36 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "svCountProjectsByVendors" : {
+    "_id" : "wm-svCountProjectsByVendors-wm.ServiceVariable-1492777180574",
+    "name" : "svCountProjectsByVendors",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "vendorId",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "active",
+      "value" : true,
+      "type" : "boolean"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountProjectsByVendorsResponse",
+    "service" : "cx2",
+    "operation" : "executeCountProjectsByVendors",
+    "operationId" : "QueryExecutionController_executeCountProjectsByVendors",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }
