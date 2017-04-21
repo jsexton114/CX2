@@ -1,4 +1,4 @@
-Application.$controller("_viewFormPageController", ["$scope", "$timeout", function($scope, $timeout) {
+Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filter", function($scope, $timeout, $filter) {
     "use strict";
 
     var currentBreadCrumb = null;
@@ -178,6 +178,7 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", functi
     };
 
     $scope.liveformFeesSuccess = function($event, $operation, $data) {
+        debugger
         var comments = null;
 
         if ($operation === 'insert') {
