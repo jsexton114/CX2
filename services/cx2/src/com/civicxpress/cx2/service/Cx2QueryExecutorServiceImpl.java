@@ -549,6 +549,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("UpdateConsiderClosedForInspectionOutcome", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectsByVendorResponse> executeProjectsByVendor(Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("projectsByVendor", params, ProjectsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportProjectsByVendor(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("projectsByVendor", params, exportType, ProjectsByVendorResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateAsCXVendorAdmin(UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest) {
@@ -2279,6 +2301,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("UserId", userId);
 
         return queryExecutor.executeNamedQueryForUpdate("DeleteAllMunicipalityRoles", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MunicipalitiesByVendorStatusResponse> executeMunicipalitiesByVendorStatus(Integer vendorId, String approvalStatus, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("approvalStatus", approvalStatus);
+
+        return queryExecutor.executeNamedQuery("municipalitiesByVendorStatus", params, MunicipalitiesByVendorStatusResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportMunicipalitiesByVendorStatus(ExportType exportType, Integer vendorId, String approvalStatus, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("approvalStatus", approvalStatus);
+
+        return queryExecutor.exportNamedQueryData("municipalitiesByVendorStatus", params, exportType, MunicipalitiesByVendorStatusResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

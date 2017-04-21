@@ -386,6 +386,20 @@ group by FeeType) wmTempTable
     <query-param name="id" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="projectsByVendor">
+        <![CDATA[
+        select projectGuid as projectGuid,
+projects.projectName as projectName,
+projects.createdDate as createdDate,
+projects.usersByCreatedBy.fullName as fullName,
+projects.modifiedDate as modifiedDate
+from VendorsToProject
+where vendorId=:vendorId and projects.active=:active
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
+
     <sql-query name="UpdateAsCXVendorAdmin">
         <![CDATA[
         update Roles set roleName=:role,MunicipalityId=:municipality where UserId=:user
@@ -2042,6 +2056,30 @@ where  FT.CodeEnforcement=:codeEnforcement and
         ]]>
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
     <query-param name="UserId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="municipalitiesByVendorStatus">
+        <![CDATA[
+        select M.* from 
+VendorApprovals VA,
+Municipalities M
+where 
+VA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalStatus
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="approvalStatus" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="municipalitiesByVendorStatus__count">
+        <![CDATA[
+        select count(*) from (select M.* from 
+VendorApprovals VA,
+Municipalities M
+where 
+VA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalStatus) wmTempTable
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="approvalStatus" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="GetRolesForMunicipality">

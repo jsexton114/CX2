@@ -12310,6 +12310,402 @@
       } ]
     }
   },
+  "municipalitiesByVendorStatus" : {
+    "name" : "municipalitiesByVendorStatus",
+    "description" : "municipalitiesByVendorStatus",
+    "version" : "V2",
+    "queryString" : "select M.* from \nVendorApprovals VA,\nMunicipalities M\nwhere \nVA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalStatus",
+    "countQueryString" : "select count(*) from (select M.* from \nVendorApprovals VA,\nMunicipalities M\nwhere \nVA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalStatus) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "vendorId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "26",
+      "required" : true
+    }, {
+      "name" : "approvalStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Approved",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.MunicipalitiesByVendorStatusResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityGuid",
+        "fieldName" : "municipalityGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Address1",
+        "fieldName" : "address1",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Address2",
+        "fieldName" : "address2",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "City",
+        "fieldName" : "city",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PostalCode",
+        "fieldName" : "postalCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Phone",
+        "fieldName" : "phone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowManualPayment",
+        "fieldName" : "allowManualPayment",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ManualPaymentPercent",
+        "fieldName" : "manualPaymentPercent",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "GlobalEmailSig",
+        "fieldName" : "globalEmailSig",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Logo",
+        "fieldName" : "logo",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "byte[]",
+          "list" : false
+        }
+      }, {
+        "name" : "StateId",
+        "fieldName" : "stateId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "MondayYN",
+        "fieldName" : "mondayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "TuesdayYN",
+        "fieldName" : "tuesdayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "WednesdayYN",
+        "fieldName" : "wednesdayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ThursdayYN",
+        "fieldName" : "thursdayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "FridayYN",
+        "fieldName" : "fridayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SaturdayYN",
+        "fieldName" : "saturdayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SundayYN",
+        "fieldName" : "sundayYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "TimeZone",
+        "fieldName" : "timeZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "OpenTime",
+        "fieldName" : "openTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Time",
+          "list" : false
+        }
+      }, {
+        "name" : "CloseTime",
+        "fieldName" : "closeTime",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Time",
+          "list" : false
+        }
+      }, {
+        "name" : "DbName",
+        "fieldName" : "dbName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "DbUser",
+        "fieldName" : "dbUser",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "DbPassword",
+        "fieldName" : "dbPassword",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "UserLimit",
+        "fieldName" : "userLimit",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FormLimit",
+        "fieldName" : "formLimit",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "AllowOfflineCC",
+        "fieldName" : "allowOfflineCc",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      } ]
+    }
+  },
+  "projectsByVendor" : {
+    "name" : "projectsByVendor",
+    "description" : "projectsByVendor",
+    "version" : "V2",
+    "queryString" : "select projectGuid as projectGuid,\nprojects.projectName as projectName,\nprojects.createdDate as createdDate,\nprojects.usersByCreatedBy.fullName as fullName,\nprojects.modifiedDate as modifiedDate\nfrom VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
+    "countQueryString" : null,
+    "nativeSql" : false,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "vendorId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "26",
+      "required" : true
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.ProjectsByVendorResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "projectGuid",
+        "fieldName" : "projectGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "projectName",
+        "fieldName" : "projectName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdDate",
+        "fieldName" : "createdDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "fullName",
+        "fieldName" : "fullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "modifiedDate",
+        "fieldName" : "modifiedDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "removeFeesFromAllUserCarts" : {
     "name" : "removeFeesFromAllUserCarts",
     "description" : "removeFeesFromAllUserCarts",

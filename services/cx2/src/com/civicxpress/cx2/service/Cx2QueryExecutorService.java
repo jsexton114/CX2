@@ -120,6 +120,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateConsiderClosedForInspectionOutcome(UpdateConsiderClosedForInspectionOutcomeRequest updateConsiderClosedForInspectionOutcomeRequest);
 
+    Page<ProjectsByVendorResponse> executeProjectsByVendor(Integer vendorId, Boolean active, Pageable pageable);
+
+    Downloadable exportProjectsByVendor(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable);
+
     Integer executeUpdateAsCXVendorAdmin(UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest);
 
     Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Pageable pageable);
@@ -429,6 +433,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportSubDivisonCount(ExportType exportType, Integer municipalityId, Pageable pageable);
 
     Integer executeDeleteAllMunicipalityRoles(Integer municipalityId, Integer userId);
+
+    Page<MunicipalitiesByVendorStatusResponse> executeMunicipalitiesByVendorStatus(Integer vendorId, String approvalStatus, Pageable pageable);
+
+    Downloadable exportMunicipalitiesByVendorStatus(ExportType exportType, Integer vendorId, String approvalStatus, Pageable pageable);
 
     Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(String role, Integer municipality, Pageable pageable);
 

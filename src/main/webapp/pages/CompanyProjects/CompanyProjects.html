@@ -21,10 +21,76 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
+                        <wm-grid title="" dataset="bind:Variables.svProjectsByVendor.dataSet" navigation="Classic" name="gridProjects">
+                            <wm-grid-column binding="projectName" caption="Project Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="createdDate" caption="Created On" type="string" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="modifiedDate" caption="Modified On" type="string" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="Edit" action="Variables.ngViewProject.invoke()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" disabled="false"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewCreateProject">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="New Project" iconclass="wi wi-building" name="dialogCreateProject">
+            <wm-layoutgrid name="layoutgrid3">
+                <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                        <wm-composite name="composite2" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
+                            <wm-container class="col-md-9" name="container2" width="300px">
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.svMunicipalitiesByVendorStatus.dataSet" datafield="All Fields" displayfield="municipalityName" placeholder="Select Municipality" datavalue="bind:Variables.svMunicipalitiesByVendorStatus.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow16" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn17">
+                        <wm-composite name="composite3" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label7" caption="Project Name" fontweight="bold" required="false" width="160px"></wm-label>
+                            <wm-container class="col-md-9" name="container3" width="300px">
+                                <wm-text name="textProjectName" placeholder="Enter Text" required="false"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow18" padding="1em unset unset unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
+                        <wm-label name="label4" class="col-md-3 form-control-static" fontweight="bold" caption="Description"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow17">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn19">
+                        <wm-richtexteditor name="richtexteditorProjectDescription" placeholder=""></wm-richtexteditor>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="buttonCreateProject" on-click="Variables.ProjectsData.createRecord()" iconclass="wi wi-plus" disabled="bind:(Widgets.textProjectName.datavalue == undefined)||(Widgets.selectMunicipalityForCreateProje.datavalue == undefined)"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewSoftDeleteProjectConfirm">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Project" iconclass="wi wi-trash" name="confirmdialogSoftDeleteProjectCo">
+            <wm-layoutgrid name="layoutgrid26_1">
+                <wm-gridrow name="gridrow81_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn159_2" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" caption="You are about to delete a project.  Once a project has been deleted you will not be able to undo this.  Are you sure you want to delete this project?" name="label76"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions8">
+                <wm-button class="btn-primary" caption="OK" on-click="Variables.ProjectSoftDelete.invoke()" name="buttonDeleteProjectOK" iconclass="wi wi-done"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteProjectCancel" iconclass="wi wi-cancel" on-click="Widgets.confirmdialogSoftDeleteProjectCo.close()"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

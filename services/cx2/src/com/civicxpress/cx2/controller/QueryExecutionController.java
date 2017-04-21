@@ -495,6 +495,25 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/projectsByVendor", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "projectsByVendor")
+    public Page<ProjectsByVendorResponse> executeProjectsByVendor(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: projectsByVendor");
+        Page<ProjectsByVendorResponse> _result = queryService.executeProjectsByVendor(vendorId, active, pageable);
+        LOGGER.debug("got the result for named query: projectsByVendor, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query projectsByVendor")
+    @RequestMapping(value = "/queries/projectsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportProjectsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: projectsByVendor");
+
+        return queryService.exportProjectsByVendor(exportType, vendorId, active, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateAsCXVendorAdmin", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateAsCXVendorAdmin")
@@ -1984,6 +2003,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeDeleteAllMunicipalityRoles(municipalityId, userId);
         LOGGER.debug("got the result for named query: DeleteAllMunicipalityRoles, result:{}", _result);
         return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/municipalitiesByVendorStatus", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "municipalitiesByVendorStatus")
+    public Page<MunicipalitiesByVendorStatusResponse> executeMunicipalitiesByVendorStatus(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "approvalStatus") String approvalStatus, Pageable pageable) {
+        LOGGER.debug("Executing named query: municipalitiesByVendorStatus");
+        Page<MunicipalitiesByVendorStatusResponse> _result = queryService.executeMunicipalitiesByVendorStatus(vendorId, approvalStatus, pageable);
+        LOGGER.debug("got the result for named query: municipalitiesByVendorStatus, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query municipalitiesByVendorStatus")
+    @RequestMapping(value = "/queries/municipalitiesByVendorStatus/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportMunicipalitiesByVendorStatus(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "approvalStatus") String approvalStatus, Pageable pageable) {
+        LOGGER.debug("Exporting named query: municipalitiesByVendorStatus");
+
+        return queryService.exportMunicipalitiesByVendorStatus(exportType, vendorId, approvalStatus, pageable);
     }
 
     @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
