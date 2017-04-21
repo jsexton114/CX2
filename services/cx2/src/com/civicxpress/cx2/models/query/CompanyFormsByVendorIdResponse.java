@@ -35,6 +35,9 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
+    @JsonProperty("dateModified")
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @JsonProperty("municipalityName")
     @ColumnAlias("municipalityName")
     private String municipalityName;
@@ -77,6 +80,14 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getMunicipalityName() {
@@ -158,6 +169,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
         final CompanyFormsByVendorIdResponse companyFormsByVendorIdResponse = (CompanyFormsByVendorIdResponse) o;
         return Objects.equals(getFormGuid(), companyFormsByVendorIdResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), companyFormsByVendorIdResponse.getFormTitle()) &&
+                Objects.equals(getDateModified(), companyFormsByVendorIdResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), companyFormsByVendorIdResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), companyFormsByVendorIdResponse.getCreatedBy()) &&
                 Objects.equals(getFormDesign(), companyFormsByVendorIdResponse.getFormDesign()) &&
@@ -173,6 +185,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),
                 getFormDesign(),

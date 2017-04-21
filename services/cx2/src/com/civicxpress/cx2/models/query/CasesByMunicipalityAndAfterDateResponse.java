@@ -34,6 +34,8 @@ public class CasesByMunicipalityAndAfterDateResponse implements Serializable {
     private String formGuid;
     @ColumnAlias("formTitle")
     private String formTitle;
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @ColumnAlias("municipalityName")
     private String municipalityName;
     @ColumnAlias("createdBy")
@@ -67,6 +69,14 @@ public class CasesByMunicipalityAndAfterDateResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getMunicipalityName() {
@@ -148,6 +158,7 @@ public class CasesByMunicipalityAndAfterDateResponse implements Serializable {
         final CasesByMunicipalityAndAfterDateResponse casesByMunicipalityAndAfterDateResponse = (CasesByMunicipalityAndAfterDateResponse) o;
         return Objects.equals(getFormGuid(), casesByMunicipalityAndAfterDateResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), casesByMunicipalityAndAfterDateResponse.getFormTitle()) &&
+                Objects.equals(getDateModified(), casesByMunicipalityAndAfterDateResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), casesByMunicipalityAndAfterDateResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), casesByMunicipalityAndAfterDateResponse.getCreatedBy()) &&
                 Objects.equals(getFormDesign(), casesByMunicipalityAndAfterDateResponse.getFormDesign()) &&
@@ -163,6 +174,7 @@ public class CasesByMunicipalityAndAfterDateResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),
                 getFormDesign(),

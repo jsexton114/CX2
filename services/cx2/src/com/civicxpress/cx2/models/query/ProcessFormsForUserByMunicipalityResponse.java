@@ -27,6 +27,9 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
+    @JsonProperty("dateModified")
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @JsonProperty("municipalityName")
     @ColumnAlias("municipalityName")
     private String municipalityName;
@@ -69,6 +72,14 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     public String getMunicipalityName() {
@@ -150,6 +161,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         final ProcessFormsForUserByMunicipalityResponse processFormsForUserByMunicipalityResponse = (ProcessFormsForUserByMunicipalityResponse) o;
         return Objects.equals(getFormGuid(), processFormsForUserByMunicipalityResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), processFormsForUserByMunicipalityResponse.getFormTitle()) &&
+                Objects.equals(getDateModified(), processFormsForUserByMunicipalityResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), processFormsForUserByMunicipalityResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), processFormsForUserByMunicipalityResponse.getCreatedBy()) &&
                 Objects.equals(getFormDesign(), processFormsForUserByMunicipalityResponse.getFormDesign()) &&
@@ -165,6 +177,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),
                 getFormDesign(),

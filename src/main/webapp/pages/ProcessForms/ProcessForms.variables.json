@@ -64,6 +64,7 @@
     "isList" : true,
     "maxResults" : 9001,
     "designMaxResults" : 10,
+    "orderBy" : "dateModified desc",
     "onSuccess" : "ProcessFormsForUserByMunicipalityonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,

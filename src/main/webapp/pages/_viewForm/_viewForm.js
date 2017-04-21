@@ -706,6 +706,20 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             return $scope.inspectionObject.scheduleDateAndTime === true ? $scope.Widgets.datetimeInspectionRequest.datavalue : $scope.Widgets.dateInspectionRequest.datavalue;
         }
 
+        $scope.hasOperatingTimeError = function() {
+            if (!getRequestedFor()) {
+                return false;
+            }
+
+            var requestedMoment = moment(getRequestedFor());
+
+            var closeMoment = moment($scope.Variables.lvMunicipality.dataSet.data[0].closeTime, 'HH:mm:ss');
+            var openMoment = moment($scope.Variables.lvMunicipality.dataSet.data[0].openTime, 'HH:mm:ss');
+            var requestedTimeMoment = moment(requestedMoment.format('HH:mm:ss'));
+
+            return (requestedTimeMoment.isBefore(openMoment) || requestedTimeMoment.isAfter(closeMoment));
+        };
+
         $scope.isSameDayRequest = function() {
             return moment().startOf('day').diff(moment(getRequestedFor()).startOf('day'), 'days') === 0;
         };
