@@ -45,6 +45,12 @@ public class LetterTemplates implements Serializable {
     private Integer modifiedBy;
     @Type(type = "DateTime")
     private LocalDateTime modifiedDate;
+    private String letterBodyTopLeftTitle;
+    private String letterBodyTopLeftText;
+    private String letterBodyTopRightTitle;
+    private String letterBodyTopRightText;
+    private String letterBodyBottomTitle;
+    private String letterBodyBottomText;
     private FormTypes formTypes;
     private InspectionDesign inspectionDesign;
     private Users usersByCreatedBy;
@@ -131,6 +137,60 @@ public class LetterTemplates implements Serializable {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    @Column(name = "`LetterBodyTopLeftTitle`", nullable = true, length = 200)
+    public String getLetterBodyTopLeftTitle() {
+        return this.letterBodyTopLeftTitle;
+    }
+
+    public void setLetterBodyTopLeftTitle(String letterBodyTopLeftTitle) {
+        this.letterBodyTopLeftTitle = letterBodyTopLeftTitle;
+    }
+
+    @Column(name = "`LetterBodyTopLeftText`", nullable = true, length = 200)
+    public String getLetterBodyTopLeftText() {
+        return this.letterBodyTopLeftText;
+    }
+
+    public void setLetterBodyTopLeftText(String letterBodyTopLeftText) {
+        this.letterBodyTopLeftText = letterBodyTopLeftText;
+    }
+
+    @Column(name = "`LetterBodyTopRightTitle`", nullable = true, length = 200)
+    public String getLetterBodyTopRightTitle() {
+        return this.letterBodyTopRightTitle;
+    }
+
+    public void setLetterBodyTopRightTitle(String letterBodyTopRightTitle) {
+        this.letterBodyTopRightTitle = letterBodyTopRightTitle;
+    }
+
+    @Column(name = "`LetterBodyTopRightText`", nullable = true, length = 200)
+    public String getLetterBodyTopRightText() {
+        return this.letterBodyTopRightText;
+    }
+
+    public void setLetterBodyTopRightText(String letterBodyTopRightText) {
+        this.letterBodyTopRightText = letterBodyTopRightText;
+    }
+
+    @Column(name = "`LetterBodyBottomTitle`", nullable = true, length = 200)
+    public String getLetterBodyBottomTitle() {
+        return this.letterBodyBottomTitle;
+    }
+
+    public void setLetterBodyBottomTitle(String letterBodyBottomTitle) {
+        this.letterBodyBottomTitle = letterBodyBottomTitle;
+    }
+
+    @Column(name = "`LetterBodyBottomText`", nullable = true, length = 200)
+    public String getLetterBodyBottomText() {
+        return this.letterBodyBottomText;
+    }
+
+    public void setLetterBodyBottomText(String letterBodyBottomText) {
+        this.letterBodyBottomText = letterBodyBottomText;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
