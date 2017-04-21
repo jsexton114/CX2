@@ -138,7 +138,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewInspectionWithCategory">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Inspections in Category" iconclass="wi wi-find-in-page" name="dialogInspectionWithCategory" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Inspections in Category: &quot;+Widgets.gridInspectioncategories.selecteditem.inspectionCategory" iconclass="wi wi-find-in-page" name="dialogInspectionWithCategory" width="60%">
             <wm-dialogactions name="dialogactions3">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button5" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
@@ -159,8 +159,8 @@
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngGoToInspection.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
-                <wm-liveform novalidate="false" errormessage="" title="Add Inspection to Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.lvInspectionCategoryMappingData.dataSet" captionalign="left" captionposition="top"
-                name="liveformInspectionWithCategory">
+                <wm-liveform novalidate="false" errormessage="The selected inspection has already been added to this category" title="Add Inspection to Category" formlayout="dialog" iconclass="wi wi-group-work" dataset="bind:Variables.lvInspectionCategoryMappingData.dataSet"
+                captionalign="left" captionposition="top" name="liveformInspectionWithCategory">
                     <wm-layoutgrid columns="1" name="layoutgrid6">
                         <wm-gridrow name="gridrow12">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn15">
@@ -169,9 +169,9 @@
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
+                    <wm-form-field name="inspectionCategories" displayname="Inspection Categories" show="false" primary-key="false" generator="assigned" key="inspectionCategories" type="list" is-related="true" readonly="false" required="false" widget="select"
+                    dataset="bind:Widgets.gridInspectioncategories.selecteditem" datafield="All Fields" displayfield="inspectionCategory" defaultvalue="bind:Widgets.gridInspectioncategories.selecteditem" placeholder="Select value"></wm-form-field>
                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                    <wm-form-field name="inspectionCategories" displayname="Inspection Categories" show="false" primary-key="false" generator="assigned" key="inspectionCategories" type="list" is-related="true" readonly="false" required="false"
-                    widget="select" dataset="bind:Widgets.gridInspectioncategories.selecteditem" datafield="All Fields" displayfield="inspectionCategory" defaultvalue="bind:Widgets.gridInspectioncategories.selecteditem" placeholder="Select value"></wm-form-field>
                     <wm-form-action key="save" display-name="Add Inspection" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Inspection" disabled="false" type="submit" update-mode="true"></wm-form-action>
                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                 </wm-liveform>
