@@ -56,6 +56,7 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
                 $scope.isEmployee = true;
             }
         }
+        filterResults();
     };
 
     $scope.closeDlg = function() {

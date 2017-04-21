@@ -28,34 +28,39 @@
                                         <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Municipality" action="addNewRow();addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Municipality" action="addNewRow();addNewRowAction($event)" shortcutkey=""
+                                    disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top" name="liveform1">
+                                <wm-liveform novalidate="false" errormessage="" title="Municipality Details" formlayout="dialog" iconclass="wi wi-account-balance" dataset="bind:Variables.Cx2MunicipalitiesData.dataSet" captionalign="left" captionposition="top"
+                                name="liveform1">
                                     <wm-panel name="panel2" title="General Settings" class="panel-primary" iconclass="wi wi-settings">
                                         <wm-layoutgrid columns="2" name="layoutgrid1">
                                             <wm-gridrow name="gridrow1">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn1">
-                                                    <wm-form-field name="municipalityName" displayname="Municipality Name" show="true" primary-key="false" generator="assigned" key="municipalityName" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="municipalityName" displayname="Municipality Name" show="true" primary-key="false" generator="assigned" key="municipalityName" type="string" readonly="false" required="true" widget="text"
+                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn2">
-                                                    <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="TRUE" placeholder=""></wm-form-field>
+                                                    <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true"
+                                                    placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow3">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                                                    <wm-form-field name="userLimit" displayname="User Limit" show="true" primary-key="false" generator="assigned" key="userLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="10" inputtype="number" placeholder="Enter value"
-                                                    minvalue="1" maxvalue="100000"></wm-form-field>
+                                                    <wm-form-field name="userLimit" displayname="User Limit" show="true" primary-key="false" generator="assigned" key="userLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="10"
+                                                    inputtype="number" placeholder="Enter value" minvalue="1" maxvalue="100000"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn7">
-                                                    <wm-form-field name="formLimit" displayname="Form Limit" show="true" primary-key="false" generator="assigned" key="formLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="5" inputtype="number" placeholder="Enter value"
-                                                    minvalue="1" maxvalue="100000"></wm-form-field>
+                                                    <wm-form-field name="formLimit" displayname="Form Limit" show="true" primary-key="false" generator="assigned" key="formLimit" type="integer" readonly="false" required="true" step="0" widget="number" defaultvalue="5"
+                                                    inputtype="number" placeholder="Enter value" minvalue="1" maxvalue="100000"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow4">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                                    <wm-form-field name="allowOfflineCc" displayname="Allow Offline CC" show="true" primary-key="false" generator="assigned" key="allowOfflineCc" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="FALSE" placeholder=""></wm-form-field>
+                                                    <wm-form-field name="allowOfflineCc" displayname="Allow Offline CC" show="true" primary-key="false" generator="assigned" key="allowOfflineCc" type="boolean" readonly="false" required="false" widget="checkbox"
+                                                    defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn8_1"></wm-gridcolumn>
                                             </wm-gridrow>
@@ -70,16 +75,19 @@
                                         <wm-layoutgrid columns="2" name="layoutgrid1_1">
                                             <wm-gridrow name="gridrow2">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn3">
-                                                    <wm-form-field name="dbName" displayname="DB Name" show="true" primary-key="false" generator="assigned" key="dbName" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="dbName" displayname="DB Name" show="true" primary-key="false" generator="assigned" key="dbName" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn3_1"></wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow2_1">
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn4">
-                                                    <wm-form-field name="dbUser" displayname="DB Username" show="true" primary-key="false" generator="assigned" key="dbUser" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="dbUser" displayname="DB Username" show="true" primary-key="false" generator="assigned" key="dbUser" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                                    placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="6" name="gridcolumn5">
-                                                    <wm-form-field name="dbPassword" displayname="DB Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" readonly="false" required="false" widget="password" maxchars="255" inputtype="password" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="dbPassword" displayname="DB Password" show="true" primary-key="false" generator="assigned" key="dbPassword" type="string" readonly="false" required="false" widget="password" maxchars="255"
+                                                    inputtype="password" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
