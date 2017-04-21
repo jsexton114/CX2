@@ -67,9 +67,18 @@ Application.$controller("dialogSubdivisonParcelsController", ["$scope",
     }
 ]);
 
-Application.$controller("grid3_1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
+
+
+Application.$controller("grid4Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveform3_1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);

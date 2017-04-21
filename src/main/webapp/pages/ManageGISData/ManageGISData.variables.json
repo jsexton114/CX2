@@ -1775,6 +1775,24 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "ngEditGisRecord" : {
+    "_id" : "wm-ngEditGisRecord-wm.NavigationVariable-1492768543586",
+    "name" : "ngEditGisRecord",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "EditGISRecord",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "GISRecordId",
+      "value" : "bind:Widgets.grid4.selecteditem.id"
+    } ],
+    "pageTransitions" : "none"
+  },
   "SelectedMunicipalityObj" : {
     "_id" : "wm-SelectedMunicipalityObj-wm.LiveVariable-1478752862191",
     "name" : "SelectedMunicipalityObj",
@@ -2241,7 +2259,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 11,
+    "bindCount" : 13,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
@@ -3427,7 +3445,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 3,
     "spinnerContext" : "page",
     "tableName" : "GISRecords",
     "tableType" : "TABLE",
