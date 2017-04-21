@@ -1690,7 +1690,23 @@
     "name" : "svUpdateFormTypeField",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "label",
+      "value" : "bind:Widgets.textFormFieldLabel.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "displayOrder",
+      "value" : "bind:Widgets.textFormFieldDisplayOrder.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "required",
+      "value" : "bind:Widgets.checkboxFormFieldRequired.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "helpText",
+      "value" : "bind:Widgets.textareaFormFieldHelpText.datavalue",
+      "type" : "string"
+    } ],
     "service" : "DynamicFieldService",
     "operation" : "updateDynamicField",
     "operationId" : "DynamicFieldController_updateDynamicField",

@@ -87,6 +87,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/saveFormType", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Long saveFormType(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "formType", required = false) String formType, @RequestParam(value = "description", required = false) String description) throws SQLException {
         return formService.saveFormType(municipalityId, formType, description);
     }
