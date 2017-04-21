@@ -25,8 +25,8 @@ public class LetterController {
     @RequestMapping(value = "/letter", produces = "application/octet-stream", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public DownloadResponse createLetter(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "bodyTopRightCustomTextTemplate", required = false) String bodyTopRightCustomTextTemplate) {
-        return letterService.createLetter(formTypeId, formGuid, bodyTopRightCustomTextTemplate);
+    public DownloadResponse createLetter(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "bodyTopLeftTitle", required = false) String bodyTopLeftTitle, @RequestParam(value = "bodyTopLeftText", required = false) String bodyTopLeftText, @RequestParam(value = "bodyTopRightTitle", required = false) String bodyTopRightTitle, @RequestParam(value = "bodyTopRightText", required = false) String bodyTopRightText, @RequestParam(value = "bodyBottomTitle", required = false) String bodyBottomTitle, @RequestParam(value = "bodyBottomText", required = false) String bodyBottomText) {
+        return letterService.createLetter(formTypeId, formGuid, bodyTopLeftTitle, bodyTopLeftText, bodyTopRightTitle, bodyTopRightText, bodyBottomTitle, bodyBottomText);
     }
 
     @RequestMapping(value = "/availableTokens", method = RequestMethod.GET)

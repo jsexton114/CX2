@@ -41,16 +41,15 @@ public class LetterService {
         return availableTokens;
     }
    
-    public DownloadResponse createLetter(Long formTypeId, String formGuid, String bodyTopRightCustomTextTemplate) {
+    public DownloadResponse createLetter(Long formTypeId, String formGuid, 
+        String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
+        String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
+    ) {
     	Cx2DataAccess.setSqlUrl(sqlUrl);
-        String bodyTopLeftTitleTemplate = "LOT NO.";
-        String bodyTopLeftCustomTextTemplate = "12";
-        String bodyBottomTitleTemplate = "OPEN BURNING PROHIBITED";
-        String bodyBottomCustomTextTemplate = "All construction shall comply with applicable codes and zoning adopted by the City of Fishers. \r\nReinspection fees will be charged for all inspections that have failed or are not ready when requested.\r\n\r\nIssued by Todd Suchy, Building Inspector";
         String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";
         byte[] fileBytes = SectionalTemplatePdf.createLetter(formTypeId,formGuid,
-                bodyTopLeftTitleTemplate, bodyTopLeftCustomTextTemplate, bodyTopRightCustomTextTemplate,
-                bodyBottomTitleTemplate, bodyBottomCustomTextTemplate, bodyFooterCustomText,
+                bodyTopLeftTitle, bodyTopLeftText, bodyTopRightText,
+                bodyBottomTitle, bodyBottomText, bodyFooterCustomText,
                 false);
         
         ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
