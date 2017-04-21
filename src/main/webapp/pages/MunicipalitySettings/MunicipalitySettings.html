@@ -76,7 +76,8 @@
                                         <wm-composite name="composite6">
                                             <wm-label class="col-md-3 form-control-static" name="label7" caption="State" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container6">
-                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id" orderby="stateName:asc" displayfield="stateName"></wm-select>
+                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"
+                                                orderby="stateName:asc" displayfield="stateName"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -177,15 +178,20 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Logo" iconclass="wi wi-upload" name="dialog1" on-opened="dialog1Opened($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Update Municipality Logo" iconclass="wi wi-photo" name="dialog1" on-opened="dialog1Opened($event, $scope)">
             <wm-dialogactions name="dialogactions1">
                 <wm-button class="btn-raised btn-primary" caption="Upload" on-click="buttonSaveClick()" name="button4" iconclass="wi wi-upload"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog1.close()" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid columns="1" name="layoutgrid5">
+                <wm-gridrow name="gridrow19">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn32">
+                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then click &quot;Upload&quot; to update your municipality logo."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow29">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn49" horizontalalign="left">
-                        <wm-picture name="picture2" width="100" height="100"></wm-picture>
+                        <wm-picture name="picture2" width="160px" height="160px"></wm-picture>
                         <input name="logo" type="file" generator="assigned" ng-file-model="newMunicipalityLogo" filetype="image/*">
                     </wm-gridcolumn>
                 </wm-gridrow>
