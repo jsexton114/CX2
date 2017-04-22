@@ -42,12 +42,8 @@ public class LetterService {
     }
    
     public DownloadResponse createLetter(Long formTypeId, String formGuid, 
-    String bodyTopLeftTitle,
-    String bodyTopLeftText,
-    String bodyTopRightTitle,
-    String bodyTopRightText,
-    String bodyBottomTitle,
-    String bodyBottomText
+        String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
+        String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
     ) {
     	Cx2DataAccess.setSqlUrl(sqlUrl);
         String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";

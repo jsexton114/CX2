@@ -57,7 +57,7 @@ public class LetterService {
         DownloadResponse dr = new DownloadResponse();
         dr.setContents(downloadBais);
         dr.setContentType("application/pdf");
-        dr.setFileName("Test-Letter-generation.pdf");
+        dr.setFileName(formGuid + ".pdf");
         
         return dr;
     }
