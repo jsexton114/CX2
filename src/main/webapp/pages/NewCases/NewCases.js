@@ -12,8 +12,27 @@ Application.$controller("NewCasesPageController", ["$scope", function($scope) {
 
 
 Application.$controller("gridNewCasesController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $scope.Widgets.pagedialogViewForm.open();
+        };
+
+    }
+]);
+
+Application.$controller("pagedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
