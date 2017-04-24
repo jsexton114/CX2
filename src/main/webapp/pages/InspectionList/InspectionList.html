@@ -12,7 +12,8 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
-                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2" class="h4"></wm-label>
+                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2"
+                        class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
@@ -36,7 +37,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn6" horizontalalign="right">
-                        <wm-button class="btn-primary" caption="Refresh" type="button" margin="unset 0.5em" name="buttonRefreshInspectionList" iconclass="wi wi-refresh" on-click="buttonRefreshInspectionListClick($event, $scope)"></wm-button>
+                        <wm-button class="btn-primary" caption="Refresh" type="button" margin="1em 0.5em" name="buttonRefreshInspectionList" iconclass="wi wi-refresh" on-click="buttonRefreshInspectionListClick($event, $scope)"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
