@@ -539,7 +539,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.gridOwnersDatarender = function($isolateScope, $data) {
-        if (!!$scope.draftData.owner.ownerId) {
+        if (!!$scope.draftData && !!$scope.draftData.owner.ownerId) {
             var selectedOwner = _.find($data, {
                 'id': $scope.draftData.owner.ownerId
             });
@@ -549,6 +549,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                     $isolateScope.selectItem(selectedOwner);
                 }
             });
+        } else if ($data.length === 1) {
+            $isolateScope.selectItem($data[0]);
         }
     };
 

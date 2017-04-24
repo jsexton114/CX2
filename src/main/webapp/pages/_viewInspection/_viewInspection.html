@@ -188,15 +188,6 @@
                                             datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="transactionComments" caption="Transaction Comments" type="string" primary-key="false" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
                                             edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="Add Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,Inspector,InspectorManager"
-                                            shortcutkey="" disabled="false"></wm-grid-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()"
-                                            accessroles="CXAdmin,Inspector,InspectorManager" disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid'" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
-                                            accessroles="CXAdmin,Inspector,InspectorManager" disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="customRow" display-name="" show="bind:!itemInCart(row.getProperty('id')) &amp;&amp; row.getProperty('paidStatus') === 'Unpaid'" class="btn-transparent" iconclass="wi wi-add-shopping-cart"
-                                            title="Add to Cart" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                         <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.lvFees.dataSet" captionalign="left" captionposition="top" name="liveformFees"
                                         on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)" on-success="liveformFeesSuccess($event, $operation, $data)">

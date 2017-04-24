@@ -367,7 +367,7 @@
                             </wm-wizardstep>
                             <wm-wizardstep name="wizardstep7" ng-if="loaded" title="Submit"></wm-wizardstep>
                         </wm-wizard>
-                        <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.stvGisData.dataSet" zoom="17" markertype="Address" address="StreetNumber StreetName City State" show="bind:Variables.lvFormType.dataSet.data[$i].gismap &amp;&amp; Variables.stvGisData.dataSet.length > 0 &amp;&amp; !!Widgets.newFormWizard.currentStep.wizardstepLocation"></wm-prefab>
+                        <wm-prefab prefabname="googlemaps" name="googlemapsLoactions" locations="bind:Variables.stvGisData.dataSet" zoom="17" markertype="Address" address="fullAddress" show="bind:Variables.lvFormType.dataSet.data[$i].gismap &amp;&amp; Variables.stvGisData.dataSet.length > 0 &amp;&amp; !!Widgets.newFormWizard.currentStep.wizardstepLocation"></wm-prefab>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow8">
@@ -416,7 +416,7 @@
                             <wm-gridcolumn columnwidth="1" name="gridcolumn95_1"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn96_1">
                                 <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.lvSubdivisions.dataSet" searchkey="subdivision" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
-                                displaylabel="bind:$[data[$i].subdivision]" orderby="subdivision:asc"></wm-search>
+                                displaylabel="subdivision" orderby="subdivision:asc"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn97_1"></wm-gridcolumn>
                         </wm-gridrow>
