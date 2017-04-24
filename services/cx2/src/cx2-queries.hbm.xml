@@ -779,6 +779,144 @@ from MasterInspections where closed=:isClosed and (:municipality IS NULL OR insp
         ]]>
     </sql-query>
 
+    <sql-query name="getUserSentMessages">
+        <![CDATA[
+        select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   PR.ProjectGUID as SourceGuid,
+   PR.ProjectName as SourceTitle,
+    'Project' as SourceType,
+    'Project' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where M.UserId=:userId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MF.FormGUID as SourceGuid,
+   MF.FormTitle as SourceTitle,
+    FT.formType as SourceType,
+     'Form' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where M.UserId=:userId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MI.InspectionGuid as SourceGuid,
+   MI.InspectionTitle as SourceTitle,
+    INSP.InspectDesignName as SourceType,
+     'Inspection' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getUserSentMessages__count">
+        <![CDATA[
+        select count(*) from (select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   PR.ProjectGUID as SourceGuid,
+   PR.ProjectName as SourceTitle,
+    'Project' as SourceType,
+    'Project' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where M.UserId=:userId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MF.FormGUID as SourceGuid,
+   MF.FormTitle as SourceTitle,
+    FT.formType as SourceType,
+     'Form' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where M.UserId=:userId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select 
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MI.InspectionGuid as SourceGuid,
+   MI.InspectionTitle as SourceTitle,
+    INSP.InspectDesignName as SourceType,
+     'Inspection' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)) wmTempTable
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="distinctInspectionDesignsForFormType">
         <![CDATA[
         select DISTINCT inspectDesignId as inspectionDesignId,inspectionDesign.inspectDesignName as inspectDesignName,inspectionDesign.allowSameDayInspections as allowSameDayInspections,inspectionDesign. maxDaysInAdvance as maxDaysInAdvance,sequenceOrderNumber as sequenceOrderNumber,mustCompBeforeReqNxt as mustCompBeforeReqNxt, inspectionDesign.sameDayInspectionFee as sameDayInspectionFee

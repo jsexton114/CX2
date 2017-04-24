@@ -943,6 +943,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(Integer userId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("userId", userId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("getUserSentMessages", params, GetUserSentMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetUserSentMessages(ExportType exportType, Integer userId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("userId", userId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("getUserSentMessages", params, exportType, GetUserSentMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable) {
         Map params = new HashMap(2);
 

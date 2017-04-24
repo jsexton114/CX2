@@ -190,6 +190,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfCXProjectsActive(ExportType exportType, Pageable pageable);
 
+    Page<GetUserSentMessagesResponse> executeGetUserSentMessages(Integer userId, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportGetUserSentMessages(ExportType exportType, Integer userId, Integer municipalityId, Pageable pageable);
+
     Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable);
 
     Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable);

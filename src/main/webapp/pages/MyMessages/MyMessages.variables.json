@@ -18,6 +18,19 @@
     "isList" : true,
     "saveInPhonegap" : false
   },
+  "stvSourceGuid" : {
+    "_id" : "wm-stvSourceGuid-wm.Variable-1493037300872",
+    "name" : "stvSourceGuid",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "svGetUserMessages" : {
     "_id" : "wm-svGetUserMessages-wm.ServiceVariable-1493027416300",
     "name" : "svGetUserMessages",
@@ -48,6 +61,37 @@
     "saveInPhonegap" : false,
     "isDefault" : true,
     "controller" : "QueryExecution"
+  },
+  "svGetUserSentMessages" : {
+    "_id" : "wm-svGetUserSentMessages-wm.ServiceVariable-1493036047691",
+    "name" : "svGetUserSentMessages",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "userId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetUserSentMessagesResponse",
+    "service" : "cx2",
+    "operation" : "executeGetUserSentMessages",
+    "operationId" : "QueryExecutionController_executeGetUserSentMessages",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svSetMessageReadStatus" : {
     "_id" : "wm-svSetMessageReadStatus-wm.ServiceVariable-1493031298757",

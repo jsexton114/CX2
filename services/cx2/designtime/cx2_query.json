@@ -12544,6 +12544,150 @@
       } ]
     }
   },
+  "getUserSentMessages" : {
+    "name" : "getUserSentMessages",
+    "description" : "getUserSentMessages",
+    "version" : "V2",
+    "queryString" : "select \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   PR.ProjectGUID as SourceGuid,\n   PR.ProjectName as SourceTitle,\n    'Project' as SourceType,\n    'Project' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID\nINNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId\nwhere M.UserId=:userId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\nUNION\nselect \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   MF.FormGUID as SourceGuid,\n   MF.FormTitle as SourceTitle,\n    FT.formType as SourceType,\n     'Form' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID\nINNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nwhere M.UserId=:userId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\n\nUNION\nselect \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   MI.InspectionGuid as SourceGuid,\n   MI.InspectionTitle as SourceTitle,\n    INSP.InspectDesignName as SourceType,\n     'Inspection' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID\nINNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId\nINNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId\nwhere M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)",
+    "countQueryString" : "select count(*) from (select \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   PR.ProjectGUID as SourceGuid,\n   PR.ProjectName as SourceTitle,\n    'Project' as SourceType,\n    'Project' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID\nINNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId\nwhere M.UserId=:userId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\nUNION\nselect \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   MF.FormGUID as SourceGuid,\n   MF.FormTitle as SourceTitle,\n    FT.formType as SourceType,\n     'Form' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID\nINNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nwhere M.UserId=:userId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\n\nUNION\nselect \n   M.Message,\n   M.PostedAt,\n   M.MunicipalityMessage,\n   U.Email as PostedByEmail,\n   U.FullName as PostedByFullName,\n   U.ID as PostedByUserId,\n   MI.InspectionGuid as SourceGuid,\n   MI.InspectionTitle as SourceTitle,\n    INSP.InspectDesignName as SourceType,\n     'Inspection' as SourceCategory,\n    MUNI.MunicipalityName as MunicipalityName,\n     MUNI.ID as MunicipalityId\nfrom\nFormMessages M\nINNER JOIN Users U ON U.ID=M.UserId\nINNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID\nINNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId\nINNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId\nwhere M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "userId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetUserSentMessagesResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "Message",
+        "fieldName" : "message",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PostedAt",
+        "fieldName" : "postedAt",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityMessage",
+        "fieldName" : "municipalityMessage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "PostedByEmail",
+        "fieldName" : "postedByEmail",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PostedByFullName",
+        "fieldName" : "postedByFullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PostedByUserId",
+        "fieldName" : "postedByUserId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SourceGuid",
+        "fieldName" : "sourceGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SourceTitle",
+        "fieldName" : "sourceTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SourceType",
+        "fieldName" : "sourceType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "SourceCategory",
+        "fieldName" : "sourceCategory",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityId",
+        "fieldName" : "municipalityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "municipalitiesByVendorStatus" : {
     "name" : "municipalitiesByVendorStatus",
     "description" : "municipalitiesByVendorStatus",

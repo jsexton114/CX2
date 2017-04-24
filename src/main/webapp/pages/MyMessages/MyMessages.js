@@ -29,15 +29,18 @@ Application.$controller("gridInboxController", ["$scope",
 
 
         $scope.deleterowAction = function($event, $rowData) {
-
+            debugger
             switch ($rowData.sourceCategory) {
                 case "Form":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
                     $scope.Widgets.pagedialogViewForm.open();
                     break;
                 case "Inspection":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
                     $scope.Widgets.pagedialogViewInspection.open();
                     break;
                 case "Project":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
                     $scope.Widgets.pagedialogViewProject.open();
                     break;
 
@@ -68,5 +71,31 @@ Application.$controller("pagedialogViewProjectController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridSentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRowAction = function($event, $rowData) {
+            switch ($rowData.sourceCategory) {
+                case "Form":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewForm.open();
+                    break;
+                case "Inspection":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewInspection.open();
+                    break;
+                case "Project":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewProject.open();
+                    break;
+
+            }
+        };
+
     }
 ]);

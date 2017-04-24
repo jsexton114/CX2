@@ -832,6 +832,25 @@ public class QueryExecutionController {
         return queryService.exportCountOfCXProjectsActive(exportType, pageable);
     }
 
+    @RequestMapping(value = "/queries/getUserSentMessages", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getUserSentMessages")
+    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getUserSentMessages");
+        Page<GetUserSentMessagesResponse> _result = queryService.executeGetUserSentMessages(userId, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: getUserSentMessages, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getUserSentMessages")
+    @RequestMapping(value = "/queries/getUserSentMessages/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUserSentMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getUserSentMessages");
+
+        return queryService.exportGetUserSentMessages(exportType, userId, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "distinctInspectionDesignsForFormType")
