@@ -2,10 +2,12 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.temp;
     $scope.isEmployee;
 
     function userFilter() {
+        if (!$scope.Widgets.selectMunicipality.datavalue) {
+            return;
+        }
 
         //setting inputs for categories
         $scope.Variables.lvFormCategories.setFilter({
@@ -24,6 +26,10 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     }
 
     function employeeFilter() {
+        if (!$scope.Widgets.selectMunicipality.datavalue) {
+            return;
+        }
+
         //setting inputs for categories
         $scope.Variables.lvFormCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
@@ -49,10 +55,10 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     }
 
     $scope.onPageReady = function() {
-        $scope.temp = $scope.Variables.loggedInUser.dataSet.roles;
+        var roles = $scope.Variables.loggedInUser.dataSet.roles;
         $scope.isEmployee = false;
-        for (let i = 0; i < $scope.temp.length; i++) {
-            if (($scope.temp[i] == "MunicipalityEmployee")) {
+        for (let i = 0; i < roles.length; i++) {
+            if ((roles[i] == "MunicipalityEmployee")) {
                 $scope.isEmployee = true;
             }
         }
@@ -82,14 +88,12 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     };
 
     $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
-
         if (newVal == undefined) {
             $scope.Variables.lvFormCategories.dataSet = {};
             $scope.Variables.svFormTypes.dataSet = {};
         } else {
             filterResults();
         }
-
     };
 
     $scope.selectCategoryChange = function($event, $isolateScope, newVal, oldVal) {

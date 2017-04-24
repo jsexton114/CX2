@@ -28,7 +28,7 @@ public class FormMessageTagging implements Serializable {
     private Integer id;
     private Integer formMessageId;
     private Integer taggedPersonId;
-    private Boolean messageRead;
+    private boolean messageRead;
     private Users users;
     private FormMessages formMessages;
 
@@ -61,12 +61,12 @@ public class FormMessageTagging implements Serializable {
         this.taggedPersonId = taggedPersonId;
     }
 
-    @Column(name = "`MessageRead`", nullable = true)
-    public Boolean getMessageRead() {
+    @Column(name = "`MessageRead`", nullable = false)
+    public boolean isMessageRead() {
         return this.messageRead;
     }
 
-    public void setMessageRead(Boolean messageRead) {
+    public void setMessageRead(boolean messageRead) {
         this.messageRead = messageRead;
     }
 

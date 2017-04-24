@@ -81,7 +81,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
             if (!address) {
                 return;
             }
-            baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD2_JCmxN_aqsdSrnz7Lpt9bpyV8XLoE3Y&address=';
+            baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
             $http.get(baseUrl + address).then(function(response) {
                 results = response.data.results[0];
                 if (!results) {
@@ -189,7 +189,7 @@ Application.$controller('GooglemapsController', ['$scope', 'Utils', '$element', 
                     invalidMarker++;
                     return;
                 }
-                $http.get('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyD2_JCmxN_aqsdSrnz7Lpt9bpyV8XLoE3Y&address=' + address).then(function(response) {
+                $http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address).then(function(response) {
                     var resultdataSet = response.data.results[0],
                         geometryLocations,
                         latlng;
