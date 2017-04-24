@@ -504,6 +504,7 @@
     },
     "bindCount" : 1,
     "spinnerContext" : "page",
+    "spinnerMessage" : "Fetching Categories.....",
     "tableName" : "FormCategories",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -538,6 +539,8 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "QueryExecution"
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page",
+    "spinnerMessage" : "Fetching Forms......"
   }
 }

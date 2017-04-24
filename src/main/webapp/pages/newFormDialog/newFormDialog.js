@@ -82,7 +82,14 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     };
 
     $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
-        filterResults();
+
+        if (newVal == undefined) {
+            $scope.Variables.lvFormCategories.dataSet = {};
+            $scope.Variables.svFormTypes.dataSet = {};
+        } else {
+            filterResults();
+        }
+
     };
 
     $scope.selectCategoryChange = function($event, $isolateScope, newVal, oldVal) {
