@@ -17,5 +17,67 @@
     "type" : "string",
     "isList" : true,
     "saveInPhonegap" : false
+  },
+  "svGetUserMessages" : {
+    "_id" : "wm-svGetUserMessages-wm.ServiceVariable-1493027416300",
+    "name" : "svGetUserMessages",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "taggedPersonId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetUserMessagesResponse",
+    "service" : "cx2",
+    "operation" : "executeGetUserMessages",
+    "operationId" : "QueryExecutionController_executeGetUserMessages",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
+  "svSetMessageReadStatus" : {
+    "_id" : "wm-svSetMessageReadStatus-wm.ServiceVariable-1493031298757",
+    "name" : "svSetMessageReadStatus",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "id",
+      "value" : "bind:Widgets.gridInbox.selecteditem.id",
+      "type" : "integer"
+    }, {
+      "target" : "messageRead",
+      "value" : true,
+      "type" : "boolean"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeSetMessageReadStatus",
+    "operationId" : "QueryExecutionController_executeSetMessageReadStatus",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

@@ -2486,6 +2486,156 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
     <query-param name="GUID" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="getUserMessages">
+        <![CDATA[
+        select FMT.ID,
+    FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   PR.ProjectGUID as SourceGuid,
+   PR.ProjectName as SourceTitle,
+    'Project' as SourceType,
+    'Project' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MF.FormGUID as SourceGuid,
+   MF.FormTitle as SourceTitle,
+    FT.formType as SourceType,
+     'Form' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MI.InspectionGuid as SourceGuid,
+   MI.InspectionTitle as SourceTitle,
+    INSP.InspectDesignName as SourceType,
+     'Inspection' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getUserMessages__count">
+        <![CDATA[
+        select count(*) from (select FMT.ID,
+    FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   PR.ProjectGUID as SourceGuid,
+   PR.ProjectName as SourceTitle,
+    'Project' as SourceType,
+    'Project' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MF.FormGUID as SourceGuid,
+   MF.FormTitle as SourceTitle,
+    FT.formType as SourceType,
+     'Form' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   MI.InspectionGuid as SourceGuid,
+   MI.InspectionTitle as SourceTitle,
+    INSP.InspectDesignName as SourceType,
+     'Inspection' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)) wmTempTable
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="SearchFormByVendor">
         <![CDATA[
         from MasterForms where DateSubmitted BETWEEN :startd and :endd and FormTypeId=:FormTypeId and municipalityId=:municipalityId and  Closed=:closed and  FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId ) ORDER BY DateModified DESC
@@ -3052,5 +3202,13 @@ and IC.ID=ICM.InspectionCategoryId and ICM.InspectionDesignId=I.ID) wmTempTable
     <query-param name="Message" type="java.lang.String"/>
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
     <query-param name="MunicipalityMessage" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="setMessageReadStatus">
+        <![CDATA[
+        update FormMessageTagging set MessageRead=:messageRead where ID=:id
+        ]]>
+    <query-param name="messageRead" type="java.lang.Boolean"/>
+    <query-param name="id" type="java.lang.Integer"/>
     </sql-query>
 </hibernate-mapping>

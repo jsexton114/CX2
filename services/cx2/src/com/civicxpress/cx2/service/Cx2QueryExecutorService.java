@@ -504,6 +504,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateProcessOwnersForGUID(UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest);
 
+    Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+
     Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable);
 
     Downloadable exportSearchFormByVendor(ExportType exportType, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable);
@@ -609,6 +613,8 @@ public interface Cx2QueryExecutorService {
     Downloadable exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(ExportType exportType, Boolean active, Integer formType, Pageable pageable);
 
     Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest);
+
+    Integer executeSetMessageReadStatus(SetMessageReadStatusRequest setMessageReadStatusRequest);
 
 }
 

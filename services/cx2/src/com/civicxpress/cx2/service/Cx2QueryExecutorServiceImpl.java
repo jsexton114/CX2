@@ -2715,6 +2715,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("getUserMessages", params, GetUserMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("getUserMessages", params, exportType, GetUserMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
         Map params = new HashMap(6);
 
@@ -3322,6 +3344,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityMessage", insertProjectMessageRequest.getMunicipalityMessage());
 
         return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeSetMessageReadStatus(SetMessageReadStatusRequest setMessageReadStatusRequest) {
+        Map params = new HashMap(2);
+
+        params.put("messageRead", setMessageReadStatusRequest.getMessageRead());
+        params.put("id", setMessageReadStatusRequest.getId());
+
+        return queryExecutor.executeNamedQueryForUpdate("setMessageReadStatus", params);
     }
 
 }

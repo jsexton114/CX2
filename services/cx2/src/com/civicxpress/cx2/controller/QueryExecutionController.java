@@ -2344,6 +2344,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/getUserMessages", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getUserMessages")
+    public Page<GetUserMessagesResponse> executeGetUserMessages(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getUserMessages");
+        Page<GetUserMessagesResponse> _result = queryService.executeGetUserMessages(taggedPersonId, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: getUserMessages, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getUserMessages")
+    @RequestMapping(value = "/queries/getUserMessages/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUserMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getUserMessages");
+
+        return queryService.exportGetUserMessages(exportType, taggedPersonId, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SearchFormByVendor")
@@ -2850,6 +2869,16 @@ public class QueryExecutionController {
         Integer _result = queryService.executeInsertProjectMessage(insertProjectMessageRequest);
         LOGGER.debug("got the result for named query: InsertProjectMessage, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/setMessageReadStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "setMessageReadStatus")
+    public IntegerWrapper executeSetMessageReadStatus(@Valid @RequestBody SetMessageReadStatusRequest setMessageReadStatusRequest) {
+        LOGGER.debug("Executing named query: setMessageReadStatus");
+        Integer _result = queryService.executeSetMessageReadStatus(setMessageReadStatusRequest);
+        LOGGER.debug("got the result for named query: setMessageReadStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
 }

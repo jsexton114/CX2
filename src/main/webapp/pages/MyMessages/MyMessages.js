@@ -1,8 +1,8 @@
-Application.$controller("MyMessagesPageController", ["$scope", function ($scope) {
+Application.$controller("MyMessagesPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -15,3 +15,58 @@ Application.$controller("MyMessagesPageController", ["$scope", function ($scope)
     };
 
 }]);
+
+
+Application.$controller("gridInboxController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+
+            $rowData.messageRead = true;
+        };
+
+
+        $scope.deleterowAction = function($event, $rowData) {
+
+            switch ($rowData.sourceCategory) {
+                case "Form":
+                    $scope.Widgets.pagedialogViewForm.open();
+                    break;
+                case "Inspection":
+                    $scope.Widgets.pagedialogViewInspection.open();
+                    break;
+                case "Project":
+                    $scope.Widgets.pagedialogViewProject.open();
+                    break;
+
+            }
+
+
+
+        };
+
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewInspectionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewProjectController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
