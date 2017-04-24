@@ -89,8 +89,8 @@ public class FormTypes implements Serializable {
     private List<FormStatuses> formStatuseses;
     private List<FormTypeFields> formTypeFieldses;
     private List<FormToInspectionCategoryMapping> formToInspectionCategoryMappings;
-    private List<InspectionSequence> inspectionSequences;
     private List<LetterTemplates> letterTemplateses;
+    private List<InspectionSequence> inspectionSequences;
     private List<MasterForms> masterFormses;
 
     @Id
@@ -613,22 +613,22 @@ public class FormTypes implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
-    public List<InspectionSequence> getInspectionSequences() {
-        return this.inspectionSequences;
-    }
-
-    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
-        this.inspectionSequences = inspectionSequences;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
     public List<LetterTemplates> getLetterTemplateses() {
         return this.letterTemplateses;
     }
 
     public void setLetterTemplateses(List<LetterTemplates> letterTemplateses) {
         this.letterTemplateses = letterTemplateses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formTypes")
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
+    }
+
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
     }
 
     @JsonInclude(Include.NON_EMPTY)

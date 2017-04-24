@@ -148,7 +148,7 @@ public class LetterTemplates implements Serializable {
         this.letterBodyTopLeftTitle = letterBodyTopLeftTitle;
     }
 
-    @Column(name = "`LetterBodyTopLeftText`", nullable = true, length = 200)
+    @Column(name = "`LetterBodyTopLeftText`", nullable = true, length = 500)
     public String getLetterBodyTopLeftText() {
         return this.letterBodyTopLeftText;
     }
@@ -166,7 +166,7 @@ public class LetterTemplates implements Serializable {
         this.letterBodyTopRightTitle = letterBodyTopRightTitle;
     }
 
-    @Column(name = "`LetterBodyTopRightText`", nullable = true, length = 200)
+    @Column(name = "`LetterBodyTopRightText`", nullable = true, length = 500)
     public String getLetterBodyTopRightText() {
         return this.letterBodyTopRightText;
     }
@@ -184,7 +184,7 @@ public class LetterTemplates implements Serializable {
         this.letterBodyBottomTitle = letterBodyBottomTitle;
     }
 
-    @Column(name = "`LetterBodyBottomText`", nullable = true, length = 200)
+    @Column(name = "`LetterBodyBottomText`", nullable = true, length = 500)
     public String getLetterBodyBottomText() {
         return this.letterBodyBottomText;
     }

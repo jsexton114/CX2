@@ -72,19 +72,19 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
             }
         }
 
-        if(inspectionCategoriesCreated.getMasterInspectionses() != null) {
-            for(MasterInspections masterInspectionse : inspectionCategoriesCreated.getMasterInspectionses()) {
-                masterInspectionse.setInspectionCategories(inspectionCategoriesCreated);
-                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
-                masterInspectionsService.create(masterInspectionse);
-            }
-        }
-
         if(inspectionCategoriesCreated.getInspectionCategoryMappings() != null) {
             for(InspectionCategoryMapping inspectionCategoryMapping : inspectionCategoriesCreated.getInspectionCategoryMappings()) {
                 inspectionCategoryMapping.setInspectionCategories(inspectionCategoriesCreated);
                 LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
                 inspectionCategoryMappingService.create(inspectionCategoryMapping);
+            }
+        }
+
+        if(inspectionCategoriesCreated.getMasterInspectionses() != null) {
+            for(MasterInspections masterInspectionse : inspectionCategoriesCreated.getMasterInspectionses()) {
+                masterInspectionse.setInspectionCategories(inspectionCategoriesCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
+                masterInspectionsService.create(masterInspectionse);
             }
         }
         return inspectionCategoriesCreated;
@@ -180,17 +180,6 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterInspectionses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionCategories.id = '" + id + "'");
-
-        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionCategoryMappings");
 
@@ -198,6 +187,17 @@ public class InspectionCategoriesServiceImpl implements InspectionCategoriesServ
         queryBuilder.append("inspectionCategories.id = '" + id + "'");
 
         return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionCategories.id = '" + id + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

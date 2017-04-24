@@ -74,11 +74,11 @@ public class InspectionDesign implements Serializable {
     private Municipalities municipalities;
     private List<CodesToInspection> codesToInspections;
     private List<FormTypeFields> formTypeFieldses;
-    private List<InspectionOutcome> inspectionOutcomes;
-    private List<InspectionSequence> inspectionSequences;
-    private List<LetterTemplates> letterTemplateses;
-    private List<MasterInspections> masterInspectionses;
     private List<InspectionCategoryMapping> inspectionCategoryMappings;
+    private List<InspectionOutcome> inspectionOutcomes;
+    private List<LetterTemplates> letterTemplateses;
+    private List<InspectionSequence> inspectionSequences;
+    private List<MasterInspections> masterInspectionses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -465,22 +465,22 @@ public class InspectionDesign implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionCategoryMapping> getInspectionCategoryMappings() {
+        return this.inspectionCategoryMappings;
+    }
+
+    public void setInspectionCategoryMappings(List<InspectionCategoryMapping> inspectionCategoryMappings) {
+        this.inspectionCategoryMappings = inspectionCategoryMappings;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
     public List<InspectionOutcome> getInspectionOutcomes() {
         return this.inspectionOutcomes;
     }
 
     public void setInspectionOutcomes(List<InspectionOutcome> inspectionOutcomes) {
         this.inspectionOutcomes = inspectionOutcomes;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
-    public List<InspectionSequence> getInspectionSequences() {
-        return this.inspectionSequences;
-    }
-
-    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
-        this.inspectionSequences = inspectionSequences;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -495,22 +495,22 @@ public class InspectionDesign implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionSequence> getInspectionSequences() {
+        return this.inspectionSequences;
+    }
+
+    public void setInspectionSequences(List<InspectionSequence> inspectionSequences) {
+        this.inspectionSequences = inspectionSequences;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
     public List<MasterInspections> getMasterInspectionses() {
         return this.masterInspectionses;
     }
 
     public void setMasterInspectionses(List<MasterInspections> masterInspectionses) {
         this.masterInspectionses = masterInspectionses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
-    public List<InspectionCategoryMapping> getInspectionCategoryMappings() {
-        return this.inspectionCategoryMappings;
-    }
-
-    public void setInspectionCategoryMappings(List<InspectionCategoryMapping> inspectionCategoryMappings) {
-        this.inspectionCategoryMappings = inspectionCategoryMappings;
     }
 
     @Override

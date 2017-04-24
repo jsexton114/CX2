@@ -67,9 +67,9 @@ public class Vendor implements Serializable {
     private List<Fees> feeses;
     private List<MasterForms> masterFormses;
     private List<Projects> projectses;
-    private List<VendorAdmins> vendorAdminses;
     private List<VendorApprovals> vendorApprovalses;
     private List<VendorLicenses> vendorLicenseses;
+    private List<VendorAdmins> vendorAdminses;
     private List<Vendors2form> vendors2forms;
     private List<VendorsToProject> vendorsToProjects;
     private List<VendorUsers> vendorUserses;
@@ -361,16 +361,6 @@ public class Vendor implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
-    public List<VendorAdmins> getVendorAdminses() {
-        return this.vendorAdminses;
-    }
-
-    public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
-        this.vendorAdminses = vendorAdminses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
     public List<VendorApprovals> getVendorApprovalses() {
         return this.vendorApprovalses;
     }
@@ -387,6 +377,16 @@ public class Vendor implements Serializable {
 
     public void setVendorLicenseses(List<VendorLicenses> vendorLicenseses) {
         this.vendorLicenseses = vendorLicenseses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "vendor")
+    public List<VendorAdmins> getVendorAdminses() {
+        return this.vendorAdminses;
+    }
+
+    public void setVendorAdminses(List<VendorAdmins> vendorAdminses) {
+        this.vendorAdminses = vendorAdminses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

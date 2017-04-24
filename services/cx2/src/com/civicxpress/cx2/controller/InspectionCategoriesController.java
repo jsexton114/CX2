@@ -163,15 +163,6 @@ public class InspectionCategoriesController {
         return inspectionCategoriesService.findAssociatedFormToInspectionCategoryMappings(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<MasterInspections> findAssociatedMasterInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated masterInspectionses");
-        return inspectionCategoriesService.findAssociatedMasterInspectionses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/inspectionCategoryMappings", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the inspectionCategoryMappings instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -179,6 +170,15 @@ public class InspectionCategoriesController {
 
         LOGGER.debug("Fetching all associated inspectionCategoryMappings");
         return inspectionCategoriesService.findAssociatedInspectionCategoryMappings(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the masterInspectionses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<MasterInspections> findAssociatedMasterInspectionses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated masterInspectionses");
+        return inspectionCategoriesService.findAssociatedMasterInspectionses(id, pageable);
     }
 
     /**

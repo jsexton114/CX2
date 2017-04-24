@@ -52,12 +52,12 @@ public class Projects implements Serializable {
     private Vendor vendor;
     private List<Fees> feeses;
     private List<FormMessages> formMessageses;
-    private List<MasterCases> masterCaseses;
     private List<MasterInspections> masterInspectionses;
+    private List<MasterCases> masterCaseses;
     private List<ProjectForms> projectFormses;
     private List<ProjectGisrecords> projectGisrecordses;
-    private List<ProjectSharedWith> projectSharedWiths;
     private List<ProjectTasks> projectTaskses;
+    private List<ProjectSharedWith> projectSharedWiths;
     private List<VendorsToProject> vendorsToProjects;
 
     @Id
@@ -258,22 +258,22 @@ public class Projects implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
-    public List<MasterCases> getMasterCaseses() {
-        return this.masterCaseses;
-    }
-
-    public void setMasterCaseses(List<MasterCases> masterCaseses) {
-        this.masterCaseses = masterCaseses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
     public List<MasterInspections> getMasterInspectionses() {
         return this.masterInspectionses;
     }
 
     public void setMasterInspectionses(List<MasterInspections> masterInspectionses) {
         this.masterInspectionses = masterInspectionses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<MasterCases> getMasterCaseses() {
+        return this.masterCaseses;
+    }
+
+    public void setMasterCaseses(List<MasterCases> masterCaseses) {
+        this.masterCaseses = masterCaseses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -298,22 +298,22 @@ public class Projects implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
-    public List<ProjectSharedWith> getProjectSharedWiths() {
-        return this.projectSharedWiths;
-    }
-
-    public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
-        this.projectSharedWiths = projectSharedWiths;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
     public List<ProjectTasks> getProjectTaskses() {
         return this.projectTaskses;
     }
 
     public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
         this.projectTaskses = projectTaskses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<ProjectSharedWith> getProjectSharedWiths() {
+        return this.projectSharedWiths;
+    }
+
+    public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
+        this.projectSharedWiths = projectSharedWiths;
     }
 
     @JsonInclude(Include.NON_EMPTY)

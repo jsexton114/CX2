@@ -155,19 +155,19 @@ public class FormTypesServiceImpl implements FormTypesService {
             }
         }
 
-        if(formTypesCreated.getInspectionSequences() != null) {
-            for(InspectionSequence inspectionSequence : formTypesCreated.getInspectionSequences()) {
-                inspectionSequence.setFormTypes(formTypesCreated);
-                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
-                inspectionSequenceService.create(inspectionSequence);
-            }
-        }
-
         if(formTypesCreated.getLetterTemplateses() != null) {
             for(LetterTemplates letterTemplatese : formTypesCreated.getLetterTemplateses()) {
                 letterTemplatese.setFormTypes(formTypesCreated);
                 LOGGER.debug("Creating a new child LetterTemplates with information: {}", letterTemplatese);
                 letterTemplatesService.create(letterTemplatese);
+            }
+        }
+
+        if(formTypesCreated.getInspectionSequences() != null) {
+            for(InspectionSequence inspectionSequence : formTypesCreated.getInspectionSequences()) {
+                inspectionSequence.setFormTypes(formTypesCreated);
+                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
+                inspectionSequenceService.create(inspectionSequence);
             }
         }
 
@@ -337,17 +337,6 @@ public class FormTypesServiceImpl implements FormTypesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionSequences");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("formTypes.id = '" + id + "'");
-
-        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated letterTemplateses");
 
@@ -355,6 +344,17 @@ public class FormTypesServiceImpl implements FormTypesService {
         queryBuilder.append("formTypes.id = '" + id + "'");
 
         return letterTemplatesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formTypes.id = '" + id + "'");
+
+        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

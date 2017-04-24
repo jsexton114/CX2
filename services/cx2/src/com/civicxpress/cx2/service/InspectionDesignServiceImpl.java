@@ -100,19 +100,19 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
             }
         }
 
+        if(inspectionDesignCreated.getInspectionCategoryMappings() != null) {
+            for(InspectionCategoryMapping inspectionCategoryMapping : inspectionDesignCreated.getInspectionCategoryMappings()) {
+                inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
+                inspectionCategoryMappingService.create(inspectionCategoryMapping);
+            }
+        }
+
         if(inspectionDesignCreated.getInspectionOutcomes() != null) {
             for(InspectionOutcome inspectionOutcome : inspectionDesignCreated.getInspectionOutcomes()) {
                 inspectionOutcome.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionOutcome with information: {}", inspectionOutcome);
                 inspectionOutcomeService.create(inspectionOutcome);
-            }
-        }
-
-        if(inspectionDesignCreated.getInspectionSequences() != null) {
-            for(InspectionSequence inspectionSequence : inspectionDesignCreated.getInspectionSequences()) {
-                inspectionSequence.setInspectionDesign(inspectionDesignCreated);
-                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
-                inspectionSequenceService.create(inspectionSequence);
             }
         }
 
@@ -124,19 +124,19 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
             }
         }
 
+        if(inspectionDesignCreated.getInspectionSequences() != null) {
+            for(InspectionSequence inspectionSequence : inspectionDesignCreated.getInspectionSequences()) {
+                inspectionSequence.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionSequence with information: {}", inspectionSequence);
+                inspectionSequenceService.create(inspectionSequence);
+            }
+        }
+
         if(inspectionDesignCreated.getMasterInspectionses() != null) {
             for(MasterInspections masterInspectionse : inspectionDesignCreated.getMasterInspectionses()) {
                 masterInspectionse.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
                 masterInspectionsService.create(masterInspectionse);
-            }
-        }
-
-        if(inspectionDesignCreated.getInspectionCategoryMappings() != null) {
-            for(InspectionCategoryMapping inspectionCategoryMapping : inspectionDesignCreated.getInspectionCategoryMappings()) {
-                inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
-                LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
-                inspectionCategoryMappingService.create(inspectionCategoryMapping);
             }
         }
         return inspectionDesignCreated;
@@ -243,6 +243,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionCategoryMappings");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
 
@@ -250,17 +261,6 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return inspectionOutcomeService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionSequences");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionDesign.id = '" + id + "'");
-
-        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -276,6 +276,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionSequences");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionSequenceService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -283,17 +294,6 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
         queryBuilder.append("inspectionDesign.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionCategoryMappings");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("inspectionDesign.id = '" + id + "'");
-
-        return inspectionCategoryMappingService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

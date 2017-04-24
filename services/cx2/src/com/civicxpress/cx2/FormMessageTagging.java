@@ -28,6 +28,7 @@ public class FormMessageTagging implements Serializable {
     private Integer id;
     private Integer formMessageId;
     private Integer taggedPersonId;
+    private Boolean messageRead;
     private Users users;
     private FormMessages formMessages;
 
@@ -58,6 +59,15 @@ public class FormMessageTagging implements Serializable {
 
     public void setTaggedPersonId(Integer taggedPersonId) {
         this.taggedPersonId = taggedPersonId;
+    }
+
+    @Column(name = "`MessageRead`", nullable = true)
+    public Boolean getMessageRead() {
+        return this.messageRead;
+    }
+
+    public void setMessageRead(Boolean messageRead) {
+        this.messageRead = messageRead;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
