@@ -171,7 +171,7 @@
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogViewViolation.open()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneFees" title="FEES" show="true">
+                                <wm-tabpane name="tabpaneFees" title="FEES" show="false">
                                     <wm-livegrid formlayout="dialog" name="livegrid4">
                                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFees.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                             <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text" show="true"

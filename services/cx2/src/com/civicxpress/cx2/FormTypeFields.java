@@ -70,7 +70,7 @@ public class FormTypeFields implements Serializable {
         this.fieldName = fieldName;
     }
 
-    @Column(name = "`Label`", nullable = true, length = 255)
+    @Column(name = "`Label`", nullable = true, length = 1000)
     public String getLabel() {
         return this.label;
     }

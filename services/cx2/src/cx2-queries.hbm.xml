@@ -25,12 +25,24 @@ I.inspectionGuid as inspectionGuid,
 U.FullName as assignedTo,
 IO.outcome as outcome,
 I.inspectionTitle as inspectionTitle,
-I.inspectionZone as inspectionZone,
 I.requestedFor as requestedFor,
 I.DateAssigned as dateAssigned,
-ID.inspectDesignName as inspectDesignName
+ID.inspectDesignName as inspectDesignName,
+gis.inspectionZone as inspectionZone,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+gis.subdivision as subdivision
 from MasterInspections I
 LEFT OUTER JOIN Users U ON U.ID=I.AssignedTo
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				GR.InspectionZone,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=I.FormGUID AND gis.rn=1
 JOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId
 JOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID
 where IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)
@@ -1621,20 +1633,27 @@ MI.DateAssigned as dateAssigned,
 assignedUser.fullName as assignedToPersonName,
 IO.outcome as outcome,
 MI.inspectionTitle as inspectionTitle,
-MI.inspectionZone as inspectionZone,
+gis.inspectionZone as inspectionZone,
 MI.requestedFor as requestedFor,
 gis.fullAddress as fullAddress,
 gis.lot as lot,
-sub.subdivision as subdivision,
+gis.subdivision as subdivision,
 requestedBy.fullName as requestedByFullName,
 ID.inspectDesignName as inspectDesignName
 from MasterInspections as MI
-LEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.InspectionZone,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1
 LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
 LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
 LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
 LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
-LEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId
 where MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)
         ]]>
     <query-param name="isClosed" type="java.lang.Boolean"/>
@@ -1652,20 +1671,27 @@ MI.DateAssigned as dateAssigned,
 assignedUser.fullName as assignedToPersonName,
 IO.outcome as outcome,
 MI.inspectionTitle as inspectionTitle,
-MI.inspectionZone as inspectionZone,
+gis.inspectionZone as inspectionZone,
 MI.requestedFor as requestedFor,
 gis.fullAddress as fullAddress,
 gis.lot as lot,
-sub.subdivision as subdivision,
+gis.subdivision as subdivision,
 requestedBy.fullName as requestedByFullName,
 ID.inspectDesignName as inspectDesignName
 from MasterInspections as MI
-LEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.InspectionZone,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1
 LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
 LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
 LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
 LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
-LEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId
 where MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable
         ]]>
     <query-param name="isClosed" type="java.lang.Boolean"/>

@@ -10327,8 +10327,8 @@
     "name" : "assignedInspectionsBetweenDates",
     "description" : "assignedInspectionsBetweenDates",
     "version" : "V2",
-    "queryString" : "select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\nMI.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\nsub.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nLEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)",
-    "countQueryString" : "select count(*) from (select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\nMI.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\nsub.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN GisRecords gis ON MI.GisId=gis.id\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nLEFT OUTER JOIN Subdivisions sub ON sub.id=gis.subdivisionId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable",
+    "queryString" : "select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)",
+    "countQueryString" : "select count(*) from (select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -11736,7 +11736,7 @@
     "name" : "getInspectionsByOutcome",
     "description" : "getInspectionsByOutcome",
     "version" : "V2",
-    "queryString" : "select \nI.inspectionGuid as inspectionGuid,\nU.FullName as assignedTo,\nIO.outcome as outcome,\nI.inspectionTitle as inspectionTitle,\nI.inspectionZone as inspectionZone,\nI.requestedFor as requestedFor,\nI.DateAssigned as dateAssigned,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections I\nLEFT OUTER JOIN Users U ON U.ID=I.AssignedTo\nJOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId\nJOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID\nwhere IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)\nOrder By inspectionZone DESC",
+    "queryString" : "select \nI.inspectionGuid as inspectionGuid,\nU.FullName as assignedTo,\nIO.outcome as outcome,\nI.inspectionTitle as inspectionTitle,\nI.requestedFor as requestedFor,\nI.DateAssigned as dateAssigned,\nID.inspectDesignName as inspectDesignName,\ngis.inspectionZone as inspectionZone,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision\nfrom MasterInspections I\nLEFT OUTER JOIN Users U ON U.ID=I.AssignedTo\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=I.FormGUID AND gis.rn=1\nJOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId\nJOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID\nwhere IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)\nOrder By inspectionZone DESC",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -11802,15 +11802,6 @@
           "list" : false
         }
       }, {
-        "name" : "inspectionZone",
-        "fieldName" : "inspectionZone",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
         "name" : "requestedFor",
         "fieldName" : "requestedFor",
         "optional" : false,
@@ -11831,6 +11822,42 @@
       }, {
         "name" : "inspectDesignName",
         "fieldName" : "inspectDesignName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "inspectionZone",
+        "fieldName" : "inspectionZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",

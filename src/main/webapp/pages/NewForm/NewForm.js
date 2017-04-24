@@ -633,6 +633,7 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
 
         $scope.buttonAddLocationClick = function($event, $isolateScope) {
             var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
+
             if (activeTabIndex === 0) {
                 addGisRecord($scope.Widgets.searchAddress.datavalue);
             } else if (activeTabIndex === 1) {
@@ -643,7 +644,6 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
 
             $scope.Widgets.dialogAddGISRecord.close();
         };
-
     }
 ]);
 

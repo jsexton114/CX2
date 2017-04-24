@@ -334,12 +334,12 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="GIS Record Map" iconclass="wi wi-map" name="dialogGisMap" class="modal-larger">
             <wm-gridrow name="gridrow9">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn21">
-                    <wm-prefab prefabname="googlemaps" name="googlemapsGisForLATLNG" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="LatLng" zoom="16" lat="latitude" lng="longitude" show="bind:Variables.SelectedGISobj.firstRecord.latitude != &quot;&quot;"></wm-prefab>
+                    <wm-prefab prefabname="googlemaps" name="googlemapsGisForLATLNG" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="LatLng" zoom="16" lat="latitude" lng="longitude" show="bind:!!Variables.SelectedGISobj.firstRecord.latitude &amp;&amp; Variables.SelectedGISobj.firstRecord.latitude != &quot;&quot;"></wm-prefab>
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-gridrow name="gridrow91">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn21">
-                    <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="streetNumber streetName city states.stateName" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="bind:Variables.SelectedGISobj.firstRecord.latitude == &quot;&quot;"></wm-prefab>
+                    <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="fullAddress" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="bind:!Variables.SelectedGISobj.firstRecord.latitude || Variables.SelectedGISobj.firstRecord.latitude === &quot;&quot;"></wm-prefab>
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-dialogactions name="dialogactions1">

@@ -27,14 +27,20 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
     private String outcome;
     @ColumnAlias("inspectionTitle")
     private String inspectionTitle;
-    @ColumnAlias("inspectionZone")
-    private String inspectionZone;
     @ColumnAlias("requestedFor")
     private LocalDateTime requestedFor;
     @ColumnAlias("dateAssigned")
     private LocalDateTime dateAssigned;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
+    @ColumnAlias("inspectionZone")
+    private String inspectionZone;
+    @ColumnAlias("fullAddress")
+    private String fullAddress;
+    @ColumnAlias("lot")
+    private String lot;
+    @ColumnAlias("subdivision")
+    private String subdivision;
 
     public String getInspectionGuid() {
         return this.inspectionGuid;
@@ -68,14 +74,6 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
         this.inspectionTitle = inspectionTitle;
     }
 
-    public String getInspectionZone() {
-        return this.inspectionZone;
-    }
-
-    public void setInspectionZone(String inspectionZone) {
-        this.inspectionZone = inspectionZone;
-    }
-
     public LocalDateTime getRequestedFor() {
         return this.requestedFor;
     }
@@ -100,6 +98,38 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
         this.inspectDesignName = inspectDesignName;
     }
 
+    public String getInspectionZone() {
+        return this.inspectionZone;
+    }
+
+    public void setInspectionZone(String inspectionZone) {
+        this.inspectionZone = inspectionZone;
+    }
+
+    public String getFullAddress() {
+        return this.fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
+    }
+
+    public String getLot() {
+        return this.lot;
+    }
+
+    public void setLot(String lot) {
+        this.lot = lot;
+    }
+
+    public String getSubdivision() {
+        return this.subdivision;
+    }
+
+    public void setSubdivision(String subdivision) {
+        this.subdivision = subdivision;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,10 +139,13 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 Objects.equals(getAssignedTo(), getInspectionsByOutcomeResponse.getAssignedTo()) &&
                 Objects.equals(getOutcome(), getInspectionsByOutcomeResponse.getOutcome()) &&
                 Objects.equals(getInspectionTitle(), getInspectionsByOutcomeResponse.getInspectionTitle()) &&
-                Objects.equals(getInspectionZone(), getInspectionsByOutcomeResponse.getInspectionZone()) &&
                 Objects.equals(getRequestedFor(), getInspectionsByOutcomeResponse.getRequestedFor()) &&
                 Objects.equals(getDateAssigned(), getInspectionsByOutcomeResponse.getDateAssigned()) &&
-                Objects.equals(getInspectDesignName(), getInspectionsByOutcomeResponse.getInspectDesignName());
+                Objects.equals(getInspectDesignName(), getInspectionsByOutcomeResponse.getInspectDesignName()) &&
+                Objects.equals(getInspectionZone(), getInspectionsByOutcomeResponse.getInspectionZone()) &&
+                Objects.equals(getFullAddress(), getInspectionsByOutcomeResponse.getFullAddress()) &&
+                Objects.equals(getLot(), getInspectionsByOutcomeResponse.getLot()) &&
+                Objects.equals(getSubdivision(), getInspectionsByOutcomeResponse.getSubdivision());
     }
 
     @Override
@@ -121,9 +154,12 @@ public class GetInspectionsByOutcomeResponse implements Serializable {
                 getAssignedTo(),
                 getOutcome(),
                 getInspectionTitle(),
-                getInspectionZone(),
                 getRequestedFor(),
                 getDateAssigned(),
-                getInspectDesignName());
+                getInspectDesignName(),
+                getInspectionZone(),
+                getFullAddress(),
+                getLot(),
+                getSubdivision());
     }
 }

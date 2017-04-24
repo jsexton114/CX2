@@ -60,8 +60,8 @@ public class Vendor implements Serializable {
     private String insuranceCompany;
     private Date insuranceExpires;
     private Date lastUpdated;
-    private String fullAddress;
     private boolean active;
+    private String fullAddress;
     private ContractorTypes contractorTypes;
     private States states;
     private List<Fees> feeses;
@@ -283,15 +283,6 @@ public class Vendor implements Serializable {
         this.lastUpdated = lastUpdated;
     }
 
-    @Column(name = "`FullAddress`", nullable = false, insertable = false, updatable = false, length = 1022)
-    public String getFullAddress() {
-        return this.fullAddress;
-    }
-
-    public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
-    }
-
     @Column(name = "`Active`", nullable = false)
     public boolean isActive() {
         return this.active;
@@ -299,6 +290,15 @@ public class Vendor implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    @Column(name = "`FullAddress`", nullable = false, insertable = false, updatable = false, length = 768)
+    public String getFullAddress() {
+        return this.fullAddress;
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

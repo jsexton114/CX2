@@ -32,8 +32,6 @@ import com.wavemaker.runtime.service.annotations.HideFromClient;
 public class DynamicFieldService {
 
     private static final Logger logger = LoggerFactory.getLogger(DynamicFieldService.class);
-    
-    private static final int MAX_COLUMN_LENGTH = 128;
 
     @Autowired
     private SecurityService securityService;
@@ -83,13 +81,7 @@ public class DynamicFieldService {
       	muniDbConn.setAutoCommit(false);
     
       	try {
-      		String dynamicFieldIndex = DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex");
-      		
-      		if (fieldName.length() + dynamicFieldIndex.length() > MAX_COLUMN_LENGTH) {
-      			fieldName = fieldName.substring(0, (MAX_COLUMN_LENGTH - dynamicFieldIndex.length() - 1));
-      		}
-      		
-      		fieldName += dynamicFieldIndex;
+      		fieldName += DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex");
     
         	queryParams.addString("label", label);
         	queryParams.addString("fieldName", fieldName);
