@@ -12,8 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
-                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2"
-                        class="h4"></wm-label>
+                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
@@ -42,21 +41,19 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.svInspectionList.dataSet" navigation="Classic" name="gridInspections">
-                            <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="fullAddress" caption="Full Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="inspectionGuid" caption="Inspection Guid" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                        <wm-grid title="" dataset="bind:Variables.svInspectionList.dataSet" navigation="Classic" name="gridInspections" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}}</wm-grid-column>
+                            <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -64,4 +61,9 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view2">
+        <wm-pagedialog name="pagedialogViewInspection" title="View Inspection" oktext="Close" content="_viewInspection" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+            <wm-param name="inspectionGuid" value="bind:Widgets.gridInspections.selecteditem.inspectionGuid" type="string"></wm-param>
+        </wm-pagedialog>
+    </wm-view>
 </wm-page>

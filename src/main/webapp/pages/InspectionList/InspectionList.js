@@ -37,10 +37,23 @@ Application.$controller("gridInspectionsController", ["$scope", "$location",
         $scope.ctrlScope = $scope;
 
         $scope.viewInspectionAction = function($event, $rowData) {
-            $location.path("/ViewInspection").search({
-                inspectionGuid: $rowData.inspectionGuid
-            });
+            $scope.Widgets.pagedialogViewInspection.open();
+
         };
 
+    }
+]);
+
+Application.$controller("pagedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewInspectionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);
