@@ -27,7 +27,7 @@
                 <wm-gridrow name="gridrow18">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabpane2" title="Parcels">
+                            <wm-tabpane name="tabpane2" title="Addresses">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="subdivisions.subdivision" caption="Subdivision" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Subdivisions"></wm-grid-column>
@@ -37,13 +37,13 @@
                                         <wm-grid-column binding="fullAddress" caption="Address" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Parcel" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Parcel" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                        <wm-grid-action key="addNewRow" display-name="New Address" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Address" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
                                         shortcutkey="" disabled="false" icon="wi wi-add-location"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditGISRecord.invoke()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Parcel Details" formlayout="dialog" iconclass="wi wi-location-on" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top" name="liveform3"
-                                    on-beforeservicecall="liveform3Beforeservicecall($event, $operation, $data)">
+                                    <wm-liveform novalidate="false" errormessage="" title="Address Details" formlayout="dialog" iconclass="wi wi-location-on" dataset="bind:Variables.Cx2GisrecordsData.dataSet" captionalign="left" captionposition="top"
+                                    name="liveform3" on-beforeservicecall="liveform3Beforeservicecall($event, $operation, $data)">
                                         <wm-layoutgrid columns="3" name="layoutgrid4">
                                             <wm-gridrow name="gridrow19_1">
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn32_1">
