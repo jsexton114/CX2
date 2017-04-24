@@ -237,17 +237,15 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow13">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
-                        <wm-panel iconclass="wi wi-location-on" autoclose="outsideClick" name="panel1" title="Parcels" class="panel-primary">
+                        <wm-panel iconclass="wi wi-location-on" autoclose="outsideClick" name="panel1" title="Addresses" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid3_1">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid4">
                                     <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="fullAddress" caption="Full Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                    <wm-grid-column binding="fullAddress" caption="Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngEditGisRecord.invoke()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                                 <wm-liveform novalidate="false" errormessage="" title="Gis Records" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" captionalign="left" captionposition="top" name="liveform3_1">
                                     <wm-layoutgrid columns="3" name="layoutgrid5">
