@@ -223,7 +223,8 @@ Application.$controller("liveformInspectionCodeSetsController", ["$scope",
 
             if (newVal == "Global") {
                 $scope.Variables.lvListOfCodeSets.setFilter({
-                    'globalYn': false
+                    'globalYn': true,
+                    'municipalityId': undefined
                 });
                 $scope.Variables.lvListOfCodeSets.update();
             } else {

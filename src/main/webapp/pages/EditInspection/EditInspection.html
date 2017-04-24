@@ -458,6 +458,9 @@
                                             <wm-livegrid formlayout="dialog" name="livegridInspectionCodeSets">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodesToInspection.dataSet" navigation="Classic" name="gridInspectionCodeSets" filtermode="multicolumn" exportformat="EXCEL"
                                                 showrecordcount="true">
+                                                    <wm-grid-column binding="codeSets.globalYn" caption="Scope" type="boolean" widget-type="label" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="CodeSets">
+                                                        <wm-label caption="{{row.getProperty('codeSets.globalYn')==true?' Global':Variables.CurrentInspectionObj.firstRecord.municipalities.municipalityName}}"=""="" class="" data-ng-class=""></wm-label>
+                                                    </wm-grid-column>
                                                     <wm-grid-column binding="codeSets.codeSetTitle" caption="Code Set" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="CodeSets"></wm-grid-column>
                                                     <wm-grid-column binding="dateAdded" caption="Date Added" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('dateAdded') | toLocalDateString}}</wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
