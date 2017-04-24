@@ -25,48 +25,49 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31">
                         <wm-spinner show="bind:inspectorAssignmentQueue.length > 0" name="spinnerAssignInspectors" caption="Assigning..."></wm-spinner>
                         <wm-tabs name="tabsInspections">
-                            <wm-tabpane name="tabpaneUnassignedInspections" title="Unassigned">
+                            <wm-tabpane name="tabpaneUnassignedInspections" title="Requested">
                                 <wm-layoutgrid name="layoutgrid2" columns="2">
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="9" name="gridcolumn11" horizontalalign="right">
-                                            <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="gridUnassignedInspections" radioselect="false" multiselect="true">
-                                                <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="gridUnassignedInspections" radioselect="false" multiselect="true" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                 <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="requestedFor" caption="Requested For" type="string" datepattern="MM/dd/yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="requestedFor" caption="Requested For" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-button class="btn-primary" caption="bind:'Assign' + (!!Widgets.gridInspectors.selecteditem.id ? (' to ' + Widgets.gridInspectors.selecteditem.fullName) : '')" type="button" margin="unset 0.5em" name="buttonAssignInspector"
-                                            disabled="bind:!Widgets.gridUnassignedInspections.selecteditem.length || !Widgets.gridInspectors.selecteditem.id" on-click="buttonAssignInspectorClick($event, $scope)"></wm-button>
+                                            <wm-button class="btn-primary" caption="bind:'Assign' + (!!Widgets.gridInspectors.selecteditem.id ? (' to ' + Widgets.gridInspectors.selecteditem.fullName) : '')" type="button" margin="unset 0.5em" name="buttonAssignInspector" disabled="bind:!Widgets.gridUnassignedInspections.selecteditem.length || !Widgets.gridInspectors.selecteditem.id"
+                                            on-click="buttonAssignInspectorClick($event, $scope)" iconclass="wi wi-plus"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn12">
-                                            <wm-grid title="Inspectors" dataset="bind:Variables.svGetInspectors.dataSet" navigation="Classic" name="gridInspectors" multiselect="false" radioselect="true">
-                                                <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            </wm-grid>
+                                            <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" title="Inspectors" name="panel2" class="panel-primary">
+                                                <wm-grid title="" dataset="bind:Variables.svGetInspectors.dataSet" navigation="Basic" name="gridInspectors" multiselect="false" radioselect="true" filtermode="multicolumn">
+                                                    <wm-grid-column binding="fullName" caption="Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                </wm-grid>
+                                            </wm-panel>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneAssignedInspections" title="Assigned">
+                            <wm-tabpane name="tabpaneAssignedInspections" title="Scheduled">
                                 <wm-layoutgrid columns="2" name="layoutgrid3_1">
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn7">
-                                            <wm-grid title="" dataset="bind:Variables.svGetAssignedInspections.dataSet" navigation="Classic" radioselect="false" multiselect="true" name="gridAssignedInspections">
-                                                <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid title="" dataset="bind:Variables.svGetAssignedInspections.dataSet" navigation="Classic" radioselect="false" multiselect="true" name="gridAssignedInspections" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                 <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM/dd/yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-button class="btn-primary" caption="Reassign" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem" name="buttonReassign"
-                                            on-click="buttonReassignClick($event, $scope)"></wm-button>
+                                            <wm-button class="btn-primary" caption="Reassign" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem" name="buttonReassign" on-click="buttonReassignClick($event, $scope)"
+                                            iconclass="wi wi-update"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn8">
-                                            <wm-grid title="Inspectors" dataset="bind:Variables.svGetInspectors.dataSet" navigation="Classic" name="gridInspectorsA" multiselect="false" radioselect="true">
-                                                <wm-grid-column binding="fullName" caption="Full Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            </wm-grid>
+                                            <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" title="Inspectors" name="panel3" class="panel-primary">
+                                                <wm-grid title="" dataset="bind:Variables.svGetInspectors.dataSet" navigation="Basic" name="gridInspectorsA" multiselect="false" radioselect="true" filtermode="multicolumn">
+                                                    <wm-grid-column binding="fullName" caption="Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                </wm-grid>
+                                            </wm-panel>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>

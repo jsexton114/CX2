@@ -72,6 +72,7 @@ Application.$controller("gridUnassignedInspectionsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
     }
 ]);
 
