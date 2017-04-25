@@ -1,1 +1,25 @@
-{"BreadCrumb":{"_id":"wm-BreadCrum-wm.Variable-1482835307516","name":"BreadCrumb","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":[{"label":"Home","icon":"glyphicon glyphicon-home","link":"#/Main"},{"label":"Open Forms","icon":"wi wi-ellipsis-v","link":"#/UserOpenForms"},{"label":"Form","icon":"wi wi-ellipsis-v","link":"#/Forms?FormGUID="}],"type":"string","isList":true,"saveInPhonegap":false}}
+{
+  "BreadCrumb" : {
+    "_id" : "wm-BreadCrum-wm.Variable-1482835307516",
+    "name" : "BreadCrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "My Dashboard",
+      "icon" : "wi wi-apps",
+      "link" : "#/Main"
+    }, {
+      "label" : "Open Forms",
+      "icon" : "wi wi-book-open",
+      "link" : "#/UserOpenForms"
+    }, {
+      "label" : "View Form",
+      "icon" : "wi wi-assignment",
+      "link" : "#/Forms?FormGUID="
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  }
+}

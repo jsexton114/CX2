@@ -20,9 +20,11 @@ Application.$controller("FormsPageController", ["$scope", "$timeout", "$location
         if (!!statusListData && !!currentStatusId) {
             if (currentStatus.considerClosed === true) {
                 openClosedFormBreadCrumb.label = 'Closed Forms';
+                openClosedFormBreadCrumb.icon = 'wi wi-book-binder';
                 openClosedFormBreadCrumb.link = '#/UserClosedForms';
             } else {
                 openClosedFormBreadCrumb.label = 'Open Forms';
+                openClosedFormBreadCrumb.icon = 'wi wi-book-open';
                 openClosedFormBreadCrumb.link = '#/UserOpenForms';
             }
         }
