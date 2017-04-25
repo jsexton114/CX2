@@ -41,7 +41,7 @@
                                         <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mas as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
+                                    <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
                                     disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" disabled="false"></wm-grid-row-action>
@@ -59,8 +59,8 @@
                                     edit-widget-type="text" show="true" readonly="false">
                                         <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-row-action key="customRow" display-name="" title="View" value="" iconclass="wi wi-search" class="btn-transparent" show="true" action="customRowAction($event)"></wm-grid-row-action>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
                         </wm-tabs>

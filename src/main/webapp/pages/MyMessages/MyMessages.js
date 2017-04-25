@@ -23,13 +23,16 @@ Application.$controller("gridInboxController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.updaterowAction = function($event, $rowData) {
+            $scope.gridData[+$($event.target).closest('tr').attr('data-row-id')].messageRead = true;
 
-            $rowData.messageRead = true;
+            //$rowData.messageRead = true;
+            //$scope.Widgets.gridInbox.redraw();
+            //$scope.Widgets.gridInbox.refreshData();
         };
 
 
         $scope.deleterowAction = function($event, $rowData) {
-            debugger
+
             switch ($rowData.sourceCategory) {
                 case "Form":
                     $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;

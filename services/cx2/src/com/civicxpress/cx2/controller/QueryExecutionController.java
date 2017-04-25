@@ -81,6 +81,25 @@ public class QueryExecutionController {
         return queryService.exportGetRecentMessageId(exportType, form, postedAt, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountUnReadMessagesByUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountUnReadMessagesByUser")
+    public Page<CountUnReadMessagesByUserResponse> executeCountUnReadMessagesByUser(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "messageRead") Boolean messageRead, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountUnReadMessagesByUser");
+        Page<CountUnReadMessagesByUserResponse> _result = queryService.executeCountUnReadMessagesByUser(taggedPersonId, messageRead, pageable);
+        LOGGER.debug("got the result for named query: CountUnReadMessagesByUser, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountUnReadMessagesByUser")
+    @RequestMapping(value = "/queries/CountUnReadMessagesByUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountUnReadMessagesByUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "messageRead") Boolean messageRead, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountUnReadMessagesByUser");
+
+        return queryService.exportCountUnReadMessagesByUser(exportType, taggedPersonId, messageRead, pageable);
+    }
+
     @RequestMapping(value = "/queries/getInspectionsByOutcome", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getInspectionsByOutcome")
@@ -98,6 +117,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getInspectionsByOutcome");
 
         return queryService.exportGetInspectionsByOutcome(exportType, outcome, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UserMessagesCountByMunicipality")
+    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: UserMessagesCountByMunicipality");
+        Page<UserMessagesCountByMunicipalityResponse> _result = queryService.executeUserMessagesCountByMunicipality(taggedPersonId, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: UserMessagesCountByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query UserMessagesCountByMunicipality")
+    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUserMessagesCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UserMessagesCountByMunicipality");
+
+        return queryService.exportUserMessagesCountByMunicipality(exportType, taggedPersonId, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/getCalculatableFormFields", method = RequestMethod.GET)

@@ -1066,5 +1066,32 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svUserMessagesCountByMunicipality" : {
+    "_id" : "wm-svUserMessagesCountByMunicipality-wm.ServiceVariable-1493099379457",
+    "name" : "svUserMessagesCountByMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "taggedPersonId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.UserMessagesCountByMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeUserMessagesCountByMunicipality",
+    "operationId" : "QueryExecutionController_executeUserMessagesCountByMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

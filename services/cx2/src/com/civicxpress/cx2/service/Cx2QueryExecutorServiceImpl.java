@@ -71,6 +71,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CountUnReadMessagesByUserResponse> executeCountUnReadMessagesByUser(Integer taggedPersonId, Boolean messageRead, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("messageRead", messageRead);
+
+        return queryExecutor.executeNamedQuery("CountUnReadMessagesByUser", params, CountUnReadMessagesByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountUnReadMessagesByUser(ExportType exportType, Integer taggedPersonId, Boolean messageRead, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("messageRead", messageRead);
+
+        return queryExecutor.exportNamedQueryData("CountUnReadMessagesByUser", params, exportType, CountUnReadMessagesByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -89,6 +111,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("UserMessagesCountByMunicipality", params, UserMessagesCountByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUserMessagesCountByMunicipality(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("taggedPersonId", taggedPersonId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("UserMessagesCountByMunicipality", params, exportType, UserMessagesCountByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

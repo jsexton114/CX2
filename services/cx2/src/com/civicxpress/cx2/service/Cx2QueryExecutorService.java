@@ -34,9 +34,17 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetRecentMessageId(ExportType exportType, String form, Timestamp postedAt, Pageable pageable);
 
+    Page<CountUnReadMessagesByUserResponse> executeCountUnReadMessagesByUser(Integer taggedPersonId, Boolean messageRead, Pageable pageable);
+
+    Downloadable exportCountUnReadMessagesByUser(ExportType exportType, Integer taggedPersonId, Boolean messageRead, Pageable pageable);
+
     Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable);
 
     Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable);
+
+    Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportUserMessagesCountByMunicipality(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable);
 
     Page<FormTypeFields> executeGetCalculatableFormFields(Integer formTypeId, Pageable pageable);
 

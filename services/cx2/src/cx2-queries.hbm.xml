@@ -18,6 +18,22 @@
     <query-param name="PostedAt" type="java.sql.Timestamp"/>
     </query>
 
+    <sql-query name="CountUnReadMessagesByUser">
+        <![CDATA[
+        select count(*) as unReadMessagesCount from FormMessageTagging where TaggedPersonId=:taggedPersonId and MessageRead=:messageRead
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="messageRead" type="java.lang.Boolean"/>
+    </sql-query>
+
+    <sql-query name="CountUnReadMessagesByUser__count">
+        <![CDATA[
+        select count(*) from (select count(*) as unReadMessagesCount from FormMessageTagging where TaggedPersonId=:taggedPersonId and MessageRead=:messageRead) wmTempTable
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="messageRead" type="java.lang.Boolean"/>
+    </sql-query>
+
     <sql-query name="getInspectionsByOutcome">
         <![CDATA[
         select 
@@ -50,6 +66,92 @@ Order By inspectionZone DESC
         ]]>
     <query-param name="outcome" type="java.lang.String"/>
     <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UserMessagesCountByMunicipality">
+        <![CDATA[
+        select sum(messagesCount) messagesCount
+from (
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION 
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+) s
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="UserMessagesCountByMunicipality__count">
+        <![CDATA[
+        select count(*) from (select sum(messagesCount) messagesCount
+from (
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
+INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+UNION
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
+INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION 
+
+select count(FMT.ID) as messagesCount
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
+INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
+INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+) s) wmTempTable
+        ]]>
+    <query-param name="taggedPersonId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
 
     <query name="getCalculatableFormFields">

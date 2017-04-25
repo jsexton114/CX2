@@ -23,6 +23,10 @@ Application.$controller("MainPageController", ["$scope", function($scope) {
                 'municipalityId': municipality
             });
             $scope.Variables.svFeeCountForUser.update();
+            $scope.Variables.svUserMessagesCountByMunicipality.setInput({
+                'municipalityId': municipality
+            });
+            $scope.Variables.svUserMessagesCountByMunicipality.update();
         }
 
         $scope.$watch(function() {

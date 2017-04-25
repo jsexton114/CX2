@@ -1404,6 +1404,37 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "svCountUnReadMessagesByUser" : {
+    "_id" : "wm-svCountUnReadMessagesByUser-wm.ServiceVariable-1493098069789",
+    "name" : "svCountUnReadMessagesByUser",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "taggedPersonId",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "messageRead",
+      "value" : false,
+      "type" : "boolean"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountUnReadMessagesByUserResponse",
+    "service" : "cx2",
+    "operation" : "executeCountUnReadMessagesByUser",
+    "operationId" : "QueryExecutionController_executeCountUnReadMessagesByUser",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "UserOpenFormsCount" : {
     "_id" : "wm-UserOpenFormsCount-wm.Variable-1486466257530",
     "name" : "UserOpenFormsCount",
