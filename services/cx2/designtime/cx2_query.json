@@ -3593,6 +3593,189 @@
       } ]
     }
   },
+  "FormFeesForUsersAndShared" : {
+    "name" : "FormFeesForUsersAndShared",
+    "description" : "FormFeesForUsersAndShared",
+    "version" : "V2",
+    "queryString" : "SELECT \n    FE.ID as feeId,\n    FE.FeeType as feeType,\n    MF.FormGuid as formGuid,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formType,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tFE.Amount as balanceDue\nFROM Fees FE\nLEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
+    "countQueryString" : "select count(*) from (SELECT \n    FE.ID as feeId,\n    FE.FeeType as feeType,\n    MF.FormGuid as formGuid,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formType,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tFE.Amount as balanceDue\nFROM Fees FE\nLEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "allowPayment",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "paidStatus",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Unpaid",
+      "required" : true
+    }, {
+      "name" : "creatorUser",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "sharedWithUser",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FormFeesForUsersAndSharedResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "feeId",
+        "fieldName" : "feeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "feeType",
+        "fieldName" : "feeType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dateModified",
+        "fieldName" : "dateModified",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formType",
+        "fieldName" : "formType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formStatus",
+        "fieldName" : "formStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "primaryVendor",
+        "fieldName" : "primaryVendor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "FormsByCategory" : {
     "name" : "FormsByCategory",
     "description" : "FormsByCategory",

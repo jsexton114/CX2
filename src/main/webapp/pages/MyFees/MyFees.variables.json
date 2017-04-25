@@ -111,27 +111,44 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "UserId",
+      "target" : "allowPayment",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Unpaid",
+      "type" : "string"
+    }, {
+      "target" : "creatorUser",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
     } ],
-    "type" : "com.civicxpress.cx2.models.procedure.FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse",
+    "type" : "com.civicxpress.cx2.models.query.FormFeesForUsersAndSharedResponse",
     "service" : "cx2",
-    "operation" : "executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
-    "operationId" : "ProcedureExecutionController_executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith",
+    "operation" : "executeFormFeesForUsersAndShared",
+    "operationId" : "QueryExecutionController_executeFormFeesForUsersAndShared",
     "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
-    "isList" : false,
+    "isList" : true,
     "maxResults" : 10,
     "designMaxResults" : 10,
+    "orderBy" : "feeId asc",
     "onSuccess" : "svfetchUnpaidFeesOfFormsForCreatedByAndSharedWithonSuccess($event, $scope)",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "ProcedureExecution",
+    "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
   "svInsertAllFeeToCart" : {
@@ -149,7 +166,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.svCartIds.invoke()",
+    "onSuccess" : "Variables.svCartIds.invoke();Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

@@ -1412,6 +1412,90 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and municipa
     <query-param name="VendorId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="FormFeesForUsersAndShared">
+        <![CDATA[
+        SELECT 
+    FE.ID as feeId,
+    FE.FeeType as feeType,
+    MF.FormGuid as formGuid,
+	DateModified as dateModified,
+	MF.FormTitle as formTitle,
+	MU.MunicipalityName as municipalityName,
+	U.FullName as createdBy,
+	FT.FormType as formType,
+	FS.Status as formStatus,
+	GR.Lot as lot,
+	GR.Subdivision as subdivision,
+	GR.FullAddress as address,
+	V.CompanyName as primaryVendor,
+	FE.Amount as balanceDue
+FROM Fees FE
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FormFeesForUsersAndShared__count">
+        <![CDATA[
+        select count(*) from (SELECT 
+    FE.ID as feeId,
+    FE.FeeType as feeType,
+    MF.FormGuid as formGuid,
+	DateModified as dateModified,
+	MF.FormTitle as formTitle,
+	MU.MunicipalityName as municipalityName,
+	U.FullName as createdBy,
+	FT.FormType as formType,
+	FS.Status as formStatus,
+	GR.Lot as lot,
+	GR.Subdivision as subdivision,
+	GR.FullAddress as address,
+	V.CompanyName as primaryVendor,
+	FE.Amount as balanceDue
+FROM Fees FE
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
+        ]]>
+    <query-param name="allowPayment" type="java.lang.Boolean"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="AllFeeFormCountByMunicipality">
         <![CDATA[
         select 

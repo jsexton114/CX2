@@ -262,6 +262,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfMuncipalityApplicationsByVendor(ExportType exportType, Integer vendorId, Pageable pageable);
 
+    Page<FormFeesForUsersAndSharedResponse> executeFormFeesForUsersAndShared(Boolean allowPayment, String paidStatus, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable);
+
+    Downloadable exportFormFeesForUsersAndShared(ExportType exportType, Boolean allowPayment, String paidStatus, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable);
+
     Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
 
     Downloadable exportAllFeeFormCountByMunicipality(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
