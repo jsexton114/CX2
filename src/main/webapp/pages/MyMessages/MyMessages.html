@@ -11,17 +11,14 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                        <wm-label name="label1" caption="My Messages" fontweight="bold" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
                             <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
                             <wm-param name="muniType" value="s" type="string"></wm-param>
                         </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn6" padding="1em unset">
-                        <wm-label padding="unset 0.5em" name="label1" caption="My Messages" fontweight="bold" fontsize="20"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">

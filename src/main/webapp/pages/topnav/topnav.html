@@ -6,7 +6,7 @@
                 <wm-anchor caption="My Cart" name="cartLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.stvCartCount.dataSet.dataValue||'0'" class="cartBadge"></wm-anchor>
             </wm-nav-item>
             <wm-nav-item name="list_messages">
-                <wm-anchor caption="Messages" name="messagesLink" iconclass="wi wi-markunread" on-click="Variables.goToPage_MyMessages.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.svCountUnReadMessagesByUser.dataSet[$i].unReadMessagesCount"
+                <wm-anchor caption="Messages" name="messagesLink" iconclass="wi wi-mail-outline" on-click="Variables.goToPage_MyMessages.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.svCountUnReadMessagesByUser.dataSet[$i].unReadMessagesCount"
                 class="cartBadge"></wm-anchor>
             </wm-nav-item>
             <wm-nav-item name="list_profile">
