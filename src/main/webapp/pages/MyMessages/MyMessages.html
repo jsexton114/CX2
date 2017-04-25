@@ -11,10 +11,8 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
-                        <wm-label name="label1" caption="My Messages" fontweight="bold" class="h4"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
                             <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
                             <wm-param name="muniType" value="s" type="string"></wm-param>
@@ -23,44 +21,46 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-tabs name="tabsMessages">
-                            <wm-tabpane name="tabpaneInbox" title="Inbox">
-                                <wm-grid title="" dataset="bind:Variables.svGetUserMessages.dataSet" navigation="Classic" name="gridInbox">
-                                    <wm-grid-column binding="sourceType" caption="Source Type" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalityName" caption="Municipality" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="postedByFullName" caption="Posted By" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="postedAt" caption="Posted At" type="string" col-ng-class="{'unRead':row['messageRead']==false}" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text"
-                                    show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="message" caption="Message" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" col-ng-class="{'unRead':row['messageRead']==false}" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
-                                    edit-widget-type="text" show="true" readonly="false">
-                                        <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                    </wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
-                                    disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open();customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneSent" title="Sent">
-                                <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent">
-                                    <wm-grid-column binding="sourceType" caption="Source" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="postedAt" caption="Date Sent" type="string" datepattern="MM-dd-yy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="message" caption="Message" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
-                                    edit-widget-type="text" show="true" readonly="false">
-                                        <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                    </wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                            </wm-tabpane>
-                        </wm-tabs>
+                        <wm-panel iconclass="wi wi-mail" autoclose="outsideClick" title="My Messages" name="panelMyMessages" class="panel-primary">
+                            <wm-tabs name="tabsMessages">
+                                <wm-tabpane name="tabpaneInbox" title="Inbox">
+                                    <wm-grid title="" dataset="bind:Variables.svGetUserMessages.dataSet" navigation="Classic" name="gridInbox" filtermode="multicolumn" showrecordcount="true">
+                                        <wm-grid-column binding="sourceType" caption="Source Type" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalityName" caption="Municipality" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="postedAt" caption="Date Sent" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('postedAt') | toLocalDateString}}</wm-grid-column>
+                                        <wm-grid-column binding="message" caption="Message" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true"
+                                        readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" col-ng-class="{'unRead':row['messageRead']==false}" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
+                                        edit-widget-type="text" show="true" readonly="false">
+                                            <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                        </wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
+                                        disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open();customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneSent" title="Sent">
+                                    <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent" filtermode="multicolumn" showrecordcount="true">
+                                        <wm-grid-column binding="sourceType" caption="Source Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="postedAt" caption="Date Sent" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('postedAt') | toLocalDateString}}</wm-grid-column>
+                                        <wm-grid-column binding="message" caption="Message" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
+                                        edit-widget-type="text" show="true" readonly="false">
+                                            <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                        </wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-tabpane>
+                            </wm-tabs>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
