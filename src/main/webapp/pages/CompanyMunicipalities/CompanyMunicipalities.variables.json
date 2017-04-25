@@ -6,12 +6,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "My Company",
+      "icon" : "wi wi-work",
       "link" : "#/MyCompany"
     }, {
       "label" : "Manage Municipalities",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-account-balance",
       "link" : "#/CompanyMunicipalities"
     } ],
     "type" : "string",
@@ -363,7 +363,7 @@
         "columnName" : "COI",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -408,20 +408,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "fullAddress",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FullAddress",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 1022,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "systemInserted" : true,
-        "systemUpdated" : true,
-        "scale" : 0
-      }, {
         "fieldName" : "active",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -433,6 +419,20 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "true",
+        "scale" : 0
+      }, {
+        "fieldName" : "fullAddress",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullAddress",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 768,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Vendor",
@@ -697,7 +697,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -896,6 +896,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1175,7 +1188,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1220,20 +1233,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -1245,6 +1244,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {

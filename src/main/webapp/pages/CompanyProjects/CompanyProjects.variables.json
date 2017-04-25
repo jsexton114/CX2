@@ -6,12 +6,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "My Company",
+      "icon" : "wi wi-work",
       "link" : "#/MyCompany"
     }, {
       "label" : "Company Projects",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-building",
       "link" : "#/CompanyProjects"
     } ],
     "type" : "string",
@@ -558,20 +558,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -583,6 +569,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -1197,20 +1197,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -1222,6 +1208,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -2609,20 +2609,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -2634,6 +2620,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {

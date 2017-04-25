@@ -240,7 +240,7 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Active",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
@@ -254,7 +254,7 @@
         "columnName" : "Photo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -265,11 +265,12 @@
         "fullyQualifiedType" : "boolean",
         "columnName" : "Banned",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       }, {
         "fieldName" : "password",
@@ -311,6 +312,19 @@
         "systemInserted" : true,
         "systemUpdated" : true,
         "scale" : 0
+      }, {
+        "fieldName" : "differentBillingInfo",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "DifferentBillingInfo",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -339,12 +353,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "My Company",
+      "icon" : "wi wi-work",
       "link" : "#/MyCompany"
     }, {
       "label" : "Company Users",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-group",
       "link" : "#/CompanyUsers"
     } ],
     "type" : "string",
@@ -868,7 +882,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1068,6 +1082,19 @@
           "isRelated" : false,
           "defaultValue" : "5",
           "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -1239,7 +1266,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1253,7 +1280,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1264,11 +1291,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -1309,6 +1337,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -1690,7 +1731,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -1704,7 +1745,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -1715,11 +1756,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -1760,6 +1802,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2039,7 +2094,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2084,20 +2139,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -2109,6 +2150,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -2346,7 +2401,7 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Active",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
@@ -2360,7 +2415,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2371,11 +2426,12 @@
           "fullyQualifiedType" : "boolean",
           "columnName" : "Banned",
           "isPrimaryKey" : false,
-          "notNull" : false,
+          "notNull" : true,
           "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         }, {
           "fieldName" : "password",
@@ -2416,6 +2472,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "differentBillingInfo",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "DifferentBillingInfo",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -2695,7 +2764,7 @@
           "columnName" : "COI",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -2740,20 +2809,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -2765,6 +2820,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
