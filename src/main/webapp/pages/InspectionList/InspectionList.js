@@ -23,11 +23,14 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
 
     $scope.dateRanges = $scope.getDateRanges();
 
-
     $scope.buttonRefreshInspectionListClick = function($event, $isolateScope) {
         $scope.dateRanges = $scope.getDateRanges();
 
-        $scope.Variables.svInspectionList.update();
+        if ($scope.Widgets.tabs1.activeTabIndex === 1) {
+            $scope.Variables.svTeamInspectionList.update();
+        } else {
+            $scope.Variables.svInspectionList.update();
+        }
     };
 }]);
 
@@ -59,8 +62,8 @@ Application.$controller("pagedialogViewInspectionController", ["$scope",
 ]);
 
 Application.$controller("gridTeamInspectionsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

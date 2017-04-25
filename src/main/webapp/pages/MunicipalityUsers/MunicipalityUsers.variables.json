@@ -2848,7 +2848,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "municipalityGroupId",
-      "value" : "bind:Widgets.Municipalitygroupsgrid.selecteditem.id | toNumber",
+      "value" : "bind:Widgets.gridMunicipalitygroups.selecteditem.id | toNumber",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -2861,7 +2861,7 @@
     "onSuccess" : "Variables.SelectedGroupObj.listRecords()",
     "onError" : "GroupMembersDataonError($event, $scope)",
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
+    "startUpdate" : false,
     "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
@@ -4014,7 +4014,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "municipalityGroupId",
-      "value" : "bind:Widgets.Municipalitygroupsgrid.selecteditem.id | toNumber",
+      "value" : "bind:Widgets.gridMunicipalitygroups.selecteditem.id | stringToNumber",
       "type" : "number"
     }, {
       "target" : "userId",
@@ -6205,7 +6205,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "id",
-      "value" : "bind:Widgets.Municipalitygroupsgrid.selecteditem.id",
+      "value" : "bind:Widgets.gridMunicipalitygroups.selecteditem.id",
       "type" : "number"
     } ],
     "operation" : "read",

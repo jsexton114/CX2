@@ -12,15 +12,11 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
-
     };
-
-
 
     $scope.MunicipalityGroupMembersDataonError = function(variable, data) {
         wmToaster.show('error', 'ERROR', 'The user you selected has already been added to this group.', 5000);
     };
-
 
     $scope.getMunicipalityGroupIdIDsonSuccess = function(variable, data) {
         var items = [];
@@ -36,8 +32,8 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
                 if (data.content[i].MunicipalityGroupId === null) {
                     continue;
                 }
-                items.push(data.content[i].MunicipalityGroupId)
 
+                items.push(data.content[i].MunicipalityGroupId);
             }
 
             $scope.Variables.getListofGroupName.setInput('MunicipalityGroupID', items);
@@ -48,30 +44,25 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         }
     };
 
-
     $scope.deleteMunicipalityGrouponSuccess = function(variable, data) {
         wmToaster.show('success', 'SUCCESS', 'The user has has been removed from the group', 5000);
         $scope.Variables.getMunicipalityGroupIdIDs.setInput('userID', $scope.Widgets.gridEmployees.selecteditem.ID ? $scope.Widgets.gridEmployees.selecteditem.ID : $scope.Widgets.gridAdmin.selecteditem.ID);
         $scope.Variables.getMunicipalityGroupIdIDs.update();
     };
 
-
     $scope.addMunicipalityGroupMembersonError = function(variable, data) {
         wmToaster.show('error', 'ERROR', 'The user has already been added to that group', 5000);
     };
-
 
     $scope.gridEmployeesClick = function($event, $rowData) {
         $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridEmployees.selecteditem.StateId);
         $scope.Variables.StateInformation.update();
     };
 
-
     $scope.gridAdminClick = function($event, $rowData) {
         $scope.Variables.StateInformation.setFilter('id', $scope.Widgets.gridAdmin.selecteditem.StateId);
         $scope.Variables.StateInformation.update();
     };
-
 
     $scope.FetchRolesForUserWithMunicipalityonSuccess = function(variable, data) {
         var isMunicipalityAdmin = _.findIndex(data.content, {
@@ -85,21 +76,13 @@ Application.$controller("MunicipalityUsersPageController", ["$scope", "wmToaster
         }
     };
 
-
     $scope.lvInsertRoleonError = function(variable, data) {
-
         //Do nothing
     };
 
-
-
-
-
     $scope.AllUsersonSuccess = function(variable, data) {
-
         $scope.Variables.filterUsers.dataSet = data;
     };
-
 }]);
 
 
@@ -274,7 +257,7 @@ Application.$controller("dialogAddRoleController", ["$scope",
     }
 ]);
 
-Application.$controller("MunicipalitygroupsgridController", ["$scope",
+Application.$controller("gridMunicipalitygroupsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
