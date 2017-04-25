@@ -81,6 +81,8 @@
         </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page"></wm-pagedialog>
+        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+            <wm-param name="ProjectGUID" value="bind:Variables.stvSourceGuid.dataSet.dataValue" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>
