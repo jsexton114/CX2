@@ -6,16 +6,16 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "Municipality Administration",
+      "icon" : "wi wi-domain",
       "link" : "#/MunicipalityAdministration"
     }, {
       "label" : "Manage Forms",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-assignment",
       "link" : "#/ManageForms"
     }, {
       "label" : "Edit Form",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-pencil",
       "link" : "#/EditForm"
     } ],
     "type" : "string",
@@ -3428,7 +3428,7 @@
         "columnName" : "Label",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 255,
+        "length" : 1000,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,

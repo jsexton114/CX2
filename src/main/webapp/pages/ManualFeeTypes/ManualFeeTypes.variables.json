@@ -33,12 +33,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "Municipality Administration",
+      "icon" : "wi wi-domain",
       "link" : "#/MunicipalityAdministration"
     }, {
       "label" : "Manual Fee Types",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-attach-money",
       "link" : "#/ManualFeeTypes"
     } ],
     "type" : "string",
@@ -281,7 +281,7 @@
           "columnName" : "Logo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -480,6 +480,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "5",
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOfflineCc",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOfflineCC",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -789,7 +802,7 @@
         "columnName" : "Logo",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -988,6 +1001,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "5",
+        "scale" : 0
+      }, {
+        "fieldName" : "allowOfflineCc",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOfflineCC",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
