@@ -906,7 +906,7 @@
     "saveInPhonegap" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "PostFormMessageonSuccess($event, $scope)",
+    "onSuccess" : "PostFormMessageonSuccess($event, $scope);Variables.svGetUserMessages.invoke();Variables.svGetUserSentMessages.invoke()",
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
     "autoUpdate" : false,
