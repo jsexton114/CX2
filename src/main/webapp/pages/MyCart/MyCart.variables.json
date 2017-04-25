@@ -6,12 +6,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "My Dashboard",
+      "icon" : "wi wi-apps",
       "link" : "#/Main"
     }, {
       "label" : "My Cart",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-shopping-cart",
       "link" : "#/MyCart"
     } ],
     "type" : "string",
@@ -311,6 +311,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 2
+        }, {
+          "fieldName" : "transactionComments",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "TransactionComments",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -496,7 +509,7 @@
           "columnName" : "Photo",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 2147483647,
+          "length" : -1,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
