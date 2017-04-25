@@ -2851,6 +2851,7 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
     'Project' as SourceType,
     'Project' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+    MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT
@@ -2873,6 +2874,7 @@ FMT.MessageRead,
     FT.formType as SourceType,
      'Form' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT
@@ -2897,6 +2899,7 @@ FMT.MessageRead,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT
@@ -2926,6 +2929,7 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
     'Project' as SourceType,
     'Project' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+    MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT
@@ -2948,6 +2952,7 @@ FMT.MessageRead,
     FT.formType as SourceType,
      'Form' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT
@@ -2972,6 +2977,7 @@ FMT.MessageRead,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
     MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
      MUNI.ID as MunicipalityId
 from
 FormMessageTagging FMT

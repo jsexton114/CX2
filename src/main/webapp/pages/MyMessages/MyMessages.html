@@ -44,7 +44,7 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
                                     disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneSent" title="Sent">
@@ -84,5 +84,123 @@
         <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
             <wm-param name="ProjectGUID" value="bind:Variables.stvSourceGuid.dataSet.dataValue" type="string"></wm-param>
         </wm-pagedialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewReply">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Reply" iconclass="wi wi-reply" name="dialogReply" width="70%">
+            <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6_1">
+                        <wm-grid title="" dataset="bind:Widgets.gridInbox.selecteditem" navigation="None" name="gridCurrentMessage">
+                            <wm-grid-column binding="sourceType" caption="Source" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="sourceTitle" caption="Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="postedAt" caption="Date Sent" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                            </wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="10" name="gridcolumn8">
+                        <wm-composite name="compositeSelectedMessage">
+                            <wm-label class="col-md-3 control-label" name="label6" caption="Message" width="auto" margin="unset 2em unset unset"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-textarea name="textareaSelectedMessage" readonly="true" datavalue="bind:Widgets.gridInbox.selecteditem.message"></wm-textarea>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn22" horizontalalign="left">
+                        <wm-checkbox caption="Internal" class="col-md-push-3 col-md-9" name="checkboxInternal" datavalue="false" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow81" padding="2em unset 1em unset">
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn157_2" horizontalalign="center">
+                        <wm-picture class="media-object profile-photo" width="32pt" height="32pt" name="picture3" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
+                        shape="circle"></wm-picture>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn158_1">
+                        <wm-text name="textAddMessage" placeholder="Type a message..." updateon="default" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
+                        <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length" margin="unset unset unset 1em"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-close"></wm-button>
+                <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewTagPeople">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Tag People" iconclass="wi wi-tag" name="dialogTagPeople" width="70%">
+            <wm-layoutgrid name="layoutgrid4">
+                <wm-gridrow name="gridrow20" padding="unset unset 3em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
+                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them a notification that they have been tagged on your message."
+                        horizontalalign="center" textalign="left"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow13" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
+                        <wm-composite name="composite5" show="bind:!Variables.stvTagSelection.dataSet.dataValue">
+                            <wm-label class="col-md-3 form-control-static" name="label8" caption="User Search" width="20%" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container5" width="80%">
+                                <wm-search name="textSearchPeople" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetPeople.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" displayimagesrc="photo"
+                                datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%" orderby="fullName:asc"></wm-search>
+                            </wm-container>
+                        </wm-composite>
+                        <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue">
+                            <wm-label class="col-md-3 form-control-static" caption="Employee Search" width="30%" fontweight="bold" name="label100"></wm-label>
+                            <wm-container class="col-md-9" width="70%" name="container14">
+                                <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"
+                                required="true" width="100%" name="textSearchInternalPeople" type="search" displayimagesrc="bind:'services/cx2/Users/'+$[data[$i].id]+'/content/photo'"></wm-search>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn24" horizontalalign="left">
+                        <wm-button class="btn-primary" caption="Add Tag" type="button" margin="unset 0.5em" name="ButtonTagPeople" iconclass="wi wi-plus" on-click="ButtonTagPeopleClick($event, $scope)" horizontalalign="left" disabled="bind:((Widgets.textSearchPeople.datavalue==&quot;&quot;))&amp;&amp;((Widgets.textSearchInternalPeople.datavalue==&quot;&quot;))"></wm-button>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn31"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="7" name="gridcolumn20_1">
+                        <wm-panel iconclass="wi wi-tag" name="panel1" title="Tagged">
+                            <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" class="media-list" dataset="bind:Variables.PeopleList.dataSet" navigation="Scroll" name="livelistTaggedPeople" nodatamessage="No people have been selected.">
+                                <wm-listtemplate layout="media" name="listtemplate1">
+                                    <wm-layoutgrid name="layoutgrid5">
+                                        <wm-gridrow name="gridrow17_1">
+                                            <wm-gridcolumn columnwidth="2" name="gridcolumn174">
+                                                <wm-picture name="picture4" picturesource="bind:'services/cx2/Users/'+Variables.PeopleList.dataSet[$i].id+'/content/photo'" width="50pt" height="50pt" class="profile-photo"></wm-picture>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="7" name="gridcolumn25_1">
+                                                <wm-label padding="unset 0.5em .5em 0.5em" name="label11" caption="bind:Variables.PeopleList.dataSet[$i].firstName+&quot; &quot;+Variables.PeopleList.dataSet[$i].lastName" width="100%" fontweight="bold"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.PeopleList.dataSet[$i].email" width="100%"></wm-label>
+                                            </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="3" name="gridcolumn29">
+                                                <wm-button class="btn-primary" caption="Remove" type="button" name="buttonRemove" iconclass="wi wi-trash" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-listtemplate>
+                            </wm-livelist>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn30"></wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow15_1"></wm-gridrow>
+                <wm-gridrow name="gridrow81_2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn153_1">
+                        <wm-label name="label84_1" caption="When you are done tagging people, click the &quot;Close&quot; button to return to the form, then click &quot;Post&quot; to submit your message."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions6">
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button14" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
     </wm-view>
 </wm-page>

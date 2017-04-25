@@ -56,6 +56,8 @@ public class GetUserMessagesResponse implements Serializable {
     private String sourceCategory;
     @ColumnAlias("MunicipalityName")
     private String municipalityName;
+    @ColumnAlias("MunicipalityGlobalEmailSig")
+    private String municipalityGlobalEmailSig;
     @ColumnAlias("MunicipalityId")
     private Integer municipalityId;
 
@@ -163,6 +165,14 @@ public class GetUserMessagesResponse implements Serializable {
         this.municipalityName = municipalityName;
     }
 
+    public String getMunicipalityGlobalEmailSig() {
+        return this.municipalityGlobalEmailSig;
+    }
+
+    public void setMunicipalityGlobalEmailSig(String municipalityGlobalEmailSig) {
+        this.municipalityGlobalEmailSig = municipalityGlobalEmailSig;
+    }
+
     public Integer getMunicipalityId() {
         return this.municipalityId;
     }
@@ -189,6 +199,7 @@ public class GetUserMessagesResponse implements Serializable {
                 Objects.equals(getSourceType(), getUserMessagesResponse.getSourceType()) &&
                 Objects.equals(getSourceCategory(), getUserMessagesResponse.getSourceCategory()) &&
                 Objects.equals(getMunicipalityName(), getUserMessagesResponse.getMunicipalityName()) &&
+                Objects.equals(getMunicipalityGlobalEmailSig(), getUserMessagesResponse.getMunicipalityGlobalEmailSig()) &&
                 Objects.equals(getMunicipalityId(), getUserMessagesResponse.getMunicipalityId());
     }
 
@@ -207,6 +218,7 @@ public class GetUserMessagesResponse implements Serializable {
                 getSourceType(),
                 getSourceCategory(),
                 getMunicipalityName(),
+                getMunicipalityGlobalEmailSig(),
                 getMunicipalityId());
     }
 }
