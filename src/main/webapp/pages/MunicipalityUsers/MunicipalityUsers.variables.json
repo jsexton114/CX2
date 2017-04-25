@@ -2848,7 +2848,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "municipalityGroupId",
-      "value" : "bind:Widgets.gridMunicipalitygroups.selecteditem.id | toNumber",
+      "value" : "bind:Widgets.gridMunicipalitygroups.selecteditem.id | stringToNumber",
       "type" : "number"
     } ],
     "operation" : "read",

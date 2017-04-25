@@ -75,6 +75,7 @@ Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, s
                 var wasSticky = false;
                 var $window = $(window);
                 var elWidth = elem.outerWidth();
+                var elHeight = elem.outerHeight();
                 var navTop = elem.offset().top;
                 var targetTop = 0;
 
@@ -103,6 +104,7 @@ Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, s
                     }
 
                     elWidth = elem.parent().width();
+                    elHeight = elem.parent().height();
 
                     if (!!stickyBottomElem) {
                         targetTop = stickyBottomElem.outerHeight();
@@ -111,9 +113,14 @@ Application.directive('sticky', ['$timeout', 'stickyItems', function($timeout, s
                     if (thisStickyItem.isSticky) {
                         elem.css('width', elWidth + 'px');
                         elem.css('top', targetTop + 'px');
+
+                        if (!!attrs.pushDownElement) {
+                            $(attrs.pushDownElement).css('top', elHeight + 'px');
+                        }
                     } else {
                         elem.css('width', '');
                         elem.css('top', '');
+                        $(attrs.pushDownElement).css('top', '');
                     }
 
                     elem.toggleClass('stuckTop', thisStickyItem.isSticky);

@@ -43,7 +43,6 @@ Application.$controller("gridInspectionsController", ["$scope", "$location",
             $scope.Widgets.pagedialogViewInspection.open();
 
         };
-
     }
 ]);
 
