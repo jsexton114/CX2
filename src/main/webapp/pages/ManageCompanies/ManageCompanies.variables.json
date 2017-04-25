@@ -6,12 +6,12 @@
     "category" : "wm.Variable",
     "dataBinding" : [ ],
     "dataSet" : [ {
-      "label" : "Home",
-      "icon" : "glyphicon glyphicon-home",
+      "label" : "CX Admin",
+      "icon" : "wi wi-public",
       "link" : "#/CXAdmin"
     }, {
       "label" : "Manage Companies",
-      "icon" : "wi wi-ellipsis-v",
+      "icon" : "wi wi-work",
       "link" : "#/ManageCompanies"
     } ],
     "type" : "string",
@@ -360,7 +360,7 @@
         "columnName" : "COI",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 2147483647,
+        "length" : -1,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -405,20 +405,6 @@
         "defaultValue" : "",
         "scale" : 0
       }, {
-        "fieldName" : "fullAddress",
-        "type" : "string",
-        "fullyQualifiedType" : "string",
-        "columnName" : "FullAddress",
-        "isPrimaryKey" : false,
-        "notNull" : true,
-        "length" : 1022,
-        "precision" : 0,
-        "generator" : "assigned",
-        "isRelated" : false,
-        "systemInserted" : true,
-        "systemUpdated" : true,
-        "scale" : 0
-      }, {
         "fieldName" : "active",
         "type" : "boolean",
         "fullyQualifiedType" : "boolean",
@@ -430,6 +416,20 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "true",
+        "scale" : 0
+      }, {
+        "fieldName" : "fullAddress",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "FullAddress",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 768,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Vendor",
