@@ -13,7 +13,7 @@
             </wm-gridrow>
             <wm-gridrow name="gridrow2">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                    <wm-composite name="composite3" show="bind:!!Widgets.selectMunicipality.datavalue" padding="unset unset 2em unset">
+                    <wm-composite name="composite3" show="bind:!!Widgets.selectMunicipality.datavalue &amp;&amp; pageParams.isCase === true" padding="unset unset 2em unset">
                         <wm-label class="col-md-3 form-control-static" name="label18" caption="Filter by Category" width="160px" fontweight="bold"></wm-label>
                         <wm-container class="col-md-9" name="container2" width="240px">
                             <wm-select name="selectCategory" datafield="id" placeholder="All Categories" dataset="bind:Variables.lvFormCategories.dataSet" displayfield="category" on-change="selectCategoryChange($event, $scope, newVal, oldVal)" orderby="category:asc"></wm-select>

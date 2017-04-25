@@ -4762,8 +4762,8 @@
     "name" : "GetFormTypesByCategoriesAndMunicipalities",
     "description" : "GetFormTypesByCategoriesAndMunicipalities",
     "version" : "V1",
-    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)",
-    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory))\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable",
+    "queryString" : "select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory)) AND (:isCase IS NULL OR CodeEnforcement=:isCase)\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)",
+    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT, FormCategoryMapping FM \nWHERE ((:formCategory IS NULL AND FT.MunicipalityId=:municipalityId) OR (:formCategory IS NOT NULL AND FM.FormCategoryId=:formCategory)) AND (:isCase IS NULL OR CodeEnforcement=:isCase)\nand FM.FormTypeId=FT.ID\nand FT.Active=1\nand (:municipalityInternalForm IS NULL OR \n    FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4779,14 +4779,21 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "1",
+      "testValue" : "2",
       "required" : true
+    }, {
+      "name" : "isCase",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : false
     }, {
       "name" : "municipalityInternalForm",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : true,
+      "testValue" : false,
       "required" : false
     } ],
     "request" : {
@@ -10628,8 +10635,8 @@
     "name" : "assignedInspectionsBetweenDates",
     "description" : "assignedInspectionsBetweenDates",
     "version" : "V2",
-    "queryString" : "select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)",
-    "countQueryString" : "select count(*) from (select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and assignedTo=:assignedTo and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable",
+    "queryString" : "select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and (:assignedTo IS NULL OR assignedTo=:assignedTo) and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)",
+    "countQueryString" : "select count(*) from (select MI.inspectionGuid as inspectionGuid,\nMI.assignedTo as assignedTo,\nMI.DateAssigned as dateAssigned,\nassignedUser.fullName as assignedToPersonName,\nIO.outcome as outcome,\nMI.inspectionTitle as inspectionTitle,\ngis.inspectionZone as inspectionZone,\nMI.requestedFor as requestedFor,\ngis.fullAddress as fullAddress,\ngis.lot as lot,\ngis.subdivision as subdivision,\nrequestedBy.fullName as requestedByFullName,\nID.inspectDesignName as inspectDesignName\nfrom MasterInspections as MI\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.InspectionZone,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1\nLEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo\nLEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy\nLEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId\nLEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId\nwhere MI.closed=:isClosed and (:municipality IS NULL OR ID.municipalityId=:municipality) and (:assignedTo IS NULL OR assignedTo=:assignedTo) and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -10653,7 +10660,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "3",
-      "required" : true
+      "required" : false
     }, {
       "name" : "startDate",
       "type" : "datetime",

@@ -1527,7 +1527,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/assignedInspectionsBetweenDates", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "assignedInspectionsBetweenDates")
-    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+    public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo", required = false) Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Executing named query: assignedInspectionsBetweenDates");
         Page<AssignedInspectionsBetweenDatesResponse> _result = queryService.executeAssignedInspectionsBetweenDates(isClosed, municipality, assignedTo, startDate, endDate, pageable);
         LOGGER.debug("got the result for named query: assignedInspectionsBetweenDates, result:{}", _result);
@@ -1537,7 +1537,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query assignedInspectionsBetweenDates")
     @RequestMapping(value = "/queries/assignedInspectionsBetweenDates/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+    public Downloadable exportAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo", required = false) Integer assignedTo, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Exporting named query: assignedInspectionsBetweenDates");
 
         return queryService.exportAssignedInspectionsBetweenDates(exportType, isClosed, municipality, assignedTo, startDate, endDate, pageable);
@@ -1594,9 +1594,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "GetFormTypesByCategoriesAndMunicipalities")
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
         LOGGER.debug("Executing named query: GetFormTypesByCategoriesAndMunicipalities");
-        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, municipalityInternalForm, pageable);
+        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
         LOGGER.debug("got the result for named query: GetFormTypesByCategoriesAndMunicipalities, result:{}", _result);
         return _result;
     }
@@ -1604,10 +1604,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query GetFormTypesByCategoriesAndMunicipalities")
     @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
         LOGGER.debug("Exporting named query: GetFormTypesByCategoriesAndMunicipalities");
 
-        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, municipalityInternalForm, pageable);
+        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
     }
 
     @RequestMapping(value = "/queries/DeleteRoleForMuncipality", method = RequestMethod.DELETE)

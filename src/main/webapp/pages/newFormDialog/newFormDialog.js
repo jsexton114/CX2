@@ -4,54 +4,26 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     /* perform any action on widgets/variables within this block */
     $scope.isEmployee;
 
-    function userFilter() {
-        if (!$scope.Widgets.selectMunicipality.datavalue) {
-            return;
-        }
-
-        //setting inputs for categories
-        $scope.Variables.lvFormCategories.setFilter({
-            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
-            'municipalityInternalCategory': false,
-        });
-        $scope.Variables.lvFormCategories.update();
-
-        //setting inputs for forms
-        $scope.Variables.svFormTypes.setInput({
-            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
-            'formCategory': $scope.Widgets.selectCategory.datavalue,
-            'municipalityInternalForm': false
-        });
-        $scope.Variables.svFormTypes.update();
-    }
-
-    function employeeFilter() {
-        if (!$scope.Widgets.selectMunicipality.datavalue) {
-            return;
-        }
-
-        //setting inputs for categories
-        $scope.Variables.lvFormCategories.setFilter({
-            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
-            'municipalityInternalCategory': undefined
-        });
-        $scope.Variables.lvFormCategories.update();
-
-        //setting inputs for forms
-        $scope.Variables.svFormTypes.setInput({
-            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
-            'formCategory': $scope.Widgets.selectCategory.datavalue,
-            'municipalityInternalForm': undefined
-        });
-        $scope.Variables.svFormTypes.update();
-    }
-
     function filterResults() {
-        if ($scope.isEmployee) {
-            employeeFilter();
-        } else {
-            userFilter();
+        if (!$scope.Widgets.selectMunicipality.datavalue) {
+            return;
         }
+
+        //setting inputs for categories
+        $scope.Variables.lvFormCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'municipalityInternalCategory': $scope.isEmployee ? undefined : false
+        });
+        $scope.Variables.lvFormCategories.update();
+
+        //setting inputs for forms
+        $scope.Variables.svFormTypes.setInput({
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue,
+            'formCategory': $scope.Widgets.selectCategory.datavalue,
+            'municipalityInternalForm': $scope.isEmployee ? undefined : false
+        });
+
+        $scope.Variables.svFormTypes.update();
     }
 
     $scope.onPageReady = function() {
@@ -62,6 +34,7 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
                 $scope.isEmployee = true;
             }
         }
+
         filterResults();
     };
 
@@ -88,7 +61,7 @@ Application.$controller("newFormDialogPageController", ["$scope", "$location", f
     };
 
     $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
-        if (newVal == undefined) {
+        if (newVal === undefined) {
             $scope.Variables.lvFormCategories.dataSet = {};
             $scope.Variables.svFormTypes.dataSet = {};
         } else {

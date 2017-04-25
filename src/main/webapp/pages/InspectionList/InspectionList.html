@@ -24,27 +24,25 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-layoutgrid name="layoutgrid3_1">
+                            <wm-gridrow name="gridrow6_1">
+                                <wm-gridcolumn columnwidth="6" name="gridcolumn8_1">
+                                    <wm-composite name="composite1" margin="unset unset unset 0.2em">
+                                        <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
+                                        <wm-container class="col-md-9" name="container1" width="180px">
+                                            <wm-select name="selectView" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
+                                        </wm-container>
+                                    </wm-composite>
+                                </wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="6" name="gridcolumn9_1" horizontalalign="right">
+                                    <wm-button class="btn-primary" caption="Refresh" type="button" margin="1em 0.5em" name="buttonRefreshInspectionList" iconclass="wi wi-refresh" on-click="buttonRefreshInspectionListClick($event, $scope)"></wm-button>
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow7"></wm-gridrow>
+                        </wm-layoutgrid>
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabMYASSIGNMENTS" title="My Assignments">
                                 <wm-layoutgrid name="layoutgrid2">
-                                    <wm-gridrow name="gridrow5">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn31_1" padding="1em unset">
-                                            <wm-composite name="composite1" margin="unset unset unset 0.2em">
-                                                <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
-                                                <wm-container class="col-md-9" name="container1" width="180px">
-                                                    <wm-select name="selectView" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
-                                                </wm-container>
-                                            </wm-composite>
-                                            <wm-composite name="composite3" show="false">
-                                                <wm-label class="col-md-3 control-label" name="label4" caption="YesterdayDate"></wm-label>
-                                                <wm-container class="col-md-9" name="container3">
-                                                    <!--<wm-datetime name="datetimeYesterdayDate" datavalue="bind:selectedDay"></wm-datetime>--></wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn8" horizontalalign="right">
-                                            <wm-button class="btn-primary" caption="Refresh" type="button" margin="1em 0.5em" name="buttonRefreshInspectionList" iconclass="wi wi-refresh" on-click="buttonRefreshInspectionListClick($event, $scope)"></wm-button>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow6">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn9">
                                             <wm-grid title="" dataset="bind:Variables.svInspectionList.dataSet" navigation="Classic" name="gridInspections" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
@@ -65,7 +63,22 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabMYTEAM" title="My Team"></wm-tabpane>
+                            <wm-tabpane name="tabMYTEAM" title="My Team">
+                                <wm-grid title="" dataset="bind:Variables.svTeamInspectionList.dataSet" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true" name="gridTeamInspections">
+                                    <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}}</wm-grid-column>
+                                    <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                    <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
+                                </wm-grid>
+                            </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>

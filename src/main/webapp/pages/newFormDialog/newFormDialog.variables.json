@@ -523,7 +523,11 @@
     "name" : "svFormTypes",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "isCase",
+      "value" : "bind:pageParams.isCase",
+      "type" : "boolean"
+    } ],
     "type" : "com.civicxpress.cx2.models.query.GetFormTypesByCategoriesAndMunicipalitiesResponse",
     "service" : "cx2",
     "operation" : "executeGetFormTypesByCategoriesAndMunicipalities",

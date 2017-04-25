@@ -348,9 +348,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportAdminVendorsList(ExportType exportType, Integer user, Pageable pageable);
 
-    Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean municipalityInternalForm, Pageable pageable);
+    Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable);
 
-    Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean municipalityInternalForm, Pageable pageable);
+    Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable);
 
     Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user);
 
