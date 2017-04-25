@@ -44,7 +44,7 @@
                                     <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
                                     disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open()" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open();customRowAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneSent" title="Sent">
@@ -112,7 +112,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="2" name="gridcolumn22" horizontalalign="left">
-                        <wm-checkbox caption="Internal" class="col-md-push-3 col-md-9" name="checkboxInternal" datavalue="false" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
+                        <wm-checkbox caption="Internal" class="col-md-push-3 col-md-9" name="checkboxInternal" datavalue="bind:Widgets.gridInbox.selecteditem.municipalityMessage" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow81" padding="2em unset 1em unset">

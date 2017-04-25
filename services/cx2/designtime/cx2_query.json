@@ -10088,6 +10088,34 @@
       } ]
     }
   },
+  "UserForDefaultTagging" : {
+    "name" : "UserForDefaultTagging",
+    "description" : "UserForDefaultTagging",
+    "version" : "V2",
+    "queryString" : "from Users\nwhere id=:postedBy",
+    "countQueryString" : "select count(*) from Users\nwhere id=:postedBy",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "postedBy",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.Users",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "UserMessagesCountByMunicipality" : {
     "name" : "UserMessagesCountByMunicipality",
     "description" : "UserMessagesCountByMunicipality",

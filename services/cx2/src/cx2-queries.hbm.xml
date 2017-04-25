@@ -776,6 +776,22 @@ from Fees where  masterForms.formStatuses.allowPayment=:allowPayment  and paidSt
     <query-param name="userId" type="java.lang.Integer"/>
     </query>
 
+    <query name="UserForDefaultTagging">
+        <![CDATA[
+        from Users
+where id=:postedBy
+        ]]>
+    <query-param name="postedBy" type="java.lang.Integer"/>
+    </query>
+
+    <query name="UserForDefaultTagging__count">
+        <![CDATA[
+        select count(*) from Users
+where id=:postedBy
+        ]]>
+    <query-param name="postedBy" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="DeleteCategoryMapping">
         <![CDATA[
         delete from FormCategoryMapping where FormTypeId=:form

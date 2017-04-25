@@ -849,6 +849,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("AllFeeformCount", params, exportType, AllFeeformCountResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> executeUserForDefaultTagging(Integer postedBy, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("postedBy", postedBy);
+
+        return queryExecutor.executeNamedQuery("UserForDefaultTagging", params, Users.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUserForDefaultTagging(ExportType exportType, Integer postedBy, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("postedBy", postedBy);
+
+        return queryExecutor.exportNamedQueryData("UserForDefaultTagging", params, exportType, Users.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeDeleteCategoryMapping(Integer form) {

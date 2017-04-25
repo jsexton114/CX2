@@ -97,9 +97,13 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
     };
 
 
-    $scope.svGetMunicipalityEmployeesonError = function(variable, data) {
 
+    $scope.svDefaultTaggedUseronSuccess = function(variable, data) {
+
+        $scope.Variables.PeopleList.dataSet.push(data.content[0])
     };
+
+
 
 }]);
 
@@ -138,6 +142,14 @@ Application.$controller("gridInboxController", ["$scope",
 
 
 
+        };
+
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.svDefaultTaggedUser.setInput({
+                'postedBy': $rowData.postedByUserId
+            });
+            $scope.Variables.svDefaultTaggedUser.update();
         };
 
     }

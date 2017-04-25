@@ -755,6 +755,25 @@ public class QueryExecutionController {
         return queryService.exportAllFeeformCount(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UserForDefaultTagging", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UserForDefaultTagging")
+    public Page<Users> executeUserForDefaultTagging(@RequestParam(value = "postedBy") Integer postedBy, Pageable pageable) {
+        LOGGER.debug("Executing named query: UserForDefaultTagging");
+        Page<Users> _result = queryService.executeUserForDefaultTagging(postedBy, pageable);
+        LOGGER.debug("got the result for named query: UserForDefaultTagging, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query UserForDefaultTagging")
+    @RequestMapping(value = "/queries/UserForDefaultTagging/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUserForDefaultTagging(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "postedBy") Integer postedBy, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UserForDefaultTagging");
+
+        return queryService.exportUserForDefaultTagging(exportType, postedBy, pageable);
+    }
+
     @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteCategoryMapping")

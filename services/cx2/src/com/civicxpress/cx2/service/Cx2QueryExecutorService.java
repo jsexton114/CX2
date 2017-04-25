@@ -174,6 +174,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportAllFeeformCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
 
+    Page<Users> executeUserForDefaultTagging(Integer postedBy, Pageable pageable);
+
+    Downloadable exportUserForDefaultTagging(ExportType exportType, Integer postedBy, Pageable pageable);
+
     Integer executeDeleteCategoryMapping(Integer form);
 
     Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(String token, Pageable pageable);
