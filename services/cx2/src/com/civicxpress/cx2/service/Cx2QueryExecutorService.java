@@ -82,6 +82,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest);
 
+    Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(Integer municipalityId, String fullAddress, Pageable pageable);
+
+    Downloadable exportSearchGisByFullAddress(ExportType exportType, Integer municipalityId, String fullAddress, Pageable pageable);
+
     Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(Integer muncipality, Integer user, Pageable pageable);
 
     Downloadable exportCheckingUserWithMunicipalityInRoles(ExportType exportType, Integer muncipality, Integer user, Pageable pageable);

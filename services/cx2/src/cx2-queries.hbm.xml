@@ -278,6 +278,52 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="newUser" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="searchGisByFullAddress">
+        <![CDATA[
+        Select GIS.ID,
+    sub.Subdivision as subdivisionName,
+    GIS.Parcel,
+    GIS.Lot,
+    GIS.Section,
+    GIS.StreetNumber,
+    GIS.StreetName,
+    GIS.City,
+    state.StateName,
+    GIS.InspectionZone,
+    GIS.FullAddress
+FROM GISRecords GIS
+LEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId
+LEFT OUTER JOIN States state ON state.ID=GIS.StateId
+WHERE GIS.MunicipalityId=:municipalityId
+and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="fullAddress" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="searchGisByFullAddress__count">
+        <![CDATA[
+        select count(*) from (Select GIS.ID,
+    sub.Subdivision as subdivisionName,
+    GIS.Parcel,
+    GIS.Lot,
+    GIS.Section,
+    GIS.StreetNumber,
+    GIS.StreetName,
+    GIS.City,
+    state.StateName,
+    GIS.InspectionZone,
+    GIS.FullAddress
+FROM GISRecords GIS
+LEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId
+LEFT OUTER JOIN States state ON state.ID=GIS.StateId
+WHERE GIS.MunicipalityId=:municipalityId
+and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="fullAddress" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="CheckingUserWithMunicipalityInRoles">
         <![CDATA[
         select count(*) as exist from Roles where MunicipalityId=:muncipality and UserId=:user and RoleName='MunicipalityEmployee'

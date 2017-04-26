@@ -13535,6 +13535,141 @@
       "responseType" : "SINGLE"
     }
   },
+  "searchGisByFullAddress" : {
+    "name" : "searchGisByFullAddress",
+    "description" : "search that stuff",
+    "version" : "V2",
+    "queryString" : "Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))",
+    "countQueryString" : "select count(*) from (Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "fullAddress",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1234",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.SearchGisByFullAddressResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivisionName",
+        "fieldName" : "subdivisionName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Parcel",
+        "fieldName" : "parcel",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Section",
+        "fieldName" : "section",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StreetNumber",
+        "fieldName" : "streetNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StreetName",
+        "fieldName" : "streetName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "City",
+        "fieldName" : "city",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StateName",
+        "fieldName" : "stateName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "InspectionZone",
+        "fieldName" : "inspectionZone",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "FullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "searchUsersByEmailOrName" : {
     "name" : "searchUsersByEmailOrName",
     "description" : "Searches users by email or full name",

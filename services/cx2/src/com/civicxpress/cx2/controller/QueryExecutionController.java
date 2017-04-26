@@ -312,6 +312,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/searchGisByFullAddress", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "search that stuff")
+    public Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress") String fullAddress, Pageable pageable) {
+        LOGGER.debug("Executing named query: searchGisByFullAddress");
+        Page<SearchGisByFullAddressResponse> _result = queryService.executeSearchGisByFullAddress(municipalityId, fullAddress, pageable);
+        LOGGER.debug("got the result for named query: searchGisByFullAddress, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query searchGisByFullAddress")
+    @RequestMapping(value = "/queries/searchGisByFullAddress/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchGisByFullAddress(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress") String fullAddress, Pageable pageable) {
+        LOGGER.debug("Exporting named query: searchGisByFullAddress");
+
+        return queryService.exportSearchGisByFullAddress(exportType, municipalityId, fullAddress, pageable);
+    }
+
     @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CheckingUserWithMunicipalityInRoles")

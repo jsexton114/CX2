@@ -150,7 +150,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.getOwnerGisRecordIds = function() {
         var ownerGisRecordIds = [];
         $scope.Variables.stvGisData.dataSet.forEach(function(gisRecord, index) {
-            ownerGisRecordIds.push(gisRecord.ID);
+            ownerGisRecordIds.push(gisRecord.id);
         });
 
         return ownerGisRecordIds.length > 0 ? ownerGisRecordIds : undefined;
@@ -215,7 +215,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             if (i > 0) {
                 idString += ',';
             }
-            idString += collection[i].ID;
+            idString += collection[i].ID || collection[i].id;
         }
 
         return idString;
@@ -537,7 +537,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.formTypeId = draftData.formTypeId;
     };
 
-
     $scope.gridOwnersDatarender = function($isolateScope, $data) {
         if (!!$scope.draftData && !!$scope.draftData.owner.ownerId) {
             var selectedOwner = _.find($data, {
@@ -553,7 +552,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             $isolateScope.selectItem($data[0]);
         }
     };
-
 }]);
 
 
@@ -571,16 +569,13 @@ Application.$controller("gridLocationController", ["$scope",
 
         $scope.deleterowAction = function($event, $rowData) {
             var rowIndex = _.findIndex($scope.Variables.stvGisData.dataSet, {
-                'ID': $rowData.ID
+                'id': $rowData.id
             });
 
             $scope.Variables.stvGisData.dataSet.splice(rowIndex, 1);
         };
-
     }
 ]);
-
-
 
 Application.$controller("gridNewFormDocumentsController", ["$scope",
     function($scope) {
@@ -594,7 +589,7 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.canAddParcel = function() {
+        $scope.cannotAddParcel = function() {
             var activeTabIndex = $scope.Widgets.tabsAddGISRecord.activeTabIndex;
             if (activeTabIndex === 0) {
                 return (!$scope.Widgets.searchAddress.datavalue.id);
@@ -610,24 +605,26 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
                 return;
             }
 
+            var gisObject = (!!gisRecord.stateName || !!gisRecord.subdivisionName) ? gisRecord : {
+                "id": gisRecord.id,
+                "subdivisionName": gisRecord.subdivisions.subdivision,
+                "parcel": gisRecord.parcel,
+                "lot": gisRecord.lot,
+                "section": gisRecord.section,
+                "streetNumber": gisRecord.streetNumber,
+                "streetName": gisRecord.streetName,
+                "city": gisRecord.city,
+                "state": gisRecord.states.stateName,
+                "inspectionZone": gisRecord.inspectionZone,
+                "fullAddress": gisRecord.fullAddress
+            };
+
             var rowIndex = _.findIndex($scope.Variables.stvGisData.dataSet, {
-                'ID': gisRecord.id
+                'id': gisObject.id
             });
 
             if (rowIndex === -1) {
-                $scope.Variables.stvGisData.dataSet.push({
-                    "ID": gisRecord.id,
-                    "SubdivisionName": gisRecord.subdivisions.subdivision,
-                    "Parcel": gisRecord.parcel,
-                    "Lot": gisRecord.lot,
-                    "Section": gisRecord.section,
-                    "StreetNumber": gisRecord.streetNumber,
-                    "StreetName": gisRecord.streetName,
-                    "City": gisRecord.city,
-                    "State": gisRecord.states.stateName,
-                    "InspectionZone": gisRecord.inspectionZone,
-                    "FullAddress": gisRecord.fullAddress
-                });
+                $scope.Variables.stvGisData.dataSet.push(gisObject);
             }
         }
 

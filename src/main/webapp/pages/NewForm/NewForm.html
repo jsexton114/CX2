@@ -143,7 +143,7 @@
                                             <wm-composite name="composite11" required="true" show="false">
                                                 <wm-label class="col-md-3 control-label" name="label22"></wm-label>
                                                 <wm-container class="col-md-9" name="container10">
-                                                    <wm-text name="textLocationString" required="true" datavalue="bind:Variables.stvGisData.dataSet.length === 0 ? '' : Variables.stvGisData.dataSet[0].ID"></wm-text>
+                                                    <wm-text name="textLocationString" required="true" datavalue="bind:Variables.stvGisData.dataSet.length === 0 ? '' : Variables.stvGisData.dataSet[0].id"></wm-text>
                                                 </wm-container>
                                             </wm-composite>
                                         </wm-gridcolumn>
@@ -152,14 +152,14 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn127">
                                             <wm-livegrid formlayout="dialog" name="livegridLocation">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.stvGisData.dataSet" navigation="Classic" name="gridLocation" exportformat="EXCEL" showrecordcount="true">
-                                                    <wm-grid-column binding="SubdivisionName" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Parcel" caption="Parcel" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Lot" caption="Lot" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="Section" caption="Section" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetNumber" caption="Street Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="StreetName" caption="Street Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="City" caption="City" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="InspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="subdivisionName" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="parcel" caption="Parcel" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="section" caption="Section" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="streetNumber" caption="Street Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="streetName" caption="Street Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="city" caption="City" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()" shortcutkey="" disabled="bind:!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.stvGisData.dataSet.length >= 1"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
@@ -381,7 +381,7 @@
     <wm-view class="dialog-view" name="viewAddGISRecord">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Location Search" iconclass="wi wi-location-searching" name="dialogAddGISRecord">
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Add Location" type="button" margin="unset 0.5em" name="buttonAddLocation" iconclass="wi wi-plus" show="true" on-click="buttonAddLocationClick($event, $scope)" disabled="bind:canAddParcel()"></wm-button>
+                <wm-button class="btn-primary" caption="Add Location" type="button" margin="unset 0.5em" name="buttonAddLocation" iconclass="wi wi-plus" show="true" on-click="buttonAddLocationClick($event, $scope)" disabled="bind:cannotAddParcel()"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-tabs name="tabsAddGISRecord">
@@ -390,7 +390,7 @@
                         <wm-gridrow name="gridrow20">
                             <wm-gridcolumn columnwidth="1" name="gridcolumn40"></wm-gridcolumn>
                             <wm-gridcolumn columnwidth="10" name="gridcolumn41">
-                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.lvGisRecords.dataSet" searchkey="fullAddress" datafield="All Fields" displaylabel="fullAddress"></wm-search>
+                                <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.svSearchGisRecords.dataSet" searchkey="fullAddress" datafield="All Fields" displaylabel="fullAddress"></wm-search>
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="1" name="gridcolumn44"></wm-gridcolumn>
                         </wm-gridrow>
