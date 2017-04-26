@@ -4,7 +4,7 @@
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-panel iconclass="wi wi-info" autoclose="outsideClick" name="panelInspectionInfo" class="panel-primary" title="Inspection Info">
+                        <wm-panel iconclass="wi wi-info" autoclose="outsideClick" name="panelInspectionInfo" class="panel-success" title="Inspection Info">
                             <wm-layoutgrid name="layoutgrid5">
                                 <wm-gridrow name="gridrow6" padding="2em unset unset unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
@@ -60,7 +60,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
-                        <wm-panel iconclass="wi wi-mode-edit" autoclose="outsideClick" name="panelInspectionReview" title="Inspection Outcome" class="panel-primary" accessroles="CXAdmin,Inspector,InspectorManager" show="true">
+                        <wm-panel iconclass="wi wi-mode-edit" autoclose="outsideClick" name="panelInspectionReview" title="Inspection Outcome" class="panel-success" accessroles="CXAdmin,Inspector,InspectorManager" show="true">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow9" padding=".5em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn16"></wm-gridcolumn>
@@ -89,7 +89,7 @@
                                 <wm-gridrow name="gridrow11" padding="unset unset 1em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center">
-                                        <wm-button class="btn-primary" caption="Update Outcome" type="button" margin="unset 0.5em" name="buttonUpdateOutcome" iconclass="wi wi-update" disabled="bind:!Widgets.selectOutcome.datavalue.id || !Widgets.textareaNotes.datavalue"
+                                        <wm-button class="btn-success" caption="Update Outcome" type="button" margin="unset 0.5em" name="buttonUpdateOutcome" iconclass="wi wi-update" disabled="bind:!Widgets.selectOutcome.datavalue.id || !Widgets.textareaNotes.datavalue"
                                         on-click="buttonUpdateOutcomeClick($event, $scope)"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
@@ -101,14 +101,14 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                        <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelInspection" title="Inspection Content" class="panel-primary">
+                        <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelInspection" title="Inspection Content" class="panel-success">
                             <wm-tabs name="INSTRUCTIONS">
                                 <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="true">
                                     <dynamic-form-fields form-field-list="Variables.lvDynamicFields.dataSet.data" form-data="Variables.svFieldData.dataSet"></dynamic-form-fields>
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow name="formSaveControlRow" padding="2em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="formSaveControlColumn" horizontalalign="right">
-                                                <wm-button class="btn-primary" caption="Save" type="button" margin="1% 3% 1% unset" name="btnSaveFormData" iconclass="wi wi-save" on-click="Variables.svSaveDynamicFields.invoke()" show="bind:true" accessroles="Inspector,InspectorManager,CXAdmin,MunicipalityAdmin"></wm-button>
+                                                <wm-button class="btn-success" caption="Save" type="button" margin="1% 3% 1% unset" name="btnSaveFormData" iconclass="wi wi-save" on-click="Variables.svSaveDynamicFields.invoke()" show="bind:true" accessroles="Inspector,InspectorManager,CXAdmin,MunicipalityAdmin"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
@@ -148,7 +148,7 @@
                                             <wm-grid-column binding="users.fullName" caption="Created By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text"
                                             show="true" related-entity-name="Users"></wm-grid-column>
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" accessroles="Inspector,InspectorManager,CodeManager,CodeOfficer,CXAdmin,MunicipalityAdmin"
+                                            <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-success" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" accessroles="Inspector,InspectorManager,CodeManager,CodeOfficer,CXAdmin,MunicipalityAdmin"
                                             shortcutkey="" disabled="false"></wm-grid-action>
                                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin"
                                             disabled="false"></wm-grid-row-action>
@@ -160,12 +160,12 @@
                                     </wm-livegrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneViolations" title="VIOLATIONS" show="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.trackViolations">
-                                    <wm-grid title="" dataset="bind:Variables.lvViolations.dataSet" navigation="Classic" name="gridViolations">
+                                    <wm-grid title="" dataset="bind:Variables.lvViolations.dataSet" navigation="Classic" name="gridViolations" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                         <wm-grid-column binding="code.codeNumber" caption="Code Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
                                         <wm-grid-column binding="code.code" caption="Code" type="text" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
-                                        <wm-grid-column binding="notes" caption="Notes" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="notes" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="Add Violation" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogViolation.open()" accessroles="Inspector,InspectorManager,CXAdmin"
+                                        <wm-grid-action key="addNewRow" display-name="Add Violation" show="true" class="btn-success" iconclass="wi wi-plus" title="New" action="Widgets.dialogViolation.open()" accessroles="Inspector,InspectorManager,CXAdmin"
                                         shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="" accessroles="Inspector,InspectorManager,CXAdmin" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogViewViolation.open()" disabled="false"></wm-grid-row-action>
@@ -266,19 +266,21 @@
                                                 <wm-text name="textAddMessage" placeholder="Type a message..." updateon="default" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
-                                                <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
+                                                <wm-button class="btn-success" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
                                                 <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="buttonTagPeopleClick($event, $scope)" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneHistory" title="HISTORY">
-                                    <wm-grid title="" dataset="bind:Variables.lvInspectionHistory.dataSet" navigation="Classic" name="gridInspectionHistory">
-                                        <wm-grid-column binding="dateCreated" caption="Activity Date" type="datetime" generator="assigned" edit-widget-type="datetime" show="true" readonly="false"></wm-grid-column>
+                                    <wm-grid title="" dataset="bind:Variables.lvInspectionHistory.dataSet" navigation="Classic" name="gridInspectionHistory" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid-column binding="dateCreated" caption="Date Updated" type="datetime" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
+                                        <wm-grid-column binding="inspectionOutcomeByNewOutcomeId.outcome" caption="Previous Outcome" type="string" generator="assigned" readonly="true"
+                                        edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
+                                        <wm-grid-column binding="inspectionOutcomeByOldOutcomeId.outcome" caption="New Outcome" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
                                         <wm-grid-column binding="users.fullName" caption="Performed By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="inspectionOutcomeByNewOutcomeId.outcome" caption="Previous Outcome" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
-                                        <wm-grid-column binding="inspectionOutcomeByOldOutcomeId.outcome" caption="Current Outcome" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionOutcome"></wm-grid-column>
-                                        <wm-grid-column binding="comments" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="users.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                        <wm-grid-column binding="comments" caption="Notes" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     </wm-grid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneIntenalMessages" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" on-select="tabpaneIntenalMessagesSelect($event, $scope)">
@@ -326,7 +328,7 @@
                                                 <wm-text placeholder="Type a message..." updateon="default" name="textInternalAddMessage" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn160_1">
-                                                <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" iconclass="wi wi-send" on-click="buttonAddInternalMessageClick($event, $scope)" disabled="bind:!Widgets.textInternalAddMessage.datavalue"
+                                                <wm-button class="btn-success" caption="Post" type="button" margin="unset 0.5em" iconclass="wi wi-send" on-click="buttonAddInternalMessageClick($event, $scope)" disabled="bind:!Widgets.textInternalAddMessage.datavalue"
                                                 name="buttonAddInternalMessage"></wm-button>
                                                 <wm-button class="btn-secondary" caption="Tag People" type="button" iconclass="wi wi-tag" on-click="buttonInternalTagPeopleClick($event, $scope)" badgevalue="bind:Variables.PeopleList.dataSet.length"
                                                 name="buttonInternalTagPeople"></wm-button>
@@ -740,7 +742,7 @@
     <wm-view class="dialog-view" name="view6">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Violation Information" iconclass="wi wi-pan-tool" name="dialogViewViolation">
             <wm-dialogactions name="dialogactions6_1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button18_1"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button18_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid18">
                 <wm-gridrow name="gridrow59_1">
@@ -789,7 +791,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions7_1">
-                <wm-button class="btn-primary" caption="Remove" on-click="Variables.svDeleteViolation.invoke();Widgets.dialogRemoveViolation.close()" name="buttonRemoveViolation" iconclass="wi wi-delete"></wm-button>
+                <wm-button class="btn-primary" caption="OK" on-click="Variables.svDeleteViolation.invoke();Widgets.dialogRemoveViolation.close()" name="buttonRemoveViolation" iconclass="wi wi-check"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonCancelInspectionRemoval" iconclass="wi wi-cancel" on-click="Widgets.dialogRemoveViolation.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
