@@ -40,11 +40,31 @@ public class LetterService {
         availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
         return availableTokens;
     }
-   
+
+/*
+    public DownloadResponse createLetterFromDatabaseTemplate(Long formTypeId, String formGuid, int letterTemplateId) {
+		SectionalTemplatePdf lt = null;
+		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
+		dbInfo.readFromWebContext();
+		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
+		lt = db.getLetterTemplate(letterTemplateId);
+        GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
+        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
+        byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
+        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
+        DownloadResponse dr = new DownloadResponse();
+        dr.setContents(downloadBais);
+        dr.setContentType("application/pdf");
+        dr.setFileName(formGuid + ".pdf");
+        return dr;
+    }
+*/
+
     public DownloadResponse createLetter(Long formTypeId, String formGuid, 
         String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
         String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
     ) {
+        // deprecated soon, with new code from J. Sexton
     	Cx2DataAccess.setSqlUrl(sqlUrl);
         String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";
         byte[] fileBytes = SectionalTemplatePdf.createLetter(formTypeId,formGuid,
@@ -61,4 +81,5 @@ public class LetterService {
         
         return dr;
     }
+    
 }

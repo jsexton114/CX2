@@ -40,11 +40,13 @@ public class LetterService {
         availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
         return availableTokens;
     }
-   
+
+
     public DownloadResponse createLetter(Long formTypeId, String formGuid, 
         String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
         String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
     ) {
+        // deprecated soon, with new code from J. Sexton
     	Cx2DataAccess.setSqlUrl(sqlUrl);
         String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";
         byte[] fileBytes = SectionalTemplatePdf.createLetter(formTypeId,formGuid,
@@ -57,8 +59,9 @@ public class LetterService {
         DownloadResponse dr = new DownloadResponse();
         dr.setContents(downloadBais);
         dr.setContentType("application/pdf");
-        dr.setFileName("Test-Letter-generation.pdf");
+        dr.setFileName(formGuid + ".pdf");
         
         return dr;
     }
+    
 }
