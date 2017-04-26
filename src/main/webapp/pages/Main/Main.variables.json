@@ -1076,6 +1076,10 @@
       "target" : "taggedPersonId",
       "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
+    }, {
+      "target" : "messageStatus",
+      "value" : false,
+      "type" : "boolean"
     } ],
     "type" : "com.civicxpress.cx2.models.query.UserMessagesCountByMunicipalityResponse",
     "service" : "cx2",

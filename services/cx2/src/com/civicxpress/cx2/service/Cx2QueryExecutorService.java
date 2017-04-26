@@ -42,9 +42,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable);
 
-    Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+    Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);
 
-    Downloadable exportUserMessagesCountByMunicipality(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+    Downloadable exportUserMessagesCountByMunicipality(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);
 
     Page<FormTypeFields> executeGetCalculatableFormFields(Integer formTypeId, Pageable pageable);
 

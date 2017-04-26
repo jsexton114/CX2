@@ -122,9 +122,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/UserMessagesCountByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UserMessagesCountByMunicipality")
-    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
         LOGGER.debug("Executing named query: UserMessagesCountByMunicipality");
-        Page<UserMessagesCountByMunicipalityResponse> _result = queryService.executeUserMessagesCountByMunicipality(taggedPersonId, municipalityId, pageable);
+        Page<UserMessagesCountByMunicipalityResponse> _result = queryService.executeUserMessagesCountByMunicipality(taggedPersonId, municipalityId, messageStatus, pageable);
         LOGGER.debug("got the result for named query: UserMessagesCountByMunicipality, result:{}", _result);
         return _result;
     }
@@ -132,10 +132,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query UserMessagesCountByMunicipality")
     @RequestMapping(value = "/queries/UserMessagesCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportUserMessagesCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Downloadable exportUserMessagesCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
         LOGGER.debug("Exporting named query: UserMessagesCountByMunicipality");
 
-        return queryService.exportUserMessagesCountByMunicipality(exportType, taggedPersonId, municipalityId, pageable);
+        return queryService.exportUserMessagesCountByMunicipality(exportType, taggedPersonId, municipalityId, messageStatus, pageable);
     }
 
     @RequestMapping(value = "/queries/getCalculatableFormFields", method = RequestMethod.GET)

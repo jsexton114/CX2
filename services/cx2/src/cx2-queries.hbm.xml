@@ -80,7 +80,7 @@ INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
 INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
 INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 UNION
 
 select count(FMT.ID) as messagesCount
@@ -91,7 +91,7 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
 INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
 INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 
 UNION 
 
@@ -103,12 +103,13 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 
 ) s
         ]]>
     <query-param name="taggedPersonId" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="messageStatus" type="java.lang.Boolean"/>
     </sql-query>
 
     <sql-query name="UserMessagesCountByMunicipality__count">
@@ -123,7 +124,7 @@ INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
 INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN Projects PR ON PR.ProjectGUID=M.RelatedProjectGUID
 INNER JOIN Municipalities MUNI ON MUNI.ID=PR.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId  and (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 UNION
 
 select count(FMT.ID) as messagesCount
@@ -134,7 +135,7 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterForms MF ON MF.FormGUID=M.RelatedFormGUID
 INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
 INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId  and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 
 UNION 
 
@@ -146,12 +147,13 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
-where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)  and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
 
 ) s) wmTempTable
         ]]>
     <query-param name="taggedPersonId" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="messageStatus" type="java.lang.Boolean"/>
     </sql-query>
 
     <query name="getCalculatableFormFields">
