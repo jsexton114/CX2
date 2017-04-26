@@ -46,7 +46,8 @@
                         <wm-composite name="composite2" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
                             <wm-container class="col-md-9" name="container2" width="300px">
-                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.svMunicipalitiesByVendorStatus.dataSet" datafield="All Fields" displayfield="municipalityName" placeholder="Select Municipality" datavalue="bind:Variables.svMunicipalitiesByVendorStatus.firstRecord"></wm-select>
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.svMunicipalitiesByVendorStatus.dataSet" datafield="All Fields" displayfield="municipalityName" placeholder="Select Municipality" datavalue="bind:Variables.svMunicipalitiesByVendorStatus.firstRecord"
+                                orderby="municipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
