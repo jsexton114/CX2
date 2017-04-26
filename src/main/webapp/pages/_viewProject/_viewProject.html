@@ -28,7 +28,7 @@
                                         <wm-composite name="composite1" margin="unset unset unset 0.5em">
                                             <wm-label class="col-md-12 form-control-static" name="label3" margin="0.5em unset" caption="Project Name" width="50%" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-12" name="container1" width="50%">
-                                                <wm-text name="textProjectName" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName"></wm-text>
+                                                <wm-text name="textProjectName" readonly="false" datavalue="bind:Variables.CurrentProject.dataSet.data[$i].projectName" maxchars="255"></wm-text>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
