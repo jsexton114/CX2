@@ -1371,12 +1371,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormFeesForUsersAndSharedResponse> executeFormFeesForUsersAndShared(Boolean allowPayment, String paidStatus, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
+    public Page<FormFeesForUsersAndSharedResponse> executeFormFeesForUsersAndShared(Integer creatorUser, Boolean allowPayment, String paidStatus, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(5);
 
+        params.put("creatorUser", creatorUser);
         params.put("allowPayment", allowPayment);
         params.put("paidStatus", paidStatus);
-        params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
         params.put("municipalityId", municipalityId);
 
@@ -1385,12 +1385,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportFormFeesForUsersAndShared(ExportType exportType, Boolean allowPayment, String paidStatus, Integer creatorUser, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
+    public Downloadable exportFormFeesForUsersAndShared(ExportType exportType, Integer creatorUser, Boolean allowPayment, String paidStatus, Integer sharedWithUser, Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(5);
 
+        params.put("creatorUser", creatorUser);
         params.put("allowPayment", allowPayment);
         params.put("paidStatus", paidStatus);
-        params.put("creatorUser", creatorUser);
         params.put("sharedWithUser", sharedWithUser);
         params.put("municipalityId", municipalityId);
 

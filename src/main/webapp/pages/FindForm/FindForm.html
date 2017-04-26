@@ -18,15 +18,15 @@
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31_1">
                         <wm-tabs name="tabsSearch">
-                            <wm-tabpane name="tabpaneUSER" title="BY USER">
+                            <wm-tabpane name="tabpaneUSER" title="BY USER" on-select="tabpaneUSERSelect($event, $scope)">
                                 <wm-layoutgrid name="layoutgridByUser">
                                     <wm-gridrow name="gridrow23">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn70">
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label17" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn71">
-                                            <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord"
+                                            orderby="MunicipalityName:asc" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn72"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -35,8 +35,8 @@
                                             <wm-label class="col-md-3 form-control-static" name="label5" caption="Select User" width="100%" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn10">
-                                            <wm-search name="searchUser" placeholder="Search by Name or Email Address" dataset="bind:Variables.AllUsers.dataSet" searchkey="users.email,users.fullName" displaylabel="users.fullName+' ('+users.email+')'" displayimagesrc="users.photo" datafield="All Fields"
-                                            orderby="users.fullName:asc"></wm-search>
+                                            <wm-search name="searchUser" placeholder="Search by Name or Email Address" dataset="bind:Variables.AllUsers.dataSet" searchkey="users.email,users.fullName" displaylabel="users.fullName+' ('+users.email+')'" displayimagesrc="users.photo"
+                                            datafield="All Fields" orderby="users.fullName:asc"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn21"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -53,13 +53,13 @@
                                                 <wm-label padding="unset 0.5em unset unset" name="label6" caption="Submitted Between" class="col-md-3 form-control-static" width="100%" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn26_1">
-                                                <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
+                                                <wm-datetime name="datetimeStart" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="Start Date" datavalue="bind:startDate" mindate="bind:startDate"></wm-datetime>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn27_1" horizontalalign="center">
                                                 <wm-label padding=".5em 0.5em unset 0.5em" name="label9" caption="and" class="control-label"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn28">
-                                                <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
+                                                <wm-datetime name="datetimeEnd" datepattern="MM-dd-yyyy hh:mm a" hourstep="1" placeholder="End Date" datavalue="bind:toDayEnd" mindate="bind:Widgets.datetimeStart.timestamp"></wm-datetime>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn22"></wm-gridcolumn>
                                         </wm-gridrow>
@@ -76,10 +76,10 @@
                                         <wm-gridrow name="gridrow10" padding=".5em unset">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" name="label9_1" width="100%" fontweight="bold"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" name="label9_1" width="100%" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.lenth>0"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn16">
-                                                <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" placeholder="All Forms"></wm-select>
+                                                <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" placeholder="All Forms" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.lenth>0"></wm-select>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn24"></wm-gridcolumn>
                                         </wm-gridrow>
@@ -126,7 +126,8 @@
                                                                 <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
                                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -140,15 +141,15 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneVENDOR" title="BY CONTRACTOR">
+                            <wm-tabpane name="tabpaneVENDOR" title="BY CONTRACTOR" on-select="tabpaneVENDORSelect($event, $scope)">
                                 <wm-layoutgrid name="layoutgridVendor">
                                     <wm-gridrow name="gridrow25">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn75">
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label19" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn76">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc" name="selectMuncipalityForVENDOR"
-                                            on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
+                                            name="selectMuncipalityForVENDOR" on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn77"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -174,13 +175,13 @@
                                                 <wm-label padding="unset 0.5em unset unset" caption="Submitted Between" class="col-md-3 form-control-static" width="100%" name="label21" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn84">
-                                                <wm-datetime name="datetimeVendorStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
+                                                <wm-datetime name="datetimeVendorStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate" mindate="bind:startDate"></wm-datetime>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn85">
                                                 <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label22"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="3" name="gridcolumn86">
-                                                <wm-datetime name="datetimeVendorEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
+                                                <wm-datetime name="datetimeVendorEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd" mindate="bind:Widgets.datetimeVendorStart.timestamp"></wm-datetime>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
                                         </wm-gridrow>
@@ -251,13 +252,16 @@
                                                             <wm-grid title="" dataset="bind:Variables.SearchFormByVendor.dataSet" navigation="Classic" name="gridVENDOR" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found" loadingdatamsg="Searching">
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Homebuilder'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
                                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -271,15 +275,15 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneADDRESS" title="BY ADDRESS">
+                            <wm-tabpane name="tabpaneADDRESS" title="BY ADDRESS" on-select="tabpaneADDRESSSelect($event, $scope)">
                                 <wm-layoutgrid name="layoutgridAddress">
                                     <wm-gridrow name="gridrow34">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn108">
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label27" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn109">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc" name="selectMunicipalityForAddress"
-                                            on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
+                                            name="selectMunicipalityForAddress" on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn107"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -299,7 +303,8 @@
                                                 <wm-layoutgrid name="layoutgrid8">
                                                     <wm-gridrow name="gridrow20">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn41">
-                                                            <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="bind:$[data[$i].fullAddress]" datafield="All Fields"></wm-search>
+                                                            <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="bind:$[data[$i].fullAddress]"
+                                                            datafield="All Fields"></wm-search>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow22" padding="1em unset unset unset">
@@ -318,14 +323,15 @@
                                                 <wm-layoutgrid name="layoutgrid9">
                                                     <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn96_1">
-                                                            <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="bind:$[data[$i].subdivision]" datafield="All Fields" name="searchFliterSubdivisions" displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]"
-                                                            orderby="subdivision:asc"></wm-search>
+                                                            <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="bind:$[data[$i].subdivision]" datafield="All Fields" name="searchFliterSubdivisions"
+                                                            displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" orderby="subdivision:asc"></wm-search>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow24">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn53">
-                                                            <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]" datafield="All Fields"
-                                                            name="searchSubdivision" show="bind:!!Widgets.searchFliterSubdivisions.datavalue.id" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]" displayfield="lot"></wm-select>
+                                                            <wm-select placeholder="Select Lot" dataset="bind:Variables.GISLotRecords.dataSet" searchkey="lot" displaylabel="bind:$[data[$i].lot]+'-->'+$[data[$i].streetNumber]+', '+$[data[$i].streetDirection]+', '+$[data[$i].streetName]+', '+$[data[$i].city]"
+                                                            datafield="All Fields" name="searchSubdivision" show="bind:!!Widgets.searchFliterSubdivisions.datavalue.id" displayexpression="bind:(!!$[data[$i].lot] ? '('+$[data[$i].lot]+') ' : '')+$[data[$i].fullAddress]"
+                                                            displayfield="lot"></wm-select>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow25" padding="1em unset unset unset">
@@ -344,7 +350,8 @@
                                                 <wm-layoutgrid name="layoutgrid10">
                                                     <wm-gridrow name="gridrow28" padding="unset unset 0.5em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn65">
-                                                            <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]" datafield="All Fields" name="searchParcel"></wm-search>
+                                                            <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]" datafield="All Fields"
+                                                            name="searchParcel"></wm-search>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow41_1">
@@ -379,13 +386,13 @@
                                             <wm-label padding="unset 0.5em unset unset" caption="Submitted Between" class="col-md-3 form-control-static" width="100%" name="label29" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn117">
-                                            <wm-datetime name="datetimeAddressStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
+                                            <wm-datetime name="datetimeAddressStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate" mindate="bind:startDate"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn118">
                                             <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label30"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn119">
-                                            <wm-datetime name="datetimeAddressEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
+                                            <wm-datetime name="datetimeAddressEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd" mindate="bind:Widgets.datetimeAddressStart.timestamp"></wm-datetime>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -442,16 +449,20 @@
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow4">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                                                            <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByAddress.dataSet" navigation="Classic" name="gridFormsAddress" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found" loadingdatamsg="Searching">
+                                                            <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByAddress.dataSet" navigation="Classic" name="gridFormsAddress" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found"
+                                                            loadingdatamsg="Searching">
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Homebuilder'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
                                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -481,8 +492,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Form Title" width="100%" name="label15" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn53">
-                                            <wm-search dataset="bind:Variables.GetFormsFromMasterFormByMunicipality.dataSet" datafield="All Fields" displayfield="formTitle" name="selectFormTypesForAdvanced" orderby="formTitle:asc" displaylabel="formTitle" searchkey="formTitle" placeholder="Search by Form Title"
-                                            type="autocomplete"></wm-search>
+                                            <wm-search dataset="bind:Variables.GetFormsFromMasterFormByMunicipality.dataSet" datafield="All Fields" displayfield="formTitle" name="selectFormTypesForAdvanced" orderby="formTitle:asc" displaylabel="formTitle"
+                                            searchkey="formTitle" placeholder="Search by Form Title" type="autocomplete"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn54"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -509,16 +520,20 @@
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow4">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                                                            <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByFormTitle.dataSet" navigation="Classic" name="gridAdvanced" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found" loadingdatamsg="Searching">
+                                                            <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByFormTitle.dataSet" navigation="Classic" name="gridAdvanced" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found"
+                                                            loadingdatamsg="Searching">
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Homebuilder'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="lot" caption="Lot" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Standard'"
+                                                                readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
                                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>

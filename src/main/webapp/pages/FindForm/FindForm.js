@@ -24,7 +24,11 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 $scope.Variables.SearchFormByVendor.update();
                 break;
             case "Both":
+                $scope.Variables.SearchFormByVendor.setInput({
+                    'Closed': undefined
+                });
                 $scope.Variables.SearchFormByVendor.update();
+
                 break;
         }
     };
@@ -46,6 +50,9 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 $scope.Variables.svSearchAllFormsByUser.update();
                 break;
             case "Both":
+                $scope.Variables.svSearchAllFormsByUser.setInput({
+                    'Closed': undefined
+                });
                 $scope.Variables.svSearchAllFormsByUser.update();
                 break;
         }
@@ -66,7 +73,9 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 });
                 break;
             case "Both":
-                // Set Nothing
+                $scope.Variables.svSearchAllFormsByAddress.setInput({
+                    'Closed': undefined
+                });
                 break;
         }
         switch ($scope.Widgets.radiosetSelectAddressType.datavalue) {
@@ -91,29 +100,54 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         }
     };
 
-
-
-    $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+    function updateCategoriesForUser() {
         $scope.Variables.MunicipalityCategories.setFilter({
-            'municipalityId': newVal.ID
+            'municipalityId': $scope.Widgets.selectMunicipality.datavalue.ID
         });
         $scope.Variables.MunicipalityCategories.update();
+    }
+
+    function updateCategoriesForVENDOR() {
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMuncipalityForVENDOR.datavalue.ID
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    }
+
+    function updateCategoriesForAddress() {
+        $scope.Variables.MunicipalityCategories.setFilter({
+            'municipalityId': $scope.Widgets.selectMunicipalityForAddress.datavalue.ID
+        });
+        $scope.Variables.MunicipalityCategories.update();
+    }
+
+    $scope.selectMunicipalityChange = function($event, $isolateScope, newVal, oldVal) {
+        updateCategoriesForUser();
     };
 
 
     $scope.selectMuncipalityForVENDORChange = function($event, $isolateScope, newVal, oldVal) {
-        $scope.Variables.MunicipalityCategories.setFilter({
-            'municipalityId': newVal.ID
-        });
-        $scope.Variables.MunicipalityCategories.update();
+        updateCategoriesForVENDOR();
     };
 
 
     $scope.selectMunicipalityForAddressChange = function($event, $isolateScope, newVal, oldVal) {
-        $scope.Variables.MunicipalityCategories.setFilter({
-            'municipalityId': newVal.ID
-        });
-        $scope.Variables.MunicipalityCategories.update();
+        updateCategoriesForAddress();
+    };
+
+
+    $scope.tabpaneUSERSelect = function($event, $isolateScope) {
+        updateCategoriesForUser();
+    };
+
+
+    $scope.tabpaneVENDORSelect = function($event, $isolateScope) {
+        updateCategoriesForVENDOR();
+    };
+
+
+    $scope.tabpaneADDRESSSelect = function($event, $isolateScope) {
+        updateCategoriesForAddress();
     };
 
 }]);

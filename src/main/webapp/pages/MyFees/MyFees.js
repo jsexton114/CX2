@@ -46,20 +46,19 @@ Application.$controller("MyFeesPageController", ["$scope", function($scope) {
 
 
     $scope.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWithonSuccess = function(variable, data) {
-        let cartItems = $scope.Variables.svCartIds.dataSet.content;
-        _.remove(data.content, function(obj) {
-            if (_.find(cartItems, {
-                    'feeId': obj.feeId
-                })) {
-                return true;
-            }
-        });
+        // let cartItems = $scope.Variables.svCartIds.dataSet.content;
+        // _.remove(data.content, function(obj) {
+        //     if (_.find(cartItems, {
+        //             'feeId': obj.feeId
+        //         })) {
+        //         return true;
+        //     }
+        // });
     };
 
 
 
     $scope.svCartIdsonSuccess = function(variable, data) {
-
         $scope.Variables.stvCartCount.dataSet.dataValue = data.content.length;
     };
 

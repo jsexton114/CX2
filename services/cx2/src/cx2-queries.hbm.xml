@@ -1454,7 +1454,7 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and municipa
 	V.CompanyName as primaryVendor,
 	FE.Amount as balanceDue
 FROM Fees FE
-LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid and FE.ID NOT IN (select FeeID from MyCart where UserId=:creatorUser)
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
@@ -1471,9 +1471,9 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         ]]>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="allowPayment" type="java.lang.Boolean"/>
     <query-param name="paidStatus" type="java.lang.String"/>
-    <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
@@ -1496,7 +1496,7 @@ where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:c
 	V.CompanyName as primaryVendor,
 	FE.Amount as balanceDue
 FROM Fees FE
-LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid and FE.ID NOT IN (select FeeID from MyCart where UserId=:creatorUser)
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
@@ -1513,9 +1513,9 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
+    <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="allowPayment" type="java.lang.Boolean"/>
     <query-param name="paidStatus" type="java.lang.String"/>
-    <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>

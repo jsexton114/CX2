@@ -1199,9 +1199,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/FormFeesForUsersAndShared", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormFeesForUsersAndShared")
-    public Page<FormFeesForUsersAndSharedResponse> executeFormFeesForUsersAndShared(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Page<FormFeesForUsersAndSharedResponse> executeFormFeesForUsersAndShared(@RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
         LOGGER.debug("Executing named query: FormFeesForUsersAndShared");
-        Page<FormFeesForUsersAndSharedResponse> _result = queryService.executeFormFeesForUsersAndShared(allowPayment, paidStatus, creatorUser, sharedWithUser, municipalityId, pageable);
+        Page<FormFeesForUsersAndSharedResponse> _result = queryService.executeFormFeesForUsersAndShared(creatorUser, allowPayment, paidStatus, sharedWithUser, municipalityId, pageable);
         LOGGER.debug("got the result for named query: FormFeesForUsersAndShared, result:{}", _result);
         return _result;
     }
@@ -1209,10 +1209,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query FormFeesForUsersAndShared")
     @RequestMapping(value = "/queries/FormFeesForUsersAndShared/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormFeesForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Downloadable exportFormFeesForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "creatorUser") Integer creatorUser, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "sharedWithUser") Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
         LOGGER.debug("Exporting named query: FormFeesForUsersAndShared");
 
-        return queryService.exportFormFeesForUsersAndShared(exportType, allowPayment, paidStatus, creatorUser, sharedWithUser, municipalityId, pageable);
+        return queryService.exportFormFeesForUsersAndShared(exportType, creatorUser, allowPayment, paidStatus, sharedWithUser, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality", method = RequestMethod.GET)
