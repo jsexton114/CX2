@@ -5836,7 +5836,7 @@
         "columnName" : "Label",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 255,
+        "length" : 1000,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -7043,20 +7043,6 @@
           "defaultValue" : "",
           "scale" : 0
         }, {
-          "fieldName" : "fullAddress",
-          "type" : "string",
-          "fullyQualifiedType" : "string",
-          "columnName" : "FullAddress",
-          "isPrimaryKey" : false,
-          "notNull" : true,
-          "length" : 1022,
-          "precision" : 0,
-          "generator" : "assigned",
-          "isRelated" : false,
-          "systemInserted" : true,
-          "systemUpdated" : true,
-          "scale" : 0
-        }, {
           "fieldName" : "active",
           "type" : "boolean",
           "fullyQualifiedType" : "boolean",
@@ -7068,6 +7054,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "fullAddress",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "FullAddress",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 768,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -18710,11 +18710,11 @@
       "type" : "string"
     }, {
       "target" : "Lot",
-      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.lot",
+      "value" : "bind:Variables.lvGis.firstRecord.gisrecords.lot||'Lot Not Mentioned'",
       "type" : "string"
     }, {
       "target" : "fullAddress",
-      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.fullAddress",
+      "value" : "bind:Variables.lvGis.firstRecord.gisrecords.fullAddress||'Address Not Mentioned'",
       "type" : "string"
     }, {
       "target" : "inspectionOutcome",
@@ -18722,7 +18722,7 @@
       "type" : "string"
     }, {
       "target" : "Subdivision",
-      "value" : "bind:Variables.lvInspection.firstRecord.gisrecords.subdivisions.subdivision",
+      "value" : "bind:Variables.lvGis.firstRecord.gisrecords.subdivisions.subdivision||'Subdivision Not Mentioned'",
       "type" : "string"
     }, {
       "target" : "municipalitySignature",
