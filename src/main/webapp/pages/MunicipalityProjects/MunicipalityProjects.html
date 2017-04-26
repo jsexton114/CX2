@@ -26,12 +26,14 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-livegrid formlayout="dialog" name="livegridProjectsList">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.MunicipalityProjects.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false" showrecordcount="true">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.MunicipalityProjects.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false" showrecordcount="true"
+                            exportformat="EXCEL">
                                 <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                 <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false"
+                                show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event)" shortcutkey=""
                                 disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
@@ -64,7 +66,7 @@
                         <wm-composite name="composite3" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label7" caption="Project Name" fontweight="bold" required="false" width="160px"></wm-label>
                             <wm-container class="col-md-9" name="container3" width="300px">
-                                <wm-text name="textProjectName" placeholder="Enter Text" required="false"></wm-text>
+                                <wm-text name="textProjectName" placeholder="Enter Text" required="false" maxchars="255"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
