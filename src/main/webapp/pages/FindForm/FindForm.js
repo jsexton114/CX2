@@ -60,6 +60,7 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
 
 
     $scope.buttonSearchByAddressClick = function($event, $isolateScope) {
+        debugger
 
         switch ($scope.Widgets.radiosetStatus.datavalue) {
             case "Closed":
@@ -101,6 +102,7 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
     };
 
     function updateCategoriesForUser() {
+
         $scope.Variables.MunicipalityCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMunicipality.datavalue.ID
         });
@@ -149,6 +151,58 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
     $scope.tabpaneADDRESSSelect = function($event, $isolateScope) {
         updateCategoriesForAddress();
     };
+
+
+    $scope.selectCategoriesChange = function($event, $isolateScope, newVal, oldVal) {
+
+        if (newVal === undefined) {
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
+                'formCategory': undefined
+            });
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
+        } else {
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
+                'formCategory': newVal.id
+            });
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
+        }
+
+    };
+
+
+    $scope.selectAddressCategoryChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal === undefined) {
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
+                'formCategory': undefined
+            });
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
+        } else {
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
+                'formCategory': newVal.id
+            });
+            $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
+        }
+    };
+
+
+    $scope.selectCategoriesForVendorChange = function($event, $isolateScope, newVal, oldVal) {
+
+        if (newVal === undefined) {
+            $scope.Variables.FormTypesByCategoriesForVendor.setInput({
+                'formCategory': undefined
+            });
+            $scope.Variables.FormTypesByCategoriesForVendor.update();
+        } else {
+            $scope.Variables.FormTypesByCategoriesForVendor.setInput({
+                'formCategory': newVal.id
+            });
+            $scope.Variables.FormTypesByCategoriesForVendor.update();
+        }
+
+    };
+
+
+
 
 }]);
 

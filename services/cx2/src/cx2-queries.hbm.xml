@@ -616,11 +616,9 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where   FT.CodeEnforcement=:codeEnforcement 
-AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+where    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
  and MF.FormTitle like :formTitle
         ]]>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
@@ -647,11 +645,9 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where   FT.CodeEnforcement=:codeEnforcement 
-AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+where    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
  and MF.FormTitle like :formTitle) wmTempTable
         ]]>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
@@ -2669,8 +2665,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where   FT.CodeEnforcement=:codeEnforcement 
-     and ( UserId=:sharedWithUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+where   ( UserId=:sharedWithUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
 	AND (:formtypeID is null OR FT.ID =:formtypeID)
 	and (:Closed IS NULL OR  Closed=:Closed)
@@ -2679,7 +2674,6 @@ where   FT.CodeEnforcement=:codeEnforcement
     
 ORDER BY DateModified DESC
         ]]>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formcategoryID" type="java.lang.Integer"/>
@@ -3435,8 +3429,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where   FT.CodeEnforcement=:codeEnforcement 
-     and (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))
+where    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
 	AND (:formtypeID is null OR FT.ID =:formtypeID)
 	and (:Closed IS NULL OR  Closed=:Closed)
@@ -3445,7 +3438,6 @@ where   FT.CodeEnforcement=:codeEnforcement
     
 ORDER BY DateModified DESC
         ]]>
-    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="vendorId" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formcategoryID" type="java.lang.Integer"/>

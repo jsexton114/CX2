@@ -44,7 +44,7 @@ public class SearchWithFormTitleResponse implements Serializable {
     @ColumnAlias("primaryVendor")
     private String primaryVendor;
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
     @ColumnAlias("formTypeID")
     private Integer formTypeId;
     @ColumnAlias("FormCategory")
@@ -132,11 +132,11 @@ public class SearchWithFormTitleResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
     }
 

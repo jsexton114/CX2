@@ -3298,10 +3298,6 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "formCategory",
-      "value" : "bind:Widgets.selectCategoriesForVendor.datavalue.id",
-      "type" : "integer"
-    }, {
       "target" : "isActive",
       "value" : true,
       "type" : "boolean"
@@ -3317,7 +3313,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
@@ -5814,10 +5810,6 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "formCategory",
-      "value" : "bind:Widgets.selectCategories.datavalue.id",
-      "type" : "integer"
-    }, {
       "target" : "isActive",
       "value" : true,
       "type" : "boolean"
@@ -5833,7 +5825,7 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "startUpdate" : false,
-    "autoUpdate" : true,
+    "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
@@ -9121,6 +9113,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "bindCount" : 1,
     "tableName" : "GISRecords",
     "tableType" : "TABLE",
     "properties" : [ "users", "municipalities", "states", "subdivisions" ],
@@ -10433,6 +10426,7 @@
     "isList" : true,
     "maxResults" : 20,
     "designMaxResults" : 10,
+    "onError" : "Javascript",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",

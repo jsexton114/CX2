@@ -663,10 +663,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, String formTitle, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("municipalityId", municipalityId);
         params.put("formTitle", formTitle);
 
@@ -675,10 +674,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportSearchWithFormTitle(ExportType exportType, Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable) {
-        Map params = new HashMap(3);
+    public Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, String formTitle, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("municipalityId", municipalityId);
         params.put("formTitle", formTitle);
 
@@ -2646,10 +2644,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(8);
+    public Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(7);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("sharedWithUser", sharedWithUser);
         params.put("municipalityId", municipalityId);
         params.put("formcategoryID", formcategoryId);
@@ -2663,10 +2660,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportSearchAllFormsByUser(ExportType exportType, Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(8);
+    public Downloadable exportSearchAllFormsByUser(ExportType exportType, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(7);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("sharedWithUser", sharedWithUser);
         params.put("municipalityId", municipalityId);
         params.put("formcategoryID", formcategoryId);
@@ -3319,10 +3315,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(8);
+    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(7);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("vendorId", vendorId);
         params.put("municipalityId", municipalityId);
         params.put("formcategoryID", formcategoryId);
@@ -3336,10 +3331,9 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportSearchAllFormsByVendor(ExportType exportType, Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(8);
+    public Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(7);
 
-        params.put("codeEnforcement", codeEnforcement);
         params.put("vendorId", vendorId);
         params.put("municipalityId", municipalityId);
         params.put("formcategoryID", formcategoryId);

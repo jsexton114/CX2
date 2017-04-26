@@ -140,9 +140,9 @@ public interface Cx2QueryExecutorService {
 
     SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user);
 
-    Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable);
+    Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, String formTitle, Pageable pageable);
 
-    Downloadable exportSearchWithFormTitle(ExportType exportType, Boolean codeEnforcement, Integer municipalityId, String formTitle, Pageable pageable);
+    Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, String formTitle, Pageable pageable);
 
     Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable);
 
@@ -494,9 +494,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
-    Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
-    Downloadable exportSearchAllFormsByUser(ExportType exportType, Boolean codeEnforcement, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Downloadable exportSearchAllFormsByUser(ExportType exportType, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
 
@@ -610,9 +610,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCasesByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
 
-    Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
-    Downloadable exportSearchAllFormsByVendor(ExportType exportType, Boolean codeEnforcement, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 

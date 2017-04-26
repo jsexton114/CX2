@@ -69,17 +69,18 @@
                                                 <wm-label class="col-md-3 form-control-static" name="label10" caption="Form Category" width="100%" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn14">
-                                                <wm-select name="selectCategories" dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" placeholder="All Categories"></wm-select>
+                                                <wm-select name="selectCategories" dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" placeholder="All Categories" on-change="selectCategoriesChange($event, $scope, newVal, oldVal)"></wm-select>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn23"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow10" padding=".5em unset">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" name="label9_1" width="100%" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.lenth>0"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" name="label9_1" width="100%" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.length>0"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn16">
-                                                <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" placeholder="All Forms" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.lenth>0"></wm-select>
+                                                <wm-select name="selectFormType" dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" placeholder="All Forms" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.length>0"
+                                                on-change="selectFormTypeChange($event, $scope, newVal, oldVal)"></wm-select>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn24"></wm-gridcolumn>
                                         </wm-gridrow>
@@ -185,33 +186,23 @@
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn87"></wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow55">
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn143"></wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="2" name="gridcolumn144">
-                                                <wm-label class="col-md-3 form-control-static" name="label4" width="160px" caption="Category Type" fontweight="bold"></wm-label>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="7" name="gridcolumn145">
-                                                <wm-select name="selectCatTypeContractor" dataset="bind:Variables.stvCategoryType.dataSet" datavalue="bind:Variables.stvCategoryType.dataSet[0].value" datafield="value" displayfield="type" on-change="selectCatTypeContractorChange($event, $scope, newVal, oldVal)"></wm-select>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="1" name="gridcolumn146"></wm-gridcolumn>
-                                        </wm-gridrow>
                                         <wm-gridrow padding=".5em unset" name="gridrow28">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn88"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn89">
                                                 <wm-label class="col-md-3 form-control-static" caption="Form Category" width="100%" name="label23" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn90">
-                                                <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectCategoriesForVendor" placeholder="All Categories"></wm-select>
+                                                <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectCategoriesForVendor" placeholder="All Categories" on-change="selectCategoriesForVendorChange($event, $scope, newVal, oldVal)"></wm-select>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn91"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow padding=".5em unset" name="gridrow29">
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn92"></wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="2" name="gridcolumn93">
-                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" width="100%" name="label24" fontweight="bold"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" caption="Form Design" width="100%" name="label24" fontweight="bold" show="bind:Variables.FormTypesByCategoriesForVendor.dataSet.content.length>0"></wm-label>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="7" name="gridcolumn94">
-                                                <wm-select dataset="bind:Variables.FormTypesByCategoriesForVendor.dataSet" datafield="All Fields" displayfield="FormType" name="selectFormTypeFromVendor" placeholder="All Forms"></wm-select>
+                                                <wm-select dataset="bind:Variables.FormTypesByCategoriesForVendor.dataSet" datafield="All Fields" displayfield="FormType" name="selectFormTypeFromVendor" placeholder="All Forms" show="bind:Variables.FormTypesByCategoriesForVendor.dataSet.content.length>0"></wm-select>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="1" name="gridcolumn95"></wm-gridcolumn>
                                         </wm-gridrow>
@@ -294,7 +285,7 @@
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn113">
                                             <wm-radioset height="auto" name="radiosetSelectAddressType" layout="inline" dataset="Address,Subdivision,Parcel" selectedvalue="Address"></wm-radioset>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="5" name="gridcolumn111"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn132_1"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow35_1">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn110_1"></wm-gridcolumn>
@@ -303,8 +294,7 @@
                                                 <wm-layoutgrid name="layoutgrid8">
                                                     <wm-gridrow name="gridrow20">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn41">
-                                                            <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="bind:$[data[$i].fullAddress]"
-                                                            datafield="All Fields"></wm-search>
+                                                            <wm-search name="searchAddress" placeholder="Search by Street Number or Street Name" dataset="bind:Variables.GISRecords.dataSet" searchkey="fullAddress" displaylabel="fullAddress" datafield="All Fields"></wm-search>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow22" padding="1em unset unset unset">
@@ -323,7 +313,7 @@
                                                 <wm-layoutgrid name="layoutgrid9">
                                                     <wm-gridrow name="gridrow40_1" padding="unset unset .5em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn96_1">
-                                                            <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="bind:$[data[$i].subdivision]" datafield="All Fields" name="searchFliterSubdivisions"
+                                                            <wm-search placeholder="Search by Subdivision Name" dataset="bind:Variables.Subdivisions.dataSet" searchkey="subdivision" displaylabel="subdivision" datafield="All Fields" name="searchFliterSubdivisions"
                                                             displayexpression="bind:$[data[$i].subdivision]+'-->'+$[data[$i].subShortCode]" orderby="subdivision:asc"></wm-search>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
@@ -374,57 +364,66 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn112_1"></wm-gridcolumn>
                                     </wm-gridrow>
-                                    <wm-gridrow name="gridrow58" padding="0.5em unset">
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn152">
-                                            <wm-label name="label42" caption="Select Filters" class="col-md-3 form-control-static" fontweight="bold"></wm-label>
+                                    <wm-gridrow name="gridrow56_1" padding="1em unset">
+                                        <wm-gridcolumn columnwidth="7" name="gridcolumn130_1">
+                                            <wm-container name="containerAddressFilters" show="bind:(!!Widgets.searchSubdivision.datavalue.id>0) || (!!Widgets.searchAddress.datavalue.id>0) ||(Widgets.searchParcel.datavalue.id > 0)">
+                                                <wm-layoutgrid name="layoutgrid13">
+                                                    <wm-gridrow name="gridrow58" padding="0.5em unset">
+                                                        <wm-gridcolumn columnwidth="7" name="gridcolumn152">
+                                                            <wm-label name="label42" caption="Select Filters" class="col-md-3 form-control-static" fontweight="bold"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="5" name="gridcolumn158"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow padding=".5em unset" name="gridrow36">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn115"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn116">
+                                                            <wm-label padding="unset 0.5em unset unset" caption="Submitted Between" class="col-md-3 form-control-static" width="100%" name="label29" fontweight="bold"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn117">
+                                                            <wm-datetime name="datetimeAddressStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate"></wm-datetime>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn118">
+                                                            <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label30"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="3" name="gridcolumn119">
+                                                            <wm-datetime name="datetimeAddressEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd"></wm-datetime>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow padding=".5em unset" name="gridrow37">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn121"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn122">
+                                                            <wm-label class="col-md-3 form-control-static" caption="Form Category" width="100%" name="label31" fontweight="bold"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="7" name="gridcolumn123">
+                                                            <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectAddressCategory" placeholder="All Categories" on-change="selectAddressCategoryChange($event, $scope, newVal, oldVal)"></wm-select>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn124"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow padding=".5em unset" name="gridrow38">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn125"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn126">
+                                                            <wm-label class="col-md-3 form-control-static" caption="Form Design" width="100%" name="label32" fontweight="bold" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.length>0"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="7" name="gridcolumn127">
+                                                            <wm-select dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" name="selectAddressFormType" placeholder="All Forms" show="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet.content.length>0"></wm-select>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn128"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow padding=".5em unset" name="gridrow39">
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn129"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="2" name="gridcolumn130">
+                                                            <wm-label class="col-md-3 form-control-static" caption="Form Status" name="label33" width="100%" fontweight="bold"></wm-label>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="7" name="gridcolumn131">
+                                                            <wm-radioset height="auto" dataset="Open,Closed,Both" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radiosetAddressClose" layout="inline"></wm-radioset>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="1" name="gridcolumn132"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-container>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="5" name="gridcolumn158"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow padding=".5em unset" name="gridrow36">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn115"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn116">
-                                            <wm-label padding="unset 0.5em unset unset" caption="Submitted Between" class="col-md-3 form-control-static" width="100%" name="label29" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="3" name="gridcolumn117">
-                                            <wm-datetime name="datetimeAddressStart" datepattern="MM-dd-yyyy hh:mm a" placeholder="Start Date" datavalue="bind:startDate" mindate="bind:startDate"></wm-datetime>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" horizontalalign="center" name="gridcolumn118">
-                                            <wm-label padding=".5em 0.5em unset 0.5em" caption="and" class="control-label" name="label30"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="3" name="gridcolumn119">
-                                            <wm-datetime name="datetimeAddressEnd" datepattern="MM-dd-yyyy hh:mm a" placeholder="End Date" datavalue="bind:toDayEnd" mindate="bind:Widgets.datetimeAddressStart.timestamp"></wm-datetime>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow padding=".5em unset" name="gridrow37">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn121"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn122">
-                                            <wm-label class="col-md-3 form-control-static" caption="Form Category" width="100%" name="label31" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn123">
-                                            <wm-select dataset="bind:Variables.MunicipalityCategories.dataSet" datafield="All Fields" displayfield="category" name="selectAddressCategory" placeholder="All Categories"></wm-select>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn124"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow padding=".5em unset" name="gridrow38">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn125"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn126">
-                                            <wm-label class="col-md-3 form-control-static" caption="Form Design" width="100%" name="label32" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn127">
-                                            <wm-select dataset="bind:Variables.GetFormTypesByCategoriesAndMunicipalities.dataSet" datafield="All Fields" displayfield="FormType" name="selectAddressFormType" placeholder="All Forms"></wm-select>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn128"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow padding=".5em unset" name="gridrow39">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn129"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn130">
-                                            <wm-label class="col-md-3 form-control-static" caption="Form Status" name="label33" width="100%" fontweight="bold"></wm-label>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="7" name="gridcolumn131">
-                                            <wm-radioset height="auto" dataset="Open,Closed,Both" datafield="All Fields" selectedvalue="Open" usekeys="false" width="30%" name="radiosetAddressClose" layout="inline"></wm-radioset>
-                                        </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="1" name="gridcolumn132"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="5" name="gridcolumn131_1"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow40">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn133"></wm-gridcolumn>
