@@ -524,9 +524,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateProcessOwnersForGUID(UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest);
 
-    Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+    Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);
 
-    Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable);
+    Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);
 
     Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable);
 

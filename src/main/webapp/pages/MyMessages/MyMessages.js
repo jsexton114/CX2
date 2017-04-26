@@ -97,55 +97,26 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
 
 
 
+
+    $scope.selectStatusChange = function($event, $isolateScope, newVal, oldVal) {
+
+        if (newVal == "All") {
+            $scope.Variables.svGetUserMessages.setInput({
+                'messageStatus': undefined
+            });
+            $scope.Variables.svGetUserMessages.update();
+        } else {
+            $scope.Variables.svGetUserMessages.setInput({
+                'messageStatus': newVal
+            });
+            $scope.Variables.svGetUserMessages.update();
+        }
+    };
+
 }]);
 
 
-Application.$controller("gridInboxController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
 
-        $scope.updaterowAction = function($event, $rowData) {
-            $scope.gridData[+$($event.target).closest('tr').attr('data-row-id')].messageRead = true;
-
-            //$rowData.messageRead = true;
-            //$scope.Widgets.gridInbox.redraw();
-            //$scope.Widgets.gridInbox.refreshData();
-        };
-
-
-        $scope.deleterowAction = function($event, $rowData) {
-
-            switch ($rowData.sourceCategory) {
-                case "Form":
-                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
-                    $scope.Widgets.pagedialogViewForm.open();
-                    break;
-                case "Inspection":
-                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
-                    $scope.Widgets.pagedialogViewInspection.open();
-                    break;
-                case "Project":
-                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
-                    $scope.Widgets.pagedialogViewProject.open();
-                    break;
-
-            }
-
-
-
-        };
-
-
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.svDefaultTaggedUser.setInput({
-                'postedBy': $rowData.postedByUserId
-            });
-            $scope.Variables.svDefaultTaggedUser.update();
-        };
-
-    }
-]);
 
 Application.$controller("pagedialogViewFormController", ["$scope",
     function($scope) {
@@ -318,5 +289,12 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             selectedPeople = $scope.Variables.PeopleList.dataSet;
         };
 
+    }
+]);
+
+Application.$controller("gridInboxController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

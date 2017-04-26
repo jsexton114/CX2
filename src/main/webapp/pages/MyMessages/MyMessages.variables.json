@@ -2028,6 +2028,26 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "stvStatus" : {
+    "_id" : "wm-stvStatus-wm.Variable-1493185778756",
+    "name" : "stvStatus",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "Status" : "All",
+      "Value" : "All"
+    }, {
+      "Status" : "UnRead",
+      "Value" : false
+    }, {
+      "Status" : "Read",
+      "Value" : true
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "stvTagSelection" : {
     "_id" : "wm-stvTagSelection-wm.Variable-1490276083765",
     "name" : "stvTagSelection",
@@ -2129,6 +2149,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 20,
+    "orderBy" : "id desc",
     "startUpdate" : true,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
@@ -2160,6 +2181,7 @@
     "dataSet" : [ ],
     "isList" : true,
     "maxResults" : 20,
+    "orderBy" : "id desc",
     "startUpdate" : false,
     "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",

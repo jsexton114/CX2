@@ -23,6 +23,8 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class GetUserSentMessagesResponse implements Serializable {
 
+    @ColumnAlias("id")
+    private Integer id;
     @ColumnAlias("Message")
     private String message;
     @ColumnAlias("PostedAt")
@@ -47,6 +49,14 @@ public class GetUserSentMessagesResponse implements Serializable {
     private String municipalityName;
     @ColumnAlias("MunicipalityId")
     private Integer municipalityId;
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getMessage() {
         return this.message;
@@ -149,7 +159,8 @@ public class GetUserSentMessagesResponse implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GetUserSentMessagesResponse)) return false;
         final GetUserSentMessagesResponse getUserSentMessagesResponse = (GetUserSentMessagesResponse) o;
-        return Objects.equals(getMessage(), getUserSentMessagesResponse.getMessage()) &&
+        return Objects.equals(getId(), getUserSentMessagesResponse.getId()) &&
+                Objects.equals(getMessage(), getUserSentMessagesResponse.getMessage()) &&
                 Objects.equals(getPostedAt(), getUserSentMessagesResponse.getPostedAt()) &&
                 Objects.equals(getMunicipalityMessage(), getUserSentMessagesResponse.getMunicipalityMessage()) &&
                 Objects.equals(getPostedByEmail(), getUserSentMessagesResponse.getPostedByEmail()) &&
@@ -165,7 +176,8 @@ public class GetUserSentMessagesResponse implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMessage(),
+        return Objects.hash(getId(),
+                getMessage(),
                 getPostedAt(),
                 getMunicipalityMessage(),
                 getPostedByEmail(),

@@ -2442,9 +2442,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/getUserMessages", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getUserMessages")
-    public Page<GetUserMessagesResponse> executeGetUserMessages(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Page<GetUserMessagesResponse> executeGetUserMessages(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus", required = false) Boolean messageStatus, Pageable pageable) {
         LOGGER.debug("Executing named query: getUserMessages");
-        Page<GetUserMessagesResponse> _result = queryService.executeGetUserMessages(taggedPersonId, municipalityId, pageable);
+        Page<GetUserMessagesResponse> _result = queryService.executeGetUserMessages(taggedPersonId, municipalityId, messageStatus, pageable);
         LOGGER.debug("got the result for named query: getUserMessages, result:{}", _result);
         return _result;
     }
@@ -2452,10 +2452,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query getUserMessages")
     @RequestMapping(value = "/queries/getUserMessages/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUserMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+    public Downloadable exportGetUserMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus", required = false) Boolean messageStatus, Pageable pageable) {
         LOGGER.debug("Exporting named query: getUserMessages");
 
-        return queryService.exportGetUserMessages(exportType, taggedPersonId, municipalityId, pageable);
+        return queryService.exportGetUserMessages(exportType, taggedPersonId, municipalityId, messageStatus, pageable);
     }
 
     @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)

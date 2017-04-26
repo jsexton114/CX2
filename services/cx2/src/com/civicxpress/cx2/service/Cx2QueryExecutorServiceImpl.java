@@ -2831,22 +2831,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("taggedPersonId", taggedPersonId);
         params.put("municipalityId", municipalityId);
+        params.put("messageStatus", messageStatus);
 
         return queryExecutor.executeNamedQuery("getUserMessages", params, GetUserMessagesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("taggedPersonId", taggedPersonId);
         params.put("municipalityId", municipalityId);
+        params.put("messageStatus", messageStatus);
 
         return queryExecutor.exportNamedQueryData("getUserMessages", params, exportType, GetUserMessagesResponse.class, pageable);
     }
