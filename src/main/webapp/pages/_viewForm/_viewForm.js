@@ -178,7 +178,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.liveformFeesSuccess = function($event, $operation, $data) {
-        debugger
         var comments = null;
 
         if ($operation === 'insert') {
@@ -419,7 +418,7 @@ Application.$controller("gridFormVendorsController", ["$scope",
                 'vendor': $scope.selecteditem.relatedFormGuid
             });
             $scope.Variables.gridRemovePrimaryVendors.update();
-            if (newVal == true) {
+            if (newVal === true) {
                 $scope.Variables.UpdatePrimaryVendorInMasterForms.setInput({
                     'VendorId': $scope.selecteditem.vendorId
                 });
@@ -447,7 +446,7 @@ Application.$controller("dialogAddVendorController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonTagVendorClick = function($event, $isolateScope) {
-            if ($scope.Widgets.checkboxPrimaryVendor.datavalue == true) {
+            if ($scope.Widgets.checkboxPrimaryVendor.datavalue === true) {
                 $scope.Variables.AddingVendorsToForm.update();
                 $scope.Variables.UpdateVendorForMasterForms.update();
                 $scope.Variables.RemoveOtherPrimaryVendors.update();
@@ -510,18 +509,15 @@ Application.$controller("gridFeesController", ["$scope",
         };
 
         $scope.customButtonAction = function($event) {
-
             let feeData = $scope.Widgets.gridFees.gridData;
             //let feeData = $scope.Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet.content;
-            let targetList = []
+            let targetList = [];
             _.forEach(feeData, function(obj) {
-
                 if ((!($scope.itemInCart(obj.id))) && (obj.paidStatus == 'Unpaid')) {
                     targetList.push({
                         'feeId': obj.id
                     });
                 }
-
             });
 
             let itemSet = {
@@ -532,12 +528,9 @@ Application.$controller("gridFeesController", ["$scope",
                 'feeListString': temp,
                 'userId': $scope.Variables.CurrentUserDetails.dataSet.id
             });
+
             $scope.Variables.svInsertAllFeeToCart.update();
-
-
-
         };
-
     }
 ]);
 
@@ -600,10 +593,10 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                 temp = $scope.Widgets.textSearchPeople.datavalue;
             }
             // Pushing selected users to List(Static Variable)
-            if (temp != "") {
+            if (temp !== "") {
                 var data = $scope.Variables.PeopleList.dataSet;
                 // checking for any people in PeopleList variable, if not add from search 
-                if (data.length == 0) {
+                if (data.length === 0) {
                     data.push(temp);
                     // clear search after pushing
                     $scope.Widgets.textSearchPeople.datavalue = "";
@@ -630,7 +623,6 @@ Application.$controller("dialogTagPeopleController", ["$scope",
                 $scope.Variables.NoPersonAdded.notify();
             }
         };
-
 
         $scope.buttonRemoveClick = function($event, $isolateScope, item, currentItemWidgets) {
             // Removing the deleted People

@@ -295,10 +295,14 @@ FROM GISRecords GIS
 LEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId
 LEFT OUTER JOIN States state ON state.ID=GIS.StateId
 WHERE GIS.MunicipalityId=:municipalityId
-and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))
+and (
+        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))
+        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))
+)
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="fullAddress" type="java.lang.String"/>
+    <query-param name="parcel" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="searchGisByFullAddress__count">
@@ -318,10 +322,14 @@ FROM GISRecords GIS
 LEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId
 LEFT OUTER JOIN States state ON state.ID=GIS.StateId
 WHERE GIS.MunicipalityId=:municipalityId
-and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%'))) wmTempTable
+and (
+        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))
+        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))
+)) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="fullAddress" type="java.lang.String"/>
+    <query-param name="parcel" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="CheckingUserWithMunicipalityInRoles">

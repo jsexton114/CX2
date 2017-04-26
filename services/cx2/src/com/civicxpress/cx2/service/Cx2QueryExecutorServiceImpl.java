@@ -337,22 +337,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(Integer municipalityId, String fullAddress, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(Integer municipalityId, String fullAddress, String parcel, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);
         params.put("fullAddress", fullAddress);
+        params.put("parcel", parcel);
 
         return queryExecutor.executeNamedQuery("searchGisByFullAddress", params, SearchGisByFullAddressResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportSearchGisByFullAddress(ExportType exportType, Integer municipalityId, String fullAddress, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Downloadable exportSearchGisByFullAddress(ExportType exportType, Integer municipalityId, String fullAddress, String parcel, Pageable pageable) {
+        Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);
         params.put("fullAddress", fullAddress);
+        params.put("parcel", parcel);
 
         return queryExecutor.exportNamedQueryData("searchGisByFullAddress", params, exportType, SearchGisByFullAddressResponse.class, pageable);
     }

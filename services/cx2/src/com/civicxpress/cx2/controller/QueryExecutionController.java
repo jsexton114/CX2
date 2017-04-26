@@ -315,9 +315,9 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/searchGisByFullAddress", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "search that stuff")
-    public Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress") String fullAddress, Pageable pageable) {
+    public Page<SearchGisByFullAddressResponse> executeSearchGisByFullAddress(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress", required = false) String fullAddress, @RequestParam(value = "parcel", required = false) String parcel, Pageable pageable) {
         LOGGER.debug("Executing named query: searchGisByFullAddress");
-        Page<SearchGisByFullAddressResponse> _result = queryService.executeSearchGisByFullAddress(municipalityId, fullAddress, pageable);
+        Page<SearchGisByFullAddressResponse> _result = queryService.executeSearchGisByFullAddress(municipalityId, fullAddress, parcel, pageable);
         LOGGER.debug("got the result for named query: searchGisByFullAddress, result:{}", _result);
         return _result;
     }
@@ -325,10 +325,10 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query searchGisByFullAddress")
     @RequestMapping(value = "/queries/searchGisByFullAddress/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchGisByFullAddress(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress") String fullAddress, Pageable pageable) {
+    public Downloadable exportSearchGisByFullAddress(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "fullAddress", required = false) String fullAddress, @RequestParam(value = "parcel", required = false) String parcel, Pageable pageable) {
         LOGGER.debug("Exporting named query: searchGisByFullAddress");
 
-        return queryService.exportSearchGisByFullAddress(exportType, municipalityId, fullAddress, pageable);
+        return queryService.exportSearchGisByFullAddress(exportType, municipalityId, fullAddress, parcel, pageable);
     }
 
     @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
