@@ -364,9 +364,9 @@
                                             <wm-label padding="unset 0.5em" name="label27" caption="This form requires a digital signature. Click the &quot;Sign Now&quot; button in order to electronically sign your form."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
-                                    <wm-gridrow name="gridrow57_1">
+                                    <wm-gridrow name="gridrow57_1" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn106">
-                                            <wm-button class="btn-primary" caption="Sign Now" name="buttonSignNow" iconclass="wi wi-pen" on-click="buttonCreateSigningDocumentClick($event, $scope)"></wm-button>
+                                            <wm-button class="btn-primary" caption="Sign Now" name="buttonSignNow" iconclass="wi wi-pen" on-click="buttonCreateSigningDocumentClick($event, $scope)" margin="unset 0.5em"></wm-button>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
@@ -375,9 +375,16 @@
                                 <wm-layoutgrid name="layoutgrid19">
                                     <wm-gridrow name="gridrow60_1" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn112">
-                                            <wm-label padding="unset 0.5em" name="label32" caption="Please click the &quot;Submit&quot; button in order to submit your form to the municipality."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label32" caption="Please check the accuracy of the information you have provided in order to avoid delays in form processing, then click the &quot;Submit&quot; button in order to submit your form to the municipality."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label33" caption="You can follow the progress of your form as it is processed by the municipality on your &quot;Open Forms&quot; and &quot;Closed Forms&quot; pages."></wm-label>
                                         </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow58" padding="unset unset 2em unset">
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
+                                            <wm-picture name="picture2" picturesource="bind:!!Variables.lvFormType.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvFormType.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
