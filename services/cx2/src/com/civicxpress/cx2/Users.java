@@ -72,23 +72,23 @@ public class Users implements Serializable {
     private List<InspectionHistory> inspectionHistories;
     private List<LetterTemplates> letterTemplatesesForCreatedBy;
     private List<LetterTemplates> letterTemplatesesForModifiedBy;
+    private List<MasterCases> masterCasesesForCreatedBy;
+    private List<MasterCases> masterCasesesForModifiedBy;
     private List<MasterForms> masterFormses;
     private List<MasterInspections> masterInspectionsesForAssignedTo;
     private List<MasterInspections> masterInspectionsesForRequestedBy;
     private List<MasterInspections> masterInspectionsesForModifiedBy;
-    private List<MasterCases> masterCasesesForCreatedBy;
-    private List<MasterCases> masterCasesesForModifiedBy;
     private List<MunicipalityGroupMembers> municipalityGroupMemberses;
     private List<MyCart> myCarts;
     private List<PaymentHistory> paymentHistories;
     private List<ProjectForms> projectFormses;
-    private List<ProjectGisrecords> projectGisrecordses;
     private List<Projects> projectsesForCreatedBy;
     private List<Projects> projectsesForModifiedBy;
-    private List<ProjectTasks> projectTasksesForAssignedTo;
-    private List<ProjectTasks> projectTasksesForCreatedBy;
+    private List<ProjectGisrecords> projectGisrecordses;
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedBy;
     private List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser;
+    private List<ProjectTasks> projectTasksesForAssignedTo;
+    private List<ProjectTasks> projectTasksesForCreatedBy;
     private List<Roles> roleses;
     private List<SharedWith> sharedWithsForCreatedBy;
     private List<SharedWith> sharedWithsForSharedWithUser;
@@ -96,9 +96,9 @@ public class Users implements Serializable {
     private List<UserSubscriptions> userSubscriptionses;
     private List<UserViewPreferences> userViewPreferenceses;
     private List<VendorAdmins> vendorAdminses;
-    private List<VendorUsers> vendorUserses;
     private List<Violations> violationsesForModifiedBy;
     private List<Violations> violationsesForCreatedBy;
+    private List<VendorUsers> vendorUserses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -449,6 +449,26 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<MasterCases> getMasterCasesesForCreatedBy() {
+        return this.masterCasesesForCreatedBy;
+    }
+
+    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
+        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
+    public List<MasterCases> getMasterCasesesForModifiedBy() {
+        return this.masterCasesesForModifiedBy;
+    }
+
+    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
+        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
@@ -486,26 +506,6 @@ public class Users implements Serializable {
 
     public void setMasterInspectionsesForModifiedBy(List<MasterInspections> masterInspectionsesForModifiedBy) {
         this.masterInspectionsesForModifiedBy = masterInspectionsesForModifiedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<MasterCases> getMasterCasesesForCreatedBy() {
-        return this.masterCasesesForCreatedBy;
-    }
-
-    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
-        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
-    public List<MasterCases> getMasterCasesesForModifiedBy() {
-        return this.masterCasesesForModifiedBy;
-    }
-
-    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
-        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -549,16 +549,6 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<ProjectGisrecords> getProjectGisrecordses() {
-        return this.projectGisrecordses;
-    }
-
-    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
-        this.projectGisrecordses = projectGisrecordses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
     public List<Projects> getProjectsesForCreatedBy() {
         return this.projectsesForCreatedBy;
@@ -579,23 +569,13 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByAssignedTo")
-    public List<ProjectTasks> getProjectTasksesForAssignedTo() {
-        return this.projectTasksesForAssignedTo;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<ProjectGisrecords> getProjectGisrecordses() {
+        return this.projectGisrecordses;
     }
 
-    public void setProjectTasksesForAssignedTo(List<ProjectTasks> projectTasksesForAssignedTo) {
-        this.projectTasksesForAssignedTo = projectTasksesForAssignedTo;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<ProjectTasks> getProjectTasksesForCreatedBy() {
-        return this.projectTasksesForCreatedBy;
-    }
-
-    public void setProjectTasksesForCreatedBy(List<ProjectTasks> projectTasksesForCreatedBy) {
-        this.projectTasksesForCreatedBy = projectTasksesForCreatedBy;
+    public void setProjectGisrecordses(List<ProjectGisrecords> projectGisrecordses) {
+        this.projectGisrecordses = projectGisrecordses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -616,6 +596,26 @@ public class Users implements Serializable {
 
     public void setProjectSharedWithsForProjectSharedWithUser(List<ProjectSharedWith> projectSharedWithsForProjectSharedWithUser) {
         this.projectSharedWithsForProjectSharedWithUser = projectSharedWithsForProjectSharedWithUser;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByAssignedTo")
+    public List<ProjectTasks> getProjectTasksesForAssignedTo() {
+        return this.projectTasksesForAssignedTo;
+    }
+
+    public void setProjectTasksesForAssignedTo(List<ProjectTasks> projectTasksesForAssignedTo) {
+        this.projectTasksesForAssignedTo = projectTasksesForAssignedTo;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<ProjectTasks> getProjectTasksesForCreatedBy() {
+        return this.projectTasksesForCreatedBy;
+    }
+
+    public void setProjectTasksesForCreatedBy(List<ProjectTasks> projectTasksesForCreatedBy) {
+        this.projectTasksesForCreatedBy = projectTasksesForCreatedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
@@ -689,16 +689,6 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<VendorUsers> getVendorUserses() {
-        return this.vendorUserses;
-    }
-
-    public void setVendorUserses(List<VendorUsers> vendorUserses) {
-        this.vendorUserses = vendorUserses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
     public List<Violations> getViolationsesForModifiedBy() {
         return this.violationsesForModifiedBy;
@@ -716,6 +706,16 @@ public class Users implements Serializable {
 
     public void setViolationsesForCreatedBy(List<Violations> violationsesForCreatedBy) {
         this.violationsesForCreatedBy = violationsesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<VendorUsers> getVendorUserses() {
+        return this.vendorUserses;
+    }
+
+    public void setVendorUserses(List<VendorUsers> vendorUserses) {
+        this.vendorUserses = vendorUserses;
     }
 
     @Override

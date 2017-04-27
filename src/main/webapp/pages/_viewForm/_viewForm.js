@@ -108,12 +108,12 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
             for (var i = 0; i < people.length; i++) {
                 $scope.Variables.InsertTaggedPeople.setInput({
                     "taggedPersonId": people[i].id,
-                    "formMessageId": data.id,
+                    "formMessageId": data.id
                 });
                 $scope.Variables.InsertTaggedPeople.insertRecord();
                 $scope.messageMailingList = $scope.messageMailingList + people[i].email + ",";
-
             }
+
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
@@ -126,7 +126,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
             $scope.Variables.svSendFormMessagesMail.update();
         }
     };
-
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
@@ -239,12 +238,9 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     };
 
-
     $scope.GetTaggedPeopleListByMessageonSuccess = function(variable, data) {
         $scope.Widgets.dialogShowTaggedPeople.open();
     };
-
-
     $scope.anchorViewInternalTaggedPeopleClick = function($event, $isolateScope, item, currentItemWidgets) {
         $scope.Variables.GetTaggedPeopleListByMessage.setFilter({
             'formMessageId': item.id
@@ -252,18 +248,15 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
         $scope.Variables.GetTaggedPeopleListByMessage.update();
     };
 
-
     $scope.buttonTagPeopleClick = function($event, $isolateScope) {
         $scope.Variables.stvTagSelection.dataSet.dataValue = 'users';
         $scope.Widgets.dialogTagPeople.open();
     };
 
-
     $scope.buttonInternalTagPeopleClick = function($event, $isolateScope) {
         $scope.Variables.stvTagSelection.dataSet.dataValue = 'employees';
         $scope.Widgets.dialogTagPeople.open();
     };
-
 
     $scope.tabpaneMessagesSelect = function($event, $isolateScope) {
         $scope.Variables.PeopleList.dataSet = [];
@@ -272,7 +265,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
         $scope.Variables.PeopleList.dataSet = [];
     };
-
 
     $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
         $scope.Variables.PeopleList.dataSet = [];
@@ -329,7 +321,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
             });
         }
     };
-
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -390,7 +381,6 @@ Application.$controller("dialogAddGISRecordController", ["$scope",
                 $scope.Widgets.dialogAddGISRecord.close();
             }
         };
-
     }
 ]);
 
@@ -551,7 +541,6 @@ Application.$controller("gridDocumentsController", ["$scope",
         $scope.updaterowAction = function($event, $rowData) {
             window.open('resources/leadTools/index.html?docId=' + $rowData.id);
         };
-
     }
 ]);
 
@@ -576,7 +565,6 @@ Application.$controller("dialogUploadDocumentController", ["$scope",
             $scope.docsToUpload = [];
             $scope.Widgets.dialogUploadDocument.close();
         };
-
     }
 ]);
 
@@ -632,7 +620,6 @@ Application.$controller("dialogTagPeopleController", ["$scope",
             // Setting for adding to subscriptions
             selectedPeople = $scope.Variables.PeopleList.dataSet;
         };
-
     }
 ]);
 

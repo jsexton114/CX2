@@ -174,18 +174,6 @@ public interface ProjectsService {
     Page<FormMessages> findAssociatedFormMessageses(String projectGuid, Pageable pageable);
 
     /*
-     * Returns the associated masterInspectionses for given Projects id.
-     *
-     * @param projectGuid value of projectGuid; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated MasterInspections instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable);
-
-    /*
      * Returns the associated masterCaseses for given Projects id.
      *
      * @param projectGuid value of projectGuid; value cannot be null
@@ -196,6 +184,18 @@ public interface ProjectsService {
      * @see Page
      */
     Page<MasterCases> findAssociatedMasterCaseses(String projectGuid, Pageable pageable);
+
+    /*
+     * Returns the associated masterInspectionses for given Projects id.
+     *
+     * @param projectGuid value of projectGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated MasterInspections instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable);
 
     /*
      * Returns the associated projectFormses for given Projects id.
@@ -222,18 +222,6 @@ public interface ProjectsService {
     Page<ProjectGisrecords> findAssociatedProjectGisrecordses(String projectGuid, Pageable pageable);
 
     /*
-     * Returns the associated projectTaskses for given Projects id.
-     *
-     * @param projectGuid value of projectGuid; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated ProjectTasks instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable);
-
-    /*
      * Returns the associated projectSharedWiths for given Projects id.
      *
      * @param projectGuid value of projectGuid; value cannot be null
@@ -244,6 +232,18 @@ public interface ProjectsService {
      * @see Page
      */
     Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable);
+
+    /*
+     * Returns the associated projectTaskses for given Projects id.
+     *
+     * @param projectGuid value of projectGuid; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated ProjectTasks instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable);
 
     /*
      * Returns the associated vendorsToProjects for given Projects id.

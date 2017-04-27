@@ -5,6 +5,7 @@ package com.civicxpress.letterservice;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,8 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.civicxpress.LetterTemplate;
 import com.civicxpress.SectionalTemplatePdf;
 import com.civicxpress.Cx2DataAccess;
+import com.civicxpress.DatabaseConnectionInfo;
+import com.civicxpress.GlobalFormInfo;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -41,8 +44,7 @@ public class LetterService {
         return availableTokens;
     }
 
-/*
-    public DownloadResponse createLetterFromDatabaseTemplate(Long formTypeId, String formGuid, int letterTemplateId) {
+    public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
 		SectionalTemplatePdf lt = null;
 		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
 		dbInfo.readFromWebContext();
@@ -58,28 +60,4 @@ public class LetterService {
         dr.setFileName(formGuid + ".pdf");
         return dr;
     }
-*/
-
-    public DownloadResponse createLetter(Long formTypeId, String formGuid, 
-        String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
-        String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
-    ) {
-        // deprecated soon, with new code from J. Sexton
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
-        String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";
-        byte[] fileBytes = SectionalTemplatePdf.createLetter(formTypeId,formGuid,
-                bodyTopLeftTitle, bodyTopLeftText, bodyTopRightText,
-                bodyBottomTitle, bodyBottomText, bodyFooterCustomText,
-                false);
-        
-        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
-        
-        DownloadResponse dr = new DownloadResponse();
-        dr.setContents(downloadBais);
-        dr.setContentType("application/pdf");
-        dr.setFileName(formGuid + ".pdf");
-        
-        return dr;
-    }
-    
 }

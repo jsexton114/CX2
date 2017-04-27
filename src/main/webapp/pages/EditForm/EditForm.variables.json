@@ -9633,6 +9633,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "bindCount" : 1,
     "tableName" : "LetterTemplates",
     "tableType" : "TABLE",
     "properties" : [ "formTypes", "inspectionDesign", "usersByCreatedBy", "usersByModifiedBy" ],
@@ -14226,6 +14227,32 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Letter"
+  },
+  "svGetLetterTemplatesForFormStatus" : {
+    "_id" : "wm-svGetLetterTemplatesForFormStatus-wm.ServiceVariable-1493237959161",
+    "name" : "svGetLetterTemplatesForFormStatus",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formStatusId",
+      "value" : "bind:Widgets.gridFormTypeStatus.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.procedure.GetLetterTemplatesForFormStatusResponse",
+    "service" : "cx2",
+    "operation" : "executeGetLetterTemplatesForFormStatus",
+    "operationId" : "ProcedureExecutionController_executeGetLetterTemplatesForFormStatus",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "ProcedureExecution"
   },
   "svGetListOfMunicipalityEmployees" : {
     "_id" : "wm-svGetListOfMunicipalityEmployees-wm.ServiceVariable-1490701161134",

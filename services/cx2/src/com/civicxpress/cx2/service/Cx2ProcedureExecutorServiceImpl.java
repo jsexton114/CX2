@@ -40,6 +40,16 @@ public class Cx2ProcedureExecutorServiceImpl implements Cx2ProcedureExecutorServ
         return procedureExecutor.executeNamedProcedure("fetchUnpaidFeesOfFormsForCreatedByAndSharedWith", params, FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse.class);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public GetLetterTemplatesForFormStatusResponse executeGetLetterTemplatesForFormStatus(Integer formStatusId) {
+        Map params = new HashMap(1);
+
+        params.put("formStatusId", formStatusId);
+
+        return procedureExecutor.executeNamedProcedure("getLetterTemplatesForFormStatus", params, GetLetterTemplatesForFormStatusResponse.class);
+    }
+
 }
 
 

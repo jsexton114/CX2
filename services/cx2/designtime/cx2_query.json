@@ -11275,6 +11275,62 @@
       } ]
     }
   },
+  "createLetterTemplateForFormStatus" : {
+    "name" : "createLetterTemplateForFormStatus",
+    "description" : "dfdfdf",
+    "version" : "V2",
+    "queryString" : "INSERT INTO LetterTemplateToFormStatus (LetterTemplateId, FormStatusId, AttachToEmail, EmailLetterCreator, AttachToItem) VALUES (:letterTemplateId, :formStatusId, :attachToEmail, :emailLetterCreator, :attachToItem)",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "INSERT",
+    "parameters" : [ {
+      "name" : "letterTemplateId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "21",
+      "required" : true
+    }, {
+      "name" : "formStatusId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "221",
+      "required" : true
+    }, {
+      "name" : "attachToEmail",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "emailLetterCreator",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "attachToItem",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.CreateLetterTemplateForFormStatusRequest",
+      "method" : "POST"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
   "deleteInspectionDesign" : {
     "name" : "deleteInspectionDesign",
     "description" : "df",

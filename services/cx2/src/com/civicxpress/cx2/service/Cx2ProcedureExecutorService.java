@@ -13,6 +13,8 @@ public interface Cx2ProcedureExecutorService {
 
     FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith(Integer municipalityId, Integer userId);
 
+    GetLetterTemplatesForFormStatusResponse executeGetLetterTemplatesForFormStatus(Integer formStatusId);
+
 }
 
 

@@ -186,6 +186,16 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/createLetterTemplateForFormStatus", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "dfdfdf")
+    public IntegerWrapper executeCreateLetterTemplateForFormStatus(@Valid @RequestBody CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
+        LOGGER.debug("Executing named query: createLetterTemplateForFormStatus");
+        Integer _result = queryService.executeCreateLetterTemplateForFormStatus(createLetterTemplateForFormStatusRequest);
+        LOGGER.debug("got the result for named query: createLetterTemplateForFormStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/ProjectSoftDelete", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "ProjectSoftDelete")

@@ -96,5 +96,95 @@
         }
       } ]
     }
+  },
+  "getLetterTemplatesForFormStatus" : {
+    "name" : "getLetterTemplatesForFormStatus",
+    "description" : "getLetterTemplatesForFormStatus",
+    "version" : "V2",
+    "procedureString" : "EXEC cx2.getLetterTemplatesForFormStatus @formStatusId=:formStatusId",
+    "parameters" : [ {
+      "name" : "formStatusId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "221",
+      "required" : true,
+      "parameterType" : "IN"
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.procedure.GetLetterTemplatesForFormStatusResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "content",
+        "fieldName" : "content",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "CUSTOM",
+          "typeRef" : "com.civicxpress.cx2.models.procedure.GetLetterTemplatesForFormStatusResponseContent",
+          "list" : true,
+          "properties" : [ {
+            "name" : "Id",
+            "fieldName" : "id",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Integer",
+              "list" : false
+            }
+          }, {
+            "name" : "LetterTemplateId",
+            "fieldName" : "letterTemplateId",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Integer",
+              "list" : false
+            }
+          }, {
+            "name" : "LetterTitle",
+            "fieldName" : "letterTitle",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.String",
+              "list" : false
+            }
+          }, {
+            "name" : "AttachToEmail",
+            "fieldName" : "attachToEmail",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Boolean",
+              "list" : false
+            }
+          }, {
+            "name" : "EmailLetterCreator",
+            "fieldName" : "emailLetterCreator",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Boolean",
+              "list" : false
+            }
+          }, {
+            "name" : "AttachToItem",
+            "fieldName" : "attachToItem",
+            "optional" : false,
+            "fieldType" : {
+              "type" : "PRIMITIVE",
+              "typeRef" : "java.lang.Boolean",
+              "list" : false
+            }
+          } ]
+        }
+      } ]
+    }
   }
 }

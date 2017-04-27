@@ -48,6 +48,16 @@ public class ProcedureExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/procedure/execute/getLetterTemplatesForFormStatus", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getLetterTemplatesForFormStatus")
+    public GetLetterTemplatesForFormStatusResponse executeGetLetterTemplatesForFormStatus(@RequestParam(value = "formStatusId") Integer formStatusId) {
+        LOGGER.debug("Executing named procedure: getLetterTemplatesForFormStatus");
+        GetLetterTemplatesForFormStatusResponse _result = procedureService.executeGetLetterTemplatesForFormStatus(formStatusId);
+        LOGGER.debug("got the result for named procedure: getLetterTemplatesForFormStatus, result:{}", _result);
+        return _result;
+    }
+
 }
 
 

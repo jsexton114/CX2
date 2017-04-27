@@ -18,5 +18,17 @@
       "required" : true,
       "parameterType" : "IN"
     } ]
+  },
+  "getLetterTemplatesForFormStatus" : {
+    "procedureString" : "EXEC cx2.getLetterTemplatesForFormStatus @formStatusId=?",
+    "parameters" : [ {
+      "name" : "formStatusId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "221",
+      "required" : true,
+      "parameterType" : "IN"
+    } ]
   }
 }

@@ -190,6 +190,20 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public Integer executeCreateLetterTemplateForFormStatus(CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
+        Map params = new HashMap(5);
+
+        params.put("letterTemplateId", createLetterTemplateForFormStatusRequest.getLetterTemplateId());
+        params.put("formStatusId", createLetterTemplateForFormStatusRequest.getFormStatusId());
+        params.put("attachToEmail", createLetterTemplateForFormStatusRequest.getAttachToEmail());
+        params.put("emailLetterCreator", createLetterTemplateForFormStatusRequest.getEmailLetterCreator());
+        params.put("attachToItem", createLetterTemplateForFormStatusRequest.getAttachToItem());
+
+        return queryExecutor.executeNamedQueryForUpdate("createLetterTemplateForFormStatus", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest) {
         Map params = new HashMap(2);
 

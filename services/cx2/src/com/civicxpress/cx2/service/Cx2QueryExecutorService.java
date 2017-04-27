@@ -56,6 +56,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest);
 
+    Integer executeCreateLetterTemplateForFormStatus(CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest);
+
     Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest);
 
     Integer executeUpdateMultipleFeeComments(UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest);

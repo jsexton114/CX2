@@ -192,6 +192,17 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
     <query-param name="UserId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="createLetterTemplateForFormStatus">
+        <![CDATA[
+        INSERT INTO LetterTemplateToFormStatus (LetterTemplateId, FormStatusId, AttachToEmail, EmailLetterCreator, AttachToItem) VALUES (:letterTemplateId, :formStatusId, :attachToEmail, :emailLetterCreator, :attachToItem)
+        ]]>
+    <query-param name="letterTemplateId" type="java.lang.String"/>
+    <query-param name="formStatusId" type="java.lang.Integer"/>
+    <query-param name="attachToEmail" type="java.lang.Boolean"/>
+    <query-param name="emailLetterCreator" type="java.lang.Boolean"/>
+    <query-param name="attachToItem" type="java.lang.Boolean"/>
+    </sql-query>
+
     <sql-query name="ProjectSoftDelete">
         <![CDATA[
         update Projects set Active=:active where ProjectGuid=:ProjectGuid
