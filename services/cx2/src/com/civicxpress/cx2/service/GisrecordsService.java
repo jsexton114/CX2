@@ -21,7 +21,6 @@ import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.GisTransaction;
 import com.civicxpress.cx2.Giscontacts;
 import com.civicxpress.cx2.Gisrecords;
-import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.ProjectGisrecords;
 
@@ -194,18 +193,6 @@ public interface GisrecordsService {
      * @see Page
      */
     Page<GisTransaction> findAssociatedGisTransactions(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated inspectionGises for given Gisrecords id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated InspectionGis instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<InspectionGis> findAssociatedInspectionGises(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterInspectionses for given Gisrecords id.

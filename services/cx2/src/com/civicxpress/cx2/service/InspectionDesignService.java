@@ -196,18 +196,6 @@ public interface InspectionDesignService {
     Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable);
 
     /*
-     * Returns the associated letterTemplateses for given InspectionDesign id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated LetterTemplates instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable);
-
-    /*
      * Returns the associated inspectionSequences for given InspectionDesign id.
      *
      * @param id value of id; value cannot be null
@@ -218,6 +206,18 @@ public interface InspectionDesignService {
      * @see Page
      */
     Page<InspectionSequence> findAssociatedInspectionSequences(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated letterTemplateses for given InspectionDesign id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated LetterTemplates instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<LetterTemplates> findAssociatedLetterTemplateses(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterInspectionses for given InspectionDesign id.

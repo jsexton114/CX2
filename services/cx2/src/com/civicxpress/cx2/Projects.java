@@ -56,8 +56,8 @@ public class Projects implements Serializable {
     private List<MasterCases> masterCaseses;
     private List<ProjectForms> projectFormses;
     private List<ProjectGisrecords> projectGisrecordses;
-    private List<ProjectSharedWith> projectSharedWiths;
     private List<ProjectTasks> projectTaskses;
+    private List<ProjectSharedWith> projectSharedWiths;
     private List<VendorsToProject> vendorsToProjects;
 
     @Id
@@ -298,22 +298,22 @@ public class Projects implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
-    public List<ProjectSharedWith> getProjectSharedWiths() {
-        return this.projectSharedWiths;
-    }
-
-    public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
-        this.projectSharedWiths = projectSharedWiths;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
     public List<ProjectTasks> getProjectTaskses() {
         return this.projectTaskses;
     }
 
     public void setProjectTaskses(List<ProjectTasks> projectTaskses) {
         this.projectTaskses = projectTaskses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "projects")
+    public List<ProjectSharedWith> getProjectSharedWiths() {
+        return this.projectSharedWiths;
+    }
+
+    public void setProjectSharedWiths(List<ProjectSharedWith> projectSharedWiths) {
+        this.projectSharedWiths = projectSharedWiths;
     }
 
     @JsonInclude(Include.NON_EMPTY)

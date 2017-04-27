@@ -76,7 +76,6 @@ public class Gisrecords implements Serializable {
     private List<Gis2forms> gis2formses;
     private List<Giscontacts> giscontactses;
     private List<GisTransaction> gisTransactions;
-    private List<InspectionGis> inspectionGises;
     private List<MasterInspections> masterInspectionses;
     private List<ProjectGisrecords> projectGisrecordses;
 
@@ -437,16 +436,6 @@ public class Gisrecords implements Serializable {
 
     public void setGisTransactions(List<GisTransaction> gisTransactions) {
         this.gisTransactions = gisTransactions;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
-    public List<InspectionGis> getInspectionGises() {
-        return this.inspectionGises;
-    }
-
-    public void setInspectionGises(List<InspectionGis> inspectionGises) {
-        this.inspectionGises = inspectionGises;
     }
 
     @JsonInclude(Include.NON_EMPTY)

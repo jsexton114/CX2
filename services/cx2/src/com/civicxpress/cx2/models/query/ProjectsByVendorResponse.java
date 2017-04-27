@@ -23,6 +23,8 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class ProjectsByVendorResponse implements Serializable {
 
+    @ColumnAlias("id")
+    private Integer id;
     @ColumnAlias("projectGuid")
     private String projectGuid;
     @ColumnAlias("projectName")
@@ -33,6 +35,16 @@ public class ProjectsByVendorResponse implements Serializable {
     private String fullName;
     @ColumnAlias("modifiedDate")
     private Date modifiedDate;
+    @ColumnAlias("companyName")
+    private String companyName;
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getProjectGuid() {
         return this.projectGuid;
@@ -74,24 +86,36 @@ public class ProjectsByVendorResponse implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ProjectsByVendorResponse)) return false;
         final ProjectsByVendorResponse projectsByVendorResponse = (ProjectsByVendorResponse) o;
-        return Objects.equals(getProjectGuid(), projectsByVendorResponse.getProjectGuid()) &&
+        return Objects.equals(getId(), projectsByVendorResponse.getId()) &&
+                Objects.equals(getProjectGuid(), projectsByVendorResponse.getProjectGuid()) &&
                 Objects.equals(getProjectName(), projectsByVendorResponse.getProjectName()) &&
                 Objects.equals(getCreatedDate(), projectsByVendorResponse.getCreatedDate()) &&
                 Objects.equals(getFullName(), projectsByVendorResponse.getFullName()) &&
-                Objects.equals(getModifiedDate(), projectsByVendorResponse.getModifiedDate());
+                Objects.equals(getModifiedDate(), projectsByVendorResponse.getModifiedDate()) &&
+                Objects.equals(getCompanyName(), projectsByVendorResponse.getCompanyName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProjectGuid(),
+        return Objects.hash(getId(),
+                getProjectGuid(),
                 getProjectName(),
                 getCreatedDate(),
                 getFullName(),
-                getModifiedDate());
+                getModifiedDate(),
+                getCompanyName());
     }
 }

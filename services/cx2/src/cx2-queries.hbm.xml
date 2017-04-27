@@ -599,11 +599,14 @@ group by FeeType) wmTempTable
 
     <query name="projectsByVendor">
         <![CDATA[
-        select projectGuid as projectGuid,
+        select 
+id as id,
+projectGuid as projectGuid,
 projects.projectName as projectName,
 projects.createdDate as createdDate,
 projects.usersByCreatedBy.fullName as fullName,
-projects.modifiedDate as modifiedDate
+projects.modifiedDate as modifiedDate,
+vendor.companyName as companyName
 from VendorsToProject
 where vendorId=:vendorId and projects.active=:active
         ]]>

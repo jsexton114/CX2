@@ -26,7 +26,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
-import com.civicxpress.cx2.InspectionGis;
 import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
@@ -54,10 +53,6 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
     @Autowired
 	@Qualifier("cx2.FormMessagesService")
 	private FormMessagesService formMessagesService;
-
-    @Autowired
-	@Qualifier("cx2.InspectionGisService")
-	private InspectionGisService inspectionGisService;
 
     @Autowired
 	@Qualifier("cx2.InspectionHistoryService")
@@ -105,14 +100,6 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
                 formsToInspectionse.setMasterInspections(masterInspectionsCreated);
                 LOGGER.debug("Creating a new child FormsToInspections with information: {}", formsToInspectionse);
                 formsToInspectionsService.create(formsToInspectionse);
-            }
-        }
-
-        if(masterInspectionsCreated.getInspectionGises() != null) {
-            for(InspectionGis inspectionGise : masterInspectionsCreated.getInspectionGises()) {
-                inspectionGise.setMasterInspections(masterInspectionsCreated);
-                LOGGER.debug("Creating a new child InspectionGis with information: {}", inspectionGise);
-                inspectionGisService.create(inspectionGise);
             }
         }
 
@@ -254,17 +241,6 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<InspectionGis> findAssociatedInspectionGises(String inspectionGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated inspectionGises");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
-
-        return inspectionGisService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<InspectionHistory> findAssociatedInspectionHistories(String inspectionGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionHistories");
 
@@ -321,15 +297,6 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 	 */
 	protected void setFormMessagesService(FormMessagesService service) {
         this.formMessagesService = service;
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service InspectionGisService instance
-	 */
-	protected void setInspectionGisService(InspectionGisService service) {
-        this.inspectionGisService = service;
     }
 
     /**

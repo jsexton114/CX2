@@ -13369,7 +13369,7 @@
     "name" : "projectsByVendor",
     "description" : "projectsByVendor",
     "version" : "V2",
-    "queryString" : "select projectGuid as projectGuid,\nprojects.projectName as projectName,\nprojects.createdDate as createdDate,\nprojects.usersByCreatedBy.fullName as fullName,\nprojects.modifiedDate as modifiedDate\nfrom VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
+    "queryString" : "select \nid as id,\nprojectGuid as projectGuid,\nprojects.projectName as projectName,\nprojects.createdDate as createdDate,\nprojects.usersByCreatedBy.fullName as fullName,\nprojects.modifiedDate as modifiedDate,\nvendor.companyName as companyName\nfrom VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
     "countQueryString" : null,
     "nativeSql" : false,
     "fetchCount" : false,
@@ -13399,6 +13399,15 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
+        "name" : "id",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
         "name" : "projectGuid",
         "fieldName" : "projectGuid",
         "optional" : false,
@@ -13441,6 +13450,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.util.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "companyName",
+        "fieldName" : "companyName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]
