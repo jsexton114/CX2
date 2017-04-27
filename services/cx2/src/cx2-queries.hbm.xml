@@ -606,8 +606,16 @@ projects.projectName as projectName,
 projects.createdDate as createdDate,
 projects.usersByCreatedBy.fullName as fullName,
 projects.modifiedDate as modifiedDate,
-vendor.companyName as companyName
-from VendorsToProject
+vendor.companyName as companyName from VendorsToProject
+where vendorId=:vendorId and projects.active=:active
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
+
+    <query name="projectsByVendor__count">
+        <![CDATA[
+        select count(*)  from VendorsToProject
 where vendorId=:vendorId and projects.active=:active
         ]]>
     <query-param name="vendorId" type="java.lang.Integer"/>

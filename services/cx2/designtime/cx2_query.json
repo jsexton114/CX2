@@ -13369,17 +13369,17 @@
     "name" : "projectsByVendor",
     "description" : "projectsByVendor",
     "version" : "V2",
-    "queryString" : "select \nid as id,\nprojectGuid as projectGuid,\nprojects.projectName as projectName,\nprojects.createdDate as createdDate,\nprojects.usersByCreatedBy.fullName as fullName,\nprojects.modifiedDate as modifiedDate,\nvendor.companyName as companyName\nfrom VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
-    "countQueryString" : null,
+    "queryString" : "select \nid as id,\nprojectGuid as projectGuid,\nprojects.projectName as projectName,\nprojects.createdDate as createdDate,\nprojects.usersByCreatedBy.fullName as fullName,\nprojects.modifiedDate as modifiedDate,\nvendor.companyName as companyName from VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
+    "countQueryString" : "select count(*)  from VendorsToProject\nwhere vendorId=:vendorId and projects.active=:active",
     "nativeSql" : false,
-    "fetchCount" : false,
+    "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "vendorId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "26",
+      "testValue" : "28",
       "required" : true
     }, {
       "name" : "active",
