@@ -556,6 +556,19 @@
         "isRelated" : false,
         "defaultValue" : "a",
         "scale" : 0
+      }, {
+        "fieldName" : "subdivisionType",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "SubdivisionType",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Subdivisions",
       "fullyQualifiedName" : "com.civicxpress.cx2.Subdivisions",
@@ -2741,6 +2754,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "a",
+          "scale" : 0
+        }, {
+          "fieldName" : "subdivisionType",
+          "type" : "string",
+          "fullyQualifiedType" : "string",
+          "columnName" : "SubdivisionType",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 255,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {

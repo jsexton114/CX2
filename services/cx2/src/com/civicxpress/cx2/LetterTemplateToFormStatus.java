@@ -10,8 +10,11 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +28,11 @@ public class LetterTemplateToFormStatus implements Serializable {
     private Integer id;
     private Integer letterTemplateId;
     private Integer formStatusId;
+    private Boolean attachToEmail;
+    private Boolean emailLetterCreator;
+    private Boolean attachToItem;
+    private LetterTemplates letterTemplates;
+    private FormStatuses formStatuses;
 
     @Id
     @Column(name = "`Id`", nullable = false, scale = 0, precision = 10)
@@ -37,7 +45,7 @@ public class LetterTemplateToFormStatus implements Serializable {
     }
 
     @Id
-    @Column(name = "`LetterTemplateId`", nullable = false, scale = 0, precision = 10)
+    @Column(name = "`LetterTemplateId`", nullable = true, scale = 0, precision = 10)
     public Integer getLetterTemplateId() {
         return this.letterTemplateId;
     }
@@ -47,7 +55,7 @@ public class LetterTemplateToFormStatus implements Serializable {
     }
 
     @Id
-    @Column(name = "`FormStatusId`", nullable = false, scale = 0, precision = 10)
+    @Column(name = "`FormStatusId`", nullable = true, scale = 0, precision = 10)
     public Integer getFormStatusId() {
         return this.formStatusId;
     }
@@ -56,7 +64,64 @@ public class LetterTemplateToFormStatus implements Serializable {
         this.formStatusId = formStatusId;
     }
 
+    @Id
+    @Column(name = "`AttachToEmail`", nullable = false)
+    public Boolean getAttachToEmail() {
+        return this.attachToEmail;
+    }
 
+    public void setAttachToEmail(Boolean attachToEmail) {
+        this.attachToEmail = attachToEmail;
+    }
+
+    @Id
+    @Column(name = "`EmailLetterCreator`", nullable = false)
+    public Boolean getEmailLetterCreator() {
+        return this.emailLetterCreator;
+    }
+
+    public void setEmailLetterCreator(Boolean emailLetterCreator) {
+        this.emailLetterCreator = emailLetterCreator;
+    }
+
+    @Id
+    @Column(name = "`AttachToItem`", nullable = false)
+    public Boolean getAttachToItem() {
+        return this.attachToItem;
+    }
+
+    public void setAttachToItem(Boolean attachToItem) {
+        this.attachToItem = attachToItem;
+    }
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`LetterTemplateId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public LetterTemplates getLetterTemplates() {
+        return this.letterTemplates;
+    }
+
+    public void setLetterTemplates(LetterTemplates letterTemplates) {
+        if(letterTemplates != null) {
+            this.letterTemplateId = letterTemplates.getId();
+        }
+
+        this.letterTemplates = letterTemplates;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`FormStatusId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public FormStatuses getFormStatuses() {
+        return this.formStatuses;
+    }
+
+    public void setFormStatuses(FormStatuses formStatuses) {
+        if(formStatuses != null) {
+            this.formStatusId = formStatuses.getId();
+        }
+
+        this.formStatuses = formStatuses;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -65,14 +130,20 @@ public class LetterTemplateToFormStatus implements Serializable {
         final LetterTemplateToFormStatus letterTemplateToFormStatus = (LetterTemplateToFormStatus) o;
         return Objects.equals(getId(), letterTemplateToFormStatus.getId()) &&
                 Objects.equals(getLetterTemplateId(), letterTemplateToFormStatus.getLetterTemplateId()) &&
-                Objects.equals(getFormStatusId(), letterTemplateToFormStatus.getFormStatusId());
+                Objects.equals(getFormStatusId(), letterTemplateToFormStatus.getFormStatusId()) &&
+                Objects.equals(getAttachToEmail(), letterTemplateToFormStatus.getAttachToEmail()) &&
+                Objects.equals(getEmailLetterCreator(), letterTemplateToFormStatus.getEmailLetterCreator()) &&
+                Objects.equals(getAttachToItem(), letterTemplateToFormStatus.getAttachToItem());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(),
                 getLetterTemplateId(),
-                getFormStatusId());
+                getFormStatusId(),
+                getAttachToEmail(),
+                getEmailLetterCreator(),
+                getAttachToItem());
     }
 }
 

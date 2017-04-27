@@ -59,6 +59,7 @@ public class FormStatuses implements Serializable {
     private MunicipalityGroups municipalityGroupsByProcessOwners;
     private List<FormHistory> formHistoriesForOldStatusId;
     private List<FormHistory> formHistoriesForNewStatusId;
+    private List<LetterTemplateToFormStatus> letterTemplateToFormStatuses;
     private List<MasterForms> masterFormses;
 
     @Id
@@ -312,6 +313,16 @@ public class FormStatuses implements Serializable {
 
     public void setFormHistoriesForNewStatusId(List<FormHistory> formHistoriesForNewStatusId) {
         this.formHistoriesForNewStatusId = formHistoriesForNewStatusId;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "formStatuses")
+    public List<LetterTemplateToFormStatus> getLetterTemplateToFormStatuses() {
+        return this.letterTemplateToFormStatuses;
+    }
+
+    public void setLetterTemplateToFormStatuses(List<LetterTemplateToFormStatus> letterTemplateToFormStatuses) {
+        this.letterTemplateToFormStatuses = letterTemplateToFormStatuses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

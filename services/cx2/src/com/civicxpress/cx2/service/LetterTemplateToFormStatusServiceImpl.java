@@ -84,6 +84,9 @@ public class LetterTemplateToFormStatusServiceImpl implements LetterTemplateToFo
         lettertemplatetoformstatusId.setId(letterTemplateToFormStatus.getId());
         lettertemplatetoformstatusId.setLetterTemplateId(letterTemplateToFormStatus.getLetterTemplateId());
         lettertemplatetoformstatusId.setFormStatusId(letterTemplateToFormStatus.getFormStatusId());
+        lettertemplatetoformstatusId.setAttachToEmail(letterTemplateToFormStatus.getAttachToEmail());
+        lettertemplatetoformstatusId.setEmailLetterCreator(letterTemplateToFormStatus.getEmailLetterCreator());
+        lettertemplatetoformstatusId.setAttachToItem(letterTemplateToFormStatus.getAttachToItem());
 
         return this.wmGenericDao.findById(lettertemplatetoformstatusId);
     }

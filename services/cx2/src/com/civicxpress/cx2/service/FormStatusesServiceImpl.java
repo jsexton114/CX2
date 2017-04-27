@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.LetterTemplateToFormStatus;
 import com.civicxpress.cx2.MasterForms;
 
 
@@ -46,6 +47,10 @@ public class FormStatusesServiceImpl implements FormStatusesService {
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplateToFormStatusService")
+	private LetterTemplateToFormStatusService letterTemplateToFormStatusService;
 
     @Autowired
     @Qualifier("cx2.FormStatusesDao")
@@ -73,6 +78,14 @@ public class FormStatusesServiceImpl implements FormStatusesService {
                 formHistoriesForNewStatusId.setFormStatusesByNewStatusId(formStatusesCreated);
                 LOGGER.debug("Creating a new child FormHistory with information: {}", formHistoriesForNewStatusId);
                 formHistoryService.create(formHistoriesForNewStatusId);
+            }
+        }
+
+        if(formStatusesCreated.getLetterTemplateToFormStatuses() != null) {
+            for(LetterTemplateToFormStatus letterTemplateToFormStatuse : formStatusesCreated.getLetterTemplateToFormStatuses()) {
+                letterTemplateToFormStatuse.setFormStatuses(formStatusesCreated);
+                LOGGER.debug("Creating a new child LetterTemplateToFormStatus with information: {}", letterTemplateToFormStatuse);
+                letterTemplateToFormStatusService.create(letterTemplateToFormStatuse);
             }
         }
 
@@ -204,6 +217,17 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<LetterTemplateToFormStatus> findAssociatedLetterTemplateToFormStatuses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateToFormStatuses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("formStatuses.id = '" + id + "'");
+
+        return letterTemplateToFormStatusService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -229,6 +253,15 @@ public class FormStatusesServiceImpl implements FormStatusesService {
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
         this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplateToFormStatusService instance
+	 */
+	protected void setLetterTemplateToFormStatusService(LetterTemplateToFormStatusService service) {
+        this.letterTemplateToFormStatusService = service;
     }
 
 }

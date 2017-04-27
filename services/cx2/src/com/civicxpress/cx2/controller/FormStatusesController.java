@@ -34,6 +34,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.FormHistory;
 import com.civicxpress.cx2.FormStatuses;
+import com.civicxpress.cx2.LetterTemplateToFormStatus;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.service.FormStatusesService;
 
@@ -176,6 +177,15 @@ public class FormStatusesController {
 
         LOGGER.debug("Fetching all associated formHistoriesForNewStatusId");
         return formStatusesService.findAssociatedFormHistoriesForNewStatusId(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/letterTemplateToFormStatuses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateToFormStatuses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplateToFormStatus> findAssociatedLetterTemplateToFormStatuses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateToFormStatuses");
+        return formStatusesService.findAssociatedLetterTemplateToFormStatuses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterFormses", method=RequestMethod.GET)

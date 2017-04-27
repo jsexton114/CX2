@@ -23,6 +23,7 @@ import com.wavemaker.runtime.data.expression.QueryFilter;
 import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
+import com.civicxpress.cx2.LetterTemplateToFormStatus;
 import com.civicxpress.cx2.LetterTemplates;
 
 
@@ -36,6 +37,9 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LetterTemplatesServiceImpl.class);
 
+    @Autowired
+	@Qualifier("cx2.LetterTemplateToFormStatusService")
+	private LetterTemplateToFormStatusService letterTemplateToFormStatusService;
 
     @Autowired
     @Qualifier("cx2.LetterTemplatesDao")
@@ -50,6 +54,13 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
 	public LetterTemplates create(LetterTemplates letterTemplates) {
         LOGGER.debug("Creating a new LetterTemplates with information: {}", letterTemplates);
         LetterTemplates letterTemplatesCreated = this.wmGenericDao.create(letterTemplates);
+        if(letterTemplatesCreated.getLetterTemplateToFormStatuses() != null) {
+            for(LetterTemplateToFormStatus letterTemplateToFormStatuse : letterTemplatesCreated.getLetterTemplateToFormStatuses()) {
+                letterTemplateToFormStatuse.setLetterTemplates(letterTemplatesCreated);
+                LOGGER.debug("Creating a new child LetterTemplateToFormStatus with information: {}", letterTemplateToFormStatuse);
+                letterTemplateToFormStatusService.create(letterTemplateToFormStatuse);
+            }
+        }
         return letterTemplatesCreated;
     }
 
@@ -130,7 +141,25 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<LetterTemplateToFormStatus> findAssociatedLetterTemplateToFormStatuses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateToFormStatuses");
 
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("letterTemplates.id = '" + id + "'");
+
+        return letterTemplateToFormStatusService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplateToFormStatusService instance
+	 */
+	protected void setLetterTemplateToFormStatusService(LetterTemplateToFormStatusService service) {
+        this.letterTemplateToFormStatusService = service;
+    }
 
 }
 

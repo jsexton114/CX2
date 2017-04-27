@@ -32,6 +32,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import com.civicxpress.cx2.LetterTemplateToFormStatus;
 import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.service.LetterTemplatesService;
 
@@ -151,6 +152,14 @@ public class LetterTemplatesController {
         return letterTemplatesService.getAggregatedValues(aggregationInfo, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/letterTemplateToFormStatuses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateToFormStatuses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplateToFormStatus> findAssociatedLetterTemplateToFormStatuses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateToFormStatuses");
+        return letterTemplatesService.findAssociatedLetterTemplateToFormStatuses(id, pageable);
+    }
 
     /**
 	 * This setter method should only be used by unit tests

@@ -36,6 +36,7 @@ public class Subdivisions implements Serializable {
     private String subdivisionGuid;
     private String subdivision;
     private String subShortCode;
+    private String subdivisionType;
     private Municipalities municipalities;
     private List<Gisrecords> gisrecordses;
 
@@ -84,6 +85,15 @@ public class Subdivisions implements Serializable {
 
     public void setSubShortCode(String subShortCode) {
         this.subShortCode = subShortCode;
+    }
+
+    @Column(name = "`SubdivisionType`", nullable = true, length = 255)
+    public String getSubdivisionType() {
+        return this.subdivisionType;
+    }
+
+    public void setSubdivisionType(String subdivisionType) {
+        this.subdivisionType = subdivisionType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

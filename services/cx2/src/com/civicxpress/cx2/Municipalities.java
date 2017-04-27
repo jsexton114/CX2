@@ -76,8 +76,8 @@ public class Municipalities implements Serializable {
     private List<InspectionDesign> inspectionDesigns;
     private List<Holidays> holidayses;
     private List<InspectionCategories> inspectionCategorieses;
-    private List<ManualFeeTypes> manualFeeTypeses;
     private List<MasterForms> masterFormses;
+    private List<ManualFeeTypes> manualFeeTypeses;
     private List<MunicipalityGroups> municipalityGroupses;
     private List<Projects> projectses;
     private List<Roles> roleses;
@@ -472,22 +472,22 @@ public class Municipalities implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
-    public List<ManualFeeTypes> getManualFeeTypeses() {
-        return this.manualFeeTypeses;
-    }
-
-    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
-        this.manualFeeTypeses = manualFeeTypeses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
     }
 
     public void setMasterFormses(List<MasterForms> masterFormses) {
         this.masterFormses = masterFormses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<ManualFeeTypes> getManualFeeTypeses() {
+        return this.manualFeeTypeses;
+    }
+
+    public void setManualFeeTypeses(List<ManualFeeTypes> manualFeeTypeses) {
+        this.manualFeeTypeses = manualFeeTypeses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
