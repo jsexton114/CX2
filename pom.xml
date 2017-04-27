@@ -34,6 +34,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/DocumentService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/DynamicFieldService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -62,7 +69,21 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/FormStatusUpdate/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/InspectionMessagingMailService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>services/InspectionOutcomeUpdate/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
@@ -211,15 +232,17 @@
                         </goals>
                         <configuration>
                             <sources>
-                            
                                 <source>services/AddMultipleFeeToCart/src</source>
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/DocumentProxyService/src</source>
+                                <source>services/DocumentService/src</source>
                                 <source>services/DynamicFieldService/src</source>
                                 <source>services/FileService/src</source>
                                 <source>services/FormMessagingMailService/src</source>
                                 <source>services/FormService/src</source>
+                                <source>services/FormStatusUpdate/src</source>
                                 <source>services/InspectionMessagingMailService/src</source>
+                                <source>services/InspectionOutcomeUpdate/src</source>
                                 <source>services/InspectionService/src</source>
                                 <source>services/LetterService/src</source>
                                 <source>services/MapMultipleFeesWithTransaction/src</source>
