@@ -27,9 +27,9 @@
                                     <wm-layoutgrid name="layoutgrid5_1">
                                         <wm-gridrow name="gridrow13_1" padding="1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
-                                                <wm-composite name="composite4" width="30%">
-                                                    <wm-label class="col-md-3 form-control-static" name="label8_1" caption="Status" fontweight="bold"></wm-label>
-                                                    <wm-container class="col-md-9" name="container4">
+                                                <wm-composite name="composite4" width="240px">
+                                                    <wm-label class="col-md-4 form-control-static" name="label8_1" caption="Status" fontweight="bold"></wm-label>
+                                                    <wm-container class="col-md-8" name="container4">
                                                         <wm-select name="selectStatus" dataset="bind:Variables.stvStatus.dataSet" datafield="Value" displayfield="Status" datavalue="bind:Variables.stvStatus.dataSet[0].Value" on-change="selectStatusChange($event, $scope, newVal, oldVal)"></wm-select>
                                                     </wm-container>
                                                 </wm-composite>
@@ -95,56 +95,78 @@
         </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-building">
             <wm-param name="ProjectGUID" value="bind:Variables.stvSourceGuid.dataSet.dataValue" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewReply">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Reply" iconclass="wi wi-reply" name="dialogReply" width="70%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Reply to Message" iconclass="wi wi-reply" name="dialogReply" width="70%">
             <wm-layoutgrid name="layoutgrid2">
-                <wm-gridrow name="gridrow5">
+                <wm-gridrow name="gridrow5" padding="unset unset 3em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6_1">
-                        <wm-grid title="" dataset="bind:Widgets.gridInbox.selecteditem" navigation="None" name="gridCurrentMessage">
-                            <wm-grid-column binding="sourceType" caption="Source" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="sourceTitle" caption="Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="postedAt" caption="Date Sent" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
-                                <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                            </wm-grid-column>
-                        </wm-grid>
+                        <wm-panel iconclass="wi wi-mail" autoclose="outsideClick" title="Message Received" name="panelReceived">
+                            <wm-layoutgrid name="layoutgrid6">
+                                <wm-gridrow name="gridrow16">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                                        <wm-grid title="" dataset="bind:Widgets.gridInbox.selecteditem" navigation="None" name="gridCurrentMessage">
+                                            <wm-grid-column binding="sourceType" caption="Source" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="sourceTitle" caption="Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="postedAt" caption="Date Sent" type="string" datepattern="yyyy-MM-dd hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                                <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                            </wm-grid-column>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow18">
+                                    <wm-gridcolumn columnwidth="10" name="gridcolumn31_1">
+                                        <wm-composite name="compositeSelectedMessage">
+                                            <wm-label class="col-md-3 form-control-static" name="label6" caption="Message" width="auto" margin="unset 2em unset unset" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container1">
+                                                <wm-textarea name="textareaSelectedMessage" readonly="true" datavalue="bind:Widgets.gridInbox.selecteditem.message"></wm-textarea>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn32">
+                                        <wm-checkbox caption="Internal" class="col-md-12" name="checkboxInternal" datavalue="bind:Widgets.gridInbox.selecteditem.municipalityMessage" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow17"></wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow6">
-                    <wm-gridcolumn columnwidth="10" name="gridcolumn8">
-                        <wm-composite name="compositeSelectedMessage">
-                            <wm-label class="col-md-3 control-label" name="label6" caption="Message" width="auto" margin="unset 2em unset unset"></wm-label>
-                            <wm-container class="col-md-9" name="container1">
-                                <wm-textarea name="textareaSelectedMessage" readonly="true" datavalue="bind:Widgets.gridInbox.selecteditem.message"></wm-textarea>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn22" horizontalalign="left">
-                        <wm-checkbox caption="Internal" class="col-md-push-3 col-md-9" name="checkboxInternal" datavalue="bind:Widgets.gridInbox.selecteditem.municipalityMessage" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow81" padding="2em unset 1em unset">
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn157_2" horizontalalign="center">
-                        <wm-picture class="media-object profile-photo" width="32pt" height="32pt" name="picture3" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
-                        shape="circle"></wm-picture>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn158_1">
-                        <wm-text name="textAddMessage" placeholder="Type a message..." updateon="default" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
-                        <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length" margin="unset unset unset 1em"></wm-button>
+                <wm-gridrow name="gridrow15">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25">
+                        <wm-panel iconclass="wi wi-reply" autoclose="outsideClick" title="Your Reply" name="panelReply" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid7">
+                                <wm-gridrow name="gridrow19">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn33">
+                                        <wm-label padding="unset 0.5em" name="label9" caption="Type your reply below. The user who tagged you on the Message Received above will automatically be tagged on your reply, and you can tag additional users with the &quot;Tag People&quot; button. Click &quot;Post&quot; when your reply is ready."></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow81" padding="2em unset unset unset">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn157_2" horizontalalign="right" padding="unset unset unset 1em">
+                                        <wm-picture class="media-object profile-photo" width="32pt" height="32pt" name="picture3" picturesource="bind:!!Variables.CurrentUserDetails.dataSet.id ? 'services/cx2/Users/'+Variables.CurrentUserDetails.dataSet.id+'/content/photo' : 'resources/images/imagelists/fa-user-170.png'"
+                                        shape="circle"></wm-picture>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="7" name="gridcolumn158_1">
+                                        <wm-text name="textAddMessage" placeholder="Type your reply..." updateon="default" on-keyup="textAddMessageKeyup($event, $scope)"></wm-text>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn159_1">
+                                        <wm-button class="btn-primary" caption="Post" type="button" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue" margin="unset 0.5em"></wm-button>
+                                        <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-close"></wm-button>
-                <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
