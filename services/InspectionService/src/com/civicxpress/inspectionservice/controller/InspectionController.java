@@ -13,6 +13,7 @@ import java.util.Map;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
+import javax.mail.MessagingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,8 +78,8 @@ public class InspectionController {
     @RequestMapping(value = "/inspectionOutcome", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionStatusId", required = false) Long inspectionOutcomeId, @RequestParam(value = "comments", required = false) String comments) throws SQLException {
-        inspectionService.setInspectionOutcome(inspectionGuid, inspectionOutcomeId, comments);
+    public void setInspectionOutcome(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "inspectionOutcomeId", required = false) Long inspectionOutcomeId, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
+        inspectionService.setInspectionOutcome(inspectionGuid, inspectionOutcomeId, comments, formLink);
     }
 
     @RequestMapping(value = "/uploadDocuments", method = RequestMethod.POST, consumes = "multipart/form-data")

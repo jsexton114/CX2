@@ -15,6 +15,7 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
     };
 
     $scope.buttonUpdateOutcomeClick = function($event, $isolateScope) {
+        $scope.Variables.svSetInspectionOutcome.setInput('formLink', window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid);
         $scope.Variables.svSetInspectionOutcome.update();
     };
 
@@ -44,15 +45,6 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
     };
 
     $scope.svSetInspectionOutcomeonSuccess = function(variable, data) {
-        if ($scope.Widgets.selectOutcome.datavalue.sendEmail) {
-            var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
-            //Sending mail to  CreatedBy
-            $scope.Variables.svSendOutcomeUpdate.setInput({
-                'formLink': tempLink,
-            });
-            $scope.Variables.svSendOutcomeUpdate.update();
-        }
-
         $scope.Widgets.textareaNotes.reset();
     };
 
@@ -62,6 +54,7 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
             'municipalityMessage': false,
             'message': $scope.Widgets.textAddMessage.datavalue
         });
+
         $scope.Variables.PostInspectionMessage.insertRecord();
     };
 

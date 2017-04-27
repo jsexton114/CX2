@@ -23263,29 +23263,9 @@
       "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
       "type" : "string"
     }, {
-      "target" : "bodyTopLeftTitle",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyTopLeftTitle",
-      "type" : "string"
-    }, {
-      "target" : "bodyTopLeftText",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyTopLeftText",
-      "type" : "string"
-    }, {
-      "target" : "bodyTopRightTitle",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyTopRightTitle",
-      "type" : "string"
-    }, {
-      "target" : "bodyTopRightText",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyTopRightText",
-      "type" : "string"
-    }, {
-      "target" : "bodyBottomTitle",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyBottomTitle",
-      "type" : "string"
-    }, {
-      "target" : "bodyBottomText",
-      "value" : "bind:Widgets.gridLetters.selecteditem.letterBodyBottomText",
-      "type" : "string"
+      "target" : "letterTemplateId",
+      "value" : "bind:Widgets.gridLetters.selecteditem.id",
+      "type" : "integer"
     } ],
     "type" : "com.wavemaker.runtime.file.model.DownloadResponse",
     "service" : "LetterService",

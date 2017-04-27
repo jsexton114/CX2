@@ -39,6 +39,7 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
     };
 
     $scope.svGetAvailableTokensonSuccess = function(variable, data) {
+        console.log($scope.Variables.svGetAvailableTokens);
         $scope.tokensByTwo = [];
 
         data.forEach(function(token, index) {
@@ -237,15 +238,22 @@ Application.$controller("gridLettersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
-    
-        $scope.addNewRowAction = function ($event) { 
 
+        function updateAndOpenDialog() {
+            $scope.Variables.svGetLetterTemplate.update();
+            // $scope.Widgets.dialogLetterTemplate.open();
+        }
+
+        $scope.addNewRowAction = function($event) {
+            $scope.Variables.svGetLetterTemplate.setInput('letterTemplateId', undefined);
+            updateAndOpenDialog();
         };
 
-        $scope.updaterowAction = function ($event, $rowData) { 
-
+        $scope.updaterowAction = function($event, $rowData) {
+            $scope.Variables.svGetLetterTemplate.setInput('letterTemplateId', $scope.Widgets.gridLetters.selecteditem.id);
+            updateAndOpenDialog();
         };
- 
+
     }
 ]);
 
@@ -304,12 +312,7 @@ Application.$controller("dialogFormStatusLettersController", ["$scope",
     }
 ]);
 
-Application.$controller("gridStatusLettersController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
 
 Application.$controller("dialogAddStatusLetterController", ["$scope",
     function($scope) {
@@ -323,4 +326,18 @@ Application.$controller("dialogLetterTemplateController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
     }
+]);
+
+Application.$controller("gridStatusLettersController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformStatusLettersController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
 ]);
