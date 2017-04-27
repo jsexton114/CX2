@@ -30,13 +30,12 @@
                             <wm-tabpane name="tabpane2" title="Addresses">
                                 <wm-livegrid formlayout="dialog" name="livegrid3">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2GisrecordsData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                        <wm-grid-column binding="fullAddress" caption="Address" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="subdivisions.subdivision" caption="Subdivision" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Subdivisions"></wm-grid-column>
                                         <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="streetNumber" caption="Street Number" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="fullAddress" caption="Address" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="New Address" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Address" action="addNewRow();addNewRowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
                                         shortcutkey="" disabled="false" icon="wi wi-add-location"></wm-grid-action>
@@ -254,12 +253,12 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn28">
                         <wm-panel iconclass="wi wi-location-on" autoclose="outsideClick" name="panel1" title="Addresses" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid3_1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid4">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SubDivision_Gisrecords.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid-column binding="fullAddress" caption="Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                     <wm-grid-column binding="parcel" caption="Parcel" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="lot" caption="Lot" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="section" caption="Section" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="streetNumber" caption="Street Number" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="fullAddress" caption="Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngEditGisRecord.invoke()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>

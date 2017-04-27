@@ -28,7 +28,7 @@
                                         <wm-gridrow name="gridrow13_1" padding="1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
                                                 <wm-composite name="composite4" width="30%">
-                                                    <wm-label class="col-md-3 control-label" name="label8_1" caption="Status"></wm-label>
+                                                    <wm-label class="col-md-3 form-control-static" name="label8_1" caption="Status" fontweight="bold"></wm-label>
                                                     <wm-container class="col-md-9" name="container4">
                                                         <wm-select name="selectStatus" dataset="bind:Variables.stvStatus.dataSet" datafield="Value" displayfield="Status" datavalue="bind:Variables.stvStatus.dataSet[0].Value" on-change="selectStatusChange($event, $scope, newVal, oldVal)"></wm-select>
                                                     </wm-container>
