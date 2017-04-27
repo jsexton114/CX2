@@ -34,7 +34,8 @@
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="Update Failed" title="Edit Project" formlayout="dialog" iconclass="wi wi-building" dataset="bind:Variables.lvProjectsData.dataSet" captionalign="left" captionposition="top"
                                             name="liveformProjects" defaultmode="Edit">
@@ -90,4 +91,9 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view12">
+        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+            <wm-param name="ProjectGUID" value="bind:Widgets.gridProjects.selecteditem.projectGuid" type="string"></wm-param>
+        </wm-pagedialog>
+    </wm-view>
 </wm-page>

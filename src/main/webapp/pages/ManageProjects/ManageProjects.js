@@ -16,7 +16,7 @@ Application.$controller("ManageProjectsPageController", ["$scope", function($sco
 
 
     $scope.lvProjectsDataonError = function(variable, data) {
-        debugger
+
     };
 
 }]);
@@ -27,17 +27,24 @@ Application.$controller("gridProjectsController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.goToPage_ViewProject.setData({
-                'ProjectGUID': $rowData.projectGuid
-            });
-            $scope.Variables.goToPage_ViewProject.navigate();
-        };
+        // $scope.customRowAction = function($event, $rowData) {
+        //     $scope.Variables.goToPage_ViewProject.setData({
+        //         'ProjectGUID': $rowData.projectGuid
+        //     });
+        //     $scope.Variables.goToPage_ViewProject.navigate();
+        // };
 
     }
 ]);
 
 Application.$controller("liveformProjectsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewProjectController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

@@ -23,14 +23,14 @@
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                         <wm-grid title="" dataset="bind:Variables.svProjectsByVendor.dataSet" navigation="Classic" name="gridProjects" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                            <wm-grid-column binding="companyName" caption="Company Name" show="true" readonly="undefined"></wm-grid-column>
+                            <wm-grid-column binding="companyName" caption="Company Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="projectName" caption="Project Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false"
                             show="true"></wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Project" action="Widgets.dialogCreateProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Variables.ngViewProject.invoke()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
@@ -94,5 +94,10 @@
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteProjectCancel" iconclass="wi wi-cancel" on-click="Widgets.confirmdialogSoftDeleteProjectCo.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view12">
+        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+            <wm-param name="ProjectGUID" value="bind:Widgets.gridProjects.selecteditem.projectGuid" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>

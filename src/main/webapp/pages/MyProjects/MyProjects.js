@@ -24,12 +24,12 @@ Application.$controller("gridProjectsListController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
 
-        $scope.updaterowAction = function($event, $rowData) {
-            $scope.Variables.goToPage_ViewProject.setData({
-                'ProjectGUID': $rowData.projectGuid
-            });
-            $scope.Variables.goToPage_ViewProject.navigate();
-        };
+        // $scope.updaterowAction = function($event, $rowData) {
+        //     $scope.Variables.goToPage_ViewProject.setData({
+        //         'ProjectGUID': $rowData.projectGuid
+        //     });
+        //     $scope.Variables.goToPage_ViewProject.navigate();
+        // };
 
 
 
@@ -75,6 +75,13 @@ Application.$controller("dialogCreateProjectController", ["$scope",
 ]);
 
 Application.$controller("confirmdialogSoftDeleteProjectCoController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewProjectController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;

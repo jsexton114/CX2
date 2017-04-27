@@ -33,7 +33,7 @@
                                     searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
                                     shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-livegrid>
@@ -98,5 +98,10 @@
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="buttonDeleteProjectCancel" iconclass="wi wi-cancel" on-click="Widgets.confirmdialogSoftDeleteProjectCo.close()"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view12">
+        <wm-pagedialog name="pagedialogViewProject" title="View Project" oktext="Close" content="_viewProject" class="modal-larger" modal="true" iconclass="wi wi-find-in-page">
+            <wm-param name="ProjectGUID" value="bind:Widgets.gridProjectsList.selecteditem.projectGuid" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>
