@@ -56,7 +56,10 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     private String primaryVendor;
     @JsonProperty("balanceDue")
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
+    @JsonProperty("codeEnforcement")
+    @ColumnAlias("codeEnforcement")
+    private Boolean codeEnforcement;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -146,12 +149,20 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
+    }
+
+    public Boolean getCodeEnforcement() {
+        return this.codeEnforcement;
+    }
+
+    public void setCodeEnforcement(Boolean codeEnforcement) {
+        this.codeEnforcement = codeEnforcement;
     }
 
     @Override
@@ -170,7 +181,8 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
                 Objects.equals(getSubdivision(), processFormsForUserByMunicipalityResponse.getSubdivision()) &&
                 Objects.equals(getAddress(), processFormsForUserByMunicipalityResponse.getAddress()) &&
                 Objects.equals(getPrimaryVendor(), processFormsForUserByMunicipalityResponse.getPrimaryVendor()) &&
-                Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue());
+                Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue()) &&
+                Objects.equals(getCodeEnforcement(), processFormsForUserByMunicipalityResponse.getCodeEnforcement());
     }
 
     @Override
@@ -186,6 +198,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
                 getSubdivision(),
                 getAddress(),
                 getPrimaryVendor(),
-                getBalanceDue());
+                getBalanceDue(),
+                getCodeEnforcement());
     }
 }

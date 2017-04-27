@@ -407,7 +407,8 @@ and (
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	FT.CodeEnforcement as codeEnforcement
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -446,7 +447,8 @@ where
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	FT.CodeEnforcement as codeEnforcement
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
