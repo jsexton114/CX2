@@ -49,6 +49,11 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
             $scope.tokensByTwo[$scope.tokensByTwo.length - 1].push(token);
         });
     };
+
+    $scope.svGetLetterTemplateonSuccess = function(variable, data) {
+        console.log(data);
+    };
+
 }]);
 
 Application.$controller("liveformUpdateFormTypeController", ["$scope",
@@ -232,6 +237,15 @@ Application.$controller("gridLettersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+    
+        $scope.addNewRowAction = function ($event) { 
+
+        };
+
+        $scope.updaterowAction = function ($event, $rowData) { 
+
+        };
+ 
     }
 ]);
 
@@ -284,22 +298,29 @@ Application.$controller("liveformCodeSetsController", ["$scope",
 ]);
 
 Application.$controller("dialogFormStatusLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridStatusLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogAddStatusLetterController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogLetterTemplateController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

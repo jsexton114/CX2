@@ -6,6 +6,8 @@ import java.lang.Long;
 import java.lang.String;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 import java.util.List;
+import java.lang.Integer;
+import com.civicxpress.SectionalTemplatePdf;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class LetterController {
     private LetterService letterService;
 
     @RequestMapping(value = "/letter", produces = "application/octet-stream", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public DownloadResponse createLetter(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "letterTemplateId", required = false) int letterTemplateId) {
         return letterService.createLetter(formTypeId, formGuid, letterTemplateId);
     }
@@ -32,5 +36,17 @@ public class LetterController {
     @ApiOperation(value = "")
     public List<String> getAvailableTokens(@RequestParam(value = "formTypeId", required = false) int formTypeId) {
         return letterService.getAvailableTokens(formTypeId);
+    }
+
+    @RequestMapping(value = "/letterTemplate", method = RequestMethod.GET)
+    public SectionalTemplatePdf getLetterTemplate(@RequestParam(value = "letterTemplateId", required = false) Integer letterTemplateId) {
+        return letterService.getLetterTemplate(letterTemplateId);
+    }
+
+    @RequestMapping(value = "/letterTemplate", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate) {
+        letterService.updateLetterTemplate(letterTemplate);
     }
 }

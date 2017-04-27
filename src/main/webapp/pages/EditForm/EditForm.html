@@ -769,141 +769,25 @@
                                         <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
                                         searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Letter Template" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                        <wm-grid-action key="addNewRow" display-name="New Letter Template" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Edit Letter Template" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top"
-                                    name="liveformLetters" width="700">
-                                        <wm-layoutgrid columns="2" name="layoutgrid26-a">
-                                            <wm-gridrow name="gridrow99-a">
-                                                <wm-gridcolumn columnwidth="4" name="gridcolumn143-a">
-                                                    <!--put tokens here  -->
-                                                    <wm-label class="col-md-12 form-control-static clearfix" name="label5_____1" caption="Available Fields" fontweight="bold"></wm-label>
-                                                    <br>
-                                                    <div class="app-grid-layout clearfix" name="layoutgridFieldTokens">
-                                                        <wm-gridrow name="gridrow9__9" ng-repeat="tokenSet in $parent.$parent.tokensByTwo">
-                                                            <div ng-repeat="token in tokenSet" class="app-grid-column dynamic-field-column col-sm-6" name="fieldTokenColumn{{$index}}"><span>{{token}}</span>
-                                                                <!--<wm-button class="btn-primary" caption="{{token}}" type="button" margin="unset 0.5em" name="buttonAddToken{{token}}" ng-click="insertField(token)" horizontalalign="right"></wm-button>-->
-                                                            </div>
-                                                        </wm-gridrow>
-                                                    </div>
-                                                </wm-gridcolumn>
-                                                <wm-gridcolumn columnwidth="8" name="gridcolumn143-b">
-                                                    <wm-layoutgrid columns="1" name="layoutgrid26">
-                                                        <wm-gridrow name="gridrow99">
-                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn143">
-                                                                <wm-form-field name="letterTitle" displayname="Letter Title" show="true" primary-key="false" generator="assigned" key="letterTitle" type="string" readonly="false" required="true" widget="text"
-                                                                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                        <wm-gridrow name="gridrow100">
-                                                            <wm-layoutgrid columns="3" name="layoutgrid26-02">
-                                                                <wm-gridrow name="gridrow100-01">
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-01">
-                                                                        <wm-form-field name="letterHeader01" show="true" primary-key="false" generator="assigned" key="letterHeader01" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-02">
-                                                                        <wm-form-field name="letterHeader02" show="true" primary-key="false" generator="assigned" key="letterHeader02" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-03">
-                                                                        <wm-form-field name="letterHeader03" show="true" primary-key="false" generator="assigned" key="letterHeader03" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-02">
-                                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn144-04">
-                                                                        <wm-form-field name="letterRow01" show="true" primary-key="false" generator="assigned" key="letterRow01" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-03">
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-05">
-                                                                        <wm-form-field name="letterRow02Section00" show="true" primary-key="false" generator="assigned" key="letterRow02Section00" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn144-06">
-                                                                        <wm-form-field name="letterRow02Section01" show="true" primary-key="false" generator="assigned" key="letterRow02Section01" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-04">
-                                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn144-07">
-                                                                        <wm-form-field name="letterRow03Section00" show="true" primary-key="false" generator="assigned" key="letterRow03Section00" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-08">
-                                                                        <wm-form-field name="letterRow03Section01" show="true" primary-key="false" generator="assigned" key="letterRow03Section01" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-05">
-                                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn144-09">
-                                                                        <wm-form-field name="letterRow04" show="true" primary-key="false" generator="assigned" key="letterRow04" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-06">
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-10">
-                                                                        <wm-form-field name="letterRow05Section00" show="true" primary-key="false" generator="assigned" key="letterRow05Section00" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn144-11">
-                                                                        <wm-form-field name="letterRow05Section01" show="true" primary-key="false" generator="assigned" key="letterRow05Section01" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-07">
-                                                                    <wm-gridcolumn columnwidth="8" name="gridcolumn144-12">
-                                                                        <wm-form-field name="letterRow06Section00" show="true" primary-key="false" generator="assigned" key="letterRow06Section00" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-13">
-                                                                        <wm-form-field name="letterRow06Section01" show="true" primary-key="false" generator="assigned" key="letterRow06Section01" type="string" readonly="false" required="false" widget="textarea"
-                                                                        maxchars="1000" placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-08">
-                                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn144-14">
-                                                                        <wm-form-field name="letterRow07" show="true" primary-key="false" generator="assigned" key="letterRow07" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                                <wm-gridrow name="gridrow100-09">
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-15">
-                                                                        <wm-form-field name="letterFooter01" show="true" primary-key="false" generator="assigned" key="letterFooter01" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-16">
-                                                                        <wm-form-field name="letterFooter02" show="true" primary-key="false" generator="assigned" key="letterFooter02" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                    <wm-gridcolumn columnwidth="4" name="gridcolumn144-17">
-                                                                        <wm-form-field name="letterFooter03" show="true" primary-key="false" generator="assigned" key="letterFooter03" type="string" readonly="false" required="false" widget="textarea" maxchars="1000"
-                                                                        placeholder="Enter value"></wm-form-field>
-                                                                    </wm-gridcolumn>
-                                                                </wm-gridrow>
-                                                            </wm-layoutgrid>
-                                                        </wm-gridrow>
-                                                    </wm-layoutgrid>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
-                                        <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select"
-                                        dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                        <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
-                                        required="false" widget="select" placeholder="Select value"></wm-form-field>
-                                        <wm-form-field name="letterId" displayname="Letter Id" show="false" primary-key="true" generator="identity" key="letterId" type="integer" readonly="true" required="true" step="0" widget="number"
-                                        inputtype="number" placeholder="Enter value"></wm-form-field>
-                                        <wm-form-field name="letterBody" displayname="Letter Body" show="false" primary-key="false" generator="assigned" key="letterBody" type="text" readonly="false" required="false" widget="textarea" maxchars="2147483647"
-                                        placeholder="Enter value"></wm-form-field>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
                                 </wm-livegrid>
+                                <wm-liveform novalidate="false" errormessage="" title="Edit Letter Template" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top"
+                                name="liveformLetters">
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
+                                    <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                    dataset="bind:Variables.CurrentFormObj.dataSet" datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="false" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
+                                    widget="select" placeholder="Select value"></wm-form-field>
+                                    <wm-form-field name="letterId" displayname="Letter Id" show="false" primary-key="true" generator="identity" key="letterId" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                    placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="letterBody" displayname="Letter Body" show="false" primary-key="false" generator="assigned" key="letterBody" type="text" readonly="false" required="false" widget="textarea" maxchars="2147483647"
+                                    placeholder="Enter value"></wm-form-field>
+                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                </wm-liveform>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin">
                                 <wm-layoutgrid name="layoutgrid8">
@@ -1103,6 +987,52 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view6">
+        <wm-dialog dialogtype="design-dialog" class="modal-larger" modal="true" title="Letter Template" iconclass="wi wi-notepad" name="dialogLetterTemplate">
+            <wm-layoutgrid columns="2" name="layoutgrid26-a">
+                <wm-gridrow name="gridrow99-a">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn143-a">
+                        <!--put tokens here  -->
+                        <wm-label class="col-md-12 form-control-static clearfix" name="label5_____1" caption="Available Fields" fontweight="bold"></wm-label>
+                        <br>
+                        <div class="app-grid-layout clearfix" name="layoutgridFieldTokens">
+                            <wm-gridrow name="gridrow9__9" ng-repeat="tokenSet in $parent.$parent.tokensByTwo">
+                                <div ng-repeat="token in Variables.svGetAvailableTokens.dataSet.content" class="app-grid-column dynamic-field-column col-sm-6" name="fieldTokenColumn{{$index}}"><span>{{token}}</span>
+                                    <!--<wm-button class="btn-primary" caption="{{token}}" type="button" margin="unset 0.5em" name="buttonAddToken{{token}}" ng-click="insertField(token)" horizontalalign="right"></wm-button>-->
+                                </div>
+                            </wm-gridrow>
+                        </div>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn143-b">
+                        <wm-layoutgrid columns="1" name="layoutgrid26">
+                            <wm-gridrow name="gridrow99">
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn143">
+                                    <wm-label name="label2_1" caption="Letter Title" fontweight="bold"></wm-label>
+                                    <input class="form-control app-textbox" name="letterTitle" type="text" ng-model="Variables.svGetLetterTemplate.dataSet.title">
+                                </wm-gridcolumn>
+                            </wm-gridrow>
+                            <wm-gridrow name="gridrow100">
+                                <wm-layoutgrid columns="3" name="layoutgrid26-02">
+                                    <wm-gridrow ng-repeat="letterRow in Variables.svGetLetterTemplate.dataSet.allRows" name="gridrow100-{{$index}}">
+                                        <wm-gridcolumn ng-repeat="rowSection in letterRow.sections" columnwidth="{{12 / letterRow.sections.length}}" name="gridcolumn144-{{$index}}">
+                                            <textarea name="letterHeader{{$index}}" class="form-control app-textarea" show="true" key="letterHeader01" maxchars="1000" ng-model="rowSection.text"></textarea>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-gridrow>
+                        </wm-layoutgrid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow99_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn146"></wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions4">
+                <wm-button class="btn-primary" caption="Save" on-click="Variables.svSaveLetterTemplate.invoke();Widgets.dialogLetterTemplate.close()" name="buttonSaveLetterTemplate" iconclass="wi wi-save"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button8" iconclass="wi wi-cancel" on-click="Widgets.dialogLetterTemplate.close()"></wm-button>
+            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
 </wm-page>

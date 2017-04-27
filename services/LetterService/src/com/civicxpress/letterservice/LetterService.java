@@ -43,12 +43,39 @@ public class LetterService {
         availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
         return availableTokens;
     }
+    
+    public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) {
+    	SectionalTemplatePdf lt = null;
+//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
+//		dbInfo.readFromWebContext();
+//		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
+    	
+		Cx2DataAccess db = new Cx2DataAccess();
+		Cx2DataAccess.setSqlUrl(sqlUrl);
+		
+		if (letterTemplateId == null) {
+			lt = new SectionalTemplatePdf();
+	    	lt.setUpDefaultSections();
+		} else {
+			lt = db.getLetterTemplate(letterTemplateId);
+		}
+		
+		return lt;
+    }
+    
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
+    	Cx2DataAccess db = new Cx2DataAccess();
+    	Cx2DataAccess.setSqlUrl(sqlUrl);
+    	
+    	db.updateLetterTemplate(letterTemplate);
+    }
 
     public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
 		SectionalTemplatePdf lt = null;
-		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-		dbInfo.readFromWebContext();
-		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
+//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
+//		dbInfo.readFromWebContext();
+		Cx2DataAccess db = new Cx2DataAccess();
+		Cx2DataAccess.setSqlUrl(sqlUrl);
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
         Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);

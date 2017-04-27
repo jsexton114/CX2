@@ -14228,6 +14228,29 @@
     "saveInPhonegap" : false,
     "controller" : "Letter"
   },
+  "svGetLetterTemplate" : {
+    "_id" : "wm-svGetLetterTemplate-wm.ServiceVariable-1493302772120",
+    "name" : "svGetLetterTemplate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.civicxpress.SectionalTemplatePdf",
+    "service" : "LetterService",
+    "operation" : "getLetterTemplate",
+    "operationId" : "LetterController_getLetterTemplate",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Javascript",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Letter"
+  },
   "svGetLetterTemplatesForFormStatus" : {
     "_id" : "wm-svGetLetterTemplatesForFormStatus-wm.ServiceVariable-1493237959161",
     "name" : "svGetLetterTemplatesForFormStatus",
@@ -14289,6 +14312,32 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svSaveLetterTemplate" : {
+    "_id" : "wm-svSaveLetterTemplate-wm.ServiceVariable-1493305278348",
+    "name" : "svSaveLetterTemplate",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "isList" : false,
+      "target" : "SectionalTemplatePdf",
+      "value" : "bind:Variables.svGetLetterTemplate.dataSet",
+      "type" : "com.civicxpress.SectionalTemplatePdf"
+    } ],
+    "service" : "LetterService",
+    "operation" : "updateLetterTemplate",
+    "operationId" : "LetterController_updateLetterTemplate",
+    "operationType" : "put",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Letter"
   },
   "svupdateTrackViolations" : {
     "_id" : "wm-svupdateTrackViolations-wm.ServiceVariable-1491385846693",

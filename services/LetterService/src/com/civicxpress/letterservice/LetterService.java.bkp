@@ -5,6 +5,7 @@ package com.civicxpress.letterservice;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,8 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.civicxpress.LetterTemplate;
 import com.civicxpress.SectionalTemplatePdf;
 import com.civicxpress.Cx2DataAccess;
+import com.civicxpress.DatabaseConnectionInfo;
+import com.civicxpress.GlobalFormInfo;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -40,13 +43,41 @@ public class LetterService {
         availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
         return availableTokens;
     }
+    
+    public SectionalTemplatePdf getNewLetterTemplate() {
+    	SectionalTemplatePdf lt = new SectionalTemplatePdf();
+    	lt.setUpDefaultSections();
+    	
+    	return lt;
+    }
+    
+    public SectionalTemplatePdf getLetterTemplate(int letterTemplateId) {
+    	SectionalTemplatePdf lt = null;
+//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
+//		dbInfo.readFromWebContext();
+//		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
+    	
+		Cx2DataAccess db = new Cx2DataAccess();
+		Cx2DataAccess.setSqlUrl(sqlUrl);
+		
+		lt = db.getLetterTemplate(letterTemplateId);
+		
+		return lt;
+    }
+    
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
+    	Cx2DataAccess db = new Cx2DataAccess();
+    	Cx2DataAccess.setSqlUrl(sqlUrl);
+    	
+    	db.updateLetterTemplate(letterTemplate);
+    }
 
-/*
-    public DownloadResponse createLetterFromDatabaseTemplate(Long formTypeId, String formGuid, int letterTemplateId) {
+    public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
 		SectionalTemplatePdf lt = null;
-		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-		dbInfo.readFromWebContext();
-		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
+//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
+//		dbInfo.readFromWebContext();
+		Cx2DataAccess db = new Cx2DataAccess();
+		Cx2DataAccess.setSqlUrl(sqlUrl);
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
         Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
@@ -58,28 +89,4 @@ public class LetterService {
         dr.setFileName(formGuid + ".pdf");
         return dr;
     }
-*/
-
-    public DownloadResponse createLetter(Long formTypeId, String formGuid, 
-        String bodyTopLeftTitle, String bodyTopLeftText, String bodyTopRightTitle, 
-        String bodyTopRightText, String bodyBottomTitle, String bodyBottomText
-    ) {
-        // deprecated soon, with new code from J. Sexton
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
-        String bodyFooterCustomText = "THIS PERMIT MUST BE POSTED WHERE IT IS\r\nVISIBLE FROM THE STREET";
-        byte[] fileBytes = SectionalTemplatePdf.createLetter(formTypeId,formGuid,
-                bodyTopLeftTitle, bodyTopLeftText, bodyTopRightText,
-                bodyBottomTitle, bodyBottomText, bodyFooterCustomText,
-                false);
-        
-        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
-        
-        DownloadResponse dr = new DownloadResponse();
-        dr.setContents(downloadBais);
-        dr.setContentType("application/pdf");
-        dr.setFileName(formGuid + ".pdf");
-        
-        return dr;
-    }
-    
 }
