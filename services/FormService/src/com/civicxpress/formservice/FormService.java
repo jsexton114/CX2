@@ -3,6 +3,12 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.formservice;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import com.civicxpress.MultiDatabaseHelper;
@@ -44,6 +50,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,22 +60,13 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
-
-/**
- * This is a singleton class with all its public methods exposed as REST APIs via generated controller class.
- * To avoid exposing an API for a particular public method, annotate it with @HideFromClient.
- *
- * Method names will play a major role in defining the Http Method for the generated APIs. For example, a method name
- * that starts with delete/remove, will make the API exposed as Http Method "DELETE".
- *
- * Method Parameters of type primitives (including java.lang.String) will be exposed as Query Parameters &
- * Complex Types/Objects will become part of the Request body in the generated API.
- */
  
 @ExposeToClient
 public class FormService {
 
     private static final Logger logger = LoggerFactory.getLogger(FormService.class);
+    private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
+    private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
 
 	private static SimpleDateFormat monthYearFormatter = new SimpleDateFormat("MMyyyy");
 	private static SimpleDateFormat yearMonthFormatter = new SimpleDateFormat("yyyyMM");
@@ -91,29 +89,19 @@ public class FormService {
     @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
     
-    /**
-     * This is sample java operation that accepts an input from the caller and responds with "Hello".
-     *
-     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
-     * getUserName() and getUserId() etc which returns the information based on the caller context.
-     *
-     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
-     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
-     */
-    
-    public static void main(String args[]) { // Function for testing/debugging purposes
-    	try {
-    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
-	    	DBQueryParams queryParams = new DBQueryParams();
-    		
-    		//FormService formService = new FormService();
-    		
-    		//formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    		System.out.println("AHHHHHHHHHHHh!!!!!");
-    	}
-    }
+//    public static void main(String args[]) { // Function for testing/debugging purposes
+//    	try {
+//    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
+//	    	DBQueryParams queryParams = new DBQueryParams();
+//    		
+//    		//FormService formService = new FormService();
+//    		
+//    		//formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
+//    	} catch (Exception e) {
+//    		e.printStackTrace();
+//    		System.out.println("AHHHHHHHHHHHh!!!!!");
+//    	}
+//    }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -271,7 +259,6 @@ public class FormService {
         public void setEmail(String email) {
             this.email= email;
         }
-        
     }
     
     public class UserPermissionsPojo {
@@ -795,7 +782,90 @@ public class FormService {
     	return response;
     }
     
-    public void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
+    private void sendStatusUpdateMail(String formGuid, String formLink) throws MessagingException, SQLException {
+    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Boolean sendEmail;
+    	
+        DBQueryParams params = new DBQueryParams();
+        params.addString("formGuid", formGuid);
+        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
+        sendEmail = formData.getBoolean("SendEmail");
+        
+        if (sendEmail) {
+        	String formType = formData.getString("FormType");
+        	String formTitle = formData.getString("FormTitle");
+        	String recipientFullName = formData.getString("FullName");
+        	String recipientEmail = formData.getString("Email");
+        	String emailSubject = formData.getString("EmailSubjectLine");
+        	String emailBody = formData.getString("EmailSubjectLine");
+        	String municipality = formData.getString("MunicipalityName");
+        	String municipalitySignature = formData.getString("GlobalEmailSig");
+
+	        Properties props = System.getProperties();
+	        props.put("mail.smtp.starttls.enable", "true");
+	        props.put("mail.smtp.host", "smtp.gmail.com");
+	        props.put("mail.smtp.port", "587");
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.starttls.required", "true");
+	        props.put("mail.smtp.ssl.enabled","true");
+	        props.put("mail.imap.ssl.enabled", "true");
+	
+	        Session session = Session.getDefaultInstance(props, null);
+	
+	        MimeMessage message = new MimeMessage(session);
+	        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+	        
+	        InternetAddress recipientAddress;
+	        recipientAddress = new InternetAddress(recipientEmail);
+	        
+	        message.setRecipient(Message.RecipientType.TO, recipientAddress);
+	        
+	        List<DBRow> sharedWithUsers = DBUtils.selectQuery(cx2Conn, "SELECT U.Email FROM SharedWith SW INNER JOIN Users U ON U.ID=SW.SharedWithUser WHERE SW.RelatedGUID=:formGuid", params);
+	        
+	        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
+	        for (int i = 0; i < sharedWithUsers.size(); i++) {
+	        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
+	        }
+	        
+	        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
+	        
+	        String formURL = formLink;
+	        logger.info(formLink);
+	        
+	        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
+	        
+	        emailContent.append(emailBody);
+	        emailContent.append("<br /><br />");
+	        
+	        emailContent.append(municipality);
+	        emailContent.append("<br />");
+	        emailContent.append(formType);
+	        emailContent.append("<br />");
+	        emailContent.append(formTitle);
+	        emailContent.append("<br />");
+	        emailContent.append("<a href ='"+formURL+"'> Click Here to View Form </a>");
+	        
+	        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
+	        
+	        message.setSubject(emailSubject);
+	        message.setContent(emailContent.toString(), "text/html");
+	        // Send smtp message
+	        Transport tr = session.getTransport("smtp");
+	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+	        message.saveChanges();
+	        tr.sendMessage(message, message.getAllRecipients());
+	        tr.close();
+        }
+        
+        cx2Conn.close();
+    }
+    
+    public void setFormStatus(String formGuid, Long formStatusId, String comments, String formLink) throws SQLException, MessagingException {
+    	setFormStatus(formGuid, formStatusId, comments);
+    	sendStatusUpdateMail(formGuid, formLink);
+    }
+    
+    private void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
 		
     	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {

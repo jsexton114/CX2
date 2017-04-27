@@ -23810,53 +23810,6 @@
     "spinnerContext" : "page",
     "spinnerMessage" : "Sending Mails....."
   },
-  "svSendStatusUpdate" : {
-    "_id" : "wm-svSendStatusUpdate-wm.ServiceVariable-1490074323410",
-    "name" : "svSendStatusUpdate",
-    "owner" : "Page",
-    "category" : "wm.ServiceVariable",
-    "dataBinding" : [ {
-      "target" : "emailSubject",
-      "value" : "bind:Widgets.selectStatus.datavalue.emailSubjectLine",
-      "type" : "string"
-    }, {
-      "target" : "emailBody",
-      "value" : "bind:Widgets.selectStatus.datavalue.emailTextBody",
-      "type" : "string"
-    }, {
-      "target" : "municipality",
-      "value" : "bind:Widgets.selectStatus.datavalue.municipalityGroupsByProcessOwners.municipalities.municipalityName",
-      "type" : "string"
-    }, {
-      "target" : "formType",
-      "value" : "bind:Variables.lvFormType.dataSet.data[$i].formType",
-      "type" : "string"
-    }, {
-      "target" : "municipalitySignature",
-      "value" : "bind:Widgets.selectStatus.datavalue.municipalityGroupsByProcessOwners.municipalities.globalEmailSig",
-      "type" : "string"
-    }, {
-      "target" : "formTitle",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formTitle",
-      "type" : "string"
-    } ],
-    "type" : "string",
-    "service" : "FormStatusUpdate",
-    "operation" : "sendStatusUpdateMail",
-    "operationId" : "FormStatusUpdateController_sendStatusUpdateMail",
-    "operationType" : "get",
-    "serviceType" : "JavaService",
-    "dataSet" : [ ],
-    "isList" : false,
-    "maxResults" : 20,
-    "designMaxResults" : 10,
-    "startUpdate" : false,
-    "autoUpdate" : false,
-    "inFlightBehavior" : "executeLast",
-    "transformationRequired" : false,
-    "saveInPhonegap" : false,
-    "controller" : "FormStatusUpdate"
-  },
   "svSetFormStatus" : {
     "_id" : "wm-svSetFormStatus-wm.ServiceVariable-1486671622184",
     "name" : "svSetFormStatus",

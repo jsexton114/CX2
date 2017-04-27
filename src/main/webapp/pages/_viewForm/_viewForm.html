@@ -110,7 +110,7 @@
                                 <wm-gridrow name="gridrow11" padding="unset unset 1em unset">
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn21_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn22" horizontalalign="center">
-                                        <wm-button class="btn-primary" caption="Update Status" type="button" margin="unset 0.5em" name="buttonUpdateStatus" on-click="Variables.svSetFormStatus.invoke()" iconclass="wi wi-update" disabled="bind:!Widgets.selectStatus.datavalue.id || !Widgets.textareaNotes.datavalue"></wm-button>
+                                        <wm-button class="btn-primary" caption="Update Status" type="button" margin="unset 0.5em" name="buttonUpdateStatus" on-click="buttonUpdateStatusClick($event, $scope)" iconclass="wi wi-update" disabled="bind:!Widgets.selectStatus.datavalue.id || !Widgets.textareaNotes.datavalue"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn23"></wm-gridcolumn>
                                 </wm-gridrow>

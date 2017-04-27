@@ -129,39 +129,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
-
-        //Checking to send mail
-        if ($scope.Widgets.selectStatus.datavalue.sendEmail) {
-
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
-            //Sending mail to  CreatedBy
-            $scope.Variables.svSendStatusUpdate.setInput({
-                'formLink': tempLink,
-                'username': $scope.Variables.CurrentForm.dataSet.data[0].users.firstName,
-                'recipient': $scope.Variables.CurrentForm.dataSet.data[0].users.email
-            });
-            $scope.Variables.svSendStatusUpdate.update();
-            //Sending mail to SharedWith
-
-            var contacts = $scope.sharedWith;
-            if ((contacts.length) > 0) {
-                //Check if shared with users
-                $scope.formStatusMailingList = '';
-                for (let i = 0; i < contacts.length; i++) {
-                    $scope.formStatusMailingList = $scope.formStatusMailingList + contacts[i].usersBySharedWithUser.email + ",";
-                }
-
-                // Send Mail to Shared With Users
-                $scope.formStatusMailingList = $scope.formStatusMailingList.substring(0, $scope.formStatusMailingList.length - 1);
-                $scope.Variables.svSendStatusUpdate.setInput({
-                    'formLink': tempLink,
-                    'username': 'User',
-                    'recipient': $scope.formStatusMailingList
-                });
-                $scope.Variables.svSendStatusUpdate.update();
-            }
-        }
-
         $scope.Widgets.textareaNotes.reset();
     };
 
@@ -320,6 +287,11 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
                 }
             });
         }
+    };
+
+    $scope.buttonUpdateStatusClick = function($event, $isolateScope) {
+        $scope.Variables.svSetFormStatus.setInput('formLink', window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
+        $scope.Variables.svSetFormStatus.update();
     };
 }]);
 

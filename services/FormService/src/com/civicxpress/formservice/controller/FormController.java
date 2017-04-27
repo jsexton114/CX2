@@ -15,6 +15,7 @@ import java.io.IOException;
 import com.civicxpress.formservice.FormService.UserPermissionsPojo;
 import java.util.HashMap;
 import java.lang.Boolean;
+import javax.mail.MessagingException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -67,13 +68,6 @@ public class FormController {
         return formService.getUserPermissions(formGuid);
     }
 
-    @RequestMapping(value = "/main", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public void main(@RequestBody String[] args) {
-        formService.main(args);
-    }
-
     @RequestMapping(value = "/saveDraft", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
@@ -103,8 +97,8 @@ public class FormController {
     @RequestMapping(value = "/formStatus", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void setFormStatus(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formStatusId", required = false) Long formStatusId, @RequestParam(value = "comments", required = false) String comments) throws SQLException {
-        formService.setFormStatus(formGuid, formStatusId, comments);
+    public void setFormStatus(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formStatusId", required = false) Long formStatusId, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
+        formService.setFormStatus(formGuid, formStatusId, comments, formLink);
     }
 
     @RequestMapping(value = "/submitForm", produces = "application/json", method = RequestMethod.POST, consumes = "multipart/form-data")
