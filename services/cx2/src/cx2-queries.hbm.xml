@@ -633,18 +633,22 @@ where vendorId=:vendorId and projects.active=:active
 
     <sql-query name="FormsByCategory">
         <![CDATA[
-        select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0
+        select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where
+FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and (:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
     <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     </sql-query>
 
     <sql-query name="FormsByCategory__count">
         <![CDATA[
-        select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0) wmTempTable
+        select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where
+FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and (:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable
         ]]>
     <query-param name="formCategory" type="java.lang.Integer"/>
     <query-param name="isActive" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     </sql-query>
 
     <query name="sumOfFeesInUsersCart">
@@ -683,10 +687,14 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+where   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+      and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+      and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
  and MF.FormTitle like :formTitle
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
 
@@ -712,10 +720,14 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
 
-where    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+where   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+      and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+      and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
  and MF.FormTitle like :formTitle) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
 
@@ -1133,7 +1145,8 @@ order by sequenceOrderNumber asc
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID,FC.ID as FormCategory
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -1156,10 +1169,9 @@ where   FT.CodeEnforcement=:codeEnforcement
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
 	AND (:formtypeID is null OR FT.ID =:formtypeID)
 	and (:Closed IS NULL OR  Closed=:Closed)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
 	AND DateSubmitted BETWEEN :startd and :endd
-    
-    
-ORDER BY DateModified DESC
         ]]>
     <query-param name="codeEnforcement" type="java.lang.Boolean"/>
     <query-param name="GISRecordId" type="java.lang.Integer"/>
@@ -1167,6 +1179,52 @@ ORDER BY DateModified DESC
     <query-param name="formcategoryID" type="java.lang.Integer"/>
     <query-param name="formtypeID" type="java.lang.Integer"/>
     <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="SearchAllFormsByAddress__count">
+        <![CDATA[
+        select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
+	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+
+LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
+
+LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
+
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+
+where   FT.CodeEnforcement=:codeEnforcement 
+     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
+	AND (:formtypeID is null OR FT.ID =:formtypeID)
+	and (:Closed IS NULL OR  Closed=:Closed)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+	AND DateSubmitted BETWEEN :startd and :endd) wmTempTable
+        ]]>
+    <query-param name="codeEnforcement" type="java.lang.Boolean"/>
+    <query-param name="GISRecordId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="formcategoryID" type="java.lang.Integer"/>
+    <query-param name="formtypeID" type="java.lang.Integer"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
     </sql-query>
@@ -2714,37 +2772,73 @@ VA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalSta
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID,FC.ID as FormCategory
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-
 LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
-
 LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
-
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
 LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
-				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress
-				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
-) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-
-where   ( UserId=:sharedWithUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 
+where   ( UserId=:sharedWithUser or MF.FormGUID IN 
+     (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
 	AND (:formtypeID is null OR FT.ID =:formtypeID)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
 	and (:Closed IS NULL OR  Closed=:Closed)
 	AND DateSubmitted BETWEEN :startd and :endd
-    
-    
-ORDER BY DateModified DESC
         ]]>
     <query-param name="sharedWithUser" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formcategoryID" type="java.lang.Integer"/>
     <query-param name="formtypeID" type="java.lang.Integer"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="SearchAllFormsByUser__count">
+        <![CDATA[
+        select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
+	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
+LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 
+where   ( UserId=:sharedWithUser or MF.FormGUID IN 
+     (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
+	AND (:formtypeID is null OR FT.ID =:formtypeID)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:Closed IS NULL OR  Closed=:Closed)
+	AND DateSubmitted BETWEEN :startd and :endd) wmTempTable
+        ]]>
+    <query-param name="sharedWithUser" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="formcategoryID" type="java.lang.Integer"/>
+    <query-param name="formtypeID" type="java.lang.Integer"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     <query-param name="Closed" type="java.lang.Boolean"/>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
@@ -3478,7 +3572,8 @@ where  FT.CodeEnforcement=:codeEnforcement and
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID,FC.ID as FormCategory
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3500,16 +3595,59 @@ where    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorI
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
 	AND (:formtypeID is null OR FT.ID =:formtypeID)
 	and (:Closed IS NULL OR  Closed=:Closed)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
 	AND DateSubmitted BETWEEN :startd and :endd
-    
-    
-ORDER BY DateModified DESC
         ]]>
     <query-param name="vendorId" type="java.lang.Integer"/>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="formcategoryID" type="java.lang.Integer"/>
     <query-param name="formtypeID" type="java.lang.Integer"/>
     <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="SearchAllFormsByVendor__count">
+        <![CDATA[
+        select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
+	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
+	,FT.ID as formTypeID,FC.ID as FormCategory,
+	MF.DateModified as dateModified
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+
+LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
+
+LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
+
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+
+where    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))
+    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)
+	AND (:formtypeID is null OR FT.ID =:formtypeID)
+	and (:Closed IS NULL OR  Closed=:Closed)
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:publicRead IS NULL OR FS.PublicRead=:publicRead)
+	AND DateSubmitted BETWEEN :startd and :endd) wmTempTable
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="formcategoryID" type="java.lang.Integer"/>
+    <query-param name="formtypeID" type="java.lang.Integer"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="publicRead" type="java.lang.Boolean"/>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
     </sql-query>

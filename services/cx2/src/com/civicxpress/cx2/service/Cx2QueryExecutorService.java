@@ -138,15 +138,15 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateAsCXVendorAdmin(UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest);
 
-    Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Pageable pageable);
+    Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Boolean municipalityInternalForm, Pageable pageable);
 
-    Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Pageable pageable);
+    Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Boolean municipalityInternalForm, Pageable pageable);
 
     SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user);
 
-    Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, String formTitle, Pageable pageable);
+    Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable);
 
-    Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, String formTitle, Pageable pageable);
+    Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable);
 
     Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable);
 
@@ -214,9 +214,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable);
 
-    Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable);
 
-    Downloadable exportSearchAllFormsByAddress(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Downloadable exportSearchAllFormsByAddress(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
 
@@ -498,9 +498,9 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
-    Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean publicRead, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
-    Downloadable exportSearchAllFormsByUser(ExportType exportType, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Downloadable exportSearchAllFormsByUser(ExportType exportType, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean publicRead, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable);
 
@@ -614,9 +614,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCasesByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
 
-    Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable);
 
-    Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+    Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable);
 

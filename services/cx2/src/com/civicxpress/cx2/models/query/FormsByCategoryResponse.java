@@ -7,6 +7,7 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -23,200 +24,165 @@ import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
 public class FormsByCategoryResponse implements Serializable {
 
-    @JsonProperty("Active")
-    @ColumnAlias("Active")
-    private Boolean active;
-    @JsonProperty("Attachments")
-    @ColumnAlias("Attachments")
-    private Boolean attachments;
-    @JsonProperty("AutomaticFees")
-    @ColumnAlias("AutomaticFees")
-    private Boolean automaticFees;
-    @JsonProperty("BasementFee")
-    @ColumnAlias("BasementFee")
-    private String basementFee;
-    @JsonProperty("BasementFeeAccountingCode")
-    @ColumnAlias("BasementFeeAccountingCode")
-    private String basementFeeAccountingCode;
-    @JsonProperty("CollectFees")
-    @ColumnAlias("CollectFees")
-    private Boolean collectFees;
-    @JsonProperty("CreatedDate")
-    @ColumnAlias("CreatedDate")
-    private java.sql.Date createdDate;
-    @JsonProperty("CurrentPrefixNumber")
-    @ColumnAlias("CurrentPrefixNumber")
-    private BigDecimal currentPrefixNumber;
-    @JsonProperty("DigitalSignatures")
-    @ColumnAlias("DigitalSignatures")
-    private String digitalSignatures;
+    @JsonProperty("ID")
+    @ColumnAlias("ID")
+    private Integer id;
+    @JsonProperty("FormType")
+    @ColumnAlias("FormType")
+    private String formType;
     @JsonProperty("FlatFee")
     @ColumnAlias("FlatFee")
     private String flatFee;
     @JsonProperty("FlatFeeAccountingCode")
     @ColumnAlias("FlatFeeAccountingCode")
     private String flatFeeAccountingCode;
-    @JsonProperty("FormTableName")
-    @ColumnAlias("FormTableName")
-    private String formTableName;
-    @JsonProperty("FormType")
-    @ColumnAlias("FormType")
-    private String formType;
-    @JsonProperty("FormTypeGuid")
-    @ColumnAlias("FormTypeGuid")
-    private String formTypeGuid;
-    @JsonProperty("GISMap")
-    @ColumnAlias("GISMap")
-    private Boolean gismap;
-    @JsonProperty("GISRecord")
-    @ColumnAlias("GISRecord")
-    private Boolean gisrecord;
-    @JsonProperty("ID")
-    @ColumnAlias("ID")
-    private BigDecimal id;
-    @JsonProperty("Inspections")
-    @ColumnAlias("Inspections")
-    private String inspections;
-    @JsonProperty("Instructions")
-    @ColumnAlias("Instructions")
-    private String instructions;
-    @JsonProperty("MultipleGISRecords")
-    @ColumnAlias("MultipleGISRecords")
-    private Boolean multipleGisrecords;
-    @JsonProperty("MultipleVendors")
-    @ColumnAlias("MultipleVendors")
-    private Boolean multipleVendors;
-    @JsonProperty("MunicipalityId")
-    @ColumnAlias("MunicipalityId")
-    private BigDecimal municipalityId;
-    @JsonProperty("MunicipalityInternalForm")
-    @ColumnAlias("MunicipalityInternalForm")
-    private Boolean municipalityInternalForm;
-    @JsonProperty("Payments")
-    @ColumnAlias("Payments")
-    private Boolean payments;
-    @JsonProperty("PrefixDashes")
-    @ColumnAlias("PrefixDashes")
-    private Boolean prefixDashes;
-    @JsonProperty("PrefixDate")
-    @ColumnAlias("PrefixDate")
-    private String prefixDate;
-    @JsonProperty("PrefixNumber")
-    @ColumnAlias("PrefixNumber")
-    private String prefixNumber;
-    @JsonProperty("PrefixNumberResetOn")
-    @ColumnAlias("PrefixNumberResetOn")
-    private BigDecimal prefixNumberResetOn;
-    @JsonProperty("PrefixNumberStart")
-    @ColumnAlias("PrefixNumberStart")
-    private BigDecimal prefixNumberStart;
-    @JsonProperty("PrefixNumberStep")
-    @ColumnAlias("PrefixNumberStep")
-    private BigDecimal prefixNumberStep;
-    @JsonProperty("Report")
-    @ColumnAlias("Report")
-    private String report;
-    @JsonProperty("RequireOwner")
-    @ColumnAlias("RequireOwner")
-    private Boolean requireOwner;
     @JsonProperty("SfFee")
     @ColumnAlias("SfFee")
     private String sfFee;
     @JsonProperty("SfFeeAccountingCode")
     @ColumnAlias("SfFeeAccountingCode")
     private String sfFeeAccountingCode;
-    @JsonProperty("SharedWith")
-    @ColumnAlias("SharedWith")
-    private Boolean sharedWith;
-    @JsonProperty("StateFee")
-    @ColumnAlias("StateFee")
-    private String stateFee;
-    @JsonProperty("StateFeeAccountingCode")
-    @ColumnAlias("StateFeeAccountingCode")
-    private String stateFeeAccountingCode;
-    @JsonProperty("TitlePrefix")
-    @ColumnAlias("TitlePrefix")
-    private String titlePrefix;
     @JsonProperty("UnitFee")
     @ColumnAlias("UnitFee")
     private String unitFee;
     @JsonProperty("UnitFeeAccountingCode")
     @ColumnAlias("UnitFeeAccountingCode")
     private String unitFeeAccountingCode;
+    @JsonProperty("StateFee")
+    @ColumnAlias("StateFee")
+    private String stateFee;
+    @JsonProperty("StateFeeAccountingCode")
+    @ColumnAlias("StateFeeAccountingCode")
+    private String stateFeeAccountingCode;
+    @JsonProperty("Report")
+    @ColumnAlias("Report")
+    private String report;
+    @JsonProperty("Active")
+    @ColumnAlias("Active")
+    private Boolean active;
+    @JsonProperty("MunicipalityInternalForm")
+    @ColumnAlias("MunicipalityInternalForm")
+    private Boolean municipalityInternalForm;
+    @JsonProperty("CreatedDate")
+    @ColumnAlias("CreatedDate")
+    private java.sql.Date createdDate;
+    @JsonProperty("CollectFees")
+    @ColumnAlias("CollectFees")
+    private Boolean collectFees;
+    @JsonProperty("AutomaticFees")
+    @ColumnAlias("AutomaticFees")
+    private Boolean automaticFees;
+    @JsonProperty("Inspections")
+    @ColumnAlias("Inspections")
+    private Boolean inspections;
+    @JsonProperty("Payments")
+    @ColumnAlias("Payments")
+    private Boolean payments;
+    @JsonProperty("SharedWith")
+    @ColumnAlias("SharedWith")
+    private Boolean sharedWith;
+    @JsonProperty("Attachments")
+    @ColumnAlias("Attachments")
+    private Boolean attachments;
+    @JsonProperty("GISRecord")
+    @ColumnAlias("GISRecord")
+    private Boolean gisrecord;
+    @JsonProperty("MultipleGISRecords")
+    @ColumnAlias("MultipleGISRecords")
+    private Boolean multipleGisrecords;
+    @JsonProperty("GISMap")
+    @ColumnAlias("GISMap")
+    private Boolean gismap;
+    @JsonProperty("FormTableName")
+    @ColumnAlias("FormTableName")
+    private String formTableName;
+    @JsonProperty("MunicipalityId")
+    @ColumnAlias("MunicipalityId")
+    private Integer municipalityId;
+    @JsonProperty("FormTypeGuid")
+    @ColumnAlias("FormTypeGuid")
+    private String formTypeGuid;
+    @JsonProperty("BasementFee")
+    @ColumnAlias("BasementFee")
+    private String basementFee;
+    @JsonProperty("BasementFeeAccountingCode")
+    @ColumnAlias("BasementFeeAccountingCode")
+    private String basementFeeAccountingCode;
     @JsonProperty("VendorSelection")
     @ColumnAlias("VendorSelection")
     private Boolean vendorSelection;
+    @JsonProperty("TitlePrefix")
+    @ColumnAlias("TitlePrefix")
+    private String titlePrefix;
+    @JsonProperty("PrefixDate")
+    @ColumnAlias("PrefixDate")
+    private String prefixDate;
+    @JsonProperty("PrefixNumber")
+    @ColumnAlias("PrefixNumber")
+    private String prefixNumber;
+    @JsonProperty("PrefixNumberStart")
+    @ColumnAlias("PrefixNumberStart")
+    private BigInteger prefixNumberStart;
+    @JsonProperty("PrefixNumberStep")
+    @ColumnAlias("PrefixNumberStep")
+    private Integer prefixNumberStep;
+    @JsonProperty("PrefixDashes")
+    @ColumnAlias("PrefixDashes")
+    private Boolean prefixDashes;
+    @JsonProperty("CurrentPrefixNumber")
+    @ColumnAlias("CurrentPrefixNumber")
+    private BigInteger currentPrefixNumber;
+    @JsonProperty("PrefixNumberResetOn")
+    @ColumnAlias("PrefixNumberResetOn")
+    private Integer prefixNumberResetOn;
+    @JsonProperty("MultipleVendors")
+    @ColumnAlias("MultipleVendors")
+    private Boolean multipleVendors;
+    @JsonProperty("RequireOwner")
+    @ColumnAlias("RequireOwner")
+    private Boolean requireOwner;
+    @JsonProperty("Instructions")
+    @ColumnAlias("Instructions")
+    private String instructions;
+    @JsonProperty("ForceInspectionSequence")
+    @ColumnAlias("ForceInspectionSequence")
+    private Boolean forceInspectionSequence;
+    @JsonProperty("RequireSignature")
+    @ColumnAlias("RequireSignature")
+    private Boolean requireSignature;
+    @JsonProperty("CodeEnforcement")
+    @ColumnAlias("CodeEnforcement")
+    private Boolean codeEnforcement;
+    @JsonProperty("PropertyType")
+    @ColumnAlias("PropertyType")
+    private String propertyType;
+    @JsonProperty("ExpirationType")
+    @ColumnAlias("ExpirationType")
+    private String expirationType;
+    @JsonProperty("ExpirationDays")
+    @ColumnAlias("ExpirationDays")
+    private Integer expirationDays;
+    @JsonProperty("ExpirationStatusId")
+    @ColumnAlias("ExpirationStatusId")
+    private Integer expirationStatusId;
+    @JsonProperty("Description")
+    @ColumnAlias("Description")
+    private String description;
 
-    public Boolean getActive() {
-        return this.active;
+    public Integer getId() {
+        return this.id;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Boolean getAttachments() {
-        return this.attachments;
+    public String getFormType() {
+        return this.formType;
     }
 
-    public void setAttachments(Boolean attachments) {
-        this.attachments = attachments;
-    }
-
-    public Boolean getAutomaticFees() {
-        return this.automaticFees;
-    }
-
-    public void setAutomaticFees(Boolean automaticFees) {
-        this.automaticFees = automaticFees;
-    }
-
-    public String getBasementFee() {
-        return this.basementFee;
-    }
-
-    public void setBasementFee(String basementFee) {
-        this.basementFee = basementFee;
-    }
-
-    public String getBasementFeeAccountingCode() {
-        return this.basementFeeAccountingCode;
-    }
-
-    public void setBasementFeeAccountingCode(String basementFeeAccountingCode) {
-        this.basementFeeAccountingCode = basementFeeAccountingCode;
-    }
-
-    public Boolean getCollectFees() {
-        return this.collectFees;
-    }
-
-    public void setCollectFees(Boolean collectFees) {
-        this.collectFees = collectFees;
-    }
-
-    public java.sql.Date getCreatedDate() {
-        return this.createdDate;
-    }
-
-    public void setCreatedDate(java.sql.Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public BigDecimal getCurrentPrefixNumber() {
-        return this.currentPrefixNumber;
-    }
-
-    public void setCurrentPrefixNumber(BigDecimal currentPrefixNumber) {
-        this.currentPrefixNumber = currentPrefixNumber;
-    }
-
-    public String getDigitalSignatures() {
-        return this.digitalSignatures;
-    }
-
-    public void setDigitalSignatures(String digitalSignatures) {
-        this.digitalSignatures = digitalSignatures;
+    public void setFormType(String formType) {
+        this.formType = formType;
     }
 
     public String getFlatFee() {
@@ -235,174 +201,6 @@ public class FormsByCategoryResponse implements Serializable {
         this.flatFeeAccountingCode = flatFeeAccountingCode;
     }
 
-    public String getFormTableName() {
-        return this.formTableName;
-    }
-
-    public void setFormTableName(String formTableName) {
-        this.formTableName = formTableName;
-    }
-
-    public String getFormType() {
-        return this.formType;
-    }
-
-    public void setFormType(String formType) {
-        this.formType = formType;
-    }
-
-    public String getFormTypeGuid() {
-        return this.formTypeGuid;
-    }
-
-    public void setFormTypeGuid(String formTypeGuid) {
-        this.formTypeGuid = formTypeGuid;
-    }
-
-    public Boolean getGismap() {
-        return this.gismap;
-    }
-
-    public void setGismap(Boolean gismap) {
-        this.gismap = gismap;
-    }
-
-    public Boolean getGisrecord() {
-        return this.gisrecord;
-    }
-
-    public void setGisrecord(Boolean gisrecord) {
-        this.gisrecord = gisrecord;
-    }
-
-    public BigDecimal getId() {
-        return this.id;
-    }
-
-    public void setId(BigDecimal id) {
-        this.id = id;
-    }
-
-    public String getInspections() {
-        return this.inspections;
-    }
-
-    public void setInspections(String inspections) {
-        this.inspections = inspections;
-    }
-
-    public String getInstructions() {
-        return this.instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public Boolean getMultipleGisrecords() {
-        return this.multipleGisrecords;
-    }
-
-    public void setMultipleGisrecords(Boolean multipleGisrecords) {
-        this.multipleGisrecords = multipleGisrecords;
-    }
-
-    public Boolean getMultipleVendors() {
-        return this.multipleVendors;
-    }
-
-    public void setMultipleVendors(Boolean multipleVendors) {
-        this.multipleVendors = multipleVendors;
-    }
-
-    public BigDecimal getMunicipalityId() {
-        return this.municipalityId;
-    }
-
-    public void setMunicipalityId(BigDecimal municipalityId) {
-        this.municipalityId = municipalityId;
-    }
-
-    public Boolean getMunicipalityInternalForm() {
-        return this.municipalityInternalForm;
-    }
-
-    public void setMunicipalityInternalForm(Boolean municipalityInternalForm) {
-        this.municipalityInternalForm = municipalityInternalForm;
-    }
-
-    public Boolean getPayments() {
-        return this.payments;
-    }
-
-    public void setPayments(Boolean payments) {
-        this.payments = payments;
-    }
-
-    public Boolean getPrefixDashes() {
-        return this.prefixDashes;
-    }
-
-    public void setPrefixDashes(Boolean prefixDashes) {
-        this.prefixDashes = prefixDashes;
-    }
-
-    public String getPrefixDate() {
-        return this.prefixDate;
-    }
-
-    public void setPrefixDate(String prefixDate) {
-        this.prefixDate = prefixDate;
-    }
-
-    public String getPrefixNumber() {
-        return this.prefixNumber;
-    }
-
-    public void setPrefixNumber(String prefixNumber) {
-        this.prefixNumber = prefixNumber;
-    }
-
-    public BigDecimal getPrefixNumberResetOn() {
-        return this.prefixNumberResetOn;
-    }
-
-    public void setPrefixNumberResetOn(BigDecimal prefixNumberResetOn) {
-        this.prefixNumberResetOn = prefixNumberResetOn;
-    }
-
-    public BigDecimal getPrefixNumberStart() {
-        return this.prefixNumberStart;
-    }
-
-    public void setPrefixNumberStart(BigDecimal prefixNumberStart) {
-        this.prefixNumberStart = prefixNumberStart;
-    }
-
-    public BigDecimal getPrefixNumberStep() {
-        return this.prefixNumberStep;
-    }
-
-    public void setPrefixNumberStep(BigDecimal prefixNumberStep) {
-        this.prefixNumberStep = prefixNumberStep;
-    }
-
-    public String getReport() {
-        return this.report;
-    }
-
-    public void setReport(String report) {
-        this.report = report;
-    }
-
-    public Boolean getRequireOwner() {
-        return this.requireOwner;
-    }
-
-    public void setRequireOwner(Boolean requireOwner) {
-        this.requireOwner = requireOwner;
-    }
-
     public String getSfFee() {
         return this.sfFee;
     }
@@ -417,38 +215,6 @@ public class FormsByCategoryResponse implements Serializable {
 
     public void setSfFeeAccountingCode(String sfFeeAccountingCode) {
         this.sfFeeAccountingCode = sfFeeAccountingCode;
-    }
-
-    public Boolean getSharedWith() {
-        return this.sharedWith;
-    }
-
-    public void setSharedWith(Boolean sharedWith) {
-        this.sharedWith = sharedWith;
-    }
-
-    public String getStateFee() {
-        return this.stateFee;
-    }
-
-    public void setStateFee(String stateFee) {
-        this.stateFee = stateFee;
-    }
-
-    public String getStateFeeAccountingCode() {
-        return this.stateFeeAccountingCode;
-    }
-
-    public void setStateFeeAccountingCode(String stateFeeAccountingCode) {
-        this.stateFeeAccountingCode = stateFeeAccountingCode;
-    }
-
-    public String getTitlePrefix() {
-        return this.titlePrefix;
-    }
-
-    public void setTitlePrefix(String titlePrefix) {
-        this.titlePrefix = titlePrefix;
     }
 
     public String getUnitFee() {
@@ -467,6 +233,166 @@ public class FormsByCategoryResponse implements Serializable {
         this.unitFeeAccountingCode = unitFeeAccountingCode;
     }
 
+    public String getStateFee() {
+        return this.stateFee;
+    }
+
+    public void setStateFee(String stateFee) {
+        this.stateFee = stateFee;
+    }
+
+    public String getStateFeeAccountingCode() {
+        return this.stateFeeAccountingCode;
+    }
+
+    public void setStateFeeAccountingCode(String stateFeeAccountingCode) {
+        this.stateFeeAccountingCode = stateFeeAccountingCode;
+    }
+
+    public String getReport() {
+        return this.report;
+    }
+
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getMunicipalityInternalForm() {
+        return this.municipalityInternalForm;
+    }
+
+    public void setMunicipalityInternalForm(Boolean municipalityInternalForm) {
+        this.municipalityInternalForm = municipalityInternalForm;
+    }
+
+    public java.sql.Date getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public void setCreatedDate(java.sql.Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Boolean getCollectFees() {
+        return this.collectFees;
+    }
+
+    public void setCollectFees(Boolean collectFees) {
+        this.collectFees = collectFees;
+    }
+
+    public Boolean getAutomaticFees() {
+        return this.automaticFees;
+    }
+
+    public void setAutomaticFees(Boolean automaticFees) {
+        this.automaticFees = automaticFees;
+    }
+
+    public Boolean getInspections() {
+        return this.inspections;
+    }
+
+    public void setInspections(Boolean inspections) {
+        this.inspections = inspections;
+    }
+
+    public Boolean getPayments() {
+        return this.payments;
+    }
+
+    public void setPayments(Boolean payments) {
+        this.payments = payments;
+    }
+
+    public Boolean getSharedWith() {
+        return this.sharedWith;
+    }
+
+    public void setSharedWith(Boolean sharedWith) {
+        this.sharedWith = sharedWith;
+    }
+
+    public Boolean getAttachments() {
+        return this.attachments;
+    }
+
+    public void setAttachments(Boolean attachments) {
+        this.attachments = attachments;
+    }
+
+    public Boolean getGisrecord() {
+        return this.gisrecord;
+    }
+
+    public void setGisrecord(Boolean gisrecord) {
+        this.gisrecord = gisrecord;
+    }
+
+    public Boolean getMultipleGisrecords() {
+        return this.multipleGisrecords;
+    }
+
+    public void setMultipleGisrecords(Boolean multipleGisrecords) {
+        this.multipleGisrecords = multipleGisrecords;
+    }
+
+    public Boolean getGismap() {
+        return this.gismap;
+    }
+
+    public void setGismap(Boolean gismap) {
+        this.gismap = gismap;
+    }
+
+    public String getFormTableName() {
+        return this.formTableName;
+    }
+
+    public void setFormTableName(String formTableName) {
+        this.formTableName = formTableName;
+    }
+
+    public Integer getMunicipalityId() {
+        return this.municipalityId;
+    }
+
+    public void setMunicipalityId(Integer municipalityId) {
+        this.municipalityId = municipalityId;
+    }
+
+    public String getFormTypeGuid() {
+        return this.formTypeGuid;
+    }
+
+    public void setFormTypeGuid(String formTypeGuid) {
+        this.formTypeGuid = formTypeGuid;
+    }
+
+    public String getBasementFee() {
+        return this.basementFee;
+    }
+
+    public void setBasementFee(String basementFee) {
+        this.basementFee = basementFee;
+    }
+
+    public String getBasementFeeAccountingCode() {
+        return this.basementFeeAccountingCode;
+    }
+
+    public void setBasementFeeAccountingCode(String basementFeeAccountingCode) {
+        this.basementFeeAccountingCode = basementFeeAccountingCode;
+    }
+
     public Boolean getVendorSelection() {
         return this.vendorSelection;
     }
@@ -475,96 +401,262 @@ public class FormsByCategoryResponse implements Serializable {
         this.vendorSelection = vendorSelection;
     }
 
+    public String getTitlePrefix() {
+        return this.titlePrefix;
+    }
+
+    public void setTitlePrefix(String titlePrefix) {
+        this.titlePrefix = titlePrefix;
+    }
+
+    public String getPrefixDate() {
+        return this.prefixDate;
+    }
+
+    public void setPrefixDate(String prefixDate) {
+        this.prefixDate = prefixDate;
+    }
+
+    public String getPrefixNumber() {
+        return this.prefixNumber;
+    }
+
+    public void setPrefixNumber(String prefixNumber) {
+        this.prefixNumber = prefixNumber;
+    }
+
+    public BigInteger getPrefixNumberStart() {
+        return this.prefixNumberStart;
+    }
+
+    public void setPrefixNumberStart(BigInteger prefixNumberStart) {
+        this.prefixNumberStart = prefixNumberStart;
+    }
+
+    public Integer getPrefixNumberStep() {
+        return this.prefixNumberStep;
+    }
+
+    public void setPrefixNumberStep(Integer prefixNumberStep) {
+        this.prefixNumberStep = prefixNumberStep;
+    }
+
+    public Boolean getPrefixDashes() {
+        return this.prefixDashes;
+    }
+
+    public void setPrefixDashes(Boolean prefixDashes) {
+        this.prefixDashes = prefixDashes;
+    }
+
+    public BigInteger getCurrentPrefixNumber() {
+        return this.currentPrefixNumber;
+    }
+
+    public void setCurrentPrefixNumber(BigInteger currentPrefixNumber) {
+        this.currentPrefixNumber = currentPrefixNumber;
+    }
+
+    public Integer getPrefixNumberResetOn() {
+        return this.prefixNumberResetOn;
+    }
+
+    public void setPrefixNumberResetOn(Integer prefixNumberResetOn) {
+        this.prefixNumberResetOn = prefixNumberResetOn;
+    }
+
+    public Boolean getMultipleVendors() {
+        return this.multipleVendors;
+    }
+
+    public void setMultipleVendors(Boolean multipleVendors) {
+        this.multipleVendors = multipleVendors;
+    }
+
+    public Boolean getRequireOwner() {
+        return this.requireOwner;
+    }
+
+    public void setRequireOwner(Boolean requireOwner) {
+        this.requireOwner = requireOwner;
+    }
+
+    public String getInstructions() {
+        return this.instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public Boolean getForceInspectionSequence() {
+        return this.forceInspectionSequence;
+    }
+
+    public void setForceInspectionSequence(Boolean forceInspectionSequence) {
+        this.forceInspectionSequence = forceInspectionSequence;
+    }
+
+    public Boolean getRequireSignature() {
+        return this.requireSignature;
+    }
+
+    public void setRequireSignature(Boolean requireSignature) {
+        this.requireSignature = requireSignature;
+    }
+
+    public Boolean getCodeEnforcement() {
+        return this.codeEnforcement;
+    }
+
+    public void setCodeEnforcement(Boolean codeEnforcement) {
+        this.codeEnforcement = codeEnforcement;
+    }
+
+    public String getPropertyType() {
+        return this.propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public String getExpirationType() {
+        return this.expirationType;
+    }
+
+    public void setExpirationType(String expirationType) {
+        this.expirationType = expirationType;
+    }
+
+    public Integer getExpirationDays() {
+        return this.expirationDays;
+    }
+
+    public void setExpirationDays(Integer expirationDays) {
+        this.expirationDays = expirationDays;
+    }
+
+    public Integer getExpirationStatusId() {
+        return this.expirationStatusId;
+    }
+
+    public void setExpirationStatusId(Integer expirationStatusId) {
+        this.expirationStatusId = expirationStatusId;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof FormsByCategoryResponse)) return false;
         final FormsByCategoryResponse formsByCategoryResponse = (FormsByCategoryResponse) o;
-        return Objects.equals(getActive(), formsByCategoryResponse.getActive()) &&
-                Objects.equals(getAttachments(), formsByCategoryResponse.getAttachments()) &&
-                Objects.equals(getAutomaticFees(), formsByCategoryResponse.getAutomaticFees()) &&
-                Objects.equals(getBasementFee(), formsByCategoryResponse.getBasementFee()) &&
-                Objects.equals(getBasementFeeAccountingCode(), formsByCategoryResponse.getBasementFeeAccountingCode()) &&
-                Objects.equals(getCollectFees(), formsByCategoryResponse.getCollectFees()) &&
-                Objects.equals(getCreatedDate(), formsByCategoryResponse.getCreatedDate()) &&
-                Objects.equals(getCurrentPrefixNumber(), formsByCategoryResponse.getCurrentPrefixNumber()) &&
-                Objects.equals(getDigitalSignatures(), formsByCategoryResponse.getDigitalSignatures()) &&
+        return Objects.equals(getId(), formsByCategoryResponse.getId()) &&
+                Objects.equals(getFormType(), formsByCategoryResponse.getFormType()) &&
                 Objects.equals(getFlatFee(), formsByCategoryResponse.getFlatFee()) &&
                 Objects.equals(getFlatFeeAccountingCode(), formsByCategoryResponse.getFlatFeeAccountingCode()) &&
-                Objects.equals(getFormTableName(), formsByCategoryResponse.getFormTableName()) &&
-                Objects.equals(getFormType(), formsByCategoryResponse.getFormType()) &&
-                Objects.equals(getFormTypeGuid(), formsByCategoryResponse.getFormTypeGuid()) &&
-                Objects.equals(getGismap(), formsByCategoryResponse.getGismap()) &&
-                Objects.equals(getGisrecord(), formsByCategoryResponse.getGisrecord()) &&
-                Objects.equals(getId(), formsByCategoryResponse.getId()) &&
-                Objects.equals(getInspections(), formsByCategoryResponse.getInspections()) &&
-                Objects.equals(getInstructions(), formsByCategoryResponse.getInstructions()) &&
-                Objects.equals(getMultipleGisrecords(), formsByCategoryResponse.getMultipleGisrecords()) &&
-                Objects.equals(getMultipleVendors(), formsByCategoryResponse.getMultipleVendors()) &&
-                Objects.equals(getMunicipalityId(), formsByCategoryResponse.getMunicipalityId()) &&
-                Objects.equals(getMunicipalityInternalForm(), formsByCategoryResponse.getMunicipalityInternalForm()) &&
-                Objects.equals(getPayments(), formsByCategoryResponse.getPayments()) &&
-                Objects.equals(getPrefixDashes(), formsByCategoryResponse.getPrefixDashes()) &&
-                Objects.equals(getPrefixDate(), formsByCategoryResponse.getPrefixDate()) &&
-                Objects.equals(getPrefixNumber(), formsByCategoryResponse.getPrefixNumber()) &&
-                Objects.equals(getPrefixNumberResetOn(), formsByCategoryResponse.getPrefixNumberResetOn()) &&
-                Objects.equals(getPrefixNumberStart(), formsByCategoryResponse.getPrefixNumberStart()) &&
-                Objects.equals(getPrefixNumberStep(), formsByCategoryResponse.getPrefixNumberStep()) &&
-                Objects.equals(getReport(), formsByCategoryResponse.getReport()) &&
-                Objects.equals(getRequireOwner(), formsByCategoryResponse.getRequireOwner()) &&
                 Objects.equals(getSfFee(), formsByCategoryResponse.getSfFee()) &&
                 Objects.equals(getSfFeeAccountingCode(), formsByCategoryResponse.getSfFeeAccountingCode()) &&
-                Objects.equals(getSharedWith(), formsByCategoryResponse.getSharedWith()) &&
-                Objects.equals(getStateFee(), formsByCategoryResponse.getStateFee()) &&
-                Objects.equals(getStateFeeAccountingCode(), formsByCategoryResponse.getStateFeeAccountingCode()) &&
-                Objects.equals(getTitlePrefix(), formsByCategoryResponse.getTitlePrefix()) &&
                 Objects.equals(getUnitFee(), formsByCategoryResponse.getUnitFee()) &&
                 Objects.equals(getUnitFeeAccountingCode(), formsByCategoryResponse.getUnitFeeAccountingCode()) &&
-                Objects.equals(getVendorSelection(), formsByCategoryResponse.getVendorSelection());
+                Objects.equals(getStateFee(), formsByCategoryResponse.getStateFee()) &&
+                Objects.equals(getStateFeeAccountingCode(), formsByCategoryResponse.getStateFeeAccountingCode()) &&
+                Objects.equals(getReport(), formsByCategoryResponse.getReport()) &&
+                Objects.equals(getActive(), formsByCategoryResponse.getActive()) &&
+                Objects.equals(getMunicipalityInternalForm(), formsByCategoryResponse.getMunicipalityInternalForm()) &&
+                Objects.equals(getCreatedDate(), formsByCategoryResponse.getCreatedDate()) &&
+                Objects.equals(getCollectFees(), formsByCategoryResponse.getCollectFees()) &&
+                Objects.equals(getAutomaticFees(), formsByCategoryResponse.getAutomaticFees()) &&
+                Objects.equals(getInspections(), formsByCategoryResponse.getInspections()) &&
+                Objects.equals(getPayments(), formsByCategoryResponse.getPayments()) &&
+                Objects.equals(getSharedWith(), formsByCategoryResponse.getSharedWith()) &&
+                Objects.equals(getAttachments(), formsByCategoryResponse.getAttachments()) &&
+                Objects.equals(getGisrecord(), formsByCategoryResponse.getGisrecord()) &&
+                Objects.equals(getMultipleGisrecords(), formsByCategoryResponse.getMultipleGisrecords()) &&
+                Objects.equals(getGismap(), formsByCategoryResponse.getGismap()) &&
+                Objects.equals(getFormTableName(), formsByCategoryResponse.getFormTableName()) &&
+                Objects.equals(getMunicipalityId(), formsByCategoryResponse.getMunicipalityId()) &&
+                Objects.equals(getFormTypeGuid(), formsByCategoryResponse.getFormTypeGuid()) &&
+                Objects.equals(getBasementFee(), formsByCategoryResponse.getBasementFee()) &&
+                Objects.equals(getBasementFeeAccountingCode(), formsByCategoryResponse.getBasementFeeAccountingCode()) &&
+                Objects.equals(getVendorSelection(), formsByCategoryResponse.getVendorSelection()) &&
+                Objects.equals(getTitlePrefix(), formsByCategoryResponse.getTitlePrefix()) &&
+                Objects.equals(getPrefixDate(), formsByCategoryResponse.getPrefixDate()) &&
+                Objects.equals(getPrefixNumber(), formsByCategoryResponse.getPrefixNumber()) &&
+                Objects.equals(getPrefixNumberStart(), formsByCategoryResponse.getPrefixNumberStart()) &&
+                Objects.equals(getPrefixNumberStep(), formsByCategoryResponse.getPrefixNumberStep()) &&
+                Objects.equals(getPrefixDashes(), formsByCategoryResponse.getPrefixDashes()) &&
+                Objects.equals(getCurrentPrefixNumber(), formsByCategoryResponse.getCurrentPrefixNumber()) &&
+                Objects.equals(getPrefixNumberResetOn(), formsByCategoryResponse.getPrefixNumberResetOn()) &&
+                Objects.equals(getMultipleVendors(), formsByCategoryResponse.getMultipleVendors()) &&
+                Objects.equals(getRequireOwner(), formsByCategoryResponse.getRequireOwner()) &&
+                Objects.equals(getInstructions(), formsByCategoryResponse.getInstructions()) &&
+                Objects.equals(getForceInspectionSequence(), formsByCategoryResponse.getForceInspectionSequence()) &&
+                Objects.equals(getRequireSignature(), formsByCategoryResponse.getRequireSignature()) &&
+                Objects.equals(getCodeEnforcement(), formsByCategoryResponse.getCodeEnforcement()) &&
+                Objects.equals(getPropertyType(), formsByCategoryResponse.getPropertyType()) &&
+                Objects.equals(getExpirationType(), formsByCategoryResponse.getExpirationType()) &&
+                Objects.equals(getExpirationDays(), formsByCategoryResponse.getExpirationDays()) &&
+                Objects.equals(getExpirationStatusId(), formsByCategoryResponse.getExpirationStatusId()) &&
+                Objects.equals(getDescription(), formsByCategoryResponse.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getActive(),
-                getAttachments(),
-                getAutomaticFees(),
-                getBasementFee(),
-                getBasementFeeAccountingCode(),
-                getCollectFees(),
-                getCreatedDate(),
-                getCurrentPrefixNumber(),
-                getDigitalSignatures(),
+        return Objects.hash(getId(),
+                getFormType(),
                 getFlatFee(),
                 getFlatFeeAccountingCode(),
-                getFormTableName(),
-                getFormType(),
-                getFormTypeGuid(),
-                getGismap(),
-                getGisrecord(),
-                getId(),
-                getInspections(),
-                getInstructions(),
-                getMultipleGisrecords(),
-                getMultipleVendors(),
-                getMunicipalityId(),
-                getMunicipalityInternalForm(),
-                getPayments(),
-                getPrefixDashes(),
-                getPrefixDate(),
-                getPrefixNumber(),
-                getPrefixNumberResetOn(),
-                getPrefixNumberStart(),
-                getPrefixNumberStep(),
-                getReport(),
-                getRequireOwner(),
                 getSfFee(),
                 getSfFeeAccountingCode(),
-                getSharedWith(),
-                getStateFee(),
-                getStateFeeAccountingCode(),
-                getTitlePrefix(),
                 getUnitFee(),
                 getUnitFeeAccountingCode(),
-                getVendorSelection());
+                getStateFee(),
+                getStateFeeAccountingCode(),
+                getReport(),
+                getActive(),
+                getMunicipalityInternalForm(),
+                getCreatedDate(),
+                getCollectFees(),
+                getAutomaticFees(),
+                getInspections(),
+                getPayments(),
+                getSharedWith(),
+                getAttachments(),
+                getGisrecord(),
+                getMultipleGisrecords(),
+                getGismap(),
+                getFormTableName(),
+                getMunicipalityId(),
+                getFormTypeGuid(),
+                getBasementFee(),
+                getBasementFeeAccountingCode(),
+                getVendorSelection(),
+                getTitlePrefix(),
+                getPrefixDate(),
+                getPrefixNumber(),
+                getPrefixNumberStart(),
+                getPrefixNumberStep(),
+                getPrefixDashes(),
+                getCurrentPrefixNumber(),
+                getPrefixNumberResetOn(),
+                getMultipleVendors(),
+                getRequireOwner(),
+                getInstructions(),
+                getForceInspectionSequence(),
+                getRequireSignature(),
+                getCodeEnforcement(),
+                getPropertyType(),
+                getExpirationType(),
+                getExpirationDays(),
+                getExpirationStatusId(),
+                getDescription());
     }
 }

@@ -7,6 +7,16 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         $scope.toDayEnd = moment().endOf('day').valueOf();
     };
 
+    function isEmployee() {
+        let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        let isEmployee = false
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "CXAdmin") || (temp[i] == "MunicipalityEmployee")) {
+                isEmployee = true;
+            }
+        }
+        return isEmployee;
+    }
 
     $scope.buttonByVendorClick = function($event, $isolateScope) {
 
@@ -15,22 +25,27 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 $scope.Variables.SearchFormByVendor.setInput({
                     'Closed': true
                 });
-                $scope.Variables.SearchFormByVendor.update();
                 break;
             case "Open":
                 $scope.Variables.SearchFormByVendor.setInput({
                     'Closed': false
                 });
-                $scope.Variables.SearchFormByVendor.update();
                 break;
             case "Both":
                 $scope.Variables.SearchFormByVendor.setInput({
                     'Closed': undefined
                 });
-                $scope.Variables.SearchFormByVendor.update();
-
                 break;
         }
+
+        if (!isEmployee()) {
+            $scope.Variables.SearchFormByVendor.setFilter({
+                'municipalityInternalForm': false,
+                'publicRead': true
+            });
+        }
+
+        $scope.Variables.SearchFormByVendor.update();
     };
 
 
@@ -41,26 +56,31 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 $scope.Variables.svSearchAllFormsByUser.setInput({
                     'Closed': true
                 });
-                $scope.Variables.svSearchAllFormsByUser.update();
                 break;
             case "Open":
                 $scope.Variables.svSearchAllFormsByUser.setInput({
                     'Closed': false
                 });
-                $scope.Variables.svSearchAllFormsByUser.update();
                 break;
             case "Both":
                 $scope.Variables.svSearchAllFormsByUser.setInput({
                     'Closed': undefined
                 });
-                $scope.Variables.svSearchAllFormsByUser.update();
                 break;
         }
+
+        if (!isEmployee()) {
+            $scope.Variables.svSearchAllFormsByUser.setFilter({
+                'municipalityInternalForm': false,
+                'publicRead': true
+            });
+        }
+
+        $scope.Variables.svSearchAllFormsByUser.update();
     };
 
 
     $scope.buttonSearchByAddressClick = function($event, $isolateScope) {
-        debugger
 
         switch ($scope.Widgets.radiosetStatus.datavalue) {
             case "Closed":
@@ -84,21 +104,27 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
                 $scope.Variables.svSearchAllFormsByAddress.setInput({
                     'GISRecordId': $scope.Widgets.searchAddress.datavalue.id
                 });
-                $scope.Variables.svSearchAllFormsByAddress.update();
                 break;
             case "Subdivision":
                 $scope.Variables.svSearchAllFormsByAddress.setInput({
                     'GISRecordId': $scope.Widgets.searchSubdivision.datavalue.id
                 });
-                $scope.Variables.svSearchAllFormsByAddress.update();
                 break;
             case "Parcel":
                 $scope.Variables.svSearchAllFormsByAddress.setInput({
                     'GISRecordId': $scope.Widgets.searchParcel.datavalue.id
                 });
-                $scope.Variables.svSearchAllFormsByAddress.update();
                 break;
         }
+
+        if (!isEmployee()) {
+            $scope.Variables.svSearchAllFormsByAddress.setFilter({
+                'municipalityInternalForm': false,
+                'publicRead': true
+            });
+        }
+
+        $scope.Variables.svSearchAllFormsByAddress.update();
     };
 
     function updateCategoriesForUser() {
@@ -106,6 +132,11 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         $scope.Variables.MunicipalityCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMunicipality.datavalue.ID
         });
+        if (!isEmployee()) {
+            $scope.Variables.MunicipalityCategories.setFilter({
+                'municipalityInternalCategory': false
+            });
+        }
         $scope.Variables.MunicipalityCategories.update();
     }
 
@@ -113,6 +144,11 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         $scope.Variables.MunicipalityCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMuncipalityForVENDOR.datavalue.ID
         });
+        if (!isEmployee()) {
+            $scope.Variables.MunicipalityCategories.setFilter({
+                'municipalityInternalCategory': false
+            });
+        }
         $scope.Variables.MunicipalityCategories.update();
     }
 
@@ -120,6 +156,11 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
         $scope.Variables.MunicipalityCategories.setFilter({
             'municipalityId': $scope.Widgets.selectMunicipalityForAddress.datavalue.ID
         });
+        if (!isEmployee()) {
+            $scope.Variables.MunicipalityCategories.setFilter({
+                'municipalityInternalCategory': false
+            });
+        }
         $scope.Variables.MunicipalityCategories.update();
     }
 
@@ -159,11 +200,21 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
                 'formCategory': undefined
             });
+            if (!isEmployee()) {
+                $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
         } else {
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
                 'formCategory': newVal.id
             });
+            if (!isEmployee()) {
+                $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
         }
 
@@ -175,11 +226,21 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
                 'formCategory': undefined
             });
+            if (!isEmployee()) {
+                $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
         } else {
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setInput({
                 'formCategory': newVal.id
             });
+            if (!isEmployee()) {
+                $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.GetFormTypesByCategoriesAndMunicipalities.update();
         }
     };
@@ -191,18 +252,35 @@ Application.$controller("FindFormPageController", ["$scope", function($scope) {
             $scope.Variables.FormTypesByCategoriesForVendor.setInput({
                 'formCategory': undefined
             });
+            if (!isEmployee()) {
+                $scope.Variables.FormTypesByCategoriesForVendor.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.FormTypesByCategoriesForVendor.update();
         } else {
             $scope.Variables.FormTypesByCategoriesForVendor.setInput({
                 'formCategory': newVal.id
             });
+            if (!isEmployee()) {
+                $scope.Variables.FormTypesByCategoriesForVendor.setFilter({
+                    'municipalityInternalForm': false
+                });
+            }
             $scope.Variables.FormTypesByCategoriesForVendor.update();
         }
 
     };
 
-
-
+    $scope.buttonSearchAdvancedClick = function($event, $isolateScope) {
+        if (!isEmployee()) {
+            $scope.Variables.svSearchAllFormsByFormTitle.setFilter({
+                'municipalityInternalForm': false,
+                'publicRead': true
+            });
+        }
+        $scope.Variables.svSearchAllFormsByFormTitle.update();
+    };
 
 }]);
 
@@ -215,12 +293,7 @@ Application.$controller("gridAdvancedController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            // $scope.Variables.goToPage_FormsFormSearch.setData({
-            //     'FormGUID': $rowData.formGuid
-            // });
-            // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            // window.open(tempLink);
+
             $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
             $scope.Widgets.pagedialogViewForm.open();
         };
@@ -245,12 +318,7 @@ Application.$controller("gridVENDORController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            // $scope.Variables.goToPage_FormsFormSearch.setData({
-            //     'FormGUID': $rowData.formGuid
-            // });
-            // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            // window.open(tempLink);
+
             $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
             $scope.Widgets.pagedialogViewForm.open();
         };
@@ -264,12 +332,7 @@ Application.$controller("gridUserFormsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            // $scope.Variables.goToPage_FormsFormSearch.setData({
-            //     'FormGUID': $rowData.formGuid
-            // });
-            // $scope.Variables.goToPage_FormsFormSearch.navigate();
-            // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-            // window.open(tempLink);
+
             $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
             $scope.Widgets.pagedialogViewForm.open();
         };
@@ -283,16 +346,9 @@ Application.$controller("gridFormsAddressController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.customRowAction = function($event, $rowData) {
-                // $scope.Variables.goToPage_FormsFormSearch.setData({
-                //     'FormGUID': $rowData.formGuid
-                // });
-                // $scope.Variables.goToPage_FormsFormSearch.navigate();
-                // var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid
-                // window.open(tempLink);
-                $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
-                $scope.Widgets.pagedialogViewForm.open();
-            };
+
+            $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
+            $scope.Widgets.pagedialogViewForm.open();
         };
 
     }

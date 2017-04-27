@@ -3780,8 +3780,8 @@
     "name" : "FormsByCategory",
     "description" : "FormsByCategory",
     "version" : "V1",
-    "queryString" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0",
-    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and FT.MunicipalityInternalForm=0) wmTempTable",
+    "queryString" : "select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where\nFC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and (:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)",
+    "countQueryString" : "select count(*) from (select FT.* from FormTypes FT,FormCategoryMapping FM,FormCategories FC where\nFC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.Active=:isActive and (:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -3799,6 +3799,13 @@
       "variableType" : "PROMPT",
       "testValue" : "true",
       "required" : false
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
     } ],
     "request" : {
       "wrapped" : false,
@@ -3810,80 +3817,17 @@
       "returns" : "CUSTOM",
       "responseType" : "PAGINATED",
       "properties" : [ {
-        "name" : "Active",
-        "fieldName" : "active",
+        "name" : "ID",
+        "fieldName" : "id",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
+          "typeRef" : "java.lang.Integer",
           "list" : false
         }
       }, {
-        "name" : "Attachments",
-        "fieldName" : "attachments",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "AutomaticFees",
-        "fieldName" : "automaticFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "BasementFee",
-        "fieldName" : "basementFee",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "BasementFeeAccountingCode",
-        "fieldName" : "basementFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "CollectFees",
-        "fieldName" : "collectFees",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "CreatedDate",
-        "fieldName" : "createdDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.sql.Date",
-          "list" : false
-        }
-      }, {
-        "name" : "CurrentPrefixNumber",
-        "fieldName" : "currentPrefixNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "DigitalSignatures",
-        "fieldName" : "digitalSignatures",
+        "name" : "FormType",
+        "fieldName" : "formType",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -3909,195 +3853,6 @@
           "list" : false
         }
       }, {
-        "name" : "FormTableName",
-        "fieldName" : "formTableName",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FormType",
-        "fieldName" : "formType",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "FormTypeGuid",
-        "fieldName" : "formTypeGuid",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "GISMap",
-        "fieldName" : "gismap",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "GISRecord",
-        "fieldName" : "gisrecord",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "ID",
-        "fieldName" : "id",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "Inspections",
-        "fieldName" : "inspections",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "Instructions",
-        "fieldName" : "instructions",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "MultipleGISRecords",
-        "fieldName" : "multipleGisrecords",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "MultipleVendors",
-        "fieldName" : "multipleVendors",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "MunicipalityId",
-        "fieldName" : "municipalityId",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "MunicipalityInternalForm",
-        "fieldName" : "municipalityInternalForm",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "Payments",
-        "fieldName" : "payments",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixDashes",
-        "fieldName" : "prefixDashes",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixDate",
-        "fieldName" : "prefixDate",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumber",
-        "fieldName" : "prefixNumber",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberResetOn",
-        "fieldName" : "prefixNumberResetOn",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberStart",
-        "fieldName" : "prefixNumberStart",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "PrefixNumberStep",
-        "fieldName" : "prefixNumberStep",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.math.BigDecimal",
-          "list" : false
-        }
-      }, {
-        "name" : "Report",
-        "fieldName" : "report",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "RequireOwner",
-        "fieldName" : "requireOwner",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
         "name" : "SfFee",
         "fieldName" : "sfFee",
         "optional" : false,
@@ -4109,42 +3864,6 @@
       }, {
         "name" : "SfFeeAccountingCode",
         "fieldName" : "sfFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "SharedWith",
-        "fieldName" : "sharedWith",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Boolean",
-          "list" : false
-        }
-      }, {
-        "name" : "StateFee",
-        "fieldName" : "stateFee",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "StateFeeAccountingCode",
-        "fieldName" : "stateFeeAccountingCode",
-        "optional" : false,
-        "fieldType" : {
-          "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
-          "list" : false
-        }
-      }, {
-        "name" : "TitlePrefix",
-        "fieldName" : "titlePrefix",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
@@ -4170,12 +3889,363 @@
           "list" : false
         }
       }, {
+        "name" : "StateFee",
+        "fieldName" : "stateFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "StateFeeAccountingCode",
+        "fieldName" : "stateFeeAccountingCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Report",
+        "fieldName" : "report",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Active",
+        "fieldName" : "active",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityInternalForm",
+        "fieldName" : "municipalityInternalForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CreatedDate",
+        "fieldName" : "createdDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "CollectFees",
+        "fieldName" : "collectFees",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "AutomaticFees",
+        "fieldName" : "automaticFees",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Inspections",
+        "fieldName" : "inspections",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Payments",
+        "fieldName" : "payments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "SharedWith",
+        "fieldName" : "sharedWith",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Attachments",
+        "fieldName" : "attachments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "GISRecord",
+        "fieldName" : "gisrecord",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "MultipleGISRecords",
+        "fieldName" : "multipleGisrecords",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "GISMap",
+        "fieldName" : "gismap",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "FormTableName",
+        "fieldName" : "formTableName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "MunicipalityId",
+        "fieldName" : "municipalityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FormTypeGuid",
+        "fieldName" : "formTypeGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "BasementFee",
+        "fieldName" : "basementFee",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "BasementFeeAccountingCode",
+        "fieldName" : "basementFeeAccountingCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
         "name" : "VendorSelection",
         "fieldName" : "vendorSelection",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "TitlePrefix",
+        "fieldName" : "titlePrefix",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDate",
+        "fieldName" : "prefixDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumber",
+        "fieldName" : "prefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStart",
+        "fieldName" : "prefixNumberStart",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberStep",
+        "fieldName" : "prefixNumberStep",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixDashes",
+        "fieldName" : "prefixDashes",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CurrentPrefixNumber",
+        "fieldName" : "currentPrefixNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigInteger",
+          "list" : false
+        }
+      }, {
+        "name" : "PrefixNumberResetOn",
+        "fieldName" : "prefixNumberResetOn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "MultipleVendors",
+        "fieldName" : "multipleVendors",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "RequireOwner",
+        "fieldName" : "requireOwner",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "Instructions",
+        "fieldName" : "instructions",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ForceInspectionSequence",
+        "fieldName" : "forceInspectionSequence",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "RequireSignature",
+        "fieldName" : "requireSignature",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "CodeEnforcement",
+        "fieldName" : "codeEnforcement",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "PropertyType",
+        "fieldName" : "propertyType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationType",
+        "fieldName" : "expirationType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationDays",
+        "fieldName" : "expirationDays",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ExpirationStatusId",
+        "fieldName" : "expirationStatusId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Description",
+        "fieldName" : "description",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
           "list" : false
         }
       } ]
@@ -7878,10 +7948,10 @@
     "name" : "SearchAllFormsByAddress",
     "description" : "SearchAllFormsByAddress",
     "version" : "V2",
-    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   FT.CodeEnforcement=:codeEnforcement \r\n     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd\r\n    \r\n    \r\nORDER BY DateModified DESC",
-    "countQueryString" : null,
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   FT.CodeEnforcement=:codeEnforcement \r\n     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tAND DateSubmitted BETWEEN :startd and :endd",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   FT.CodeEnforcement=:codeEnforcement \r\n     and (MF.FormGUID IN (select RelatedFormGUID from GIS2Forms where GISRecordId=:GISRecordId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tAND DateSubmitted BETWEEN :startd and :endd) wmTempTable",
     "nativeSql" : true,
-    "fetchCount" : false,
+    "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "codeEnforcement",
@@ -7920,6 +7990,20 @@
       "required" : false
     }, {
       "name" : "Closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "publicRead",
       "type" : "boolean",
       "list" : false,
       "variableType" : "PROMPT",
@@ -8045,7 +8129,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
@@ -8066,6 +8150,15 @@
           "typeRef" : "java.lang.Integer",
           "list" : false
         }
+      }, {
+        "name" : "dateModified",
+        "fieldName" : "dateModified",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
       } ]
     }
   },
@@ -8073,10 +8166,10 @@
     "name" : "SearchAllFormsByUser",
     "description" : "SearchAllFormsByUser",
     "version" : "V2",
-    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   ( UserId=:sharedWithUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd\r\n    \r\n    \r\nORDER BY DateModified DESC",
-    "countQueryString" : null,
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 \r\nwhere   ( UserId=:sharedWithUser or MF.FormGUID IN \r\n     (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 \r\nwhere   ( UserId=:sharedWithUser or MF.FormGUID IN \r\n     (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd) wmTempTable",
     "nativeSql" : true,
-    "fetchCount" : false,
+    "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "sharedWithUser",
@@ -8105,6 +8198,20 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : "107",
+      "required" : false
+    }, {
+      "name" : "publicRead",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
       "required" : false
     }, {
       "name" : "Closed",
@@ -8254,6 +8361,15 @@
           "typeRef" : "java.lang.Integer",
           "list" : false
         }
+      }, {
+        "name" : "dateModified",
+        "fieldName" : "dateModified",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
       } ]
     }
   },
@@ -8261,17 +8377,17 @@
     "name" : "SearchAllFormsByVendor",
     "description" : "SearchAllFormsByVendor",
     "version" : "V2",
-    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd\r\n    \r\n    \r\nORDER BY DateModified DESC",
-    "countQueryString" : null,
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tAND DateSubmitted BETWEEN :startd and :endd",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,\r\n\tMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorId=:vendorId ))\r\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) AND (:formcategoryID is null OR FC.ID=:formcategoryID)\r\n\tAND (:formtypeID is null OR FT.ID =:formtypeID)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n\tAND DateSubmitted BETWEEN :startd and :endd) wmTempTable",
     "nativeSql" : true,
-    "fetchCount" : false,
+    "fetchCount" : true,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "vendorId",
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2",
+      "testValue" : "28",
       "required" : true
     }, {
       "name" : "municipalityId",
@@ -8300,6 +8416,20 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : true,
+      "required" : false
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "publicRead",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
       "required" : false
     }, {
       "name" : "startd",
@@ -8440,6 +8570,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "dateModified",
+        "fieldName" : "dateModified",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
           "list" : false
         }
       } ]
@@ -13773,8 +13912,8 @@
     "name" : "searchWithFormTitle",
     "description" : "searchWithFormTitle",
     "version" : "V2",
-    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)\r\n and MF.FormTitle like :formTitle",
-    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere    (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)\r\n and MF.FormTitle like :formTitle) wmTempTable",
+    "queryString" : "SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)\r\n      and (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n      and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n and MF.FormTitle like :formTitle",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,\r\n\tGR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue\r\n\t,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\n\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\n\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\n\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\r\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\r\n\r\nwhere   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)\r\n      and (:publicRead IS NULL OR FS.PublicRead=:publicRead)\r\n      and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n and MF.FormTitle like :formTitle) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -13785,6 +13924,20 @@
       "variableType" : "PROMPT",
       "testValue" : "2",
       "required" : true
+    }, {
+      "name" : "publicRead",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
     }, {
       "name" : "formTitle",
       "type" : "string",

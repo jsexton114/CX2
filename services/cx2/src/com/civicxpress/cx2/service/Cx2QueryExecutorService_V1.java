@@ -93,7 +93,7 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeUpdateAsCXVendorAdmin(String role, Integer municipality, Integer user);
 
     @Deprecated
-    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive);
+    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive, Boolean municipalityInternalForm);
 
     @Deprecated
     public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, Boolean closed, Integer vendorId);

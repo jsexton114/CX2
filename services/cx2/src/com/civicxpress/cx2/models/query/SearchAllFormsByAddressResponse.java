@@ -7,6 +7,7 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -44,11 +45,13 @@ public class SearchAllFormsByAddressResponse implements Serializable {
     @ColumnAlias("primaryVendor")
     private String primaryVendor;
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
     @ColumnAlias("formTypeID")
     private Integer formTypeId;
     @ColumnAlias("FormCategory")
     private Integer formCategory;
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -130,11 +133,11 @@ public class SearchAllFormsByAddressResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
     }
 
@@ -154,6 +157,14 @@ public class SearchAllFormsByAddressResponse implements Serializable {
         this.formCategory = formCategory;
     }
 
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -171,7 +182,8 @@ public class SearchAllFormsByAddressResponse implements Serializable {
                 Objects.equals(getPrimaryVendor(), searchAllFormsByAddressResponse.getPrimaryVendor()) &&
                 Objects.equals(getBalanceDue(), searchAllFormsByAddressResponse.getBalanceDue()) &&
                 Objects.equals(getFormTypeId(), searchAllFormsByAddressResponse.getFormTypeId()) &&
-                Objects.equals(getFormCategory(), searchAllFormsByAddressResponse.getFormCategory());
+                Objects.equals(getFormCategory(), searchAllFormsByAddressResponse.getFormCategory()) &&
+                Objects.equals(getDateModified(), searchAllFormsByAddressResponse.getDateModified());
     }
 
     @Override
@@ -188,6 +200,7 @@ public class SearchAllFormsByAddressResponse implements Serializable {
                 getPrimaryVendor(),
                 getBalanceDue(),
                 getFormTypeId(),
-                getFormCategory());
+                getFormCategory(),
+                getDateModified());
     }
 }

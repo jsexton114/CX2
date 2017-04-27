@@ -56,6 +56,8 @@ public class SearchAllFormsByVendorResponse implements Serializable {
     private Integer formTypeId;
     @ColumnAlias("FormCategory")
     private Integer formCategory;
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -161,6 +163,14 @@ public class SearchAllFormsByVendorResponse implements Serializable {
         this.formCategory = formCategory;
     }
 
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,7 +188,8 @@ public class SearchAllFormsByVendorResponse implements Serializable {
                 Objects.equals(getPrimaryVendor(), searchAllFormsByVendorResponse.getPrimaryVendor()) &&
                 Objects.equals(getBalanceDue(), searchAllFormsByVendorResponse.getBalanceDue()) &&
                 Objects.equals(getFormTypeId(), searchAllFormsByVendorResponse.getFormTypeId()) &&
-                Objects.equals(getFormCategory(), searchAllFormsByVendorResponse.getFormCategory());
+                Objects.equals(getFormCategory(), searchAllFormsByVendorResponse.getFormCategory()) &&
+                Objects.equals(getDateModified(), searchAllFormsByVendorResponse.getDateModified());
     }
 
     @Override
@@ -195,6 +206,7 @@ public class SearchAllFormsByVendorResponse implements Serializable {
                 getPrimaryVendor(),
                 getBalanceDue(),
                 getFormTypeId(),
-                getFormCategory());
+                getFormCategory(),
+                getDateModified());
     }
 }

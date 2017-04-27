@@ -25,8 +25,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label17" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn71">
-                                            <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord"
-                                            orderby="MunicipalityName:asc" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select name="selectMunicipality" dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalities.firstRecord"
+                                            on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn72"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -149,8 +149,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label19" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn76">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectMuncipalityForVENDOR" on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalities.firstRecord" name="selectMuncipalityForVENDOR"
+                                            on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn77"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -273,8 +273,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label27" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn109">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesOrAdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"
-                                            name="selectMunicipalityForAddress" on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.StandardUserMunicipalities.firstRecord" name="selectMunicipalityForAddress"
+                                            on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn107"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -482,7 +482,7 @@
                                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold" width="100%"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn67">
-                                            <wm-select dataset="bind:Variables.EmployeesOrAdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" name="selectMunicipalityAdvanced" placeholder="Select Municipality"></wm-select>
+                                            <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" name="selectMunicipalityAdvanced" placeholder="Select Municipality" datavalue="bind:Variables.StandardUserMunicipalities.firstRecord"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn68"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -499,7 +499,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow20">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn59"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn60">
-                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="Variables.svSearchAllFormsByFormTitle.invoke()" name="buttonSearchAdvanced" iconclass="wi wi-search" disabled="bind:Widgets.selectFormTypesForAdvanced.datavalue == null"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonSearchAdvancedClick($event, $scope)" name="buttonSearchAdvanced" iconclass="wi wi-search" disabled="bind:Widgets.selectFormTypesForAdvanced.datavalue == null"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn61"></wm-gridcolumn>
                                     </wm-gridrow>
