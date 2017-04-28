@@ -114,7 +114,8 @@
                                             <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="postedAt" caption="Date Sent" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('postedAt') | toLocalDateString}}</wm-grid-column>
-                                            <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                            <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" accessroles="CodeManager,CodeOfficer,CXAdmin,GISAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
+                                            edit-widget-type="text" show="true" readonly="false">
                                                 <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                             </wm-grid-column>
                                         </wm-grid>
