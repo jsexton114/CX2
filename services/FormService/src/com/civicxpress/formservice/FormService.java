@@ -98,19 +98,19 @@ public class FormService {
     @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
     
-//    public static void main(String args[]) { // Function for testing/debugging purposes
-//    	try {
-//    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
-//	    	DBQueryParams queryParams = new DBQueryParams();
-//    		
-//    		//FormService formService = new FormService();
-//    		
-//    		//formService.getDocumentSignatureLink("FB037B6C-2D0F-E711-80C9-0CC47A46DD63");
-//    	} catch (Exception e) {
-//    		e.printStackTrace();
-//    		System.out.println("AHHHHHHHHHHHh!!!!!");
-//    	}
-//    }
+    public static void main(String args[]) { // Function for testing/debugging purposes
+    	try {
+    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
+	    	DBQueryParams queryParams = new DBQueryParams();
+    		
+    		FormService formService = new FormService();
+    		
+    		formService.sendStatusUpdateMail("C97D05AE-3403-E711-80C9-0CC47A46DD63", 221L, "www.test-this.org");
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		System.out.println("AHHHHHHHHHHHh!!!!!");
+    	}
+    }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
@@ -717,9 +717,10 @@ public class FormService {
 	        params.addString("formGuid", documentData.getString("ItemGUID"));
 	        params.addString("filename", newFilename);
 	        params.addString("mimetype", mimetype);
+	        params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
 	        params.addBytes("contents", Base64.decode(base64FileData));
 	        
-	        String saveQuery = "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents) VALUES (:formGuid, :filename, :mimetype, :contents)";
+	        String saveQuery = "INSERT INTO Document (ItemGUID, Filename, CreatedBy, Mimetype, Contents) VALUES (:formGuid, :filename, :createdBy, :mimetype, :contents)";
 	        
 	        DBUtils.simpleUpdateQuery(cx2Conn, saveQuery, params);
 	        
@@ -797,7 +798,7 @@ public class FormService {
     	
         DBQueryParams params = new DBQueryParams();
         params.addString("formGuid", formGuid);
-        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
+        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, FS.Status as FormStatus, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
         sendEmail = formData.getBoolean("SendEmail");
         
         if (sendEmail) {
@@ -806,9 +807,10 @@ public class FormService {
         	String recipientFullName = formData.getString("FullName");
         	String recipientEmail = formData.getString("Email");
         	String emailSubject = formData.getString("EmailSubjectLine");
-        	String emailBody = formData.getString("EmailSubjectLine");
+        	String emailBody = formData.getString("EmailTextBody");
         	String municipality = formData.getString("MunicipalityName");
         	String municipalitySignature = formData.getString("GlobalEmailSig");
+        	String formStatus = formData.getString("FormStatus");
         	Long formTypeId = formData.getLong("FormTypeId");
 
 	        Properties props = System.getProperties();
@@ -844,8 +846,12 @@ public class FormService {
 	        
 	        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
 	        
-	        emailContent.append(emailBody);
-	        emailContent.append("<br /><br />");
+	        if (emailBody != null) {
+	        	emailContent.append(emailBody);
+		        emailContent.append("<br /><br />");
+	        } else {
+	        	emailContent.append("The status of your form has been updated to " + formStatus + ".<br /><br />");
+	        }
 	        
 	        emailContent.append(municipality);
 	        emailContent.append("<br />");
@@ -869,17 +875,18 @@ public class FormService {
 	        
 	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
 	        	if (statusLetterTemplate.getBoolean("AttachToEmail")) {
+	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
 	        		SectionalTemplatePdf lt = null;
 	        		Cx2DataAccess db = new Cx2DataAccess();
 	        		Cx2DataAccess.setSqlUrl(sqlUrl);
-	        		lt = db.getLetterTemplate(statusLetterTemplate.getInteger("ID"));
+	        		lt = db.getLetterTemplate(letterTemplateId);
 	                GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
 	                Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
 	                byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
-	                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, statusLetterTemplate.getString("ID")+".pdf");
+	                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
 	                MimeBodyPart letterAttachment = new MimeBodyPart();
 	                letterAttachment.setDataHandler(new DataHandler(fileDS));
-	                letterAttachment.setFileName(fileDS.getName());
+	                letterAttachment.setFileName(letterTemplateId.toString()+".pdf");
 	                
 	                messageContents.addBodyPart(letterAttachment);
 	        	}

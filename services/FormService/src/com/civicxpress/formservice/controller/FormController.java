@@ -68,6 +68,11 @@ public class FormController {
         return formService.getUserPermissions(formGuid);
     }
 
+    @RequestMapping(value = "/main", method = RequestMethod.POST)
+    public void main(@RequestBody String[] args) {
+        formService.main(args);
+    }
+
     @RequestMapping(value = "/saveDraft", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

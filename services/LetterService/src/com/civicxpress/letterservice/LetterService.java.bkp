@@ -4,6 +4,7 @@
 package com.civicxpress.letterservice;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -44,14 +45,7 @@ public class LetterService {
         return availableTokens;
     }
     
-    public SectionalTemplatePdf getNewLetterTemplate() {
-    	SectionalTemplatePdf lt = new SectionalTemplatePdf();
-    	lt.setUpDefaultSections();
-    	
-    	return lt;
-    }
-    
-    public SectionalTemplatePdf getLetterTemplate(int letterTemplateId) {
+    public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) {
     	SectionalTemplatePdf lt = null;
 //		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
 //		dbInfo.readFromWebContext();
@@ -60,12 +54,17 @@ public class LetterService {
 		Cx2DataAccess db = new Cx2DataAccess();
 		Cx2DataAccess.setSqlUrl(sqlUrl);
 		
-		lt = db.getLetterTemplate(letterTemplateId);
+		if (letterTemplateId == null) {
+			lt = new SectionalTemplatePdf();
+	    	lt.setUpDefaultSections();
+		} else {
+			lt = db.getLetterTemplate(letterTemplateId);
+		}
 		
 		return lt;
     }
     
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess();
     	Cx2DataAccess.setSqlUrl(sqlUrl);
     	

@@ -1702,6 +1702,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "masterInspections",
@@ -3525,7 +3538,7 @@
         "columnName" : "Code",
         "isPrimaryKey" : false,
         "notNull" : false,
-        "length" : 5000,
+        "length" : 2147483647,
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
@@ -7919,6 +7932,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalities",
@@ -9241,6 +9267,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -10684,6 +10723,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -12432,7 +12484,11 @@
     "name" : "lvInspectionHistory",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "inspectionGuid",
+      "value" : "bind:pageParams.inspectionGuid",
+      "type" : "string"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "InspectionHistory",
@@ -12441,11 +12497,11 @@
     "maxResults" : 20,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
-    "startUpdate" : true,
-    "autoUpdate" : false,
+    "startUpdate" : false,
+    "autoUpdate" : true,
     "transformationRequired" : false,
     "liveSource" : "cx2",
-    "ignoreCase" : true,
+    "ignoreCase" : false,
     "matchMode" : "start",
     "orderBy" : "id asc",
     "propertiesMap" : {
@@ -13385,6 +13441,7 @@
       "watchOn" : "Cx2UsersData",
       "package" : "com.civicxpress.cx2.InspectionHistory"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.InspectionHistory"
   },
   "lvManualFeeTypes" : {
@@ -14330,6 +14387,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {
@@ -17186,7 +17256,7 @@
           "columnName" : "Code",
           "isPrimaryKey" : false,
           "notNull" : false,
-          "length" : 5000,
+          "length" : 2147483647,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -18559,6 +18629,19 @@
           "isRelated" : false,
           "systemInserted" : true,
           "systemUpdated" : true,
+          "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
           "scale" : 0
         } ]
       }, {

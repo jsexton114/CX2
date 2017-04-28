@@ -4,6 +4,7 @@
 package com.civicxpress.letterservice;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,7 @@ public class LetterService {
 		return lt;
     }
     
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess();
     	Cx2DataAccess.setSqlUrl(sqlUrl);
     	

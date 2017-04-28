@@ -162,7 +162,7 @@
                                 <wm-tabpane name="tabpaneViolations" title="VIOLATIONS" show="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.trackViolations">
                                     <wm-grid title="" dataset="bind:Variables.lvViolations.dataSet" navigation="Classic" name="gridViolations" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                         <wm-grid-column binding="code.codeNumber" caption="Code Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
-                                        <wm-grid-column binding="code.code" caption="Code" type="text" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
+                                        <wm-grid-column binding="code.codeTitle" caption="Code Title" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
                                         <wm-grid-column binding="notes" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Violation" show="true" class="btn-success" iconclass="wi wi-plus" title="New" action="Widgets.dialogViolation.open()" accessroles="Inspector,InspectorManager,CXAdmin"
@@ -682,8 +682,8 @@
                         </wm-gridrow>
                         <wm-gridrow name="gridrow56">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn104">
-                                <wm-label padding="unset 0.5em" name="labelSelectedCode" caption="bind:Widgets.searchCode.datavalue.codeNumber + ' ' + Widgets.searchCode.datavalue.codeSets.codeSetTitle + '<br></wm-label>' + Widgets.searchCode.datavalue.code"
-                                show="bind:!!Widgets.searchCode.datavalue.id"></wm-label>
+                                <wm-label padding="unset 0.5em" name="labelSelectedCode" caption="bind:'<h4>' + Widgets.searchCode.datavalue.codeNumber + ': ' + Widgets.searchCode.datavalue.codeSets.codeSetTitle + '</h4><br>' + Widgets.searchCode.datavalue.code"
+                                show="bind:!!Widgets.searchCode.datavalue.id" class="col-md-push-3"></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow52">
@@ -701,11 +701,8 @@
                 <wm-tabpane name="tabpaneViolationPictures" title="Pictures">
                     <wm-layoutgrid name="layoutgrid16_1">
                         <wm-gridrow name="gridrow54">
-                            <wm-gridcolumn columnwidth="8" name="gridcolumn101">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn101">
                                 <input type="file" id="violationPictureUpload" name="violationPictureUpload" ng-file-model="docsToUpload" multiple="" accept="application/pdf, image/*">
-                            </wm-gridcolumn>
-                            <wm-gridcolumn columnwidth="4" name="gridcolumn103_1" horizontalalign="right">
-                                <wm-button class="btn-primary" caption="Add" type="button" margin="unset 0.5em" name="buttonUploadViolationPictures" iconclass="wi wi-add-to-photos" on-click="buttonUploadViolationPicturesClick($event, $scope)" disabled="bind:!docsToUpload.length"></wm-button>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow55">

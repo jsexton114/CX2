@@ -346,10 +346,14 @@ Application.$controller("dialogViolationController", ["$scope",
             $scope.Variables.stvInspectionPicturesForUpload.dataSet.splice($scope.Variables.stvInspectionPicturesForUpload.dataSet.indexOf(item), 1);
         };
 
-        $scope.buttonUploadViolationPicturesClick = function($event, $isolateScope) {
+        $scope.$watch('docsToUpload', function(newVal, oldVal) {
+            if (!newVal || !newVal.length) {
+                return;
+            }
+
             var filesContents = [];
 
-            $scope.docsToUpload.forEach(function(doc, index) {
+            newVal.forEach(function(doc, index) {
                 let pictureData = {
                     filename: doc.Filename,
                     mimetype: doc.Mimetype,
@@ -371,7 +375,7 @@ Application.$controller("dialogViolationController", ["$scope",
 
             $scope.docsToUpload = [];
             document.getElementById('violationPictureUpload').value = '';
-        };
+        });
 
         $scope.dialogViolationClose = function($event, $isolateScope) {
             $scope.Widgets.selectCodeSet.reset();

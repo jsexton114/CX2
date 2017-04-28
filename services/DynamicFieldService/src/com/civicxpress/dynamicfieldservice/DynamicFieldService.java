@@ -182,12 +182,19 @@ public class DynamicFieldService {
 	    	StringBuilder formSaveQuery = new StringBuilder("UPDATE "+formTableName+" SET ");
 	    	
 	    	for (DBRow formFieldsMetaRow : formFieldsMetaData) {
-	    		String sqlSafeFieldName = DBUtils.getSqlSafeString(formFieldsMetaRow.getString("FieldName"));
+	    		String fieldName = formFieldsMetaRow.getString("FieldName");
+	    		String sqlSafeFieldName;
 	    		Object fieldValue;
 	    		
 	    		String sqlType = formFieldsMetaRow.getString("SqlType");
 	    		
-	    		if (!fieldData.containsKey(sqlSafeFieldName) || sqlType == null) {
+	    		if (fieldName == null || sqlType == null) {
+	    			continue;
+	    		}
+	    		
+	    		sqlSafeFieldName = DBUtils.getSqlSafeString(fieldName);
+	    		
+	    		if (!fieldData.containsKey(sqlSafeFieldName)) {
 	    			continue;
 	    		}
 	    		

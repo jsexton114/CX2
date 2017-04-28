@@ -407,8 +407,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Variables.svGetSignLink.setInput('lastNameOfRecipientParty', "Sexton");
         $scope.Variables.svGetSignLink.setInput('emailIdOfRecipientParty', "jason_sexton@hotmail.com");
 
-
-
         $scope.Variables.svGetSignLink.update();
 
     };
@@ -430,15 +428,17 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         };
 
         // Submit on behalf
-        $scope.Widgets.lfSubmitOnBehalf.formFields.forEach(function(field, index) {
-            if (field.name === 'All fields') {
-                return;
-            }
+        if ($scope.submitOnBehalf === true && !!$scope.Widgets.lfSubmitOnBehalf) {
+            $scope.Widgets.lfSubmitOnBehalf.formFields.forEach(function(field, index) {
+                if (field.name === 'All fields') {
+                    return;
+                }
 
-            draftModel.onBehalfOf[field.key] = field.value;
-        });
+                draftModel.onBehalfOf[field.key] = field.value;
+            });
 
-        draftModel.onBehalfOf.newUser = $scope.Widgets.checkboxNewUser.datavalue;
+            draftModel.onBehalfOf.newUser = $scope.Widgets.checkboxNewUser.datavalue;
+        }
 
         // Form Fields
         draftModel.formFields = angular.copy($scope.formData);
@@ -447,9 +447,9 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         if ($scope.ownerInfo === true) {
             var ownerType = '';
 
-            if (!!$scope.Widgets.checkboxOtherOwner.datavalue) {
+            if (!!$scope.Widgets.checkboxOtherOwner && !!$scope.Widgets.checkboxOtherOwner.datavalue) {
                 ownerType = 'new';
-            } else if (!!$scope.Widgets.checkboxVendorIsOwner.datavalue) {
+            } else if (!!$scope.Widgets.checkboxVendorIsOwner && !!$scope.Widgets.checkboxVendorIsOwner.datavalue) {
                 ownerType = 'contractor';
             } else {
                 ownerType = 'selected';
@@ -463,7 +463,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
                     draftModel.owner[field.key] = field.value;
                 });
-            } else if ($scope.Widgets.gridOwners.selectedItems.length > 0) {
+            } else if (!!$scope.Widgets.gridOwners && $scope.Widgets.gridOwners.selectedItems.length > 0) {
                 draftModel.owner.ownerId = $scope.Widgets.gridOwners.selectedItems[0].id;
             } else {
                 draftModel.owner.ownerType = 'none';
@@ -475,10 +475,14 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
 
         // Locations
-        draftModel.locations = angular.copy($scope.Variables.stvGisData.dataSet);
+        if ($scope.gisRecords === true) {
+            draftModel.locations = angular.copy($scope.Variables.stvGisData.dataSet);
+        }
 
         // Vendors
-        draftModel.vendors = angular.copy($scope.Variables.stvVendors.dataSet);
+        if ($scope.vendorInfo === true) {
+            draftModel.vendors = angular.copy($scope.Variables.stvVendors.dataSet);
+        }
 
         return draftModel;
     }

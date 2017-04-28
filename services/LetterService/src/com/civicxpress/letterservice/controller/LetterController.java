@@ -8,6 +8,7 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 import java.util.List;
 import java.lang.Integer;
 import com.civicxpress.SectionalTemplatePdf;
+import java.sql.SQLException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,8 @@ public class LetterController {
     }
 
     @RequestMapping(value = "/letterTemplate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public SectionalTemplatePdf getLetterTemplate(@RequestParam(value = "letterTemplateId", required = false) Integer letterTemplateId) {
         return letterService.getLetterTemplate(letterTemplateId);
     }
@@ -46,7 +49,7 @@ public class LetterController {
     @RequestMapping(value = "/letterTemplate", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate) {
+    public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate) throws SQLException {
         letterService.updateLetterTemplate(letterTemplate);
     }
 }

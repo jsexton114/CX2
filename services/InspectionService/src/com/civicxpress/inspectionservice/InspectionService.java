@@ -388,7 +388,7 @@ public class InspectionService {
         	
         	cx2Conn.commit();
         	
-        	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:inspectionOutcomeId", params);
+        	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:newOutcomeId", params);
         	
         	if (outcomeData.getBoolean("SendEmail")) {
         		params.addLong("municipalityId", inspectionOutcomeId);
@@ -438,23 +438,25 @@ public class InspectionService {
 	    	Long violationId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as violationId", null).getLong("violationId");
 	    	params.addLong("violationId", violationId);
 	    	
-	    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
-	    	
-	    	for (int i = 0; i < pictures.length; i++) {
-	    		MultipartFile picture = pictures[i];
-	    		
-	    		if (i > 0) {
-	        		picturesAddQuery.append(',');
-	        	}
-				
-	        	params.addString("pic"+i+"filename", picture.getOriginalFilename());
-	        	params.addString("pic"+i+"mimetype", picture.getContentType());
-	        	params.addBytes("pic"+i+"contents", picture.getBytes());
-	        	
-	        	picturesAddQuery.append("(:violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
+	    	if (pictures.length > 0) {
+		    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
+		    	
+		    	for (int i = 0; i < pictures.length; i++) {
+		    		MultipartFile picture = pictures[i];
+		    		
+		    		if (i > 0) {
+		        		picturesAddQuery.append(',');
+		        	}
+					
+		        	params.addString("pic"+i+"filename", picture.getOriginalFilename());
+		        	params.addString("pic"+i+"mimetype", picture.getContentType());
+		        	params.addBytes("pic"+i+"contents", picture.getBytes());
+		        	
+		        	picturesAddQuery.append("(:violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
+		    	}
+		    	
+		    	DBUtils.simpleUpdateQuery(cx2Conn, picturesAddQuery.toString(), params);
 	    	}
-	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, picturesAddQuery.toString(), params);
 	    	
 	    	cx2Conn.commit();
     	} catch (Exception e) {
