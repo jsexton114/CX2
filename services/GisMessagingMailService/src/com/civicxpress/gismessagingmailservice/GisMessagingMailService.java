@@ -96,7 +96,7 @@ public class GisMessagingMailService {
         String gisURL= gisLink;
         logger.info(gisLink);
         
-        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" GisRecord ";
+        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" GIS record ";
         emailContent = emailContent+"<a href ='"+gisURL+"'>"+address+"</a>):";
       
         emailContent = emailContent+"<br /><br />";

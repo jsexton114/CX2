@@ -21,6 +21,8 @@ public class GisMessagingMailController {
     private GisMessagingMailService gisMessagingMailService;
 
     @RequestMapping(value = "/sendMessagingMail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String sendMessagingMail(@RequestParam(value = "sender", required = false) String sender, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "subdivision", required = false) String subdivision, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "address", required = false) String address, @RequestParam(value = "gisLink", required = false) String gisLink) throws MessagingException {
         return gisMessagingMailService.sendMessagingMail(sender, comments, username, recipient, municipality, subdivision, municipalitySignature, address, gisLink);
     }

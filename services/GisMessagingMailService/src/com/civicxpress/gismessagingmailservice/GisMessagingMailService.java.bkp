@@ -56,17 +56,76 @@ public class GisMessagingMailService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String sampleJavaOperation(String name, HttpServletRequest request) {
-        logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
+    public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String subdivision,String municipalitySignature,String address,String gisLink) throws MessagingException {
         
-        String result = null;
-        if (securityService.isAuthenticated()) {
-            result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
-        } else {
-            result = "Hello " + name + ", You are not authenticated yet!";
-        }
-        logger.debug("Returning {}", result);
-        return result;
+        //logger.info("_______________________________________________________________"+comments);
+        
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        //message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        
+        //String[] recipient={"sagar.vemala@wavemaker.com","anvesh.nara@wavemaker.com"};
+       
+     //String recipient="sagar.vemala@wavemaker.com,anvesh.nara@wavemaker.com";
+     ArrayList recipientList= new ArrayList(Arrays.asList(recipient.split(",")));
+
+
+        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        
+         for (int i = 0; i < recipientList.size(); i++)
+                 {
+                  recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+                  }
+        
+        message.setRecipients(Message.RecipientType.TO, recipientAddress);
+        
+        String emailSubject="New Message on CivicXpress GIS Address "+address;
+        
+        String gisURL= gisLink;
+        logger.info(gisLink);
+        
+        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" GisRecord ";
+        emailContent = emailContent+"<a href ='"+gisURL+"'>"+address+"</a>):";
+      
+        emailContent = emailContent+"<br /><br />";
+        
+        emailContent = emailContent+"<blockquote>"+comments+"</blockquote>";
+        
+        emailContent = emailContent+"<br /><br />";
+        
+        emailContent = emailContent+"If you would like to reply, "; 
+         
+        emailContent = emailContent+"<a href ='"+gisURL+ "'>Click Here</a>";
+         
+        emailContent = emailContent+" to view the form and write a message.";
+         
+        emailContent = emailContent+"<br /><br />";
+        
+        emailContent = emailContent+ "<br/><br/>"+ municipalitySignature ;
+        
+        message.setSubject(emailSubject);
+        message.setContent(emailContent, "text/html");
+        // Send smtp message
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+        String displayMessage = "Message sent successfully ";
+        logger.info(displayMessage);
+        return displayMessage;
     }
 
 }
