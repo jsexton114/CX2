@@ -28,3 +28,17 @@ Application.$controller("MyMunicipalityPageController", ["$scope", function($sco
     };
 
 }]);
+
+Application.$controller("pagedialog1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogNewFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
