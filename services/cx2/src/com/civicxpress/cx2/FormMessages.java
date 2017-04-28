@@ -40,6 +40,8 @@ public class FormMessages implements Serializable {
     private Boolean municipalityMessage;
     private String relatedProjectGuid;
     private String relatedInspectionGuid;
+    private Integer gisrecordId;
+    private Gisrecords gisrecords;
     private MasterInspections masterInspections;
     private MasterForms masterForms;
     private Projects projects;
@@ -118,6 +120,29 @@ public class FormMessages implements Serializable {
 
     public void setRelatedInspectionGuid(String relatedInspectionGuid) {
         this.relatedInspectionGuid = relatedInspectionGuid;
+    }
+
+    @Column(name = "`GISRecordId`", nullable = true, scale = 0, precision = 10)
+    public Integer getGisrecordId() {
+        return this.gisrecordId;
+    }
+
+    public void setGisrecordId(Integer gisrecordId) {
+        this.gisrecordId = gisrecordId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`GISRecordId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Gisrecords getGisrecords() {
+        return this.gisrecords;
+    }
+
+    public void setGisrecords(Gisrecords gisrecords) {
+        if(gisrecords != null) {
+            this.gisrecordId = gisrecords.getId();
+        }
+
+        this.gisrecords = gisrecords;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -73,6 +73,7 @@ public class Gisrecords implements Serializable {
     private States states;
     private Subdivisions subdivisions;
     private List<Fees> feeses;
+    private List<FormMessages> formMessageses;
     private List<Gis2forms> gis2formses;
     private List<Giscontacts> giscontactses;
     private List<GisTransaction> gisTransactions;
@@ -406,6 +407,16 @@ public class Gisrecords implements Serializable {
 
     public void setFeeses(List<Fees> feeses) {
         this.feeses = feeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "gisrecords")
+    public List<FormMessages> getFormMessageses() {
+        return this.formMessageses;
+    }
+
+    public void setFormMessageses(List<FormMessages> formMessageses) {
+        this.formMessageses = formMessageses;
     }
 
     @JsonInclude(Include.NON_EMPTY)

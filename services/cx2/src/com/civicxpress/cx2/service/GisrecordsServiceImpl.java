@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.Gis2forms;
 import com.civicxpress.cx2.GisTransaction;
 import com.civicxpress.cx2.Giscontacts;
@@ -55,6 +56,10 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	private GisTransactionService gisTransactionService;
 
     @Autowired
+	@Qualifier("cx2.FormMessagesService")
+	private FormMessagesService formMessagesService;
+
+    @Autowired
 	@Qualifier("cx2.GiscontactsService")
 	private GiscontactsService giscontactsService;
 
@@ -84,6 +89,14 @@ public class GisrecordsServiceImpl implements GisrecordsService {
                 feese.setGisrecords(gisrecordsCreated);
                 LOGGER.debug("Creating a new child Fees with information: {}", feese);
                 feesService.create(feese);
+            }
+        }
+
+        if(gisrecordsCreated.getFormMessageses() != null) {
+            for(FormMessages formMessagese : gisrecordsCreated.getFormMessageses()) {
+                formMessagese.setGisrecords(gisrecordsCreated);
+                LOGGER.debug("Creating a new child FormMessages with information: {}", formMessagese);
+                formMessagesService.create(formMessagese);
             }
         }
 
@@ -219,6 +232,17 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormMessages> findAssociatedFormMessageses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated formMessageses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("gisrecords.id = '" + id + "'");
+
+        return formMessagesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gis2formses");
 
@@ -297,6 +321,15 @@ public class GisrecordsServiceImpl implements GisrecordsService {
 	 */
 	protected void setGisTransactionService(GisTransactionService service) {
         this.gisTransactionService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service FormMessagesService instance
+	 */
+	protected void setFormMessagesService(FormMessagesService service) {
+        this.formMessagesService = service;
     }
 
     /**

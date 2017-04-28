@@ -3806,6 +3806,32 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "gisrecordId",
+      "foreignKey" : true,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "integer",
+      "length" : 0,
+      "name" : "GISRecordId",
+      "nullable" : true,
+      "oldName" : "GISRecordId",
+      "partOfAnyRelation" : true,
+      "partOfForeignKey" : true,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 10,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "number",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormMessages",
@@ -3824,6 +3850,23 @@
       "virtual" : false
     },
     "relations" : [ {
+      "cardinality" : "ManyToOne",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "gisrecords",
+      "mappings" : [ {
+        "sourceColumn" : "GISRecordId",
+        "targetColumn" : "ID"
+      } ],
+      "name" : "FK_FormMessages_TO_GISReq9Phq",
+      "primary" : true,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "FormMessages",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "GISRecords",
+      "virtual" : false
+    }, {
       "cardinality" : "ManyToOne",
       "columnsUniqueKey" : false,
       "composite" : false,
@@ -8500,6 +8543,23 @@
       "sourceTable" : "GISRecords",
       "targetColumnsUniqueKey" : false,
       "targetTable" : "Fees",
+      "virtual" : false
+    }, {
+      "cardinality" : "OneToMany",
+      "columnsUniqueKey" : false,
+      "composite" : false,
+      "fieldName" : "formMessageses",
+      "mappings" : [ {
+        "sourceColumn" : "ID",
+        "targetColumn" : "GISRecordId"
+      } ],
+      "name" : "FK_FormMessages_TO_GISReq9Phq",
+      "primary" : false,
+      "selfRelation" : false,
+      "sourceColumnsNotUniqueKey" : true,
+      "sourceTable" : "GISRecords",
+      "targetColumnsUniqueKey" : false,
+      "targetTable" : "FormMessages",
       "virtual" : false
     }, {
       "cardinality" : "OneToMany",
