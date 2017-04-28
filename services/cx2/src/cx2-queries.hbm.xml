@@ -1007,7 +1007,7 @@ from MasterInspections where closed=:isClosed and (:municipality IS NULL OR insp
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   PR.ProjectGUID as SourceGuid,
+   cast(PR.ProjectGUID as nvarchar(100)) as SourceGuid,
    PR.ProjectName as SourceTitle,
     'Project' as SourceType,
     'Project' as SourceCategory,
@@ -1028,7 +1028,7 @@ select
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MF.FormGUID as SourceGuid,
+   cast(MF.FormGUID as nvarchar(100)) as SourceGuid,
    MF.FormTitle as SourceTitle,
     FT.formType as SourceType,
      'Form' as SourceCategory,
@@ -1051,7 +1051,7 @@ select
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MI.InspectionGuid as SourceGuid,
+   cast(MI.InspectionGuid as nvarchar(100)) as SourceGuid,
    MI.InspectionTitle as SourceTitle,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
@@ -1063,6 +1063,28 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select 
+ M.ID as id,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   cast(G.ID as nvarchar(100)) as SourceGuid,
+  G.FullAddress as SourceTitle,
+    'GIS Record' as SourceType,
+     'GISRecord' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN GISRecords G ON G.ID=M.GISRecordId
+INNER JOIN Municipalities MUNI ON MUNI.ID=G.MunicipalityId
 where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
         ]]>
     <query-param name="userId" type="java.lang.Integer"/>
@@ -1079,7 +1101,7 @@ where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   PR.ProjectGUID as SourceGuid,
+   cast(PR.ProjectGUID as nvarchar(100)) as SourceGuid,
    PR.ProjectName as SourceTitle,
     'Project' as SourceType,
     'Project' as SourceCategory,
@@ -1100,7 +1122,7 @@ select
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MF.FormGUID as SourceGuid,
+   cast(MF.FormGUID as nvarchar(100)) as SourceGuid,
    MF.FormTitle as SourceTitle,
     FT.formType as SourceType,
      'Form' as SourceCategory,
@@ -1123,7 +1145,7 @@ select
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MI.InspectionGuid as SourceGuid,
+   cast(MI.InspectionGuid as nvarchar(100)) as SourceGuid,
    MI.InspectionTitle as SourceTitle,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
@@ -1135,6 +1157,28 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+
+UNION
+select 
+ M.ID as id,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   cast(G.ID as nvarchar(100)) as SourceGuid,
+  G.FullAddress as SourceTitle,
+    'GIS Record' as SourceType,
+     'GISRecord' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.ID as MunicipalityId
+from
+FormMessages M
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN GISRecords G ON G.ID=M.GISRecordId
+INNER JOIN Municipalities MUNI ON MUNI.ID=G.MunicipalityId
 where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId)) wmTempTable
         ]]>
     <query-param name="userId" type="java.lang.Integer"/>
@@ -3038,7 +3082,7 @@ INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :us
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   PR.ProjectGUID as SourceGuid,
+   cast(PR.ProjectGUID as nvarchar(100)) as SourceGuid,
    PR.ProjectName as SourceTitle,
     'Project' as SourceType,
     'Project' as SourceCategory,
@@ -3061,7 +3105,7 @@ FMT.MessageRead,
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MF.FormGUID as SourceGuid,
+   cast(MF.FormGUID as nvarchar(100)) as SourceGuid,
    MF.FormTitle as SourceTitle,
     FT.formType as SourceType,
      'Form' as SourceCategory,
@@ -3086,7 +3130,7 @@ FMT.MessageRead,
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MI.InspectionGuid as SourceGuid,
+   cast(MI.InspectionGuid as nvarchar(100)) as SourceGuid,
    MI.InspectionTitle as SourceTitle,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
@@ -3100,6 +3144,31 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId) and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
+
+UNION
+
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   cast(G.ID as nvarchar(100)) as SourceGuid,
+  G.FullAddress as SourceTitle,
+    'GIS Record' as SourceType,
+     'GISRecord' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN GISRecords G ON G.ID=M.GISRecordId
+INNER JOIN Municipalities MUNI ON MUNI.ID=G.MunicipalityId
 where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId) and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
         ]]>
     <query-param name="taggedPersonId" type="java.lang.Integer"/>
@@ -3117,7 +3186,7 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   PR.ProjectGUID as SourceGuid,
+   cast(PR.ProjectGUID as nvarchar(100)) as SourceGuid,
    PR.ProjectName as SourceTitle,
     'Project' as SourceType,
     'Project' as SourceCategory,
@@ -3140,7 +3209,7 @@ FMT.MessageRead,
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MF.FormGUID as SourceGuid,
+   cast(MF.FormGUID as nvarchar(100)) as SourceGuid,
    MF.FormTitle as SourceTitle,
     FT.formType as SourceType,
      'Form' as SourceCategory,
@@ -3165,7 +3234,7 @@ FMT.MessageRead,
    U.Email as PostedByEmail,
    U.FullName as PostedByFullName,
    U.ID as PostedByUserId,
-   MI.InspectionGuid as SourceGuid,
+   cast(MI.InspectionGuid as nvarchar(100)) as SourceGuid,
    MI.InspectionTitle as SourceTitle,
     INSP.InspectDesignName as SourceType,
      'Inspection' as SourceCategory,
@@ -3179,6 +3248,31 @@ INNER JOIN Users U ON U.ID=M.UserId
 INNER JOIN MasterInspections MI ON MI.InspectionGuid=M.RelatedInspectionGUID
 INNER JOIN InspectionDesign INSP ON INSP.ID=MI.InspectionDesignId
 INNER JOIN Municipalities MUNI ON MUNI.ID=INSP.MunicipalityId
+where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId) and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)
+
+UNION
+
+select FMT.ID,
+FMT.MessageRead,
+   M.Message,
+   M.PostedAt,
+   M.MunicipalityMessage,
+   U.Email as PostedByEmail,
+   U.FullName as PostedByFullName,
+   U.ID as PostedByUserId,
+   cast(G.ID as nvarchar(100)) as SourceGuid,
+  G.FullAddress as SourceTitle,
+    'GIS Record' as SourceType,
+     'GISRecord' as SourceCategory,
+    MUNI.MunicipalityName as MunicipalityName,
+     MUNI.GlobalEmailSig as MunicipalityGlobalEmailSig,
+     MUNI.ID as MunicipalityId
+from
+FormMessageTagging FMT
+INNER JOIN FormMessages M ON M.ID=FMT.FormMessageId
+INNER JOIN Users U ON U.ID=M.UserId
+INNER JOIN GISRecords G ON G.ID=M.GISRecordId
+INNER JOIN Municipalities MUNI ON MUNI.ID=G.MunicipalityId
 where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId) and (:messageStatus IS NULL OR FMT.MessageRead=:messageStatus)) wmTempTable
         ]]>
     <query-param name="taggedPersonId" type="java.lang.Integer"/>

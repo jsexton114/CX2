@@ -30,7 +30,6 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
             // Send Mails of Message
             switch ($scope.Widgets.gridInbox.selecteditem.sourceCategory) {
                 case "Form":
-                    // Posting Message
 
                     var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.Widgets.gridInbox.selecteditem.sourceGuid;
                     $scope.Variables.svSendFormMessagesMail.setInput({
@@ -41,7 +40,7 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
                     $scope.Variables.svSendFormMessagesMail.update();
                     break;
                 case "Inspection":
-                    // Posting Message
+
                     var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.Widgets.gridInbox.selecteditem.sourceGuid;
                     $scope.Variables.svSendInspectionMessagesMail.setInput({
                         'inspectionLink': tempLink,
@@ -51,7 +50,7 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
                     $scope.Variables.svSendInspectionMessagesMail.update();
                     break;
                 case "Project":
-                    // Posting Message
+
                     var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.Widgets.gridInbox.selecteditem.sourceGuid
                     $scope.Variables.svSendProjectMessagesMail.setInput({
                         'projectLink': tempLink,
@@ -60,10 +59,19 @@ Application.$controller("MyMessagesPageController", ["$scope", function($scope) 
                     });
                     $scope.Variables.svSendProjectMessagesMail.update();
                     break;
+                case "GISRecord":
+                    var tempLink = window.location.hostname + "/#/EditGISRecord?GISRecordId=" + $scope.Widgets.gridInbox.selecteditem.sourceGuid
+                    $scope.Variables.svSendGISMessagesMail.setInput({
+                        'gisLink': tempLink,
+                        'recipient': $scope.messageMailingList,
+                        'comments': data.message
+                    });
+                    $scope.Variables.svSendGISMessagesMail.update();
+                    break
 
             }
 
-
+            $scope.Widgets.dialogReply.close();
 
 
         }
@@ -180,7 +188,8 @@ Application.$controller("dialogReplyController", ["$scope",
                         'message': $scope.Widgets.textAddMessage.datavalue,
                         'relatedFormGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
                         'relatedInspectionGuid': undefined,
-                        'relatedProjectGuid': undefined
+                        'relatedProjectGuid': undefined,
+                        'gisrecordId': undefined
                     });
                     $scope.Variables.PostFormMessage.insertRecord();
                     break;
@@ -191,7 +200,8 @@ Application.$controller("dialogReplyController", ["$scope",
                         'message': $scope.Widgets.textAddMessage.datavalue,
                         'relatedFormGuid': undefined,
                         'relatedInspectionGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
-                        'relatedProjectGuid': undefined
+                        'relatedProjectGuid': undefined,
+                        'gisrecordId': undefined
                     });
                     $scope.Variables.PostFormMessage.insertRecord();
                     break;
@@ -202,7 +212,20 @@ Application.$controller("dialogReplyController", ["$scope",
                         'message': $scope.Widgets.textAddMessage.datavalue,
                         'relatedFormGuid': undefined,
                         'relatedInspectionGuid': undefined,
-                        'relatedProjectGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid
+                        'relatedProjectGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
+                        'gisrecordId': undefined
+                    });
+                    $scope.Variables.PostFormMessage.insertRecord();
+                    break;
+                case "GISRecord":
+                    // Posting Message
+                    $scope.Variables.PostFormMessage.setInput({
+                        'municipalityMessage': $scope.Widgets.checkboxInternal.datavalue,
+                        'message': $scope.Widgets.textAddMessage.datavalue,
+                        'relatedFormGuid': undefined,
+                        'relatedInspectionGuid': undefined,
+                        'relatedProjectGuid': undefined,
+                        'gisrecordId': $scope.Widgets.gridInbox.selecteditem.sourceGuid
                     });
                     $scope.Variables.PostFormMessage.insertRecord();
                     break;
