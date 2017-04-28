@@ -439,6 +439,19 @@
           "systemInserted" : true,
           "systemUpdated" : true,
           "scale" : 0
+        }, {
+          "fieldName" : "rentalProperty",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "RentalProperty",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "states",
@@ -6432,6 +6445,19 @@
         "isRelated" : false,
         "systemInserted" : true,
         "systemUpdated" : true,
+        "scale" : 0
+      }, {
+        "fieldName" : "rentalProperty",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "RentalProperty",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
         "scale" : 0
       } ],
       "entityName" : "Gisrecords",

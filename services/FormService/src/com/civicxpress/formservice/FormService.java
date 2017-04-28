@@ -3,15 +3,24 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.formservice;
 
+import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.civicxpress.Cx2DataAccess;
+import com.civicxpress.GlobalFormInfo;
+import com.civicxpress.LetterTemplate;
 import com.civicxpress.MultiDatabaseHelper;
+import com.civicxpress.SectionalTemplatePdf;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.civicxpress.esigngenie.ESignGenieApi;
 
@@ -782,13 +791,13 @@ public class FormService {
     	return response;
     }
     
-    private void sendStatusUpdateMail(String formGuid, String formLink) throws MessagingException, SQLException {
+    private void sendStatusUpdateMail(String formGuid, Long formStatusId, String formLink) throws MessagingException, SQLException {
     	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	Boolean sendEmail;
     	
         DBQueryParams params = new DBQueryParams();
         params.addString("formGuid", formGuid);
-        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
+        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
         sendEmail = formData.getBoolean("SendEmail");
         
         if (sendEmail) {
@@ -800,6 +809,7 @@ public class FormService {
         	String emailBody = formData.getString("EmailSubjectLine");
         	String municipality = formData.getString("MunicipalityName");
         	String municipalitySignature = formData.getString("GlobalEmailSig");
+        	Long formTypeId = formData.getLong("FormTypeId");
 
 	        Properties props = System.getProperties();
 	        props.put("mail.smtp.starttls.enable", "true");
@@ -847,8 +857,36 @@ public class FormService {
 	        
 	        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
 	        
+	        Multipart messageContents = new MimeMultipart();
+	        
+	        MimeBodyPart messageBody = new MimeBodyPart();
+	        messageBody.setContent(emailContent.toString(), "text/html");
+	        
+	        messageContents.addBodyPart(messageBody);
+	        
+	        params.addLong("formStatusId", formStatusId);
+	        List<DBRow> statusLetterTemplates = DBUtils.selectQuery(cx2Conn, "select * from LetterTemplateToFormStatus WHERE FormStatusId=:formStatusId", params);
+	        
+	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
+	        	if (statusLetterTemplate.getBoolean("AttachToEmail")) {
+	        		SectionalTemplatePdf lt = null;
+	        		Cx2DataAccess db = new Cx2DataAccess();
+	        		Cx2DataAccess.setSqlUrl(sqlUrl);
+	        		lt = db.getLetterTemplate(statusLetterTemplate.getInteger("ID"));
+	                GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
+	                Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
+	                byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
+	                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, statusLetterTemplate.getString("ID")+".pdf");
+	                MimeBodyPart letterAttachment = new MimeBodyPart();
+	                letterAttachment.setDataHandler(new DataHandler(fileDS));
+	                letterAttachment.setFileName(fileDS.getName());
+	                
+	                messageContents.addBodyPart(letterAttachment);
+	        	}
+	        }
+	        
 	        message.setSubject(emailSubject);
-	        message.setContent(emailContent.toString(), "text/html");
+	        message.setContent(messageContents);
 	        // Send smtp message
 	        Transport tr = session.getTransport("smtp");
 	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
@@ -862,7 +900,7 @@ public class FormService {
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments, String formLink) throws SQLException, MessagingException {
     	setFormStatus(formGuid, formStatusId, comments);
-    	sendStatusUpdateMail(formGuid, formLink);
+    	sendStatusUpdateMail(formGuid, formStatusId, formLink);
     }
     
     private void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
