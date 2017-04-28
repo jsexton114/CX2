@@ -8442,6 +8442,32 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "false"
+      },
+      "fieldName" : "rentalProperty",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "RentalProperty",
+      "nullable" : false,
+      "oldName" : "RentalProperty",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "Gisrecords",

@@ -44,7 +44,10 @@
                                                 <wm-form-field name="lot" displayname="Lot" show="true" primary-key="false" generator="assigned" key="lot" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                                 disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn11"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="4" name="gridcolumn76">
+                                                <wm-form-field name="rentalProperty" displayname="Rental Property" show="true" primary-key="false" generator="assigned" key="rentalProperty" type="boolean" readonly="false" required="true" widget="checkbox"
+                                                defaultvalue="false"></wm-form-field>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow6">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn12">
@@ -52,8 +55,8 @@
                                                 inputtype="text" placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn13">
-                                                <wm-form-field name="directionalPrefix" displayname="Directional Prefix" show="true" primary-key="false" generator="assigned" key="directionalPrefix" type="string" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value" disabled="false"></wm-form-field>
+                                                <wm-form-field name="directionalPrefix" displayname="Directional Prefix" show="true" primary-key="false" generator="assigned" key="directionalPrefix" type="string" readonly="false" required="false" widget="text"
+                                                maxchars="255" inputtype="text" placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn14">
                                                 <wm-form-field name="streetName" displayname="Street Name" show="true" primary-key="false" generator="assigned" key="streetName" type="string" readonly="false" required="true" widget="text" maxchars="255" inputtype="text"
@@ -66,7 +69,8 @@
                                                 placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                                                <wm-form-field displayname="Directional Suffix" widget="text" show="true" type="custom" name="directionalSuffix"></wm-form-field>
+                                                <wm-form-field name="directionalSuffix" displayname="Directional Suffix" show="true" primary-key="false" generator="assigned" key="directionalSuffix" type="string" readonly="false" required="false" widget="text"
+                                                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn17">
                                                 <wm-form-field name="unitNumber" displayname="Unit Number" show="true" primary-key="false" generator="assigned" key="unitNumber" type="string" readonly="false" required="false" widget="text" maxchars="25" inputtype="text"
@@ -92,8 +96,6 @@
                                                 <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
                                                 placeholder="Enter value" defaultvalue="USA" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn43_1"></wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn44"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow25_1" padding="unset unset 4em unset">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn48">
@@ -104,7 +106,6 @@
                                                 <wm-form-field name="longitude" displayname="Longitude" show="true" primary-key="false" generator="assigned" key="longitude" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
                                                 placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn50"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow24">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn45">
@@ -112,29 +113,34 @@
                                                 inputtype="text" placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn46_1">
-                                                <wm-form-field displayname="Zoning Classification" widget="text" show="true" type="custom" name="zoningClassification"></wm-form-field>
+                                                <wm-form-field name="zoningClassification" displayname="Zoning Classification" show="true" primary-key="false" generator="assigned" key="zoningClassification" type="string" readonly="false" required="false"
+                                                widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn47">
-                                                <wm-form-field displayname="Flood Zone" widget="text" show="true" type="custom" name="floodZone"></wm-form-field>
+                                                <wm-form-field name="floodZone" displayname="Flood Zone" show="true" primary-key="false" generator="assigned" key="floodZone" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                                placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow26">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn51">
-                                                <wm-form-field displayname="Flood Plain" widget="text" show="true" type="custom" name="floodPlain"></wm-form-field>
+                                                <wm-form-field name="floodPlain" displayname="Flood Plain" show="true" primary-key="false" generator="assigned" key="floodPlain" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                                placeholder="Enter value"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn52">
-                                                <wm-form-field displayname="Flood Map Panel" widget="text" show="true" type="custom" name="floodMapPanel" inputtype="number" placeholder="Enter number"></wm-form-field>
+                                                <wm-form-field name="floodMapPanel" displayname="Flood Map Panel" show="true" primary-key="false" generator="assigned" key="floodMapPanel" type="integer" readonly="false" required="false" widget="text" inputtype="number"
+                                                placeholder="Enter number"></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn53"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow27">
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn54">
-                                                <wm-form-field displayname="Use" widget="text" show="true" type="custom" name="usedFor" key="usedFor" placeholder="Enter use"></wm-form-field>
+                                                <wm-form-field name="usedFor" displayname="Use" show="true" primary-key="false" generator="assigned" key="usedFor" type="string" readonly="false" required="false" widget="text" maxchars="1000" placeholder="Enter use"
+                                                inputtype="text"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn55">
-                                                <wm-form-field displayname="Is Hostile?" widget="checkbox" show="true" type="custom" name="isHostile" key="isHostile" caption="" hint="If selected, appropriate safety precautions should be taken when visiting this property."></wm-form-field>
+                                                <wm-form-field name="isHostile" displayname="Is Hostile?" show="true" primary-key="false" generator="assigned" key="isHostile" type="boolean" readonly="false" required="true" widget="checkbox" defaultvalue="false"
+                                                hint="If selected, appropriate safety precautions should be taken when visiting this property." placeholder=""></wm-form-field>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56"></wm-gridcolumn>
+                                            <wm-gridcolumn name="gridcolumn1" columnwidth="4"></wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>

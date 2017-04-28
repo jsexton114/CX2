@@ -68,6 +68,7 @@ public class Gisrecords implements Serializable {
     private Integer floodMapPanel;
     private boolean isHostile;
     private String fullAddress;
+    private boolean rentalProperty;
     private Users users;
     private Municipalities municipalities;
     private States states;
@@ -341,6 +342,15 @@ public class Gisrecords implements Serializable {
 
     public void setFullAddress(String fullAddress) {
         this.fullAddress = fullAddress;
+    }
+
+    @Column(name = "`RentalProperty`", nullable = false)
+    public boolean isRentalProperty() {
+        return this.rentalProperty;
+    }
+
+    public void setRentalProperty(boolean rentalProperty) {
+        this.rentalProperty = rentalProperty;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
