@@ -21,7 +21,6 @@
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodeListData.dataSet" navigation="Classic" name="gridCodeList" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="codeNumber" caption="Code Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="codeTitle" caption="Code Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="code" caption="Code" type="text" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="activeYn" caption="Active" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                     <wm-checkbox scopedatavalue="row['activeYn']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                 </wm-grid-column>
@@ -52,7 +51,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                            <wm-form-field name="code" displayname="Code" show="true" primary-key="false" generator="assigned" key="code" type="text" readonly="false" required="true" widget="textarea" maxchars="5000" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                            <wm-form-field name="code" displayname="Code" show="true" primary-key="false" generator="assigned" key="code" type="text" readonly="false" required="true" widget="richtext" maxchars="5000" placeholder="Enter value"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7">
@@ -61,7 +60,9 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
-                                <wm-form-field name="codeId" displayname="Code Id" show="false" primary-key="true" generator="identity" key="codeId" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
+                                <wm-form-field name="codeId" displayname="Code Id" show="false" primary-key="true" generator="identity" key="codeId" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                placeholder="Enter value"></wm-form-field>
                                 <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                             </wm-liveform>

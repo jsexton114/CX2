@@ -87,7 +87,7 @@ public class Code implements Serializable {
         this.codeTitle = codeTitle;
     }
 
-    @Column(name = "`Code`", nullable = true, length = 5000)
+    @Column(name = "`Code`", nullable = true, length = 2147483647)
     public String getCode() {
         return this.code;
     }
