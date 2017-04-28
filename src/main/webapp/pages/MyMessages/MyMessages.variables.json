@@ -2511,7 +2511,11 @@
     "name" : "svDefaultTaggedUser",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "postedBy",
+      "value" : "bind:Widgets.gridInbox.selecteditem.postedByUserId",
+      "type" : "integer"
+    } ],
     "type" : "com.civicxpress.cx2.Users",
     "service" : "cx2",
     "operation" : "executeUserForDefaultTagging",
