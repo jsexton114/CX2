@@ -83,13 +83,15 @@ public class DynamicFieldService {
       	muniDbConn.setAutoCommit(false);
     
       	try {
-      		String dynamicFieldIndex = DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex");
-      		
-      		if (fieldName.length() + dynamicFieldIndex.length() > MAX_COLUMN_LENGTH) {
-      			fieldName = fieldName.substring(0, (MAX_COLUMN_LENGTH - dynamicFieldIndex.length() - 1));
+      		if (fieldName != null) {
+          		String dynamicFieldIndex = DBUtils.selectOne(muniDbConn, "SELECT NEXT VALUE FOR DynamicFieldIndex as DynamicFieldIndex", null).getString("DynamicFieldIndex");
+          		
+      			if (fieldName.length() + dynamicFieldIndex.length() > MAX_COLUMN_LENGTH) {
+          			fieldName = fieldName.substring(0, (MAX_COLUMN_LENGTH - dynamicFieldIndex.length() - 1));
+      			}
+      			
+          		fieldName += dynamicFieldIndex;
       		}
-      		
-      		fieldName += dynamicFieldIndex;
     
         	queryParams.addString("label", label);
         	queryParams.addString("fieldName", fieldName);
