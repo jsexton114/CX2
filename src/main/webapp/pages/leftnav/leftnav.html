@@ -1,7 +1,7 @@
 <wm-partial data-ng-controller="leftnavPageController" name="leftnav" type="leftnav">
     <wm-nav name="DevDataEntry" sticky="leftnav" sticky-bottom-of="topnavbar" type="pills" layout="stacked">
         <wm-nav-item name="list_dashboard">
-            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-apps" on-click="Variables.goToPage_Main.invoke()" accessroles="User" badgevalue="bind:Variables.UserOpenFormsCount.dataSet.dataValue"></wm-anchor>
+            <wm-anchor caption="My Dashboard" name="dashboardLink" iconclass="wi wi-apps" on-click="Variables.goToPage_Main.invoke()" badgevalue="bind:Variables.UserOpenFormsCount.dataSet.dataValue"></wm-anchor>
         </wm-nav-item>
         <wm-nav-item name="nav_item5">
             <wm-anchor name="anchor15" iconclass="wi wi-work" caption="My Company" on-click="Variables.goToPage_MyCompany.invoke()" accessroles="CXVendorAdmin,CXAdmin" badgevalue="bind:Variables.CompanyOpenFormsCount.dataSet.dataValue"></wm-anchor>
