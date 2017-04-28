@@ -9,9 +9,7 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn32">
                         <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlink="link" itemicon="icon" itemlabel="label"></wm-breadcrumb>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="right">
-                        <wm-button class="btn-primary" caption="View Map" type="button" margin="unset 0.5em" name="buttonViewMap" iconclass="wi wi-map" on-click="Widgets.dialogGisMap.open()"></wm-button>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="right"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn29">
@@ -382,6 +380,9 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
+                            <wm-tabpane name="Map" title="Map">
+                                <wm-prefab prefabname="googlemaps" name="googlemapsGisForLATLNG" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="LatLng" zoom="16" lat="latitude" lng="longitude" show="bind:!!Variables.SelectedGISobj.firstRecord.latitude &amp;&amp; Variables.SelectedGISobj.firstRecord.latitude != &quot;&quot;"></wm-prefab>
+                            </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -389,23 +390,6 @@
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
-    <wm-view class="dialog-view" name="view1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="GIS Record Map" iconclass="wi wi-map" name="dialogGisMap" class="modal-larger">
-            <wm-gridrow name="gridrow9">
-                <wm-gridcolumn columnwidth="12" name="gridcolumn21">
-                    <wm-prefab prefabname="googlemaps" name="googlemapsGisForLATLNG" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="LatLng" zoom="16" lat="latitude" lng="longitude" show="bind:!!Variables.SelectedGISobj.firstRecord.latitude &amp;&amp; Variables.SelectedGISobj.firstRecord.latitude != &quot;&quot;"></wm-prefab>
-                </wm-gridcolumn>
-            </wm-gridrow>
-            <wm-gridrow name="gridrow91">
-                <wm-gridcolumn columnwidth="12" name="gridcolumn21">
-                    <wm-prefab prefabname="googlemaps" name="googlemapsGis" address="fullAddress" margin="1em unset" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="bind:!Variables.SelectedGISobj.firstRecord.latitude || Variables.SelectedGISobj.firstRecord.latitude === &quot;&quot;"></wm-prefab>
-                </wm-gridcolumn>
-            </wm-gridrow>
-            <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
-            </wm-dialogactions>
-        </wm-dialog>
-    </wm-view>
     <wm-view class="dialog-view" name="view2">
         <wm-pagedialog name="pagedialogViewForm" class="modal-larger" content="_viewForm" modal="true" title="View Form" oktext="Close" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Variables.stvFormLink.dataSet.dataValue" type="string"></wm-param>
