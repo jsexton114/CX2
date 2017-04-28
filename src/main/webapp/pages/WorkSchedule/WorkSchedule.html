@@ -144,7 +144,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                         <wm-panel iconclass="wi wi-today" name="panel2" title="Work Holidays" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                     <wm-grid-column binding="holiday" caption="Holiday" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="date" caption="Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
@@ -156,7 +156,7 @@
                                     <wm-layoutgrid columns="1" name="layoutgrid3">
                                         <wm-gridrow name="gridrow11">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
-                                                <wm-form-field name="holiday" displayname="Holiday" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"
+                                                <wm-form-field name="holiday" displayname="Holiday Name" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"
                                                 required="true"></wm-form-field>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
