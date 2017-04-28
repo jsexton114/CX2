@@ -177,6 +177,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("AdminsMunicipalities", params, exportType, AdminsMunicipalitiesResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("getTransactionsByMunicipality", params, GetTransactionsByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("getTransactionsByMunicipality", params, exportType, GetTransactionsByMunicipalityResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest) {

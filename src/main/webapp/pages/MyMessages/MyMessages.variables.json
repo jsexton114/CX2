@@ -833,6 +833,20 @@
     } ],
     "operation" : "toast"
   },
+  "ngViewEditGIS" : {
+    "_id" : "wm-ngViewEditGIS-wm.NavigationVariable-1493375701356",
+    "name" : "ngViewEditGIS",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "EditGISRecord",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "NoPersonAdded" : {
     "_id" : "wm-NoPersonAdded-wm.NotificationVariable-1486544208895",
     "name" : "NoPersonAdded",

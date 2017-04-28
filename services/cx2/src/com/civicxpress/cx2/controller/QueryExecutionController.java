@@ -176,6 +176,25 @@ public class QueryExecutionController {
         return queryService.exportAdminsMunicipalities(exportType, user, pageable);
     }
 
+    @RequestMapping(value = "/queries/getTransactionsByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getTransactionsByMunicipality")
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: getTransactionsByMunicipality");
+        Page<GetTransactionsByMunicipalityResponse> _result = queryService.executeGetTransactionsByMunicipality(municipalityId, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: getTransactionsByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getTransactionsByMunicipality")
+    @RequestMapping(value = "/queries/getTransactionsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetTransactionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getTransactionsByMunicipality");
+
+        return queryService.exportGetTransactionsByMunicipality(exportType, municipalityId, startd, endd, pageable);
+    }
+
     @RequestMapping(value = "/queries/InsertIntoCart", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertIntoCart")

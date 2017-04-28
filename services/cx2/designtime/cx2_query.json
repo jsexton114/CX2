@@ -12838,6 +12838,247 @@
       } ]
     }
   },
+  "getTransactionsByMunicipality" : {
+    "name" : "getTransactionsByMunicipality",
+    "description" : "getTransactionsByMunicipality",
+    "version" : "V2",
+    "queryString" : "select \nPH.TransactionId as transactionId,\nF.PaidStatus as paidStatus,\nF.ID as feeId,\nF.FeeType as feeType,\nF.Comments as feeComments,\nF.AccountingCode as accountingCode,\nF.AutoFeeYN as autoFeeYN,\nF.PaidDate as feePaidDate,\nF.Amount as feeAmount,\nU.email as userEmail,\nU.ID as userId,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate,\nMUNI.ID as municipalityId,\nMUNI.MunicipalityName as municipalityName,\nFT.FormType as formDesign,\nGR.FullAddress as address,\nMF.FormTitle as formTitle\nfrom PaymentHistory PH\nINNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId\nINNER JOIN Fees F ON F.ID=TF.FeeId\nINNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nINNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId\nINNER JOIN Users U ON U.ID=F.PaidByUserId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\n\tAND F.PaidDate BETWEEN :startd and :endd",
+    "countQueryString" : "select count(*) from (select \nPH.TransactionId as transactionId,\nF.PaidStatus as paidStatus,\nF.ID as feeId,\nF.FeeType as feeType,\nF.Comments as feeComments,\nF.AccountingCode as accountingCode,\nF.AutoFeeYN as autoFeeYN,\nF.PaidDate as feePaidDate,\nF.Amount as feeAmount,\nU.email as userEmail,\nU.ID as userId,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate,\nMUNI.ID as municipalityId,\nMUNI.MunicipalityName as municipalityName,\nFT.FormType as formDesign,\nGR.FullAddress as address,\nMF.FormTitle as formTitle\nfrom PaymentHistory PH\nINNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId\nINNER JOIN Fees F ON F.ID=TF.FeeId\nINNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nINNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId\nINNER JOIN Users U ON U.ID=F.PaidByUserId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)\n\tAND F.PaidDate BETWEEN :startd and :endd) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : false
+    }, {
+      "name" : "startd",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-01-03",
+      "required" : true
+    }, {
+      "name" : "endd",
+      "type" : "date",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2017-04-27",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetTransactionsByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "transactionId",
+        "fieldName" : "transactionId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "paidStatus",
+        "fieldName" : "paidStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feeId",
+        "fieldName" : "feeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "feeType",
+        "fieldName" : "feeType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "feeComments",
+        "fieldName" : "feeComments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "accountingCode",
+        "fieldName" : "accountingCode",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "autoFeeYN",
+        "fieldName" : "autoFeeYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "feePaidDate",
+        "fieldName" : "feePaidDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.sql.Date",
+          "list" : false
+        }
+      }, {
+        "name" : "feeAmount",
+        "fieldName" : "feeAmount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      }, {
+        "name" : "userEmail",
+        "fieldName" : "userEmail",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "userId",
+        "fieldName" : "userId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "userName",
+        "fieldName" : "userName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "paymentMethod",
+        "fieldName" : "paymentMethod",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "paymentNumber",
+        "fieldName" : "paymentNumber",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "totalTransactionAmount",
+        "fieldName" : "totalTransactionAmount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Float",
+          "list" : false
+        }
+      }, {
+        "name" : "transactionComments",
+        "fieldName" : "transactionComments",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "transactionDate",
+        "fieldName" : "transactionDate",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityId",
+        "fieldName" : "municipalityId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formDesign",
+        "fieldName" : "formDesign",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getUserID" : {
     "name" : "getUserID",
     "description" : "get user id based on mail id",

@@ -1,0 +1,89 @@
+<wm-page data-ng-controller="MunicipalityTransactionsPageController" pagetitle="Municipality Transactions" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7_1">
+                        <wm-breadcrumb dataset="bind:Variables.BreadCrum.dataSet" name="breadcrumb1" itemlabel="label" itemicon="icon" itemlink="link"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                        <wm-label caption="Municipality Transactions" fontweight="bold" name="label1" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="unset unset 4em unset">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn30">
+                        <wm-composite name="composite3">
+                            <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-7" name="container3">
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                placeholder=""></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn16"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn17" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" name="label6" caption="OR between" class="col-md-12 form-control-static" fontweight="bold" textalign="right"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn31">
+                        <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" datavalue="START DATE" placeholder="Start Date"></wm-date>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="1" name="gridcolumn18" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" caption="and" name="label7" class="col-md-12 form-control-static" fontweight="bold"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn32">
+                        <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
+                        <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridFees">
+                            <wm-grid-column binding="feePaidDate" caption="Date" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="transactionId" caption="Transaction Id" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="feeAmount" caption="Fee Amount" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="userName" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-details" title="Details" action="Widgets.dialogFeeDetails.open()" disabled="false"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="viewFeeDetails">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="FeeDetails" iconclass="wi wi-attach-money" name="dialogFeeDetails" width="60%">
+            <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn11">
+                        <wm-grid title="" dataset="bind:Widgets.gridFees.selecteditem" navigation="None" name="gridFeeDetails">
+                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formDesign" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="feeComments" caption="Fee Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="transactionComments" caption="Transaction Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+</wm-page>

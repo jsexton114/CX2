@@ -184,6 +184,102 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="getTransactionsByMunicipality">
+        <![CDATA[
+        select 
+PH.TransactionId as transactionId,
+F.PaidStatus as paidStatus,
+F.ID as feeId,
+F.FeeType as feeType,
+F.Comments as feeComments,
+F.AccountingCode as accountingCode,
+F.AutoFeeYN as autoFeeYN,
+F.PaidDate as feePaidDate,
+F.Amount as feeAmount,
+U.email as userEmail,
+U.ID as userId,
+U.fullName as userName,
+PH.PaymentMethod as paymentMethod,
+PH.PaymentNumber as paymentNumber,
+PH.AmountReceived as totalTransactionAmount,
+PH.Comments as transactionComments,
+PH.DateCreated as transactionDate,
+MUNI.ID as municipalityId,
+MUNI.MunicipalityName as municipalityName,
+FT.FormType as formDesign,
+GR.FullAddress as address,
+MF.FormTitle as formTitle
+from PaymentHistory PH
+INNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId
+INNER JOIN Fees F ON F.ID=TF.FeeId
+INNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId
+INNER JOIN Users U ON U.ID=F.PaidByUserId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+	AND F.PaidDate BETWEEN :startd and :endd
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="startd" type="java.sql.Date"/>
+    <query-param name="endd" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="getTransactionsByMunicipality__count">
+        <![CDATA[
+        select count(*) from (select 
+PH.TransactionId as transactionId,
+F.PaidStatus as paidStatus,
+F.ID as feeId,
+F.FeeType as feeType,
+F.Comments as feeComments,
+F.AccountingCode as accountingCode,
+F.AutoFeeYN as autoFeeYN,
+F.PaidDate as feePaidDate,
+F.Amount as feeAmount,
+U.email as userEmail,
+U.ID as userId,
+U.fullName as userName,
+PH.PaymentMethod as paymentMethod,
+PH.PaymentNumber as paymentNumber,
+PH.AmountReceived as totalTransactionAmount,
+PH.Comments as transactionComments,
+PH.DateCreated as transactionDate,
+MUNI.ID as municipalityId,
+MUNI.MunicipalityName as municipalityName,
+FT.FormType as formDesign,
+GR.FullAddress as address,
+MF.FormTitle as formTitle
+from PaymentHistory PH
+INNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId
+INNER JOIN Fees F ON F.ID=TF.FeeId
+INNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+INNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId
+INNER JOIN Users U ON U.ID=F.PaidByUserId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
+	AND F.PaidDate BETWEEN :startd and :endd) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="startd" type="java.sql.Date"/>
+    <query-param name="endd" type="java.sql.Date"/>
+    </sql-query>
+
     <sql-query name="InsertIntoCart">
         <![CDATA[
         insert into MyCart(FeeId,UserId) values(:FeeId,:UserId)

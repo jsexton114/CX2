@@ -153,6 +153,7 @@ Application.$controller("gridSentController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
+
             switch ($rowData.sourceCategory) {
                 case "Form":
                     $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
@@ -165,6 +166,12 @@ Application.$controller("gridSentController", ["$scope",
                 case "Project":
                     $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
                     $scope.Widgets.pagedialogViewProject.open();
+                    break;
+                case "GISRecord":
+                    $scope.Variables.ngViewEditGIS.setData({
+                        'GISRecordId': $rowData.sourceGuid
+                    });
+                    $scope.Variables.ngViewEditGIS.navigate();
                     break;
 
             }
@@ -319,5 +326,43 @@ Application.$controller("gridInboxController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+        $scope.updaterowAction = function($event, $rowData) {
+            let messagesList = $scope.Variables.svGetUserMessages.dataSet.content
+            _.forEach($scope.Variables.svGetUserMessages.dataSet.content, function(obj) {
+                if ($rowData.id == obj.id) {
+                    obj.messageRead = true;
+                }
+            });
+            //$rowData.messageRead = true;
+        };
+
+
+        $scope.deleterowAction = function($event, $rowData) {
+            debugger
+            switch ($rowData.sourceCategory) {
+                case "Form":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewForm.open();
+                    break;
+                case "Inspection":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewInspection.open();
+                    break;
+                case "Project":
+                    $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
+                    $scope.Widgets.pagedialogViewProject.open();
+                    break;
+                case "GISRecord":
+                    $scope.Variables.ngViewEditGIS.setData({
+                        'GISRecordId': $rowData.sourceGuid
+                    });
+                    $scope.Variables.ngViewEditGIS.navigate();
+                    break;
+
+
+            }
+
+        };
+
     }
 ]);

@@ -54,6 +54,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportAdminsMunicipalities(ExportType exportType, Integer user, Pageable pageable);
 
+    Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable);
+
+    Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable);
+
     Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest);
 
     Integer executeCreateLetterTemplateForFormStatus(CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest);
