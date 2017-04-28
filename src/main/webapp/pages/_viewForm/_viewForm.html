@@ -17,23 +17,16 @@
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
+                                        <wm-label padding="unset 0.5em 0.5em 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow98" padding=".2em unset">
+                                <wm-gridrow name="gridrow98">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn181"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn182" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelHostil" caption="Please Take Caution" backgroundcolor="yellow" fontweight="bold" show="bind:!!isHostile"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelHostil" caption="Please Take Caution" backgroundcolor="yellow" fontweight="bold" show="bind:Variables.Gis2formsData.dataSet.content.length>0 &amp;&amp; !!isHostile"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn183"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow84_1">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" fontsize="18"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow108">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn199"></wm-gridcolumn>
@@ -47,17 +40,24 @@
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn201"></wm-gridcolumn>
                                 </wm-gridrow>
+                                <wm-gridrow name="gridrow84_1">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
+                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" class="h3"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow83_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn156_3"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn156_2" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label66" caption="bind:'Created By: ' + Variables.CurrentForm.dataSet.data[$i].users.firstName + ' ' + Variables.CurrentForm.dataSet.data[$i].users.lastName" fontsize="15"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label66" caption="bind:'Submitted By: ' + Variables.CurrentForm.dataSet.data[$i].users.firstName + ' ' + Variables.CurrentForm.dataSet.data[$i].users.lastName"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow88">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn162"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn163" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (expiresOn | toLocalDateString:true)" ng-class="{'text-primary': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn" fontsize="15"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (expiresOn | toLocalDateString:true)" ng-class="{'text-primary': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn164_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -492,6 +492,14 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
+                                <wm-tabpane name="tabpaneLetters" title="LETTERS" accessroles="MunicipalityEmployee,MunicipalityAdmin,InspectorManager,Inspector,GISAdmin,CXVendorAdmin,CXAdmin,CodeOfficer,CodeManager">
+                                    <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters">
+                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="createLetter" action="Variables.svCreateLetter.invoke()" disabled="false"></wm-grid-row-action>
+                                    </wm-grid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneHistory" title="HISTORY">
                                     <wm-layoutgrid name="layoutgrid21">
                                         <wm-gridrow name="gridrow68">
@@ -566,14 +574,6 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                </wm-tabpane>
-                                <wm-tabpane name="tabpaneLetters" title="LETTERS" accessroles="MunicipalityEmployee,MunicipalityAdmin,InspectorManager,Inspector,GISAdmin,CXVendorAdmin,CXAdmin,CodeOfficer,CodeManager">
-                                    <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters">
-                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="createLetter" action="Variables.svCreateLetter.invoke()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
                                 </wm-tabpane>
                             </wm-tabs>
                         </wm-panel>
