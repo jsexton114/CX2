@@ -377,7 +377,7 @@
                                                         <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
                                                         formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'UnpaidFee-class':row.paidStatus=='Unpaid'}"
-                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        accessroles="MunicipalityEmployee" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="comments" caption="Fee Comments" type="string" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
                                                         edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
