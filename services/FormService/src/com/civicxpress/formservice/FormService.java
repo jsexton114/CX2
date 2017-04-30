@@ -715,12 +715,14 @@ public class FormService {
 	        String newFilename = (documentData.getString("Filename")+"-Annotated-"+usDateFormatter.format(new Date())+"."+newFileExt);
 	        
 	        params.addString("formGuid", documentData.getString("ItemGUID"));
+	        params.addLong("violationId", documentData.getLong("ViolationId"));
+	        params.addLong("gisRecordId", documentData.getLong("GisRecordId"));
 	        params.addString("filename", newFilename);
 	        params.addString("mimetype", mimetype);
 	        params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
 	        params.addBytes("contents", Base64.decode(base64FileData));
 	        
-	        String saveQuery = "INSERT INTO Document (ItemGUID, Filename, CreatedBy, Mimetype, Contents) VALUES (:formGuid, :filename, :createdBy, :mimetype, :contents)";
+	        String saveQuery = "INSERT INTO Document (ItemGUID, ViolationId, GisRecordId, Filename, CreatedBy, Mimetype, Contents) VALUES (:formGuid, :violationId, :gisRecordId, :filename, :createdBy, :mimetype, :contents)";
 	        
 	        DBUtils.simpleUpdateQuery(cx2Conn, saveQuery, params);
 	        
@@ -739,9 +741,11 @@ public class FormService {
     	
     	DBRow documentData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Document WHERE ID=:documentId", queryParams);
     	
-    	UserPermissionsPojo perms = getUserPermissions(documentData.getString("ItemGUID"));
+    	String itemGuid = documentData.getString("ItemGUID");
     	
-    	if (!perms.getCanView()) {
+    	UserPermissionsPojo perms = getUserPermissions(itemGuid);
+    	
+    	if (itemGuid != null && !perms.getCanView()) {
     		return null;
     	}
     	

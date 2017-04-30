@@ -331,7 +331,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneDocuments" title="Documents">
                                 <wm-livegrid formlayout="dialog" name="livegrid5">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvDocuments.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                         <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
