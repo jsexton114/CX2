@@ -1310,7 +1310,7 @@ where id IN (select userId from Roles where roleName=:RoleName and municipalityI
 
     <sql-query name="getFormCountForGisRecord">
         <![CDATA[
-        select count(MF.FormGuid) as formCount,
+        select ISNULL(count(MF.FormGuid), 0) as formCount,
 (CASE WHEN FS.ConsiderClosed=1 THEN 'Closed' ELSE 'Open' END) as ConsiderClosed
 from Gis2Forms GTF
 INNER JOIN MasterForms MF ON MF.FormGUID=GTF.RelatedFormGuid
@@ -1325,7 +1325,7 @@ GROUP BY FS.ConsiderClosed
 
     <sql-query name="getFormCountForGisRecord__count">
         <![CDATA[
-        select count(*) from (select count(MF.FormGuid) as formCount,
+        select count(*) from (select ISNULL(count(MF.FormGuid), 0) as formCount,
 (CASE WHEN FS.ConsiderClosed=1 THEN 'Closed' ELSE 'Open' END) as ConsiderClosed
 from Gis2Forms GTF
 INNER JOIN MasterForms MF ON MF.FormGUID=GTF.RelatedFormGuid
