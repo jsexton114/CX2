@@ -84,11 +84,16 @@
     <wm-view class="dialog-view" name="viewFeeDetails">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Transaction Fee Details" iconclass="wi wi-attach-money" name="dialogFeeDetails" width="60%">
             <wm-layoutgrid name="layoutgrid2">
-                <wm-gridrow name="gridrow6">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
-                        <wm-label padding="unset 0.5em" name="label7_1" caption="bind:'<strong>Paid By:</strong> ' + Widgets.gridTransactions.selecteditem.userName + '<br>'"></wm-label>
+                <wm-gridrow name="gridrow9">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn15">
+                        <wm-label padding="unset 0.5em" name="label7_1" caption="bind:'<h4>Paid By</h4><p>' + Widgets.gridTransactions.selecteditem.userName + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_2">
                         <wm-label padding="unset 0.5em" name="label6_1" caption="bind:'<h4>Transaction Comments</h4><p>' + Widgets.gridTransactions.selecteditem.transactionComments + '</p>'"></wm-label>
                     </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn12"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn11">
