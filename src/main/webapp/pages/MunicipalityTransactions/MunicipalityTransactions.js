@@ -42,7 +42,7 @@ Application.$controller("MunicipalityTransactionsPageController", ["$scope", fun
 
 }]);
 
-Application.$controller("gridFeesController", ["$scope",
+Application.$controller("gridTransactionsController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
@@ -57,6 +57,13 @@ Application.$controller("dialogFeeDetailsController", ["$scope",
 ]);
 
 Application.$controller("gridFeeDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("gridTotalsByPaymentTypeController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;

@@ -774,6 +774,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/getFeesForTransaction", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "''")
+    public Page<GetFeesForTransactionResponse> executeGetFeesForTransaction(@RequestParam(value = "transactionId") Integer transactionId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getFeesForTransaction");
+        Page<GetFeesForTransactionResponse> _result = queryService.executeGetFeesForTransaction(transactionId, pageable);
+        LOGGER.debug("got the result for named query: getFeesForTransaction, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getFeesForTransaction")
+    @RequestMapping(value = "/queries/getFeesForTransaction/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFeesForTransaction(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "transactionId") Integer transactionId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getFeesForTransaction");
+
+        return queryService.exportGetFeesForTransaction(exportType, transactionId, pageable);
+    }
+
     @RequestMapping(value = "/queries/SetPrimaryVendorStatusForFormandVendor", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SetPrimaryVendorStatusForFormandVendor")
@@ -2542,6 +2561,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: countOfMunicipalityCodeList");
 
         return queryService.exportCountOfMunicipalityCodeList(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getTotalPaymentByMethodForPeriod", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "sdf")
+    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(@RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: getTotalPaymentByMethodForPeriod");
+        Page<GetTotalPaymentByMethodForPeriodResponse> _result = queryService.executeGetTotalPaymentByMethodForPeriod(municipalityId, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: getTotalPaymentByMethodForPeriod, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getTotalPaymentByMethodForPeriod")
+    @RequestMapping(value = "/queries/getTotalPaymentByMethodForPeriod/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetTotalPaymentByMethodForPeriod(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getTotalPaymentByMethodForPeriod");
+
+        return queryService.exportGetTotalPaymentByMethodForPeriod(exportType, municipalityId, startd, endd, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT)

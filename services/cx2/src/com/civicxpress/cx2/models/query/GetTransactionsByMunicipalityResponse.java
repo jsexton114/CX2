@@ -23,26 +23,12 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
 
     @ColumnAlias("transactionId")
     private Integer transactionId;
-    @ColumnAlias("paidStatus")
-    private String paidStatus;
-    @ColumnAlias("feeId")
-    private Integer feeId;
-    @ColumnAlias("feeType")
-    private String feeType;
-    @ColumnAlias("feeComments")
-    private String feeComments;
-    @ColumnAlias("accountingCode")
-    private String accountingCode;
-    @ColumnAlias("autoFeeYN")
-    private Boolean autoFeeYn;
-    @ColumnAlias("feePaidDate")
-    private java.sql.Date feePaidDate;
     @ColumnAlias("feeAmount")
     private BigDecimal feeAmount;
-    @ColumnAlias("userEmail")
-    private String userEmail;
     @ColumnAlias("userId")
     private Integer userId;
+    @ColumnAlias("userEmail")
+    private String userEmail;
     @ColumnAlias("userName")
     private String userName;
     @ColumnAlias("paymentMethod")
@@ -55,16 +41,6 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
     private String transactionComments;
     @ColumnAlias("transactionDate")
     private LocalDateTime transactionDate;
-    @ColumnAlias("municipalityId")
-    private Integer municipalityId;
-    @ColumnAlias("municipalityName")
-    private String municipalityName;
-    @ColumnAlias("formDesign")
-    private String formDesign;
-    @ColumnAlias("address")
-    private String address;
-    @ColumnAlias("formTitle")
-    private String formTitle;
 
     public Integer getTransactionId() {
         return this.transactionId;
@@ -72,62 +48,6 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
 
     public void setTransactionId(Integer transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public String getPaidStatus() {
-        return this.paidStatus;
-    }
-
-    public void setPaidStatus(String paidStatus) {
-        this.paidStatus = paidStatus;
-    }
-
-    public Integer getFeeId() {
-        return this.feeId;
-    }
-
-    public void setFeeId(Integer feeId) {
-        this.feeId = feeId;
-    }
-
-    public String getFeeType() {
-        return this.feeType;
-    }
-
-    public void setFeeType(String feeType) {
-        this.feeType = feeType;
-    }
-
-    public String getFeeComments() {
-        return this.feeComments;
-    }
-
-    public void setFeeComments(String feeComments) {
-        this.feeComments = feeComments;
-    }
-
-    public String getAccountingCode() {
-        return this.accountingCode;
-    }
-
-    public void setAccountingCode(String accountingCode) {
-        this.accountingCode = accountingCode;
-    }
-
-    public Boolean getAutoFeeYn() {
-        return this.autoFeeYn;
-    }
-
-    public void setAutoFeeYn(Boolean autoFeeYn) {
-        this.autoFeeYn = autoFeeYn;
-    }
-
-    public java.sql.Date getFeePaidDate() {
-        return this.feePaidDate;
-    }
-
-    public void setFeePaidDate(java.sql.Date feePaidDate) {
-        this.feePaidDate = feePaidDate;
     }
 
     public BigDecimal getFeeAmount() {
@@ -138,20 +58,20 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
         this.feeAmount = feeAmount;
     }
 
-    public String getUserEmail() {
-        return this.userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     public Integer getUserId() {
         return this.userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserEmail() {
+        return this.userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserName() {
@@ -202,98 +122,34 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
         this.transactionDate = transactionDate;
     }
 
-    public Integer getMunicipalityId() {
-        return this.municipalityId;
-    }
-
-    public void setMunicipalityId(Integer municipalityId) {
-        this.municipalityId = municipalityId;
-    }
-
-    public String getMunicipalityName() {
-        return this.municipalityName;
-    }
-
-    public void setMunicipalityName(String municipalityName) {
-        this.municipalityName = municipalityName;
-    }
-
-    public String getFormDesign() {
-        return this.formDesign;
-    }
-
-    public void setFormDesign(String formDesign) {
-        this.formDesign = formDesign;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getFormTitle() {
-        return this.formTitle;
-    }
-
-    public void setFormTitle(String formTitle) {
-        this.formTitle = formTitle;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof GetTransactionsByMunicipalityResponse)) return false;
         final GetTransactionsByMunicipalityResponse getTransactionsByMunicipalityResponse = (GetTransactionsByMunicipalityResponse) o;
         return Objects.equals(getTransactionId(), getTransactionsByMunicipalityResponse.getTransactionId()) &&
-                Objects.equals(getPaidStatus(), getTransactionsByMunicipalityResponse.getPaidStatus()) &&
-                Objects.equals(getFeeId(), getTransactionsByMunicipalityResponse.getFeeId()) &&
-                Objects.equals(getFeeType(), getTransactionsByMunicipalityResponse.getFeeType()) &&
-                Objects.equals(getFeeComments(), getTransactionsByMunicipalityResponse.getFeeComments()) &&
-                Objects.equals(getAccountingCode(), getTransactionsByMunicipalityResponse.getAccountingCode()) &&
-                Objects.equals(getAutoFeeYn(), getTransactionsByMunicipalityResponse.getAutoFeeYn()) &&
-                Objects.equals(getFeePaidDate(), getTransactionsByMunicipalityResponse.getFeePaidDate()) &&
                 Objects.equals(getFeeAmount(), getTransactionsByMunicipalityResponse.getFeeAmount()) &&
-                Objects.equals(getUserEmail(), getTransactionsByMunicipalityResponse.getUserEmail()) &&
                 Objects.equals(getUserId(), getTransactionsByMunicipalityResponse.getUserId()) &&
+                Objects.equals(getUserEmail(), getTransactionsByMunicipalityResponse.getUserEmail()) &&
                 Objects.equals(getUserName(), getTransactionsByMunicipalityResponse.getUserName()) &&
                 Objects.equals(getPaymentMethod(), getTransactionsByMunicipalityResponse.getPaymentMethod()) &&
                 Objects.equals(getPaymentNumber(), getTransactionsByMunicipalityResponse.getPaymentNumber()) &&
                 Objects.equals(getTotalTransactionAmount(), getTransactionsByMunicipalityResponse.getTotalTransactionAmount()) &&
                 Objects.equals(getTransactionComments(), getTransactionsByMunicipalityResponse.getTransactionComments()) &&
-                Objects.equals(getTransactionDate(), getTransactionsByMunicipalityResponse.getTransactionDate()) &&
-                Objects.equals(getMunicipalityId(), getTransactionsByMunicipalityResponse.getMunicipalityId()) &&
-                Objects.equals(getMunicipalityName(), getTransactionsByMunicipalityResponse.getMunicipalityName()) &&
-                Objects.equals(getFormDesign(), getTransactionsByMunicipalityResponse.getFormDesign()) &&
-                Objects.equals(getAddress(), getTransactionsByMunicipalityResponse.getAddress()) &&
-                Objects.equals(getFormTitle(), getTransactionsByMunicipalityResponse.getFormTitle());
+                Objects.equals(getTransactionDate(), getTransactionsByMunicipalityResponse.getTransactionDate());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getTransactionId(),
-                getPaidStatus(),
-                getFeeId(),
-                getFeeType(),
-                getFeeComments(),
-                getAccountingCode(),
-                getAutoFeeYn(),
-                getFeePaidDate(),
                 getFeeAmount(),
-                getUserEmail(),
                 getUserId(),
+                getUserEmail(),
                 getUserName(),
                 getPaymentMethod(),
                 getPaymentNumber(),
                 getTotalTransactionAmount(),
                 getTransactionComments(),
-                getTransactionDate(),
-                getMunicipalityId(),
-                getMunicipalityName(),
-                getFormDesign(),
-                getAddress(),
-                getFormTitle());
+                getTransactionDate());
     }
 }

@@ -879,6 +879,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFeesForTransactionResponse> executeGetFeesForTransaction(Integer transactionId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("transactionId", transactionId);
+
+        return queryExecutor.executeNamedQuery("getFeesForTransaction", params, GetFeesForTransactionResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFeesForTransaction(ExportType exportType, Integer transactionId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("transactionId", transactionId);
+
+        return queryExecutor.exportNamedQueryData("getFeesForTransaction", params, exportType, GetFeesForTransactionResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest) {
@@ -2975,6 +2995,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("countOfMunicipalityCodeList", params, exportType, CountOfMunicipalityCodeListResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("getTotalPaymentByMethodForPeriod", params, GetTotalPaymentByMethodForPeriodResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("getTotalPaymentByMethodForPeriod", params, exportType, GetTotalPaymentByMethodForPeriodResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

@@ -178,6 +178,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor);
 
+    Page<GetFeesForTransactionResponse> executeGetFeesForTransaction(Integer transactionId, Pageable pageable);
+
+    Downloadable exportGetFeesForTransaction(ExportType exportType, Integer transactionId, Pageable pageable);
+
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);
 
     Page<AllFeeformCountResponse> executeAllFeeformCount(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable);
@@ -545,6 +549,10 @@ public interface Cx2QueryExecutorService {
     Page<CountOfMunicipalityCodeListResponse> executeCountOfMunicipalityCodeList(Integer municipalityId, Pageable pageable);
 
     Downloadable exportCountOfMunicipalityCodeList(ExportType exportType, Integer municipalityId, Pageable pageable);
+
+    Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, Date startd, Date endd, Pageable pageable);
+
+    Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, Date startd, Date endd, Pageable pageable);
 
     Integer executeUpdateProjectDescription(UpdateProjectDescriptionRequest updateProjectDescriptionRequest);
 

@@ -188,44 +188,19 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
         <![CDATA[
         select 
 PH.TransactionId as transactionId,
-F.PaidStatus as paidStatus,
-F.ID as feeId,
-F.FeeType as feeType,
-F.Comments as feeComments,
-F.AccountingCode as accountingCode,
-F.AutoFeeYN as autoFeeYN,
-F.PaidDate as feePaidDate,
-F.Amount as feeAmount,
+(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,
+PH.CreatedBy as userId,
 U.email as userEmail,
-U.ID as userId,
 U.fullName as userName,
 PH.PaymentMethod as paymentMethod,
 PH.PaymentNumber as paymentNumber,
 PH.AmountReceived as totalTransactionAmount,
 PH.Comments as transactionComments,
-PH.DateCreated as transactionDate,
-MUNI.ID as municipalityId,
-MUNI.MunicipalityName as municipalityName,
-FT.FormType as formDesign,
-GR.FullAddress as address,
-MF.FormTitle as formTitle
+PH.DateCreated as transactionDate
 from PaymentHistory PH
-INNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId
-INNER JOIN Fees F ON F.ID=TF.FeeId
-INNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID
-LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-INNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId
-INNER JOIN Users U ON U.ID=F.PaidByUserId
-LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
-				GF.RelatedFormGuid as formGuid,
-				GR.Lot,
-				SD.Subdivision,
-				GR.FullAddress
-				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
-				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
-) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
-	AND F.PaidDate BETWEEN :startd and :endd
+LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
+where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+    AND PH.DateCreated between :startd and :endd
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="startd" type="java.sql.Date"/>
@@ -236,44 +211,19 @@ where (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
         <![CDATA[
         select count(*) from (select 
 PH.TransactionId as transactionId,
-F.PaidStatus as paidStatus,
-F.ID as feeId,
-F.FeeType as feeType,
-F.Comments as feeComments,
-F.AccountingCode as accountingCode,
-F.AutoFeeYN as autoFeeYN,
-F.PaidDate as feePaidDate,
-F.Amount as feeAmount,
+(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,
+PH.CreatedBy as userId,
 U.email as userEmail,
-U.ID as userId,
 U.fullName as userName,
 PH.PaymentMethod as paymentMethod,
 PH.PaymentNumber as paymentNumber,
 PH.AmountReceived as totalTransactionAmount,
 PH.Comments as transactionComments,
-PH.DateCreated as transactionDate,
-MUNI.ID as municipalityId,
-MUNI.MunicipalityName as municipalityName,
-FT.FormType as formDesign,
-GR.FullAddress as address,
-MF.FormTitle as formTitle
+PH.DateCreated as transactionDate
 from PaymentHistory PH
-INNER JOIN  TransactionToFees TF ON TF.TransactionId=PH.TransactionId
-INNER JOIN Fees F ON F.ID=TF.FeeId
-INNER JOIN MasterForms MF ON F.FormGUID=MF.FormGUID
-LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-INNER JOIN Municipalities MUNI ON MUNI.ID=F.MunicipalityId
-INNER JOIN Users U ON U.ID=F.PaidByUserId
-LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
-				GF.RelatedFormGuid as formGuid,
-				GR.Lot,
-				SD.Subdivision,
-				GR.FullAddress
-				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
-				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
-) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where (:municipalityId IS NULL OR  MUNI.ID=:municipalityId)
-	AND F.PaidDate BETWEEN :startd and :endd) wmTempTable
+LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
+where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+    AND PH.DateCreated between :startd and :endd) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="startd" type="java.sql.Date"/>
@@ -922,6 +872,56 @@ where vendorId=:vendorId and projects.active=:active
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getFeesForTransaction">
+        <![CDATA[
+        select F.Amount,
+F.FeeType,
+F.AccountingCode,
+MF.FormTitle,
+FT.FormType as FormDesign,
+MUNI.MunicipalityName,
+GR.FullAddress,
+F.Comments
+FROM TransactionToFees TF
+INNER JOIN Fees F ON TF.FeeId=F.ID
+INNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid
+INNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+WHERE TF.TransactionId=:transactionId
+        ]]>
+    <query-param name="transactionId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getFeesForTransaction__count">
+        <![CDATA[
+        select count(*) from (select F.Amount,
+F.FeeType,
+F.AccountingCode,
+MF.FormTitle,
+FT.FormType as FormDesign,
+MUNI.MunicipalityName,
+GR.FullAddress,
+F.Comments
+FROM TransactionToFees TF
+INNER JOIN Fees F ON TF.FeeId=F.ID
+INNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid
+INNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID
+INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+WHERE TF.TransactionId=:transactionId) wmTempTable
+        ]]>
+    <query-param name="transactionId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="SetPrimaryVendorStatusForFormandVendor">
@@ -3412,6 +3412,36 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
         select count(*) from (select count(*) as countCodeList from Code where CodeSetId IN(select CodeSetId from CodeSets where GlobalYN=0 and MunicipalityId=:MunicipalityId)) wmTempTable
         ]]>
     <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getTotalPaymentByMethodForPeriod">
+        <![CDATA[
+        select PH.PaymentMethod,
+SUM(F.Amount) as paymentAmount
+from PaymentHistory PH
+INNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)
+where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+    AND PH.DateCreated between :startd and :endd
+    GROUP BY PH.PaymentMethod
+        ]]>
+    <query-param name="municipalityId" type="java.lang.String"/>
+    <query-param name="startd" type="java.sql.Date"/>
+    <query-param name="endd" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="getTotalPaymentByMethodForPeriod__count">
+        <![CDATA[
+        select count(*) from (select PH.PaymentMethod,
+SUM(F.Amount) as paymentAmount
+from PaymentHistory PH
+INNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)
+where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+    AND PH.DateCreated between :startd and :endd
+    GROUP BY PH.PaymentMethod) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.String"/>
+    <query-param name="startd" type="java.sql.Date"/>
+    <query-param name="endd" type="java.sql.Date"/>
     </sql-query>
 
     <sql-query name="UpdateProjectDescription">

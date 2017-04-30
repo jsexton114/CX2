@@ -25179,7 +25179,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "svSetFormStatusonSuccess($event, $scope);Variables.ncStatusUpdated.invoke();Variables.UpdateProcessOwnersForGUID.invoke();Variables.CurrentForm.listRecords();Variables.FormHistoryData.listRecords()",
+    "onSuccess" : "svSetFormStatusonSuccess($event, $scope);Variables.ncStatusUpdated.invoke();Variables.UpdateProcessOwnersForGUID.invoke();Variables.CurrentForm.listRecords();Variables.FormHistoryData.listRecords();Variables.Cx2DocumentData.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
