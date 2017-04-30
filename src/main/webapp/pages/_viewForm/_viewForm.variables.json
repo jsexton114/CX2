@@ -2959,6 +2959,18 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "gisRecordId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "GisRecordId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "Document",
       "fullyQualifiedName" : "com.civicxpress.cx2.Document",
@@ -20760,6 +20772,34 @@
     } ],
     "operation" : "toast"
   },
+  "nocLetterSent" : {
+    "_id" : "wm-nocLetterSent-wm.NotificationVariable-1493576142079",
+    "name" : "nocLetterSent",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br>Letter sent.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "NoPersonAdded" : {
     "_id" : "wm-NoPersonAdded-wm.NotificationVariable-1486544208895",
     "name" : "NoPersonAdded",
@@ -25084,6 +25124,33 @@
     "controller" : "FormMessagingMail",
     "spinnerContext" : "page",
     "spinnerMessage" : "Sending Mails....."
+  },
+  "svSendLetter" : {
+    "_id" : "wm-svSendLetter-wm.ServiceVariable-1493576050959",
+    "name" : "svSendLetter",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formGuid",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "service" : "FormService",
+    "operation" : "sendLetter",
+    "operationId" : "FormController_sendLetter",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Variables.nocLetterSent.invoke()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form",
+    "spinnerContext" : "tabpaneLetters"
   },
   "svSetFormStatus" : {
     "_id" : "wm-svSetFormStatus-wm.ServiceVariable-1486671622184",

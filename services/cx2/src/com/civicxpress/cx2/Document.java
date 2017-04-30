@@ -46,6 +46,7 @@ public class Document implements Serializable {
     @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
     private int createdBy;
     private Integer violationId;
+    private Integer gisRecordId;
     private Users users;
 
     @Id
@@ -120,6 +121,15 @@ public class Document implements Serializable {
 
     public void setViolationId(Integer violationId) {
         this.violationId = violationId;
+    }
+
+    @Column(name = "`GisRecordId`", nullable = true, scale = 0, precision = 10)
+    public Integer getGisRecordId() {
+        return this.gisRecordId;
+    }
+
+    public void setGisRecordId(Integer gisRecordId) {
+        this.gisRecordId = gisRecordId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

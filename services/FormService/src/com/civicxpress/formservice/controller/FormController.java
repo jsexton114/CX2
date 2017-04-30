@@ -69,6 +69,8 @@ public class FormController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void main(@RequestBody String[] args) {
         formService.main(args);
     }
@@ -97,6 +99,13 @@ public class FormController {
     @ApiOperation(value = "")
     public void saveFormTypeField(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "fieldTypeId", required = false) Long fieldTypeId, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues, @RequestParam(value = "automaticFeeType", required = false) String automaticFeeType) throws SQLException {
         formService.saveFormTypeField(formTypeId, label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
+    }
+
+    @RequestMapping(value = "/sendLetter", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void sendLetter(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "letterTemplateId", required = false) Integer letterTemplateId, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
+        formService.sendLetter(formGuid, letterTemplateId, formLink);
     }
 
     @RequestMapping(value = "/formStatus", method = RequestMethod.PUT)

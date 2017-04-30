@@ -234,8 +234,8 @@ Application.$controller("dialogAddUserToGroupController", ["$scope",
     }
 ]);
 
-Application.$controller("gridLettersController", ["$scope",
-    function($scope) {
+Application.$controller("gridLettersController", ["$scope", "$timeout",
+    function($scope, $timeout) {
         "use strict";
         $scope.ctrlScope = $scope;
 
@@ -250,8 +250,10 @@ Application.$controller("gridLettersController", ["$scope",
         };
 
         $scope.updaterowAction = function($event, $rowData) {
-            $scope.Variables.svGetLetterTemplate.setInput('letterTemplateId', $scope.Widgets.gridLetters.selecteditem.id);
-            updateAndOpenDialog();
+            $timeout(function() {
+                $scope.Variables.svGetLetterTemplate.setInput('letterTemplateId', $scope.Widgets.gridLetters.selecteditem.id);
+                updateAndOpenDialog();
+            });
         };
 
     }
@@ -329,15 +331,15 @@ Application.$controller("dialogLetterTemplateController", ["$scope",
 ]);
 
 Application.$controller("gridStatusLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveformStatusLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
