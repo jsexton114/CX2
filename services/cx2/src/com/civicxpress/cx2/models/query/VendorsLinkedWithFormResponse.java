@@ -8,23 +8,18 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
 import com.civicxpress.cx2.ContractorTypes;
-import com.civicxpress.cx2.FormFieldTypes;
-import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
-import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
-import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
@@ -86,10 +81,10 @@ public class VendorsLinkedWithFormResponse implements Serializable {
     private String insuranceCompany;
     @JsonProperty("insuranceExpires")
     @ColumnAlias("insuranceExpires")
-    private Date insuranceExpires;
+    private java.util.Date insuranceExpires;
     @JsonProperty("lastUpdated")
     @ColumnAlias("lastUpdated")
-    private Date lastUpdated;
+    private java.util.Date lastUpdated;
     @JsonProperty("masterFormses")
     @ColumnAlias("masterFormses")
     private List masterFormses;
@@ -271,19 +266,19 @@ public class VendorsLinkedWithFormResponse implements Serializable {
         this.insuranceCompany = insuranceCompany;
     }
 
-    public Date getInsuranceExpires() {
+    public java.util.Date getInsuranceExpires() {
         return this.insuranceExpires;
     }
 
-    public void setInsuranceExpires(Date insuranceExpires) {
+    public void setInsuranceExpires(java.util.Date insuranceExpires) {
         this.insuranceExpires = insuranceExpires;
     }
 
-    public Date getLastUpdated() {
+    public java.util.Date getLastUpdated() {
         return this.lastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
+    public void setLastUpdated(java.util.Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

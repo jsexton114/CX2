@@ -47,27 +47,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
     @Qualifier("cx2WMQueryExecutor")
     private WMQueryExecutor queryExecutor;
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetRecentMessageId(Pageable pageable, String form, Timestamp postedAt) {
-        Map params = new HashMap(2);
-
-        params.put("form", form);
-        params.put("PostedAt", postedAt);
-
-        return queryExecutor.executeNamedQuery("GetRecentMessageId", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeAdminsMunicipalities(Pageable pageable, Integer user) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("AdminsMunicipalities", params, Object.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeProjectSoftDelete(Boolean active, String projectGuid) {
@@ -90,26 +69,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorInMasterForms", params);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeStandardUserMunicipalites(Pageable pageable, Integer user) {
-        Map params = new HashMap(1);
-
-        params.put("USER", user);
-
-        return queryExecutor.executeNamedQuery("StandardUserMunicipalites", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetEmailId(Pageable pageable, Integer userId) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.executeNamedQuery("getEmailId", params, Object.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeAddUsersToVendor(Integer vendorId, Integer userId, Date joiningDate) {
@@ -120,6 +79,16 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("JoiningDate", joiningDate);
 
         return queryExecutor.executeNamedQueryForUpdate("AddUsersToVendor", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetEmailId(Pageable pageable, Integer userId) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.executeNamedQuery("getEmailId", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -145,6 +114,16 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("CheckingUserWithMunicipalityInRoles", params, Object.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, Integer municipality) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("MunicipalitiesGroupsCounts", params, Object.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeUpdateCFInProfile(String cf, Integer user) {
@@ -154,16 +133,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("user", user);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateCFInProfile", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeMunicipalitiesGroupsCounts(Pageable pageable, Integer municipality) {
-        Map params = new HashMap(1);
-
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("MunicipalitiesGroupsCounts", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -179,6 +148,17 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, Integer municipalityId, Boolean active) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityId", municipalityId);
+        params.put("Active", active);
+
+        return queryExecutor.executeNamedQuery("CountOfMunicipalityProjects", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Object> executeProcessFormsForUserByMunicipality(Pageable pageable, Boolean closed, Long municipalityId, Long userId) {
         Map params = new HashMap(3);
 
@@ -187,27 +167,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("UserId", userId);
 
         return queryExecutor.executeNamedQuery("ProcessFormsForUserByMunicipality", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, Integer municipalityId) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("FormsCountForMunicipalities", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfMunicipalityProjects(Pageable pageable, Integer municipalityId, Boolean active) {
-        Map params = new HashMap(2);
-
-        params.put("municipalityId", municipalityId);
-        params.put("Active", active);
-
-        return queryExecutor.executeNamedQuery("CountOfMunicipalityProjects", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -237,64 +196,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateWorkMunicipality", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetFormTypeFieldsByTypeId(Pageable pageable, Long formTypeId) {
-        Map params = new HashMap(1);
-
-        params.put("formTypeId", formTypeId);
-
-        return queryExecutor.executeNamedQuery("getFormTypeFieldsByTypeId", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Pageable pageable, Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser) {
-        Map params = new HashMap(4);
-
-        params.put("municipalityId", municipalityId);
-        params.put("Active", active);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-
-        return queryExecutor.executeNamedQuery("CountOfProjectsForUsersAndSharedWithByMunicipality", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateAsCXVendorAdmin(String role, Integer municipality, Integer user) {
-        Map params = new HashMap(3);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateAsCXVendorAdmin", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive, Boolean municipalityInternalForm) {
-        Map params = new HashMap(3);
-
-        params.put("formCategory", formCategory);
-        params.put("isActive", isActive);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-
-        return queryExecutor.executeNamedQuery("FormsByCategory", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, Boolean closed, Integer vendorId) {
-        Map params = new HashMap(2);
-
-        params.put("closed", closed);
-        params.put("vendorId", vendorId);
-
-        return queryExecutor.executeNamedQuery("CountOfCompnayFormsByVendorId", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -329,28 +230,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeSetPrimaryVendorStatusForFormandVendor(Boolean pv, String form, Integer vendor) {
-        Map params = new HashMap(3);
-
-        params.put("pv", pv);
-        params.put("form", form);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeDeleteCategoryMapping(Integer form) {
-        Map params = new HashMap(1);
-
-        params.put("form", form);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteCategoryMapping", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeGetUserIdFromPasswordResetToken(Pageable pageable, String token) {
@@ -373,18 +252,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("CountOfProcessFormsByMuncipality", params, Object.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeAddingVendorsToForm(String relatedFormGuid, Timestamp sharedOn, Integer vendorId) {
-        Map params = new HashMap(3);
-
-        params.put("RelatedFormGUID", relatedFormGuid);
-        params.put("SharedOn", sharedOn);
-        params.put("VendorId", vendorId);
-
-        return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executePreferenceForUser(Pageable pageable, Integer userId) {
@@ -393,26 +260,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("userId", userId);
 
         return queryExecutor.executeNamedQuery("PreferenceForUser", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeUserCount(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("UserCount", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCheckIfCompanyUserIsVendorAdmin(Pageable pageable, Integer user, Integer vendor) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CheckIfCompanyUserIsVendorAdmin", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -429,17 +276,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDetails", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeInsertUserPreference(Integer userId, Integer preferenceId) {
-        Map params = new HashMap(2);
-
-        params.put("UserId", userId);
-        params.put("PreferenceId", preferenceId);
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeCountOfMuncipalityApplicationsByVendor(Pageable pageable, Integer vendorId) {
@@ -448,16 +284,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("VendorId", vendorId);
 
         return queryExecutor.executeNamedQuery("CountOfMuncipalityApplicationsByVendor", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, Integer municipalityId) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("userSubscriptionsCountForMunicipality", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -471,42 +297,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("AddedAt", addedAt);
 
         return queryExecutor.executeNamedQueryForUpdate("AddGIStoProjects", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId) {
-        Map params = new HashMap(5);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("closed", closed);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("CountOfUserForms", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, Integer municipalityId) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("CountOfFormsForMunicipality", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateDevFormDetailsForCXAdmin(String report, String formTableName, Integer form) {
-        Map params = new HashMap(3);
-
-        params.put("Report", report);
-        params.put("FormTableName", formTableName);
-        params.put("form", form);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateDevFormDetailsForCXAdmin", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -543,6 +333,620 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(value = "cx2TransactionManager")
     @Override
+    public int executeDeleteToken(String token) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, String formGuid, Integer userId) {
+        Map params = new HashMap(2);
+
+        params.put("FormGUID", formGuid);
+        params.put("UserId", userId);
+
+        return queryExecutor.executeNamedQuery("GetProcessGroupMemebersByFormGUID", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeAdminVendorsList(Pageable pageable, Integer user) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("AdminVendorsList", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user) {
+        Map params = new HashMap(3);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm) {
+        Map params = new HashMap(4);
+
+        params.put("formCategory", formCategory);
+        params.put("municipalityId", municipalityId);
+        params.put("isCase", isCase);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+
+        return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeMapAsAdminForVendor(Integer userId, Integer vendorId) {
+        Map params = new HashMap(2);
+
+        params.put("UserId", userId);
+        params.put("VendorId", vendorId);
+
+        return queryExecutor.executeNamedQueryForUpdate("MapAsAdminForVendor", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeInsertFormsIntoProject(String relatedProjectGuid, String relatedFormGuid, Integer addedByUser, Timestamp addedAt, String comments) {
+        Map params = new HashMap(5);
+
+        params.put("RelatedProjectGuid", relatedProjectGuid);
+        params.put("RelatedFormGUID", relatedFormGuid);
+        params.put("AddedByUser", addedByUser);
+        params.put("AddedAt", addedAt);
+        params.put("Comments", comments);
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormsIntoProject", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeRecordFormHistory(String formGuid, Integer formTypeId, Integer newStatusId, Integer oldStatusId, String comments, Integer createdBy) {
+        Map params = new HashMap(6);
+
+        params.put("FormGUID", formGuid);
+        params.put("FormTypeId", formTypeId);
+        params.put("NewStatusId", newStatusId);
+        params.put("OldStatusId", oldStatusId);
+        params.put("Comments", comments);
+        params.put("CreatedBy", createdBy);
+
+        return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateFormStatusInMasterForms(Integer formStatus, Boolean closed, String formGuid) {
+        Map params = new HashMap(3);
+
+        params.put("formStatus", formStatus);
+        params.put("closed", closed);
+        params.put("FormGUID", formGuid);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdatePrimaryVendorStatusInVEndor2Forms(Boolean pv, String form) {
+        Map params = new HashMap(2);
+
+        params.put("pv", pv);
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorStatusInVEndor2Forms", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, Integer userId) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.executeNamedQuery("getMunicipalityGroupIdIDs", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetListofUsers(Pageable pageable, Integer municipalityId, String email) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityID", municipalityId);
+        params.put("Email", email);
+
+        return queryExecutor.executeNamedQuery("getListofUsers", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetUserID(Pageable pageable, String email) {
+        Map params = new HashMap(1);
+
+        params.put("Email", email);
+
+        return queryExecutor.executeNamedQuery("getUserID", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetProjectGisrecords(Pageable pageable, String relatedProjectGuid) {
+        Map params = new HashMap(1);
+
+        params.put("relatedProjectGuid", relatedProjectGuid);
+
+        return queryExecutor.executeNamedQuery("GetProjectGisrecords", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeSubDivisonCount(Pageable pageable, Integer municipalityId) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("SubDivisonCount", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetRolesForMunicipality(Pageable pageable, String role, Integer municipality) {
+        Map params = new HashMap(2);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("GetRolesForMunicipality", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeInsertGroups(String groupName, String groupDescription, Integer municipalityId) {
+        Map params = new HashMap(3);
+
+        params.put("GroupName", groupName);
+        params.put("GroupDescription", groupDescription);
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertGroups", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeAddGIStoForms(Integer gisrecordId, String relatedFormGuid, Integer addedBy, Timestamp addedTime) {
+        Map params = new HashMap(4);
+
+        params.put("GISRecordId", gisrecordId);
+        params.put("RelatedFormGUID", relatedFormGuid);
+        params.put("AddedBy", addedBy);
+        params.put("AddedTime", addedTime);
+
+        return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeAddMemeberToProject(String relatedProjectGuid, Timestamp projectSharedOn, Integer projectSharedWith, Integer projectSharedBy) {
+        Map params = new HashMap(4);
+
+        params.put("RelatedProjectGUID", relatedProjectGuid);
+        params.put("ProjectSharedOn", projectSharedOn);
+        params.put("ProjectSharedWith", projectSharedWith);
+        params.put("ProjectSharedBy", projectSharedBy);
+
+        return queryExecutor.executeNamedQueryForUpdate("AddMemeberToProject", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid) {
+        Map params = new HashMap(1);
+
+        params.put("RelatedFormGUID", relatedFormGuid);
+
+        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeResetPasswordWithTokenForUser(Integer userid, String token) {
+        Map params = new HashMap(2);
+
+        params.put("userid", userid);
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateRoleForMunicipality(String role, Integer municipality, Integer user) {
+        Map params = new HashMap(3);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateRoleForMunicipality", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetFormsForMunicpality(Pageable pageable, Integer municipalityId) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("GetFormsForMunicpality", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateProcessOwnersForGUID(Integer assignedToGroupId, String guid) {
+        Map params = new HashMap(2);
+
+        params.put("AssignedToGroupId", assignedToGroupId);
+        params.put("GUID", guid);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateProcessOwnersForGUID", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId) {
+        Map params = new HashMap(6);
+
+        params.put("startd", startd);
+        params.put("endd", endd);
+        params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
+        params.put("closed", closed);
+        params.put("vendorId", vendorId);
+
+        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateProjectDescription(String projectDescription, String project) {
+        Map params = new HashMap(2);
+
+        params.put("ProjectDescription", projectDescription);
+        params.put("project", project);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDescription", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeDeleteFromVendorUsers(Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorUsers", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CheckingUserWithInVendorUsers", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateVendorStatus(Timestamp dateApproved, String approvedBy, Timestamp expiresDate, String approvalStatus, String reviewer, Integer municipality, Integer vendor) {
+        Map params = new HashMap(7);
+
+        params.put("DateApproved", dateApproved);
+        params.put("ApprovedBy", approvedBy);
+        params.put("ExpiresDate", expiresDate);
+        params.put("ApprovalStatus", approvalStatus);
+        params.put("Reviewer", reviewer);
+        params.put("municipality", municipality);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeUserSubscriptionsCount(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeInsertFormMessage(Integer userId, String relatedFormGuid, String message, Boolean municipalityMessage) {
+        Map params = new HashMap(4);
+
+        params.put("UserId", userId);
+        params.put("RelatedFormGUID", relatedFormGuid);
+        params.put("Message", message);
+        params.put("MunicipalityMessage", municipalityMessage);
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
+        Map params = new HashMap(4);
+
+        params.put("Active", active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("ProjectsForUsersAndSharedWith", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Boolean codeEnforcement, Integer gisrecordId) {
+        Map params = new HashMap(2);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
+
+        return queryExecutor.executeNamedQuery("FormsTaggedWithGISRecords", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateNewPassword(String password, Integer newUser) {
+        Map params = new HashMap(2);
+
+        params.put("password", password);
+        params.put("newUser", newUser);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateNewPassword", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCountOfVendorUsers(Pageable pageable, Integer vendor) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CountOfVendorUsers", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetRecentMessageId(Pageable pageable, String form, Timestamp postedAt) {
+        Map params = new HashMap(2);
+
+        params.put("form", form);
+        params.put("PostedAt", postedAt);
+
+        return queryExecutor.executeNamedQuery("GetRecentMessageId", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeAdminsMunicipalities(Pageable pageable, Integer user) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("AdminsMunicipalities", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeStandardUserMunicipalites(Pageable pageable, Integer user) {
+        Map params = new HashMap(1);
+
+        params.put("USER", user);
+
+        return queryExecutor.executeNamedQuery("StandardUserMunicipalites", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeFormsCountForMunicipalities(Pageable pageable, Integer municipalityId) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("FormsCountForMunicipalities", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeGetFormTypeFieldsByTypeId(Pageable pageable, Long formTypeId) {
+        Map params = new HashMap(1);
+
+        params.put("formTypeId", formTypeId);
+
+        return queryExecutor.executeNamedQuery("getFormTypeFieldsByTypeId", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCountOfProjectsForUsersAndSharedWithByMunicipality(Pageable pageable, Integer municipalityId, Boolean active, Integer creatorUser, Integer sharedWithUser) {
+        Map params = new HashMap(4);
+
+        params.put("municipalityId", municipalityId);
+        params.put("Active", active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+
+        return queryExecutor.executeNamedQuery("CountOfProjectsForUsersAndSharedWithByMunicipality", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeFormsByCategory(Pageable pageable, Integer formCategory, Boolean isActive, Boolean municipalityInternalForm) {
+        Map params = new HashMap(3);
+
+        params.put("formCategory", formCategory);
+        params.put("isActive", isActive);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+
+        return queryExecutor.executeNamedQuery("FormsByCategory", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateAsCXVendorAdmin(String role, Integer municipality, Integer user) {
+        Map params = new HashMap(3);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateAsCXVendorAdmin", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCountOfCompnayFormsByVendorId(Pageable pageable, Boolean closed, Integer vendorId) {
+        Map params = new HashMap(2);
+
+        params.put("closed", closed);
+        params.put("vendorId", vendorId);
+
+        return queryExecutor.executeNamedQuery("CountOfCompnayFormsByVendorId", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeSetPrimaryVendorStatusForFormandVendor(Boolean pv, String form, Integer vendor) {
+        Map params = new HashMap(3);
+
+        params.put("pv", pv);
+        params.put("form", form);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeDeleteCategoryMapping(Integer form) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteCategoryMapping", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeAddingVendorsToForm(String relatedFormGuid, Timestamp sharedOn, Integer vendorId) {
+        Map params = new HashMap(3);
+
+        params.put("RelatedFormGUID", relatedFormGuid);
+        params.put("SharedOn", sharedOn);
+        params.put("VendorId", vendorId);
+
+        return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeUserCount(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("UserCount", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCheckIfCompanyUserIsVendorAdmin(Pageable pageable, Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CheckIfCompanyUserIsVendorAdmin", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeInsertUserPreference(Integer userId, Integer preferenceId) {
+        Map params = new HashMap(2);
+
+        params.put("UserId", userId);
+        params.put("PreferenceId", preferenceId);
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertUserPreference", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeUserSubscriptionsCountForMunicipality(Pageable pageable, Integer municipalityId) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("userSubscriptionsCountForMunicipality", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCountOfFormsForMunicipality(Pageable pageable, Integer municipalityId) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfFormsForMunicipality", params, Object.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeCountOfUserForms(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Integer municipalityId) {
+        Map params = new HashMap(5);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfUserForms", params, Object.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public int executeUpdateDevFormDetailsForCXAdmin(String report, String formTableName, Integer form) {
+        Map params = new HashMap(3);
+
+        params.put("Report", report);
+        params.put("FormTableName", formTableName);
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateDevFormDetailsForCXAdmin", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
     public int executeUpdateMunicipalityInfo(String mn, String em, String ph, String ad1, String ad2, Integer st, String ct, String pc, Integer municipality) {
         Map params = new HashMap(9);
 
@@ -570,16 +974,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("sharedWithUser", sharedWithUser);
 
         return queryExecutor.executeNamedQuery("CountOfUserFormsForMunicipality", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeDeleteToken(String token) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -630,88 +1024,12 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeGetProcessGroupMemebersByFormGUID(Pageable pageable, String formGuid, Integer userId) {
-        Map params = new HashMap(2);
-
-        params.put("FormGUID", formGuid);
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQuery("GetProcessGroupMemebersByFormGUID", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeAdminVendorsList(Pageable pageable, Integer user) {
+    public Page<Object> executeEmployeesMunicipalities(Pageable pageable, Integer user) {
         Map params = new HashMap(1);
 
         params.put("user", user);
 
-        return queryExecutor.executeNamedQuery("AdminVendorsList", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetFormTypesByCategoriesAndMunicipalities(Pageable pageable, Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm) {
-        Map params = new HashMap(4);
-
-        params.put("formCategory", formCategory);
-        params.put("municipalityId", municipalityId);
-        params.put("isCase", isCase);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-
-        return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user) {
-        Map params = new HashMap(3);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeMapAsAdminForVendor(Integer userId, Integer vendorId) {
-        Map params = new HashMap(2);
-
-        params.put("UserId", userId);
-        params.put("VendorId", vendorId);
-
-        return queryExecutor.executeNamedQueryForUpdate("MapAsAdminForVendor", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeInsertFormsIntoProject(String relatedProjectGuid, String relatedFormGuid, Integer addedByUser, Timestamp addedAt, String comments) {
-        Map params = new HashMap(5);
-
-        params.put("RelatedProjectGuid", relatedProjectGuid);
-        params.put("RelatedFormGUID", relatedFormGuid);
-        params.put("AddedByUser", addedByUser);
-        params.put("AddedAt", addedAt);
-        params.put("Comments", comments);
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFormsIntoProject", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeRecordFormHistory(String formGuid, Integer formTypeId, Integer newStatusId, Integer oldStatusId, String comments, Integer createdBy) {
-        Map params = new HashMap(6);
-
-        params.put("FormGUID", formGuid);
-        params.put("FormTypeId", formTypeId);
-        params.put("NewStatusId", newStatusId);
-        params.put("OldStatusId", oldStatusId);
-        params.put("Comments", comments);
-        params.put("CreatedBy", createdBy);
-
-        return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
+        return queryExecutor.executeNamedQuery("EmployeesMunicipalities", params, Object.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -724,16 +1042,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("GetWriteAccessGroupMembersByFormGUID", params, Object.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeEmployeesMunicipalities(Pageable pageable, Integer user) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("EmployeesMunicipalities", params, Object.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeRemoveVendorFromMasterForms(String hb) {
@@ -744,18 +1052,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("RemoveVendorFromMasterForms", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateFormStatusInMasterForms(Integer formStatus, Boolean closed, String formGuid) {
-        Map params = new HashMap(3);
-
-        params.put("formStatus", formStatus);
-        params.put("closed", closed);
-        params.put("FormGUID", formGuid);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeProjectForms(Pageable pageable, String project) {
@@ -764,17 +1060,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("project", project);
 
         return queryExecutor.executeNamedQuery("ProjectForms", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdatePrimaryVendorStatusInVEndor2Forms(Boolean pv, String form) {
-        Map params = new HashMap(2);
-
-        params.put("pv", pv);
-        params.put("form", form);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorStatusInVEndor2Forms", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -790,16 +1075,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Object> executeGetMunicipalityGroupIdIDs(Pageable pageable, Integer userId) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.executeNamedQuery("getMunicipalityGroupIdIDs", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Object> executeFormsForUsersAndShared(Pageable pageable, Boolean codeEnforcement, Boolean closed, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
         Map params = new HashMap(5);
 
@@ -810,27 +1085,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.executeNamedQuery("FormsForUsersAndShared", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetUserID(Pageable pageable, String email) {
-        Map params = new HashMap(1);
-
-        params.put("Email", email);
-
-        return queryExecutor.executeNamedQuery("getUserID", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetListofUsers(Pageable pageable, Integer municipalityId, String email) {
-        Map params = new HashMap(2);
-
-        params.put("municipalityID", municipalityId);
-        params.put("Email", email);
-
-        return queryExecutor.executeNamedQuery("getListofUsers", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -900,37 +1154,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQuery("getListofGroupName", params, Object.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetProjectGisrecords(Pageable pageable, String relatedProjectGuid) {
-        Map params = new HashMap(1);
-
-        params.put("relatedProjectGuid", relatedProjectGuid);
-
-        return queryExecutor.executeNamedQuery("GetProjectGisrecords", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeSubDivisonCount(Pageable pageable, Integer municipalityId) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("SubDivisonCount", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetRolesForMunicipality(Pageable pageable, String role, Integer municipality) {
-        Map params = new HashMap(2);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("GetRolesForMunicipality", params, Object.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeResetPasswordForUser(String newPassword, String token) {
@@ -944,18 +1167,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public int executeInsertGroups(String groupName, String groupDescription, Integer municipalityId) {
-        Map params = new HashMap(3);
-
-        params.put("GroupName", groupName);
-        params.put("GroupDescription", groupDescription);
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertGroups", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public int executeUpdateUserPreferences(Integer preferenceId, Integer user) {
         Map params = new HashMap(2);
 
@@ -963,32 +1174,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("user", user);
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeAddGIStoForms(Integer gisrecordId, String relatedFormGuid, Integer addedBy, Timestamp addedTime) {
-        Map params = new HashMap(4);
-
-        params.put("GISRecordId", gisrecordId);
-        params.put("RelatedFormGUID", relatedFormGuid);
-        params.put("AddedBy", addedBy);
-        params.put("AddedTime", addedTime);
-
-        return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeAddMemeberToProject(String relatedProjectGuid, Timestamp projectSharedOn, Integer projectSharedWith, Integer projectSharedBy) {
-        Map params = new HashMap(4);
-
-        params.put("RelatedProjectGUID", relatedProjectGuid);
-        params.put("ProjectSharedOn", projectSharedOn);
-        params.put("ProjectSharedWith", projectSharedWith);
-        params.put("ProjectSharedBy", projectSharedBy);
-
-        return queryExecutor.executeNamedQueryForUpdate("AddMemeberToProject", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1054,86 +1239,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("UpdateInfoFromMyProfile", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeResetPasswordWithTokenForUser(Integer userid, String token) {
-        Map params = new HashMap(2);
-
-        params.put("userid", userid);
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid) {
-        Map params = new HashMap(1);
-
-        params.put("RelatedFormGUID", relatedFormGuid);
-
-        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateRoleForMunicipality(String role, Integer municipality, Integer user) {
-        Map params = new HashMap(3);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateRoleForMunicipality", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeGetFormsForMunicpality(Pageable pageable, Integer municipalityId) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("GetFormsForMunicpality", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateProcessOwnersForGUID(Integer assignedToGroupId, String guid) {
-        Map params = new HashMap(2);
-
-        params.put("AssignedToGroupId", assignedToGroupId);
-        params.put("GUID", guid);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateProcessOwnersForGUID", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeSearchFormByVendor(Pageable pageable, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId) {
-        Map params = new HashMap(6);
-
-        params.put("startd", startd);
-        params.put("endd", endd);
-        params.put("FormTypeId", formTypeId);
-        params.put("municipalityId", municipalityId);
-        params.put("closed", closed);
-        params.put("vendorId", vendorId);
-
-        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateProjectDescription(String projectDescription, String project) {
-        Map params = new HashMap(2);
-
-        params.put("ProjectDescription", projectDescription);
-        params.put("project", project);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDescription", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Object> executeVendorsCountForMunicipalities(Pageable pageable, Integer municipalityId) {
@@ -1152,44 +1257,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("userId", userId);
 
         return queryExecutor.executeNamedQuery("getRolesForUser", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeDeleteFromVendorUsers(Integer user, Integer vendor) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorUsers", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCheckingUserWithInVendorUsers(Pageable pageable, Integer user, Integer vendor) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CheckingUserWithInVendorUsers", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateVendorStatus(Timestamp dateApproved, String approvedBy, Timestamp expiresDate, String approvalStatus, String reviewer, Integer municipality, Integer vendor) {
-        Map params = new HashMap(7);
-
-        params.put("DateApproved", dateApproved);
-        params.put("ApprovedBy", approvedBy);
-        params.put("ExpiresDate", expiresDate);
-        params.put("ApprovalStatus", approvalStatus);
-        params.put("Reviewer", reviewer);
-        params.put("municipality", municipality);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1219,73 +1286,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
 
 
         return queryExecutor.executeNamedQuery("MunicipalityCount", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeUserSubscriptionsCount(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeInsertFormMessage(Integer userId, String relatedFormGuid, String message, Boolean municipalityMessage) {
-        Map params = new HashMap(4);
-
-        params.put("UserId", userId);
-        params.put("RelatedFormGUID", relatedFormGuid);
-        params.put("Message", message);
-        params.put("MunicipalityMessage", municipalityMessage);
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeProjectsForUsersAndSharedWith(Pageable pageable, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId) {
-        Map params = new HashMap(4);
-
-        params.put("Active", active);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("ProjectsForUsersAndSharedWith", params, Object.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public int executeUpdateNewPassword(String password, Integer newUser) {
-        Map params = new HashMap(2);
-
-        params.put("password", password);
-        params.put("newUser", newUser);
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateNewPassword", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeFormsTaggedWithGISRecords(Pageable pageable, Boolean codeEnforcement, Integer gisrecordId) {
-        Map params = new HashMap(2);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("GISRecordId", gisrecordId);
-
-        return queryExecutor.executeNamedQuery("FormsTaggedWithGISRecords", params, Object.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeCountOfVendorUsers(Pageable pageable, Integer vendor) {
-        Map params = new HashMap(1);
-
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CountOfVendorUsers", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

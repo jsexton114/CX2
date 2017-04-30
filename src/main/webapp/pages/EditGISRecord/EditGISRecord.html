@@ -11,6 +11,17 @@
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="right"></wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow38">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn73">
+                        <wm-chart type="Pie" title="Forms" height="250px" iconclass="wi wi-pie-chart" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount"></wm-chart>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn74">
+                        <wm-chart type="Pie" title="Cases" height="250px" iconclass="wi wi-pie-chart" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount"></wm-chart>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn75" horizontalalign="center">
+                        <wm-label padding="unset 0.5em" name="labelIsRental" caption="<h4>Rental Property</h4>" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" margin="20% unset unset unset"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow17" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn29">
                         <wm-tabs name="tabs1">

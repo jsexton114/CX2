@@ -49,28 +49,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetRecentMessageIdResponse> executeGetRecentMessageId(String form, Timestamp postedAt, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("form", form);
-        params.put("PostedAt", postedAt);
-
-        return queryExecutor.executeNamedQuery("GetRecentMessageId", params, GetRecentMessageIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetRecentMessageId(ExportType exportType, String form, Timestamp postedAt, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("form", form);
-        params.put("PostedAt", postedAt);
-
-        return queryExecutor.exportNamedQueryData("GetRecentMessageId", params, exportType, GetRecentMessageIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<CountUnReadMessagesByUserResponse> executeCountUnReadMessagesByUser(Integer taggedPersonId, Boolean messageRead, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -89,28 +67,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("messageRead", messageRead);
 
         return queryExecutor.exportNamedQueryData("CountUnReadMessagesByUser", params, exportType, CountUnReadMessagesByUserResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("outcome", outcome);
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("getInspectionsByOutcome", params, GetInspectionsByOutcomeResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("outcome", outcome);
-        params.put("municipality", municipality);
-
-        return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -135,6 +91,1643 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("messageStatus", messageStatus);
 
         return queryExecutor.exportNamedQueryData("UserMessagesCountByMunicipality", params, exportType, UserMessagesCountByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetInspectionsByOutcomeResponse> executeGetInspectionsByOutcome(String outcome, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("outcome", outcome);
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("getInspectionsByOutcome", params, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectionsByOutcome(ExportType exportType, String outcome, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("outcome", outcome);
+        params.put("municipality", municipality);
+
+        return queryExecutor.exportNamedQueryData("getInspectionsByOutcome", params, exportType, GetInspectionsByOutcomeResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest) {
+        Map params = new HashMap(2);
+
+        params.put("FeeId", insertIntoCartRequest.getFeeId());
+        params.put("UserId", insertIntoCartRequest.getUserId());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertIntoCart", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("getTransactionsByMunicipality", params, GetTransactionsByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipalityId", municipalityId);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("getTransactionsByMunicipality", params, exportType, GetTransactionsByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest) {
+        Map params = new HashMap(2);
+
+        params.put("active", projectSoftDeleteRequest.getActive());
+        params.put("ProjectGuid", projectSoftDeleteRequest.getProjectGuid());
+
+        return queryExecutor.executeNamedQueryForUpdate("ProjectSoftDelete", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeCreateLetterTemplateForFormStatus(CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
+        Map params = new HashMap(5);
+
+        params.put("letterTemplateId", createLetterTemplateForFormStatusRequest.getLetterTemplateId());
+        params.put("formStatusId", createLetterTemplateForFormStatusRequest.getFormStatusId());
+        params.put("attachToEmail", createLetterTemplateForFormStatusRequest.getAttachToEmail());
+        params.put("emailLetterCreator", createLetterTemplateForFormStatusRequest.getEmailLetterCreator());
+        params.put("attachToItem", createLetterTemplateForFormStatusRequest.getAttachToItem());
+
+        return queryExecutor.executeNamedQueryForUpdate("createLetterTemplateForFormStatus", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdatePrimaryVendorInMasterForms(UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("VendorId", updatePrimaryVendorInMasterFormsRequest.getVendorId());
+        params.put("FormGUID", updatePrimaryVendorInMasterFormsRequest.getFormGuid());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorInMasterForms", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateMultipleFeeComments(UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("comments", updateMultipleFeeCommentsRequest.getComments());
+        params.put("feeList", updateMultipleFeeCommentsRequest.getFeeList());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeComments", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.executeNamedQuery("CounNewCasesAndAfterDate", params, CounNewCasesAndAfterDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCounNewCasesAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("closed", closed);
+        params.put("municipalityId", municipalityId);
+        params.put("dateSubmitted", dateSubmitted);
+
+        return queryExecutor.exportNamedQueryData("CounNewCasesAndAfterDate", params, exportType, CounNewCasesAndAfterDateResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeAddUsersToVendor(AddUsersToVendorRequest addUsersToVendorRequest) {
+        Map params = new HashMap(3);
+
+        params.put("VendorId", addUsersToVendorRequest.getVendorId());
+        params.put("UserId", addUsersToVendorRequest.getUserId());
+        params.put("JoiningDate", addUsersToVendorRequest.getJoiningDate());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddUsersToVendor", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetEmailIdResponse> executeGetEmailId(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.executeNamedQuery("getEmailId", params, GetEmailIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.exportNamedQueryData("getEmailId", params, exportType, GetEmailIdResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest) {
+        Map params = new HashMap(3);
+
+        params.put("password", updatePasswordAndCfRequest.getPassword());
+        params.put("cf", updatePasswordAndCfRequest.getCf());
+        params.put("newUser", updatePasswordAndCfRequest.getNewUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePasswordAndCF", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(Integer muncipality, Integer user, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("muncipality", muncipality);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("CheckingUserWithMunicipalityInRoles", params, CheckingUserWithMunicipalityInRolesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCheckingUserWithMunicipalityInRoles(ExportType exportType, Integer muncipality, Integer user, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("muncipality", muncipality);
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("CheckingUserWithMunicipalityInRoles", params, exportType, CheckingUserWithMunicipalityInRolesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MunicipalitiesGroupsCountsResponse> executeMunicipalitiesGroupsCounts(Integer municipality, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("MunicipalitiesGroupsCounts", params, MunicipalitiesGroupsCountsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportMunicipalitiesGroupsCounts(ExportType exportType, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.exportNamedQueryData("MunicipalitiesGroupsCounts", params, exportType, MunicipalitiesGroupsCountsResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateCFInProfile(UpdateCfinProfileRequest updateCfinProfileRequest) {
+        Map params = new HashMap(2);
+
+        params.put("cf", updateCfinProfileRequest.getCf());
+        params.put("user", updateCfinProfileRequest.getUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateCFInProfile", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public FormMessages executeGetRecentMessageIdForProject(String project, Timestamp postedAt) {
+        Map params = new HashMap(2);
+
+        params.put("project", project);
+        params.put("PostedAt", postedAt);
+
+        return queryExecutor.executeNamedQuery("GetRecentMessageIdForProject", params, FormMessages.class);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertCategoryMapping(InsertCategoryMappingRequest insertCategoryMappingRequest) {
+        Map params = new HashMap(2);
+
+        params.put("FormTypeId", insertCategoryMappingRequest.getFormTypeId());
+        params.put("FormCategoryId", insertCategoryMappingRequest.getFormCategoryId());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertCategoryMapping", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfMunicipalityProjectsResponse> executeCountOfMunicipalityProjects(Integer municipalityId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityId", municipalityId);
+        params.put("Active", active);
+
+        return queryExecutor.executeNamedQuery("CountOfMunicipalityProjects", params, CountOfMunicipalityProjectsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfMunicipalityProjects(ExportType exportType, Integer municipalityId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityId", municipalityId);
+        params.put("Active", active);
+
+        return queryExecutor.exportNamedQueryData("CountOfMunicipalityProjects", params, exportType, CountOfMunicipalityProjectsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("closed", closed);
+        params.put("MunicipalityId", municipalityId);
+        params.put("UserId", userId);
+
+        return queryExecutor.executeNamedQuery("ProcessFormsForUserByMunicipality", params, ProcessFormsForUserByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("closed", closed);
+        params.put("MunicipalityId", municipalityId);
+        params.put("UserId", userId);
+
+        return queryExecutor.exportNamedQueryData("ProcessFormsForUserByMunicipality", params, exportType, ProcessFormsForUserByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorCountResponse> executeVendorCount(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("VendorCount", params, VendorCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportVendorCount(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("VendorCount", params, exportType, VendorCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FeeByFeeTypesToDashboardResponse> executeFeeByFeeTypesToDashboard(Integer municpality, Date startDate, Date endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municpality", municpality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("FeeByFeeTypesToDashboard", params, FeeByFeeTypesToDashboardResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFeeByFeeTypesToDashboard(ExportType exportType, Integer municpality, Date startDate, Date endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municpality", municpality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("FeeByFeeTypesToDashboard", params, exportType, FeeByFeeTypesToDashboardResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateWorkMunicipality(UpdateWorkMunicipalityRequest updateWorkMunicipalityRequest) {
+        Map params = new HashMap(11);
+
+        params.put("monday", updateWorkMunicipalityRequest.getMonday());
+        params.put("tuesday", updateWorkMunicipalityRequest.getTuesday());
+        params.put("wednesday", updateWorkMunicipalityRequest.getWednesday());
+        params.put("thursday", updateWorkMunicipalityRequest.getThursday());
+        params.put("friday", updateWorkMunicipalityRequest.getFriday());
+        params.put("saturday", updateWorkMunicipalityRequest.getSaturday());
+        params.put("sunday", updateWorkMunicipalityRequest.getSunday());
+        params.put("timezone", updateWorkMunicipalityRequest.getTimezone());
+        params.put("openTime", updateWorkMunicipalityRequest.getOpenTime());
+        params.put("closeTime", updateWorkMunicipalityRequest.getCloseTime());
+        params.put("municipalityId", updateWorkMunicipalityRequest.getMunicipalityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateWorkMunicipality", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("countProjectsByVendors", params, CountProjectsByVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("countProjectsByVendors", params, exportType, CountProjectsByVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipalityId", municipalityId);
+        params.put("publicRead", publicRead);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+        params.put("formTitle", formTitle);
+
+        return queryExecutor.executeNamedQuery("searchWithFormTitle", params, SearchWithFormTitleResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipalityId", municipalityId);
+        params.put("publicRead", publicRead);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+        params.put("formTitle", formTitle);
+
+        return queryExecutor.exportNamedQueryData("searchWithFormTitle", params, exportType, SearchWithFormTitleResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("OpenedOrClosedFormsForUserOrSharedWith", params, exportType, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("searchString", searchString);
+
+        return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, SearchUsersByEmailOrNameResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("searchString", searchString);
+
+        return queryExecutor.exportNamedQueryData("searchUsersByEmailOrName", params, exportType, SearchUsersByEmailOrNameResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateGlobalEmailSig(UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest) {
+        Map params = new HashMap(2);
+
+        params.put("gs", updateGlobalEmailSigRequest.getGs());
+        params.put("municipality", updateGlobalEmailSigRequest.getMunicipality());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateGlobalEmailSig", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(String token, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQuery("getUserIdFromPasswordResetToken", params, GetUserIdFromPasswordResetTokenResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetUserIdFromPasswordResetToken(ExportType exportType, String token, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.exportNamedQueryData("getUserIdFromPasswordResetToken", params, exportType, GetUserIdFromPasswordResetTokenResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("MunicipalityId", municipalityId);
+        params.put("closed", closed);
+        params.put("UserId", userId);
+
+        return queryExecutor.executeNamedQuery("CountOfProcessFormsByMuncipality", params, CountOfProcessFormsByMuncipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("MunicipalityId", municipalityId);
+        params.put("closed", closed);
+        params.put("UserId", userId);
+
+        return queryExecutor.exportNamedQueryData("CountOfProcessFormsByMuncipality", params, exportType, CountOfProcessFormsByMuncipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+        Map params = new HashMap(5);
+
+        params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
+        params.put("assignedTo", assignedTo);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("countAssignedInspectionsBetweenDates", params, CountAssignedInspectionsBetweenDatesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+        Map params = new HashMap(5);
+
+        params.put("isClosed", isClosed);
+        params.put("municipality", municipality);
+        params.put("assignedTo", assignedTo);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("countAssignedInspectionsBetweenDates", params, exportType, CountAssignedInspectionsBetweenDatesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(Integer userId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("userId", userId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("getUserSentMessages", params, GetUserSentMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetUserSentMessages(ExportType exportType, Integer userId, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("userId", userId);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("getUserSentMessages", params, exportType, GetUserSentMessagesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQuery("InspectionsOfForm", params, FormsToInspections.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.exportNamedQueryData("InspectionsOfForm", params, exportType, FormsToInspections.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertMasterInspections(InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
+        Map params = new HashMap(7);
+
+        params.put("InspectionGuid", insertMasterInspectionsRequest.getInspectionGuid());
+        params.put("InspectionTitle", insertMasterInspectionsRequest.getInspectionTitle());
+        params.put("InspectionDesignId", insertMasterInspectionsRequest.getInspectionDesignId());
+        params.put("FormGuid", insertMasterInspectionsRequest.getFormGuid());
+        params.put("RequestedBy", insertMasterInspectionsRequest.getRequestedBy());
+        params.put("DateRequested", insertMasterInspectionsRequest.getDateRequested());
+        params.put("RequestedFor", insertMasterInspectionsRequest.getRequestedFor());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertMasterInspections", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<PreferenceForUserResponse> executePreferenceForUser(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("PreferenceForUser", params, PreferenceForUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportPreferenceForUser(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("PreferenceForUser", params, exportType, PreferenceForUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("FeesInCartByUser", params, FeesInCartByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("FeesInCartByUser", params, exportType, FeesInCartByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("NoOfItemsInUserCart", params, NoOfItemsInUserCartResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportNoOfItemsInUserCart(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("NoOfItemsInUserCart", params, exportType, NoOfItemsInUserCartResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteInspectionDesign(Integer inspectionId) {
+        Map params = new HashMap(1);
+
+        params.put("inspectionId", inspectionId);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteInspectionDesign", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest) {
+        Map params = new HashMap(5);
+
+        params.put("ProjectName", updateProjectDetailsRequest.getProjectName());
+        params.put("ProjectGoals", updateProjectDetailsRequest.getProjectGoals());
+        params.put("EstStartDate", updateProjectDetailsRequest.getEstStartDate());
+        params.put("EstEndDate", updateProjectDetailsRequest.getEstEndDate());
+        params.put("project", updateProjectDetailsRequest.getProject());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDetails", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("VendorId", vendorId);
+
+        return queryExecutor.executeNamedQuery("CountOfMuncipalityApplicationsByVendor", params, CountOfMuncipalityApplicationsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfMuncipalityApplicationsByVendor(ExportType exportType, Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("VendorId", vendorId);
+
+        return queryExecutor.exportNamedQueryData("CountOfMuncipalityApplicationsByVendor", params, exportType, CountOfMuncipalityApplicationsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest) {
+        Map params = new HashMap(4);
+
+        params.put("GISRecordId", addGistoProjectsRequest.getGisrecordId());
+        params.put("RelatedProjectGUID", addGistoProjectsRequest.getRelatedProjectGuid());
+        params.put("AddedByUser", addGistoProjectsRequest.getAddedByUser());
+        params.put("AddedAt", addGistoProjectsRequest.getAddedAt());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddGIStoProjects", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteDraft(Long draftId) {
+        Map params = new HashMap(1);
+
+        params.put("draftId", draftId);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteDraft", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("CXVendorId", updateVendorForMasterFormsRequest.getCxvendorId());
+        params.put("FormGUID", updateVendorForMasterFormsRequest.getFormGuid());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorForMasterForms", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(Integer user, String role, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("role", role);
+
+        return queryExecutor.executeNamedQuery("EmployeesOrAdminsMunicipalities", params, EmployeesOrAdminsMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportEmployeesOrAdminsMunicipalities(ExportType exportType, Integer user, String role, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("role", role);
+
+        return queryExecutor.exportNamedQueryData("EmployeesOrAdminsMunicipalities", params, exportType, EmployeesOrAdminsMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfVendorsResponse> executeCountOfVendors(Integer vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CountOfVendors", params, CountOfVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfVendors(ExportType exportType, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.exportNamedQueryData("CountOfVendors", params, exportType, CountOfVendorsResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteToken(String token) {
+        Map params = new HashMap(1);
+
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetProcessGroupMemebersByFormGuidResponse> executeGetProcessGroupMemebersByFormGUID(String formGuid, Integer userId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("FormGUID", formGuid);
+        params.put("UserId", userId);
+
+        return queryExecutor.executeNamedQuery("GetProcessGroupMemebersByFormGUID", params, GetProcessGroupMemebersByFormGuidResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetProcessGroupMemebersByFormGUID(ExportType exportType, String formGuid, Integer userId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("FormGUID", formGuid);
+        params.put("UserId", userId);
+
+        return queryExecutor.exportNamedQueryData("GetProcessGroupMemebersByFormGUID", params, exportType, GetProcessGroupMemebersByFormGuidResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AdminVendorsListResponse> executeAdminVendorsList(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("AdminVendorsList", params, AdminVendorsListResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportAdminVendorsList(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("AdminVendorsList", params, exportType, AdminVendorsListResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user) {
+        Map params = new HashMap(3);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("formCategory", formCategory);
+        params.put("municipalityId", municipalityId);
+        params.put("isCase", isCase);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+
+        return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("formCategory", formCategory);
+        params.put("municipalityId", municipalityId);
+        params.put("isCase", isCase);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+
+        return queryExecutor.exportNamedQueryData("GetFormTypesByCategoriesAndMunicipalities", params, exportType, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("RoleName", roleName);
+        params.put("municipalityId", municipalityId);
+        params.put("email", email);
+
+        return queryExecutor.executeNamedQuery("GetMunicipalityEmployees", params, Users.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetMunicipalityEmployees(ExportType exportType, String roleName, Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("RoleName", roleName);
+        params.put("municipalityId", municipalityId);
+        params.put("email", email);
+
+        return queryExecutor.exportNamedQueryData("GetMunicipalityEmployees", params, exportType, Users.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeMapAsAdminForVendor(MapAsAdminForVendorRequest mapAsAdminForVendorRequest) {
+        Map params = new HashMap(2);
+
+        params.put("UserId", mapAsAdminForVendorRequest.getUserId());
+        params.put("VendorId", mapAsAdminForVendorRequest.getVendorId());
+
+        return queryExecutor.executeNamedQueryForUpdate("MapAsAdminForVendor", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertFormsIntoProject(InsertFormsIntoProjectRequest insertFormsIntoProjectRequest) {
+        Map params = new HashMap(5);
+
+        params.put("RelatedProjectGuid", insertFormsIntoProjectRequest.getRelatedProjectGuid());
+        params.put("RelatedFormGUID", insertFormsIntoProjectRequest.getRelatedFormGuid());
+        params.put("AddedByUser", insertFormsIntoProjectRequest.getAddedByUser());
+        params.put("AddedAt", insertFormsIntoProjectRequest.getAddedAt());
+        params.put("Comments", insertFormsIntoProjectRequest.getComments());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormsIntoProject", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeRecordFormHistory(RecordFormHistoryRequest recordFormHistoryRequest) {
+        Map params = new HashMap(6);
+
+        params.put("FormGUID", recordFormHistoryRequest.getFormGuid());
+        params.put("FormTypeId", recordFormHistoryRequest.getFormTypeId());
+        params.put("NewStatusId", recordFormHistoryRequest.getNewStatusId());
+        params.put("OldStatusId", recordFormHistoryRequest.getOldStatusId());
+        params.put("Comments", recordFormHistoryRequest.getComments());
+        params.put("CreatedBy", recordFormHistoryRequest.getCreatedBy());
+
+        return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateFormStatusInMasterForms(UpdateFormStatusInMasterFormsRequest updateFormStatusInMasterFormsRequest) {
+        Map params = new HashMap(3);
+
+        params.put("formStatus", updateFormStatusInMasterFormsRequest.getFormStatus());
+        params.put("closed", updateFormStatusInMasterFormsRequest.getClosed());
+        params.put("FormGUID", updateFormStatusInMasterFormsRequest.getFormGuid());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfCasesForMunicipality", params, CountOfCasesForMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfCasesForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CountOfCasesForMunicipality", params, exportType, CountOfCasesForMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("GetFeeIdsOfUserInCart", params, GetFeeIdsOfUserInCartResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFeeIdsOfUserInCart(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("GetFeeIdsOfUserInCart", params, exportType, GetFeeIdsOfUserInCartResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest) {
+        Map params = new HashMap(2);
+
+        params.put("pv", updatePrimaryVendorStatusInVendor2formsRequest.getPv());
+        params.put("form", updatePrimaryVendorStatusInVendor2formsRequest.getForm());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorStatusInVEndor2Forms", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetMunicipalityGroupIdIdsResponse> executeGetMunicipalityGroupIdIDs(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.executeNamedQuery("getMunicipalityGroupIdIDs", params, GetMunicipalityGroupIdIdsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userID", userId);
+
+        return queryExecutor.exportNamedQueryData("getMunicipalityGroupIdIDs", params, exportType, GetMunicipalityGroupIdIdsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetListofUsersResponse> executeGetListofUsers(Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityID", municipalityId);
+        params.put("Email", email);
+
+        return queryExecutor.executeNamedQuery("getListofUsers", params, GetListofUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetListofUsers(ExportType exportType, Integer municipalityId, String email, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityID", municipalityId);
+        params.put("Email", email);
+
+        return queryExecutor.exportNamedQueryData("getListofUsers", params, exportType, GetListofUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("Email", email);
+
+        return queryExecutor.executeNamedQuery("getUserID", params, GetUserIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetUserID(ExportType exportType, String email, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("Email", email);
+
+        return queryExecutor.exportNamedQueryData("getUserID", params, exportType, GetUserIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetProjectGisrecordsResponse> executeGetProjectGisrecords(String relatedProjectGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("relatedProjectGuid", relatedProjectGuid);
+
+        return queryExecutor.executeNamedQuery("GetProjectGisrecords", params, GetProjectGisrecordsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetProjectGisrecords(ExportType exportType, String relatedProjectGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("relatedProjectGuid", relatedProjectGuid);
+
+        return queryExecutor.exportNamedQueryData("GetProjectGisrecords", params, exportType, GetProjectGisrecordsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SubDivisonCountResponse> executeSubDivisonCount(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("SubDivisonCount", params, SubDivisonCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSubDivisonCount(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("SubDivisonCount", params, exportType, SubDivisonCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFormCountForGisRecordResponse> executeGetFormCountForGisRecord(Boolean isCase, Long gisRecordId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("isCase", isCase);
+        params.put("gisRecordId", gisRecordId);
+
+        return queryExecutor.executeNamedQuery("getFormCountForGisRecord", params, GetFormCountForGisRecordResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFormCountForGisRecord(ExportType exportType, Boolean isCase, Long gisRecordId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("isCase", isCase);
+        params.put("gisRecordId", gisRecordId);
+
+        return queryExecutor.exportNamedQueryData("getFormCountForGisRecord", params, exportType, GetFormCountForGisRecordResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(String role, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("GetRolesForMunicipality", params, GetRolesForMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetRolesForMunicipality(ExportType exportType, String role, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("role", role);
+        params.put("municipality", municipality);
+
+        return queryExecutor.exportNamedQueryData("GetRolesForMunicipality", params, exportType, GetRolesForMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertGroups(InsertGroupsRequest insertGroupsRequest) {
+        Map params = new HashMap(3);
+
+        params.put("GroupName", insertGroupsRequest.getGroupName());
+        params.put("GroupDescription", insertGroupsRequest.getGroupDescription());
+        params.put("MunicipalityId", insertGroupsRequest.getMunicipalityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertGroups", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeAddGIStoForms(AddGistoFormsRequest addGistoFormsRequest) {
+        Map params = new HashMap(4);
+
+        params.put("GISRecordId", addGistoFormsRequest.getGisrecordId());
+        params.put("RelatedFormGUID", addGistoFormsRequest.getRelatedFormGuid());
+        params.put("AddedBy", addGistoFormsRequest.getAddedBy());
+        params.put("AddedTime", addGistoFormsRequest.getAddedTime());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeAddMemeberToProject(AddMemeberToProjectRequest addMemeberToProjectRequest) {
+        Map params = new HashMap(4);
+
+        params.put("RelatedProjectGUID", addMemeberToProjectRequest.getRelatedProjectGuid());
+        params.put("ProjectSharedOn", addMemeberToProjectRequest.getProjectSharedOn());
+        params.put("ProjectSharedWith", addMemeberToProjectRequest.getProjectSharedWith());
+        params.put("ProjectSharedBy", addMemeberToProjectRequest.getProjectSharedBy());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddMemeberToProject", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public CheckInspectionLimitResponse executeCheckInspectionLimit(Integer inspectionDesignId, LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        Map params = new HashMap(3);
+
+        params.put("inspectionDesignId", inspectionDesignId);
+        params.put("startOfDay", startOfDay);
+        params.put("endOfDay", endOfDay);
+
+        return queryExecutor.executeNamedQuery("checkInspectionLimit", params, CheckInspectionLimitResponse.class);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertFormsToInspectionsMapping(InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {
+        Map params = new HashMap(3);
+
+        params.put("RelatedFormGUID", insertFormsToInspectionsMappingRequest.getRelatedFormGuid());
+        params.put("RelatedInspectionGUID", insertFormsToInspectionsMappingRequest.getRelatedInspectionGuid());
+        params.put("AddedBy", insertFormsToInspectionsMappingRequest.getAddedBy());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormsToInspectionsMapping", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(String relatedFormGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("RelatedFormGUID", relatedFormGuid);
+
+        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, VendorsLinkedWithFormResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportVendorsLinkedWithForm(ExportType exportType, String relatedFormGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("RelatedFormGUID", relatedFormGuid);
+
+        return queryExecutor.exportNamedQueryData("VendorsLinkedWithForm", params, exportType, VendorsLinkedWithFormResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeResetPasswordWithTokenForUser(Integer userid, String token) {
+        Map params = new HashMap(2);
+
+        params.put("userid", userid);
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateRoleForMunicipality(UpdateRoleForMunicipalityRequest updateRoleForMunicipalityRequest) {
+        Map params = new HashMap(3);
+
+        params.put("role", updateRoleForMunicipalityRequest.getRole());
+        params.put("municipality", updateRoleForMunicipalityRequest.getMunicipality());
+        params.put("user", updateRoleForMunicipalityRequest.getUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateRoleForMunicipality", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetFormsForMunicpalityResponse> executeGetFormsForMunicpality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("GetFormsForMunicpality", params, GetFormsForMunicpalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetFormsForMunicpality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("GetFormsForMunicpality", params, exportType, GetFormsForMunicpalityResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateProcessOwnersForGUID(UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest) {
+        Map params = new HashMap(2);
+
+        params.put("AssignedToGroupId", updateProcessOwnersForGuidRequest.getAssignedToGroupId());
+        params.put("GUID", updateProcessOwnersForGuidRequest.getGuid());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateProcessOwnersForGUID", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(6);
+
+        params.put("startd", startd);
+        params.put("endd", endd);
+        params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
+        params.put("closed", closed);
+        params.put("vendorId", vendorId);
+
+        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchFormByVendor(ExportType exportType, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
+        Map params = new HashMap(6);
+
+        params.put("startd", startd);
+        params.put("endd", endd);
+        params.put("FormTypeId", formTypeId);
+        params.put("municipalityId", municipalityId);
+        params.put("closed", closed);
+        params.put("vendorId", vendorId);
+
+        return queryExecutor.exportNamedQueryData("SearchFormByVendor", params, exportType, MasterForms.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateProjectDescription(UpdateProjectDescriptionRequest updateProjectDescriptionRequest) {
+        Map params = new HashMap(2);
+
+        params.put("ProjectDescription", updateProjectDescriptionRequest.getProjectDescription());
+        params.put("project", updateProjectDescriptionRequest.getProject());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDescription", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("countAssignedInspectionsLessThanDate", params, CountAssignedInspectionsLessThanDateResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("isClosed", isClosed);
+        params.put("assignedTo", assignedTo);
+        params.put("requestedFor", requestedFor);
+        params.put("municipality", municipality);
+
+        return queryExecutor.exportNamedQueryData("countAssignedInspectionsLessThanDate", params, exportType, CountAssignedInspectionsLessThanDateResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteFromVendorUsers(Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorUsers", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CheckingUserWithInVendorUsersResponse> executeCheckingUserWithInVendorUsers(Integer user, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CheckingUserWithInVendorUsers", params, CheckingUserWithInVendorUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCheckingUserWithInVendorUsers(ExportType exportType, Integer user, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.exportNamedQueryData("CheckingUserWithInVendorUsers", params, exportType, CheckingUserWithInVendorUsersResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateVendorStatus(UpdateVendorStatusRequest updateVendorStatusRequest) {
+        Map params = new HashMap(7);
+
+        params.put("DateApproved", updateVendorStatusRequest.getDateApproved());
+        params.put("ApprovedBy", updateVendorStatusRequest.getApprovedBy());
+        params.put("ExpiresDate", updateVendorStatusRequest.getExpiresDate());
+        params.put("ApprovalStatus", updateVendorStatusRequest.getApprovalStatus());
+        params.put("Reviewer", updateVendorStatusRequest.getReviewer());
+        params.put("municipality", updateVendorStatusRequest.getMunicipality());
+        params.put("vendor", updateVendorStatusRequest.getVendor());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("formTypeId", formTypeId);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("InspectionDesignForCategoriesMappedToForms", params, InspectionDesign.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("formTypeId", formTypeId);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("InspectionDesignForCategoriesMappedToForms", params, exportType, InspectionDesign.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("UnpaidFormFeeCount", params, UnpaidFormFeeCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("UnpaidFormFeeCount", params, exportType, UnpaidFormFeeCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> executeGetInspectorsByMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("getInspectorsByMunicipality", params, Users.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetInspectorsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("getInspectorsByMunicipality", params, exportType, Users.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {
+        Map params = new HashMap(2);
+
+        params.put("PaidStatus", updateMultipleFeeStatusRequest.getPaidStatus());
+        params.put("feeList", updateMultipleFeeStatusRequest.getFeeList());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeStatus", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, UserSubscriptionsCountResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportUserSubscriptionsCount(ExportType exportType, Pageable pageable) {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.exportNamedQueryData("userSubscriptionsCount", params, exportType, UserSubscriptionsCountResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest) {
+        Map params = new HashMap(4);
+
+        params.put("UserId", insertFormMessageRequest.getUserId());
+        params.put("RelatedFormGUID", insertFormMessageRequest.getRelatedFormGuid());
+        params.put("Message", insertFormMessageRequest.getMessage());
+        params.put("MunicipalityMessage", insertFormMessageRequest.getMunicipalityMessage());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("Active", active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("ProjectsForUsersAndSharedWith", params, Projects.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("Active", active);
+        params.put("creatorUser", creatorUser);
+        params.put("sharedWithUser", sharedWithUser);
+        params.put("municipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("ProjectsForUsersAndSharedWith", params, exportType, Projects.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(9);
+
+        params.put("vendorId", vendorId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+        params.put("publicRead", publicRead);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.executeNamedQuery("SearchAllFormsByVendor", params, SearchAllFormsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable) {
+        Map params = new HashMap(9);
+
+        params.put("vendorId", vendorId);
+        params.put("municipalityId", municipalityId);
+        params.put("formcategoryID", formcategoryId);
+        params.put("formtypeID", formtypeId);
+        params.put("Closed", closed);
+        params.put("municipalityInternalForm", municipalityInternalForm);
+        params.put("publicRead", publicRead);
+        params.put("startd", startd);
+        params.put("endd", endd);
+
+        return queryExecutor.exportNamedQueryData("SearchAllFormsByVendor", params, exportType, SearchAllFormsByVendorResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
+
+        return queryExecutor.executeNamedQuery("FormsTaggedWithGISRecords", params, FormsTaggedWithGisrecordsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("codeEnforcement", codeEnforcement);
+        params.put("GISRecordId", gisrecordId);
+
+        return queryExecutor.exportNamedQueryData("FormsTaggedWithGISRecords", params, exportType, FormsTaggedWithGisrecordsResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateNewPassword(UpdateNewPasswordRequest updateNewPasswordRequest) {
+        Map params = new HashMap(2);
+
+        params.put("password", updateNewPasswordRequest.getPassword());
+        params.put("newUser", updateNewPasswordRequest.getNewUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateNewPassword", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfVendorUsersResponse> executeCountOfVendorUsers(Integer vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CountOfVendorUsers", params, CountOfVendorUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfVendorUsers(ExportType exportType, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.exportNamedQueryData("CountOfVendorUsers", params, exportType, CountOfVendorUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetRecentMessageIdResponse> executeGetRecentMessageId(String form, Timestamp postedAt, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("form", form);
+        params.put("PostedAt", postedAt);
+
+        return queryExecutor.executeNamedQuery("GetRecentMessageId", params, GetRecentMessageIdResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetRecentMessageId(ExportType exportType, String form, Timestamp postedAt, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("form", form);
+        params.put("PostedAt", postedAt);
+
+        return queryExecutor.exportNamedQueryData("GetRecentMessageId", params, exportType, GetRecentMessageIdResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -179,114 +1772,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("municipalityId", municipalityId);
-        params.put("startd", startd);
-        params.put("endd", endd);
-
-        return queryExecutor.executeNamedQuery("getTransactionsByMunicipality", params, GetTransactionsByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("municipalityId", municipalityId);
-        params.put("startd", startd);
-        params.put("endd", endd);
-
-        return queryExecutor.exportNamedQueryData("getTransactionsByMunicipality", params, exportType, GetTransactionsByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest) {
-        Map params = new HashMap(2);
-
-        params.put("FeeId", insertIntoCartRequest.getFeeId());
-        params.put("UserId", insertIntoCartRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertIntoCart", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeCreateLetterTemplateForFormStatus(CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
-        Map params = new HashMap(5);
-
-        params.put("letterTemplateId", createLetterTemplateForFormStatusRequest.getLetterTemplateId());
-        params.put("formStatusId", createLetterTemplateForFormStatusRequest.getFormStatusId());
-        params.put("attachToEmail", createLetterTemplateForFormStatusRequest.getAttachToEmail());
-        params.put("emailLetterCreator", createLetterTemplateForFormStatusRequest.getEmailLetterCreator());
-        params.put("attachToItem", createLetterTemplateForFormStatusRequest.getAttachToItem());
-
-        return queryExecutor.executeNamedQueryForUpdate("createLetterTemplateForFormStatus", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeProjectSoftDelete(ProjectSoftDeleteRequest projectSoftDeleteRequest) {
-        Map params = new HashMap(2);
-
-        params.put("active", projectSoftDeleteRequest.getActive());
-        params.put("ProjectGuid", projectSoftDeleteRequest.getProjectGuid());
-
-        return queryExecutor.executeNamedQueryForUpdate("ProjectSoftDelete", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateMultipleFeeComments(UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest) {
-        Map params = new HashMap(2);
-
-        params.put("comments", updateMultipleFeeCommentsRequest.getComments());
-        params.put("feeList", updateMultipleFeeCommentsRequest.getFeeList());
-
-        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeComments", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdatePrimaryVendorInMasterForms(UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest) {
-        Map params = new HashMap(2);
-
-        params.put("VendorId", updatePrimaryVendorInMasterFormsRequest.getVendorId());
-        params.put("FormGUID", updatePrimaryVendorInMasterFormsRequest.getFormGuid());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorInMasterForms", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("closed", closed);
-        params.put("municipalityId", municipalityId);
-        params.put("dateSubmitted", dateSubmitted);
-
-        return queryExecutor.executeNamedQuery("CounNewCasesAndAfterDate", params, CounNewCasesAndAfterDateResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCounNewCasesAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("closed", closed);
-        params.put("municipalityId", municipalityId);
-        params.put("dateSubmitted", dateSubmitted);
-
-        return queryExecutor.exportNamedQueryData("CounNewCasesAndAfterDate", params, exportType, CounNewCasesAndAfterDateResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<StandardUserMunicipalitesResponse> executeStandardUserMunicipalites(Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -303,26 +1788,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("USER", user);
 
         return queryExecutor.exportNamedQueryData("StandardUserMunicipalites", params, exportType, StandardUserMunicipalitesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetEmailIdResponse> executeGetEmailId(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.executeNamedQuery("getEmailId", params, GetEmailIdResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.exportNamedQueryData("getEmailId", params, exportType, GetEmailIdResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -347,30 +1812,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("CounCasesByStatusAndMunicipality", params, exportType, CounCasesByStatusAndMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeAddUsersToVendor(AddUsersToVendorRequest addUsersToVendorRequest) {
-        Map params = new HashMap(3);
-
-        params.put("VendorId", addUsersToVendorRequest.getVendorId());
-        params.put("UserId", addUsersToVendorRequest.getUserId());
-        params.put("JoiningDate", addUsersToVendorRequest.getJoiningDate());
-
-        return queryExecutor.executeNamedQueryForUpdate("AddUsersToVendor", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest) {
-        Map params = new HashMap(3);
-
-        params.put("password", updatePasswordAndCfRequest.getPassword());
-        params.put("cf", updatePasswordAndCfRequest.getCf());
-        params.put("newUser", updatePasswordAndCfRequest.getNewUser());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdatePasswordAndCF", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -399,105 +1840,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(Integer muncipality, Integer user, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("muncipality", muncipality);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("CheckingUserWithMunicipalityInRoles", params, CheckingUserWithMunicipalityInRolesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCheckingUserWithMunicipalityInRoles(ExportType exportType, Integer muncipality, Integer user, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("muncipality", muncipality);
-        params.put("user", user);
-
-        return queryExecutor.exportNamedQueryData("CheckingUserWithMunicipalityInRoles", params, exportType, CheckingUserWithMunicipalityInRolesResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateCFInProfile(UpdateCfinProfileRequest updateCfinProfileRequest) {
-        Map params = new HashMap(2);
-
-        params.put("cf", updateCfinProfileRequest.getCf());
-        params.put("user", updateCfinProfileRequest.getUser());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateCFInProfile", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MunicipalitiesGroupsCountsResponse> executeMunicipalitiesGroupsCounts(Integer municipality, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("MunicipalitiesGroupsCounts", params, MunicipalitiesGroupsCountsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportMunicipalitiesGroupsCounts(ExportType exportType, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipality", municipality);
-
-        return queryExecutor.exportNamedQueryData("MunicipalitiesGroupsCounts", params, exportType, MunicipalitiesGroupsCountsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public FormMessages executeGetRecentMessageIdForProject(String project, Timestamp postedAt) {
-        Map params = new HashMap(2);
-
-        params.put("project", project);
-        params.put("PostedAt", postedAt);
-
-        return queryExecutor.executeNamedQuery("GetRecentMessageIdForProject", params, FormMessages.class);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertCategoryMapping(InsertCategoryMappingRequest insertCategoryMappingRequest) {
-        Map params = new HashMap(2);
-
-        params.put("FormTypeId", insertCategoryMappingRequest.getFormTypeId());
-        params.put("FormCategoryId", insertCategoryMappingRequest.getFormCategoryId());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertCategoryMapping", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("closed", closed);
-        params.put("MunicipalityId", municipalityId);
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQuery("ProcessFormsForUserByMunicipality", params, ProcessFormsForUserByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportProcessFormsForUserByMunicipality(ExportType exportType, Boolean closed, Long municipalityId, Long userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("closed", closed);
-        params.put("MunicipalityId", municipalityId);
-        params.put("UserId", userId);
-
-        return queryExecutor.exportNamedQueryData("ProcessFormsForUserByMunicipality", params, exportType, ProcessFormsForUserByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FormsCountForMunicipalitiesResponse> executeFormsCountForMunicipalities(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -514,90 +1856,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("FormsCountForMunicipalities", params, exportType, FormsCountForMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfMunicipalityProjectsResponse> executeCountOfMunicipalityProjects(Integer municipalityId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("municipalityId", municipalityId);
-        params.put("Active", active);
-
-        return queryExecutor.executeNamedQuery("CountOfMunicipalityProjects", params, CountOfMunicipalityProjectsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfMunicipalityProjects(ExportType exportType, Integer municipalityId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("municipalityId", municipalityId);
-        params.put("Active", active);
-
-        return queryExecutor.exportNamedQueryData("CountOfMunicipalityProjects", params, exportType, CountOfMunicipalityProjectsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorCountResponse> executeVendorCount(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("VendorCount", params, VendorCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportVendorCount(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("VendorCount", params, exportType, VendorCountResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateWorkMunicipality(UpdateWorkMunicipalityRequest updateWorkMunicipalityRequest) {
-        Map params = new HashMap(11);
-
-        params.put("monday", updateWorkMunicipalityRequest.getMonday());
-        params.put("tuesday", updateWorkMunicipalityRequest.getTuesday());
-        params.put("wednesday", updateWorkMunicipalityRequest.getWednesday());
-        params.put("thursday", updateWorkMunicipalityRequest.getThursday());
-        params.put("friday", updateWorkMunicipalityRequest.getFriday());
-        params.put("saturday", updateWorkMunicipalityRequest.getSaturday());
-        params.put("sunday", updateWorkMunicipalityRequest.getSunday());
-        params.put("timezone", updateWorkMunicipalityRequest.getTimezone());
-        params.put("openTime", updateWorkMunicipalityRequest.getOpenTime());
-        params.put("closeTime", updateWorkMunicipalityRequest.getCloseTime());
-        params.put("municipalityId", updateWorkMunicipalityRequest.getMunicipalityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateWorkMunicipality", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FeeByFeeTypesToDashboardResponse> executeFeeByFeeTypesToDashboard(Integer municpality, Date startDate, Date endDate, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("municpality", municpality);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-
-        return queryExecutor.executeNamedQuery("FeeByFeeTypesToDashboard", params, FeeByFeeTypesToDashboardResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportFeeByFeeTypesToDashboard(ExportType exportType, Integer municpality, Date startDate, Date endDate, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("municpality", municpality);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-
-        return queryExecutor.exportNamedQueryData("FeeByFeeTypesToDashboard", params, exportType, FeeByFeeTypesToDashboardResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -679,18 +1937,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("projectsByVendor", params, exportType, ProjectsByVendorResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateAsCXVendorAdmin(UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest) {
-        Map params = new HashMap(3);
-
-        params.put("role", updateAsCxvendorAdminRequest.getRole());
-        params.put("municipality", updateAsCxvendorAdminRequest.getMunicipality());
-        params.put("user", updateAsCxvendorAdminRequest.getUser());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateAsCXVendorAdmin", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<FormsByCategoryResponse> executeFormsByCategory(Integer formCategory, Boolean isActive, Boolean municipalityInternalForm, Pageable pageable) {
@@ -715,6 +1961,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("FormsByCategory", params, exportType, FormsByCategoryResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateAsCXVendorAdmin(UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest) {
+        Map params = new HashMap(3);
+
+        params.put("role", updateAsCxvendorAdminRequest.getRole());
+        params.put("municipality", updateAsCxvendorAdminRequest.getMunicipality());
+        params.put("user", updateAsCxvendorAdminRequest.getUser());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateAsCXVendorAdmin", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user) {
@@ -723,54 +1981,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("user", user);
 
         return queryExecutor.executeNamedQuery("sumOfFeesInUsersCart", params, SumOfFeesInUsersCartResponse.class);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("municipalityId", municipalityId);
-        params.put("publicRead", publicRead);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-        params.put("formTitle", formTitle);
-
-        return queryExecutor.executeNamedQuery("searchWithFormTitle", params, SearchWithFormTitleResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("municipalityId", municipalityId);
-        params.put("publicRead", publicRead);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-        params.put("formTitle", formTitle);
-
-        return queryExecutor.exportNamedQueryData("searchWithFormTitle", params, exportType, SearchWithFormTitleResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("vendorId", vendorId);
-        params.put("active", active);
-
-        return queryExecutor.executeNamedQuery("countProjectsByVendors", params, CountProjectsByVendorsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("vendorId", vendorId);
-        params.put("active", active);
-
-        return queryExecutor.exportNamedQueryData("countProjectsByVendors", params, exportType, CountProjectsByVendorsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -795,55 +2005,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfCompnayFormsByVendorId", params, exportType, CountOfCompnayFormsByVendorIdResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userId", userId);
-
-        return queryExecutor.executeNamedQuery("OpenedOrClosedFormsForUserOrSharedWith", params, MasterForms.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userId", userId);
-
-        return queryExecutor.exportNamedQueryData("OpenedOrClosedFormsForUserOrSharedWith", params, exportType, MasterForms.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("searchString", searchString);
-
-        return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, SearchUsersByEmailOrNameResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("searchString", searchString);
-
-        return queryExecutor.exportNamedQueryData("searchUsersByEmailOrName", params, exportType, SearchUsersByEmailOrNameResponse.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateGlobalEmailSig(UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest) {
+    public Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
         Map params = new HashMap(2);
 
-        params.put("gs", updateGlobalEmailSigRequest.getGs());
-        params.put("municipality", updateGlobalEmailSigRequest.getMunicipality());
+        params.put("logoBytes", updateMunicipalityLogoRequest.getLogoBytes());
+        params.put("municipalityId", updateMunicipalityLogoRequest.getMunicipalityId());
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateGlobalEmailSig", params);
+        return queryExecutor.executeNamedQueryForUpdate("updateMunicipalityLogo", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -859,24 +2029,14 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
-        Map params = new HashMap(2);
+    public Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest) {
+        Map params = new HashMap(3);
 
-        params.put("logoBytes", updateMunicipalityLogoRequest.getLogoBytes());
-        params.put("municipalityId", updateMunicipalityLogoRequest.getMunicipalityId());
+        params.put("pv", setPrimaryVendorStatusForFormandVendorRequest.getPv());
+        params.put("form", setPrimaryVendorStatusForFormandVendorRequest.getForm());
+        params.put("vendor", setPrimaryVendorStatusForFormandVendorRequest.getVendor());
 
-        return queryExecutor.executeNamedQueryForUpdate("updateMunicipalityLogo", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
+        return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -897,18 +2057,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("transactionId", transactionId);
 
         return queryExecutor.exportNamedQueryData("getFeesForTransaction", params, exportType, GetFeesForTransactionResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest) {
-        Map params = new HashMap(3);
-
-        params.put("pv", setPrimaryVendorStatusForFormandVendorRequest.getPv());
-        params.put("form", setPrimaryVendorStatusForFormandVendorRequest.getForm());
-        params.put("vendor", setPrimaryVendorStatusForFormandVendorRequest.getVendor());
-
-        return queryExecutor.executeNamedQueryForUpdate("SetPrimaryVendorStatusForFormandVendor", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -937,6 +2085,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("AllFeeformCount", params, exportType, AllFeeformCountResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteCategoryMapping(Integer form) {
+        Map params = new HashMap(1);
+
+        params.put("form", form);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteCategoryMapping", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Users> executeUserForDefaultTagging(Integer postedBy, Pageable pageable) {
@@ -955,36 +2113,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("postedBy", postedBy);
 
         return queryExecutor.exportNamedQueryData("UserForDefaultTagging", params, exportType, Users.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteCategoryMapping(Integer form) {
-        Map params = new HashMap(1);
-
-        params.put("form", form);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteCategoryMapping", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(String token, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQuery("getUserIdFromPasswordResetToken", params, GetUserIdFromPasswordResetTokenResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetUserIdFromPasswordResetToken(ExportType exportType, String token, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.exportNamedQueryData("getUserIdFromPasswordResetToken", params, exportType, GetUserIdFromPasswordResetTokenResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1009,58 +2137,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("endDate", endDate);
 
         return queryExecutor.exportNamedQueryData("FormsByVendorsForDashboard", params, exportType, FormsByVendorsForDashboardResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(Integer municipalityId, Boolean closed, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("MunicipalityId", municipalityId);
-        params.put("closed", closed);
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQuery("CountOfProcessFormsByMuncipality", params, CountOfProcessFormsByMuncipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfProcessFormsByMuncipality(ExportType exportType, Integer municipalityId, Boolean closed, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("MunicipalityId", municipalityId);
-        params.put("closed", closed);
-        params.put("UserId", userId);
-
-        return queryExecutor.exportNamedQueryData("CountOfProcessFormsByMuncipality", params, exportType, CountOfProcessFormsByMuncipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
-        Map params = new HashMap(5);
-
-        params.put("isClosed", isClosed);
-        params.put("municipality", municipality);
-        params.put("assignedTo", assignedTo);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-
-        return queryExecutor.executeNamedQuery("countAssignedInspectionsBetweenDates", params, CountAssignedInspectionsBetweenDatesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountAssignedInspectionsBetweenDates(ExportType exportType, Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
-        Map params = new HashMap(5);
-
-        params.put("isClosed", isClosed);
-        params.put("municipality", municipality);
-        params.put("assignedTo", assignedTo);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-
-        return queryExecutor.exportNamedQueryData("countAssignedInspectionsBetweenDates", params, exportType, CountAssignedInspectionsBetweenDatesResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1091,50 +2167,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("CountOfCXProjectsActive", params, exportType, CountOfCxprojectsActiveResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(Integer userId, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("userId", userId);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("getUserSentMessages", params, GetUserSentMessagesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetUserSentMessages(ExportType exportType, Integer userId, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("userId", userId);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("getUserSentMessages", params, exportType, GetUserSentMessagesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("formTypeId", formTypeId);
-        params.put("active", active);
-
-        return queryExecutor.executeNamedQuery("distinctInspectionDesignsForFormType", params, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("formTypeId", formTypeId);
-        params.put("active", active);
-
-        return queryExecutor.exportNamedQueryData("distinctInspectionDesignsForFormType", params, exportType, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1177,22 +2209,36 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<DistinctInspectionDesignsForFormTypeResponse> executeDistinctInspectionDesignsForFormType(Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("form", form);
+        params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
-        return queryExecutor.executeNamedQuery("InspectionsOfForm", params, FormsToInspections.class, pageable);
+        return queryExecutor.executeNamedQuery("distinctInspectionDesignsForFormType", params, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("form", form);
+        params.put("formTypeId", formTypeId);
+        params.put("active", active);
 
-        return queryExecutor.exportNamedQueryData("InspectionsOfForm", params, exportType, FormsToInspections.class, pageable);
+        return queryExecutor.exportNamedQueryData("distinctInspectionDesignsForFormType", params, exportType, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest) {
+        Map params = new HashMap(3);
+
+        params.put("RelatedFormGUID", addingVendorsToFormRequest.getRelatedFormGuid());
+        params.put("SharedOn", addingVendorsToFormRequest.getSharedOn());
+        params.put("VendorId", addingVendorsToFormRequest.getVendorId());
+
+        return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1217,18 +2263,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("CasesByMunicipality", params, exportType, CasesByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest) {
-        Map params = new HashMap(3);
-
-        params.put("RelatedFormGUID", addingVendorsToFormRequest.getRelatedFormGuid());
-        params.put("SharedOn", addingVendorsToFormRequest.getSharedOn());
-        params.put("VendorId", addingVendorsToFormRequest.getVendorId());
-
-        return queryExecutor.executeNamedQueryForUpdate("AddingVendorsToForm", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1264,42 +2298,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<PreferenceForUserResponse> executePreferenceForUser(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userId", userId);
-
-        return queryExecutor.executeNamedQuery("PreferenceForUser", params, PreferenceForUserResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportPreferenceForUser(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userId", userId);
-
-        return queryExecutor.exportNamedQueryData("PreferenceForUser", params, exportType, PreferenceForUserResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertMasterInspections(InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
-        Map params = new HashMap(7);
-
-        params.put("InspectionGuid", insertMasterInspectionsRequest.getInspectionGuid());
-        params.put("InspectionTitle", insertMasterInspectionsRequest.getInspectionTitle());
-        params.put("InspectionDesignId", insertMasterInspectionsRequest.getInspectionDesignId());
-        params.put("FormGuid", insertMasterInspectionsRequest.getFormGuid());
-        params.put("RequestedBy", insertMasterInspectionsRequest.getRequestedBy());
-        params.put("DateRequested", insertMasterInspectionsRequest.getDateRequested());
-        params.put("RequestedFor", insertMasterInspectionsRequest.getRequestedFor());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertMasterInspections", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<UserCountResponse> executeUserCount(Pageable pageable) {
         Map params = new HashMap(0);
 
@@ -1314,78 +2312,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("UserCount", params, exportType, UserCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("FeesInCartByUser", params, FeesInCartByUserResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportFeesInCartByUser(ExportType exportType, Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.exportNamedQueryData("FeesInCartByUser", params, exportType, FeesInCartByUserResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("NoOfItemsInUserCart", params, NoOfItemsInUserCartResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportNoOfItemsInUserCart(ExportType exportType, Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.exportNamedQueryData("NoOfItemsInUserCart", params, exportType, NoOfItemsInUserCartResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteInspectionDesign(Integer inspectionId) {
-        Map params = new HashMap(1);
-
-        params.put("inspectionId", inspectionId);
-
-        return queryExecutor.executeNamedQueryForUpdate("deleteInspectionDesign", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CheckIfCompanyUserIsVendorAdmin", params, CheckIfCompanyUserIsVendorAdminResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.exportNamedQueryData("CheckIfCompanyUserIsVendorAdmin", params, exportType, CheckIfCompanyUserIsVendorAdminResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1414,18 +2340,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", params, exportType, AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateProjectDetails(UpdateProjectDetailsRequest updateProjectDetailsRequest) {
-        Map params = new HashMap(5);
+    public Page<CheckIfCompanyUserIsVendorAdminResponse> executeCheckIfCompanyUserIsVendorAdmin(Integer user, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(2);
 
-        params.put("ProjectName", updateProjectDetailsRequest.getProjectName());
-        params.put("ProjectGoals", updateProjectDetailsRequest.getProjectGoals());
-        params.put("EstStartDate", updateProjectDetailsRequest.getEstStartDate());
-        params.put("EstEndDate", updateProjectDetailsRequest.getEstEndDate());
-        params.put("project", updateProjectDetailsRequest.getProject());
+        params.put("user", user);
+        params.put("vendor", vendor);
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDetails", params);
+        return queryExecutor.executeNamedQuery("CheckIfCompanyUserIsVendorAdmin", params, CheckIfCompanyUserIsVendorAdminResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCheckIfCompanyUserIsVendorAdmin(ExportType exportType, Integer user, Integer vendor, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.exportNamedQueryData("CheckIfCompanyUserIsVendorAdmin", params, exportType, CheckIfCompanyUserIsVendorAdminResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1441,22 +2375,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
 
-        params.put("VendorId", vendorId);
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
+        params.put("userId", userId);
 
-        return queryExecutor.executeNamedQuery("CountOfMuncipalityApplicationsByVendor", params, CountOfMuncipalityApplicationsByVendorResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("AllFeeFormCountByMunicipality", params, AllFeeFormCountByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportCountOfMuncipalityApplicationsByVendor(ExportType exportType, Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(1);
+    public Downloadable exportAllFeeFormCountByMunicipality(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
+        Map params = new HashMap(4);
 
-        params.put("VendorId", vendorId);
+        params.put("allowPayment", allowPayment);
+        params.put("paidStatus", paidStatus);
+        params.put("municipalityId", municipalityId);
+        params.put("userId", userId);
 
-        return queryExecutor.exportNamedQueryData("CountOfMuncipalityApplicationsByVendor", params, exportType, CountOfMuncipalityApplicationsByVendorResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("AllFeeFormCountByMunicipality", params, exportType, AllFeeFormCountByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1489,32 +2429,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("allowPayment", allowPayment);
-        params.put("paidStatus", paidStatus);
-        params.put("municipalityId", municipalityId);
-        params.put("userId", userId);
-
-        return queryExecutor.executeNamedQuery("AllFeeFormCountByMunicipality", params, AllFeeFormCountByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportAllFeeFormCountByMunicipality(ExportType exportType, Boolean allowPayment, String paidStatus, Integer municipalityId, Integer userId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("allowPayment", allowPayment);
-        params.put("paidStatus", paidStatus);
-        params.put("municipalityId", municipalityId);
-        params.put("userId", userId);
-
-        return queryExecutor.exportNamedQueryData("AllFeeFormCountByMunicipality", params, exportType, AllFeeFormCountByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<UserSubscriptionsCountForMunicipalityResponse> executeUserSubscriptionsCountForMunicipality(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -1535,17 +2449,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateFeesStatus(UpdateFeesStatusRequest updateFeesStatusRequest) {
-        Map params = new HashMap(2);
-
-        params.put("status", updateFeesStatusRequest.getStatus());
-        params.put("feeEntry", updateFeesStatusRequest.getFeeEntry());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateFeesStatus", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public Integer executeAddUserToMunicipalityGroup(AddUserToMunicipalityGroupRequest addUserToMunicipalityGroupRequest) {
         Map params = new HashMap(2);
 
@@ -1557,15 +2460,33 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest) {
-        Map params = new HashMap(4);
+    public Integer executeUpdateFeesStatus(UpdateFeesStatusRequest updateFeesStatusRequest) {
+        Map params = new HashMap(2);
 
-        params.put("GISRecordId", addGistoProjectsRequest.getGisrecordId());
-        params.put("RelatedProjectGUID", addGistoProjectsRequest.getRelatedProjectGuid());
-        params.put("AddedByUser", addGistoProjectsRequest.getAddedByUser());
-        params.put("AddedAt", addGistoProjectsRequest.getAddedAt());
+        params.put("status", updateFeesStatusRequest.getStatus());
+        params.put("feeEntry", updateFeesStatusRequest.getFeeEntry());
 
-        return queryExecutor.executeNamedQueryForUpdate("AddGIStoProjects", params);
+        return queryExecutor.executeNamedQueryForUpdate("UpdateFeesStatus", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountOfFormsForMunicipalityResponse> executeCountOfFormsForMunicipality(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("CountOfFormsForMunicipality", params, CountOfFormsForMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountOfFormsForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("CountOfFormsForMunicipality", params, exportType, CountOfFormsForMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1594,36 +2515,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("CountOfUserForms", params, exportType, CountOfUserFormsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfFormsForMunicipalityResponse> executeCountOfFormsForMunicipality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("CountOfFormsForMunicipality", params, CountOfFormsForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfFormsForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("CountOfFormsForMunicipality", params, exportType, CountOfFormsForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteDraft(Long draftId) {
-        Map params = new HashMap(1);
-
-        params.put("draftId", draftId);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteDraft", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1658,17 +2549,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("timeFormEnteredStatus", params, exportType, TimeFormEnteredStatusResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest) {
-        Map params = new HashMap(2);
-
-        params.put("CXVendorId", updateVendorForMasterFormsRequest.getCxvendorId());
-        params.put("FormGUID", updateVendorForMasterFormsRequest.getFormGuid());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorForMasterForms", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<CountOfCxcodeSetsGlobalResponse> executeCountOfCXCodeSetsGlobal(Pageable pageable) {
@@ -1687,28 +2567,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfCXCodeSetsGlobal", params, exportType, CountOfCxcodeSetsGlobalResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(Integer user, String role, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("role", role);
-
-        return queryExecutor.executeNamedQuery("EmployeesOrAdminsMunicipalities", params, EmployeesOrAdminsMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportEmployeesOrAdminsMunicipalities(ExportType exportType, Integer user, String role, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("role", role);
-
-        return queryExecutor.exportNamedQueryData("EmployeesOrAdminsMunicipalities", params, exportType, EmployeesOrAdminsMunicipalitiesResponse.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateForceInspectionSequenceForForm(UpdateForceInspectionSequenceForFormRequest updateForceInspectionSequenceForFormRequest) {
@@ -1718,26 +2576,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("form", updateForceInspectionSequenceForFormRequest.getForm());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateForceInspectionSequenceForForm", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfVendorsResponse> executeCountOfVendors(Integer vendor, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CountOfVendors", params, CountOfVendorsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfVendors(ExportType exportType, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("vendor", vendor);
-
-        return queryExecutor.exportNamedQueryData("CountOfVendors", params, exportType, CountOfVendorsResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -1782,16 +2620,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("sharedWithUser", sharedWithUser);
 
         return queryExecutor.exportNamedQueryData("CountOfUserFormsForMunicipality", params, exportType, CountOfUserFormsForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteToken(String token) {
-        Map params = new HashMap(1);
-
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("deleteToken", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1851,6 +2679,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("ManualFeeTypeCountForMunicipality", params, exportType, ManualFeeTypeCountForMunicipalityResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeInsertSubscription(InsertSubscriptionRequest insertSubscriptionRequest) {
+        Map params = new HashMap(3);
+
+        params.put("UserId", insertSubscriptionRequest.getUserId());
+        params.put("MunicipalityId", insertSubscriptionRequest.getMunicipalityId());
+        params.put("DateSubscribed", insertSubscriptionRequest.getDateSubscribed());
+
+        return queryExecutor.executeNamedQueryForUpdate("InsertSubscription", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<AssignedInspectionsBetweenDatesResponse> executeAssignedInspectionsBetweenDates(Boolean isClosed, Integer municipality, Integer assignedTo, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
@@ -1879,133 +2719,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("assignedInspectionsBetweenDates", params, exportType, AssignedInspectionsBetweenDatesResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertSubscription(InsertSubscriptionRequest insertSubscriptionRequest) {
-        Map params = new HashMap(3);
-
-        params.put("UserId", insertSubscriptionRequest.getUserId());
-        params.put("MunicipalityId", insertSubscriptionRequest.getMunicipalityId());
-        params.put("DateSubscribed", insertSubscriptionRequest.getDateSubscribed());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertSubscription", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetProcessGroupMemebersByFormGuidResponse> executeGetProcessGroupMemebersByFormGUID(String formGuid, Integer userId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("FormGUID", formGuid);
-        params.put("UserId", userId);
-
-        return queryExecutor.executeNamedQuery("GetProcessGroupMemebersByFormGUID", params, GetProcessGroupMemebersByFormGuidResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetProcessGroupMemebersByFormGUID(ExportType exportType, String formGuid, Integer userId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("FormGUID", formGuid);
-        params.put("UserId", userId);
-
-        return queryExecutor.exportNamedQueryData("GetProcessGroupMemebersByFormGUID", params, exportType, GetProcessGroupMemebersByFormGuidResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<AdminVendorsListResponse> executeAdminVendorsList(Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("AdminVendorsList", params, AdminVendorsListResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportAdminVendorsList(ExportType exportType, Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.exportNamedQueryData("AdminVendorsList", params, exportType, AdminVendorsListResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("formCategory", formCategory);
-        params.put("municipalityId", municipalityId);
-        params.put("isCase", isCase);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-
-        return queryExecutor.executeNamedQuery("GetFormTypesByCategoriesAndMunicipalities", params, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(ExportType exportType, Integer formCategory, Integer municipalityId, Boolean isCase, Boolean municipalityInternalForm, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("formCategory", formCategory);
-        params.put("municipalityId", municipalityId);
-        params.put("isCase", isCase);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-
-        return queryExecutor.exportNamedQueryData("GetFormTypesByCategoriesAndMunicipalities", params, exportType, GetFormTypesByCategoriesAndMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteRoleForMuncipality(String role, Integer municipality, Integer user) {
-        Map params = new HashMap(3);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteRoleForMuncipality", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Users> executeGetMunicipalityEmployees(String roleName, Integer municipalityId, String email, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("RoleName", roleName);
-        params.put("municipalityId", municipalityId);
-        params.put("email", email);
-
-        return queryExecutor.executeNamedQuery("GetMunicipalityEmployees", params, Users.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetMunicipalityEmployees(ExportType exportType, String roleName, Integer municipalityId, String email, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("RoleName", roleName);
-        params.put("municipalityId", municipalityId);
-        params.put("email", email);
-
-        return queryExecutor.exportNamedQueryData("GetMunicipalityEmployees", params, exportType, Users.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeMapAsAdminForVendor(MapAsAdminForVendorRequest mapAsAdminForVendorRequest) {
-        Map params = new HashMap(2);
-
-        params.put("UserId", mapAsAdminForVendorRequest.getUserId());
-        params.put("VendorId", mapAsAdminForVendorRequest.getVendorId());
-
-        return queryExecutor.executeNamedQueryForUpdate("MapAsAdminForVendor", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<CountOfInspectionDesignByMunicipalityResponse> executeCountOfInspectionDesignByMunicipality(Integer municipalityId, Pageable pageable) {
@@ -2026,53 +2739,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CountOfInspectionDesignByMunicipality", params, exportType, CountOfInspectionDesignByMunicipalityResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Integer executeInsertFormsIntoProject(InsertFormsIntoProjectRequest insertFormsIntoProjectRequest) {
-        Map params = new HashMap(5);
+    public Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
 
-        params.put("RelatedProjectGuid", insertFormsIntoProjectRequest.getRelatedProjectGuid());
-        params.put("RelatedFormGUID", insertFormsIntoProjectRequest.getRelatedFormGuid());
-        params.put("AddedByUser", insertFormsIntoProjectRequest.getAddedByUser());
-        params.put("AddedAt", insertFormsIntoProjectRequest.getAddedAt());
-        params.put("Comments", insertFormsIntoProjectRequest.getComments());
+        params.put("user", user);
 
-        return queryExecutor.executeNamedQueryForUpdate("InsertFormsIntoProject", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeRecordFormHistory(RecordFormHistoryRequest recordFormHistoryRequest) {
-        Map params = new HashMap(6);
-
-        params.put("FormGUID", recordFormHistoryRequest.getFormGuid());
-        params.put("FormTypeId", recordFormHistoryRequest.getFormTypeId());
-        params.put("NewStatusId", recordFormHistoryRequest.getNewStatusId());
-        params.put("OldStatusId", recordFormHistoryRequest.getOldStatusId());
-        params.put("Comments", recordFormHistoryRequest.getComments());
-        params.put("CreatedBy", recordFormHistoryRequest.getCreatedBy());
-
-        return queryExecutor.executeNamedQueryForUpdate("RecordFormHistory", params);
+        return queryExecutor.executeNamedQuery("EmployeesMunicipalities", params, EmployeesMunicipalitiesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetWriteAccessGroupMembersByFormGuidResponse> executeGetWriteAccessGroupMembersByFormGUID(String formGuid, Pageable pageable) {
+    public Downloadable exportEmployeesMunicipalities(ExportType exportType, Integer user, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("FormGUID", formGuid);
+        params.put("user", user);
 
-        return queryExecutor.executeNamedQuery("GetWriteAccessGroupMembersByFormGUID", params, GetWriteAccessGroupMembersByFormGuidResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetWriteAccessGroupMembersByFormGUID(ExportType exportType, String formGuid, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("FormGUID", formGuid);
-
-        return queryExecutor.exportNamedQueryData("GetWriteAccessGroupMembersByFormGUID", params, exportType, GetWriteAccessGroupMembersByFormGuidResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("EmployeesMunicipalities", params, exportType, EmployeesMunicipalitiesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2101,22 +2785,22 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(Integer user, Pageable pageable) {
+    public Page<GetWriteAccessGroupMembersByFormGuidResponse> executeGetWriteAccessGroupMembersByFormGUID(String formGuid, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("user", user);
+        params.put("FormGUID", formGuid);
 
-        return queryExecutor.executeNamedQuery("EmployeesMunicipalities", params, EmployeesMunicipalitiesResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("GetWriteAccessGroupMembersByFormGUID", params, GetWriteAccessGroupMembersByFormGuidResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportEmployeesMunicipalities(ExportType exportType, Integer user, Pageable pageable) {
+    public Downloadable exportGetWriteAccessGroupMembersByFormGUID(ExportType exportType, String formGuid, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("user", user);
+        params.put("FormGUID", formGuid);
 
-        return queryExecutor.exportNamedQueryData("EmployeesMunicipalities", params, exportType, EmployeesMunicipalitiesResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("GetWriteAccessGroupMembersByFormGUID", params, exportType, GetWriteAccessGroupMembersByFormGuidResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -2127,18 +2811,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("hb", removeVendorFromMasterFormsRequest.getHb());
 
         return queryExecutor.executeNamedQueryForUpdate("RemoveVendorFromMasterForms", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateFormStatusInMasterForms(UpdateFormStatusInMasterFormsRequest updateFormStatusInMasterFormsRequest) {
-        Map params = new HashMap(3);
-
-        params.put("formStatus", updateFormStatusInMasterFormsRequest.getFormStatus());
-        params.put("closed", updateFormStatusInMasterFormsRequest.getClosed());
-        params.put("FormGUID", updateFormStatusInMasterFormsRequest.getFormGuid());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateFormStatusInMasterForms", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2163,57 +2835,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQuery("GetFeeIdsOfUserInCart", params, GetFeeIdsOfUserInCartResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetFeeIdsOfUserInCart(ExportType exportType, Integer user, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.exportNamedQueryData("GetFeeIdsOfUserInCart", params, exportType, GetFeeIdsOfUserInCartResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("CountOfCasesForMunicipality", params, CountOfCasesForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfCasesForMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("CountOfCasesForMunicipality", params, exportType, CountOfCasesForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest) {
-        Map params = new HashMap(2);
-
-        params.put("pv", updatePrimaryVendorStatusInVendor2formsRequest.getPv());
-        params.put("form", updatePrimaryVendorStatusInVendor2formsRequest.getForm());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdatePrimaryVendorStatusInVEndor2Forms", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<MunicipalityProjectsResponse> executeMunicipalityProjects(Boolean active, Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -2232,46 +2853,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("MunicipalityId", municipalityId);
 
         return queryExecutor.exportNamedQueryData("MunicipalityProjects", params, exportType, MunicipalityProjectsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetMunicipalityGroupIdIdsResponse> executeGetMunicipalityGroupIdIDs(Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.executeNamedQuery("getMunicipalityGroupIdIDs", params, GetMunicipalityGroupIdIdsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("userID", userId);
-
-        return queryExecutor.exportNamedQueryData("getMunicipalityGroupIdIDs", params, exportType, GetMunicipalityGroupIdIdsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("UserSubscriptionsByMunicipality", params, UserSubscriptions.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2304,44 +2885,35 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetUserIdResponse> executeGetUserID(String email, Pageable pageable) {
+    public Page<UserSubscriptions> executeUserSubscriptionsByMunicipality(Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("Email", email);
+        params.put("municipalityId", municipalityId);
 
-        return queryExecutor.executeNamedQuery("getUserID", params, GetUserIdResponse.class, pageable);
+        return queryExecutor.executeNamedQuery("UserSubscriptionsByMunicipality", params, UserSubscriptions.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetUserID(ExportType exportType, String email, Pageable pageable) {
+    public Downloadable exportUserSubscriptionsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
         Map params = new HashMap(1);
 
-        params.put("Email", email);
+        params.put("municipalityId", municipalityId);
 
-        return queryExecutor.exportNamedQueryData("getUserID", params, exportType, GetUserIdResponse.class, pageable);
+        return queryExecutor.exportNamedQueryData("UserSubscriptionsByMunicipality", params, exportType, UserSubscriptions.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Transactional(value = "cx2TransactionManager")
     @Override
-    public Page<GetListofUsersResponse> executeGetListofUsers(Integer municipalityId, String email, Pageable pageable) {
-        Map params = new HashMap(2);
+    public Integer executeInsertNewRole(InsertNewRoleRequest insertNewRoleRequest) {
+        Map params = new HashMap(4);
 
-        params.put("municipalityID", municipalityId);
-        params.put("Email", email);
+        params.put("RoleName", insertNewRoleRequest.getRoleName());
+        params.put("MunicipalityId", insertNewRoleRequest.getMunicipalityId());
+        params.put("Description", insertNewRoleRequest.getDescription());
+        params.put("UserId", insertNewRoleRequest.getUserId());
 
-        return queryExecutor.executeNamedQuery("getListofUsers", params, GetListofUsersResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetListofUsers(ExportType exportType, Integer municipalityId, String email, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("municipalityID", municipalityId);
-        params.put("Email", email);
-
-        return queryExecutor.exportNamedQueryData("getListofUsers", params, exportType, GetListofUsersResponse.class, pageable);
+        return queryExecutor.executeNamedQueryForUpdate("InsertNewRole", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2360,19 +2932,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("countOfGlobalCodeList", params, exportType, CountOfGlobalCodeListResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertNewRole(InsertNewRoleRequest insertNewRoleRequest) {
-        Map params = new HashMap(4);
-
-        params.put("RoleName", insertNewRoleRequest.getRoleName());
-        params.put("MunicipalityId", insertNewRoleRequest.getMunicipalityId());
-        params.put("Description", insertNewRoleRequest.getDescription());
-        params.put("UserId", insertNewRoleRequest.getUserId());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertNewRole", params);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -2482,46 +3041,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getListofGroupName", params, exportType, GetListofGroupNameResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetProjectGisrecordsResponse> executeGetProjectGisrecords(String relatedProjectGuid, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("relatedProjectGuid", relatedProjectGuid);
-
-        return queryExecutor.executeNamedQuery("GetProjectGisrecords", params, GetProjectGisrecordsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetProjectGisrecords(ExportType exportType, String relatedProjectGuid, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("relatedProjectGuid", relatedProjectGuid);
-
-        return queryExecutor.exportNamedQueryData("GetProjectGisrecords", params, exportType, GetProjectGisrecordsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SubDivisonCountResponse> executeSubDivisonCount(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("SubDivisonCount", params, SubDivisonCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSubDivisonCount(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("SubDivisonCount", params, exportType, SubDivisonCountResponse.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeDeleteAllMunicipalityRoles(Integer municipalityId, Integer userId) {
@@ -2555,28 +3074,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("municipalitiesByVendorStatus", params, exportType, MunicipalitiesByVendorStatusResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(String role, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("GetRolesForMunicipality", params, GetRolesForMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetRolesForMunicipality(ExportType exportType, String role, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("role", role);
-        params.put("municipality", municipality);
-
-        return queryExecutor.exportNamedQueryData("GetRolesForMunicipality", params, exportType, GetRolesForMunicipalityResponse.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeResetPasswordForUser(ResetPasswordForUserRequest resetPasswordForUserRequest) {
@@ -2590,18 +3087,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeInsertGroups(InsertGroupsRequest insertGroupsRequest) {
-        Map params = new HashMap(3);
-
-        params.put("GroupName", insertGroupsRequest.getGroupName());
-        params.put("GroupDescription", insertGroupsRequest.getGroupDescription());
-        params.put("MunicipalityId", insertGroupsRequest.getMunicipalityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertGroups", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public Integer executeUpdateUserPreferences(UpdateUserPreferencesRequest updateUserPreferencesRequest) {
         Map params = new HashMap(2);
 
@@ -2611,42 +3096,24 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("UpdateUserPreferences", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Integer executeAddGIStoForms(AddGistoFormsRequest addGistoFormsRequest) {
-        Map params = new HashMap(4);
+    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
 
-        params.put("GISRecordId", addGistoFormsRequest.getGisrecordId());
-        params.put("RelatedFormGUID", addGistoFormsRequest.getRelatedFormGuid());
-        params.put("AddedBy", addGistoFormsRequest.getAddedBy());
-        params.put("AddedTime", addGistoFormsRequest.getAddedTime());
+        params.put("MunicipalityId", municipalityId);
 
-        return queryExecutor.executeNamedQueryForUpdate("AddGIStoForms", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeAddMemeberToProject(AddMemeberToProjectRequest addMemeberToProjectRequest) {
-        Map params = new HashMap(4);
-
-        params.put("RelatedProjectGUID", addMemeberToProjectRequest.getRelatedProjectGuid());
-        params.put("ProjectSharedOn", addMemeberToProjectRequest.getProjectSharedOn());
-        params.put("ProjectSharedWith", addMemeberToProjectRequest.getProjectSharedWith());
-        params.put("ProjectSharedBy", addMemeberToProjectRequest.getProjectSharedBy());
-
-        return queryExecutor.executeNamedQueryForUpdate("AddMemeberToProject", params);
+        return queryExecutor.executeNamedQuery("CountOfMunicipalityCodeSets", params, CountOfMunicipalityCodeSetsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public CheckInspectionLimitResponse executeCheckInspectionLimit(Integer inspectionDesignId, LocalDateTime startOfDay, LocalDateTime endOfDay) {
-        Map params = new HashMap(3);
+    public Downloadable exportCountOfMunicipalityCodeSets(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
 
-        params.put("inspectionDesignId", inspectionDesignId);
-        params.put("startOfDay", startOfDay);
-        params.put("endOfDay", endOfDay);
+        params.put("MunicipalityId", municipalityId);
 
-        return queryExecutor.executeNamedQuery("checkInspectionLimit", params, CheckInspectionLimitResponse.class);
+        return queryExecutor.exportNamedQueryData("CountOfMunicipalityCodeSets", params, exportType, CountOfMunicipalityCodeSetsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2671,38 +3138,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("CountOfMunicipalityCodeSets", params, CountOfMunicipalityCodeSetsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfMunicipalityCodeSets(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("CountOfMunicipalityCodeSets", params, exportType, CountOfMunicipalityCodeSetsResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertFormsToInspectionsMapping(InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {
-        Map params = new HashMap(3);
-
-        params.put("RelatedFormGUID", insertFormsToInspectionsMappingRequest.getRelatedFormGuid());
-        params.put("RelatedInspectionGUID", insertFormsToInspectionsMappingRequest.getRelatedInspectionGuid());
-        params.put("AddedBy", insertFormsToInspectionsMappingRequest.getAddedBy());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFormsToInspectionsMapping", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<FetchRolesForUserWithMunicipalityResponse> executeFetchRolesForUserWithMunicipality(Integer user, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -2721,17 +3156,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("FetchRolesForUserWithMunicipality", params, exportType, FetchRolesForUserWithMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
-        Map params = new HashMap(2);
-
-        params.put("AssessFeeYN", updateAssessFeeYnRequest.getAssessFeeYn());
-        params.put("id", updateAssessFeeYnRequest.getId());
-
-        return queryExecutor.executeNamedQueryForUpdate("updateAssessFeeYN", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2770,6 +3194,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("SearchAllFormsByUser", params, exportType, SearchAllFormsByUserResponse.class, pageable);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
+        Map params = new HashMap(2);
+
+        params.put("AssessFeeYN", updateAssessFeeYnRequest.getAssessFeeYn());
+        params.put("id", updateAssessFeeYnRequest.getId());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateAssessFeeYN", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
+        Map params = new HashMap(2);
+
+        params.put("DateModified", setModifiedDateForProjectRequest.getDateModified());
+        params.put("project", setModifiedDateForProjectRequest.getProject());
+
+        return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<Vendor> executeVendorsByMunicipalityAndStatus(Integer municipalityId, String approvalStatus, Boolean active, String companyName, Pageable pageable) {
@@ -2794,17 +3240,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("companyName", companyName);
 
         return queryExecutor.exportNamedQueryData("VendorsByMunicipalityAndStatus", params, exportType, Vendor.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
-        Map params = new HashMap(2);
-
-        params.put("DateModified", setModifiedDateForProjectRequest.getDateModified());
-        params.put("project", setModifiedDateForProjectRequest.getProject());
-
-        return queryExecutor.executeNamedQueryForUpdate("SetModifiedDateForProject", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2849,80 +3284,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("UpdateInfoFromMyProfile", params);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeResetPasswordWithTokenForUser(Integer userid, String token) {
-        Map params = new HashMap(2);
-
-        params.put("userid", userid);
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(String relatedFormGuid, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("RelatedFormGUID", relatedFormGuid);
-
-        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, VendorsLinkedWithFormResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportVendorsLinkedWithForm(ExportType exportType, String relatedFormGuid, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("RelatedFormGUID", relatedFormGuid);
-
-        return queryExecutor.exportNamedQueryData("VendorsLinkedWithForm", params, exportType, VendorsLinkedWithFormResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateRoleForMunicipality(UpdateRoleForMunicipalityRequest updateRoleForMunicipalityRequest) {
-        Map params = new HashMap(3);
-
-        params.put("role", updateRoleForMunicipalityRequest.getRole());
-        params.put("municipality", updateRoleForMunicipalityRequest.getMunicipality());
-        params.put("user", updateRoleForMunicipalityRequest.getUser());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateRoleForMunicipality", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<GetFormsForMunicpalityResponse> executeGetFormsForMunicpality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("GetFormsForMunicpality", params, GetFormsForMunicpalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetFormsForMunicpality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("GetFormsForMunicpality", params, exportType, GetFormsForMunicpalityResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateProcessOwnersForGUID(UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest) {
-        Map params = new HashMap(2);
-
-        params.put("AssignedToGroupId", updateProcessOwnersForGuidRequest.getAssignedToGroupId());
-        params.put("GUID", updateProcessOwnersForGuidRequest.getGuid());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateProcessOwnersForGUID", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable) {
@@ -2945,36 +3306,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("messageStatus", messageStatus);
 
         return queryExecutor.exportNamedQueryData("getUserMessages", params, exportType, GetUserMessagesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterForms> executeSearchFormByVendor(Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(6);
-
-        params.put("startd", startd);
-        params.put("endd", endd);
-        params.put("FormTypeId", formTypeId);
-        params.put("municipalityId", municipalityId);
-        params.put("closed", closed);
-        params.put("vendorId", vendorId);
-
-        return queryExecutor.executeNamedQuery("SearchFormByVendor", params, MasterForms.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSearchFormByVendor(ExportType exportType, Timestamp startd, Timestamp endd, Integer formTypeId, Integer municipalityId, Boolean closed, Integer vendorId, Pageable pageable) {
-        Map params = new HashMap(6);
-
-        params.put("startd", startd);
-        params.put("endd", endd);
-        params.put("FormTypeId", formTypeId);
-        params.put("municipalityId", municipalityId);
-        params.put("closed", closed);
-        params.put("vendorId", vendorId);
-
-        return queryExecutor.exportNamedQueryData("SearchFormByVendor", params, exportType, MasterForms.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3021,17 +3352,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getTotalPaymentByMethodForPeriod", params, exportType, GetTotalPaymentByMethodForPeriodResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateProjectDescription(UpdateProjectDescriptionRequest updateProjectDescriptionRequest) {
-        Map params = new HashMap(2);
-
-        params.put("ProjectDescription", updateProjectDescriptionRequest.getProjectDescription());
-        params.put("project", updateProjectDescriptionRequest.getProject());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateProjectDescription", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<AllFeesOfFormsForCreatedByAndSharedWithResponse> executeAllFeesOfFormsForCreatedByAndSharedWith(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
@@ -3054,6 +3374,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("AllFeesOfFormsForCreatedByAndSharedWith", params, exportType, AllFeesOfFormsForCreatedByAndSharedWithResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("VendorsCountForMunicipalities", params, VendorsCountForMunicipalitiesResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportVendorsCountForMunicipalities(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("VendorsCountForMunicipalities", params, exportType, VendorsCountForMunicipalitiesResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3082,26 +3422,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("VendorsCountForMunicipalities", params, VendorsCountForMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportVendorsCountForMunicipalities(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("MunicipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("VendorsCountForMunicipalities", params, exportType, VendorsCountForMunicipalitiesResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<GetRolesForUserResponse> executeGetRolesForUser(Integer userId, Pageable pageable) {
         Map params = new HashMap(1);
 
@@ -3120,81 +3440,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getRolesForUser", params, exportType, GetRolesForUserResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("isClosed", isClosed);
-        params.put("assignedTo", assignedTo);
-        params.put("requestedFor", requestedFor);
-        params.put("municipality", municipality);
-
-        return queryExecutor.executeNamedQuery("countAssignedInspectionsLessThanDate", params, CountAssignedInspectionsLessThanDateResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountAssignedInspectionsLessThanDate(ExportType exportType, Boolean isClosed, Integer assignedTo, LocalDateTime requestedFor, Integer municipality, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("isClosed", isClosed);
-        params.put("assignedTo", assignedTo);
-        params.put("requestedFor", requestedFor);
-        params.put("municipality", municipality);
-
-        return queryExecutor.exportNamedQueryData("countAssignedInspectionsLessThanDate", params, exportType, CountAssignedInspectionsLessThanDateResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteFromVendorUsers(Integer user, Integer vendor) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorUsers", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CheckingUserWithInVendorUsersResponse> executeCheckingUserWithInVendorUsers(Integer user, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CheckingUserWithInVendorUsers", params, CheckingUserWithInVendorUsersResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCheckingUserWithInVendorUsers(ExportType exportType, Integer user, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("user", user);
-        params.put("vendor", vendor);
-
-        return queryExecutor.exportNamedQueryData("CheckingUserWithInVendorUsers", params, exportType, CheckingUserWithInVendorUsersResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateVendorStatus(UpdateVendorStatusRequest updateVendorStatusRequest) {
-        Map params = new HashMap(7);
-
-        params.put("DateApproved", updateVendorStatusRequest.getDateApproved());
-        params.put("ApprovedBy", updateVendorStatusRequest.getApprovedBy());
-        params.put("ExpiresDate", updateVendorStatusRequest.getExpiresDate());
-        params.put("ApprovalStatus", updateVendorStatusRequest.getApprovalStatus());
-        params.put("Reviewer", updateVendorStatusRequest.getReviewer());
-        params.put("municipality", updateVendorStatusRequest.getMunicipality());
-        params.put("vendor", updateVendorStatusRequest.getVendor());
-
-        return queryExecutor.executeNamedQueryForUpdate("UpdateVendorStatus", params);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeDeleteProjectForms(Integer projectForm) {
@@ -3203,28 +3448,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("projectForm", projectForm);
 
         return queryExecutor.executeNamedQueryForUpdate("DeleteProjectForms", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(Integer formTypeId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("formTypeId", formTypeId);
-        params.put("active", active);
-
-        return queryExecutor.executeNamedQuery("InspectionDesignForCategoriesMappedToForms", params, InspectionDesign.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportInspectionDesignForCategoriesMappedToForms(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("formTypeId", formTypeId);
-        params.put("active", active);
-
-        return queryExecutor.exportNamedQueryData("InspectionDesignForCategoriesMappedToForms", params, exportType, InspectionDesign.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3249,30 +3472,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("allowPayment", allowPayment);
-        params.put("paidStatus", paidStatus);
-        params.put("userId", userId);
-
-        return queryExecutor.executeNamedQuery("UnpaidFormFeeCount", params, UnpaidFormFeeCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportUnpaidFormFeeCount(ExportType exportType, Boolean allowPayment, String paidStatus, Integer userId, Pageable pageable) {
-        Map params = new HashMap(3);
-
-        params.put("allowPayment", allowPayment);
-        params.put("paidStatus", paidStatus);
-        params.put("userId", userId);
-
-        return queryExecutor.exportNamedQueryData("UnpaidFormFeeCount", params, exportType, UnpaidFormFeeCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<GetInspectionsToBeScheduledByMunicipalityResponse> executeGetInspectionsToBeScheduledByMunicipality(String outcome, Integer municipality, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -3291,6 +3490,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("municipality", municipality);
 
         return queryExecutor.exportNamedQueryData("getInspectionsToBeScheduledByMunicipality", params, exportType, GetInspectionsToBeScheduledByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeDeleteExistingSubscriptionsForUser(Integer user) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQueryForUpdate("DeleteExistingSubscriptionsForUser", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3317,16 +3526,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("FormsTypesForDashboard", params, exportType, FormsTypesForDashboardResponse.class, pageable);
     }
 
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeDeleteExistingSubscriptionsForUser(Integer user) {
-        Map params = new HashMap(1);
-
-        params.put("user", user);
-
-        return queryExecutor.executeNamedQueryForUpdate("DeleteExistingSubscriptionsForUser", params);
-    }
-
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<MunicipalityCountResponse> executeMunicipalityCount(Pageable pageable) {
@@ -3343,68 +3542,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("MunicipalityCount", params, exportType, MunicipalityCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Users> executeGetInspectorsByMunicipality(Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("getInspectorsByMunicipality", params, Users.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportGetInspectorsByMunicipality(ExportType exportType, Integer municipalityId, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("getInspectorsByMunicipality", params, exportType, Users.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeUpdateMultipleFeeStatus(UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {
-        Map params = new HashMap(2);
-
-        params.put("PaidStatus", updateMultipleFeeStatusRequest.getPaidStatus());
-        params.put("feeList", updateMultipleFeeStatusRequest.getFeeList());
-
-        return queryExecutor.executeNamedQueryForUpdate("updateMultipleFeeStatus", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.executeNamedQuery("userSubscriptionsCount", params, UserSubscriptionsCountResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportUserSubscriptionsCount(ExportType exportType, Pageable pageable) {
-        Map params = new HashMap(0);
-
-
-        return queryExecutor.exportNamedQueryData("userSubscriptionsCount", params, exportType, UserSubscriptionsCountResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertFormMessage(InsertFormMessageRequest insertFormMessageRequest) {
-        Map params = new HashMap(4);
-
-        params.put("UserId", insertFormMessageRequest.getUserId());
-        params.put("RelatedFormGUID", insertFormMessageRequest.getRelatedFormGuid());
-        params.put("Message", insertFormMessageRequest.getMessage());
-        params.put("MunicipalityMessage", insertFormMessageRequest.getMunicipalityMessage());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertFormMessage", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3433,119 +3570,18 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("CasesByMunicipalityAndAfterDate", params, exportType, CasesByMunicipalityAndAfterDateResponse.class, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(9);
-
-        params.put("vendorId", vendorId);
-        params.put("municipalityId", municipalityId);
-        params.put("formcategoryID", formcategoryId);
-        params.put("formtypeID", formtypeId);
-        params.put("Closed", closed);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-        params.put("publicRead", publicRead);
-        params.put("startd", startd);
-        params.put("endd", endd);
-
-        return queryExecutor.executeNamedQuery("SearchAllFormsByVendor", params, SearchAllFormsByVendorResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSearchAllFormsByVendor(ExportType exportType, Integer vendorId, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean closed, Boolean municipalityInternalForm, Boolean publicRead, Timestamp startd, Timestamp endd, Pageable pageable) {
-        Map params = new HashMap(9);
-
-        params.put("vendorId", vendorId);
-        params.put("municipalityId", municipalityId);
-        params.put("formcategoryID", formcategoryId);
-        params.put("formtypeID", formtypeId);
-        params.put("Closed", closed);
-        params.put("municipalityInternalForm", municipalityInternalForm);
-        params.put("publicRead", publicRead);
-        params.put("startd", startd);
-        params.put("endd", endd);
-
-        return queryExecutor.exportNamedQueryData("SearchAllFormsByVendor", params, exportType, SearchAllFormsByVendorResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Projects> executeProjectsForUsersAndSharedWith(Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("Active", active);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.executeNamedQuery("ProjectsForUsersAndSharedWith", params, Projects.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportProjectsForUsersAndSharedWith(ExportType exportType, Boolean active, Integer creatorUser, Integer sharedWithUser, Long municipalityId, Pageable pageable) {
-        Map params = new HashMap(4);
-
-        params.put("Active", active);
-        params.put("creatorUser", creatorUser);
-        params.put("sharedWithUser", sharedWithUser);
-        params.put("municipalityId", municipalityId);
-
-        return queryExecutor.exportNamedQueryData("ProjectsForUsersAndSharedWith", params, exportType, Projects.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateNewPassword(UpdateNewPasswordRequest updateNewPasswordRequest) {
-        Map params = new HashMap(2);
+    public Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest) {
+        Map params = new HashMap(5);
 
-        params.put("password", updateNewPasswordRequest.getPassword());
-        params.put("newUser", updateNewPasswordRequest.getNewUser());
+        params.put("UserId", insertProjectMessageRequest.getUserId());
+        params.put("RelatedProjectGUID", insertProjectMessageRequest.getRelatedProjectGuid());
+        params.put("Message", insertProjectMessageRequest.getMessage());
+        params.put("PostedAt", insertProjectMessageRequest.getPostedAt());
+        params.put("MunicipalityMessage", insertProjectMessageRequest.getMunicipalityMessage());
 
-        return queryExecutor.executeNamedQueryForUpdate("UpdateNewPassword", params);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("GISRecordId", gisrecordId);
-
-        return queryExecutor.executeNamedQuery("FormsTaggedWithGISRecords", params, FormsTaggedWithGisrecordsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportFormsTaggedWithGISRecords(ExportType exportType, Boolean codeEnforcement, Integer gisrecordId, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("codeEnforcement", codeEnforcement);
-        params.put("GISRecordId", gisrecordId);
-
-        return queryExecutor.exportNamedQueryData("FormsTaggedWithGISRecords", params, exportType, FormsTaggedWithGisrecordsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<CountOfVendorUsersResponse> executeCountOfVendorUsers(Integer vendor, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("vendor", vendor);
-
-        return queryExecutor.executeNamedQuery("CountOfVendorUsers", params, CountOfVendorUsersResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountOfVendorUsers(ExportType exportType, Integer vendor, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("vendor", vendor);
-
-        return queryExecutor.exportNamedQueryData("CountOfVendorUsers", params, exportType, CountOfVendorUsersResponse.class, pageable);
+        return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -3568,20 +3604,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("formType", formType);
 
         return queryExecutor.exportNamedQueryData("getInspectionDesignByInspectionCategoriesAssignedToFormType", params, exportType, GetInspectionDesignByInspectionCategoriesAssignedToFormTypeResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeInsertProjectMessage(InsertProjectMessageRequest insertProjectMessageRequest) {
-        Map params = new HashMap(5);
-
-        params.put("UserId", insertProjectMessageRequest.getUserId());
-        params.put("RelatedProjectGUID", insertProjectMessageRequest.getRelatedProjectGuid());
-        params.put("Message", insertProjectMessageRequest.getMessage());
-        params.put("PostedAt", insertProjectMessageRequest.getPostedAt());
-        params.put("MunicipalityMessage", insertProjectMessageRequest.getMunicipalityMessage());
-
-        return queryExecutor.executeNamedQueryForUpdate("InsertProjectMessage", params);
     }
 
     @Transactional(value = "cx2TransactionManager")

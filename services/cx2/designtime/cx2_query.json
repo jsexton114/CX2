@@ -11841,6 +11841,60 @@
       } ]
     }
   },
+  "getFormCountForGisRecord" : {
+    "name" : "getFormCountForGisRecord",
+    "description" : "Magic johansen",
+    "version" : "V2",
+    "queryString" : "select count(MF.FormGuid) as formCount,\n(CASE WHEN FS.ConsiderClosed=1 THEN 'Closed' ELSE 'Open' END) as ConsiderClosed\nfrom Gis2Forms GTF\nINNER JOIN MasterForms MF ON MF.FormGUID=GTF.RelatedFormGuid\nINNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId AND FT.CodeEnforcement=:isCase\nINNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId\nWHERE GTF.GISRecordId=:gisRecordId\nGROUP BY FS.ConsiderClosed",
+    "countQueryString" : "select count(*) from (select count(MF.FormGuid) as formCount,\n(CASE WHEN FS.ConsiderClosed=1 THEN 'Closed' ELSE 'Open' END) as ConsiderClosed\nfrom Gis2Forms GTF\nINNER JOIN MasterForms MF ON MF.FormGUID=GTF.RelatedFormGuid\nINNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId AND FT.CodeEnforcement=:isCase\nINNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId\nWHERE GTF.GISRecordId=:gisRecordId\nGROUP BY FS.ConsiderClosed) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "isCase",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "gisRecordId",
+      "type" : "long",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3350",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.GetFormCountForGisRecordResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formCount",
+        "fieldName" : "formCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "ConsiderClosed",
+        "fieldName" : "considerClosed",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "getFormTypeFieldsByTypeId" : {
     "name" : "getFormTypeFieldsByTypeId",
     "description" : "See name",

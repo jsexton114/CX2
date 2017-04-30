@@ -7730,7 +7730,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 15,
+    "bindCount" : 16,
     "spinnerContext" : "page",
     "tableName" : "GISRecords",
     "tableType" : "TABLE",
@@ -7848,6 +7848,66 @@
     "type" : "string",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "svClosedVsOpenCases" : {
+    "_id" : "wm-svClosedVsOpenCases-wm.ServiceVariable-1493590537135",
+    "name" : "svClosedVsOpenCases",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "isCase",
+      "value" : true,
+      "type" : "boolean"
+    }, {
+      "target" : "gisRecordId",
+      "value" : "bind:pageParams.GISRecordId",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetFormCountForGisRecordResponse",
+    "service" : "cx2",
+    "operation" : "executeGetFormCountForGisRecord",
+    "operationId" : "QueryExecutionController_executeGetFormCountForGisRecord",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "svClosedVsOpenFormCount" : {
+    "_id" : "wm-svClosedVsOpenFormCount-wm.ServiceVariable-1493590581115",
+    "name" : "svClosedVsOpenFormCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "isCase",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "gisRecordId",
+      "value" : "bind:pageParams.GISRecordId",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetFormCountForGisRecordResponse",
+    "service" : "cx2",
+    "operation" : "executeGetFormCountForGisRecord",
+    "operationId" : "QueryExecutionController_executeGetFormCountForGisRecord",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   },
   "svDownloadDocument" : {
     "_id" : "wm-svDownloadDocument-wm.ServiceVariable-1493588671408",

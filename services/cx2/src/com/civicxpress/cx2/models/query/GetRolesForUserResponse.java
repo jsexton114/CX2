@@ -8,8 +8,8 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

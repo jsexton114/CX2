@@ -8,17 +8,13 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.FormFieldTypes;
-import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
@@ -65,7 +61,7 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
     private Boolean municipalityInternalForm;
     @JsonProperty("CreatedDate")
     @ColumnAlias("CreatedDate")
-    private java.sql.Date createdDate;
+    private Date createdDate;
     @JsonProperty("CollectFees")
     @ColumnAlias("CollectFees")
     private Boolean collectFees;
@@ -273,11 +269,11 @@ public class GetFormTypesByCategoriesAndMunicipalitiesResponse implements Serial
         this.municipalityInternalForm = municipalityInternalForm;
     }
 
-    public java.sql.Date getCreatedDate() {
+    public Date getCreatedDate() {
         return this.createdDate;
     }
 
-    public void setCreatedDate(java.sql.Date createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 

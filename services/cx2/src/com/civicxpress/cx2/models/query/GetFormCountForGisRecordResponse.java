@@ -15,40 +15,47 @@ import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.ContractorTypes;
-import com.civicxpress.cx2.FormFieldTypes;
-import com.civicxpress.cx2.FormTypes;
 import com.civicxpress.cx2.Gisrecords;
-import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
-import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
-public class TimeFormEnteredStatusResponse implements Serializable {
+public class GetFormCountForGisRecordResponse implements Serializable {
 
-    @ColumnAlias("CreatedTime")
-    private LocalDateTime createdTime;
+    @ColumnAlias("formCount")
+    private Integer formCount;
+    @ColumnAlias("ConsiderClosed")
+    private String considerClosed;
 
-    public LocalDateTime getCreatedTime() {
-        return this.createdTime;
+    public Integer getFormCount() {
+        return this.formCount;
     }
 
-    public void setCreatedTime(LocalDateTime createdTime) {
-        this.createdTime = createdTime;
+    public void setFormCount(Integer formCount) {
+        this.formCount = formCount;
+    }
+
+    public String getConsiderClosed() {
+        return this.considerClosed;
+    }
+
+    public void setConsiderClosed(String considerClosed) {
+        this.considerClosed = considerClosed;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TimeFormEnteredStatusResponse)) return false;
-        final TimeFormEnteredStatusResponse timeFormEnteredStatusResponse = (TimeFormEnteredStatusResponse) o;
-        return Objects.equals(getCreatedTime(), timeFormEnteredStatusResponse.getCreatedTime());
+        if (!(o instanceof GetFormCountForGisRecordResponse)) return false;
+        final GetFormCountForGisRecordResponse getFormCountForGisRecordResponse = (GetFormCountForGisRecordResponse) o;
+        return Objects.equals(getFormCount(), getFormCountForGisRecordResponse.getFormCount()) &&
+                Objects.equals(getConsiderClosed(), getFormCountForGisRecordResponse.getConsiderClosed());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCreatedTime());
+        return Objects.hash(getFormCount(),
+                getConsiderClosed());
     }
 }
