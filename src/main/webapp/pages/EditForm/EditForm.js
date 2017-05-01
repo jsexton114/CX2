@@ -327,6 +327,8 @@ Application.$controller("dialogLetterTemplateController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.Math = window.Math;
     }
 ]);
 
