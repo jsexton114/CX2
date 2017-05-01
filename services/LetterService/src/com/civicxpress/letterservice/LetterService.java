@@ -37,11 +37,17 @@ public class LetterService {
     
     @Value("${cx2.url}")
     private String sqlUrl = "jdbc:sqlserver://192.168.2.211:1433;databaseName=CX2_DEV";
+    
+    @Value("${cx2.username}")
+    private String defaultSqlUser = "cx2";
+    
+    @Value("${cx2.password}")
+    private String defaultSqlPassword = "F!yingFishCove1957";
 
     public List<String> getAvailableTokens(int formTypeId) {
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
+		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
         List<String> availableTokens = null;
-        availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
+        availableTokens = LetterTemplate.getAvailableTokens(db, formTypeId);
         return availableTokens;
     }
     
@@ -51,8 +57,7 @@ public class LetterService {
 //		dbInfo.readFromWebContext();
 //		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
     	
-		Cx2DataAccess db = new Cx2DataAccess();
-		Cx2DataAccess.setSqlUrl(sqlUrl);
+		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
 		
 		if (letterTemplateId == null) {
 			lt = new SectionalTemplatePdf();
@@ -65,8 +70,7 @@ public class LetterService {
     }
     
     public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
-    	Cx2DataAccess db = new Cx2DataAccess();
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
+    	Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	
     	db.updateLetterTemplate(letterTemplate);
     }
@@ -75,11 +79,10 @@ public class LetterService {
 		SectionalTemplatePdf lt = null;
 //		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
 //		dbInfo.readFromWebContext();
-		Cx2DataAccess db = new Cx2DataAccess();
-		Cx2DataAccess.setSqlUrl(sqlUrl);
+		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
-        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
+        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(db, formTypeId, formGuid);
         byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
         ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
         DownloadResponse dr = new DownloadResponse();

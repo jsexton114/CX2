@@ -3,7 +3,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     var currentBreadCrumb = null;
     var openClosedFormBreadCrumb = {};
-    $scope.isHostile = false;
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
@@ -278,15 +277,17 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.Gis2formsDataonSuccess = function(variable, data) {
-        $scope.isHostile = false;
+        var isHostile = false;
         if (data.content.length > 0) {
             data.content.some(function(obj, index) {
                 if (obj.gisrecords.isHostile) {
-                    $scope.isHostile = true;
+                    isHostile = true;
                     return true;
                 }
             });
         }
+
+        $scope.Widgets.labelHostile.show = isHostile;
     };
 
     $scope.buttonUpdateStatusClick = function($event, $isolateScope) {

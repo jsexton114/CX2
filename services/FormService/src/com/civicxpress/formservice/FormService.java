@@ -743,11 +743,11 @@ public class FormService {
     	
     	String itemGuid = documentData.getString("ItemGUID");
     	
-    	UserPermissionsPojo perms = getUserPermissions(itemGuid);
+    // 	UserPermissionsPojo perms = getUserPermissions(itemGuid);
     	
-    	if (itemGuid != null && !perms.getCanView()) {
-    		return null;
-    	}
+    // 	if (itemGuid != null && !perms.getCanView()) {
+    // 		return null;
+    // 	}
     	
     	return documentData;
     }
@@ -877,12 +877,11 @@ public class FormService {
     }
     
     private byte[] createLetterPdf(Integer letterTemplateId, Long formTypeId, String formGuid) {
+		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
     	SectionalTemplatePdf lt = null;
-		Cx2DataAccess db = new Cx2DataAccess();
-		Cx2DataAccess.setSqlUrl(sqlUrl);
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
-        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
+        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(db, formTypeId, formGuid);
         byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
         
         return fileBytes;

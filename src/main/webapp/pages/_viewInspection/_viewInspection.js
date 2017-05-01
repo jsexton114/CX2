@@ -392,7 +392,7 @@ Application.$controller("dialogViolationController", ["$scope",
 
             $scope.Variables.svAddViolation.setInput('pictures', pictures);
             $scope.Variables.svAddViolation.update();
-            $scope.docsToUpload = [];
+            $scope.Variables.stvInspectionPicturesForUpload.dataSet = [];
 
             $scope.Widgets.dialogViolation.close();
         };
