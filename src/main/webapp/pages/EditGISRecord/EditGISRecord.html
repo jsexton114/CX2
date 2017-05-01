@@ -13,12 +13,12 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow38">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn73" padding="unset 0.5em unset unset">
-                        <wm-chart type="Pie" title="bind:Variables.FormsTaggedWithGISRecords.dataSet.totalElements + ' Forms'" height="250px" iconclass="wi wi-pie-chart" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed"
-                        yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
+                        <wm-chart type="Pie" title="Forms" height="260px" iconclass="wi wi-assignment" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle" nodatamessage="No Forms Submitted"
+                        labeltype="value" tooltips="true" subheading="bind:Variables.FormsTaggedWithGISRecords.dataSet.totalElements + ' Total Forms'" offsettop="20" offsetbottom="40" showlegend="top" borderwidth="unset unset 2em unset"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn74" padding="unset 0.5em">
-                        <wm-chart type="Pie" title="bind:Variables.CasesTaggedWithGISRecords.dataSet.totalElements + ' Cases'" height="250px" iconclass="wi wi-pie-chart" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed"
-                        yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
+                        <wm-chart type="Pie" title="Cases" height="260px" iconclass="fa fa-legal" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle" nodatamessage="No Cases Submitted"
+                        labeltype="value" subheading="bind:Variables.CasesTaggedWithGISRecords.dataSet.totalElements + ' Total Cases'" offsettop="20" offsetbottom="40" borderwidth="unset unset 2em unset"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn75" horizontalalign="center">
                         <wm-label padding="unset 0.5em" name="labelIsRental" caption="Rental Property" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" margin="20% unset unset unset" class="h2"></wm-label>
@@ -38,7 +38,7 @@
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn7">
                                                 <wm-form-field name="subdivisions" displayname="Development" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
-                                                placeholder="Search by Subdivision Name" displayexpression="subdivision" orderby="subdivision:asc" disabled="false" searchkey="subdivision" displaylabel="subdivision" defaultvalue="bind:Variables.SelectedGISobj.firstRecord.subdivisions"
+                                                placeholder="Search by Development Name" displayexpression="subdivision" orderby="subdivision:asc" disabled="false" searchkey="subdivision" displaylabel="subdivision" defaultvalue="bind:Variables.SelectedGISobj.firstRecord.subdivisions"
                                                 dataset="bind:Variables.CurrentMunicipalitySubdivisions.dataSet" datafield="All Fields"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn8">

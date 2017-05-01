@@ -51,12 +51,12 @@
                                                     placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
-                                                    <wm-form-field name="subdivisions" displayname="bind:&quot;Subdivision: &quot;+Widgets.liveform3.formWidgets.subdivisions.datavalue.subdivisionType" show="true" primary-key="false" generator="assigned" key="subdivisions"
-                                                    type="list" is-related="true" readonly="false" required="false" widget="autocomplete" placeholder="Search by Subdivision Name" displayexpression="subdivision + ' ' + subdivision" orderby="subdivision:asc"
-                                                    searchkey="subdivision" displaylabel="subdivision" dataset="bind:Variables.Cx2SubdivisionsData.dataSet" datafield="All Fields"></wm-form-field>
+                                                    <wm-form-field name="subdivisions" displayname="Development" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
+                                                    placeholder="Search by Development Name" displayexpression="subdivision + ' ' + subdivision" orderby="subdivision:asc" searchkey="subdivision" displaylabel="subdivision" dataset="bind:Variables.Cx2SubdivisionsData.dataSet"
+                                                    datafield="All Fields"></wm-form-field>
                                                 </wm-gridcolumn>
                                                 <wm-gridcolumn columnwidth="4" name="gridcolumn34">
-                                                    <wm-label padding="unset 0.5em" name="label9" class="control-label col-xs-12" caption="Subdivision Type"></wm-label>
+                                                    <wm-label padding="unset 0.5em" name="label9" class="control-label col-xs-12" caption="Development Type"></wm-label>
                                                     <wm-label padding="unset 0.5em" name="label10" fontweight="bold" caption="bind:Widgets.liveform3.formWidgets.subdivisions.datavalue.subdivisionType"></wm-label>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
@@ -194,19 +194,19 @@
                                         <wm-layoutgrid columns="1" name="layoutgrid1">
                                             <wm-gridrow name="gridrow1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn1">
-                                                    <wm-form-field name="subdivision" displayname="Subdivision Name" show="true" primary-key="false" generator="assigned" key="subdivision" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                    <wm-form-field name="subdivision" displayname="Development Name" show="true" primary-key="false" generator="assigned" key="subdivision" type="string" readonly="false" required="true" widget="text" maxchars="255"
                                                     inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow2">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn2">
-                                                    <wm-form-field name="subShortCode" displayname="Sub Short Code" show="true" primary-key="false" generator="assigned" key="subShortCode" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                    <wm-form-field name="subShortCode" displayname="Short Code" show="true" primary-key="false" generator="assigned" key="subShortCode" type="string" readonly="false" required="true" widget="text" maxchars="255"
                                                     inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow1">
                                                 <wm-gridcolumn name="gridcolumn1" columnwidth="12">
-                                                    <wm-form-field name="subdivisionType" displayname="Subdivision Type" show="true" primary-key="false" generator="assigned" key="subdivisionType" type="string" readonly="false" required="true" widget="select"
+                                                    <wm-form-field name="subdivisionType" displayname="Development Type" show="true" primary-key="false" generator="assigned" key="subdivisionType" type="string" readonly="false" required="true" widget="select"
                                                     maxchars="255" dataset="Residential,Commercial,Industrial"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
@@ -233,7 +233,7 @@
             <wm-layoutgrid name="layoutgrid4_1">
                 <wm-gridrow name="gridrow12">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn30_1">
-                        <wm-label padding="unset 0.5em unset 3em" caption="Subdivision" name="label3" class="form-control-static"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" caption="Development" name="label3" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="9" name="gridcolumn26">
                         <wm-label padding="unset 0.5em" name="label7" caption="bind:Widgets.grid1.selecteditem.subdivision" fontweight="bold" fontsize="20" class="form-control-static"></wm-label>
@@ -241,7 +241,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow14">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn32_2">
-                        <wm-label padding="unset 0.5em unset 3em" caption="Short Code" name="label4" class="form-control-static"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" caption="Short Code" name="label4" class="form-control-static"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="9" name="gridcolumn33_2">
                         <wm-label padding="unset 0.5em" name="label8" caption="bind:Widgets.grid1.selecteditem.subShortCode" fontweight="bold" fontsize="20" class="form-control-static"></wm-label>
@@ -249,7 +249,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow28" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn67">
-                        <wm-label padding="unset 0.5em unset 3em" caption="Subdivision Type" class="form-control-static" name="label7_1"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" caption="Development Type" class="form-control-static" name="label7_1"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="9" name="gridcolumn68">
                         <wm-label padding="unset 0.5em" caption="bind:Widgets.grid1.selecteditem.subdivisionType" fontweight="bold" fontsize="20" class="form-control-static" name="label8_1"></wm-label>
