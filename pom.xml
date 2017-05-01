@@ -451,11 +451,11 @@
             <systemPath>${basedir}/lib/DBUtils.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>Letters</groupId>
-            <artifactId>Letters</artifactId>
+            <groupId>commons-lang3-3.5</groupId>
+            <artifactId>commons-lang3-3.5</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Letters.jar</systemPath>
+            <systemPath>${basedir}/lib/commons-lang3-3.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>fontbox-2.0.5</groupId>
@@ -484,6 +484,13 @@
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/javax.ws.rs-api-2.0-m02.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>jsoup-1.10.2</groupId>
+            <artifactId>jsoup-1.10.2</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/jsoup-1.10.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>pdfbox-2.0.5</groupId>

@@ -16,11 +16,6 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.civicxpress.Cx2DataAccess;
-import com.civicxpress.GlobalFormInfo;
-import com.civicxpress.LetterTemplate;
-import com.civicxpress.MultiDatabaseHelper;
-import com.civicxpress.SectionalTemplatePdf;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.civicxpress.esigngenie.ESignGenieApi;
 
@@ -77,53 +72,53 @@ public class GisRecordService {
 
     @Autowired
     private SecurityService securityService;
-    
+
     @Value("${cx2.url}")
     private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
-    
+
     @Value("${cx2.username}")
     private String defaultSqlUser = "cx2";
-    
+
     @Value("${cx2.schemaName}")
     private String defaultSqlDatabase;
-    
+
     @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
 
     private void uploadDocuments(Connection cx2Conn, MultipartFile[] files, Long gisRecordId) throws SQLException, IOException {
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (GisRecordId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
-    	
+
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("gisRecordId", gisRecordId);
     	queryParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
 
         for (int i = 0; i < files.length; i++) {
         	MultipartFile file = files[i];
-        	
+
         	if (i > 0) {
         		documentAddQuery.append(',');
         	}
-			
+
         	queryParams.addString("doc"+i+"filename", file.getOriginalFilename());
         	queryParams.addString("doc"+i+"mimetype", file.getContentType());
         	queryParams.addBytes("doc"+i+"contents", file.getBytes());
-        	
+
         	documentAddQuery.append("(:gisRecordId, :doc"+i+"filename, :doc"+i+"mimetype, :doc"+i+"contents, :createdBy)");
         }
-        
+
         if (files.length > 0) {
         	DBUtils.simpleUpdateQuery(cx2Conn, documentAddQuery.toString(), queryParams);
         }
     }
-    
+
     public void uploadDocuments(MultipartFile[] files, Long gisRecordId) throws SQLException {
         Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
-        
+
     	cx2Conn.setAutoCommit(false);
-    	
+
     	try {
 	        uploadDocuments(cx2Conn, files, gisRecordId);
-	        
+
 	        cx2Conn.commit();
         } catch (IOException e) {
         	cx2Conn.rollback();

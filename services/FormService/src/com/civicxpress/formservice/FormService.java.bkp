@@ -743,11 +743,11 @@ public class FormService {
     	
     	String itemGuid = documentData.getString("ItemGUID");
     	
-    	UserPermissionsPojo perms = getUserPermissions(itemGuid);
+    // 	UserPermissionsPojo perms = getUserPermissions(itemGuid);
     	
-    	if (itemGuid != null && !perms.getCanView()) {
-    		return null;
-    	}
+    // 	if (itemGuid != null && !perms.getCanView()) {
+    // 		return null;
+    // 	}
     	
     	return documentData;
     }

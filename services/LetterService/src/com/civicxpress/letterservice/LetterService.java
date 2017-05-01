@@ -17,11 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 
-import com.civicxpress.LetterTemplate;
-import com.civicxpress.SectionalTemplatePdf;
-import com.civicxpress.Cx2DataAccess;
-import com.civicxpress.DatabaseConnectionInfo;
-import com.civicxpress.GlobalFormInfo;
+import com.civicxpress.letters.LetterTemplate;
+import com.civicxpress.letters.SectionalTemplatePdf;
+import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.letters.DatabaseConnectionInfo;
+import com.civicxpress.letters.GlobalFormInfo;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -34,13 +34,13 @@ public class LetterService {
 
     @Autowired
     private SecurityService securityService;
-    
+
     @Value("${cx2.url}")
     private String sqlUrl = "jdbc:sqlserver://192.168.2.211:1433;databaseName=CX2_DEV";
-    
+
     @Value("${cx2.username}")
     private String defaultSqlUser = "cx2";
-    
+
     @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
 
@@ -50,28 +50,28 @@ public class LetterService {
         availableTokens = LetterTemplate.getAvailableTokens(db, formTypeId);
         return availableTokens;
     }
-    
+
     public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) {
     	SectionalTemplatePdf lt = null;
 //		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
 //		dbInfo.readFromWebContext();
 //		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
-    	
+
 		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
-		
+
 		if (letterTemplateId == null) {
 			lt = new SectionalTemplatePdf();
 	    	lt.setUpDefaultSections();
 		} else {
 			lt = db.getLetterTemplate(letterTemplateId);
 		}
-		
+
 		return lt;
     }
-    
+
     public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
-    	
+
     	db.updateLetterTemplate(letterTemplate);
     }
 
