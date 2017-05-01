@@ -897,7 +897,6 @@ public class FormService {
         DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, FS.Status as FormStatus, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
         sendEmail = formData.getBoolean("SendEmail");
         
-        if (sendEmail) {
         	String formType = formData.getString("FormType");
         	String formTitle = formData.getString("FormTitle");
         	String recipientFullName = formData.getString("FullName");
@@ -998,16 +997,17 @@ public class FormService {
     	                }
     	        	}
     	        }
-	        }
 	        
-	        message.setSubject(emailSubject);
-	        message.setContent(messageContents);
-	        // Send smtp message
-	        Transport tr = session.getTransport("smtp");
-	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
-	        message.saveChanges();
-	        tr.sendMessage(message, message.getAllRecipients());
-	        tr.close();
+	        if (sendEmail) {
+    	        message.setSubject(emailSubject);
+    	        message.setContent(messageContents);
+    	        // Send smtp message
+    	        Transport tr = session.getTransport("smtp");
+    	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+    	        message.saveChanges();
+    	        tr.sendMessage(message, message.getAllRecipients());
+    	        tr.close();
+	        }
         }
         
         cx2Conn.close();
