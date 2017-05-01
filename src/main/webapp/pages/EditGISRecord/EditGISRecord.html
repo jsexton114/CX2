@@ -344,6 +344,7 @@
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="New Form" iconclass="wi wi-plus" show="true" class="btn-primary" action="Widgets.dialogNewForm.open()" shortcutkey=""></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -365,6 +366,7 @@
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="New Case" iconclass="wi wi-plus" show="true" class="btn-primary" action="Widgets.dialogNewCase.open()" shortcutkey=""></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -581,8 +583,19 @@
     <wm-view class="dialog-view" name="view1">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Submit Form" iconclass="wi wi-note-add" name="dialogNewForm">
             <wm-panel iconclass="" autoclose="outsideClick" name="panel4" title="" content="newFormDialog" margin="0px" class="panel-transparent">
-                <wm-param name="municipalityId" value="bind:Variables.SelectedGISobj.dataSet.data[$i].municipalities.id" type="integer"></wm-param>
+                <wm-param name="municipalityId" value="bind:Variables.SelectedGISobj.firstRecord.municipalityId" type="integer"></wm-param>
                 <wm-param name="dialogName" value="dialogNewForm" type="string"></wm-param>
+                <wm-param name="muniSelectedByPage" value="true" type="boolean"></wm-param>
+            </wm-panel>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewNewForm">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Submit Case" iconclass="wi wi-note-add" name="dialogNewCase">
+            <wm-panel iconclass="" autoclose="outsideClick" name="panelNewCasePage" content="newFormDialog" title="" class="panel-transparent" margin="0px">
+                <wm-param name="municipalityId" value="bind:Variables.SelectedGISobj.firstRecord.municipalityId" type="integer"></wm-param>
+                <wm-param name="dialogName" value="dialogNewCase" type="string"></wm-param>
+                <wm-param name="isCase" value="true" type="boolean"></wm-param>
+                <wm-param name="muniSelectedByPage" value="true" type="boolean"></wm-param>
             </wm-panel>
         </wm-dialog>
     </wm-view>
