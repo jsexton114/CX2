@@ -17,14 +17,14 @@
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em 0.5em 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType" margin="0px unset"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow98">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn181"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn182" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelHostil" caption="Please Take Caution" backgroundcolor="yellow" fontweight="bold" show="bind:Variables.Gis2formsData.dataSet.content.length>0 &amp;&amp; !!isHostile"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="labelHostil" caption="Please Take Caution" backgroundcolor="yellow" fontweight="bold" show="bind:!!isHostile"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn183"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -32,7 +32,7 @@
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn199"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn200">
                                         <wm-livelist listclass="list-group" itemclass="list-group-item" template="true" itemsperrow="xs-1 sm-1 md-1 lg-1" class="media-list address" datafield="All Fields" dataset="bind:Variables.Gis2formsData.dataSet" navigation="None"
-                                        name="livelistViewAddress" loadingdatamsg="Loading Address..." nodatamessage="No Address Specified" show="bind:Variables.Gis2formsData.dataSet.content.length>0" disableitem="true">
+                                        name="livelistViewAddress" loadingdatamsg="Loading Address..." nodatamessage="No Address Specified" show="bind:Variables.Gis2formsData.dataSet.content.length>0" disableitem="true" padding="0px unset">
                                             <wm-listtemplate layout="inline" name="listtemplate6">
                                                 <wm-label name="Name" caption="bind:Variables.Gis2formsData.dataSet[$i].gisrecords.fullAddress" fontunit="em" padding="unset unset unset 1.25em" width="100%"></wm-label>
                                             </wm-listtemplate>
@@ -43,30 +43,16 @@
                                 <wm-gridrow name="gridrow84_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn155_2"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn156_1" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" class="h3"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label65_1" caption="bind:Variables.CurrentForm.dataSet.data[$i].formTitle" class="h3" margin="0px unset"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow83_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn156_3"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn156_2" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label66" caption="bind:'Submitted By: ' + Variables.CurrentForm.dataSet.data[$i].users.firstName + ' ' + Variables.CurrentForm.dataSet.data[$i].users.lastName"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label66" caption="bind:'Submitted By: ' + Variables.CurrentForm.dataSet.data[$i].users.firstName + ' ' + Variables.CurrentForm.dataSet.data[$i].users.lastName" margin="0px unset"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn157_1"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow88">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn162"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn163" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelExpiration" caption="bind:'Expires On: ' + (expiresOn | toLocalDateString:true)" ng-class="{'text-primary': !isExpired, 'text-danger': isExpired}" show="bind:!!expiresOn"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn164_1"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow14">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn24_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn28" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="labelFormStatus" caption="bind:'Status: '+Variables.stvCurrentStatus.dataSet.status" hint="bind:Variables.stvCurrentStatus.dataSet.description" class="h3"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn25"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn29"></wm-gridcolumn>

@@ -373,7 +373,8 @@ public class InspectionService {
         	params.addLong("newOutcomeId", inspectionOutcomeId);
         	params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
         	
-        	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT MI.*, RU.Email as RequestorEmail, RU.FullName as RequestorFullName, IND.InspectDesignName FROM MasterInspections MI INNER JOIN Users RU ON RU.ID=MI.RequestedBy INNER JOIN InspectionDesign IND ON IND.ID=MI.InspectionDesignId WHERE InspectionGUID=:inspectionGuid", params);
+        	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT MI.*, IND.MunicipalityId as MunicipalityId, RU.Email as RequestorEmail, RU.FullName as RequestorFullName, IND.InspectDesignName FROM MasterInspections MI INNER JOIN Users RU ON RU.ID=MI.RequestedBy INNER JOIN InspectionDesign IND ON IND.ID=MI.InspectionDesignId WHERE InspectionGUID=:inspectionGuid", params);
+        	Long municipalityId = inspectionData.getLong("MunicipalityId");
         	
         	params.addLong("oldOutcomeId", inspectionData.getLong("InspectionOutcomeId"));
         	params.addString("comments", comments);
@@ -391,7 +392,7 @@ public class InspectionService {
         	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:newOutcomeId", params);
         	
         	if (outcomeData.getBoolean("SendEmail")) {
-        		params.addLong("municipalityId", inspectionOutcomeId);
+        		params.addLong("municipalityId", municipalityId);
             	DBRow municipalityData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Municipalities WHERE ID=:municipalityId", params);
             	params.addString("formGuid", inspectionData.getString("FormGuid"));
             	DBRow gisRecordData = DBUtils.selectOne(cx2Conn, "SELECT TOP 1 GR.*, SUB.Subdivision FROM GIS2Forms GF INNER JOIN GISRecords GR ON GR.ID=GF.GISRecordId LEFT OUTER JOIN Subdivisions SUB ON SUB.ID=GR.SubdivisionId WHERE GF.RelatedFormGUID=:formGuid", params);
@@ -439,7 +440,7 @@ public class InspectionService {
 	    	params.addLong("violationId", violationId);
 	    	
 	    	if (pictures.length > 0) {
-		    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
+		    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
 		    	
 		    	for (int i = 0; i < pictures.length; i++) {
 		    		MultipartFile picture = pictures[i];
@@ -452,7 +453,7 @@ public class InspectionService {
 		        	params.addString("pic"+i+"mimetype", picture.getContentType());
 		        	params.addBytes("pic"+i+"contents", picture.getBytes());
 		        	
-		        	picturesAddQuery.append("(:violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
+		        	picturesAddQuery.append("(:inspectionGuid, :violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
 		    	}
 		    	
 		    	DBUtils.simpleUpdateQuery(cx2Conn, picturesAddQuery.toString(), params);

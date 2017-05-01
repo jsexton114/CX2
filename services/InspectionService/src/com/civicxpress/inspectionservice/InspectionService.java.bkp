@@ -388,7 +388,7 @@ public class InspectionService {
         	
         	cx2Conn.commit();
         	
-        	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:inspectionOutcomeId", params);
+        	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:newOutcomeId", params);
         	
         	if (outcomeData.getBoolean("SendEmail")) {
         		params.addLong("municipalityId", inspectionOutcomeId);
@@ -439,7 +439,7 @@ public class InspectionService {
 	    	params.addLong("violationId", violationId);
 	    	
 	    	if (pictures.length > 0) {
-		    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
+		    	StringBuilder picturesAddQuery = new StringBuilder("INSERT INTO Document (ItemGUID, ViolationId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
 		    	
 		    	for (int i = 0; i < pictures.length; i++) {
 		    		MultipartFile picture = pictures[i];
@@ -452,7 +452,7 @@ public class InspectionService {
 		        	params.addString("pic"+i+"mimetype", picture.getContentType());
 		        	params.addBytes("pic"+i+"contents", picture.getBytes());
 		        	
-		        	picturesAddQuery.append("(:violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
+		        	picturesAddQuery.append("(:inspectionGuid, :violationId, :pic"+i+"filename, :pic"+i+"mimetype, :pic"+i+"contents, :createdBy)");
 		    	}
 		    	
 		    	DBUtils.simpleUpdateQuery(cx2Conn, picturesAddQuery.toString(), params);
