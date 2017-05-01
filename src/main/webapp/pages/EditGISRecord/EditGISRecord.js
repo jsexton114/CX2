@@ -85,7 +85,6 @@ Application.$controller("EditGISRecordPageController", ["$scope", function($scop
         }
 
     };
-
 }]);
 
 Application.$controller("gridDocumentsController", ["$scope",
@@ -274,15 +273,15 @@ Application.$controller("dialogTagPeopleController", ["$scope",
 ]);
 
 Application.$controller("dialogNewFormController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogNewCaseController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

@@ -13,13 +13,15 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow38">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn73" padding="unset 0.5em unset unset">
-                        <wm-chart type="Pie" title="Forms" height="250px" iconclass="wi wi-pie-chart" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
+                        <wm-chart type="Pie" title="bind:Variables.FormsTaggedWithGISRecords.dataSet.totalElements + ' Forms'" height="250px" iconclass="wi wi-pie-chart" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed"
+                        yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn74" padding="unset 0.5em">
-                        <wm-chart type="Pie" title="Cases" height="250px" iconclass="wi wi-pie-chart" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
+                        <wm-chart type="Pie" title="bind:Variables.CasesTaggedWithGISRecords.dataSet.totalElements + ' Cases'" height="250px" iconclass="wi wi-pie-chart" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed"
+                        yaxisdatakey="formCount" theme="Annabelle"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn75" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="labelIsRental" caption="<h4>Rental Property</h4>" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" margin="20% unset unset unset"></wm-label>
+                        <wm-label padding="unset 0.5em" name="labelIsRental" caption="Rental Property" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" margin="20% unset unset unset" class="h2"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17" padding="unset unset 1em unset">
@@ -35,12 +37,12 @@
                                                 placeholder="Enter value" disabled="false"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn7">
-                                                <wm-form-field name="subdivisions" displayname="Subdivision" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
+                                                <wm-form-field name="subdivisions" displayname="Development" show="true" primary-key="false" generator="assigned" key="subdivisions" type="list" is-related="true" readonly="false" required="false" widget="autocomplete"
                                                 placeholder="Search by Subdivision Name" displayexpression="subdivision" orderby="subdivision:asc" disabled="false" searchkey="subdivision" displaylabel="subdivision" defaultvalue="bind:Variables.SelectedGISobj.firstRecord.subdivisions"
                                                 dataset="bind:Variables.CurrentMunicipalitySubdivisions.dataSet" datafield="All Fields"></wm-form-field>
                                             </wm-gridcolumn>
                                             <wm-gridcolumn columnwidth="4" name="gridcolumn8">
-                                                <wm-label name="label2" caption="Subdivision Type" class="control-label col-xs-12"></wm-label>
+                                                <wm-label name="label2" caption="Development Type" class="control-label col-xs-12"></wm-label>
                                                 <wm-label name="labelSubdivisionType" caption="bind:Widgets.liveformGisrecords.formWidgets.subdivisions.datavalue.subdivisionType" fontweight="bold"></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>

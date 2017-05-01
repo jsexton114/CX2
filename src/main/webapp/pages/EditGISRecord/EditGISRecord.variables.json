@@ -44,7 +44,7 @@
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : true,
-    "maxResults" : 10,
+    "maxResults" : 20,
     "designMaxResults" : 20,
     "orderBy" : "dateModified desc",
     "startUpdate" : false,
@@ -4244,7 +4244,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "id asc",
+    "orderBy" : "saleDate desc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "gisrecords",
