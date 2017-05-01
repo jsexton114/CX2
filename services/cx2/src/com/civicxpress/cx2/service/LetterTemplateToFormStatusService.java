@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
-import com.civicxpress.cx2.LetterTemplateToFormStatusId;
 
 /**
  * Service object for domain model class {@link LetterTemplateToFormStatus}.
@@ -42,7 +41,7 @@ public interface LetterTemplateToFormStatusService {
 	 * @return LetterTemplateToFormStatus associated with the given lettertemplatetoformstatusId.
      * @throws EntityNotFoundException If no LetterTemplateToFormStatus is found.
 	 */
-	LetterTemplateToFormStatus getById(LetterTemplateToFormStatusId lettertemplatetoformstatusId) throws EntityNotFoundException;
+	LetterTemplateToFormStatus getById(Integer lettertemplatetoformstatusId) throws EntityNotFoundException;
 
     /**
 	 * Find and return the LetterTemplateToFormStatus by given id if exists, returns null otherwise.
@@ -50,7 +49,7 @@ public interface LetterTemplateToFormStatusService {
 	 * @param lettertemplatetoformstatusId The id of the LetterTemplateToFormStatus to get; value cannot be null.
 	 * @return LetterTemplateToFormStatus associated with the given lettertemplatetoformstatusId.
 	 */
-	LetterTemplateToFormStatus findById(LetterTemplateToFormStatusId lettertemplatetoformstatusId);
+	LetterTemplateToFormStatus findById(Integer lettertemplatetoformstatusId);
 
 
 	/**
@@ -71,7 +70,7 @@ public interface LetterTemplateToFormStatusService {
 	 * @return The deleted LetterTemplateToFormStatus.
 	 * @throws EntityNotFoundException if no LetterTemplateToFormStatus found with the given id.
 	 */
-	LetterTemplateToFormStatus delete(LetterTemplateToFormStatusId lettertemplatetoformstatusId) throws EntityNotFoundException;
+	LetterTemplateToFormStatus delete(Integer lettertemplatetoformstatusId) throws EntityNotFoundException;
 
 	/**
 	 * Find all LetterTemplateToFormStatuses matching the given QueryFilter(s).

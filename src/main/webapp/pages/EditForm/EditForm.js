@@ -311,10 +311,12 @@ Application.$controller("dialogFormStatusLettersController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.liveformStatusLettersBeforeservicecall = function($event, $operation, $data) {
+            $data.formStatusId = $scope.Widgets.gridFormTypeStatus.selectedItems[0].id;
+        };
     }
 ]);
-
-
 
 Application.$controller("dialogAddStatusLetterController", ["$scope",
     function($scope) {

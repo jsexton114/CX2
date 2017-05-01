@@ -12877,14 +12877,14 @@
     "catalog" : "cx2",
     "columns" : [ {
       "columnValue" : {
-        "type" : "user-defined",
-        "insertable" : true,
-        "updatable" : true,
+        "type" : "database-defined",
+        "insertable" : false,
+        "updatable" : false,
         "defaultValue" : null
       },
       "fieldName" : "id",
       "foreignKey" : false,
-      "generatorType" : "assigned",
+      "generatorType" : "identity",
       "generatorValue" : null,
       "javaType" : "integer",
       "length" : 0,
@@ -12893,14 +12893,14 @@
       "oldName" : "Id",
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
-      "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfPrimaryKey" : true,
+      "partOfUniqueKey" : true,
       "precision" : 10,
-      "primaryKey" : false,
+      "primaryKey" : true,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "number",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -13038,14 +13038,14 @@
     "name" : "LetterTemplateToFormStatus",
     "oldName" : "LetterTemplateToFormStatus",
     "primaryKey" : {
-      "columns" : [ ],
+      "columns" : [ "Id" ],
       "composite" : false,
       "generator" : {
-        "generatorType" : "assigned",
+        "generatorType" : "identity",
         "generatorValue" : null,
         "schemaName" : null
       },
-      "name" : "PRIMARY",
+      "name" : "PK__LetterTe__3214EC0728F3F35F",
       "virtual" : false
     },
     "relations" : [ {

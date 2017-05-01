@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
-import com.civicxpress.cx2.LetterTemplateToFormStatusId;
 
 
 /**
@@ -40,9 +39,9 @@ public class LetterTemplateToFormStatusServiceImpl implements LetterTemplateToFo
 
     @Autowired
     @Qualifier("cx2.LetterTemplateToFormStatusDao")
-    private WMGenericDao<LetterTemplateToFormStatus, LetterTemplateToFormStatusId> wmGenericDao;
+    private WMGenericDao<LetterTemplateToFormStatus, Integer> wmGenericDao;
 
-    public void setWMGenericDao(WMGenericDao<LetterTemplateToFormStatus, LetterTemplateToFormStatusId> wmGenericDao) {
+    public void setWMGenericDao(WMGenericDao<LetterTemplateToFormStatus, Integer> wmGenericDao) {
         this.wmGenericDao = wmGenericDao;
     }
 
@@ -56,7 +55,7 @@ public class LetterTemplateToFormStatusServiceImpl implements LetterTemplateToFo
 
 	@Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public LetterTemplateToFormStatus getById(LetterTemplateToFormStatusId lettertemplatetoformstatusId) throws EntityNotFoundException {
+	public LetterTemplateToFormStatus getById(Integer lettertemplatetoformstatusId) throws EntityNotFoundException {
         LOGGER.debug("Finding LetterTemplateToFormStatus by id: {}", lettertemplatetoformstatusId);
         LetterTemplateToFormStatus letterTemplateToFormStatus = this.wmGenericDao.findById(lettertemplatetoformstatusId);
         if (letterTemplateToFormStatus == null){
@@ -68,7 +67,7 @@ public class LetterTemplateToFormStatusServiceImpl implements LetterTemplateToFo
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
 	@Override
-	public LetterTemplateToFormStatus findById(LetterTemplateToFormStatusId lettertemplatetoformstatusId) {
+	public LetterTemplateToFormStatus findById(Integer lettertemplatetoformstatusId) {
         LOGGER.debug("Finding LetterTemplateToFormStatus by id: {}", lettertemplatetoformstatusId);
         return this.wmGenericDao.findById(lettertemplatetoformstatusId);
     }
@@ -80,20 +79,14 @@ public class LetterTemplateToFormStatusServiceImpl implements LetterTemplateToFo
         LOGGER.debug("Updating LetterTemplateToFormStatus with information: {}", letterTemplateToFormStatus);
         this.wmGenericDao.update(letterTemplateToFormStatus);
 
-        LetterTemplateToFormStatusId lettertemplatetoformstatusId = new LetterTemplateToFormStatusId();
-        lettertemplatetoformstatusId.setId(letterTemplateToFormStatus.getId());
-        lettertemplatetoformstatusId.setLetterTemplateId(letterTemplateToFormStatus.getLetterTemplateId());
-        lettertemplatetoformstatusId.setFormStatusId(letterTemplateToFormStatus.getFormStatusId());
-        lettertemplatetoformstatusId.setAttachToEmail(letterTemplateToFormStatus.getAttachToEmail());
-        lettertemplatetoformstatusId.setEmailLetterCreator(letterTemplateToFormStatus.getEmailLetterCreator());
-        lettertemplatetoformstatusId.setAttachToItem(letterTemplateToFormStatus.getAttachToItem());
+        Integer lettertemplatetoformstatusId = letterTemplateToFormStatus.getId();
 
         return this.wmGenericDao.findById(lettertemplatetoformstatusId);
     }
 
     @Transactional(value = "cx2TransactionManager")
 	@Override
-	public LetterTemplateToFormStatus delete(LetterTemplateToFormStatusId lettertemplatetoformstatusId) throws EntityNotFoundException {
+	public LetterTemplateToFormStatus delete(Integer lettertemplatetoformstatusId) throws EntityNotFoundException {
         LOGGER.debug("Deleting LetterTemplateToFormStatus with id: {}", lettertemplatetoformstatusId);
         LetterTemplateToFormStatus deleted = this.wmGenericDao.findById(lettertemplatetoformstatusId);
         if (deleted == null) {

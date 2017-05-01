@@ -10066,12 +10066,14 @@
         "type" : "integer",
         "fullyQualifiedType" : "integer",
         "columnName" : "Id",
-        "isPrimaryKey" : false,
+        "isPrimaryKey" : true,
         "notNull" : true,
         "length" : 0,
         "precision" : 10,
-        "generator" : "assigned",
+        "generator" : "identity",
         "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       }, {
         "fieldName" : "attachToEmail",
@@ -10113,7 +10115,7 @@
       "entityName" : "LetterTemplateToFormStatus",
       "fullyQualifiedName" : "com.civicxpress.cx2.LetterTemplateToFormStatus",
       "tableType" : "TABLE",
-      "primaryFields" : [ ]
+      "primaryFields" : [ "id" ]
     },
     "bindCount" : 3,
     "tableName" : "LetterTemplateToFormStatus",

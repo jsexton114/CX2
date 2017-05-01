@@ -14,14 +14,13 @@ import org.springframework.stereotype.Repository;
 import com.wavemaker.runtime.data.dao.WMGenericDaoImpl;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
-import com.civicxpress.cx2.LetterTemplateToFormStatusId;
 
 /**
  * Specifies methods used to obtain and modify LetterTemplateToFormStatus related information
  * which is stored in the database.
  */
 @Repository("cx2.LetterTemplateToFormStatusDao")
-public class LetterTemplateToFormStatusDao extends WMGenericDaoImpl<LetterTemplateToFormStatus, LetterTemplateToFormStatusId> {
+public class LetterTemplateToFormStatusDao extends WMGenericDaoImpl<LetterTemplateToFormStatus, Integer> {
 
     @Autowired
     @Qualifier("cx2Template")

@@ -930,15 +930,14 @@ public class FormService {
 	        
 	        List<DBRow> sharedWithUsers = DBUtils.selectQuery(cx2Conn, "SELECT U.Email FROM SharedWith SW INNER JOIN Users U ON U.ID=SW.SharedWithUser WHERE SW.RelatedGUID=:formGuid", params);
 	        
-	        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
-	        for (int i = 0; i < sharedWithUsers.size(); i++) {
-	        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
+	        if (sharedWithUsers != null) {
+		        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
+		        for (int i = 0; i < sharedWithUsers.size(); i++) {
+		        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
+		        }
+		        
+		        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
 	        }
-	        
-	        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
-	        
-	        String formURL = formLink;
-	        logger.info(formLink);
 	        
 	        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
 	        
@@ -955,7 +954,7 @@ public class FormService {
 	        emailContent.append("<br />");
 	        emailContent.append(formTitle);
 	        emailContent.append("<br />");
-	        emailContent.append("<a href ='"+formURL+"'> Click Here to View Form </a>");
+	        emailContent.append("<a href ='"+formLink+"'> Click Here to View Form </a>");
 	        
 	        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
 	        
@@ -969,34 +968,36 @@ public class FormService {
 	        params.addLong("formStatusId", formStatusId);
 	        List<DBRow> statusLetterTemplates = DBUtils.selectQuery(cx2Conn, "select * from LetterTemplateToFormStatus WHERE FormStatusId=:formStatusId", params);
 	        
-	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
-	        	Boolean attachToEmail = statusLetterTemplate.getBoolean("AttachToEmail");
-	        	Boolean attachToItem = statusLetterTemplate.getBoolean("AttachToItem");
-	        	
-	        	if (attachToEmail || attachToItem) {
-	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
-	        		String filename = letterTemplateId.toString()+".pdf";
-	        		
-	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
-	                
-	                if (attachToEmail) {
-		                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
-		                MimeBodyPart letterAttachment = new MimeBodyPart();
-		                letterAttachment.setDataHandler(new DataHandler(fileDS));
-		                letterAttachment.setFileName(filename);
-		                
-		                messageContents.addBodyPart(letterAttachment);
-	                }
-	                
-	                if (attachToItem) {
-		        		DBQueryParams attachParams = new DBQueryParams();
-		        		attachParams.addString("formGuid", formGuid);
-		        		attachParams.addString("filename", filename);
-		        		attachParams.addBytes("letterPdf", fileBytes);
-		        		attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
-	                	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
-	                }
-	        	}
+	        if (statusLetterTemplates != null) {
+    	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
+    	        	Boolean attachToEmail = statusLetterTemplate.getBoolean("AttachToEmail");
+    	        	Boolean attachToItem = statusLetterTemplate.getBoolean("AttachToItem");
+    	        	
+    	        	if (attachToEmail || attachToItem) {
+    	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
+    	        		String filename = letterTemplateId.toString()+".pdf";
+    	        		
+    	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
+    	                
+    	                if (attachToEmail) {
+    		                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
+    		                MimeBodyPart letterAttachment = new MimeBodyPart();
+    		                letterAttachment.setDataHandler(new DataHandler(fileDS));
+    		                letterAttachment.setFileName(filename);
+    		                
+    		                messageContents.addBodyPart(letterAttachment);
+    	                }
+    	                
+    	                if (attachToItem) {
+    		        		DBQueryParams attachParams = new DBQueryParams();
+    		        		attachParams.addString("formGuid", formGuid);
+    		        		attachParams.addString("filename", filename);
+    		        		attachParams.addBytes("letterPdf", fileBytes);
+    		        		attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+    	                	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+    	                }
+    	        	}
+    	        }
 	        }
 	        
 	        message.setSubject(emailSubject);

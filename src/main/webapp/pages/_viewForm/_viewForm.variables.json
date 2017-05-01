@@ -25159,7 +25159,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "formGuid",
-      "value" : "bind:Variables.CurrentForm.dataSet.data[$i].formGuid",
+      "value" : "bind:pageParams.FormGUID",
       "type" : "string"
     }, {
       "target" : "formStatusId",
@@ -25185,7 +25185,8 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
-    "controller" : "Form"
+    "controller" : "Form",
+    "spinnerContext" : "panelFormReview"
   },
   "svUpdateFeeStatus" : {
     "_id" : "wm-svUpdateFeeStatus-wm.ServiceVariable-1488969017491",

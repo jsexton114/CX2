@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
-import com.civicxpress.cx2.LetterTemplateToFormStatusId;
 import com.civicxpress.cx2.service.LetterTemplateToFormStatusService;
 
 
@@ -64,65 +63,42 @@ public class LetterTemplateToFormStatusController {
 	    return letterTemplateToFormStatus;
 	}
 
-    @ApiOperation(value = "Returns the LetterTemplateToFormStatus instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.GET)
+
+    @ApiOperation(value = "Returns the LetterTemplateToFormStatus instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public LetterTemplateToFormStatus getLetterTemplateToFormStatus(@RequestParam("id") Integer id,@RequestParam("letterTemplateId") Integer letterTemplateId,@RequestParam("formStatusId") Integer formStatusId,@RequestParam("attachToEmail") Boolean attachToEmail,@RequestParam("emailLetterCreator") Boolean emailLetterCreator,@RequestParam("attachToItem") Boolean attachToItem) throws EntityNotFoundException {
+    public LetterTemplateToFormStatus getLetterTemplateToFormStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+        LOGGER.debug("Getting LetterTemplateToFormStatus with id: {}" , id);
 
-        LetterTemplateToFormStatusId lettertemplatetoformstatusId = new LetterTemplateToFormStatusId();
-        lettertemplatetoformstatusId.setId(id);
-        lettertemplatetoformstatusId.setLetterTemplateId(letterTemplateId);
-        lettertemplatetoformstatusId.setFormStatusId(formStatusId);
-        lettertemplatetoformstatusId.setAttachToEmail(attachToEmail);
-        lettertemplatetoformstatusId.setEmailLetterCreator(emailLetterCreator);
-        lettertemplatetoformstatusId.setAttachToItem(attachToItem);
+        LetterTemplateToFormStatus foundLetterTemplateToFormStatus = letterTemplateToFormStatusService.getById(id);
+        LOGGER.debug("LetterTemplateToFormStatus details with id: {}" , foundLetterTemplateToFormStatus);
 
-        LOGGER.debug("Getting LetterTemplateToFormStatus with id: {}" , lettertemplatetoformstatusId);
-        LetterTemplateToFormStatus letterTemplateToFormStatus = letterTemplateToFormStatusService.getById(lettertemplatetoformstatusId);
+        return foundLetterTemplateToFormStatus;
+    }
+
+    @ApiOperation(value = "Updates the LetterTemplateToFormStatus instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public LetterTemplateToFormStatus editLetterTemplateToFormStatus(@PathVariable("id") Integer id, @RequestBody LetterTemplateToFormStatus letterTemplateToFormStatus) throws EntityNotFoundException {
+        LOGGER.debug("Editing LetterTemplateToFormStatus with id: {}" , letterTemplateToFormStatus.getId());
+
+        letterTemplateToFormStatus.setId(id);
+        letterTemplateToFormStatus = letterTemplateToFormStatusService.update(letterTemplateToFormStatus);
         LOGGER.debug("LetterTemplateToFormStatus details with id: {}" , letterTemplateToFormStatus);
 
         return letterTemplateToFormStatus;
     }
 
-
-
-    @ApiOperation(value = "Updates the LetterTemplateToFormStatus instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.PUT)
+    @ApiOperation(value = "Deletes the LetterTemplateToFormStatus instance associated with the given id.")
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public LetterTemplateToFormStatus editLetterTemplateToFormStatus(@RequestParam("id") Integer id,@RequestParam("letterTemplateId") Integer letterTemplateId,@RequestParam("formStatusId") Integer formStatusId,@RequestParam("attachToEmail") Boolean attachToEmail,@RequestParam("emailLetterCreator") Boolean emailLetterCreator,@RequestParam("attachToItem") Boolean attachToItem, @RequestBody LetterTemplateToFormStatus letterTemplateToFormStatus) throws EntityNotFoundException {
+    public boolean deleteLetterTemplateToFormStatus(@PathVariable("id") Integer id) throws EntityNotFoundException {
+        LOGGER.debug("Deleting LetterTemplateToFormStatus with id: {}" , id);
 
-        letterTemplateToFormStatus.setId(id);
-        letterTemplateToFormStatus.setLetterTemplateId(letterTemplateId);
-        letterTemplateToFormStatus.setFormStatusId(formStatusId);
-        letterTemplateToFormStatus.setAttachToEmail(attachToEmail);
-        letterTemplateToFormStatus.setEmailLetterCreator(emailLetterCreator);
-        letterTemplateToFormStatus.setAttachToItem(attachToItem);
+        LetterTemplateToFormStatus deletedLetterTemplateToFormStatus = letterTemplateToFormStatusService.delete(id);
 
-        LOGGER.debug("LetterTemplateToFormStatus details with id is updated with: {}" , letterTemplateToFormStatus);
-
-        return letterTemplateToFormStatusService.update(letterTemplateToFormStatus);
+        return deletedLetterTemplateToFormStatus != null;
     }
-
-
-    @ApiOperation(value = "Deletes the LetterTemplateToFormStatus instance associated with the given composite-id.")
-    @RequestMapping(value = "/composite-id", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public boolean deleteLetterTemplateToFormStatus(@RequestParam("id") Integer id,@RequestParam("letterTemplateId") Integer letterTemplateId,@RequestParam("formStatusId") Integer formStatusId,@RequestParam("attachToEmail") Boolean attachToEmail,@RequestParam("emailLetterCreator") Boolean emailLetterCreator,@RequestParam("attachToItem") Boolean attachToItem) throws EntityNotFoundException {
-
-        LetterTemplateToFormStatusId lettertemplatetoformstatusId = new LetterTemplateToFormStatusId();
-        lettertemplatetoformstatusId.setId(id);
-        lettertemplatetoformstatusId.setLetterTemplateId(letterTemplateId);
-        lettertemplatetoformstatusId.setFormStatusId(formStatusId);
-        lettertemplatetoformstatusId.setAttachToEmail(attachToEmail);
-        lettertemplatetoformstatusId.setEmailLetterCreator(emailLetterCreator);
-        lettertemplatetoformstatusId.setAttachToItem(attachToItem);
-
-        LOGGER.debug("Deleting LetterTemplateToFormStatus with id: {}" , lettertemplatetoformstatusId);
-        LetterTemplateToFormStatus letterTemplateToFormStatus = letterTemplateToFormStatusService.delete(lettertemplatetoformstatusId);
-
-        return letterTemplateToFormStatus != null;
-    }
-
 
     /**
      * @deprecated Use {@link #findLetterTemplateToFormStatuses(String, Pageable)} instead.
