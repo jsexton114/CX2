@@ -3768,21 +3768,7 @@ INNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.Tr
 where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
     AND PH.DateCreated between :startd and :endd
     GROUP BY PH.PaymentMethod
-        ]]>
-    <query-param name="municipalityId" type="java.lang.String"/>
-    <query-param name="startd" type="java.sql.Date"/>
-    <query-param name="endd" type="java.sql.Date"/>
-    </sql-query>
-
-    <sql-query name="getTotalPaymentByMethodForPeriod__count">
-        <![CDATA[
-        select count(*) from (select PH.PaymentMethod,
-SUM(F.Amount) as paymentAmount
-from PaymentHistory PH
-INNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)
-where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
-    AND PH.DateCreated between :startd and :endd
-    GROUP BY PH.PaymentMethod) wmTempTable
+    ORDER BY paymentAmount desc
         ]]>
     <query-param name="municipalityId" type="java.lang.String"/>
     <query-param name="startd" type="java.sql.Date"/>

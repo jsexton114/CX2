@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
-                        <wm-label caption="Municipality Transactions" fontweight="bold" name="label1" class="h4"></wm-label>
+                        <wm-label caption="Municipality Transaction Log" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
@@ -23,7 +23,27 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="unset unset 4em unset">
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
+                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" title="Totals by Payment Type" name="panelTotalsByPaymentType" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid3">
+                                <wm-gridrow name="gridrow8">
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_1">
+                                        <wm-grid title="" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" navigation="None" name="gridTotalsByPaymentType">
+                                            <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="paymentAmount" caption="Total Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="4" name="gridcolumn22">
+                                        <wm-chart type="Pie" title="" height="180px" iconclass="wi wi-pie-chart" name="chartPaymentTypes" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" xaxisdatakey="paymentMethod" yaxisdatakey="paymentAmount"
+                                        theme="Annabelle" nodatamessage="No Data Available" offsettop="10" offsetbottom="20" borderwidth="1em unset"></wm-chart>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow14" padding="1em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn30">
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
@@ -49,32 +69,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions">
-                            <wm-grid-column binding="transactionDate" caption="Date" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="transactionId" caption="Transaction Id" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="feeAmount" caption="Total Fee Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                        <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                            <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="transactionDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('transactionDate') | toLocalDateString}}</wm-grid-column>
                             <wm-grid-column binding="userName" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="fa fa-money" title="View Fee Details" action="Widgets.dialogFeeDetails.open()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()" disabled="false"
+                            icon="wi wi-format-list-bulleted"></wm-grid-row-action>
                         </wm-grid>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                        <wm-panel iconclass="wi wi-account-circle" autoclose="outsideClick" title="Totals by Payment Type" name="panelTotalsByPaymentType" class="panel-primary">
-                            <wm-layoutgrid name="layoutgrid3">
-                                <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
-                                        <wm-grid title="" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" navigation="None" name="gridTotalsByPaymentType">
-                                            <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="paymentAmount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        </wm-grid>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
@@ -82,36 +87,55 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="viewFeeDetails">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Transaction Fee Details" iconclass="wi wi-attach-money" name="dialogFeeDetails" width="60%">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Transaction Details" iconclass="wi wi-attach-money" name="dialogFeeDetails" width="60%">
             <wm-layoutgrid name="layoutgrid2">
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                        <wm-label padding="unset 0.5em" name="label7_1" caption="bind:'<h4>Paid By</h4><p>' + Widgets.gridTransactions.selecteditem.userName + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label7_1" caption="bind:'<h4>Transaction ID</h4><p>' + Widgets.gridTransactions.selecteditem.transactionId + '</p>'"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn16_2">
-                        <wm-label padding="unset 0.5em" name="label6_1" caption="bind:'<h4>Transaction Comments</h4><p>' + Widgets.gridTransactions.selecteditem.transactionComments + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label6_1" caption="bind:'<h4>Transaction Date</h4><p>' + Widgets.gridTransactions.selecteditem.transactionDate + '</p>'"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow6">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn12"></wm-gridcolumn>
+                <wm-gridrow name="gridrow9_1">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn15_1">
+                        <wm-label padding="unset 0.5em" name="label7_2" caption="bind:'<h4>Paid By</h4><p>' + Widgets.gridTransactions.selecteditem.userName + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_3">
+                        <wm-label padding="unset 0.5em" name="label6_2" caption="bind:'<h4>Payment Type</h4><p>' + Widgets.gridTransactions.selecteditem.paymentMethod + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9_2">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn15_2">
+                        <wm-label padding="unset 0.5em" name="label7_3" caption="bind:'<h4>Payment Number</h4><p>' + Widgets.gridTransactions.selecteditem.paymentNumber + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_4">
+                        <wm-label padding="unset 0.5em" name="label6_3" caption="bind:'<h4>Transaction Comments</h4><p>' + Widgets.gridTransactions.selecteditem.transactionComments + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9_3">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn15_3"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_5">
+                        <wm-label padding="unset 0.5em" name="label6_4" caption="bind:'<h4>Transaction Total</h4><p>' + Widgets.gridTransactions.selecteditem.feeAmount + '</p>'"></wm-label>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                        <wm-grid title="" dataset="bind:Variables.svFeesForTransaction.dataSet" navigation="None" name="gridFeeDetails">
+                        <wm-grid title="" dataset="bind:Variables.svFeesForTransaction.dataSet" navigation="Classic" name="gridFeeDetails" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="feeType" caption="Fee Type" show="true" readonly="undefined"></wm-grid-column>
-                            <wm-grid-column binding="accountingCode" caption="Accounting Code" show="true" readonly="undefined"></wm-grid-column>
+                            <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formDesign" caption="Form Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="comments" caption="Fee Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>

@@ -12995,12 +12995,12 @@
   },
   "getTotalPaymentByMethodForPeriod" : {
     "name" : "getTotalPaymentByMethodForPeriod",
-    "description" : "sdf",
+    "description" : "getTotalPaymentByMethodForPeriod",
     "version" : "V2",
-    "queryString" : "select PH.PaymentMethod,\nSUM(F.Amount) as paymentAmount\nfrom PaymentHistory PH\nINNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)\nwhere (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd\n    GROUP BY PH.PaymentMethod",
-    "countQueryString" : "select count(*) from (select PH.PaymentMethod,\nSUM(F.Amount) as paymentAmount\nfrom PaymentHistory PH\nINNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)\nwhere (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd\n    GROUP BY PH.PaymentMethod) wmTempTable",
+    "queryString" : "select PH.PaymentMethod,\nSUM(F.Amount) as paymentAmount\nfrom PaymentHistory PH\nINNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)\nwhere (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd\n    GROUP BY PH.PaymentMethod\n    ORDER BY paymentAmount desc",
+    "countQueryString" : null,
     "nativeSql" : true,
-    "fetchCount" : true,
+    "fetchCount" : false,
     "type" : "SELECT",
     "parameters" : [ {
       "name" : "municipalityId",

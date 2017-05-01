@@ -2834,7 +2834,7 @@ public class QueryExecutionController {
 
     @RequestMapping(value = "/queries/getTotalPaymentByMethodForPeriod", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "sdf")
+    @ApiOperation(value = "getTotalPaymentByMethodForPeriod")
     public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(@RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
         LOGGER.debug("Executing named query: getTotalPaymentByMethodForPeriod");
         Page<GetTotalPaymentByMethodForPeriodResponse> _result = queryService.executeGetTotalPaymentByMethodForPeriod(municipalityId, startd, endd, pageable);
