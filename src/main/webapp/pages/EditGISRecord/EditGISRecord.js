@@ -272,3 +272,10 @@ Application.$controller("dialogTagPeopleController", ["$scope",
 
     }
 ]);
+
+Application.$controller("dialogNewFormController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
