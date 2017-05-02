@@ -19,7 +19,7 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 
 import com.civicxpress.letters.LetterTemplate;
 import com.civicxpress.letters.SectionalTemplatePdf;
-import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.letters.Cx2DataAccess; 
 import com.civicxpress.letters.DatabaseConnectionInfo;
 import com.civicxpress.letters.GlobalFormInfo;
 import com.wavemaker.runtime.security.SecurityService;

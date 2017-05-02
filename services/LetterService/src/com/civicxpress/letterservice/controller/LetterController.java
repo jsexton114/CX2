@@ -2,8 +2,12 @@
 package com.civicxpress.letterservice.controller;
 
 import com.civicxpress.letterservice.LetterService;
-import org.springframework.web.multipart.MultipartFile;
 import java.lang.Long;
+import java.lang.String;
+import com.wavemaker.runtime.file.model.DownloadResponse;
+import java.util.List;
+import java.lang.Integer;
+import com.civicxpress.letters.SectionalTemplatePdf;
 import java.sql.SQLException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -20,4 +24,24 @@ public class LetterController {
 
     @Autowired
     private LetterService letterService;
+
+    @RequestMapping(value = "/letter", produces = "application/octet-stream", method = RequestMethod.POST)
+    public DownloadResponse createLetter(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "letterTemplateId", required = false) int letterTemplateId) {
+        return letterService.createLetter(formTypeId, formGuid, letterTemplateId);
+    }
+
+    @RequestMapping(value = "/availableTokens", method = RequestMethod.GET)
+    public List<String> getAvailableTokens(@RequestParam(value = "formTypeId", required = false) int formTypeId) {
+        return letterService.getAvailableTokens(formTypeId);
+    }
+
+    @RequestMapping(value = "/letterTemplate", method = RequestMethod.GET)
+    public SectionalTemplatePdf getLetterTemplate(@RequestParam(value = "letterTemplateId", required = false) Integer letterTemplateId) {
+        return letterService.getLetterTemplate(letterTemplateId);
+    }
+
+    @RequestMapping(value = "/letterTemplate", method = RequestMethod.PUT)
+    public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate) throws SQLException {
+        letterService.updateLetterTemplate(letterTemplate);
+    }
 }
