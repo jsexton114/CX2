@@ -385,28 +385,29 @@ public class Cx2DataAccess {
     	return letterTemplate;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
-        // TODO:
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
           Connection connection;
           CallableStatement templateStatement = null;
           CallableStatement sectionStatement = null;
           connection = getDbConnection();
           int rowIndex = 0;
           int sectionIndex = 0;
+          int letterTemplateId;
           
           try {
               connection.setAutoCommit(false);
-              // TODO: use a transaction
-              sectionStatement = connection.prepareCall("{call updateLetterTemplate(?,?)}");
+              sectionStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?)}");
               sectionStatement.setInt("id", letterTemplate.getId());
               sectionStatement.setString("letterTitle", letterTemplate.getTitle());
+              sectionStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
               sectionStatement.execute();
+              letterTemplateId = sectionStatement.getInt("letterTemplateId");
               templateStatement = connection.prepareCall("{call updateLetterSection(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
               for (TemplateSectionRow row : letterTemplate.getAllRows()) {
                     for (TemplateSection section : row.getSections()) {
                           LetterElementSettings settings = section.getTextSettings();
                           templateStatement.setInt("letterSectionId", section.getId());
-                          templateStatement.setInt("letterTemplateId", letterTemplate.getId());
+                          templateStatement.setInt("letterTemplateId", letterTemplateId);
                           templateStatement.setFloat("x", section.getX());
                           templateStatement.setFloat("y", section.getY());
                           templateStatement.setFloat("height", section.getHeight());
@@ -426,8 +427,12 @@ public class Cx2DataAccess {
               
               connection.commit();
           } catch (SQLException e) {
-        	  connection.rollback();
-              e.printStackTrace();
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
           } finally {
               try {
                   templateStatement.close();
