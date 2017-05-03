@@ -393,7 +393,7 @@
                                     <wm-gridrow name="gridrow83_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn112_2">
                                             <wm-label padding="unset 0.5em" name="label33_1" caption="Please note: there are three fields created by default on new form designs, that are linked to the &quot;Automatic Fees&quot; on the Settings tab- &quot;Total Square Feet (100)&quot;, &quot;Total Units (101)&quot;, and &quot;Has Basement (102)&quot;."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label36" caption="You can change the display order of these fields, but if they are deleted, the associated &quot;Automatic Fees&quot; will no longer be generated when the form is submitted."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label36" caption="If you delete these default fields but want to utilize the automatic fees, you will have to create a new field and set the &quot;Automatic Fee Type&quot; for that field."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow57">
@@ -410,9 +410,22 @@
                                     <wm-gridrow name="gridrow58">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn85">
                                             <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed, from submission to completion."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow100_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn137">
                                             <wm-label padding="unset 0.5em" name="label34" caption="Users can save their form as a draft first, or they can submit the form directly to the municipality, which causes the form to move into the first status listed below."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form types, and a minimum of one form status is required."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow98">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn135">
                                             <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow99_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn136">
+                                            <wm-label padding="unset 0.5em" name="label45_1" caption="You can also use the &quot;Letters&quot; icon if you would like to have a letter template (created on the &quot;Letters&quot; tab to the right) generated when the form enters a status."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow59">
@@ -433,8 +446,9 @@
                                                     </wm-grid-column>
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-notepad" title="Letters" action="Widgets.dialogFormStatusLetters.open()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-notepad" title="Letters" action="Widgets.dialogFormStatusLetters.open()"
+                                                    disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                     disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
@@ -605,6 +619,7 @@
                                                     <wm-gridrow name="gridrow74">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn109">
                                                             <wm-label padding="unset 0.5em" name="labelInspCat" caption="In order to allow inspections to be requested for this form, you must first assign inspection categories. Inspection categories determine which inspections can be requested for this form."></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label46_1" caption="Unless you force an &quot;Inspection Sequence&quot; below, users will be able to choose from a list of all inspections in these categories when requesting an inspection."></wm-label>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow75">
@@ -729,21 +744,32 @@
                                 </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneLetters" title="Letters">
-                                <wm-livegrid formlayout="dialog" name="livegridLetters">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="createdDate" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('createdDate') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text"
-                                        show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
-                                        searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Letter Template" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                </wm-livegrid>
+                                <wm-layoutgrid name="layoutgrid28">
+                                    <wm-gridrow name="gridrow96">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn131_1">
+                                            <wm-label padding="unset 0.5em" name="label44_1" caption="The letter templates created here can either be generated automatically when the form enters a status (controlled on the &quot;Statuses&quot; tab), or they can be created manually by municipality employees on the &quot;Letters&quot; tab while viewing the form."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow97">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn133_1">
+                                            <wm-livegrid formlayout="dialog" name="livegridLetters">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="letterTitle" caption="Letter Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                    <wm-grid-column binding="createdDate" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('createdDate') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text"
+                                                    show="true" related-entity-name="Users"></wm-grid-column>
+                                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
+                                                    searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRowAction($event)" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                                 <wm-liveform novalidate="false" errormessage="" title="Edit Letter Template" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top"
                                 name="liveformLetters">
                                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
@@ -888,25 +914,31 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view4">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Status Letters" iconclass="wi wi-notepad" name="dialogFormStatusLetters" class="modal-larger">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Form Status Letters" iconclass="wi wi-notepad" name="dialogFormStatusLetters" class="modal-larger">
             <wm-layoutgrid name="layoutgrid25">
+                <wm-gridrow name="gridrow95_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn130">
+                        <wm-label padding="unset 0.5em" name="label43_1" caption="This is the list of letters that will be generated when the form enters the selected status. To create or update letter templates for this form, browse to the &quot;Letters&quot; tab on the &quot;Edit Form&quot; page."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow94">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn141_2">
                         <wm-livegrid formlayout="dialog" name="livegrid8">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" navigation="Classic" name="gridStatusLetters">
-                                <wm-grid-column binding="letterTemplates.letterTitle" caption="Letter Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="LetterTemplates" readonly="true"></wm-grid-column>
-                                <wm-grid-column binding="attachToEmail" widget-type="checkbox" caption="Attach To Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean">
-                                    <wm-checkbox scopedatavalue="row['attachToEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                </wm-grid-column>
-                                <wm-grid-column binding="emailLetterCreator" widget-type="checkbox" caption="Email Letter Creator" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean">
-                                    <wm-checkbox scopedatavalue="row['emailLetterCreator']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                </wm-grid-column>
-                                <wm-grid-column binding="attachToItem" widget-type="checkbox" caption="Attach To Item" generator="assigned" pcdisplay="true" mobiledisplay="true" type="boolean">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" navigation="Classic" name="gridStatusLetters" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid-column binding="letterTemplates.letterTitle" caption="Letter Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="LetterTemplates"></wm-grid-column>
+                                <wm-grid-column binding="attachToItem" caption="Attach To Form" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                     <wm-checkbox scopedatavalue="row['attachToItem']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                 </wm-grid-column>
-                                <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                                <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                                <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                                <wm-grid-column binding="attachToEmail" caption="Attach To Email" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                    <wm-checkbox scopedatavalue="row['attachToEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                </wm-grid-column>
+                                <wm-grid-column binding="emailLetterCreator" caption="Email Letter Creator" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                    <wm-checkbox scopedatavalue="row['emailLetterCreator']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                </wm-grid-column>
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                <wm-grid-action key="addNewRow" display-name="Add Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
                             <wm-liveform novalidate="false" errormessage="" title="Add Letter for Status" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" captionalign="left" captionposition="top"
                             name="liveformStatusLetters" on-beforeservicecall="liveformStatusLettersBeforeservicecall($event, $operation, $data)">
@@ -919,39 +951,39 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow93">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn132">
-                                            <wm-form-field name="attachToEmail" displayname="Attach To Email" show="true" primary-key="false" generator="assigned" key="attachToEmail" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
+                                            <wm-form-field name="attachToItem" displayname="Attach To Form" show="true" primary-key="false" generator="assigned" key="attachToItem" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
                                             defaultvalue="bind:false"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow94_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn133">
-                                            <wm-form-field name="emailLetterCreator" displayname="Email Letter Creator" show="true" primary-key="false" generator="assigned" key="emailLetterCreator" type="boolean" readonly="false" required="false" widget="checkbox"
-                                            placeholder="" defaultvalue="bind:false"></wm-form-field>
+                                            <wm-form-field name="attachToEmail" displayname="Attach To Email" show="true" primary-key="false" generator="assigned" key="attachToEmail" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
+                                            defaultvalue="bind:false"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow95">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn134">
-                                            <wm-form-field name="attachToItem" displayname="Attach To Item" show="true" primary-key="false" generator="assigned" key="attachToItem" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
-                                            defaultvalue="bind:false"></wm-form-field>
+                                            <wm-form-field name="emailLetterCreator" displayname="Email Letter Creator" show="true" primary-key="false" generator="assigned" key="emailLetterCreator" type="boolean" readonly="false" required="false" widget="checkbox"
+                                            placeholder="" defaultvalue="bind:false"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
+                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                             </wm-liveform>
                         </wm-livegrid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions2_1">
-                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button4_1"></wm-button>
+                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button4_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view5">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Add Status Letter" iconclass="wi wi-file-text" name="dialogAddStatusLetter">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="save" on-click="closeDialog()" name="buttonAddStatusLetter" iconclass="wi wi-save"></wm-button>
+                <wm-button class="btn-primary" caption="Save" on-click="closeDialog()" name="buttonAddStatusLetter" iconclass="wi wi-save"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogAddStatusLetter.close()"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layout5grid27" columns="1">
@@ -993,7 +1025,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6">
-        <wm-dialog dialogtype="design-dialog" class="modal-larger" modal="true" title="Letter Template" iconclass="wi wi-notepad" name="dialogLetterTemplate">
+        <wm-dialog dialogtype="design-dialog" class="modal-larger" modal="true" title="Letter Template Designer" iconclass="wi wi-notepad" name="dialogLetterTemplate">
             <wm-layoutgrid columns="2" name="layoutgrid26-a">
                 <wm-gridrow name="gridrow99-a">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn143-a">
@@ -1012,7 +1044,7 @@
                         <wm-layoutgrid columns="1" name="layoutgrid26">
                             <wm-gridrow name="gridrow99">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn143">
-                                    <wm-label name="label2_1" caption="Letter Title" fontweight="bold"></wm-label>
+                                    <wm-label name="label2_1" caption="Letter Name" fontweight="bold"></wm-label>
                                     <input class="form-control app-textbox" name="letterTitle" type="text" ng-model="Variables.svGetLetterTemplate.dataSet.title">
                                 </wm-gridcolumn>
                             </wm-gridrow>

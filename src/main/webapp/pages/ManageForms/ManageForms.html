@@ -29,7 +29,7 @@
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow6">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn9">
-                                        <wm-grid title="" dataset="bind:Variables.lvGetMunicipalityFormTypes.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn" exportformat="EXCEL">
+                                        <wm-grid title="" dataset="bind:Variables.lvGetMunicipalityFormTypes.dataSet" navigation="Classic" name="gridFormTypes" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                             <wm-grid-column binding="formType" caption="Form" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="description" caption="Description" type="text" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="createdDate" caption="Date Created" type="date" generator="assigned" edit-widget-type="date" show="true" readonly="false">{{row.getProperty('createdDate') | toLocalDateString:true}}</wm-grid-column>

@@ -348,6 +348,9 @@
                                                     <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['assessFeeYn']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
+                                                    <wm-grid-column binding="sendEmail" caption="Send Email" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['sendEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
                                                     <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>

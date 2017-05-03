@@ -662,14 +662,14 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view5_1">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Violation" iconclass="wi wi-pan-tool" name="dialogViolation" on-close="dialogViolationClose($event, $scope)" class="modal-larger">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Violation" iconclass="wi wi-pan-tool" name="dialogViolation" on-close="dialogViolationClose($event, $scope)" class="modal-larger">
             <wm-tabs name="tabs2">
                 <wm-tabpane name="tabpaneViolation" title="Violation">
                     <wm-layoutgrid name="layoutgrid14">
                         <wm-gridrow name="gridrow50">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn96">
                                 <wm-composite name="composite5_1">
-                                    <wm-label class="col-md-3 control-label" name="label72" caption="Code Set"></wm-label>
+                                    <wm-label class="col-md-3 form-control-static" name="label72" caption="Code Set" fontweight="bold"></wm-label>
                                     <wm-container class="col-md-9" name="container13_1">
                                         <wm-select name="selectCodeSet" dataset="bind:Variables.lvCodeSets.dataSet.data[$i].codeSets" datafield="All Fields" displayfield="codeSetTitle" datavalue="bind:Variables.lvCodeSets.firstRecord.codeSets"></wm-select>
                                     </wm-container>
@@ -679,9 +679,9 @@
                         <wm-gridrow name="gridrow51">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn98">
                                 <wm-composite name="composite5_2" required="true">
-                                    <wm-label padding="unset 0.5em" name="label74" class="col-md-3 control-label" caption="Code"></wm-label>
+                                    <wm-label padding="unset 0.5em unset unset" name="label74" class="col-md-3 form-control-static" caption="Code" fontweight="bold"></wm-label>
                                     <wm-container class="col-md-9" name="container13_2">
-                                        <wm-search name="searchCode" dataset="bind:Variables.lvCodes.dataSet" searchkey="code,codeNumber,codeTitle" datafield="All Fields" displaylabel="codeTitle"></wm-search>
+                                        <wm-search name="searchCode" dataset="bind:Variables.lvCodes.dataSet" searchkey="code,codeNumber,codeTitle" datafield="All Fields" displaylabel="codeTitle" placeholder="Search by Code Number or Title"></wm-search>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>
@@ -695,7 +695,7 @@
                         <wm-gridrow name="gridrow52">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn98_1">
                                 <wm-composite name="composite6" required="true">
-                                    <wm-label class="col-md-3 control-label" name="label70" caption="Notes"></wm-label>
+                                    <wm-label class="col-md-3 form-control-static" name="label70" caption="Notes" fontweight="bold"></wm-label>
                                     <wm-container class="col-md-9" name="container14_1">
                                         <wm-textarea name="textareaViolationNotes" placeholder="Enter notes for violation" maxchars="5000" height="250"></wm-textarea>
                                     </wm-container>
@@ -743,7 +743,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view6">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Violation Information" iconclass="wi wi-pan-tool" name="dialogViewViolation">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Violation Details" iconclass="wi wi-pan-tool" name="dialogViewViolation">
             <wm-dialogactions name="dialogactions6_1">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button18_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
