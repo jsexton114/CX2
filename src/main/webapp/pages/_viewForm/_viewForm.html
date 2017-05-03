@@ -1121,17 +1121,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow98">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn181">
-                        <wm-label padding="unset 0.5em" name="label118_1" caption="There are too many inspections scheduled for this hour. Please choose another." class="text-danger" show="bind:tooManyInspectionsForHour &amp;&amp; !tooManyInspectionsForDay"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label118_1" caption="There are too many inspections of the selected type requested for this hour. Please choose a different time." class="text-danger" show="bind:tooManyInspectionsForHour &amp;&amp; !tooManyInspectionsForDay"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow99">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn182">
-                        <wm-label padding="unset 0.5em" name="label119" caption="There are too many inspections schedule for this day. Please choose another." class="text-danger" show="bind:tooManyInspectionsForDay"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label119" caption="There are too many inspections of the selected type requested for this day. Please choose a different day." class="text-danger" show="bind:tooManyInspectionsForDay"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow99_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn183_1">
-                        <wm-label padding="unset 0.5em" name="label119_1" caption="Fees must be paid before requesting this type of inspection." class="text-danger" show="bind:(Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 &amp;&amp; inspectionObject.requireFeesPaidBeforeScheduling"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label119_1" caption="All fees must be paid before requesting this type of inspection." class="text-danger" show="bind:(Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 &amp;&amp; inspectionObject.requireFeesPaidBeforeScheduling"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow107">

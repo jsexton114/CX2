@@ -182,12 +182,12 @@
                                                         <wm-gridrow name="gridrow38_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn56" padding="unset 1em unset unset">
                                                                 <wm-form-field name="totalInspectionsDaily" displayname="Total Inspections Daily" show="true" primary-key="false" generator="assigned" key="totalInspectionsDaily" type="integer" maxvalue="2400"
-                                                                readonly="false" required="true" step="1" widget="number" inputtype="number" placeholder="" minvalue="1" hint="This is the maximum number of times this inspection can be scheduled per day."
+                                                                readonly="false" required="true" step="1" widget="number" inputtype="number" placeholder="" minvalue="1" hint="This is the maximum number of times this inspection can be requested by users per day."
                                                                 defaultvalue="8"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
                                                                 <wm-form-field name="totalInspectionsHourly" displayname="Total Inspections Hourly" show="true" primary-key="false" generator="assigned" key="totalInspectionsHourly" type="integer" maxvalue="600"
-                                                                readonly="false" required="bind:Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue" step="1" widget="number" inputtype="number" placeholder="" minvalue="1" hint="If &quot;Schedule Date and Time&quot; is selected, this is the maximum number of times this inspection can be scheduled per hour."
+                                                                readonly="false" required="bind:Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue" step="1" widget="number" inputtype="number" placeholder="" minvalue="1" hint="If &quot;Schedule By Date and Time&quot; is selected, this is the maximum number of times this inspection can be requested per hour."
                                                                 disabled="bind:!Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue" defaultvalue="1"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn73_3"></wm-gridcolumn>
