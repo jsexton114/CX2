@@ -973,7 +973,7 @@ public class FormService {
     	        	
     	        	if (attachToEmail || attachToItem) {
     	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
-    	        		String filename = letterTemplateId.toString()+".pdf";
+    	        		String filename = cleanFormTitleAndDateForFilename(formTitle) + ".pdf";
     	        		
     	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
     	                
@@ -1010,6 +1010,18 @@ public class FormService {
         }
         
         cx2Conn.close();
+    }
+    
+    
+    private static String cleanFormTitleAndDateForFilename(String formTitle) {
+    	String returnTitle = null;
+		String cleanTitle = null;
+		Date dt = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
+		String cleanDate = dateFormat.format(dt);
+		cleanTitle = formTitle.replaceAll("[^\\w\\d]+", "-");
+		returnTitle = cleanTitle + " " + cleanDate;
+		return returnTitle;
     }
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments, String formLink) throws SQLException, MessagingException {

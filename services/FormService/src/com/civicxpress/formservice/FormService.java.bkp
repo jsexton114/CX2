@@ -16,11 +16,11 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.civicxpress.Cx2DataAccess;
-import com.civicxpress.GlobalFormInfo;
-import com.civicxpress.LetterTemplate;
+import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.letters.GlobalFormInfo;
+import com.civicxpress.letters.LetterTemplate;
 import com.civicxpress.MultiDatabaseHelper;
-import com.civicxpress.SectionalTemplatePdf;
+import com.civicxpress.letters.SectionalTemplatePdf;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.civicxpress.esigngenie.ESignGenieApi;
 

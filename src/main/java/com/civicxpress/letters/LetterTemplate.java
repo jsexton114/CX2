@@ -86,9 +86,14 @@ public class LetterTemplate {
             String completeToken = (String) availableTokensIterator.next();
             String tokenName = getTokenName(completeToken);
             String stringValue = null;
-            if (dynamicFormDataValues.containsKey(tokenName)) {
-                Object objectValue = null;
-                objectValue = dynamicFormDataValues.get(tokenName);
+            boolean isExistingDynamicToken = dynamicFormDataValues.containsKey(tokenName); 
+            Object objectValue = null;
+            boolean isNullValue = true;
+            if (isExistingDynamicToken) {
+            	objectValue = dynamicFormDataValues.get(tokenName);
+            	isNullValue = (objectValue == null);
+            }
+            if (!isNullValue) {
                 if (objectValue instanceof String) {
                 	stringValue = objectValue.toString();
                 }
@@ -98,6 +103,7 @@ public class LetterTemplate {
 	            	stringValue = getGlobalFormValueByTokenName(globalFormInfo, tokenName);
 	            } 
             }
+            if (stringValue == null) stringValue = "";
             returnTokenValues.put(tokenName, stringValue);
         }
         return returnTokenValues;
