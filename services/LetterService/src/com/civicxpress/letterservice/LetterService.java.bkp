@@ -3,30 +3,30 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.letterservice;
 
-import java.io.ByteArrayInputStream;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import com.wavemaker.runtime.file.model.DownloadResponse;
 
-import com.civicxpress.LetterTemplate;
-import com.civicxpress.SectionalTemplatePdf;
-import com.civicxpress.Cx2DataAccess;
-import com.civicxpress.DatabaseConnectionInfo;
-import com.civicxpress.GlobalFormInfo;
+
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 //import com.civicxpress.letterservice.model.*;
 
+/**
+ * This is a singleton class with all its public methods exposed as REST APIs via generated controller class.
+ * To avoid exposing an API for a particular public method, annotate it with @HideFromClient.
+ *
+ * Method names will play a major role in defining the Http Method for the generated APIs. For example, a method name
+ * that starts with delete/remove, will make the API exposed as Http Method "DELETE".
+ *
+ * Method Parameters of type primitives (including java.lang.String) will be exposed as Query Parameters &
+ * Complex Types/Objects will become part of the Request body in the generated API.
+ */
 @ExposeToClient
 public class LetterService {
 
@@ -34,58 +34,27 @@ public class LetterService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://192.168.2.211:1433;databaseName=CX2_DEV";
 
-    public List<String> getAvailableTokens(int formTypeId) {
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
-        List<String> availableTokens = null;
-        availableTokens = LetterTemplate.getAvailableTokens(formTypeId);
-        return availableTokens;
-    }
-    
-    public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) {
-    	SectionalTemplatePdf lt = null;
-//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-//		dbInfo.readFromWebContext();
-//		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
-    	
-		Cx2DataAccess db = new Cx2DataAccess();
-		Cx2DataAccess.setSqlUrl(sqlUrl);
-		
-		if (letterTemplateId == null) {
-			lt = new SectionalTemplatePdf();
-	    	lt.setUpDefaultSections();
-		} else {
-			lt = db.getLetterTemplate(letterTemplateId);
-		}
-		
-		return lt;
-    }
-    
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
-    	Cx2DataAccess db = new Cx2DataAccess();
-    	Cx2DataAccess.setSqlUrl(sqlUrl);
-    	
-    	db.updateLetterTemplate(letterTemplate);
+    /**
+     * This is sample java operation that accepts an input from the caller and responds with "Hello".
+     *
+     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
+     * getUserName() and getUserId() etc which returns the information based on the caller context.
+     *
+     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
+     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
+     */
+    public String sampleJavaOperation(String name, HttpServletRequest request) {
+        logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
+        
+        String result = null;
+        if (securityService.isAuthenticated()) {
+            result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
+        } else {
+            result = "Hello " + name + ", You are not authenticated yet!";
+        }
+        logger.debug("Returning {}", result);
+        return result;
     }
 
-    public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
-		SectionalTemplatePdf lt = null;
-//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-//		dbInfo.readFromWebContext();
-		Cx2DataAccess db = new Cx2DataAccess();
-		Cx2DataAccess.setSqlUrl(sqlUrl);
-		lt = db.getLetterTemplate(letterTemplateId);
-        GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
-        Map<String, String> textTokens = LetterTemplate.getTextTokenValues(formTypeId, formGuid);
-        byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
-        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
-        DownloadResponse dr = new DownloadResponse();
-        dr.setContents(downloadBais);
-        dr.setContentType("application/pdf");
-        dr.setFileName(formGuid + ".pdf");
-        return dr;
-    }
 }

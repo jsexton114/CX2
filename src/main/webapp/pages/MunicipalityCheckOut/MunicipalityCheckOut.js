@@ -6,9 +6,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
     };
 
-
     $scope.lvCheckOutonSuccess = function(variable, data) {
-
         var fees = [];
 
         var temp = $scope.Variables.svCartItemIds.dataSet.content;
@@ -57,7 +55,7 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
 
     $scope.svUpdateMultipleFeeCommentsonError = function(variable, data) {
-        debugger
+
     };
 
 }]);

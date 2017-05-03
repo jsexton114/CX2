@@ -13,8 +13,8 @@ public class Cx2DataAccess {
     private DatabaseConnectionInfo dbInfo = null;
     
     public Cx2DataAccess() {
-    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
-    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
+    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
+    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
     }
 
 //    public Cx2DataAccess(DatabaseConnectionInfo dbInfo) {
@@ -22,8 +22,8 @@ public class Cx2DataAccess {
 //    }
    
     public Cx2DataAccess(String sqlUrl, String username, String password) {
-    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
-    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
+    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
+    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
     	//this.dbInfo = new DatabaseConnectionInfo(sqlUrl, username, password, username, 1433);
     }
 

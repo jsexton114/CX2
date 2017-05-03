@@ -19829,7 +19829,7 @@
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.lvViolations.listRecords();Variables.nocViolationAdded.invoke()",
+    "onSuccess" : "Variables.lvViolations.listRecords();Variables.nocViolationAdded.invoke();Variables.lvDocuments.listRecords()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
