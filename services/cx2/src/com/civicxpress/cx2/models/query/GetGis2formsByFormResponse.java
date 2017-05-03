@@ -8,8 +8,8 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +35,7 @@ public class GetGis2formsByFormResponse implements Serializable {
     private Integer addedBy;
     @JsonProperty("addedTime")
     @ColumnAlias("addedTime")
-    private java.util.Date addedTime;
+    private Date addedTime;
     @JsonProperty("gisrecordId")
     @ColumnAlias("gisrecordId")
     private Integer gisrecordId;
@@ -63,11 +63,11 @@ public class GetGis2formsByFormResponse implements Serializable {
         this.addedBy = addedBy;
     }
 
-    public java.util.Date getAddedTime() {
+    public Date getAddedTime() {
         return this.addedTime;
     }
 
-    public void setAddedTime(java.util.Date addedTime) {
+    public void setAddedTime(Date addedTime) {
         this.addedTime = addedTime;
     }
 

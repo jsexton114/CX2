@@ -7,21 +7,16 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
-import com.civicxpress.cx2.Projects;
-import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
@@ -35,11 +30,11 @@ public class ProjectsByVendorResponse implements Serializable {
     @ColumnAlias("projectName")
     private String projectName;
     @ColumnAlias("createdDate")
-    private java.util.Date createdDate;
+    private Date createdDate;
     @ColumnAlias("fullName")
     private String fullName;
     @ColumnAlias("modifiedDate")
-    private java.util.Date modifiedDate;
+    private Date modifiedDate;
     @ColumnAlias("companyName")
     private String companyName;
 
@@ -67,11 +62,11 @@ public class ProjectsByVendorResponse implements Serializable {
         this.projectName = projectName;
     }
 
-    public java.util.Date getCreatedDate() {
+    public Date getCreatedDate() {
         return this.createdDate;
     }
 
-    public void setCreatedDate(java.util.Date createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -83,11 +78,11 @@ public class ProjectsByVendorResponse implements Serializable {
         this.fullName = fullName;
     }
 
-    public java.util.Date getModifiedDate() {
+    public Date getModifiedDate() {
         return this.modifiedDate;
     }
 
-    public void setModifiedDate(java.util.Date modifiedDate) {
+    public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

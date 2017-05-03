@@ -17,7 +17,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.PaymentHistory;
-import com.civicxpress.cx2.TransactionToFees;
 
 /**
  * Service object for domain model class {@link PaymentHistory}.
@@ -141,17 +140,6 @@ public interface PaymentHistoryService {
 	 */
 	Page<Map<String, Object>> getAggregatedValues(AggregationInfo aggregationInfo, Pageable pageable);
 
-    /*
-     * Returns the associated transactionToFeeses for given PaymentHistory id.
-     *
-     * @param transactionId value of transactionId; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated TransactionToFees instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<TransactionToFees> findAssociatedTransactionToFeeses(Integer transactionId, Pageable pageable);
 
 }
 

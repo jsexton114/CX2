@@ -62,6 +62,25 @@ public class QueryExecutionController {
     @Autowired
     private Cx2QueryExecutorService queryService;
 
+    @RequestMapping(value = "/queries/GetRecentMessageId", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetRecentMessageId")
+    public Page<GetRecentMessageIdResponse> executeGetRecentMessageId(@RequestParam(value = "form", required = false) String form, @RequestParam(value = "PostedAt", required = false) Timestamp postedAt, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetRecentMessageId");
+        Page<GetRecentMessageIdResponse> _result = queryService.executeGetRecentMessageId(form, postedAt, pageable);
+        LOGGER.debug("got the result for named query: GetRecentMessageId, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetRecentMessageId")
+    @RequestMapping(value = "/queries/GetRecentMessageId/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetRecentMessageId(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form", required = false) String form, @RequestParam(value = "PostedAt", required = false) Timestamp postedAt, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetRecentMessageId");
+
+        return queryService.exportGetRecentMessageId(exportType, form, postedAt, pageable);
+    }
+
     @RequestMapping(value = "/queries/CountUnReadMessagesByUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountUnReadMessagesByUser")
@@ -79,25 +98,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountUnReadMessagesByUser");
 
         return queryService.exportCountUnReadMessagesByUser(exportType, taggedPersonId, messageRead, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UserMessagesCountByMunicipality")
-    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
-        LOGGER.debug("Executing named query: UserMessagesCountByMunicipality");
-        Page<UserMessagesCountByMunicipalityResponse> _result = queryService.executeUserMessagesCountByMunicipality(taggedPersonId, municipalityId, messageStatus, pageable);
-        LOGGER.debug("got the result for named query: UserMessagesCountByMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query UserMessagesCountByMunicipality")
-    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportUserMessagesCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
-        LOGGER.debug("Exporting named query: UserMessagesCountByMunicipality");
-
-        return queryService.exportUserMessagesCountByMunicipality(exportType, taggedPersonId, municipalityId, messageStatus, pageable);
     }
 
     @RequestMapping(value = "/queries/getInspectionsByOutcome", method = RequestMethod.GET)
@@ -119,1373 +119,23 @@ public class QueryExecutionController {
         return queryService.exportGetInspectionsByOutcome(exportType, outcome, municipality, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertIntoCart", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertIntoCart")
-    public IntegerWrapper executeInsertIntoCart(@Valid @RequestBody InsertIntoCartRequest insertIntoCartRequest) {
-        LOGGER.debug("Executing named query: InsertIntoCart");
-        Integer _result = queryService.executeInsertIntoCart(insertIntoCartRequest);
-        LOGGER.debug("got the result for named query: InsertIntoCart, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/getTransactionsByMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "getTransactionsByMunicipality")
-    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
-        LOGGER.debug("Executing named query: getTransactionsByMunicipality");
-        Page<GetTransactionsByMunicipalityResponse> _result = queryService.executeGetTransactionsByMunicipality(municipalityId, startd, endd, pageable);
-        LOGGER.debug("got the result for named query: getTransactionsByMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getTransactionsByMunicipality")
-    @RequestMapping(value = "/queries/getTransactionsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetTransactionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getTransactionsByMunicipality");
-
-        return queryService.exportGetTransactionsByMunicipality(exportType, municipalityId, startd, endd, pageable);
-    }
-
-    @RequestMapping(value = "/queries/ProjectSoftDelete", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "ProjectSoftDelete")
-    public Integer executeProjectSoftDelete(@Valid @RequestBody ProjectSoftDeleteRequest projectSoftDeleteRequest) {
-        LOGGER.debug("Executing named query: ProjectSoftDelete");
-        Integer _result = queryService.executeProjectSoftDelete(projectSoftDeleteRequest);
-        LOGGER.debug("got the result for named query: ProjectSoftDelete, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/createLetterTemplateForFormStatus", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "dfdfdf")
-    public IntegerWrapper executeCreateLetterTemplateForFormStatus(@Valid @RequestBody CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
-        LOGGER.debug("Executing named query: createLetterTemplateForFormStatus");
-        Integer _result = queryService.executeCreateLetterTemplateForFormStatus(createLetterTemplateForFormStatusRequest);
-        LOGGER.debug("got the result for named query: createLetterTemplateForFormStatus, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/UpdatePrimaryVendorInMasterForms", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdatePrimaryVendorInMasterForms")
-    public Integer executeUpdatePrimaryVendorInMasterForms(@Valid @RequestBody UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest) {
-        LOGGER.debug("Executing named query: UpdatePrimaryVendorInMasterForms");
-        Integer _result = queryService.executeUpdatePrimaryVendorInMasterForms(updatePrimaryVendorInMasterFormsRequest);
-        LOGGER.debug("got the result for named query: UpdatePrimaryVendorInMasterForms, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/updateMultipleFeeComments", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "updateMultipleFeeComments")
-    public IntegerWrapper executeUpdateMultipleFeeComments(@Valid @RequestBody UpdateMultipleFeeCommentsRequest updateMultipleFeeCommentsRequest) {
-        LOGGER.debug("Executing named query: updateMultipleFeeComments");
-        Integer _result = queryService.executeUpdateMultipleFeeComments(updateMultipleFeeCommentsRequest);
-        LOGGER.debug("got the result for named query: updateMultipleFeeComments, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/CounNewCasesAndAfterDate", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CounNewCasesAndAfterDate")
-    public Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
-        LOGGER.debug("Executing named query: CounNewCasesAndAfterDate");
-        Page<CounNewCasesAndAfterDateResponse> _result = queryService.executeCounNewCasesAndAfterDate(codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
-        LOGGER.debug("got the result for named query: CounNewCasesAndAfterDate, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CounNewCasesAndAfterDate")
-    @RequestMapping(value = "/queries/CounNewCasesAndAfterDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCounNewCasesAndAfterDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CounNewCasesAndAfterDate");
-
-        return queryService.exportCounNewCasesAndAfterDate(exportType, codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
-    }
-
-    @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddUsersToVendor")
-    public Integer executeAddUsersToVendor(@Valid @RequestBody AddUsersToVendorRequest addUsersToVendorRequest) {
-        LOGGER.debug("Executing named query: AddUsersToVendor");
-        Integer _result = queryService.executeAddUsersToVendor(addUsersToVendorRequest);
-        LOGGER.debug("got the result for named query: AddUsersToVendor, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/getEmailId", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns the Email ID of the Respective UserID")
-    public Page<GetEmailIdResponse> executeGetEmailId(@RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: getEmailId");
-        Page<GetEmailIdResponse> _result = queryService.executeGetEmailId(userId, pageable);
-        LOGGER.debug("got the result for named query: getEmailId, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getEmailId")
-    @RequestMapping(value = "/queries/getEmailId/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetEmailId(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getEmailId");
-
-        return queryService.exportGetEmailId(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdatePasswordAndCF", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdatePasswordAndCF")
-    public Integer executeUpdatePasswordAndCF(@Valid @RequestBody UpdatePasswordAndCfRequest updatePasswordAndCfRequest) {
-        LOGGER.debug("Executing named query: UpdatePasswordAndCF");
-        Integer _result = queryService.executeUpdatePasswordAndCF(updatePasswordAndCfRequest);
-        LOGGER.debug("got the result for named query: UpdatePasswordAndCF, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CheckingUserWithMunicipalityInRoles")
-    public Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(@RequestParam(value = "muncipality", required = false) Integer muncipality, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: CheckingUserWithMunicipalityInRoles");
-        Page<CheckingUserWithMunicipalityInRolesResponse> _result = queryService.executeCheckingUserWithMunicipalityInRoles(muncipality, user, pageable);
-        LOGGER.debug("got the result for named query: CheckingUserWithMunicipalityInRoles, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CheckingUserWithMunicipalityInRoles")
-    @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCheckingUserWithMunicipalityInRoles(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "muncipality", required = false) Integer muncipality, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CheckingUserWithMunicipalityInRoles");
-
-        return queryService.exportCheckingUserWithMunicipalityInRoles(exportType, muncipality, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/MunicipalitiesGroupsCounts", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "MunicipalitiesGroupsCounts")
-    public Page<MunicipalitiesGroupsCountsResponse> executeMunicipalitiesGroupsCounts(@RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Executing named query: MunicipalitiesGroupsCounts");
-        Page<MunicipalitiesGroupsCountsResponse> _result = queryService.executeMunicipalitiesGroupsCounts(municipality, pageable);
-        LOGGER.debug("got the result for named query: MunicipalitiesGroupsCounts, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query MunicipalitiesGroupsCounts")
-    @RequestMapping(value = "/queries/MunicipalitiesGroupsCounts/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportMunicipalitiesGroupsCounts(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Exporting named query: MunicipalitiesGroupsCounts");
-
-        return queryService.exportMunicipalitiesGroupsCounts(exportType, municipality, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateCFInProfile", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateCFInProfile")
-    public Integer executeUpdateCFInProfile(@Valid @RequestBody UpdateCfinProfileRequest updateCfinProfileRequest) {
-        LOGGER.debug("Executing named query: UpdateCFInProfile");
-        Integer _result = queryService.executeUpdateCFInProfile(updateCfinProfileRequest);
-        LOGGER.debug("got the result for named query: UpdateCFInProfile, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetRecentMessageIdForProject", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetRecentMessageIdForProject")
-    public FormMessages executeGetRecentMessageIdForProject(@RequestParam(value = "project") String project, @RequestParam(value = "PostedAt") Timestamp postedAt) {
-        LOGGER.debug("Executing named query: GetRecentMessageIdForProject");
-        FormMessages _result = queryService.executeGetRecentMessageIdForProject(project, postedAt);
-        LOGGER.debug("got the result for named query: GetRecentMessageIdForProject, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/InsertCategoryMapping", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertCategoryMapping")
-    public Integer executeInsertCategoryMapping(@Valid @RequestBody InsertCategoryMappingRequest insertCategoryMappingRequest) {
-        LOGGER.debug("Executing named query: InsertCategoryMapping");
-        Integer _result = queryService.executeInsertCategoryMapping(insertCategoryMappingRequest);
-        LOGGER.debug("got the result for named query: InsertCategoryMapping, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CountOfMunicipalityProjects", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfMunicipalityProjects")
-    public Page<CountOfMunicipalityProjectsResponse> executeCountOfMunicipalityProjects(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "Active", required = false) Boolean active, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfMunicipalityProjects");
-        Page<CountOfMunicipalityProjectsResponse> _result = queryService.executeCountOfMunicipalityProjects(municipalityId, active, pageable);
-        LOGGER.debug("got the result for named query: CountOfMunicipalityProjects, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityProjects")
-    @RequestMapping(value = "/queries/CountOfMunicipalityProjects/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfMunicipalityProjects(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "Active", required = false) Boolean active, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfMunicipalityProjects");
-
-        return queryService.exportCountOfMunicipalityProjects(exportType, municipalityId, active, pageable);
-    }
-
-    @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Get forms from Master Forms where employee is in group of that in current form Status")
-    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: ProcessFormsForUserByMunicipality");
-        Page<ProcessFormsForUserByMunicipalityResponse> _result = queryService.executeProcessFormsForUserByMunicipality(closed, municipalityId, userId, pageable);
-        LOGGER.debug("got the result for named query: ProcessFormsForUserByMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query ProcessFormsForUserByMunicipality")
-    @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: ProcessFormsForUserByMunicipality");
-
-        return queryService.exportProcessFormsForUserByMunicipality(exportType, closed, municipalityId, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/VendorCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "A count of Vendor entries")
-    public Page<VendorCountResponse> executeVendorCount(Pageable pageable) {
-        LOGGER.debug("Executing named query: VendorCount");
-        Page<VendorCountResponse> _result = queryService.executeVendorCount(pageable);
-        LOGGER.debug("got the result for named query: VendorCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query VendorCount")
-    @RequestMapping(value = "/queries/VendorCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportVendorCount(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
-        LOGGER.debug("Exporting named query: VendorCount");
-
-        return queryService.exportVendorCount(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/FeeByFeeTypesToDashboard", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "FeeByFeeTypesToDashboard")
-    public Page<FeeByFeeTypesToDashboardResponse> executeFeeByFeeTypesToDashboard(@RequestParam(value = "municpality") Integer municpality, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
-        LOGGER.debug("Executing named query: FeeByFeeTypesToDashboard");
-        Page<FeeByFeeTypesToDashboardResponse> _result = queryService.executeFeeByFeeTypesToDashboard(municpality, startDate, endDate, pageable);
-        LOGGER.debug("got the result for named query: FeeByFeeTypesToDashboard, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query FeeByFeeTypesToDashboard")
-    @RequestMapping(value = "/queries/FeeByFeeTypesToDashboard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFeeByFeeTypesToDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municpality") Integer municpality, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FeeByFeeTypesToDashboard");
-
-        return queryService.exportFeeByFeeTypesToDashboard(exportType, municpality, startDate, endDate, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateWorkMunicipality", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateWorkMunicipality")
-    public Integer executeUpdateWorkMunicipality(@Valid @RequestBody UpdateWorkMunicipalityRequest updateWorkMunicipalityRequest) {
-        LOGGER.debug("Executing named query: UpdateWorkMunicipality");
-        Integer _result = queryService.executeUpdateWorkMunicipality(updateWorkMunicipalityRequest);
-        LOGGER.debug("got the result for named query: UpdateWorkMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/countProjectsByVendors", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "countProjectsByVendors")
-    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Executing named query: countProjectsByVendors");
-        Page<CountProjectsByVendorsResponse> _result = queryService.executeCountProjectsByVendors(vendorId, active, pageable);
-        LOGGER.debug("got the result for named query: countProjectsByVendors, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query countProjectsByVendors")
-    @RequestMapping(value = "/queries/countProjectsByVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountProjectsByVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Exporting named query: countProjectsByVendors");
-
-        return queryService.exportCountProjectsByVendors(exportType, vendorId, active, pageable);
-    }
-
-    @RequestMapping(value = "/queries/searchWithFormTitle", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "searchWithFormTitle")
-    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
-        LOGGER.debug("Executing named query: searchWithFormTitle");
-        Page<SearchWithFormTitleResponse> _result = queryService.executeSearchWithFormTitle(municipalityId, publicRead, municipalityInternalForm, formTitle, pageable);
-        LOGGER.debug("got the result for named query: searchWithFormTitle, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query searchWithFormTitle")
-    @RequestMapping(value = "/queries/searchWithFormTitle/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchWithFormTitle(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
-        LOGGER.debug("Exporting named query: searchWithFormTitle");
-
-        return queryService.exportSearchWithFormTitle(exportType, municipalityId, publicRead, municipalityInternalForm, formTitle, pageable);
-    }
-
-    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "OpenedOrClosedFormsForUserOrSharedWith")
-    public Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(@RequestParam(value = "userId") Long userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: OpenedOrClosedFormsForUserOrSharedWith");
-        Page<MasterForms> _result = queryService.executeOpenedOrClosedFormsForUserOrSharedWith(userId, pageable);
-        LOGGER.debug("got the result for named query: OpenedOrClosedFormsForUserOrSharedWith, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query OpenedOrClosedFormsForUserOrSharedWith")
-    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Long userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: OpenedOrClosedFormsForUserOrSharedWith");
-
-        return queryService.exportOpenedOrClosedFormsForUserOrSharedWith(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Searches users by email or full name")
-    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(@RequestParam(value = "searchString", required = false) String searchString, Pageable pageable) {
-        LOGGER.debug("Executing named query: searchUsersByEmailOrName");
-        Page<SearchUsersByEmailOrNameResponse> _result = queryService.executeSearchUsersByEmailOrName(searchString, pageable);
-        LOGGER.debug("got the result for named query: searchUsersByEmailOrName, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query searchUsersByEmailOrName")
-    @RequestMapping(value = "/queries/searchUsersByEmailOrName/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchUsersByEmailOrName(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "searchString", required = false) String searchString, Pageable pageable) {
-        LOGGER.debug("Exporting named query: searchUsersByEmailOrName");
-
-        return queryService.exportSearchUsersByEmailOrName(exportType, searchString, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateGlobalEmailSig")
-    public Integer executeUpdateGlobalEmailSig(@Valid @RequestBody UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest) {
-        LOGGER.debug("Executing named query: UpdateGlobalEmailSig");
-        Integer _result = queryService.executeUpdateGlobalEmailSig(updateGlobalEmailSigRequest);
-        LOGGER.debug("got the result for named query: UpdateGlobalEmailSig, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/DeleteFromVendorAdmins", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteFromVendorAdmins")
-    public Integer executeDeleteFromVendorAdmins(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor) {
-        LOGGER.debug("Executing named query: DeleteFromVendorAdmins");
-        Integer _result = queryService.executeDeleteFromVendorAdmins(user, vendor);
-        LOGGER.debug("got the result for named query: DeleteFromVendorAdmins, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/getUserIdFromPasswordResetToken", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Returns a UserID, given a valid password reset token. Used internally")
-    public Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(@RequestParam(value = "token", required = false) String token, Pageable pageable) {
-        LOGGER.debug("Executing named query: getUserIdFromPasswordResetToken");
-        Page<GetUserIdFromPasswordResetTokenResponse> _result = queryService.executeGetUserIdFromPasswordResetToken(token, pageable);
-        LOGGER.debug("got the result for named query: getUserIdFromPasswordResetToken, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getUserIdFromPasswordResetToken")
-    @RequestMapping(value = "/queries/getUserIdFromPasswordResetToken/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUserIdFromPasswordResetToken(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "token", required = false) String token, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getUserIdFromPasswordResetToken");
-
-        return queryService.exportGetUserIdFromPasswordResetToken(exportType, token, pageable);
-    }
-
-    @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfProcessFormsByMuncipality")
-    public Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfProcessFormsByMuncipality");
-        Page<CountOfProcessFormsByMuncipalityResponse> _result = queryService.executeCountOfProcessFormsByMuncipality(municipalityId, closed, userId, pageable);
-        LOGGER.debug("got the result for named query: CountOfProcessFormsByMuncipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfProcessFormsByMuncipality")
-    @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfProcessFormsByMuncipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfProcessFormsByMuncipality");
-
-        return queryService.exportCountOfProcessFormsByMuncipality(exportType, municipalityId, closed, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/countAssignedInspectionsBetweenDates", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "countAssignedInspectionsBetweenDates")
-    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
-        LOGGER.debug("Executing named query: countAssignedInspectionsBetweenDates");
-        Page<CountAssignedInspectionsBetweenDatesResponse> _result = queryService.executeCountAssignedInspectionsBetweenDates(isClosed, municipality, assignedTo, startDate, endDate, pageable);
-        LOGGER.debug("got the result for named query: countAssignedInspectionsBetweenDates, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query countAssignedInspectionsBetweenDates")
-    @RequestMapping(value = "/queries/countAssignedInspectionsBetweenDates/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
-        LOGGER.debug("Exporting named query: countAssignedInspectionsBetweenDates");
-
-        return queryService.exportCountAssignedInspectionsBetweenDates(exportType, isClosed, municipality, assignedTo, startDate, endDate, pageable);
-    }
-
-    @RequestMapping(value = "/queries/getUserSentMessages", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "getUserSentMessages")
-    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: getUserSentMessages");
-        Page<GetUserSentMessagesResponse> _result = queryService.executeGetUserSentMessages(userId, municipalityId, pageable);
-        LOGGER.debug("got the result for named query: getUserSentMessages, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getUserSentMessages")
-    @RequestMapping(value = "/queries/getUserSentMessages/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUserSentMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getUserSentMessages");
-
-        return queryService.exportGetUserSentMessages(exportType, userId, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InspectionsOfForm", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InspectionsOfForm")
-    public Page<FormsToInspections> executeInspectionsOfForm(@RequestParam(value = "form") String form, Pageable pageable) {
-        LOGGER.debug("Executing named query: InspectionsOfForm");
-        Page<FormsToInspections> _result = queryService.executeInspectionsOfForm(form, pageable);
-        LOGGER.debug("got the result for named query: InspectionsOfForm, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query InspectionsOfForm")
-    @RequestMapping(value = "/queries/InspectionsOfForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportInspectionsOfForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form") String form, Pageable pageable) {
-        LOGGER.debug("Exporting named query: InspectionsOfForm");
-
-        return queryService.exportInspectionsOfForm(exportType, form, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertMasterInspections", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertMasterInspections")
-    public IntegerWrapper executeInsertMasterInspections(@Valid @RequestBody InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
-        LOGGER.debug("Executing named query: InsertMasterInspections");
-        Integer _result = queryService.executeInsertMasterInspections(insertMasterInspectionsRequest);
-        LOGGER.debug("got the result for named query: InsertMasterInspections, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/PreferenceForUser", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "PreferenceForUser")
-    public Page<PreferenceForUserResponse> executePreferenceForUser(@RequestParam(value = "userId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: PreferenceForUser");
-        Page<PreferenceForUserResponse> _result = queryService.executePreferenceForUser(userId, pageable);
-        LOGGER.debug("got the result for named query: PreferenceForUser, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query PreferenceForUser")
-    @RequestMapping(value = "/queries/PreferenceForUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportPreferenceForUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: PreferenceForUser");
-
-        return queryService.exportPreferenceForUser(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/FeesInCartByUser", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "FeesInCartByUser")
-    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(@RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: FeesInCartByUser");
-        Page<FeesInCartByUserResponse> _result = queryService.executeFeesInCartByUser(user, pageable);
-        LOGGER.debug("got the result for named query: FeesInCartByUser, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query FeesInCartByUser")
-    @RequestMapping(value = "/queries/FeesInCartByUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFeesInCartByUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FeesInCartByUser");
-
-        return queryService.exportFeesInCartByUser(exportType, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/NoOfItemsInUserCart", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "NoOfItemsInUserCart")
-    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: NoOfItemsInUserCart");
-        Page<NoOfItemsInUserCartResponse> _result = queryService.executeNoOfItemsInUserCart(user, pageable);
-        LOGGER.debug("got the result for named query: NoOfItemsInUserCart, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query NoOfItemsInUserCart")
-    @RequestMapping(value = "/queries/NoOfItemsInUserCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportNoOfItemsInUserCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: NoOfItemsInUserCart");
-
-        return queryService.exportNoOfItemsInUserCart(exportType, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/deleteInspectionDesign", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "df")
-    public IntegerWrapper executeDeleteInspectionDesign(@RequestParam(value = "inspectionId") Integer inspectionId) {
-        LOGGER.debug("Executing named query: deleteInspectionDesign");
-        Integer _result = queryService.executeDeleteInspectionDesign(inspectionId);
-        LOGGER.debug("got the result for named query: deleteInspectionDesign, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/UpdateProjectDetails", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateProjectDetails")
-    public Integer executeUpdateProjectDetails(@Valid @RequestBody UpdateProjectDetailsRequest updateProjectDetailsRequest) {
-        LOGGER.debug("Executing named query: UpdateProjectDetails");
-        Integer _result = queryService.executeUpdateProjectDetails(updateProjectDetailsRequest);
-        LOGGER.debug("got the result for named query: UpdateProjectDetails, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CountOfMuncipalityApplicationsByVendor", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfMuncipalityApplicationsByVendor")
-    public Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(@RequestParam(value = "VendorId", required = false) Integer vendorId, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfMuncipalityApplicationsByVendor");
-        Page<CountOfMuncipalityApplicationsByVendorResponse> _result = queryService.executeCountOfMuncipalityApplicationsByVendor(vendorId, pageable);
-        LOGGER.debug("got the result for named query: CountOfMuncipalityApplicationsByVendor, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfMuncipalityApplicationsByVendor")
-    @RequestMapping(value = "/queries/CountOfMuncipalityApplicationsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfMuncipalityApplicationsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "VendorId", required = false) Integer vendorId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfMuncipalityApplicationsByVendor");
-
-        return queryService.exportCountOfMuncipalityApplicationsByVendor(exportType, vendorId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/AddGIStoProjects", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddGIStoProjects")
-    public Integer executeAddGIStoProjects(@Valid @RequestBody AddGistoProjectsRequest addGistoProjectsRequest) {
-        LOGGER.debug("Executing named query: AddGIStoProjects");
-        Integer _result = queryService.executeAddGIStoProjects(addGistoProjectsRequest);
-        LOGGER.debug("got the result for named query: AddGIStoProjects, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/DeleteDraft", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteDraft")
-    public IntegerWrapper executeDeleteDraft(@RequestParam(value = "draftId") Long draftId) {
-        LOGGER.debug("Executing named query: DeleteDraft");
-        Integer _result = queryService.executeDeleteDraft(draftId);
-        LOGGER.debug("got the result for named query: DeleteDraft, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/UpdateVendorForMasterForms", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateVendorForMasterForms")
-    public Integer executeUpdateVendorForMasterForms(@Valid @RequestBody UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest) {
-        LOGGER.debug("Executing named query: UpdateVendorForMasterForms");
-        Integer _result = queryService.executeUpdateVendorForMasterForms(updateVendorForMasterFormsRequest);
-        LOGGER.debug("got the result for named query: UpdateVendorForMasterForms, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/EmployeesOrAdminsMunicipalities", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "EmployeesOrAdminsMunicipalities")
-    public Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "role", required = false) String role, Pageable pageable) {
-        LOGGER.debug("Executing named query: EmployeesOrAdminsMunicipalities");
-        Page<EmployeesOrAdminsMunicipalitiesResponse> _result = queryService.executeEmployeesOrAdminsMunicipalities(user, role, pageable);
-        LOGGER.debug("got the result for named query: EmployeesOrAdminsMunicipalities, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query EmployeesOrAdminsMunicipalities")
-    @RequestMapping(value = "/queries/EmployeesOrAdminsMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportEmployeesOrAdminsMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "role", required = false) String role, Pageable pageable) {
-        LOGGER.debug("Exporting named query: EmployeesOrAdminsMunicipalities");
-
-        return queryService.exportEmployeesOrAdminsMunicipalities(exportType, user, role, pageable);
-    }
-
-    @RequestMapping(value = "/queries/CountOfVendors", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfVendors")
-    public Page<CountOfVendorsResponse> executeCountOfVendors(@RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfVendors");
-        Page<CountOfVendorsResponse> _result = queryService.executeCountOfVendors(vendor, pageable);
-        LOGGER.debug("got the result for named query: CountOfVendors, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfVendors")
-    @RequestMapping(value = "/queries/CountOfVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfVendors");
-
-        return queryService.exportCountOfVendors(exportType, vendor, pageable);
-    }
-
-    @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "to deleted token after changing password")
-    public Integer executeDeleteToken(@RequestParam(value = "token", required = false) String token) {
-        LOGGER.debug("Executing named query: deleteToken");
-        Integer _result = queryService.executeDeleteToken(token);
-        LOGGER.debug("got the result for named query: deleteToken, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetProcessGroupMemebersByFormGUID")
-    public Page<GetProcessGroupMemebersByFormGuidResponse> executeGetProcessGroupMemebersByFormGUID(@RequestParam(value = "FormGUID", required = false) String formGuid, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetProcessGroupMemebersByFormGUID");
-        Page<GetProcessGroupMemebersByFormGuidResponse> _result = queryService.executeGetProcessGroupMemebersByFormGUID(formGuid, userId, pageable);
-        LOGGER.debug("got the result for named query: GetProcessGroupMemebersByFormGUID, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetProcessGroupMemebersByFormGUID")
-    @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetProcessGroupMemebersByFormGUID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FormGUID", required = false) String formGuid, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetProcessGroupMemebersByFormGUID");
-
-        return queryService.exportGetProcessGroupMemebersByFormGUID(exportType, formGuid, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/AdminVendorsList", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AdminVendorsList")
-    public Page<AdminVendorsListResponse> executeAdminVendorsList(@RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: AdminVendorsList");
-        Page<AdminVendorsListResponse> _result = queryService.executeAdminVendorsList(user, pageable);
-        LOGGER.debug("got the result for named query: AdminVendorsList, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query AdminVendorsList")
-    @RequestMapping(value = "/queries/AdminVendorsList/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAdminVendorsList(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: AdminVendorsList");
-
-        return queryService.exportAdminVendorsList(exportType, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/DeleteRoleForMuncipality", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteRoleForMuncipality")
-    public Integer executeDeleteRoleForMuncipality(@RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "user", required = false) Integer user) {
-        LOGGER.debug("Executing named query: DeleteRoleForMuncipality");
-        Integer _result = queryService.executeDeleteRoleForMuncipality(role, municipality, user);
-        LOGGER.debug("got the result for named query: DeleteRoleForMuncipality, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetFormTypesByCategoriesAndMunicipalities")
-    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetFormTypesByCategoriesAndMunicipalities");
-        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
-        LOGGER.debug("got the result for named query: GetFormTypesByCategoriesAndMunicipalities, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetFormTypesByCategoriesAndMunicipalities")
-    @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetFormTypesByCategoriesAndMunicipalities");
-
-        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetMunicipalityEmployees", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetMunicipalityEmployees")
-    public Page<Users> executeGetMunicipalityEmployees(@RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetMunicipalityEmployees");
-        Page<Users> _result = queryService.executeGetMunicipalityEmployees(roleName, municipalityId, email, pageable);
-        LOGGER.debug("got the result for named query: GetMunicipalityEmployees, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetMunicipalityEmployees")
-    @RequestMapping(value = "/queries/GetMunicipalityEmployees/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetMunicipalityEmployees(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetMunicipalityEmployees");
-
-        return queryService.exportGetMunicipalityEmployees(exportType, roleName, municipalityId, email, pageable);
-    }
-
-    @RequestMapping(value = "/queries/MapAsAdminForVendor", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "MapAsAdminForVendor")
-    public Integer executeMapAsAdminForVendor(@Valid @RequestBody MapAsAdminForVendorRequest mapAsAdminForVendorRequest) {
-        LOGGER.debug("Executing named query: MapAsAdminForVendor");
-        Integer _result = queryService.executeMapAsAdminForVendor(mapAsAdminForVendorRequest);
-        LOGGER.debug("got the result for named query: MapAsAdminForVendor, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/InsertFormsIntoProject", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertFormsIntoProject")
-    public Integer executeInsertFormsIntoProject(@Valid @RequestBody InsertFormsIntoProjectRequest insertFormsIntoProjectRequest) {
-        LOGGER.debug("Executing named query: InsertFormsIntoProject");
-        Integer _result = queryService.executeInsertFormsIntoProject(insertFormsIntoProjectRequest);
-        LOGGER.debug("got the result for named query: InsertFormsIntoProject, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/RecordFormHistory", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "RecordFormHistory")
-    public Integer executeRecordFormHistory(@Valid @RequestBody RecordFormHistoryRequest recordFormHistoryRequest) {
-        LOGGER.debug("Executing named query: RecordFormHistory");
-        Integer _result = queryService.executeRecordFormHistory(recordFormHistoryRequest);
-        LOGGER.debug("got the result for named query: RecordFormHistory, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateFormStatusInMasterForms", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateFormStatusInMasterForms")
-    public Integer executeUpdateFormStatusInMasterForms(@Valid @RequestBody UpdateFormStatusInMasterFormsRequest updateFormStatusInMasterFormsRequest) {
-        LOGGER.debug("Executing named query: UpdateFormStatusInMasterForms");
-        Integer _result = queryService.executeUpdateFormStatusInMasterForms(updateFormStatusInMasterFormsRequest);
-        LOGGER.debug("got the result for named query: UpdateFormStatusInMasterForms, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CountOfCasesForMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfCasesForMunicipality")
-    public Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfCasesForMunicipality");
-        Page<CountOfCasesForMunicipalityResponse> _result = queryService.executeCountOfCasesForMunicipality(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: CountOfCasesForMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfCasesForMunicipality")
-    @RequestMapping(value = "/queries/CountOfCasesForMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfCasesForMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfCasesForMunicipality");
-
-        return queryService.exportCountOfCasesForMunicipality(exportType, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetFeeIdsOfUserInCart")
-    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetFeeIdsOfUserInCart");
-        Page<GetFeeIdsOfUserInCartResponse> _result = queryService.executeGetFeeIdsOfUserInCart(user, pageable);
-        LOGGER.debug("got the result for named query: GetFeeIdsOfUserInCart, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetFeeIdsOfUserInCart")
-    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFeeIdsOfUserInCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetFeeIdsOfUserInCart");
-
-        return queryService.exportGetFeeIdsOfUserInCart(exportType, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdatePrimaryVendorStatusInVEndor2Forms", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdatePrimaryVendorStatusInVEndor2Forms")
-    public Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(@Valid @RequestBody UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest) {
-        LOGGER.debug("Executing named query: UpdatePrimaryVendorStatusInVEndor2Forms");
-        Integer _result = queryService.executeUpdatePrimaryVendorStatusInVEndor2Forms(updatePrimaryVendorStatusInVendor2formsRequest);
-        LOGGER.debug("got the result for named query: UpdatePrimaryVendorStatusInVEndor2Forms, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/getMunicipalityGroupIdIDs", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "get all the group Details based on userID")
-    public Page<GetMunicipalityGroupIdIdsResponse> executeGetMunicipalityGroupIdIDs(@RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: getMunicipalityGroupIdIDs");
-        Page<GetMunicipalityGroupIdIdsResponse> _result = queryService.executeGetMunicipalityGroupIdIDs(userId, pageable);
-        LOGGER.debug("got the result for named query: getMunicipalityGroupIdIDs, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getMunicipalityGroupIdIDs")
-    @RequestMapping(value = "/queries/getMunicipalityGroupIdIDs/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetMunicipalityGroupIdIDs(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getMunicipalityGroupIdIDs");
-
-        return queryService.exportGetMunicipalityGroupIdIDs(exportType, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/getListofUsers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "to get List of user based on municipality ID and role Name")
-    public Page<GetListofUsersResponse> executeGetListofUsers(@RequestParam(value = "municipalityID", required = false) Integer municipalityId, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
-        LOGGER.debug("Executing named query: getListofUsers");
-        Page<GetListofUsersResponse> _result = queryService.executeGetListofUsers(municipalityId, email, pageable);
-        LOGGER.debug("got the result for named query: getListofUsers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getListofUsers")
-    @RequestMapping(value = "/queries/getListofUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetListofUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityID", required = false) Integer municipalityId, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getListofUsers");
-
-        return queryService.exportGetListofUsers(exportType, municipalityId, email, pageable);
-    }
-
-    @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "get user id based on mail id")
-    public Page<GetUserIdResponse> executeGetUserID(@RequestParam(value = "Email", required = false) String email, Pageable pageable) {
-        LOGGER.debug("Executing named query: getUserID");
-        Page<GetUserIdResponse> _result = queryService.executeGetUserID(email, pageable);
-        LOGGER.debug("got the result for named query: getUserID, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getUserID")
-    @RequestMapping(value = "/queries/getUserID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetUserID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getUserID");
-
-        return queryService.exportGetUserID(exportType, email, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetProjectGisrecords", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetProjectGisrecords")
-    public Page<GetProjectGisrecordsResponse> executeGetProjectGisrecords(@RequestParam(value = "relatedProjectGuid", required = false) String relatedProjectGuid, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetProjectGisrecords");
-        Page<GetProjectGisrecordsResponse> _result = queryService.executeGetProjectGisrecords(relatedProjectGuid, pageable);
-        LOGGER.debug("got the result for named query: GetProjectGisrecords, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetProjectGisrecords")
-    @RequestMapping(value = "/queries/GetProjectGisrecords/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetProjectGisrecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "relatedProjectGuid", required = false) String relatedProjectGuid, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetProjectGisrecords");
-
-        return queryService.exportGetProjectGisrecords(exportType, relatedProjectGuid, pageable);
-    }
-
-    @RequestMapping(value = "/queries/SubDivisonCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SubDivisonCount")
-    public Page<SubDivisonCountResponse> executeSubDivisonCount(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: SubDivisonCount");
-        Page<SubDivisonCountResponse> _result = queryService.executeSubDivisonCount(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: SubDivisonCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query SubDivisonCount")
-    @RequestMapping(value = "/queries/SubDivisonCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSubDivisonCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: SubDivisonCount");
-
-        return queryService.exportSubDivisonCount(exportType, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/getFormCountForGisRecord", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Magic johansen")
-    public Page<GetFormCountForGisRecordResponse> executeGetFormCountForGisRecord(@RequestParam(value = "isCase") Boolean isCase, @RequestParam(value = "gisRecordId") Long gisRecordId, Pageable pageable) {
-        LOGGER.debug("Executing named query: getFormCountForGisRecord");
-        Page<GetFormCountForGisRecordResponse> _result = queryService.executeGetFormCountForGisRecord(isCase, gisRecordId, pageable);
-        LOGGER.debug("got the result for named query: getFormCountForGisRecord, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getFormCountForGisRecord")
-    @RequestMapping(value = "/queries/getFormCountForGisRecord/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFormCountForGisRecord(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isCase") Boolean isCase, @RequestParam(value = "gisRecordId") Long gisRecordId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getFormCountForGisRecord");
-
-        return queryService.exportGetFormCountForGisRecord(exportType, isCase, gisRecordId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetRolesForMunicipality")
-    public Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(@RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetRolesForMunicipality");
-        Page<GetRolesForMunicipalityResponse> _result = queryService.executeGetRolesForMunicipality(role, municipality, pageable);
-        LOGGER.debug("got the result for named query: GetRolesForMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetRolesForMunicipality")
-    @RequestMapping(value = "/queries/GetRolesForMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRolesForMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetRolesForMunicipality");
-
-        return queryService.exportGetRolesForMunicipality(exportType, role, municipality, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Insert Groups in to Municipalities")
-    public Integer executeInsertGroups(@Valid @RequestBody InsertGroupsRequest insertGroupsRequest) {
-        LOGGER.debug("Executing named query: InsertGroups");
-        Integer _result = queryService.executeInsertGroups(insertGroupsRequest);
-        LOGGER.debug("got the result for named query: InsertGroups, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/AddGIStoForms", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddGIStoForms")
-    public Integer executeAddGIStoForms(@Valid @RequestBody AddGistoFormsRequest addGistoFormsRequest) {
-        LOGGER.debug("Executing named query: AddGIStoForms");
-        Integer _result = queryService.executeAddGIStoForms(addGistoFormsRequest);
-        LOGGER.debug("got the result for named query: AddGIStoForms, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/AddMemeberToProject", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddMemeberToProject")
-    public Integer executeAddMemeberToProject(@Valid @RequestBody AddMemeberToProjectRequest addMemeberToProjectRequest) {
-        LOGGER.debug("Executing named query: AddMemeberToProject");
-        Integer _result = queryService.executeAddMemeberToProject(addMemeberToProjectRequest);
-        LOGGER.debug("got the result for named query: AddMemeberToProject, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/checkInspectionLimit", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Check to see if inspection limit for a day has been exceeded or not.")
-    public CheckInspectionLimitResponse executeCheckInspectionLimit(@RequestParam(value = "inspectionDesignId") Integer inspectionDesignId, @RequestParam(value = "startOfDay") LocalDateTime startOfDay, @RequestParam(value = "endOfDay") LocalDateTime endOfDay) {
-        LOGGER.debug("Executing named query: checkInspectionLimit");
-        CheckInspectionLimitResponse _result = queryService.executeCheckInspectionLimit(inspectionDesignId, startOfDay, endOfDay);
-        LOGGER.debug("got the result for named query: checkInspectionLimit, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/InsertFormsToInspectionsMapping", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertFormsToInspectionsMapping")
-    public IntegerWrapper executeInsertFormsToInspectionsMapping(@Valid @RequestBody InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {
-        LOGGER.debug("Executing named query: InsertFormsToInspectionsMapping");
-        Integer _result = queryService.executeInsertFormsToInspectionsMapping(insertFormsToInspectionsMappingRequest);
-        LOGGER.debug("got the result for named query: InsertFormsToInspectionsMapping, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/VendorsLinkedWithForm", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "VendorsLinkedWithForm")
-    public Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(@RequestParam(value = "RelatedFormGUID", required = false) String relatedFormGuid, Pageable pageable) {
-        LOGGER.debug("Executing named query: VendorsLinkedWithForm");
-        Page<VendorsLinkedWithFormResponse> _result = queryService.executeVendorsLinkedWithForm(relatedFormGuid, pageable);
-        LOGGER.debug("got the result for named query: VendorsLinkedWithForm, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query VendorsLinkedWithForm")
-    @RequestMapping(value = "/queries/VendorsLinkedWithForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportVendorsLinkedWithForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "RelatedFormGUID", required = false) String relatedFormGuid, Pageable pageable) {
-        LOGGER.debug("Exporting named query: VendorsLinkedWithForm");
-
-        return queryService.exportVendorsLinkedWithForm(exportType, relatedFormGuid, pageable);
-    }
-
-    @RequestMapping(value = "/queries/resetPasswordWithTokenForUser", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "This saves a reset password token in the DB given a User ID and Token.")
-    public Integer executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) Integer userid, @RequestParam(value = "token", required = false) String token) {
-        LOGGER.debug("Executing named query: resetPasswordWithTokenForUser");
-        Integer _result = queryService.executeResetPasswordWithTokenForUser(userid, token);
-        LOGGER.debug("got the result for named query: resetPasswordWithTokenForUser, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/UpdateRoleForMunicipality", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateRoleForMunicipality")
-    public Integer executeUpdateRoleForMunicipality(@Valid @RequestBody UpdateRoleForMunicipalityRequest updateRoleForMunicipalityRequest) {
-        LOGGER.debug("Executing named query: UpdateRoleForMunicipality");
-        Integer _result = queryService.executeUpdateRoleForMunicipality(updateRoleForMunicipalityRequest);
-        LOGGER.debug("got the result for named query: UpdateRoleForMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/GetFormsForMunicpality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetFormsForMunicpality")
-    public Page<GetFormsForMunicpalityResponse> executeGetFormsForMunicpality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetFormsForMunicpality");
-        Page<GetFormsForMunicpalityResponse> _result = queryService.executeGetFormsForMunicpality(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: GetFormsForMunicpality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query GetFormsForMunicpality")
-    @RequestMapping(value = "/queries/GetFormsForMunicpality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetFormsForMunicpality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetFormsForMunicpality");
-
-        return queryService.exportGetFormsForMunicpality(exportType, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateProcessOwnersForGUID", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateProcessOwnersForGUID")
-    public Integer executeUpdateProcessOwnersForGUID(@Valid @RequestBody UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest) {
-        LOGGER.debug("Executing named query: UpdateProcessOwnersForGUID");
-        Integer _result = queryService.executeUpdateProcessOwnersForGUID(updateProcessOwnersForGuidRequest);
-        LOGGER.debug("got the result for named query: UpdateProcessOwnersForGUID, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SearchFormByVendor")
-    public Page<MasterForms> executeSearchFormByVendor(@RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
-        LOGGER.debug("Executing named query: SearchFormByVendor");
-        Page<MasterForms> _result = queryService.executeSearchFormByVendor(startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
-        LOGGER.debug("got the result for named query: SearchFormByVendor, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query SearchFormByVendor")
-    @RequestMapping(value = "/queries/SearchFormByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchFormByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: SearchFormByVendor");
-
-        return queryService.exportSearchFormByVendor(exportType, startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateProjectDescription")
-    public Integer executeUpdateProjectDescription(@Valid @RequestBody UpdateProjectDescriptionRequest updateProjectDescriptionRequest) {
-        LOGGER.debug("Executing named query: UpdateProjectDescription");
-        Integer _result = queryService.executeUpdateProjectDescription(updateProjectDescriptionRequest);
-        LOGGER.debug("got the result for named query: UpdateProjectDescription, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/countAssignedInspectionsLessThanDate", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "countAssignedInspectionsLessThanDate")
-    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Executing named query: countAssignedInspectionsLessThanDate");
-        Page<CountAssignedInspectionsLessThanDateResponse> _result = queryService.executeCountAssignedInspectionsLessThanDate(isClosed, assignedTo, requestedFor, municipality, pageable);
-        LOGGER.debug("got the result for named query: countAssignedInspectionsLessThanDate, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query countAssignedInspectionsLessThanDate")
-    @RequestMapping(value = "/queries/countAssignedInspectionsLessThanDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountAssignedInspectionsLessThanDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
-        LOGGER.debug("Exporting named query: countAssignedInspectionsLessThanDate");
-
-        return queryService.exportCountAssignedInspectionsLessThanDate(exportType, isClosed, assignedTo, requestedFor, municipality, pageable);
-    }
-
-    @RequestMapping(value = "/queries/DeleteFromVendorUsers", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteFromVendorUsers")
-    public Integer executeDeleteFromVendorUsers(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor) {
-        LOGGER.debug("Executing named query: DeleteFromVendorUsers");
-        Integer _result = queryService.executeDeleteFromVendorUsers(user, vendor);
-        LOGGER.debug("got the result for named query: DeleteFromVendorUsers, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CheckingUserWithInVendorUsers")
-    public Page<CheckingUserWithInVendorUsersResponse> executeCheckingUserWithInVendorUsers(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Executing named query: CheckingUserWithInVendorUsers");
-        Page<CheckingUserWithInVendorUsersResponse> _result = queryService.executeCheckingUserWithInVendorUsers(user, vendor, pageable);
-        LOGGER.debug("got the result for named query: CheckingUserWithInVendorUsers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CheckingUserWithInVendorUsers")
-    @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCheckingUserWithInVendorUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CheckingUserWithInVendorUsers");
-
-        return queryService.exportCheckingUserWithInVendorUsers(exportType, user, vendor, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateVendorStatus")
-    public Integer executeUpdateVendorStatus(@Valid @RequestBody UpdateVendorStatusRequest updateVendorStatusRequest) {
-        LOGGER.debug("Executing named query: UpdateVendorStatus");
-        Integer _result = queryService.executeUpdateVendorStatus(updateVendorStatusRequest);
-        LOGGER.debug("got the result for named query: UpdateVendorStatus, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InspectionDesignForCategoriesMappedToForms")
-    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(@RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Executing named query: InspectionDesignForCategoriesMappedToForms");
-        Page<InspectionDesign> _result = queryService.executeInspectionDesignForCategoriesMappedToForms(formTypeId, active, pageable);
-        LOGGER.debug("got the result for named query: InspectionDesignForCategoriesMappedToForms, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query InspectionDesignForCategoriesMappedToForms")
-    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportInspectionDesignForCategoriesMappedToForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Exporting named query: InspectionDesignForCategoriesMappedToForms");
-
-        return queryService.exportInspectionDesignForCategoriesMappedToForms(exportType, formTypeId, active, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UnpaidFormFeeCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UnpaidFormFeeCount")
-    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: UnpaidFormFeeCount");
-        Page<UnpaidFormFeeCountResponse> _result = queryService.executeUnpaidFormFeeCount(allowPayment, paidStatus, userId, pageable);
-        LOGGER.debug("got the result for named query: UnpaidFormFeeCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query UnpaidFormFeeCount")
-    @RequestMapping(value = "/queries/UnpaidFormFeeCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportUnpaidFormFeeCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: UnpaidFormFeeCount");
-
-        return queryService.exportUnpaidFormFeeCount(exportType, allowPayment, paidStatus, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/getInspectorsByMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Inspectors by Municipality")
-    public Page<Users> executeGetInspectorsByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: getInspectorsByMunicipality");
-        Page<Users> _result = queryService.executeGetInspectorsByMunicipality(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: getInspectorsByMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query getInspectorsByMunicipality")
-    @RequestMapping(value = "/queries/getInspectorsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetInspectorsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: getInspectorsByMunicipality");
-
-        return queryService.exportGetInspectorsByMunicipality(exportType, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/updateMultipleFeeStatus", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "updateMultipleFeeStatus")
-    public IntegerWrapper executeUpdateMultipleFeeStatus(@Valid @RequestBody UpdateMultipleFeeStatusRequest updateMultipleFeeStatusRequest) {
-        LOGGER.debug("Executing named query: updateMultipleFeeStatus");
-        Integer _result = queryService.executeUpdateMultipleFeeStatus(updateMultipleFeeStatusRequest);
-        LOGGER.debug("got the result for named query: updateMultipleFeeStatus, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/userSubscriptionsCount", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "userSubscriptionsCount")
-    public Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable) {
-        LOGGER.debug("Executing named query: userSubscriptionsCount");
-        Page<UserSubscriptionsCountResponse> _result = queryService.executeUserSubscriptionsCount(pageable);
-        LOGGER.debug("got the result for named query: userSubscriptionsCount, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query userSubscriptionsCount")
-    @RequestMapping(value = "/queries/userSubscriptionsCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportUserSubscriptionsCount(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
-        LOGGER.debug("Exporting named query: userSubscriptionsCount");
-
-        return queryService.exportUserSubscriptionsCount(exportType, pageable);
-    }
-
-    @RequestMapping(value = "/queries/InsertFormMessage", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertFormMessage")
-    public Integer executeInsertFormMessage(@Valid @RequestBody InsertFormMessageRequest insertFormMessageRequest) {
-        LOGGER.debug("Executing named query: InsertFormMessage");
-        Integer _result = queryService.executeInsertFormMessage(insertFormMessageRequest);
-        LOGGER.debug("got the result for named query: InsertFormMessage, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "ProjectsForUsersAndSharedWith")
-    public Page<Projects> executeProjectsForUsersAndSharedWith(@RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: ProjectsForUsersAndSharedWith");
-        Page<Projects> _result = queryService.executeProjectsForUsersAndSharedWith(active, creatorUser, sharedWithUser, municipalityId, pageable);
-        LOGGER.debug("got the result for named query: ProjectsForUsersAndSharedWith, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query ProjectsForUsersAndSharedWith")
-    @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportProjectsForUsersAndSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: ProjectsForUsersAndSharedWith");
-
-        return queryService.exportProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, municipalityId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/SearchAllFormsByVendor", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SearchAllFormsByVendor")
-    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
-        LOGGER.debug("Executing named query: SearchAllFormsByVendor");
-        Page<SearchAllFormsByVendorResponse> _result = queryService.executeSearchAllFormsByVendor(vendorId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
-        LOGGER.debug("got the result for named query: SearchAllFormsByVendor, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query SearchAllFormsByVendor")
-    @RequestMapping(value = "/queries/SearchAllFormsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchAllFormsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
-        LOGGER.debug("Exporting named query: SearchAllFormsByVendor");
-
-        return queryService.exportSearchAllFormsByVendor(exportType, vendorId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
-    }
-
-    @RequestMapping(value = "/queries/FormsTaggedWithGISRecords", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "FormsTaggedWithGISRecords")
-    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
-        LOGGER.debug("Executing named query: FormsTaggedWithGISRecords");
-        Page<FormsTaggedWithGisrecordsResponse> _result = queryService.executeFormsTaggedWithGISRecords(codeEnforcement, gisrecordId, pageable);
-        LOGGER.debug("got the result for named query: FormsTaggedWithGISRecords, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query FormsTaggedWithGISRecords")
-    @RequestMapping(value = "/queries/FormsTaggedWithGISRecords/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsTaggedWithGISRecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FormsTaggedWithGISRecords");
-
-        return queryService.exportFormsTaggedWithGISRecords(exportType, codeEnforcement, gisrecordId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/UpdateNewPassword", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateNewPassword")
-    public Integer executeUpdateNewPassword(@Valid @RequestBody UpdateNewPasswordRequest updateNewPasswordRequest) {
-        LOGGER.debug("Executing named query: UpdateNewPassword");
-        Integer _result = queryService.executeUpdateNewPassword(updateNewPasswordRequest);
-        LOGGER.debug("got the result for named query: UpdateNewPassword, result:{}", _result);
-        return _result;
-    }
-
-    @RequestMapping(value = "/queries/CountOfVendorUsers", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfVendorUsers")
-    public Page<CountOfVendorUsersResponse> executeCountOfVendorUsers(@RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfVendorUsers");
-        Page<CountOfVendorUsersResponse> _result = queryService.executeCountOfVendorUsers(vendor, pageable);
-        LOGGER.debug("got the result for named query: CountOfVendorUsers, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfVendorUsers")
-    @RequestMapping(value = "/queries/CountOfVendorUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfVendorUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfVendorUsers");
-
-        return queryService.exportCountOfVendorUsers(exportType, vendor, pageable);
-    }
-
-    @RequestMapping(value = "/queries/GetRecentMessageId", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "GetRecentMessageId")
-    public Page<GetRecentMessageIdResponse> executeGetRecentMessageId(@RequestParam(value = "form", required = false) String form, @RequestParam(value = "PostedAt", required = false) Timestamp postedAt, Pageable pageable) {
-        LOGGER.debug("Executing named query: GetRecentMessageId");
-        Page<GetRecentMessageIdResponse> _result = queryService.executeGetRecentMessageId(form, postedAt, pageable);
-        LOGGER.debug("got the result for named query: GetRecentMessageId, result:{}", _result);
+    @ApiOperation(value = "UserMessagesCountByMunicipality")
+    public Page<UserMessagesCountByMunicipalityResponse> executeUserMessagesCountByMunicipality(@RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
+        LOGGER.debug("Executing named query: UserMessagesCountByMunicipality");
+        Page<UserMessagesCountByMunicipalityResponse> _result = queryService.executeUserMessagesCountByMunicipality(taggedPersonId, municipalityId, messageStatus, pageable);
+        LOGGER.debug("got the result for named query: UserMessagesCountByMunicipality, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query GetRecentMessageId")
-    @RequestMapping(value = "/queries/GetRecentMessageId/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query UserMessagesCountByMunicipality")
+    @RequestMapping(value = "/queries/UserMessagesCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetRecentMessageId(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form", required = false) String form, @RequestParam(value = "PostedAt", required = false) Timestamp postedAt, Pageable pageable) {
-        LOGGER.debug("Exporting named query: GetRecentMessageId");
+    public Downloadable exportUserMessagesCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "taggedPersonId") Integer taggedPersonId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "messageStatus") Boolean messageStatus, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UserMessagesCountByMunicipality");
 
-        return queryService.exportGetRecentMessageId(exportType, form, postedAt, pageable);
+        return queryService.exportUserMessagesCountByMunicipality(exportType, taggedPersonId, municipalityId, messageStatus, pageable);
     }
 
     @RequestMapping(value = "/queries/getCalculatableFormFields", method = RequestMethod.GET)
@@ -1526,6 +176,84 @@ public class QueryExecutionController {
         return queryService.exportAdminsMunicipalities(exportType, user, pageable);
     }
 
+    @RequestMapping(value = "/queries/getTransactionsByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getTransactionsByMunicipality")
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: getTransactionsByMunicipality");
+        Page<GetTransactionsByMunicipalityResponse> _result = queryService.executeGetTransactionsByMunicipality(municipalityId, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: getTransactionsByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getTransactionsByMunicipality")
+    @RequestMapping(value = "/queries/getTransactionsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetTransactionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getTransactionsByMunicipality");
+
+        return queryService.exportGetTransactionsByMunicipality(exportType, municipalityId, startd, endd, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertIntoCart", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertIntoCart")
+    public IntegerWrapper executeInsertIntoCart(@Valid @RequestBody InsertIntoCartRequest insertIntoCartRequest) {
+        LOGGER.debug("Executing named query: InsertIntoCart");
+        Integer _result = queryService.executeInsertIntoCart(insertIntoCartRequest);
+        LOGGER.debug("got the result for named query: InsertIntoCart, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/createLetterTemplateForFormStatus", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "dfdfdf")
+    public IntegerWrapper executeCreateLetterTemplateForFormStatus(@Valid @RequestBody CreateLetterTemplateForFormStatusRequest createLetterTemplateForFormStatusRequest) {
+        LOGGER.debug("Executing named query: createLetterTemplateForFormStatus");
+        Integer _result = queryService.executeCreateLetterTemplateForFormStatus(createLetterTemplateForFormStatusRequest);
+        LOGGER.debug("got the result for named query: createLetterTemplateForFormStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/ProjectSoftDelete", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "ProjectSoftDelete")
+    public Integer executeProjectSoftDelete(@Valid @RequestBody ProjectSoftDeleteRequest projectSoftDeleteRequest) {
+        LOGGER.debug("Executing named query: ProjectSoftDelete");
+        Integer _result = queryService.executeProjectSoftDelete(projectSoftDeleteRequest);
+        LOGGER.debug("got the result for named query: ProjectSoftDelete, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdatePrimaryVendorInMasterForms", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdatePrimaryVendorInMasterForms")
+    public Integer executeUpdatePrimaryVendorInMasterForms(@Valid @RequestBody UpdatePrimaryVendorInMasterFormsRequest updatePrimaryVendorInMasterFormsRequest) {
+        LOGGER.debug("Executing named query: UpdatePrimaryVendorInMasterForms");
+        Integer _result = queryService.executeUpdatePrimaryVendorInMasterForms(updatePrimaryVendorInMasterFormsRequest);
+        LOGGER.debug("got the result for named query: UpdatePrimaryVendorInMasterForms, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/CounNewCasesAndAfterDate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CounNewCasesAndAfterDate")
+    public Page<CounNewCasesAndAfterDateResponse> executeCounNewCasesAndAfterDate(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
+        LOGGER.debug("Executing named query: CounNewCasesAndAfterDate");
+        Page<CounNewCasesAndAfterDateResponse> _result = queryService.executeCounNewCasesAndAfterDate(codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
+        LOGGER.debug("got the result for named query: CounNewCasesAndAfterDate, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CounNewCasesAndAfterDate")
+    @RequestMapping(value = "/queries/CounNewCasesAndAfterDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCounNewCasesAndAfterDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "dateSubmitted") Timestamp dateSubmitted, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CounNewCasesAndAfterDate");
+
+        return queryService.exportCounNewCasesAndAfterDate(exportType, codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
+    }
+
     @RequestMapping(value = "/queries/StandardUserMunicipalites", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "StandardUserMunicipalites")
@@ -1543,6 +271,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: StandardUserMunicipalites");
 
         return queryService.exportStandardUserMunicipalites(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getEmailId", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Returns the Email ID of the Respective UserID")
+    public Page<GetEmailIdResponse> executeGetEmailId(@RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getEmailId");
+        Page<GetEmailIdResponse> _result = queryService.executeGetEmailId(userId, pageable);
+        LOGGER.debug("got the result for named query: getEmailId, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getEmailId")
+    @RequestMapping(value = "/queries/getEmailId/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetEmailId(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getEmailId");
+
+        return queryService.exportGetEmailId(exportType, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/CounCasesByStatusAndMunicipality", method = RequestMethod.GET)
@@ -1564,6 +311,26 @@ public class QueryExecutionController {
         return queryService.exportCounCasesByStatusAndMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/AddUsersToVendor", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AddUsersToVendor")
+    public Integer executeAddUsersToVendor(@Valid @RequestBody AddUsersToVendorRequest addUsersToVendorRequest) {
+        LOGGER.debug("Executing named query: AddUsersToVendor");
+        Integer _result = queryService.executeAddUsersToVendor(addUsersToVendorRequest);
+        LOGGER.debug("got the result for named query: AddUsersToVendor, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdatePasswordAndCF", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdatePasswordAndCF")
+    public Integer executeUpdatePasswordAndCF(@Valid @RequestBody UpdatePasswordAndCfRequest updatePasswordAndCfRequest) {
+        LOGGER.debug("Executing named query: UpdatePasswordAndCF");
+        Integer _result = queryService.executeUpdatePasswordAndCF(updatePasswordAndCfRequest);
+        LOGGER.debug("got the result for named query: UpdatePasswordAndCF, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/searchGisByFullAddress", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "search that stuff")
@@ -1583,6 +350,93 @@ public class QueryExecutionController {
         return queryService.exportSearchGisByFullAddress(exportType, municipalityId, fullAddress, parcel, pageable);
     }
 
+    @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CheckingUserWithMunicipalityInRoles")
+    public Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(@RequestParam(value = "muncipality", required = false) Integer muncipality, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: CheckingUserWithMunicipalityInRoles");
+        Page<CheckingUserWithMunicipalityInRolesResponse> _result = queryService.executeCheckingUserWithMunicipalityInRoles(muncipality, user, pageable);
+        LOGGER.debug("got the result for named query: CheckingUserWithMunicipalityInRoles, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CheckingUserWithMunicipalityInRoles")
+    @RequestMapping(value = "/queries/CheckingUserWithMunicipalityInRoles/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCheckingUserWithMunicipalityInRoles(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "muncipality", required = false) Integer muncipality, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CheckingUserWithMunicipalityInRoles");
+
+        return queryService.exportCheckingUserWithMunicipalityInRoles(exportType, muncipality, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateCFInProfile", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateCFInProfile")
+    public Integer executeUpdateCFInProfile(@Valid @RequestBody UpdateCfinProfileRequest updateCfinProfileRequest) {
+        LOGGER.debug("Executing named query: UpdateCFInProfile");
+        Integer _result = queryService.executeUpdateCFInProfile(updateCfinProfileRequest);
+        LOGGER.debug("got the result for named query: UpdateCFInProfile, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/MunicipalitiesGroupsCounts", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "MunicipalitiesGroupsCounts")
+    public Page<MunicipalitiesGroupsCountsResponse> executeMunicipalitiesGroupsCounts(@RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Executing named query: MunicipalitiesGroupsCounts");
+        Page<MunicipalitiesGroupsCountsResponse> _result = queryService.executeMunicipalitiesGroupsCounts(municipality, pageable);
+        LOGGER.debug("got the result for named query: MunicipalitiesGroupsCounts, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query MunicipalitiesGroupsCounts")
+    @RequestMapping(value = "/queries/MunicipalitiesGroupsCounts/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportMunicipalitiesGroupsCounts(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Exporting named query: MunicipalitiesGroupsCounts");
+
+        return queryService.exportMunicipalitiesGroupsCounts(exportType, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetRecentMessageIdForProject", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetRecentMessageIdForProject")
+    public FormMessages executeGetRecentMessageIdForProject(@RequestParam(value = "project") String project, @RequestParam(value = "PostedAt") Timestamp postedAt) {
+        LOGGER.debug("Executing named query: GetRecentMessageIdForProject");
+        FormMessages _result = queryService.executeGetRecentMessageIdForProject(project, postedAt);
+        LOGGER.debug("got the result for named query: GetRecentMessageIdForProject, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/InsertCategoryMapping", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertCategoryMapping")
+    public Integer executeInsertCategoryMapping(@Valid @RequestBody InsertCategoryMappingRequest insertCategoryMappingRequest) {
+        LOGGER.debug("Executing named query: InsertCategoryMapping");
+        Integer _result = queryService.executeInsertCategoryMapping(insertCategoryMappingRequest);
+        LOGGER.debug("got the result for named query: InsertCategoryMapping, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Get forms from Master Forms where employee is in group of that in current form Status")
+    public Page<ProcessFormsForUserByMunicipalityResponse> executeProcessFormsForUserByMunicipality(@RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: ProcessFormsForUserByMunicipality");
+        Page<ProcessFormsForUserByMunicipalityResponse> _result = queryService.executeProcessFormsForUserByMunicipality(closed, municipalityId, userId, pageable);
+        LOGGER.debug("got the result for named query: ProcessFormsForUserByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query ProcessFormsForUserByMunicipality")
+    @RequestMapping(value = "/queries/ProcessFormsForUserByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportProcessFormsForUserByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "closed") Boolean closed, @RequestParam(value = "MunicipalityId") Long municipalityId, @RequestParam(value = "UserId") Long userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: ProcessFormsForUserByMunicipality");
+
+        return queryService.exportProcessFormsForUserByMunicipality(exportType, closed, municipalityId, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/FormsCountForMunicipalities", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsCountForMunicipalities")
@@ -1600,6 +454,73 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: FormsCountForMunicipalities");
 
         return queryService.exportFormsCountForMunicipalities(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CountOfMunicipalityProjects", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfMunicipalityProjects")
+    public Page<CountOfMunicipalityProjectsResponse> executeCountOfMunicipalityProjects(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "Active", required = false) Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfMunicipalityProjects");
+        Page<CountOfMunicipalityProjectsResponse> _result = queryService.executeCountOfMunicipalityProjects(municipalityId, active, pageable);
+        LOGGER.debug("got the result for named query: CountOfMunicipalityProjects, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityProjects")
+    @RequestMapping(value = "/queries/CountOfMunicipalityProjects/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfMunicipalityProjects(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "Active", required = false) Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfMunicipalityProjects");
+
+        return queryService.exportCountOfMunicipalityProjects(exportType, municipalityId, active, pageable);
+    }
+
+    @RequestMapping(value = "/queries/VendorCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "A count of Vendor entries")
+    public Page<VendorCountResponse> executeVendorCount(Pageable pageable) {
+        LOGGER.debug("Executing named query: VendorCount");
+        Page<VendorCountResponse> _result = queryService.executeVendorCount(pageable);
+        LOGGER.debug("got the result for named query: VendorCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query VendorCount")
+    @RequestMapping(value = "/queries/VendorCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportVendorCount(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: VendorCount");
+
+        return queryService.exportVendorCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateWorkMunicipality", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateWorkMunicipality")
+    public Integer executeUpdateWorkMunicipality(@Valid @RequestBody UpdateWorkMunicipalityRequest updateWorkMunicipalityRequest) {
+        LOGGER.debug("Executing named query: UpdateWorkMunicipality");
+        Integer _result = queryService.executeUpdateWorkMunicipality(updateWorkMunicipalityRequest);
+        LOGGER.debug("got the result for named query: UpdateWorkMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/FeeByFeeTypesToDashboard", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FeeByFeeTypesToDashboard")
+    public Page<FeeByFeeTypesToDashboardResponse> executeFeeByFeeTypesToDashboard(@RequestParam(value = "municpality") Integer municpality, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: FeeByFeeTypesToDashboard");
+        Page<FeeByFeeTypesToDashboardResponse> _result = queryService.executeFeeByFeeTypesToDashboard(municpality, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: FeeByFeeTypesToDashboard, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FeeByFeeTypesToDashboard")
+    @RequestMapping(value = "/queries/FeeByFeeTypesToDashboard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFeeByFeeTypesToDashboard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municpality") Integer municpality, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FeeByFeeTypesToDashboard");
+
+        return queryService.exportFeeByFeeTypesToDashboard(exportType, municpality, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/getFormTypeFieldsByTypeId", method = RequestMethod.GET)
@@ -1669,6 +590,16 @@ public class QueryExecutionController {
         return queryService.exportProjectsByVendor(exportType, vendorId, active, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateAsCXVendorAdmin", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateAsCXVendorAdmin")
+    public Integer executeUpdateAsCXVendorAdmin(@Valid @RequestBody UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest) {
+        LOGGER.debug("Executing named query: UpdateAsCXVendorAdmin");
+        Integer _result = queryService.executeUpdateAsCXVendorAdmin(updateAsCxvendorAdminRequest);
+        LOGGER.debug("got the result for named query: UpdateAsCXVendorAdmin, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/FormsByCategory", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsByCategory")
@@ -1688,16 +619,6 @@ public class QueryExecutionController {
         return queryService.exportFormsByCategory(exportType, formCategory, isActive, municipalityInternalForm, pageable);
     }
 
-    @RequestMapping(value = "/queries/UpdateAsCXVendorAdmin", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateAsCXVendorAdmin")
-    public Integer executeUpdateAsCXVendorAdmin(@Valid @RequestBody UpdateAsCxvendorAdminRequest updateAsCxvendorAdminRequest) {
-        LOGGER.debug("Executing named query: UpdateAsCXVendorAdmin");
-        Integer _result = queryService.executeUpdateAsCXVendorAdmin(updateAsCxvendorAdminRequest);
-        LOGGER.debug("got the result for named query: UpdateAsCXVendorAdmin, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/sumOfFeesInUsersCart", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "sumOfFeesInUsersCart")
@@ -1706,6 +627,44 @@ public class QueryExecutionController {
         SumOfFeesInUsersCartResponse _result = queryService.executeSumOfFeesInUsersCart(user);
         LOGGER.debug("got the result for named query: sumOfFeesInUsersCart, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/searchWithFormTitle", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "searchWithFormTitle")
+    public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
+        LOGGER.debug("Executing named query: searchWithFormTitle");
+        Page<SearchWithFormTitleResponse> _result = queryService.executeSearchWithFormTitle(municipalityId, publicRead, municipalityInternalForm, formTitle, pageable);
+        LOGGER.debug("got the result for named query: searchWithFormTitle, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query searchWithFormTitle")
+    @RequestMapping(value = "/queries/searchWithFormTitle/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchWithFormTitle(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "formTitle") String formTitle, Pageable pageable) {
+        LOGGER.debug("Exporting named query: searchWithFormTitle");
+
+        return queryService.exportSearchWithFormTitle(exportType, municipalityId, publicRead, municipalityInternalForm, formTitle, pageable);
+    }
+
+    @RequestMapping(value = "/queries/countProjectsByVendors", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countProjectsByVendors")
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: countProjectsByVendors");
+        Page<CountProjectsByVendorsResponse> _result = queryService.executeCountProjectsByVendors(vendorId, active, pageable);
+        LOGGER.debug("got the result for named query: countProjectsByVendors, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countProjectsByVendors")
+    @RequestMapping(value = "/queries/countProjectsByVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountProjectsByVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countProjectsByVendors");
+
+        return queryService.exportCountProjectsByVendors(exportType, vendorId, active, pageable);
     }
 
     @RequestMapping(value = "/queries/CountOfCompnayFormsByVendorId", method = RequestMethod.GET)
@@ -1727,14 +686,52 @@ public class QueryExecutionController {
         return queryService.exportCountOfCompnayFormsByVendorId(exportType, closed, vendorId, pageable);
     }
 
-    @RequestMapping(value = "/queries/updateMunicipalityLogo", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "sdkfjksjdfj")
-    public IntegerWrapper executeUpdateMunicipalityLogo(@Valid @RequestBody UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
-        LOGGER.debug("Executing named query: updateMunicipalityLogo");
-        Integer _result = queryService.executeUpdateMunicipalityLogo(updateMunicipalityLogoRequest);
-        LOGGER.debug("got the result for named query: updateMunicipalityLogo, result:{}", _result);
-        return new IntegerWrapper(_result);
+    @ApiOperation(value = "OpenedOrClosedFormsForUserOrSharedWith")
+    public Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(@RequestParam(value = "userId") Long userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: OpenedOrClosedFormsForUserOrSharedWith");
+        Page<MasterForms> _result = queryService.executeOpenedOrClosedFormsForUserOrSharedWith(userId, pageable);
+        LOGGER.debug("got the result for named query: OpenedOrClosedFormsForUserOrSharedWith, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query OpenedOrClosedFormsForUserOrSharedWith")
+    @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Long userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: OpenedOrClosedFormsForUserOrSharedWith");
+
+        return queryService.exportOpenedOrClosedFormsForUserOrSharedWith(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Searches users by email or full name")
+    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(@RequestParam(value = "searchString", required = false) String searchString, Pageable pageable) {
+        LOGGER.debug("Executing named query: searchUsersByEmailOrName");
+        Page<SearchUsersByEmailOrNameResponse> _result = queryService.executeSearchUsersByEmailOrName(searchString, pageable);
+        LOGGER.debug("got the result for named query: searchUsersByEmailOrName, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query searchUsersByEmailOrName")
+    @RequestMapping(value = "/queries/searchUsersByEmailOrName/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchUsersByEmailOrName(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "searchString", required = false) String searchString, Pageable pageable) {
+        LOGGER.debug("Exporting named query: searchUsersByEmailOrName");
+
+        return queryService.exportSearchUsersByEmailOrName(exportType, searchString, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateGlobalEmailSig")
+    public Integer executeUpdateGlobalEmailSig(@Valid @RequestBody UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest) {
+        LOGGER.debug("Executing named query: UpdateGlobalEmailSig");
+        Integer _result = queryService.executeUpdateGlobalEmailSig(updateGlobalEmailSigRequest);
+        LOGGER.debug("got the result for named query: UpdateGlobalEmailSig, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/updateTrackViolations", method = RequestMethod.PUT)
@@ -1747,13 +744,23 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
-    @RequestMapping(value = "/queries/SetPrimaryVendorStatusForFormandVendor", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/updateMunicipalityLogo", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SetPrimaryVendorStatusForFormandVendor")
-    public Integer executeSetPrimaryVendorStatusForFormandVendor(@Valid @RequestBody SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest) {
-        LOGGER.debug("Executing named query: SetPrimaryVendorStatusForFormandVendor");
-        Integer _result = queryService.executeSetPrimaryVendorStatusForFormandVendor(setPrimaryVendorStatusForFormandVendorRequest);
-        LOGGER.debug("got the result for named query: SetPrimaryVendorStatusForFormandVendor, result:{}", _result);
+    @ApiOperation(value = "sdkfjksjdfj")
+    public IntegerWrapper executeUpdateMunicipalityLogo(@Valid @RequestBody UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
+        LOGGER.debug("Executing named query: updateMunicipalityLogo");
+        Integer _result = queryService.executeUpdateMunicipalityLogo(updateMunicipalityLogoRequest);
+        LOGGER.debug("got the result for named query: updateMunicipalityLogo, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/DeleteFromVendorAdmins", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteFromVendorAdmins")
+    public Integer executeDeleteFromVendorAdmins(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor) {
+        LOGGER.debug("Executing named query: DeleteFromVendorAdmins");
+        Integer _result = queryService.executeDeleteFromVendorAdmins(user, vendor);
+        LOGGER.debug("got the result for named query: DeleteFromVendorAdmins, result:{}", _result);
         return _result;
     }
 
@@ -1776,6 +783,16 @@ public class QueryExecutionController {
         return queryService.exportGetFeesForTransaction(exportType, transactionId, pageable);
     }
 
+    @RequestMapping(value = "/queries/SetPrimaryVendorStatusForFormandVendor", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SetPrimaryVendorStatusForFormandVendor")
+    public Integer executeSetPrimaryVendorStatusForFormandVendor(@Valid @RequestBody SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest) {
+        LOGGER.debug("Executing named query: SetPrimaryVendorStatusForFormandVendor");
+        Integer _result = queryService.executeSetPrimaryVendorStatusForFormandVendor(setPrimaryVendorStatusForFormandVendorRequest);
+        LOGGER.debug("got the result for named query: SetPrimaryVendorStatusForFormandVendor, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/AllFeeformCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AllFeeformCount")
@@ -1793,16 +810,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: AllFeeformCount");
 
         return queryService.exportAllFeeformCount(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteCategoryMapping")
-    public Integer executeDeleteCategoryMapping(@RequestParam(value = "form", required = false) Integer form) {
-        LOGGER.debug("Executing named query: DeleteCategoryMapping");
-        Integer _result = queryService.executeDeleteCategoryMapping(form);
-        LOGGER.debug("got the result for named query: DeleteCategoryMapping, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/UserForDefaultTagging", method = RequestMethod.GET)
@@ -1824,6 +831,35 @@ public class QueryExecutionController {
         return queryService.exportUserForDefaultTagging(exportType, postedBy, pageable);
     }
 
+    @RequestMapping(value = "/queries/DeleteCategoryMapping", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteCategoryMapping")
+    public Integer executeDeleteCategoryMapping(@RequestParam(value = "form", required = false) Integer form) {
+        LOGGER.debug("Executing named query: DeleteCategoryMapping");
+        Integer _result = queryService.executeDeleteCategoryMapping(form);
+        LOGGER.debug("got the result for named query: DeleteCategoryMapping, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/getUserIdFromPasswordResetToken", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Returns a UserID, given a valid password reset token. Used internally")
+    public Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(@RequestParam(value = "token", required = false) String token, Pageable pageable) {
+        LOGGER.debug("Executing named query: getUserIdFromPasswordResetToken");
+        Page<GetUserIdFromPasswordResetTokenResponse> _result = queryService.executeGetUserIdFromPasswordResetToken(token, pageable);
+        LOGGER.debug("got the result for named query: getUserIdFromPasswordResetToken, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getUserIdFromPasswordResetToken")
+    @RequestMapping(value = "/queries/getUserIdFromPasswordResetToken/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUserIdFromPasswordResetToken(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "token", required = false) String token, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getUserIdFromPasswordResetToken");
+
+        return queryService.exportGetUserIdFromPasswordResetToken(exportType, token, pageable);
+    }
+
     @RequestMapping(value = "/queries/FormsByVendorsForDashboard", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FormsByVendorsForDashboard")
@@ -1841,6 +877,44 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: FormsByVendorsForDashboard");
 
         return queryService.exportFormsByVendorsForDashboard(exportType, municipality, startDate, endDate, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfProcessFormsByMuncipality")
+    public Page<CountOfProcessFormsByMuncipalityResponse> executeCountOfProcessFormsByMuncipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfProcessFormsByMuncipality");
+        Page<CountOfProcessFormsByMuncipalityResponse> _result = queryService.executeCountOfProcessFormsByMuncipality(municipalityId, closed, userId, pageable);
+        LOGGER.debug("got the result for named query: CountOfProcessFormsByMuncipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfProcessFormsByMuncipality")
+    @RequestMapping(value = "/queries/CountOfProcessFormsByMuncipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfProcessFormsByMuncipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfProcessFormsByMuncipality");
+
+        return queryService.exportCountOfProcessFormsByMuncipality(exportType, municipalityId, closed, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/countAssignedInspectionsBetweenDates", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countAssignedInspectionsBetweenDates")
+    public Page<CountAssignedInspectionsBetweenDatesResponse> executeCountAssignedInspectionsBetweenDates(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: countAssignedInspectionsBetweenDates");
+        Page<CountAssignedInspectionsBetweenDatesResponse> _result = queryService.executeCountAssignedInspectionsBetweenDates(isClosed, municipality, assignedTo, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: countAssignedInspectionsBetweenDates, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countAssignedInspectionsBetweenDates")
+    @RequestMapping(value = "/queries/countAssignedInspectionsBetweenDates/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountAssignedInspectionsBetweenDates(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countAssignedInspectionsBetweenDates");
+
+        return queryService.exportCountAssignedInspectionsBetweenDates(exportType, isClosed, municipality, assignedTo, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateVendorsToProject", method = RequestMethod.PUT)
@@ -1872,23 +946,23 @@ public class QueryExecutionController {
         return queryService.exportCountOfCXProjectsActive(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/SearchAllFormsByAddress", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/getUserSentMessages", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SearchAllFormsByAddress")
-    public Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
-        LOGGER.debug("Executing named query: SearchAllFormsByAddress");
-        Page<SearchAllFormsByAddressResponse> _result = queryService.executeSearchAllFormsByAddress(codeEnforcement, gisrecordId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
-        LOGGER.debug("got the result for named query: SearchAllFormsByAddress, result:{}", _result);
+    @ApiOperation(value = "getUserSentMessages")
+    public Page<GetUserSentMessagesResponse> executeGetUserSentMessages(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getUserSentMessages");
+        Page<GetUserSentMessagesResponse> _result = queryService.executeGetUserSentMessages(userId, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: getUserSentMessages, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query SearchAllFormsByAddress")
-    @RequestMapping(value = "/queries/SearchAllFormsByAddress/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query getUserSentMessages")
+    @RequestMapping(value = "/queries/getUserSentMessages/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportSearchAllFormsByAddress(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
-        LOGGER.debug("Exporting named query: SearchAllFormsByAddress");
+    public Downloadable exportGetUserSentMessages(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Integer userId, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getUserSentMessages");
 
-        return queryService.exportSearchAllFormsByAddress(exportType, codeEnforcement, gisrecordId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
+        return queryService.exportGetUserSentMessages(exportType, userId, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/distinctInspectionDesignsForFormType", method = RequestMethod.GET)
@@ -1910,14 +984,42 @@ public class QueryExecutionController {
         return queryService.exportDistinctInspectionDesignsForFormType(exportType, formTypeId, active, pageable);
     }
 
-    @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/SearchAllFormsByAddress", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AddingVendorsToForm")
-    public Integer executeAddingVendorsToForm(@Valid @RequestBody AddingVendorsToFormRequest addingVendorsToFormRequest) {
-        LOGGER.debug("Executing named query: AddingVendorsToForm");
-        Integer _result = queryService.executeAddingVendorsToForm(addingVendorsToFormRequest);
-        LOGGER.debug("got the result for named query: AddingVendorsToForm, result:{}", _result);
+    @ApiOperation(value = "SearchAllFormsByAddress")
+    public Page<SearchAllFormsByAddressResponse> executeSearchAllFormsByAddress(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: SearchAllFormsByAddress");
+        Page<SearchAllFormsByAddressResponse> _result = queryService.executeSearchAllFormsByAddress(codeEnforcement, gisrecordId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: SearchAllFormsByAddress, result:{}", _result);
         return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query SearchAllFormsByAddress")
+    @RequestMapping(value = "/queries/SearchAllFormsByAddress/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchAllFormsByAddress(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: SearchAllFormsByAddress");
+
+        return queryService.exportSearchAllFormsByAddress(exportType, codeEnforcement, gisrecordId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InspectionsOfForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InspectionsOfForm")
+    public Page<FormsToInspections> executeInspectionsOfForm(@RequestParam(value = "form") String form, Pageable pageable) {
+        LOGGER.debug("Executing named query: InspectionsOfForm");
+        Page<FormsToInspections> _result = queryService.executeInspectionsOfForm(form, pageable);
+        LOGGER.debug("got the result for named query: InspectionsOfForm, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query InspectionsOfForm")
+    @RequestMapping(value = "/queries/InspectionsOfForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportInspectionsOfForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "form") String form, Pageable pageable) {
+        LOGGER.debug("Exporting named query: InspectionsOfForm");
+
+        return queryService.exportInspectionsOfForm(exportType, form, pageable);
     }
 
     @RequestMapping(value = "/queries/CasesByMunicipality", method = RequestMethod.GET)
@@ -1937,6 +1039,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CasesByMunicipality");
 
         return queryService.exportCasesByMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AddingVendorsToForm")
+    public Integer executeAddingVendorsToForm(@Valid @RequestBody AddingVendorsToFormRequest addingVendorsToFormRequest) {
+        LOGGER.debug("Executing named query: AddingVendorsToForm");
+        Integer _result = queryService.executeAddingVendorsToForm(addingVendorsToFormRequest);
+        LOGGER.debug("got the result for named query: AddingVendorsToForm, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/updateUserBillingInfoPreference", method = RequestMethod.PUT)
@@ -1968,6 +1080,35 @@ public class QueryExecutionController {
         return queryService.exportGetCartItemIds(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/PreferenceForUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "PreferenceForUser")
+    public Page<PreferenceForUserResponse> executePreferenceForUser(@RequestParam(value = "userId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: PreferenceForUser");
+        Page<PreferenceForUserResponse> _result = queryService.executePreferenceForUser(userId, pageable);
+        LOGGER.debug("got the result for named query: PreferenceForUser, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query PreferenceForUser")
+    @RequestMapping(value = "/queries/PreferenceForUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportPreferenceForUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: PreferenceForUser");
+
+        return queryService.exportPreferenceForUser(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertMasterInspections", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertMasterInspections")
+    public IntegerWrapper executeInsertMasterInspections(@Valid @RequestBody InsertMasterInspectionsRequest insertMasterInspectionsRequest) {
+        LOGGER.debug("Executing named query: InsertMasterInspections");
+        Integer _result = queryService.executeInsertMasterInspections(insertMasterInspectionsRequest);
+        LOGGER.debug("got the result for named query: InsertMasterInspections, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/UserCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UserCount")
@@ -1987,23 +1128,52 @@ public class QueryExecutionController {
         return queryService.exportUserCount(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/FeesInCartByUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
-    public Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
-        Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> _result = queryService.executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(allowPayment, municipalityId, paidStatus, userId, pageable);
-        LOGGER.debug("got the result for named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality, result:{}", _result);
+    @ApiOperation(value = "FeesInCartByUser")
+    public Page<FeesInCartByUserResponse> executeFeesInCartByUser(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: FeesInCartByUser");
+        Page<FeesInCartByUserResponse> _result = queryService.executeFeesInCartByUser(user, pageable);
+        LOGGER.debug("got the result for named query: FeesInCartByUser, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
-    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query FeesInCartByUser")
+    @RequestMapping(value = "/queries/FeesInCartByUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
+    public Downloadable exportFeesInCartByUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FeesInCartByUser");
 
-        return queryService.exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(exportType, allowPayment, municipalityId, paidStatus, userId, pageable);
+        return queryService.exportFeesInCartByUser(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/NoOfItemsInUserCart", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "NoOfItemsInUserCart")
+    public Page<NoOfItemsInUserCartResponse> executeNoOfItemsInUserCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: NoOfItemsInUserCart");
+        Page<NoOfItemsInUserCartResponse> _result = queryService.executeNoOfItemsInUserCart(user, pageable);
+        LOGGER.debug("got the result for named query: NoOfItemsInUserCart, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query NoOfItemsInUserCart")
+    @RequestMapping(value = "/queries/NoOfItemsInUserCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportNoOfItemsInUserCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: NoOfItemsInUserCart");
+
+        return queryService.exportNoOfItemsInUserCart(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/deleteInspectionDesign", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "df")
+    public IntegerWrapper executeDeleteInspectionDesign(@RequestParam(value = "inspectionId") Integer inspectionId) {
+        LOGGER.debug("Executing named query: deleteInspectionDesign");
+        Integer _result = queryService.executeDeleteInspectionDesign(inspectionId);
+        LOGGER.debug("got the result for named query: deleteInspectionDesign, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/CheckIfCompanyUserIsVendorAdmin", method = RequestMethod.GET)
@@ -2025,6 +1195,35 @@ public class QueryExecutionController {
         return queryService.exportCheckIfCompanyUserIsVendorAdmin(exportType, user, vendor, pageable);
     }
 
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
+    public Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
+        Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> _result = queryService.executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(allowPayment, municipalityId, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeesOfFormsForCreatedByAndSharedWithByMunicipality")
+    @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWithByMunicipality");
+
+        return queryService.exportAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(exportType, allowPayment, municipalityId, paidStatus, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateProjectDetails", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateProjectDetails")
+    public Integer executeUpdateProjectDetails(@Valid @RequestBody UpdateProjectDetailsRequest updateProjectDetailsRequest) {
+        LOGGER.debug("Executing named query: UpdateProjectDetails");
+        Integer _result = queryService.executeUpdateProjectDetails(updateProjectDetailsRequest);
+        LOGGER.debug("got the result for named query: UpdateProjectDetails, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/InsertUserPreference", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "InsertUserPreference")
@@ -2035,23 +1234,23 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/CountOfMuncipalityApplicationsByVendor", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "AllFeeFormCountByMunicipality")
-    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Executing named query: AllFeeFormCountByMunicipality");
-        Page<AllFeeFormCountByMunicipalityResponse> _result = queryService.executeAllFeeFormCountByMunicipality(allowPayment, paidStatus, municipalityId, userId, pageable);
-        LOGGER.debug("got the result for named query: AllFeeFormCountByMunicipality, result:{}", _result);
+    @ApiOperation(value = "CountOfMuncipalityApplicationsByVendor")
+    public Page<CountOfMuncipalityApplicationsByVendorResponse> executeCountOfMuncipalityApplicationsByVendor(@RequestParam(value = "VendorId", required = false) Integer vendorId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfMuncipalityApplicationsByVendor");
+        Page<CountOfMuncipalityApplicationsByVendorResponse> _result = queryService.executeCountOfMuncipalityApplicationsByVendor(vendorId, pageable);
+        LOGGER.debug("got the result for named query: CountOfMuncipalityApplicationsByVendor, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query AllFeeFormCountByMunicipality")
-    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query CountOfMuncipalityApplicationsByVendor")
+    @RequestMapping(value = "/queries/CountOfMuncipalityApplicationsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportAllFeeFormCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: AllFeeFormCountByMunicipality");
+    public Downloadable exportCountOfMuncipalityApplicationsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "VendorId", required = false) Integer vendorId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfMuncipalityApplicationsByVendor");
 
-        return queryService.exportAllFeeFormCountByMunicipality(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
+        return queryService.exportCountOfMuncipalityApplicationsByVendor(exportType, vendorId, pageable);
     }
 
     @RequestMapping(value = "/queries/FormFeesForUsersAndShared", method = RequestMethod.GET)
@@ -2073,6 +1272,25 @@ public class QueryExecutionController {
         return queryService.exportFormFeesForUsersAndShared(exportType, creatorUser, allowPayment, paidStatus, sharedWithUser, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AllFeeFormCountByMunicipality")
+    public Page<AllFeeFormCountByMunicipalityResponse> executeAllFeeFormCountByMunicipality(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: AllFeeFormCountByMunicipality");
+        Page<AllFeeFormCountByMunicipalityResponse> _result = queryService.executeAllFeeFormCountByMunicipality(allowPayment, paidStatus, municipalityId, userId, pageable);
+        LOGGER.debug("got the result for named query: AllFeeFormCountByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AllFeeFormCountByMunicipality")
+    @RequestMapping(value = "/queries/AllFeeFormCountByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAllFeeFormCountByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AllFeeFormCountByMunicipality");
+
+        return queryService.exportAllFeeFormCountByMunicipality(exportType, allowPayment, paidStatus, municipalityId, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/userSubscriptionsCountForMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "userSubscriptionsCountForMunicipality")
@@ -2092,6 +1310,16 @@ public class QueryExecutionController {
         return queryService.exportUserSubscriptionsCountForMunicipality(exportType, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateFeesStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateFeesStatus")
+    public IntegerWrapper executeUpdateFeesStatus(@Valid @RequestBody UpdateFeesStatusRequest updateFeesStatusRequest) {
+        LOGGER.debug("Executing named query: UpdateFeesStatus");
+        Integer _result = queryService.executeUpdateFeesStatus(updateFeesStatusRequest);
+        LOGGER.debug("got the result for named query: UpdateFeesStatus, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/AddUserToMunicipalityGroup", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AddUserToMunicipalityGroup")
@@ -2102,14 +1330,33 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
-    @RequestMapping(value = "/queries/UpdateFeesStatus", method = RequestMethod.PUT)
+    @RequestMapping(value = "/queries/AddGIStoProjects", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "UpdateFeesStatus")
-    public IntegerWrapper executeUpdateFeesStatus(@Valid @RequestBody UpdateFeesStatusRequest updateFeesStatusRequest) {
-        LOGGER.debug("Executing named query: UpdateFeesStatus");
-        Integer _result = queryService.executeUpdateFeesStatus(updateFeesStatusRequest);
-        LOGGER.debug("got the result for named query: UpdateFeesStatus, result:{}", _result);
-        return new IntegerWrapper(_result);
+    @ApiOperation(value = "AddGIStoProjects")
+    public Integer executeAddGIStoProjects(@Valid @RequestBody AddGistoProjectsRequest addGistoProjectsRequest) {
+        LOGGER.debug("Executing named query: AddGIStoProjects");
+        Integer _result = queryService.executeAddGIStoProjects(addGistoProjectsRequest);
+        LOGGER.debug("got the result for named query: AddGIStoProjects, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/CountOfUserForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "To get count for open or closed for user and SharedWith user")
+    public Page<CountOfUserFormsResponse> executeCountOfUserForms(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfUserForms");
+        Page<CountOfUserFormsResponse> _result = queryService.executeCountOfUserForms(codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfUserForms, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfUserForms")
+    @RequestMapping(value = "/queries/CountOfUserForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfUserForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfUserForms");
+
+        return queryService.exportCountOfUserForms(exportType, codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/CountOfFormsForMunicipality", method = RequestMethod.GET)
@@ -2131,23 +1378,14 @@ public class QueryExecutionController {
         return queryService.exportCountOfFormsForMunicipality(exportType, municipalityId, pageable);
     }
 
-    @RequestMapping(value = "/queries/CountOfUserForms", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/DeleteDraft", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "To get count for open or closed for user and SharedWith user")
-    public Page<CountOfUserFormsResponse> executeCountOfUserForms(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfUserForms");
-        Page<CountOfUserFormsResponse> _result = queryService.executeCountOfUserForms(codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
-        LOGGER.debug("got the result for named query: CountOfUserForms, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query CountOfUserForms")
-    @RequestMapping(value = "/queries/CountOfUserForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfUserForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfUserForms");
-
-        return queryService.exportCountOfUserForms(exportType, codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+    @ApiOperation(value = "DeleteDraft")
+    public IntegerWrapper executeDeleteDraft(@RequestParam(value = "draftId") Long draftId) {
+        LOGGER.debug("Executing named query: DeleteDraft");
+        Integer _result = queryService.executeDeleteDraft(draftId);
+        LOGGER.debug("got the result for named query: DeleteDraft, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/UpdateDevFormDetailsForCXAdmin", method = RequestMethod.PUT)
@@ -2179,6 +1417,16 @@ public class QueryExecutionController {
         return queryService.exportTimeFormEnteredStatus(exportType, formGuid, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateVendorForMasterForms", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateVendorForMasterForms")
+    public Integer executeUpdateVendorForMasterForms(@Valid @RequestBody UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest) {
+        LOGGER.debug("Executing named query: UpdateVendorForMasterForms");
+        Integer _result = queryService.executeUpdateVendorForMasterForms(updateVendorForMasterFormsRequest);
+        LOGGER.debug("got the result for named query: UpdateVendorForMasterForms, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/CountOfCXCodeSetsGlobal", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfCXCodeSetsGlobal")
@@ -2198,6 +1446,25 @@ public class QueryExecutionController {
         return queryService.exportCountOfCXCodeSetsGlobal(exportType, pageable);
     }
 
+    @RequestMapping(value = "/queries/EmployeesOrAdminsMunicipalities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "EmployeesOrAdminsMunicipalities")
+    public Page<EmployeesOrAdminsMunicipalitiesResponse> executeEmployeesOrAdminsMunicipalities(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "role", required = false) String role, Pageable pageable) {
+        LOGGER.debug("Executing named query: EmployeesOrAdminsMunicipalities");
+        Page<EmployeesOrAdminsMunicipalitiesResponse> _result = queryService.executeEmployeesOrAdminsMunicipalities(user, role, pageable);
+        LOGGER.debug("got the result for named query: EmployeesOrAdminsMunicipalities, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query EmployeesOrAdminsMunicipalities")
+    @RequestMapping(value = "/queries/EmployeesOrAdminsMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportEmployeesOrAdminsMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "role", required = false) String role, Pageable pageable) {
+        LOGGER.debug("Exporting named query: EmployeesOrAdminsMunicipalities");
+
+        return queryService.exportEmployeesOrAdminsMunicipalities(exportType, user, role, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateForceInspectionSequenceForForm", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateForceInspectionSequenceForForm")
@@ -2206,6 +1473,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeUpdateForceInspectionSequenceForForm(updateForceInspectionSequenceForFormRequest);
         LOGGER.debug("got the result for named query: UpdateForceInspectionSequenceForForm, result:{}", _result);
         return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/CountOfVendors", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfVendors")
+    public Page<CountOfVendorsResponse> executeCountOfVendors(@RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfVendors");
+        Page<CountOfVendorsResponse> _result = queryService.executeCountOfVendors(vendor, pageable);
+        LOGGER.debug("got the result for named query: CountOfVendors, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfVendors")
+    @RequestMapping(value = "/queries/CountOfVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfVendors");
+
+        return queryService.exportCountOfVendors(exportType, vendor, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateMunicipalityInfo", method = RequestMethod.PUT)
@@ -2235,6 +1521,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CountOfUserFormsForMunicipality");
 
         return queryService.exportCountOfUserFormsForMunicipality(exportType, municipalityId, closed, creatorUser, sharedWithUser, pageable);
+    }
+
+    @RequestMapping(value = "/queries/deleteToken", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "to deleted token after changing password")
+    public Integer executeDeleteToken(@RequestParam(value = "token", required = false) String token) {
+        LOGGER.debug("Executing named query: deleteToken");
+        Integer _result = queryService.executeDeleteToken(token);
+        LOGGER.debug("got the result for named query: deleteToken, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/CountOfAllProjectsForUsersAndSharedWith", method = RequestMethod.GET)
@@ -2285,16 +1581,6 @@ public class QueryExecutionController {
         return queryService.exportManualFeeTypeCountForMunicipality(exportType, municipalityId, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertSubscription", method = RequestMethod.POST)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertSubscription")
-    public Integer executeInsertSubscription(@Valid @RequestBody InsertSubscriptionRequest insertSubscriptionRequest) {
-        LOGGER.debug("Executing named query: InsertSubscription");
-        Integer _result = queryService.executeInsertSubscription(insertSubscriptionRequest);
-        LOGGER.debug("got the result for named query: InsertSubscription, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/assignedInspectionsBetweenDates", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "assignedInspectionsBetweenDates")
@@ -2312,6 +1598,112 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: assignedInspectionsBetweenDates");
 
         return queryService.exportAssignedInspectionsBetweenDates(exportType, isClosed, municipality, assignedTo, startDate, endDate, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertSubscription", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertSubscription")
+    public Integer executeInsertSubscription(@Valid @RequestBody InsertSubscriptionRequest insertSubscriptionRequest) {
+        LOGGER.debug("Executing named query: InsertSubscription");
+        Integer _result = queryService.executeInsertSubscription(insertSubscriptionRequest);
+        LOGGER.debug("got the result for named query: InsertSubscription, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetProcessGroupMemebersByFormGUID")
+    public Page<GetProcessGroupMemebersByFormGuidResponse> executeGetProcessGroupMemebersByFormGUID(@RequestParam(value = "FormGUID", required = false) String formGuid, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetProcessGroupMemebersByFormGUID");
+        Page<GetProcessGroupMemebersByFormGuidResponse> _result = queryService.executeGetProcessGroupMemebersByFormGUID(formGuid, userId, pageable);
+        LOGGER.debug("got the result for named query: GetProcessGroupMemebersByFormGUID, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetProcessGroupMemebersByFormGUID")
+    @RequestMapping(value = "/queries/GetProcessGroupMemebersByFormGUID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetProcessGroupMemebersByFormGUID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "FormGUID", required = false) String formGuid, @RequestParam(value = "UserId", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetProcessGroupMemebersByFormGUID");
+
+        return queryService.exportGetProcessGroupMemebersByFormGUID(exportType, formGuid, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/AdminVendorsList", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "AdminVendorsList")
+    public Page<AdminVendorsListResponse> executeAdminVendorsList(@RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: AdminVendorsList");
+        Page<AdminVendorsListResponse> _result = queryService.executeAdminVendorsList(user, pageable);
+        LOGGER.debug("got the result for named query: AdminVendorsList, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query AdminVendorsList")
+    @RequestMapping(value = "/queries/AdminVendorsList/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportAdminVendorsList(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: AdminVendorsList");
+
+        return queryService.exportAdminVendorsList(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetFormTypesByCategoriesAndMunicipalities")
+    public Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> executeGetFormTypesByCategoriesAndMunicipalities(@RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetFormTypesByCategoriesAndMunicipalities");
+        Page<GetFormTypesByCategoriesAndMunicipalitiesResponse> _result = queryService.executeGetFormTypesByCategoriesAndMunicipalities(formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
+        LOGGER.debug("got the result for named query: GetFormTypesByCategoriesAndMunicipalities, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetFormTypesByCategoriesAndMunicipalities")
+    @RequestMapping(value = "/queries/GetFormTypesByCategoriesAndMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFormTypesByCategoriesAndMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formCategory", required = false) Integer formCategory, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "isCase", required = false) Boolean isCase, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetFormTypesByCategoriesAndMunicipalities");
+
+        return queryService.exportGetFormTypesByCategoriesAndMunicipalities(exportType, formCategory, municipalityId, isCase, municipalityInternalForm, pageable);
+    }
+
+    @RequestMapping(value = "/queries/DeleteRoleForMuncipality", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteRoleForMuncipality")
+    public Integer executeDeleteRoleForMuncipality(@RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "user", required = false) Integer user) {
+        LOGGER.debug("Executing named query: DeleteRoleForMuncipality");
+        Integer _result = queryService.executeDeleteRoleForMuncipality(role, municipality, user);
+        LOGGER.debug("got the result for named query: DeleteRoleForMuncipality, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetMunicipalityEmployees", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetMunicipalityEmployees")
+    public Page<Users> executeGetMunicipalityEmployees(@RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetMunicipalityEmployees");
+        Page<Users> _result = queryService.executeGetMunicipalityEmployees(roleName, municipalityId, email, pageable);
+        LOGGER.debug("got the result for named query: GetMunicipalityEmployees, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetMunicipalityEmployees")
+    @RequestMapping(value = "/queries/GetMunicipalityEmployees/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetMunicipalityEmployees(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "RoleName") String roleName, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "email") String email, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetMunicipalityEmployees");
+
+        return queryService.exportGetMunicipalityEmployees(exportType, roleName, municipalityId, email, pageable);
+    }
+
+    @RequestMapping(value = "/queries/MapAsAdminForVendor", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "MapAsAdminForVendor")
+    public Integer executeMapAsAdminForVendor(@Valid @RequestBody MapAsAdminForVendorRequest mapAsAdminForVendorRequest) {
+        LOGGER.debug("Executing named query: MapAsAdminForVendor");
+        Integer _result = queryService.executeMapAsAdminForVendor(mapAsAdminForVendorRequest);
+        LOGGER.debug("got the result for named query: MapAsAdminForVendor, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/CountOfInspectionDesignByMunicipality", method = RequestMethod.GET)
@@ -2333,42 +1725,24 @@ public class QueryExecutionController {
         return queryService.exportCountOfInspectionDesignByMunicipality(exportType, municipalityId, pageable);
     }
 
-    @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/InsertFormsIntoProject", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "EmployeesMunicipalities")
-    public Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(@RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Executing named query: EmployeesMunicipalities");
-        Page<EmployeesMunicipalitiesResponse> _result = queryService.executeEmployeesMunicipalities(user, pageable);
-        LOGGER.debug("got the result for named query: EmployeesMunicipalities, result:{}", _result);
+    @ApiOperation(value = "InsertFormsIntoProject")
+    public Integer executeInsertFormsIntoProject(@Valid @RequestBody InsertFormsIntoProjectRequest insertFormsIntoProjectRequest) {
+        LOGGER.debug("Executing named query: InsertFormsIntoProject");
+        Integer _result = queryService.executeInsertFormsIntoProject(insertFormsIntoProjectRequest);
+        LOGGER.debug("got the result for named query: InsertFormsIntoProject, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query EmployeesMunicipalities")
-    @RequestMapping(value = "/queries/EmployeesMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @RequestMapping(value = "/queries/RecordFormHistory", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportEmployeesMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
-        LOGGER.debug("Exporting named query: EmployeesMunicipalities");
-
-        return queryService.exportEmployeesMunicipalities(exportType, user, pageable);
-    }
-
-    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "FormsByCategoryForDashBoard")
-    public Page<FormsByCategoryForDashBoardResponse> executeFormsByCategoryForDashBoard(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
-        LOGGER.debug("Executing named query: FormsByCategoryForDashBoard");
-        Page<FormsByCategoryForDashBoardResponse> _result = queryService.executeFormsByCategoryForDashBoard(municipality, startDate, endDate, pageable);
-        LOGGER.debug("got the result for named query: FormsByCategoryForDashBoard, result:{}", _result);
+    @ApiOperation(value = "RecordFormHistory")
+    public Integer executeRecordFormHistory(@Valid @RequestBody RecordFormHistoryRequest recordFormHistoryRequest) {
+        LOGGER.debug("Executing named query: RecordFormHistory");
+        Integer _result = queryService.executeRecordFormHistory(recordFormHistoryRequest);
+        LOGGER.debug("got the result for named query: RecordFormHistory, result:{}", _result);
         return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query FormsByCategoryForDashBoard")
-    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsByCategoryForDashBoard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FormsByCategoryForDashBoard");
-
-        return queryService.exportFormsByCategoryForDashBoard(exportType, municipality, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/GetWriteAccessGroupMembersByFormGUID", method = RequestMethod.GET)
@@ -2390,6 +1764,44 @@ public class QueryExecutionController {
         return queryService.exportGetWriteAccessGroupMembersByFormGUID(exportType, formGuid, pageable);
     }
 
+    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormsByCategoryForDashBoard")
+    public Page<FormsByCategoryForDashBoardResponse> executeFormsByCategoryForDashBoard(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsByCategoryForDashBoard");
+        Page<FormsByCategoryForDashBoardResponse> _result = queryService.executeFormsByCategoryForDashBoard(municipality, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: FormsByCategoryForDashBoard, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsByCategoryForDashBoard")
+    @RequestMapping(value = "/queries/FormsByCategoryForDashBoard/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsByCategoryForDashBoard(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") Timestamp startDate, @RequestParam(value = "endDate") Timestamp endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsByCategoryForDashBoard");
+
+        return queryService.exportFormsByCategoryForDashBoard(exportType, municipality, startDate, endDate, pageable);
+    }
+
+    @RequestMapping(value = "/queries/EmployeesMunicipalities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "EmployeesMunicipalities")
+    public Page<EmployeesMunicipalitiesResponse> executeEmployeesMunicipalities(@RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: EmployeesMunicipalities");
+        Page<EmployeesMunicipalitiesResponse> _result = queryService.executeEmployeesMunicipalities(user, pageable);
+        LOGGER.debug("got the result for named query: EmployeesMunicipalities, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query EmployeesMunicipalities")
+    @RequestMapping(value = "/queries/EmployeesMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportEmployeesMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: EmployeesMunicipalities");
+
+        return queryService.exportEmployeesMunicipalities(exportType, user, pageable);
+    }
+
     @RequestMapping(value = "/queries/RemoveVendorFromMasterForms", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "RemoveVendorFromMasterForms")
@@ -2397,6 +1809,16 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: RemoveVendorFromMasterForms");
         Integer _result = queryService.executeRemoveVendorFromMasterForms(removeVendorFromMasterFormsRequest);
         LOGGER.debug("got the result for named query: RemoveVendorFromMasterForms, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/UpdateFormStatusInMasterForms", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateFormStatusInMasterForms")
+    public Integer executeUpdateFormStatusInMasterForms(@Valid @RequestBody UpdateFormStatusInMasterFormsRequest updateFormStatusInMasterFormsRequest) {
+        LOGGER.debug("Executing named query: UpdateFormStatusInMasterForms");
+        Integer _result = queryService.executeUpdateFormStatusInMasterForms(updateFormStatusInMasterFormsRequest);
+        LOGGER.debug("got the result for named query: UpdateFormStatusInMasterForms, result:{}", _result);
         return _result;
     }
 
@@ -2419,6 +1841,54 @@ public class QueryExecutionController {
         return queryService.exportProjectForms(exportType, project, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetFeeIdsOfUserInCart")
+    public Page<GetFeeIdsOfUserInCartResponse> executeGetFeeIdsOfUserInCart(@RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetFeeIdsOfUserInCart");
+        Page<GetFeeIdsOfUserInCartResponse> _result = queryService.executeGetFeeIdsOfUserInCart(user, pageable);
+        LOGGER.debug("got the result for named query: GetFeeIdsOfUserInCart, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetFeeIdsOfUserInCart")
+    @RequestMapping(value = "/queries/GetFeeIdsOfUserInCart/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFeeIdsOfUserInCart(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetFeeIdsOfUserInCart");
+
+        return queryService.exportGetFeeIdsOfUserInCart(exportType, user, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CountOfCasesForMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfCasesForMunicipality")
+    public Page<CountOfCasesForMunicipalityResponse> executeCountOfCasesForMunicipality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfCasesForMunicipality");
+        Page<CountOfCasesForMunicipalityResponse> _result = queryService.executeCountOfCasesForMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfCasesForMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfCasesForMunicipality")
+    @RequestMapping(value = "/queries/CountOfCasesForMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfCasesForMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfCasesForMunicipality");
+
+        return queryService.exportCountOfCasesForMunicipality(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdatePrimaryVendorStatusInVEndor2Forms", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdatePrimaryVendorStatusInVEndor2Forms")
+    public Integer executeUpdatePrimaryVendorStatusInVEndor2Forms(@Valid @RequestBody UpdatePrimaryVendorStatusInVendor2formsRequest updatePrimaryVendorStatusInVendor2formsRequest) {
+        LOGGER.debug("Executing named query: UpdatePrimaryVendorStatusInVEndor2Forms");
+        Integer _result = queryService.executeUpdatePrimaryVendorStatusInVEndor2Forms(updatePrimaryVendorStatusInVendor2formsRequest);
+        LOGGER.debug("got the result for named query: UpdatePrimaryVendorStatusInVEndor2Forms, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/MunicipalityProjects", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "MunicipalityProjects")
@@ -2438,23 +1908,23 @@ public class QueryExecutionController {
         return queryService.exportMunicipalityProjects(exportType, active, municipalityId, pageable);
     }
 
-    @RequestMapping(value = "/queries/FormsForUsersAndShared", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/getMunicipalityGroupIdIDs", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "Brings closed or opened  Forms of creator and shared with user")
-    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: FormsForUsersAndShared");
-        Page<FormsForUsersAndSharedResponse> _result = queryService.executeFormsForUsersAndShared(codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
-        LOGGER.debug("got the result for named query: FormsForUsersAndShared, result:{}", _result);
+    @ApiOperation(value = "get all the group Details based on userID")
+    public Page<GetMunicipalityGroupIdIdsResponse> executeGetMunicipalityGroupIdIDs(@RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getMunicipalityGroupIdIDs");
+        Page<GetMunicipalityGroupIdIdsResponse> _result = queryService.executeGetMunicipalityGroupIdIDs(userId, pageable);
+        LOGGER.debug("got the result for named query: getMunicipalityGroupIdIDs, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query FormsForUsersAndShared")
-    @RequestMapping(value = "/queries/FormsForUsersAndShared/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @ApiOperation(value = "Returns downloadable file for query getMunicipalityGroupIdIDs")
+    @RequestMapping(value = "/queries/getMunicipalityGroupIdIDs/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportFormsForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: FormsForUsersAndShared");
+    public Downloadable exportGetMunicipalityGroupIdIDs(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userID", required = false) Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getMunicipalityGroupIdIDs");
 
-        return queryService.exportFormsForUsersAndShared(exportType, codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+        return queryService.exportGetMunicipalityGroupIdIDs(exportType, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/UserSubscriptionsByMunicipality", method = RequestMethod.GET)
@@ -2476,14 +1946,61 @@ public class QueryExecutionController {
         return queryService.exportUserSubscriptionsByMunicipality(exportType, municipalityId, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertNewRole", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/FormsForUsersAndShared", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertNewRole")
-    public Integer executeInsertNewRole(@Valid @RequestBody InsertNewRoleRequest insertNewRoleRequest) {
-        LOGGER.debug("Executing named query: InsertNewRole");
-        Integer _result = queryService.executeInsertNewRole(insertNewRoleRequest);
-        LOGGER.debug("got the result for named query: InsertNewRole, result:{}", _result);
+    @ApiOperation(value = "Brings closed or opened  Forms of creator and shared with user")
+    public Page<FormsForUsersAndSharedResponse> executeFormsForUsersAndShared(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsForUsersAndShared");
+        Page<FormsForUsersAndSharedResponse> _result = queryService.executeFormsForUsersAndShared(codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: FormsForUsersAndShared, result:{}", _result);
         return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsForUsersAndShared")
+    @RequestMapping(value = "/queries/FormsForUsersAndShared/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsForUsersAndShared(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsForUsersAndShared");
+
+        return queryService.exportFormsForUsersAndShared(exportType, codeEnforcement, closed, creatorUser, sharedWithUser, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getUserID", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "get user id based on mail id")
+    public Page<GetUserIdResponse> executeGetUserID(@RequestParam(value = "Email", required = false) String email, Pageable pageable) {
+        LOGGER.debug("Executing named query: getUserID");
+        Page<GetUserIdResponse> _result = queryService.executeGetUserID(email, pageable);
+        LOGGER.debug("got the result for named query: getUserID, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getUserID")
+    @RequestMapping(value = "/queries/getUserID/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetUserID(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getUserID");
+
+        return queryService.exportGetUserID(exportType, email, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getListofUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "to get List of user based on municipality ID and role Name")
+    public Page<GetListofUsersResponse> executeGetListofUsers(@RequestParam(value = "municipalityID", required = false) Integer municipalityId, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
+        LOGGER.debug("Executing named query: getListofUsers");
+        Page<GetListofUsersResponse> _result = queryService.executeGetListofUsers(municipalityId, email, pageable);
+        LOGGER.debug("got the result for named query: getListofUsers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getListofUsers")
+    @RequestMapping(value = "/queries/getListofUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetListofUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityID", required = false) Integer municipalityId, @RequestParam(value = "Email", required = false) String email, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getListofUsers");
+
+        return queryService.exportGetListofUsers(exportType, municipalityId, email, pageable);
     }
 
     @RequestMapping(value = "/queries/countOfGlobalCodeList", method = RequestMethod.GET)
@@ -2505,14 +2022,14 @@ public class QueryExecutionController {
         return queryService.exportCountOfGlobalCodeList(exportType, pageable);
     }
 
-    @RequestMapping(value = "/queries/removeFeesFromAllUserCarts", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/queries/InsertNewRole", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "removeFeesFromAllUserCarts")
-    public IntegerWrapper executeRemoveFeesFromAllUserCarts(@RequestParam(value = "feeList") List<Integer> feeList) {
-        LOGGER.debug("Executing named query: removeFeesFromAllUserCarts");
-        Integer _result = queryService.executeRemoveFeesFromAllUserCarts(feeList);
-        LOGGER.debug("got the result for named query: removeFeesFromAllUserCarts, result:{}", _result);
-        return new IntegerWrapper(_result);
+    @ApiOperation(value = "InsertNewRole")
+    public Integer executeInsertNewRole(@Valid @RequestBody InsertNewRoleRequest insertNewRoleRequest) {
+        LOGGER.debug("Executing named query: InsertNewRole");
+        Integer _result = queryService.executeInsertNewRole(insertNewRoleRequest);
+        LOGGER.debug("got the result for named query: InsertNewRole, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/bannedDetails", method = RequestMethod.GET)
@@ -2601,6 +2118,44 @@ public class QueryExecutionController {
         return queryService.exportGetListofGroupName(exportType, municipalityGroupId, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/GetProjectGisrecords", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetProjectGisrecords")
+    public Page<GetProjectGisrecordsResponse> executeGetProjectGisrecords(@RequestParam(value = "relatedProjectGuid", required = false) String relatedProjectGuid, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetProjectGisrecords");
+        Page<GetProjectGisrecordsResponse> _result = queryService.executeGetProjectGisrecords(relatedProjectGuid, pageable);
+        LOGGER.debug("got the result for named query: GetProjectGisrecords, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetProjectGisrecords")
+    @RequestMapping(value = "/queries/GetProjectGisrecords/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetProjectGisrecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "relatedProjectGuid", required = false) String relatedProjectGuid, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetProjectGisrecords");
+
+        return queryService.exportGetProjectGisrecords(exportType, relatedProjectGuid, pageable);
+    }
+
+    @RequestMapping(value = "/queries/SubDivisonCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SubDivisonCount")
+    public Page<SubDivisonCountResponse> executeSubDivisonCount(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: SubDivisonCount");
+        Page<SubDivisonCountResponse> _result = queryService.executeSubDivisonCount(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: SubDivisonCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query SubDivisonCount")
+    @RequestMapping(value = "/queries/SubDivisonCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSubDivisonCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: SubDivisonCount");
+
+        return queryService.exportSubDivisonCount(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/DeleteAllMunicipalityRoles", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteAllMunicipalityRoles")
@@ -2630,6 +2185,44 @@ public class QueryExecutionController {
         return queryService.exportMunicipalitiesByVendorStatus(exportType, vendorId, approvalStatus, pageable);
     }
 
+    @RequestMapping(value = "/queries/getFormCountForGisRecord", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Magic johansen")
+    public Page<GetFormCountForGisRecordResponse> executeGetFormCountForGisRecord(@RequestParam(value = "isCase") Boolean isCase, @RequestParam(value = "gisRecordId") Long gisRecordId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getFormCountForGisRecord");
+        Page<GetFormCountForGisRecordResponse> _result = queryService.executeGetFormCountForGisRecord(isCase, gisRecordId, pageable);
+        LOGGER.debug("got the result for named query: getFormCountForGisRecord, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getFormCountForGisRecord")
+    @RequestMapping(value = "/queries/getFormCountForGisRecord/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFormCountForGisRecord(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isCase") Boolean isCase, @RequestParam(value = "gisRecordId") Long gisRecordId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getFormCountForGisRecord");
+
+        return queryService.exportGetFormCountForGisRecord(exportType, isCase, gisRecordId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/GetRolesForMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetRolesForMunicipality")
+    public Page<GetRolesForMunicipalityResponse> executeGetRolesForMunicipality(@RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetRolesForMunicipality");
+        Page<GetRolesForMunicipalityResponse> _result = queryService.executeGetRolesForMunicipality(role, municipality, pageable);
+        LOGGER.debug("got the result for named query: GetRolesForMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetRolesForMunicipality")
+    @RequestMapping(value = "/queries/GetRolesForMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetRolesForMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "role", required = false) String role, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetRolesForMunicipality");
+
+        return queryService.exportGetRolesForMunicipality(exportType, role, municipality, pageable);
+    }
+
     @RequestMapping(value = "/queries/resetPasswordForUser", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Resets password for a user, given user ID as Integer and password as String.")
@@ -2637,6 +2230,16 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: resetPasswordForUser");
         Integer _result = queryService.executeResetPasswordForUser(resetPasswordForUserRequest);
         LOGGER.debug("got the result for named query: resetPasswordForUser, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Insert Groups in to Municipalities")
+    public Integer executeInsertGroups(@Valid @RequestBody InsertGroupsRequest insertGroupsRequest) {
+        LOGGER.debug("Executing named query: InsertGroups");
+        Integer _result = queryService.executeInsertGroups(insertGroupsRequest);
+        LOGGER.debug("got the result for named query: InsertGroups, result:{}", _result);
         return _result;
     }
 
@@ -2650,23 +2253,34 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets", method = RequestMethod.GET)
+    @RequestMapping(value = "/queries/AddGIStoForms", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "CountOfMunicipalityCodeSets")
-    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: CountOfMunicipalityCodeSets");
-        Page<CountOfMunicipalityCodeSetsResponse> _result = queryService.executeCountOfMunicipalityCodeSets(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: CountOfMunicipalityCodeSets, result:{}", _result);
+    @ApiOperation(value = "AddGIStoForms")
+    public Integer executeAddGIStoForms(@Valid @RequestBody AddGistoFormsRequest addGistoFormsRequest) {
+        LOGGER.debug("Executing named query: AddGIStoForms");
+        Integer _result = queryService.executeAddGIStoForms(addGistoFormsRequest);
+        LOGGER.debug("got the result for named query: AddGIStoForms, result:{}", _result);
         return _result;
     }
 
-    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityCodeSets")
-    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @RequestMapping(value = "/queries/AddMemeberToProject", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountOfMunicipalityCodeSets(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: CountOfMunicipalityCodeSets");
+    @ApiOperation(value = "AddMemeberToProject")
+    public Integer executeAddMemeberToProject(@Valid @RequestBody AddMemeberToProjectRequest addMemeberToProjectRequest) {
+        LOGGER.debug("Executing named query: AddMemeberToProject");
+        Integer _result = queryService.executeAddMemeberToProject(addMemeberToProjectRequest);
+        LOGGER.debug("got the result for named query: AddMemeberToProject, result:{}", _result);
+        return _result;
+    }
 
-        return queryService.exportCountOfMunicipalityCodeSets(exportType, municipalityId, pageable);
+    @RequestMapping(value = "/queries/checkInspectionLimit", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Check to see if inspection limit for a day has been exceeded or not.")
+    public CheckInspectionLimitResponse executeCheckInspectionLimit(@RequestParam(value = "inspectionDesignId") Integer inspectionDesignId, @RequestParam(value = "startOfDay") LocalDateTime startOfDay, @RequestParam(value = "endOfDay") LocalDateTime endOfDay) {
+        LOGGER.debug("Executing named query: checkInspectionLimit");
+        CheckInspectionLimitResponse _result = queryService.executeCheckInspectionLimit(inspectionDesignId, startOfDay, endOfDay);
+        LOGGER.debug("got the result for named query: checkInspectionLimit, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/getOwnersForGisRecords", method = RequestMethod.GET)
@@ -2688,6 +2302,35 @@ public class QueryExecutionController {
         return queryService.exportGetOwnersForGisRecords(exportType, gisRecordIds, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfMunicipalityCodeSets")
+    public Page<CountOfMunicipalityCodeSetsResponse> executeCountOfMunicipalityCodeSets(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfMunicipalityCodeSets");
+        Page<CountOfMunicipalityCodeSetsResponse> _result = queryService.executeCountOfMunicipalityCodeSets(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfMunicipalityCodeSets, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityCodeSets")
+    @RequestMapping(value = "/queries/CountOfMunicipalityCodeSets/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfMunicipalityCodeSets(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfMunicipalityCodeSets");
+
+        return queryService.exportCountOfMunicipalityCodeSets(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertFormsToInspectionsMapping", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertFormsToInspectionsMapping")
+    public IntegerWrapper executeInsertFormsToInspectionsMapping(@Valid @RequestBody InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest) {
+        LOGGER.debug("Executing named query: InsertFormsToInspectionsMapping");
+        Integer _result = queryService.executeInsertFormsToInspectionsMapping(insertFormsToInspectionsMappingRequest);
+        LOGGER.debug("got the result for named query: InsertFormsToInspectionsMapping, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/FetchRolesForUserWithMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "FetchRolesForUserWithMunicipality")
@@ -2705,6 +2348,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: FetchRolesForUserWithMunicipality");
 
         return queryService.exportFetchRolesForUserWithMunicipality(exportType, user, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/updateAssessFeeYN", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateAssessFeeYNAndForInspectionOutcome")
+    public IntegerWrapper executeUpdateAssessFeeYN(@Valid @RequestBody UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
+        LOGGER.debug("Executing named query: updateAssessFeeYN");
+        Integer _result = queryService.executeUpdateAssessFeeYN(updateAssessFeeYnRequest);
+        LOGGER.debug("got the result for named query: updateAssessFeeYN, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/SearchAllFormsByUser", method = RequestMethod.GET)
@@ -2726,26 +2379,6 @@ public class QueryExecutionController {
         return queryService.exportSearchAllFormsByUser(exportType, sharedWithUser, municipalityId, formcategoryId, formtypeId, publicRead, municipalityInternalForm, closed, startd, endd, pageable);
     }
 
-    @RequestMapping(value = "/queries/updateAssessFeeYN", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "updateAssessFeeYNAndForInspectionOutcome")
-    public IntegerWrapper executeUpdateAssessFeeYN(@Valid @RequestBody UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
-        LOGGER.debug("Executing named query: updateAssessFeeYN");
-        Integer _result = queryService.executeUpdateAssessFeeYN(updateAssessFeeYnRequest);
-        LOGGER.debug("got the result for named query: updateAssessFeeYN, result:{}", _result);
-        return new IntegerWrapper(_result);
-    }
-
-    @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "SetModifiedDateForProject")
-    public Integer executeSetModifiedDateForProject(@Valid @RequestBody SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
-        LOGGER.debug("Executing named query: SetModifiedDateForProject");
-        Integer _result = queryService.executeSetModifiedDateForProject(setModifiedDateForProjectRequest);
-        LOGGER.debug("got the result for named query: SetModifiedDateForProject, result:{}", _result);
-        return _result;
-    }
-
     @RequestMapping(value = "/queries/VendorsByMunicipalityAndStatus", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "VendorsByMunicipalityAndStatus")
@@ -2763,6 +2396,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: VendorsByMunicipalityAndStatus");
 
         return queryService.exportVendorsByMunicipalityAndStatus(exportType, municipalityId, approvalStatus, active, companyName, pageable);
+    }
+
+    @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SetModifiedDateForProject")
+    public Integer executeSetModifiedDateForProject(@Valid @RequestBody SetModifiedDateForProjectRequest setModifiedDateForProjectRequest) {
+        LOGGER.debug("Executing named query: SetModifiedDateForProject");
+        Integer _result = queryService.executeSetModifiedDateForProject(setModifiedDateForProjectRequest);
+        LOGGER.debug("got the result for named query: SetModifiedDateForProject, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/CompanyFormsByVendorId", method = RequestMethod.GET)
@@ -2794,6 +2437,74 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/resetPasswordWithTokenForUser", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "This saves a reset password token in the DB given a User ID and Token.")
+    public Integer executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) Integer userid, @RequestParam(value = "token", required = false) String token) {
+        LOGGER.debug("Executing named query: resetPasswordWithTokenForUser");
+        Integer _result = queryService.executeResetPasswordWithTokenForUser(userid, token);
+        LOGGER.debug("got the result for named query: resetPasswordWithTokenForUser, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/VendorsLinkedWithForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "VendorsLinkedWithForm")
+    public Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(@RequestParam(value = "RelatedFormGUID", required = false) String relatedFormGuid, Pageable pageable) {
+        LOGGER.debug("Executing named query: VendorsLinkedWithForm");
+        Page<VendorsLinkedWithFormResponse> _result = queryService.executeVendorsLinkedWithForm(relatedFormGuid, pageable);
+        LOGGER.debug("got the result for named query: VendorsLinkedWithForm, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query VendorsLinkedWithForm")
+    @RequestMapping(value = "/queries/VendorsLinkedWithForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportVendorsLinkedWithForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "RelatedFormGUID", required = false) String relatedFormGuid, Pageable pageable) {
+        LOGGER.debug("Exporting named query: VendorsLinkedWithForm");
+
+        return queryService.exportVendorsLinkedWithForm(exportType, relatedFormGuid, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateRoleForMunicipality", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateRoleForMunicipality")
+    public Integer executeUpdateRoleForMunicipality(@Valid @RequestBody UpdateRoleForMunicipalityRequest updateRoleForMunicipalityRequest) {
+        LOGGER.debug("Executing named query: UpdateRoleForMunicipality");
+        Integer _result = queryService.executeUpdateRoleForMunicipality(updateRoleForMunicipalityRequest);
+        LOGGER.debug("got the result for named query: UpdateRoleForMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/GetFormsForMunicpality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "GetFormsForMunicpality")
+    public Page<GetFormsForMunicpalityResponse> executeGetFormsForMunicpality(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: GetFormsForMunicpality");
+        Page<GetFormsForMunicpalityResponse> _result = queryService.executeGetFormsForMunicpality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: GetFormsForMunicpality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query GetFormsForMunicpality")
+    @RequestMapping(value = "/queries/GetFormsForMunicpality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetFormsForMunicpality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: GetFormsForMunicpality");
+
+        return queryService.exportGetFormsForMunicpality(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateProcessOwnersForGUID", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateProcessOwnersForGUID")
+    public Integer executeUpdateProcessOwnersForGUID(@Valid @RequestBody UpdateProcessOwnersForGuidRequest updateProcessOwnersForGuidRequest) {
+        LOGGER.debug("Executing named query: UpdateProcessOwnersForGUID");
+        Integer _result = queryService.executeUpdateProcessOwnersForGUID(updateProcessOwnersForGuidRequest);
+        LOGGER.debug("got the result for named query: UpdateProcessOwnersForGUID, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/getUserMessages", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getUserMessages")
@@ -2811,6 +2522,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getUserMessages");
 
         return queryService.exportGetUserMessages(exportType, taggedPersonId, municipalityId, messageStatus, pageable);
+    }
+
+    @RequestMapping(value = "/queries/SearchFormByVendor", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "SearchFormByVendor")
+    public Page<MasterForms> executeSearchFormByVendor(@RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
+        LOGGER.debug("Executing named query: SearchFormByVendor");
+        Page<MasterForms> _result = queryService.executeSearchFormByVendor(startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
+        LOGGER.debug("got the result for named query: SearchFormByVendor, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query SearchFormByVendor")
+    @RequestMapping(value = "/queries/SearchFormByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchFormByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "startd", required = false) Timestamp startd, @RequestParam(value = "endd", required = false) Timestamp endd, @RequestParam(value = "FormTypeId", required = false) Integer formTypeId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "closed", required = false) Boolean closed, @RequestParam(value = "vendorId") Integer vendorId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: SearchFormByVendor");
+
+        return queryService.exportSearchFormByVendor(exportType, startd, endd, formTypeId, municipalityId, closed, vendorId, pageable);
     }
 
     @RequestMapping(value = "/queries/countOfMunicipalityCodeList", method = RequestMethod.GET)
@@ -2851,6 +2581,16 @@ public class QueryExecutionController {
         return queryService.exportGetTotalPaymentByMethodForPeriod(exportType, municipalityId, startd, endd, pageable);
     }
 
+    @RequestMapping(value = "/queries/UpdateProjectDescription", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateProjectDescription")
+    public Integer executeUpdateProjectDescription(@Valid @RequestBody UpdateProjectDescriptionRequest updateProjectDescriptionRequest) {
+        LOGGER.debug("Executing named query: UpdateProjectDescription");
+        Integer _result = queryService.executeUpdateProjectDescription(updateProjectDescriptionRequest);
+        LOGGER.debug("got the result for named query: UpdateProjectDescription, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AllFeesOfFormsForCreatedByAndSharedWith")
@@ -2868,25 +2608,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: AllFeesOfFormsForCreatedByAndSharedWith");
 
         return queryService.exportAllFeesOfFormsForCreatedByAndSharedWith(exportType, allowPayment, paidStatus, userId, pageable);
-    }
-
-    @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "VendorsCountForMunicipalities")
-    public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Executing named query: VendorsCountForMunicipalities");
-        Page<VendorsCountForMunicipalitiesResponse> _result = queryService.executeVendorsCountForMunicipalities(municipalityId, pageable);
-        LOGGER.debug("got the result for named query: VendorsCountForMunicipalities, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query VendorsCountForMunicipalities")
-    @RequestMapping(value = "/queries/VendorsCountForMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportVendorsCountForMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
-        LOGGER.debug("Exporting named query: VendorsCountForMunicipalities");
-
-        return queryService.exportVendorsCountForMunicipalities(exportType, municipalityId, pageable);
     }
 
     @RequestMapping(value = "/queries/formsWithCodeEnforcementByMunicipality", method = RequestMethod.GET)
@@ -2908,6 +2629,25 @@ public class QueryExecutionController {
         return queryService.exportFormsWithCodeEnforcementByMunicipality(exportType, codeEnforcement, closed, municipalityId, pageable);
     }
 
+    @RequestMapping(value = "/queries/VendorsCountForMunicipalities", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "VendorsCountForMunicipalities")
+    public Page<VendorsCountForMunicipalitiesResponse> executeVendorsCountForMunicipalities(@RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: VendorsCountForMunicipalities");
+        Page<VendorsCountForMunicipalitiesResponse> _result = queryService.executeVendorsCountForMunicipalities(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: VendorsCountForMunicipalities, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query VendorsCountForMunicipalities")
+    @RequestMapping(value = "/queries/VendorsCountForMunicipalities/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportVendorsCountForMunicipalities(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId", required = false) Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: VendorsCountForMunicipalities");
+
+        return queryService.exportVendorsCountForMunicipalities(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/getRolesForUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Get a simple list of a user's roles")
@@ -2927,6 +2667,64 @@ public class QueryExecutionController {
         return queryService.exportGetRolesForUser(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/countAssignedInspectionsLessThanDate", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countAssignedInspectionsLessThanDate")
+    public Page<CountAssignedInspectionsLessThanDateResponse> executeCountAssignedInspectionsLessThanDate(@RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Executing named query: countAssignedInspectionsLessThanDate");
+        Page<CountAssignedInspectionsLessThanDateResponse> _result = queryService.executeCountAssignedInspectionsLessThanDate(isClosed, assignedTo, requestedFor, municipality, pageable);
+        LOGGER.debug("got the result for named query: countAssignedInspectionsLessThanDate, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countAssignedInspectionsLessThanDate")
+    @RequestMapping(value = "/queries/countAssignedInspectionsLessThanDate/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountAssignedInspectionsLessThanDate(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "isClosed") Boolean isClosed, @RequestParam(value = "assignedTo") Integer assignedTo, @RequestParam(value = "requestedFor") LocalDateTime requestedFor, @RequestParam(value = "municipality", required = false) Integer municipality, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countAssignedInspectionsLessThanDate");
+
+        return queryService.exportCountAssignedInspectionsLessThanDate(exportType, isClosed, assignedTo, requestedFor, municipality, pageable);
+    }
+
+    @RequestMapping(value = "/queries/DeleteFromVendorUsers", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteFromVendorUsers")
+    public Integer executeDeleteFromVendorUsers(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor) {
+        LOGGER.debug("Executing named query: DeleteFromVendorUsers");
+        Integer _result = queryService.executeDeleteFromVendorUsers(user, vendor);
+        LOGGER.debug("got the result for named query: DeleteFromVendorUsers, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CheckingUserWithInVendorUsers")
+    public Page<CheckingUserWithInVendorUsersResponse> executeCheckingUserWithInVendorUsers(@RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Executing named query: CheckingUserWithInVendorUsers");
+        Page<CheckingUserWithInVendorUsersResponse> _result = queryService.executeCheckingUserWithInVendorUsers(user, vendor, pageable);
+        LOGGER.debug("got the result for named query: CheckingUserWithInVendorUsers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CheckingUserWithInVendorUsers")
+    @RequestMapping(value = "/queries/CheckingUserWithInVendorUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCheckingUserWithInVendorUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user", required = false) Integer user, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CheckingUserWithInVendorUsers");
+
+        return queryService.exportCheckingUserWithInVendorUsers(exportType, user, vendor, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateVendorStatus")
+    public Integer executeUpdateVendorStatus(@Valid @RequestBody UpdateVendorStatusRequest updateVendorStatusRequest) {
+        LOGGER.debug("Executing named query: UpdateVendorStatus");
+        Integer _result = queryService.executeUpdateVendorStatus(updateVendorStatusRequest);
+        LOGGER.debug("got the result for named query: UpdateVendorStatus, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/DeleteProjectForms", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteProjectForms")
@@ -2935,6 +2733,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeDeleteProjectForms(projectForm);
         LOGGER.debug("got the result for named query: DeleteProjectForms, result:{}", _result);
         return new IntegerWrapper(_result);
+    }
+
+    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InspectionDesignForCategoriesMappedToForms")
+    public Page<InspectionDesign> executeInspectionDesignForCategoriesMappedToForms(@RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: InspectionDesignForCategoriesMappedToForms");
+        Page<InspectionDesign> _result = queryService.executeInspectionDesignForCategoriesMappedToForms(formTypeId, active, pageable);
+        LOGGER.debug("got the result for named query: InspectionDesignForCategoriesMappedToForms, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query InspectionDesignForCategoriesMappedToForms")
+    @RequestMapping(value = "/queries/InspectionDesignForCategoriesMappedToForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportInspectionDesignForCategoriesMappedToForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formTypeId") Integer formTypeId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: InspectionDesignForCategoriesMappedToForms");
+
+        return queryService.exportInspectionDesignForCategoriesMappedToForms(exportType, formTypeId, active, pageable);
     }
 
     @RequestMapping(value = "/queries/GetGis2formsByForm", method = RequestMethod.GET)
@@ -2956,6 +2773,25 @@ public class QueryExecutionController {
         return queryService.exportGetGis2formsByForm(exportType, relatedFormGuid, pageable);
     }
 
+    @RequestMapping(value = "/queries/UnpaidFormFeeCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UnpaidFormFeeCount")
+    public Page<UnpaidFormFeeCountResponse> executeUnpaidFormFeeCount(@RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Executing named query: UnpaidFormFeeCount");
+        Page<UnpaidFormFeeCountResponse> _result = queryService.executeUnpaidFormFeeCount(allowPayment, paidStatus, userId, pageable);
+        LOGGER.debug("got the result for named query: UnpaidFormFeeCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query UnpaidFormFeeCount")
+    @RequestMapping(value = "/queries/UnpaidFormFeeCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUnpaidFormFeeCount(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "allowPayment") Boolean allowPayment, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "userId") Integer userId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: UnpaidFormFeeCount");
+
+        return queryService.exportUnpaidFormFeeCount(exportType, allowPayment, paidStatus, userId, pageable);
+    }
+
     @RequestMapping(value = "/queries/getInspectionsToBeScheduledByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getInspectionsToBeScheduledByMunicipality")
@@ -2973,16 +2809,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getInspectionsToBeScheduledByMunicipality");
 
         return queryService.exportGetInspectionsToBeScheduledByMunicipality(exportType, outcome, municipality, pageable);
-    }
-
-    @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "DeleteExistingSubscriptionsForUser")
-    public Integer executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) Integer user) {
-        LOGGER.debug("Executing named query: DeleteExistingSubscriptionsForUser");
-        Integer _result = queryService.executeDeleteExistingSubscriptionsForUser(user);
-        LOGGER.debug("got the result for named query: DeleteExistingSubscriptionsForUser, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/FormsTypesForDashboard", method = RequestMethod.GET)
@@ -3004,6 +2830,16 @@ public class QueryExecutionController {
         return queryService.exportFormsTypesForDashboard(exportType, municipality, startDate, endDate, pageable);
     }
 
+    @RequestMapping(value = "/queries/DeleteExistingSubscriptionsForUser", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "DeleteExistingSubscriptionsForUser")
+    public Integer executeDeleteExistingSubscriptionsForUser(@RequestParam(value = "user", required = false) Integer user) {
+        LOGGER.debug("Executing named query: DeleteExistingSubscriptionsForUser");
+        Integer _result = queryService.executeDeleteExistingSubscriptionsForUser(user);
+        LOGGER.debug("got the result for named query: DeleteExistingSubscriptionsForUser, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/MunicipalityCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "MunicipalityCount")
@@ -3021,6 +2857,54 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: MunicipalityCount");
 
         return queryService.exportMunicipalityCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getInspectorsByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "Inspectors by Municipality")
+    public Page<Users> executeGetInspectorsByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: getInspectorsByMunicipality");
+        Page<Users> _result = queryService.executeGetInspectorsByMunicipality(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: getInspectorsByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getInspectorsByMunicipality")
+    @RequestMapping(value = "/queries/getInspectorsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetInspectorsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: getInspectorsByMunicipality");
+
+        return queryService.exportGetInspectorsByMunicipality(exportType, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/userSubscriptionsCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "userSubscriptionsCount")
+    public Page<UserSubscriptionsCountResponse> executeUserSubscriptionsCount(Pageable pageable) {
+        LOGGER.debug("Executing named query: userSubscriptionsCount");
+        Page<UserSubscriptionsCountResponse> _result = queryService.executeUserSubscriptionsCount(pageable);
+        LOGGER.debug("got the result for named query: userSubscriptionsCount, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query userSubscriptionsCount")
+    @RequestMapping(value = "/queries/userSubscriptionsCount/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportUserSubscriptionsCount(@PathVariable("exportType") ExportType exportType, Pageable pageable) {
+        LOGGER.debug("Exporting named query: userSubscriptionsCount");
+
+        return queryService.exportUserSubscriptionsCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertFormMessage", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertFormMessage")
+    public Integer executeInsertFormMessage(@Valid @RequestBody InsertFormMessageRequest insertFormMessageRequest) {
+        LOGGER.debug("Executing named query: InsertFormMessage");
+        Integer _result = queryService.executeInsertFormMessage(insertFormMessageRequest);
+        LOGGER.debug("got the result for named query: InsertFormMessage, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/CasesByMunicipalityAndAfterDate", method = RequestMethod.GET)
@@ -3042,14 +2926,90 @@ public class QueryExecutionController {
         return queryService.exportCasesByMunicipalityAndAfterDate(exportType, codeEnforcement, closed, municipalityId, dateSubmitted, pageable);
     }
 
-    @RequestMapping(value = "/queries/InsertProjectMessage", method = RequestMethod.POST)
+    @RequestMapping(value = "/queries/SearchAllFormsByVendor", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InsertProjectMessage")
-    public Integer executeInsertProjectMessage(@Valid @RequestBody InsertProjectMessageRequest insertProjectMessageRequest) {
-        LOGGER.debug("Executing named query: InsertProjectMessage");
-        Integer _result = queryService.executeInsertProjectMessage(insertProjectMessageRequest);
-        LOGGER.debug("got the result for named query: InsertProjectMessage, result:{}", _result);
+    @ApiOperation(value = "SearchAllFormsByVendor")
+    public Page<SearchAllFormsByVendorResponse> executeSearchAllFormsByVendor(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: SearchAllFormsByVendor");
+        Page<SearchAllFormsByVendorResponse> _result = queryService.executeSearchAllFormsByVendor(vendorId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: SearchAllFormsByVendor, result:{}", _result);
         return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query SearchAllFormsByVendor")
+    @RequestMapping(value = "/queries/SearchAllFormsByVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSearchAllFormsByVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "formcategoryID", required = false) Integer formcategoryId, @RequestParam(value = "formtypeID", required = false) Integer formtypeId, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "publicRead", required = false) Boolean publicRead, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: SearchAllFormsByVendor");
+
+        return queryService.exportSearchAllFormsByVendor(exportType, vendorId, municipalityId, formcategoryId, formtypeId, closed, municipalityInternalForm, publicRead, startd, endd, pageable);
+    }
+
+    @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "ProjectsForUsersAndSharedWith")
+    public Page<Projects> executeProjectsForUsersAndSharedWith(@RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: ProjectsForUsersAndSharedWith");
+        Page<Projects> _result = queryService.executeProjectsForUsersAndSharedWith(active, creatorUser, sharedWithUser, municipalityId, pageable);
+        LOGGER.debug("got the result for named query: ProjectsForUsersAndSharedWith, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query ProjectsForUsersAndSharedWith")
+    @RequestMapping(value = "/queries/ProjectsForUsersAndSharedWith/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportProjectsForUsersAndSharedWith(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "Active", required = false) Boolean active, @RequestParam(value = "creatorUser", required = false) Integer creatorUser, @RequestParam(value = "sharedWithUser", required = false) Integer sharedWithUser, @RequestParam(value = "municipalityId", required = false) Long municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: ProjectsForUsersAndSharedWith");
+
+        return queryService.exportProjectsForUsersAndSharedWith(exportType, active, creatorUser, sharedWithUser, municipalityId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateNewPassword", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateNewPassword")
+    public Integer executeUpdateNewPassword(@Valid @RequestBody UpdateNewPasswordRequest updateNewPasswordRequest) {
+        LOGGER.debug("Executing named query: UpdateNewPassword");
+        Integer _result = queryService.executeUpdateNewPassword(updateNewPasswordRequest);
+        LOGGER.debug("got the result for named query: UpdateNewPassword, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/FormsTaggedWithGISRecords", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormsTaggedWithGISRecords")
+    public Page<FormsTaggedWithGisrecordsResponse> executeFormsTaggedWithGISRecords(@RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormsTaggedWithGISRecords");
+        Page<FormsTaggedWithGisrecordsResponse> _result = queryService.executeFormsTaggedWithGISRecords(codeEnforcement, gisrecordId, pageable);
+        LOGGER.debug("got the result for named query: FormsTaggedWithGISRecords, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormsTaggedWithGISRecords")
+    @RequestMapping(value = "/queries/FormsTaggedWithGISRecords/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormsTaggedWithGISRecords(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "codeEnforcement") Boolean codeEnforcement, @RequestParam(value = "GISRecordId") Integer gisrecordId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormsTaggedWithGISRecords");
+
+        return queryService.exportFormsTaggedWithGISRecords(exportType, codeEnforcement, gisrecordId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CountOfVendorUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfVendorUsers")
+    public Page<CountOfVendorUsersResponse> executeCountOfVendorUsers(@RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfVendorUsers");
+        Page<CountOfVendorUsersResponse> _result = queryService.executeCountOfVendorUsers(vendor, pageable);
+        LOGGER.debug("got the result for named query: CountOfVendorUsers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfVendorUsers")
+    @RequestMapping(value = "/queries/CountOfVendorUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfVendorUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor", required = false) Integer vendor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfVendorUsers");
+
+        return queryService.exportCountOfVendorUsers(exportType, vendor, pageable);
     }
 
     @RequestMapping(value = "/queries/getInspectionDesignByInspectionCategoriesAssignedToFormType", method = RequestMethod.GET)
@@ -3069,6 +3029,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getInspectionDesignByInspectionCategoriesAssignedToFormType");
 
         return queryService.exportGetInspectionDesignByInspectionCategoriesAssignedToFormType(exportType, active, formType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/InsertProjectMessage", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InsertProjectMessage")
+    public Integer executeInsertProjectMessage(@Valid @RequestBody InsertProjectMessageRequest insertProjectMessageRequest) {
+        LOGGER.debug("Executing named query: InsertProjectMessage");
+        Integer _result = queryService.executeInsertProjectMessage(insertProjectMessageRequest);
+        LOGGER.debug("got the result for named query: InsertProjectMessage, result:{}", _result);
+        return _result;
     }
 
     @RequestMapping(value = "/queries/setMessageReadStatus", method = RequestMethod.PUT)

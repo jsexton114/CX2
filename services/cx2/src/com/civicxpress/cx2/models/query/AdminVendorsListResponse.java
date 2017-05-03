@@ -7,13 +7,18 @@ package com.civicxpress.cx2.models.query;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.math.BigInteger;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
+import com.civicxpress.cx2.FormFieldTypes;
+import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.MasterForms;
+import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
 
@@ -69,10 +74,10 @@ public class AdminVendorsListResponse implements Serializable {
     private String insuranceCompany;
     @JsonProperty("InsuranceExpires")
     @ColumnAlias("InsuranceExpires")
-    private Date insuranceExpires;
+    private java.sql.Date insuranceExpires;
     @JsonProperty("LastUpdated")
     @ColumnAlias("LastUpdated")
-    private Date lastUpdated;
+    private java.sql.Date lastUpdated;
     @JsonProperty("NumberOfEmployees")
     @ColumnAlias("NumberOfEmployees")
     private BigDecimal numberOfEmployees;
@@ -217,19 +222,19 @@ public class AdminVendorsListResponse implements Serializable {
         this.insuranceCompany = insuranceCompany;
     }
 
-    public Date getInsuranceExpires() {
+    public java.sql.Date getInsuranceExpires() {
         return this.insuranceExpires;
     }
 
-    public void setInsuranceExpires(Date insuranceExpires) {
+    public void setInsuranceExpires(java.sql.Date insuranceExpires) {
         this.insuranceExpires = insuranceExpires;
     }
 
-    public Date getLastUpdated() {
+    public java.sql.Date getLastUpdated() {
         return this.lastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
+    public void setLastUpdated(java.sql.Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

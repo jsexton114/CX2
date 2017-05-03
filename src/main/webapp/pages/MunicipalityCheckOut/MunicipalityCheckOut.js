@@ -6,58 +6,20 @@ Application.$controller("MunicipalityCheckOutPageController", ["$scope", functio
 
     };
 
-    $scope.lvCheckOutonSuccess = function(variable, data) {
-        var fees = [];
+    $scope.buttonSubmitClick = function($event, $isolateScope) {
+        var feeIds = [];
 
-        var temp = $scope.Variables.svCartItemIds.dataSet.content;
-        for (let i = 0; i < temp.length; i++) {
-            fees.push(temp[i].feeId);
-        }
-
-        //Updating the Status of fees to Paid after Payment
-
-        $scope.Variables.svUpdateMultipleFeeStatus.setInput({
-            'feeList': fees
-        });
-        $scope.Variables.svUpdateMultipleFeeStatus.update();
-        //Updating the Comments of fees from transaction comments
-        $scope.Variables.svUpdateMultipleFeeComments.setInput({
-            'feeList': fees
-        });
-        $scope.Variables.svUpdateMultipleFeeComments.update();
-        // Removing the fee from All users Carts
-        $scope.Variables.svRemoveFeesFromAllUserCarts.setInput({
-            'feeList': fees
-        });
-        $scope.Variables.svRemoveFeesFromAllUserCarts.update();
-        // Mapping paid Fees with Transaction
-        let feeData = $scope.Variables.svCartItemIds.dataSet.content;
-        let targetList = [];
-        _.forEach(feeData, function(obj) {
-            targetList.push({
-                'feeId': obj.feeId
-            });
+        $scope.Variables.svCartItemIds.dataSet.content.forEach(function(cartItem, index) {
+            feeIds.push(cartItem.feeId);
         });
 
-        let itemSet = {
-            'content': targetList
-        };
-        let mappedList = JSON.stringify(itemSet);
+        $scope.Variables.svCheckout.setInput("Long", feeIds);
+        $scope.Variables.svCheckout.update();
+    };
 
-        $scope.Variables.svMapFeeWithTransaction.setInput({
-            'feeListString': mappedList,
-            'transactionId': data.transactionId
-        });
-        $scope.Variables.svMapFeeWithTransaction.update();
-
+    $scope.svCheckoutonSuccess = function(variable, data) {
         $scope.Widgets.alertdialogPaymentSuccess.open();
     };
-
-
-    $scope.svUpdateMultipleFeeCommentsonError = function(variable, data) {
-
-    };
-
 }]);
 
 Application.$controller("confirmdialogPaymentSuccessController", ["$scope",

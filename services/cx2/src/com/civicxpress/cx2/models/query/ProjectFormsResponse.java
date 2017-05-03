@@ -8,20 +8,17 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
-import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
@@ -30,7 +27,7 @@ public class ProjectFormsResponse implements Serializable {
 
     @JsonProperty("addedAt")
     @ColumnAlias("addedAt")
-    private java.util.Date addedAt;
+    private Date addedAt;
     @JsonProperty("addedByUser")
     @ColumnAlias("addedByUser")
     private Integer addedByUser;
@@ -56,11 +53,11 @@ public class ProjectFormsResponse implements Serializable {
     @ColumnAlias("users")
     private Users users;
 
-    public java.util.Date getAddedAt() {
+    public Date getAddedAt() {
         return this.addedAt;
     }
 
-    public void setAddedAt(java.util.Date addedAt) {
+    public void setAddedAt(Date addedAt) {
         this.addedAt = addedAt;
     }
 

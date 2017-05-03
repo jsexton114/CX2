@@ -33,7 +33,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.PaymentHistory;
-import com.civicxpress.cx2.TransactionToFees;
 import com.civicxpress.cx2.service.PaymentHistoryService;
 
 
@@ -152,14 +151,6 @@ public class PaymentHistoryController {
         return paymentHistoryService.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/transactionToFeeses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the transactionToFeeses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<TransactionToFees> findAssociatedTransactionToFeeses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated transactionToFeeses");
-        return paymentHistoryService.findAssociatedTransactionToFeeses(id, pageable);
-    }
 
     /**
 	 * This setter method should only be used by unit tests

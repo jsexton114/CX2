@@ -8,21 +8,18 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
-import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
-import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Projects;
-import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,10 +35,10 @@ public class GetVendorApprovalListByMunicipalityResponse implements Serializable
     private String approvedBy;
     @JsonProperty("dateApproved")
     @ColumnAlias("dateApproved")
-    private java.util.Date dateApproved;
+    private Date dateApproved;
     @JsonProperty("expiresDate")
     @ColumnAlias("expiresDate")
-    private java.util.Date expiresDate;
+    private Date expiresDate;
     @JsonProperty("id")
     @ColumnAlias("id")
     private Integer id;
@@ -77,19 +74,19 @@ public class GetVendorApprovalListByMunicipalityResponse implements Serializable
         this.approvedBy = approvedBy;
     }
 
-    public java.util.Date getDateApproved() {
+    public Date getDateApproved() {
         return this.dateApproved;
     }
 
-    public void setDateApproved(java.util.Date dateApproved) {
+    public void setDateApproved(Date dateApproved) {
         this.dateApproved = dateApproved;
     }
 
-    public java.util.Date getExpiresDate() {
+    public Date getExpiresDate() {
         return this.expiresDate;
     }
 
-    public void setExpiresDate(java.util.Date expiresDate) {
+    public void setExpiresDate(Date expiresDate) {
         this.expiresDate = expiresDate;
     }
 

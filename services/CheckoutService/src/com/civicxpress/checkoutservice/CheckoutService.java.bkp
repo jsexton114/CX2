@@ -1,0 +1,95 @@
+/*Copyright (c) 2015-2016 wavemaker-com All Rights Reserved.
+ This software is the confidential and proprietary information of wavemaker-com You shall not disclose such Confidential Information and shall use it only in accordance
+ with the terms of the source code license agreement you entered into with wavemaker-com*/
+package com.civicxpress.checkoutservice;
+
+import java.math.BigDecimal;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.tekdog.dbutils.DBUtils;
+import com.wavemaker.runtime.security.SecurityService;
+import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import com.wavemaker.runtime.service.annotations.HideFromClient;
+
+//import com.civicxpress.checkoutservice.model.*;
+
+/**
+ * This is a singleton class with all its public methods exposed as REST APIs via generated controller class.
+ * To avoid exposing an API for a particular public method, annotate it with @HideFromClient.
+ *
+ * Method names will play a major role in defining the Http Method for the generated APIs. For example, a method name
+ * that starts with delete/remove, will make the API exposed as Http Method "DELETE".
+ *
+ * Method Parameters of type primitives (including java.lang.String) will be exposed as Query Parameters &
+ * Complex Types/Objects will become part of the Request body in the generated API.
+ */
+@ExposeToClient
+public class CheckoutService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CheckoutService.class);
+
+    @Autowired
+    private SecurityService securityService;
+    
+    @Value("${cx2.url}")
+    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
+    
+    @Value("${cx2.username}")
+    private String defaultSqlUser = "cx2";
+    
+    @Value("${cx2.password}")
+    private String defaultSqlPassword = "F!yingFishCove1957";
+
+    public void municipalityCheckout(Long municipalityId, String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long[] feeIds) throws Exception {
+    	Connection connection = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	CallableStatement checkoutStatement = null;
+    	
+    	BigDecimal amountDue = DBUtils.selectOne(connection, "SELECT SUM(Amount) as amountDue FROM Fees WHERE ID IN ("+StringUtils.join(feeIds, ',')+")", null).getBigDecimal("amountDue");
+    	
+    	if (amountReceived.compareTo(amountDue) == -1) { // Ensure we are not getting swindled.
+    		throw new Exception("The amount received is not enough to pay for the chosen fees.");
+    	}
+    	
+    	int currentUserId = Integer.parseInt(securityService.getUserId());
+    	
+    	try {
+	    	connection.setAutoCommit(false);
+	        checkoutStatement = connection.prepareCall("{call municipalityCheckout(?,?,?,?,?)}");
+	        checkoutStatement.setString("paymentMethod", paymentMethod);
+	        checkoutStatement.setString("paymentNumber", paymentNumber);
+	        checkoutStatement.setBigDecimal("amountReceived", amountReceived);
+	        checkoutStatement.setString("comments", comments);
+	        checkoutStatement.setInt("createdBy", currentUserId);
+	        checkoutStatement.registerOutParameter("transactionId", java.sql.Types.NUMERIC);
+	        checkoutStatement.execute();
+	        
+	        Long transactionId = checkoutStatement.getLong("transactionId");
+	        
+	        for (Long feeId : feeIds) { // Mark fees as paid.
+	        	CallableStatement feeStatement = connection.prepareCall("{call payFee(?,?,?)}");
+	        	feeStatement.setLong("feeId", feeId);
+	        	feeStatement.setLong("transactionId", transactionId);
+	        	feeStatement.setInt("paidByUserId", currentUserId);
+	        	feeStatement.execute();
+	        }
+	        
+	        connection.commit();
+    	} catch (Exception e) {
+    		connection.rollback();
+    		throw e;
+    	} finally {
+    		connection.close();
+    	}
+    }
+}

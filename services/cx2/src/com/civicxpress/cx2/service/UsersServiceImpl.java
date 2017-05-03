@@ -543,6 +543,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
+                vendorUserse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
+            }
+        }
+
         if(usersCreated.getViolationsesForModifiedBy() != null) {
             for(Violations violationsesForModifiedBy : usersCreated.getViolationsesForModifiedBy()) {
                 violationsesForModifiedBy.setUsersByModifiedBy(usersCreated);
@@ -556,14 +564,6 @@ public class UsersServiceImpl implements UsersService {
                 violationsesForCreatedBy.setUsersByCreatedBy(usersCreated);
                 LOGGER.debug("Creating a new child Violations with information: {}", violationsesForCreatedBy);
                 violationsService.create(violationsesForCreatedBy);
-            }
-        }
-
-        if(usersCreated.getVendorUserses() != null) {
-            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
-                vendorUserse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
-                vendorUsersService.create(vendorUserse);
             }
         }
         return usersCreated;
@@ -1115,6 +1115,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Violations> findAssociatedViolationsesForModifiedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated violationsesForModifiedBy");
 
@@ -1133,17 +1144,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
 
         return violationsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**

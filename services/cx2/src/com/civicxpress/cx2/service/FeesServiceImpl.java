@@ -25,7 +25,6 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.MyCart;
-import com.civicxpress.cx2.TransactionToFees;
 
 
 /**
@@ -37,10 +36,6 @@ import com.civicxpress.cx2.TransactionToFees;
 public class FeesServiceImpl implements FeesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FeesServiceImpl.class);
-
-    @Autowired
-	@Qualifier("cx2.TransactionToFeesService")
-	private TransactionToFeesService transactionToFeesService;
 
     @Autowired
 	@Qualifier("cx2.MyCartService")
@@ -64,14 +59,6 @@ public class FeesServiceImpl implements FeesService {
                 myCart.setFees(feesCreated);
                 LOGGER.debug("Creating a new child MyCart with information: {}", myCart);
                 myCartService.create(myCart);
-            }
-        }
-
-        if(feesCreated.getTransactionToFeeses() != null) {
-            for(TransactionToFees transactionToFeese : feesCreated.getTransactionToFeeses()) {
-                transactionToFeese.setFees(feesCreated);
-                LOGGER.debug("Creating a new child TransactionToFees with information: {}", transactionToFeese);
-                transactionToFeesService.create(transactionToFeese);
             }
         }
         return feesCreated;
@@ -163,26 +150,6 @@ public class FeesServiceImpl implements FeesService {
         queryBuilder.append("fees.id = '" + id + "'");
 
         return myCartService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<TransactionToFees> findAssociatedTransactionToFeeses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated transactionToFeeses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("fees.id = '" + id + "'");
-
-        return transactionToFeesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service TransactionToFeesService instance
-	 */
-	protected void setTransactionToFeesService(TransactionToFeesService service) {
-        this.transactionToFeesService = service;
     }
 
     /**

@@ -24,7 +24,6 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.PaymentHistory;
-import com.civicxpress.cx2.TransactionToFees;
 
 
 /**
@@ -37,9 +36,6 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentHistoryServiceImpl.class);
 
-    @Autowired
-	@Qualifier("cx2.TransactionToFeesService")
-	private TransactionToFeesService transactionToFeesService;
 
     @Autowired
     @Qualifier("cx2.PaymentHistoryDao")
@@ -54,13 +50,6 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
 	public PaymentHistory create(PaymentHistory paymentHistory) {
         LOGGER.debug("Creating a new PaymentHistory with information: {}", paymentHistory);
         PaymentHistory paymentHistoryCreated = this.wmGenericDao.create(paymentHistory);
-        if(paymentHistoryCreated.getTransactionToFeeses() != null) {
-            for(TransactionToFees transactionToFeese : paymentHistoryCreated.getTransactionToFeeses()) {
-                transactionToFeese.setPaymentHistory(paymentHistoryCreated);
-                LOGGER.debug("Creating a new child TransactionToFees with information: {}", transactionToFeese);
-                transactionToFeesService.create(transactionToFeese);
-            }
-        }
         return paymentHistoryCreated;
     }
 
@@ -141,25 +130,7 @@ public class PaymentHistoryServiceImpl implements PaymentHistoryService {
         return this.wmGenericDao.getAggregatedValues(aggregationInfo, pageable);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<TransactionToFees> findAssociatedTransactionToFeeses(Integer transactionId, Pageable pageable) {
-        LOGGER.debug("Fetching all associated transactionToFeeses");
 
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("paymentHistory.transactionId = '" + transactionId + "'");
-
-        return transactionToFeesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    /**
-	 * This setter method should only be used by unit tests
-	 *
-	 * @param service TransactionToFeesService instance
-	 */
-	protected void setTransactionToFeesService(TransactionToFeesService service) {
-        this.transactionToFeesService = service;
-    }
 
 }
 

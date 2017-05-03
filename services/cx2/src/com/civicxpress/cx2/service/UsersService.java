@@ -674,6 +674,18 @@ public interface UsersService {
     Page<VendorAdmins> findAssociatedVendorAdminses(Integer id, Pageable pageable);
 
     /*
+     * Returns the associated vendorUserses for given Users id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated VendorUsers instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
+
+    /*
      * Returns the associated violationsesForModifiedBy for given Users id.
      *
      * @param id value of id; value cannot be null
@@ -696,18 +708,6 @@ public interface UsersService {
      * @see Page
      */
     Page<Violations> findAssociatedViolationsesForCreatedBy(Integer id, Pageable pageable);
-
-    /*
-     * Returns the associated vendorUserses for given Users id.
-     *
-     * @param id value of id; value cannot be null
-     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
-     * @return Paginated list of associated VendorUsers instances.
-     *
-     * @see Pageable
-     * @see Page
-     */
-    Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable);
 
 }
 

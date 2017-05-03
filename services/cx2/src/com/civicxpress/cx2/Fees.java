@@ -60,7 +60,6 @@ public class Fees implements Serializable {
     private Municipalities municipalities;
     private Users users;
     private List<MyCart> myCarts;
-    private List<TransactionToFees> transactionToFeeses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -341,16 +340,6 @@ public class Fees implements Serializable {
 
     public void setMyCarts(List<MyCart> myCarts) {
         this.myCarts = myCarts;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "fees")
-    public List<TransactionToFees> getTransactionToFeeses() {
-        return this.transactionToFeeses;
-    }
-
-    public void setTransactionToFeeses(List<TransactionToFees> transactionToFeeses) {
-        this.transactionToFeeses = transactionToFeeses;
     }
 
     @Override
