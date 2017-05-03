@@ -179,7 +179,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/getTransactionsByMunicipality", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getTransactionsByMunicipality")
-    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(@RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") LocalDateTime startd, @RequestParam(value = "endd") LocalDateTime endd, Pageable pageable) {
         LOGGER.debug("Executing named query: getTransactionsByMunicipality");
         Page<GetTransactionsByMunicipalityResponse> _result = queryService.executeGetTransactionsByMunicipality(municipalityId, startd, endd, pageable);
         LOGGER.debug("got the result for named query: getTransactionsByMunicipality, result:{}", _result);
@@ -189,7 +189,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query getTransactionsByMunicipality")
     @RequestMapping(value = "/queries/getTransactionsByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetTransactionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+    public Downloadable exportGetTransactionsByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) Integer municipalityId, @RequestParam(value = "startd") LocalDateTime startd, @RequestParam(value = "endd") LocalDateTime endd, Pageable pageable) {
         LOGGER.debug("Exporting named query: getTransactionsByMunicipality");
 
         return queryService.exportGetTransactionsByMunicipality(exportType, municipalityId, startd, endd, pageable);
@@ -2565,7 +2565,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/getTotalPaymentByMethodForPeriod", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getTotalPaymentByMethodForPeriod")
-    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(@RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(@RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") LocalDateTime startd, @RequestParam(value = "endd") LocalDateTime endd, Pageable pageable) {
         LOGGER.debug("Executing named query: getTotalPaymentByMethodForPeriod");
         Page<GetTotalPaymentByMethodForPeriodResponse> _result = queryService.executeGetTotalPaymentByMethodForPeriod(municipalityId, startd, endd, pageable);
         LOGGER.debug("got the result for named query: getTotalPaymentByMethodForPeriod, result:{}", _result);
@@ -2575,7 +2575,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query getTotalPaymentByMethodForPeriod")
     @RequestMapping(value = "/queries/getTotalPaymentByMethodForPeriod/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportGetTotalPaymentByMethodForPeriod(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") Date startd, @RequestParam(value = "endd") Date endd, Pageable pageable) {
+    public Downloadable exportGetTotalPaymentByMethodForPeriod(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId", required = false) String municipalityId, @RequestParam(value = "startd") LocalDateTime startd, @RequestParam(value = "endd") LocalDateTime endd, Pageable pageable) {
         LOGGER.debug("Exporting named query: getTotalPaymentByMethodForPeriod");
 
         return queryService.exportGetTotalPaymentByMethodForPeriod(exportType, municipalityId, startd, endd, pageable);

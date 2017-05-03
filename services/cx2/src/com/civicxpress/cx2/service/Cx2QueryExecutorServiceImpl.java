@@ -179,7 +179,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+    public Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);
@@ -191,7 +191,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable) {
+    public Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);
@@ -3000,7 +3000,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, Date startd, Date endd, Pageable pageable) {
+    public Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);
@@ -3012,7 +3012,7 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, Date startd, Date endd, Pageable pageable) {
+    public Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable) {
         Map params = new HashMap(3);
 
         params.put("municipalityId", municipalityId);

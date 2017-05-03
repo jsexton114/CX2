@@ -11744,8 +11744,8 @@
     "name" : "getFeesForTransaction",
     "description" : "''",
     "version" : "V2",
-    "queryString" : "select F.Amount,\nF.FeeType,\nF.AccountingCode,\nMF.FormTitle,\nFT.FormType as FormDesign,\nMUNI.MunicipalityName,\nGR.FullAddress,\nF.Comments\nFROM TransactionToFees TF\nINNER JOIN Fees F ON TF.FeeId=F.ID\nINNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid\nINNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nWHERE TF.TransactionId=:transactionId",
-    "countQueryString" : "select count(*) from (select F.Amount,\nF.FeeType,\nF.AccountingCode,\nMF.FormTitle,\nFT.FormType as FormDesign,\nMUNI.MunicipalityName,\nGR.FullAddress,\nF.Comments\nFROM TransactionToFees TF\nINNER JOIN Fees F ON TF.FeeId=F.ID\nINNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid\nINNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nWHERE TF.TransactionId=:transactionId) wmTempTable",
+    "queryString" : "select F.Amount,\nF.FeeType,\nF.AccountingCode,\nMF.FormTitle,\nFT.FormType as FormDesign,\nMUNI.MunicipalityName,\nGR.FullAddress,\nF.Comments\nFROM Fees F\nINNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid\nINNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nWHERE F.TransactionId=:transactionId",
+    "countQueryString" : "select count(*) from (select F.Amount,\nF.FeeType,\nF.AccountingCode,\nMF.FormTitle,\nFT.FormType as FormDesign,\nMUNI.MunicipalityName,\nGR.FullAddress,\nF.Comments\nFROM Fees F\nINNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid\nINNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID\nINNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nWHERE F.TransactionId=:transactionId) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -11754,7 +11754,7 @@
       "type" : "integer",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "13",
+      "testValue" : "73",
       "required" : true
     } ],
     "request" : {
@@ -12997,7 +12997,7 @@
     "name" : "getTotalPaymentByMethodForPeriod",
     "description" : "getTotalPaymentByMethodForPeriod",
     "version" : "V2",
-    "queryString" : "select PH.PaymentMethod,\nSUM(F.Amount) as paymentAmount\nfrom PaymentHistory PH\nINNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)\nwhere (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd\n    GROUP BY PH.PaymentMethod\n    ORDER BY paymentAmount desc",
+    "queryString" : "select PH.PaymentMethod,\nSUM(F.Amount) as paymentAmount\nfrom PaymentHistory PH\nINNER JOIN Fees F ON F.TransactionId=PH.TransactionId\nwhere (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))\n    AND PH.DateCreated between :startd and :endd\n    GROUP BY PH.PaymentMethod\n    ORDER BY paymentAmount desc",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -13011,17 +13011,17 @@
       "required" : false
     }, {
       "name" : "startd",
-      "type" : "date",
+      "type" : "datetime",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-04-12",
+      "testValue" : "2017-05-03T00:00:00",
       "required" : true
     }, {
       "name" : "endd",
-      "type" : "date",
+      "type" : "datetime",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-04-30",
+      "testValue" : "2017-05-03T23:59:59",
       "required" : true
     } ],
     "request" : {
@@ -13072,17 +13072,17 @@
       "required" : false
     }, {
       "name" : "startd",
-      "type" : "date",
+      "type" : "datetime",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-05-01",
+      "testValue" : "2017-05-03T00:00:00",
       "required" : true
     }, {
       "name" : "endd",
-      "type" : "date",
+      "type" : "datetime",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-05-05",
+      "testValue" : "2017-05-03T23:59:59",
       "required" : true
     } ],
     "request" : {

@@ -80,11 +80,11 @@
       "type" : "string"
     }, {
       "target" : "startd",
-      "value" : "bind:Widgets.datetimeStart.datavalue",
+      "value" : "bind:getStartDateTime()",
       "type" : "string"
     }, {
       "target" : "endd",
-      "value" : "bind:Widgets.datetimeEnd.datavalue",
+      "value" : "bind:getEndDateTime()",
       "type" : "string"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetTotalPaymentByMethodForPeriodResponse",
@@ -114,11 +114,11 @@
       "type" : "integer"
     }, {
       "target" : "startd",
-      "value" : "bind:Widgets.datetimeStart.datavalue",
+      "value" : "bind:getStartDateTime()",
       "type" : "string"
     }, {
       "target" : "endd",
-      "value" : "bind:Widgets.datetimeEnd.datavalue",
+      "value" : "bind:getEndDateTime()",
       "type" : "string"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetTransactionsByMunicipalityResponse",

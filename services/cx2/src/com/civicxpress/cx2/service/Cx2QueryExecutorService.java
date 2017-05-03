@@ -54,9 +54,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportAdminsMunicipalities(ExportType exportType, Integer user, Pageable pageable);
 
-    Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, Date startd, Date endd, Pageable pageable);
+    Page<GetTransactionsByMunicipalityResponse> executeGetTransactionsByMunicipality(Integer municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable);
 
-    Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, Date startd, Date endd, Pageable pageable);
+    Downloadable exportGetTransactionsByMunicipality(ExportType exportType, Integer municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable);
 
     Integer executeInsertIntoCart(InsertIntoCartRequest insertIntoCartRequest);
 
@@ -550,9 +550,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfMunicipalityCodeList(ExportType exportType, Integer municipalityId, Pageable pageable);
 
-    Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, Date startd, Date endd, Pageable pageable);
+    Page<GetTotalPaymentByMethodForPeriodResponse> executeGetTotalPaymentByMethodForPeriod(String municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable);
 
-    Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, Date startd, Date endd, Pageable pageable);
+    Downloadable exportGetTotalPaymentByMethodForPeriod(ExportType exportType, String municipalityId, LocalDateTime startd, LocalDateTime endd, Pageable pageable);
 
     Integer executeUpdateProjectDescription(UpdateProjectDescriptionRequest updateProjectDescriptionRequest);
 

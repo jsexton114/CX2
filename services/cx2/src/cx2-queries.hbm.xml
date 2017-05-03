@@ -203,8 +203,8 @@ where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FR
     AND PH.DateCreated between :startd and :endd
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
-    <query-param name="startd" type="java.sql.Date"/>
-    <query-param name="endd" type="java.sql.Date"/>
+    <query-param name="startd" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endd" type="org.joda.time.LocalDateTime"/>
     </sql-query>
 
     <sql-query name="getTransactionsByMunicipality__count">
@@ -226,8 +226,8 @@ where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FR
     AND PH.DateCreated between :startd and :endd) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
-    <query-param name="startd" type="java.sql.Date"/>
-    <query-param name="endd" type="java.sql.Date"/>
+    <query-param name="startd" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endd" type="org.joda.time.LocalDateTime"/>
     </sql-query>
 
     <sql-query name="InsertIntoCart">
@@ -876,8 +876,7 @@ FT.FormType as FormDesign,
 MUNI.MunicipalityName,
 GR.FullAddress,
 F.Comments
-FROM TransactionToFees TF
-INNER JOIN Fees F ON TF.FeeId=F.ID
+FROM Fees F
 INNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid
 INNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID
 INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
@@ -886,7 +885,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-WHERE TF.TransactionId=:transactionId
+WHERE F.TransactionId=:transactionId
         ]]>
     <query-param name="transactionId" type="java.lang.Integer"/>
     </sql-query>
@@ -901,8 +900,7 @@ FT.FormType as FormDesign,
 MUNI.MunicipalityName,
 GR.FullAddress,
 F.Comments
-FROM TransactionToFees TF
-INNER JOIN Fees F ON TF.FeeId=F.ID
+FROM Fees F
 INNER JOIN MasterForms MF ON MF.FormGUID=F.FormGuid
 INNER JOIN FormTypes FT ON MF.FormTypeId=FT.ID
 INNER JOIN Municipalities MUNI ON MUNI.ID=MF.MunicipalityId
@@ -911,7 +909,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-WHERE TF.TransactionId=:transactionId) wmTempTable
+WHERE F.TransactionId=:transactionId) wmTempTable
         ]]>
     <query-param name="transactionId" type="java.lang.Integer"/>
     </sql-query>
@@ -3434,15 +3432,15 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
         select PH.PaymentMethod,
 SUM(F.Amount) as paymentAmount
 from PaymentHistory PH
-INNER JOIN Fees F ON F.ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)
-where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE ID IN (Select FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+INNER JOIN Fees F ON F.TransactionId=PH.TransactionId
+where (:municipalityId IS NULL OR :municipalityId IN (SELECT F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))
     AND PH.DateCreated between :startd and :endd
     GROUP BY PH.PaymentMethod
     ORDER BY paymentAmount desc
         ]]>
     <query-param name="municipalityId" type="java.lang.String"/>
-    <query-param name="startd" type="java.sql.Date"/>
-    <query-param name="endd" type="java.sql.Date"/>
+    <query-param name="startd" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endd" type="org.joda.time.LocalDateTime"/>
     </sql-query>
 
     <sql-query name="UpdateProjectDescription">

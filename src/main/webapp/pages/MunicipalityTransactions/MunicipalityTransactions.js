@@ -6,6 +6,7 @@ Application.$controller("MunicipalityTransactionsPageController", ["$scope", fun
         $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
         $scope.Widgets.datetimeStart.timestamp = moment.utc(new Date(2016, 6, 1)).valueOf();
     };
+
     $scope.selectTermsChange = function($event, $isolateScope, newVal, oldVal) {
         switch (newVal) {
             case "All Time":
@@ -36,36 +37,42 @@ Application.$controller("MunicipalityTransactionsPageController", ["$scope", fun
                 $scope.Widgets.datetimeEnd.timestamp = moment().valueOf();
                 $scope.Widgets.datetimeStart.timestamp = moment().startOf('day').valueOf();
                 break;
-
         }
     };
 
+    $scope.getStartDateTime = function() {
+        return !!$scope.Widgets.datetimeStart.datavalue ? moment($scope.Widgets.datetimeStart.datavalue).startOf('day').valueOf() : undefined;
+    };
+
+    $scope.getEndDateTime = function() {
+        return !!$scope.Widgets.datetimeEnd.datavalue ? moment($scope.Widgets.datetimeEnd.datavalue).endOf('day').valueOf() : undefined;
+    };
 }]);
 
 Application.$controller("gridTransactionsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogFeeDetailsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridFeeDetailsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridTotalsByPaymentTypeController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
