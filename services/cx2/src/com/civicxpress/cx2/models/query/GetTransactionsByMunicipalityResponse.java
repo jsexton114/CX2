@@ -36,7 +36,7 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
     @ColumnAlias("paymentNumber")
     private String paymentNumber;
     @ColumnAlias("totalTransactionAmount")
-    private Float totalTransactionAmount;
+    private BigDecimal totalTransactionAmount;
     @ColumnAlias("transactionComments")
     private String transactionComments;
     @ColumnAlias("transactionDate")
@@ -98,11 +98,11 @@ public class GetTransactionsByMunicipalityResponse implements Serializable {
         this.paymentNumber = paymentNumber;
     }
 
-    public Float getTotalTransactionAmount() {
+    public BigDecimal getTotalTransactionAmount() {
         return this.totalTransactionAmount;
     }
 
-    public void setTotalTransactionAmount(Float totalTransactionAmount) {
+    public void setTotalTransactionAmount(BigDecimal totalTransactionAmount) {
         this.totalTransactionAmount = totalTransactionAmount;
     }
 

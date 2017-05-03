@@ -188,7 +188,7 @@ where FMT.TaggedPersonId=:taggedPersonId and(:municipalityId IS NULL OR  MUNI.ID
         <![CDATA[
         select 
 PH.TransactionId as transactionId,
-(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,
+(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,
 PH.CreatedBy as userId,
 U.email as userEmail,
 U.fullName as userName,
@@ -199,7 +199,7 @@ PH.Comments as transactionComments,
 PH.DateCreated as transactionDate
 from PaymentHistory PH
 LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
-where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))
     AND PH.DateCreated between :startd and :endd
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
@@ -211,7 +211,7 @@ where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FR
         <![CDATA[
         select count(*) from (select 
 PH.TransactionId as transactionId,
-(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,
+(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,
 PH.CreatedBy as userId,
 U.email as userEmail,
 U.fullName as userName,
@@ -222,7 +222,7 @@ PH.Comments as transactionComments,
 PH.DateCreated as transactionDate
 from PaymentHistory PH
 LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
-where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))
+where (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))
     AND PH.DateCreated between :startd and :endd) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>

@@ -13058,8 +13058,8 @@
     "name" : "getTransactionsByMunicipality",
     "description" : "getTransactionsByMunicipality",
     "version" : "V2",
-    "queryString" : "select \nPH.TransactionId as transactionId,\n(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,\nPH.CreatedBy as userId,\nU.email as userEmail,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate\nfrom PaymentHistory PH\nLEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy\nwhere (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd",
-    "countQueryString" : "select count(*) from (select \nPH.TransactionId as transactionId,\n(select SUM(Amount) From Fees WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)) as feeAmount,\nPH.CreatedBy as userId,\nU.email as userEmail,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate\nfrom PaymentHistory PH\nLEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy\nwhere (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE ID IN (SELECT TF.FeeId FROM TransactionToFees TF WHERE TF.TransactionId=PH.TransactionId)))\n    AND PH.DateCreated between :startd and :endd) wmTempTable",
+    "queryString" : "select \nPH.TransactionId as transactionId,\n(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,\nPH.CreatedBy as userId,\nU.email as userEmail,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate\nfrom PaymentHistory PH\nLEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy\nwhere (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))\n    AND PH.DateCreated between :startd and :endd",
+    "countQueryString" : "select count(*) from (select \nPH.TransactionId as transactionId,\n(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,\nPH.CreatedBy as userId,\nU.email as userEmail,\nU.fullName as userName,\nPH.PaymentMethod as paymentMethod,\nPH.PaymentNumber as paymentNumber,\nPH.AmountReceived as totalTransactionAmount,\nPH.Comments as transactionComments,\nPH.DateCreated as transactionDate\nfrom PaymentHistory PH\nLEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy\nwhere (:municipalityId IS NULL OR :municipalityId IN (Select F.MunicipalityId FROM Fees F WHERE F.TransactionId=PH.TransactionId))\n    AND PH.DateCreated between :startd and :endd) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -13075,14 +13075,14 @@
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-03-15",
+      "testValue" : "2017-05-01",
       "required" : true
     }, {
       "name" : "endd",
       "type" : "date",
       "list" : false,
       "variableType" : "PROMPT",
-      "testValue" : "2017-04-26",
+      "testValue" : "2017-05-05",
       "required" : true
     } ],
     "request" : {
@@ -13163,7 +13163,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.Float",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       }, {
