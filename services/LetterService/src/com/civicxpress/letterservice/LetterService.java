@@ -72,7 +72,7 @@ public class LetterService {
     public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
 
-    	db.updateLetterTemplate(letterTemplate, formTypeId);
+    	db.updateLetterTemplate(letterTemplate, formTypeId, new Long(securityService.getUserId()));
     }
 
     public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {

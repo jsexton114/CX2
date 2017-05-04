@@ -47,6 +47,8 @@ public class LetterController {
     }
 
     @RequestMapping(value = "/letterTemplate", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate, @RequestParam(value = "formTypeId", required = false) Long formTypeId) throws SQLException {
         letterService.updateLetterTemplate(letterTemplate, formTypeId);
     }

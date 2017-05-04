@@ -385,7 +385,7 @@ public class Cx2DataAccess {
     	return letterTemplate;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId, Long userId) {
           Connection connection;
           CallableStatement templateStatement = null;
           CallableStatement sectionStatement = null;
@@ -400,6 +400,7 @@ public class Cx2DataAccess {
               sectionStatement.setInt("id", letterTemplate.getId());
               sectionStatement.setString("letterTitle", letterTemplate.getTitle());
               sectionStatement.setLong("formTypeId", formTypeId);
+              sectionStatement.setLong("userId", userId);
               sectionStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
               sectionStatement.execute();
               letterTemplateId = sectionStatement.getInt("letterTemplateId");

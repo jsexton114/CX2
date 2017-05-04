@@ -69,10 +69,10 @@ public class LetterService {
 		return lt;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) throws SQLException {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
 
-    	db.updateLetterTemplate(letterTemplate);
+    	db.updateLetterTemplate(letterTemplate, formTypeId);
     }
 
     public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
