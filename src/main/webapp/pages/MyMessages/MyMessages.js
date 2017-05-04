@@ -338,7 +338,7 @@ Application.$controller("gridInboxController", ["$scope",
 
 
         $scope.deleterowAction = function($event, $rowData) {
-            debugger
+
             switch ($rowData.sourceCategory) {
                 case "Form":
                     $scope.Variables.stvSourceGuid.dataSet.dataValue = $rowData.sourceGuid;
@@ -362,6 +362,16 @@ Application.$controller("gridInboxController", ["$scope",
 
             }
 
+        };
+
+
+        $scope.customRowAction = function($event, $rowData) {
+            let messagesList = $scope.Variables.svGetUserMessages.dataSet.content
+            _.forEach($scope.Variables.svGetUserMessages.dataSet.content, function(obj) {
+                if ($rowData.id == obj.id) {
+                    obj.messageRead = true;
+                }
+            });
         };
 
     }

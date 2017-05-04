@@ -67,6 +67,7 @@ import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
+import com.civicxpress.cx2.UserDeviceDetails;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.UserViewPreferences;
@@ -570,6 +571,15 @@ public class UsersController {
         return usersService.findAssociatedSharedWithsForSharedWithUser(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/userDeviceDetailses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the userDeviceDetailses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<UserDeviceDetails> findAssociatedUserDeviceDetailses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated userDeviceDetailses");
+        return usersService.findAssociatedUserDeviceDetailses(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/userPasswordResetTokenses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the userPasswordResetTokenses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -606,15 +616,6 @@ public class UsersController {
         return usersService.findAssociatedVendorAdminses(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/vendorUserses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated vendorUserses");
-        return usersService.findAssociatedVendorUserses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/violationsesForModifiedBy", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the violationsesForModifiedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -631,6 +632,15 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated violationsesForCreatedBy");
         return usersService.findAssociatedViolationsesForCreatedBy(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/vendorUserses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated vendorUserses");
+        return usersService.findAssociatedVendorUserses(id, pageable);
     }
 
     /**

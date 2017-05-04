@@ -51,6 +51,7 @@ import com.civicxpress.cx2.ProjectTasks;
 import com.civicxpress.cx2.Projects;
 import com.civicxpress.cx2.Roles;
 import com.civicxpress.cx2.SharedWith;
+import com.civicxpress.cx2.UserDeviceDetails;
 import com.civicxpress.cx2.UserPasswordResetTokens;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.UserViewPreferences;
@@ -101,6 +102,10 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
 	@Qualifier("cx2.MasterFormsService")
 	private MasterFormsService masterFormsService;
+
+    @Autowired
+	@Qualifier("cx2.UserDeviceDetailsService")
+	private UserDeviceDetailsService userDeviceDetailsService;
 
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
@@ -511,6 +516,14 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getUserDeviceDetailses() != null) {
+            for(UserDeviceDetails userDeviceDetailse : usersCreated.getUserDeviceDetailses()) {
+                userDeviceDetailse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child UserDeviceDetails with information: {}", userDeviceDetailse);
+                userDeviceDetailsService.create(userDeviceDetailse);
+            }
+        }
+
         if(usersCreated.getUserPasswordResetTokenses() != null) {
             for(UserPasswordResetTokens userPasswordResetTokense : usersCreated.getUserPasswordResetTokenses()) {
                 userPasswordResetTokense.setUsers(usersCreated);
@@ -543,14 +556,6 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getVendorUserses() != null) {
-            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
-                vendorUserse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
-                vendorUsersService.create(vendorUserse);
-            }
-        }
-
         if(usersCreated.getViolationsesForModifiedBy() != null) {
             for(Violations violationsesForModifiedBy : usersCreated.getViolationsesForModifiedBy()) {
                 violationsesForModifiedBy.setUsersByModifiedBy(usersCreated);
@@ -564,6 +569,14 @@ public class UsersServiceImpl implements UsersService {
                 violationsesForCreatedBy.setUsersByCreatedBy(usersCreated);
                 LOGGER.debug("Creating a new child Violations with information: {}", violationsesForCreatedBy);
                 violationsService.create(violationsesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getVendorUserses() != null) {
+            for(VendorUsers vendorUserse : usersCreated.getVendorUserses()) {
+                vendorUserse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child VendorUsers with information: {}", vendorUserse);
+                vendorUsersService.create(vendorUserse);
             }
         }
         return usersCreated;
@@ -1071,6 +1084,17 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<UserDeviceDetails> findAssociatedUserDeviceDetailses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated userDeviceDetailses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return userDeviceDetailsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<UserPasswordResetTokens> findAssociatedUserPasswordResetTokenses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated userPasswordResetTokenses");
 
@@ -1115,17 +1139,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated vendorUserses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Violations> findAssociatedViolationsesForModifiedBy(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated violationsesForModifiedBy");
 
@@ -1144,6 +1157,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
 
         return violationsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<VendorUsers> findAssociatedVendorUserses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated vendorUserses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return vendorUsersService.findAll(queryBuilder.toString(), pageable);
     }
 
     /**
@@ -1216,6 +1240,15 @@ public class UsersServiceImpl implements UsersService {
 	 */
 	protected void setMasterFormsService(MasterFormsService service) {
         this.masterFormsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service UserDeviceDetailsService instance
+	 */
+	protected void setUserDeviceDetailsService(UserDeviceDetailsService service) {
+        this.userDeviceDetailsService = service;
     }
 
     /**

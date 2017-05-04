@@ -92,13 +92,14 @@ public class Users implements Serializable {
     private List<Roles> roleses;
     private List<SharedWith> sharedWithsForCreatedBy;
     private List<SharedWith> sharedWithsForSharedWithUser;
+    private List<UserDeviceDetails> userDeviceDetailses;
     private List<UserPasswordResetTokens> userPasswordResetTokenses;
     private List<UserSubscriptions> userSubscriptionses;
     private List<UserViewPreferences> userViewPreferenceses;
     private List<VendorAdmins> vendorAdminses;
-    private List<VendorUsers> vendorUserses;
     private List<Violations> violationsesForModifiedBy;
     private List<Violations> violationsesForCreatedBy;
+    private List<VendorUsers> vendorUserses;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -650,6 +651,16 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<UserDeviceDetails> getUserDeviceDetailses() {
+        return this.userDeviceDetailses;
+    }
+
+    public void setUserDeviceDetailses(List<UserDeviceDetails> userDeviceDetailses) {
+        this.userDeviceDetailses = userDeviceDetailses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<UserPasswordResetTokens> getUserPasswordResetTokenses() {
         return this.userPasswordResetTokenses;
     }
@@ -689,16 +700,6 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<VendorUsers> getVendorUserses() {
-        return this.vendorUserses;
-    }
-
-    public void setVendorUserses(List<VendorUsers> vendorUserses) {
-        this.vendorUserses = vendorUserses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
     public List<Violations> getViolationsesForModifiedBy() {
         return this.violationsesForModifiedBy;
@@ -716,6 +717,16 @@ public class Users implements Serializable {
 
     public void setViolationsesForCreatedBy(List<Violations> violationsesForCreatedBy) {
         this.violationsesForCreatedBy = violationsesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<VendorUsers> getVendorUserses() {
+        return this.vendorUserses;
+    }
+
+    public void setVendorUserses(List<VendorUsers> vendorUserses) {
+        this.vendorUserses = vendorUserses;
     }
 
     @Override
