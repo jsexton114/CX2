@@ -980,50 +980,6 @@
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
-    <wm-view class="dialog-view" name="view5">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Add Status Letter" iconclass="wi wi-file-text" name="dialogAddStatusLetter">
-            <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Save" on-click="closeDialog()" name="buttonAddStatusLetter" iconclass="wi wi-save"></wm-button>
-                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogAddStatusLetter.close()"></wm-button>
-            </wm-dialogactions>
-            <wm-layoutgrid name="layout5grid27" columns="1">
-                <wm-gridrow name="gridrow100_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn162">
-                        <wm-composite name="composite3_1">
-                            <wm-label class="col-md-3 control-label" name="label43" caption="Letter Name"></wm-label>
-                            <wm-container class="col-md-9" name="container4_1">
-                                <wm-select name="selectLetterTemplateForStatus" dataset="bind:Variables.lvLetterTemplatesData.dataSet" datafield="All Fields" displayfield="letterTitle" orderby="letterTitle:asc"></wm-select>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow101">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn163">
-                        <wm-composite name="composite4_1">
-                            <wm-label class="col-md-3 control-label" caption="Attach to Email" name="label44"></wm-label>
-                            <wm-checkbox caption="" class="col-md-9" name="checkboxAttachEmail"></wm-checkbox>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow102">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn164">
-                        <wm-composite name="composite5">
-                            <wm-label class="col-md-3 control-label" caption="Email Letter Creator" name="label45"></wm-label>
-                            <wm-checkbox caption="" class="col-md-9" name="checkbox3"></wm-checkbox>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow103">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn165">
-                        <wm-composite name="composite6">
-                            <wm-label class="col-md-3 control-label" caption="Attach to Item" name="label46"></wm-label>
-                            <wm-checkbox caption="" class="col-md-9" name="checkbox4"></wm-checkbox>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
-        </wm-dialog>
-    </wm-view>
     <wm-view class="dialog-view" name="view6">
         <wm-dialog dialogtype="design-dialog" class="modal-larger" modal="true" title="Letter Template Designer" iconclass="wi wi-notepad" name="dialogLetterTemplate">
             <wm-layoutgrid columns="2" name="layoutgrid26-a">
