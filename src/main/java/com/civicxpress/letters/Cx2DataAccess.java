@@ -385,7 +385,7 @@ public class Cx2DataAccess {
     	return letterTemplate;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate) {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) {
           Connection connection;
           CallableStatement templateStatement = null;
           CallableStatement sectionStatement = null;
@@ -396,9 +396,10 @@ public class Cx2DataAccess {
           
           try {
               connection.setAutoCommit(false);
-              sectionStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?)}");
+              sectionStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?,?)}");
               sectionStatement.setInt("id", letterTemplate.getId());
               sectionStatement.setString("letterTitle", letterTemplate.getTitle());
+              sectionStatement.setLong("formTypeId", formTypeId);
               sectionStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
               sectionStatement.execute();
               letterTemplateId = sectionStatement.getInt("letterTemplateId");

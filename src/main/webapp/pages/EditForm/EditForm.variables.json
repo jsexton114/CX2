@@ -12247,6 +12247,34 @@
     } ],
     "operation" : "toast"
   },
+  "nocLetterSaved" : {
+    "_id" : "wm-nocLetterSaved-wm.NotificationVariable-1493906759905",
+    "name" : "nocLetterSaved",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br>Letter template saved.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "PleaseSelectCategory" : {
     "_id" : "wm-PleaseSelectCategory-wm.NotificationVariable-1480328433795",
     "name" : "PleaseSelectCategory",
@@ -14794,7 +14822,11 @@
       "isList" : false,
       "target" : "SectionalTemplatePdf",
       "value" : "bind:Variables.svGetLetterTemplate.dataSet",
-      "type" : "com.civicxpress.SectionalTemplatePdf"
+      "type" : "com.civicxpress.letters.SectionalTemplatePdf"
+    }, {
+      "target" : "formTypeId",
+      "value" : "bind:pageParams.FormTypeId",
+      "type" : "integer"
     } ],
     "service" : "LetterService",
     "operation" : "updateLetterTemplate",
@@ -14804,6 +14836,7 @@
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 20,
+    "onSuccess" : "Variables.lvLetterTemplatesData.listRecords();Variables.nocLetterSaved.invoke()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
