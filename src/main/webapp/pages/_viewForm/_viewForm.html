@@ -478,13 +478,22 @@
                                     </wm-layoutgrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneLetters" title="LETTERS" accessroles="MunicipalityEmployee,MunicipalityAdmin,InspectorManager,Inspector,GISAdmin,CXAdmin,CodeOfficer,CodeManager">
-                                    <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters">
-                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download Letter" action="Variables.svCreateLetter.invoke()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-email" title="Send Letter" action="customRow1Action($event)" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
+                                    <wm-layoutgrid name="layoutgrid32">
+                                        <wm-gridrow name="gridrow109">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn199_1"></wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow110">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn201_1">
+                                                <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="letterTitle" caption="Letter Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download Letter" action="Variables.svCreateLetter.invoke()"
+                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-email" title="Send Letter" action="customRow1Action($event)" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneHistory" title="HISTORY">
                                     <wm-layoutgrid name="layoutgrid21">
