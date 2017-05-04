@@ -385,7 +385,7 @@ public class Cx2DataAccess {
     	return letterTemplate;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId, Long userId) {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId, Long userId) throws SQLException {
           Connection connection;
           CallableStatement templateStatement = null;
           CallableStatement sectionStatement = null;
@@ -396,51 +396,52 @@ public class Cx2DataAccess {
           
           try {
               connection.setAutoCommit(false);
-              sectionStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?,?)}");
-              sectionStatement.setInt("id", letterTemplate.getId());
-              sectionStatement.setString("letterTitle", letterTemplate.getTitle());
-              sectionStatement.setLong("formTypeId", formTypeId);
-              sectionStatement.setLong("userId", userId);
-              sectionStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
-              sectionStatement.execute();
-              letterTemplateId = sectionStatement.getInt("letterTemplateId");
-              templateStatement = connection.prepareCall("{call updateLetterSection(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+              templateStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?,?,?)}");
+              templateStatement.setInt("id", letterTemplate.getId());
+              templateStatement.setString("letterTitle", letterTemplate.getTitle());
+              templateStatement.setLong("formTypeId", formTypeId);
+              templateStatement.setLong("userId", userId);
+              templateStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
+              templateStatement.execute();
+              letterTemplateId = templateStatement.getInt("letterTemplateId");
+              sectionStatement = connection.prepareCall("{call updateLetterSection(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
               for (TemplateSectionRow row : letterTemplate.getAllRows()) {
                     for (TemplateSection section : row.getSections()) {
                           LetterElementSettings settings = section.getTextSettings();
-                          templateStatement.setInt("letterSectionId", section.getId());
-                          templateStatement.setInt("letterTemplateId", letterTemplateId);
-                          templateStatement.setFloat("x", section.getX());
-                          templateStatement.setFloat("y", section.getY());
-                          templateStatement.setFloat("height", section.getHeight());
-                          templateStatement.setFloat("width", section.getWidth());
-                          templateStatement.setInt("rowIndex", rowIndex);
-                          templateStatement.setInt("sectionIndex", sectionIndex);
-                          templateStatement.setInt("fontSize", settings.getFontSize());
-                          templateStatement.setInt("lineHeight", settings.getLineHeight());
-                          templateStatement.setString("justification", settings.getJustification().toString());
-                          templateStatement.setBoolean("isBold", settings.isBold());
-                          templateStatement.setString("text", section.getText());
-                          templateStatement.execute();
+                          sectionStatement.setInt("letterSectionId", section.getId());
+                          sectionStatement.setInt("letterTemplateId", letterTemplateId);
+                          sectionStatement.setFloat("x", section.getX());
+                          sectionStatement.setFloat("y", section.getY());
+                          sectionStatement.setFloat("height", section.getHeight());
+                          sectionStatement.setFloat("width", section.getWidth());
+                          sectionStatement.setInt("rowIndex", rowIndex);
+                          sectionStatement.setInt("sectionIndex", sectionIndex);
+                          sectionStatement.setInt("fontSize", settings.getFontSize());
+                          sectionStatement.setInt("lineHeight", settings.getLineHeight());
+                          sectionStatement.setString("justification", settings.getJustification().toString());
+                          sectionStatement.setBoolean("isBold", settings.isBold());
+                          sectionStatement.setString("text", section.getText());
+                          sectionStatement.execute();
                           sectionIndex++;
                     }
                     rowIndex++;
               }
               
               connection.commit();
+
+              sectionStatement.close();
           } catch (SQLException e) {
 				try {
 					connection.rollback();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					throw e1;
 				}
-				e.printStackTrace();
+				throw e;
           } finally {
               try {
-                  templateStatement.close();
                   connection.close();
               } catch (SQLException e) {
-                  e.printStackTrace();
+                  throw e;
               }
           }
       }
