@@ -1,0 +1,33 @@
+{
+  "svEmployeeLocations" : {
+    "_id" : "wm-svEmployeeLocations-wm.ServiceVariable-1493901845573",
+    "name" : "svEmployeeLocations",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipalites.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "role",
+      "value" : "MunicipalityEmployee",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.UserDeviceDetails",
+    "service" : "cx2",
+    "operation" : "executeEmployeeLocations",
+    "operationId" : "QueryExecutionController_executeEmployeeLocations",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}

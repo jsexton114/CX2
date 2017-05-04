@@ -2816,6 +2816,24 @@ GROUP BY FS.ConsiderClosed) wmTempTable
     <query-param name="token" type="java.lang.String"/>
     </sql-query>
 
+    <query name="employeeLocations">
+        <![CDATA[
+        from UserDeviceDetails where
+userId IN (select userId from Roles where municipalityId=:municipality and roleName=:role )
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="role" type="java.lang.String"/>
+    </query>
+
+    <query name="employeeLocations__count">
+        <![CDATA[
+        select count(*) from UserDeviceDetails where
+userId IN (select userId from Roles where municipalityId=:municipality and roleName=:role )
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="role" type="java.lang.String"/>
+    </query>
+
     <sql-query name="InsertGroups">
         <![CDATA[
         insert into MunicipalityGroups (GroupName,GroupDescription,MunicipalityId) values (:GroupName,:GroupDescription,:MunicipalityId)

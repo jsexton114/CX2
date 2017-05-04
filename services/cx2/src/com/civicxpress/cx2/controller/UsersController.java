@@ -616,6 +616,15 @@ public class UsersController {
         return usersService.findAssociatedVendorAdminses(id, pageable);
     }
 
+    @RequestMapping(value="/{id:.+}/vendorUserses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated vendorUserses");
+        return usersService.findAssociatedVendorUserses(id, pageable);
+    }
+
     @RequestMapping(value="/{id:.+}/violationsesForModifiedBy", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the violationsesForModifiedBy instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -632,15 +641,6 @@ public class UsersController {
 
         LOGGER.debug("Fetching all associated violationsesForCreatedBy");
         return usersService.findAssociatedViolationsesForCreatedBy(id, pageable);
-    }
-
-    @RequestMapping(value="/{id:.+}/vendorUserses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the vendorUserses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<VendorUsers> findAssociatedVendorUserses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated vendorUserses");
-        return usersService.findAssociatedVendorUserses(id, pageable);
     }
 
     /**

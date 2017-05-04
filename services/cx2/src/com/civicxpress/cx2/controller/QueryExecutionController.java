@@ -46,6 +46,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserDeviceDetails;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
@@ -2231,6 +2232,25 @@ public class QueryExecutionController {
         Integer _result = queryService.executeResetPasswordForUser(resetPasswordForUserRequest);
         LOGGER.debug("got the result for named query: resetPasswordForUser, result:{}", _result);
         return _result;
+    }
+
+    @RequestMapping(value = "/queries/employeeLocations", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "employeeLocations")
+    public Page<UserDeviceDetails> executeEmployeeLocations(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "role") String role, Pageable pageable) {
+        LOGGER.debug("Executing named query: employeeLocations");
+        Page<UserDeviceDetails> _result = queryService.executeEmployeeLocations(municipality, role, pageable);
+        LOGGER.debug("got the result for named query: employeeLocations, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query employeeLocations")
+    @RequestMapping(value = "/queries/employeeLocations/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportEmployeeLocations(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "role") String role, Pageable pageable) {
+        LOGGER.debug("Exporting named query: employeeLocations");
+
+        return queryService.exportEmployeeLocations(exportType, municipality, role, pageable);
     }
 
     @RequestMapping(value = "/queries/InsertGroups", method = RequestMethod.POST)

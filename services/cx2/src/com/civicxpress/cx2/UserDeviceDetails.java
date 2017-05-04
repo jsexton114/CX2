@@ -43,6 +43,8 @@ public class UserDeviceDetails implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime devicelastContactTime;
+    private String deviceOs;
+    private String deviceModel;
     private Users users;
 
     @Id
@@ -108,6 +110,24 @@ public class UserDeviceDetails implements Serializable {
 
     public void setDevicelastContactTime(LocalDateTime devicelastContactTime) {
         this.devicelastContactTime = devicelastContactTime;
+    }
+
+    @Column(name = "`DeviceOS`", nullable = true, length = 255)
+    public String getDeviceOs() {
+        return this.deviceOs;
+    }
+
+    public void setDeviceOs(String deviceOs) {
+        this.deviceOs = deviceOs;
+    }
+
+    @Column(name = "`DeviceModel`", nullable = true, length = 255)
+    public String getDeviceModel() {
+        return this.deviceModel;
+    }
+
+    public void setDeviceModel(String deviceModel) {
+        this.deviceModel = deviceModel;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

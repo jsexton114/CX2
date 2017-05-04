@@ -11521,6 +11521,41 @@
       } ]
     }
   },
+  "employeeLocations" : {
+    "name" : "employeeLocations",
+    "description" : "employeeLocations",
+    "version" : "V2",
+    "queryString" : "from UserDeviceDetails where\nuserId IN (select userId from Roles where municipalityId=:municipality and roleName=:role )",
+    "countQueryString" : "select count(*) from UserDeviceDetails where\nuserId IN (select userId from Roles where municipalityId=:municipality and roleName=:role )",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "role",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Inspector",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.UserDeviceDetails",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "formsWithCodeEnforcementByMunicipality" : {
     "name" : "formsWithCodeEnforcementByMunicipality",
     "description" : "formsWithCodeEnforcementByMunicipality",

@@ -23,6 +23,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserDeviceDetails;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
@@ -481,6 +482,10 @@ public interface Cx2QueryExecutorService {
     Downloadable exportGetRolesForMunicipality(ExportType exportType, String role, Integer municipality, Pageable pageable);
 
     Integer executeResetPasswordForUser(ResetPasswordForUserRequest resetPasswordForUserRequest);
+
+    Page<UserDeviceDetails> executeEmployeeLocations(Integer municipality, String role, Pageable pageable);
+
+    Downloadable exportEmployeeLocations(ExportType exportType, Integer municipality, String role, Pageable pageable);
 
     Integer executeInsertGroups(InsertGroupsRequest insertGroupsRequest);
 

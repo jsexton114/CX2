@@ -33,6 +33,7 @@ import com.civicxpress.cx2.FormsToInspections;
 import com.civicxpress.cx2.InspectionDesign;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.UserDeviceDetails;
 import com.civicxpress.cx2.UserSubscriptions;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
@@ -2587,6 +2588,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("token", resetPasswordForUserRequest.getToken());
 
         return queryExecutor.executeNamedQueryForUpdate("resetPasswordForUser", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<UserDeviceDetails> executeEmployeeLocations(Integer municipality, String role, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("role", role);
+
+        return queryExecutor.executeNamedQuery("employeeLocations", params, UserDeviceDetails.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportEmployeeLocations(ExportType exportType, Integer municipality, String role, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipality", municipality);
+        params.put("role", role);
+
+        return queryExecutor.exportNamedQueryData("employeeLocations", params, exportType, UserDeviceDetails.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
