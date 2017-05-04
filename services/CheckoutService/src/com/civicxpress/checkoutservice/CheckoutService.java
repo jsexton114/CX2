@@ -77,10 +77,7 @@ public class CheckoutService {
 	        Long transactionId = checkoutStatement.getLong("transactionId");
 	        
 	        for (Long feeId : feeIds) { // Mark fees as paid.
-	        	CallableStatement feeStatement = connection.prepareCall("{call payFee(?,?,?)}");
-	        	feeStatement.setLong("feeId", feeId);
-	        	feeStatement.setLong("transactionId", transactionId);
-	        	feeStatement.setInt("paidByUserId", currentUserId);
+	        	CallableStatement feeStatement = DBUtils.prepareProcedure(connection, "payFee", feeId, transactionId, currentUserId);
 	        	feeStatement.execute();
 	        }
 	        

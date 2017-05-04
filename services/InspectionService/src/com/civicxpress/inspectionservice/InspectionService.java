@@ -133,9 +133,10 @@ public class InspectionService {
     	String newInspectionGuid = null;
     	
     	try {
+    		Long currentUserId = Long.parseLong(securityService.getUserId());
 	    	muniDbConn.setAutoCommit(false);
 	    	queryParams.addString("formGuid", formGuid);
-	    	queryParams.addLong("requestedBy", Long.parseLong(securityService.getUserId()));
+	    	queryParams.addLong("requestedBy", currentUserId);
 	    	queryParams.addDate("requestedFor", requestedFor);
 	    	
 	    	/*
@@ -196,7 +197,10 @@ public class InspectionService {
 	    	
 	    	Long newInspectionId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
 	    	queryParams.addLong("newInspectionId", newInspectionId);
-	    	newInspectionGuid = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid FROM MasterInspections WHERE ID=:newInspectionId", queryParams).getString("InspectionGuid");
+	    	
+	    	DBRow newInspectionData = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid, InspectionOutcomeId FROM MasterInspections WHERE ID=:newInspectionId", queryParams);
+	    	newInspectionGuid = newInspectionData.getString("InspectionGuid");
+	    	Long newInspectionOutcomeId = newInspectionData.getLong("InspectionOutcomeId");
 	    	queryParams.addString("newInspectionGuid", newInspectionGuid);
 	    	
 	    	String inspectionTableName = inspectionDesignData.getString("InspectionTableName");
@@ -235,6 +239,8 @@ public class InspectionService {
 	    	Calendar requestedForCal = Calendar.getInstance();
 	    	requestedForCal.setTime(requestedFor);
 	    	
+	    	DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", newInspectionGuid, newInspectionOutcomeId, null, "Inspection requested.", currentUserId).execute();
+	    	
 	    	// Same day fee
 	    	BigDecimal sameDayFee = inspectionDesignData.getBigDecimal("SameDayInspectionFee");
 	    	if (todayCal.get(Calendar.YEAR) == requestedForCal.get(Calendar.YEAR) && todayCal.get(Calendar.DAY_OF_YEAR) == requestedForCal.get(Calendar.DAY_OF_YEAR)
@@ -242,7 +248,9 @@ public class InspectionService {
 	    		queryParams.addBigDecimal("sameDayFee", sameDayFee);
 	    		queryParams.addString("sameDayAccountingCode", inspectionDesignData.getString("SameDayInspectionFeeAcctCode"));
 	    		
-	    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Fees (InspectionGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES (:newInspectionGuid, :sameDayFee, 'Same Day Scheduling Fee', 1, :sameDayAccountingCode, 'Unpaid')", queryParams);
+	    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Fees (InspectionGuid, FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES (:newInspectionGuid, :formGuid, :sameDayFee, 'Same Day Scheduling Fee', 1, :sameDayAccountingCode, 'Unpaid')", queryParams);
+	    		
+	    		DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", newInspectionGuid, newInspectionOutcomeId, newInspectionOutcomeId, "A Same Day fee was charged for this inspection.", currentUserId).execute();
 	    	}
 	    	
 	    	String newInspectionQuery = "INSERT INTO "+inspectionTableName+" ("+newInspectionQueryFieldNames.toString()+") VALUES ("+newInspectionQueryVariableNames.toString()+")";
@@ -368,21 +376,26 @@ public class InspectionService {
         cx2Conn.setAutoCommit(false);
         
         try {
+        	Long currentUserId = Long.parseLong(securityService.getUserId());
+        	
         	DBQueryParams params = new DBQueryParams();
         	params.addString("inspectionGuid", inspectionGuid);
         	params.addLong("newOutcomeId", inspectionOutcomeId);
-        	params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+        	params.addLong("createdBy", currentUserId);
         	
         	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT MI.*, IND.MunicipalityId as MunicipalityId, RU.Email as RequestorEmail, RU.FullName as RequestorFullName, IND.InspectDesignName FROM MasterInspections MI INNER JOIN Users RU ON RU.ID=MI.RequestedBy INNER JOIN InspectionDesign IND ON IND.ID=MI.InspectionDesignId WHERE InspectionGUID=:inspectionGuid", params);
         	Long municipalityId = inspectionData.getLong("MunicipalityId");
+        	Long oldOutcomeId = inspectionData.getLong("InspectionOutcomeId");
         	
-        	params.addLong("oldOutcomeId", inspectionData.getLong("InspectionOutcomeId"));
+        	params.addLong("oldOutcomeId", oldOutcomeId);
         	params.addString("comments", comments);
         	
         	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET InspectionOutcomeId=:newOutcomeId, "
     				+"Closed=(SELECT ConsiderClosed FROM InspectionOutcome WHERE ID=:newOutcomeId) WHERE InspectionGUID=:inspectionGuid",
     				params);
     		
+        	DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", inspectionGuid, inspectionOutcomeId, oldOutcomeId, comments, currentUserId).execute();
+        	
     		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO InspectionHistory (InspectionGUID,NewOutcomeId,OldOutcomeId,Comments,CreatedBy) "
     				+"VALUES (:inspectionGuid,:newOutcomeId,:oldOutcomeId,:comments,:createdBy)",
     				params);
