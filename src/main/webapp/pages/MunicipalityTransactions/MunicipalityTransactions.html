@@ -91,37 +91,29 @@
             <wm-layoutgrid name="layoutgrid2">
                 <wm-gridrow name="gridrow9">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn15">
-                        <wm-label padding="unset 0.5em" name="label7_1" caption="bind:'<h4>Transaction ID</h4><p>' + Widgets.gridTransactions.selecteditem.transactionId + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" name="label7_1" caption="bind:'<h4>Transaction ID</h4><p>' + Widgets.gridTransactions.selecteditem.transactionId + '</p>'"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn16_2">
-                        <wm-label padding="unset 0.5em" name="label6_1" caption="bind:'<h4>Transaction Date</h4><p>' + Widgets.gridTransactions.selecteditem.transactionDate + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label6_1" caption="bind:'<h4>Transaction Date</h4><p>' + (Widgets.gridTransactions.selecteditem.transactionDate | toLocalDateString) + '</p>'"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9_1">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn15_1">
-                        <wm-label padding="unset 0.5em" name="label7_2" caption="bind:'<h4>Paid By</h4><p>' + Widgets.gridTransactions.selecteditem.userName + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" name="label7_2" caption="bind:'<h4>Paid By</h4><p>' + Widgets.gridTransactions.selecteditem.userName + '</p>'"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="8" name="gridcolumn16_3">
                         <wm-label padding="unset 0.5em" name="label6_2" caption="bind:'<h4>Payment Type</h4><p>' + Widgets.gridTransactions.selecteditem.paymentMethod + '</p>'"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow9_2">
+                <wm-gridrow name="gridrow9_2" ng-show="!!Widgets.gridTransactions.selecteditem.paymentNumber">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn15_2">
-                        <wm-label padding="unset 0.5em" name="label7_3" caption="bind:'<h4>Payment Number</h4><p>' + Widgets.gridTransactions.selecteditem.paymentNumber + '</p>'"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" name="label7_3" caption="bind:'<h4>Payment Number</h4><p>' + Widgets.gridTransactions.selecteditem.paymentNumber + '</p>'"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_4">
-                        <wm-label padding="unset 0.5em" name="label6_3" caption="bind:'<h4>Transaction Comments</h4><p>' + Widgets.gridTransactions.selecteditem.transactionComments + '</p>'"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow9_3">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn15_3"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_5">
-                        <wm-label padding="unset 0.5em" name="label6_4" caption="bind:'<h4>Transaction Total</h4><p>' + Widgets.gridTransactions.selecteditem.feeAmount + '</p>'"></wm-label>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_5"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                        <wm-grid title="" dataset="bind:Variables.svFeesForTransaction.dataSet" navigation="Classic" name="gridFeeDetails" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn11" padding="1em unset">
+                        <wm-grid title="Fees Paid" dataset="bind:Variables.svFeesForTransaction.dataSet" navigation="Classic" name="gridFeeDetails" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -131,6 +123,14 @@
                             <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="comments" caption="Fee Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                         </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9_3">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn16_5">
+                        <wm-label padding="unset 0.5em unset 1em" name="label6_4" caption="bind:'<h4>Transaction Total</h4><p>' + (Widgets.gridTransactions.selecteditem.feeAmount | toCurrency:'$':2) + '</p>'"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_4">
+                        <wm-label padding="unset 0.5em" name="label6_3" caption="bind:'<h4>Transaction Comments</h4><p>' + Widgets.gridTransactions.selecteditem.transactionComments + '</p>'"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
