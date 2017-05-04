@@ -447,6 +447,7 @@ and (
         <![CDATA[
         SELECT MF.FormGuid as formGuid,
 	MF.FormTitle as formTitle,
+	MF.DateSubmitted as dateSubmitted,
 	MF.DateModified as dateModified,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
@@ -487,6 +488,7 @@ where
         <![CDATA[
         select count(*) from (SELECT MF.FormGuid as formGuid,
 	MF.FormTitle as formTitle,
+	MF.DateSubmitted as dateSubmitted,
 	MF.DateModified as dateModified,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
@@ -1860,7 +1862,7 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 
 
-where  FT.CodeEnforcement=:codeEnforcement and 
+where  (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and 
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         ]]>
@@ -1882,7 +1884,7 @@ LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 
 
-where  FT.CodeEnforcement=:codeEnforcement and 
+where  (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and 
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
@@ -2505,6 +2507,7 @@ group by FC.Category) wmTempTable
     <sql-query name="FormsForUsersAndShared">
         <![CDATA[
         SELECT MF.FormGuid as formGuid,
+    MF.DateSubmitted as dateSubmitted,
 	DateModified as dateModified,
 	MF.FormTitle as formTitle,
 	MU.MunicipalityName as municipalityName,
@@ -2530,7 +2533,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where  FT.CodeEnforcement=:codeEnforcement and 
+where (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and 
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         ]]>
@@ -2544,6 +2547,7 @@ where  FT.CodeEnforcement=:codeEnforcement and
     <sql-query name="FormsForUsersAndShared__count">
         <![CDATA[
         select count(*) from (SELECT MF.FormGuid as formGuid,
+    MF.DateSubmitted as dateSubmitted,
 	DateModified as dateModified,
 	MF.FormTitle as formTitle,
 	MU.MunicipalityName as municipalityName,
@@ -2569,7 +2573,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where  FT.CodeEnforcement=:codeEnforcement and 
+where (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and 
     Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
     AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
@@ -3058,6 +3062,7 @@ where   ( UserId=:sharedWithUser or MF.FormGUID IN
         <![CDATA[
         SELECT MF.FormGuid as formGuid,
 	MF.FormTitle as formTitle,
+	MF.DateSubmitted as dateSubmitted,
 	MF.DateModified as dateModified,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
@@ -3095,6 +3100,7 @@ where
         <![CDATA[
         select count(*) from (SELECT MF.FormGuid as formGuid,
 	MF.FormTitle as formTitle,
+	MF.DateSubmitted as dateSubmitted,
 	MF.DateModified as dateModified,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,

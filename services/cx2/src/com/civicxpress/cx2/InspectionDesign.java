@@ -57,7 +57,7 @@ public class InspectionDesign implements Serializable {
     private String titlePrefix;
     private String prefixDate;
     private String prefixNumber;
-    private int prefixNumberStart;
+    private BigInteger prefixNumberStart;
     private int prefixNumberStep;
     private boolean prefixDashes;
     private Integer createdBy;
@@ -298,12 +298,12 @@ public class InspectionDesign implements Serializable {
         this.prefixNumber = prefixNumber;
     }
 
-    @Column(name = "`PrefixNumberStart`", nullable = false, scale = 0, precision = 10)
-    public int getPrefixNumberStart() {
+    @Column(name = "`PrefixNumberStart`", nullable = false, scale = 0, precision = 38)
+    public BigInteger getPrefixNumberStart() {
         return this.prefixNumberStart;
     }
 
-    public void setPrefixNumberStart(int prefixNumberStart) {
+    public void setPrefixNumberStart(BigInteger prefixNumberStart) {
         this.prefixNumberStart = prefixNumberStart;
     }
 

@@ -1558,8 +1558,8 @@
     "name" : "CompanyFormsByVendorId",
     "description" : "CompanyFormsByVendorId",
     "version" : "V1",
-    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n\tAND MF.FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId)",
-    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n\tAND MF.FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId)) wmTempTable",
+    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateSubmitted as dateSubmitted,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n\tAND MF.FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId)",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateSubmitted as dateSubmitted,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n\tAND MF.FormGUID IN (select relatedFormGuid from Vendors2form where vendorId=:vendorId)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -1603,6 +1603,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dateSubmitted",
+        "fieldName" : "dateSubmitted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
           "list" : false
         }
       }, {
@@ -1692,7 +1701,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       } ]
@@ -2325,8 +2334,8 @@
     "name" : "CountOfUserForms",
     "description" : "To get count for open or closed for user and SharedWith user",
     "version" : "V1",
-    "queryString" : "SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
-    "countQueryString" : "select count(*) from (SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
+    "queryString" : "SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
+    "countQueryString" : "select count(*) from (SELECT count(MF.FormGuid) as formsCount\n\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\n\n\nwhere  (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -2336,7 +2345,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : false,
-      "required" : true
+      "required" : false
     }, {
       "name" : "closed",
       "type" : "boolean",
@@ -4415,8 +4424,8 @@
     "name" : "FormsForUsersAndShared",
     "description" : "Brings closed or opened  Forms of creator and shared with user",
     "version" : "V1",
-    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
-    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere  FT.CodeEnforcement=:codeEnforcement and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
+    "queryString" : "SELECT MF.FormGuid as formGuid,\n    MF.DateSubmitted as dateSubmitted,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n    MF.DateSubmitted as dateSubmitted,\n\tDateModified as dateModified,\n\tMF.FormTitle as formTitle,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and \n    Closed=:closed and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))\n    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -4426,7 +4435,7 @@
       "list" : false,
       "variableType" : "PROMPT",
       "testValue" : false,
-      "required" : true
+      "required" : false
     }, {
       "name" : "closed",
       "type" : "boolean",
@@ -4472,6 +4481,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dateSubmitted",
+        "fieldName" : "dateSubmitted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
           "list" : false
         }
       }, {
@@ -4570,7 +4588,7 @@
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
-          "typeRef" : "java.lang.String",
+          "typeRef" : "java.math.BigDecimal",
           "list" : false
         }
       } ]
@@ -7503,8 +7521,8 @@
     "name" : "ProcessFormsForUserByMunicipality",
     "description" : "Get forms from Master Forms where employee is in group of that in current form Status",
     "version" : "V1",
-    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue,\n\tFT.CodeEnforcement as codeEnforcement\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n    AND FT.MunicipalityId=:MunicipalityId\n\tAND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
-    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue,\n\tFT.CodeEnforcement as codeEnforcement\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n    AND FT.MunicipalityId=:MunicipalityId\n\tAND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)) wmTempTable",
+    "queryString" : "SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateSubmitted as dateSubmitted,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue,\n\tFT.CodeEnforcement as codeEnforcement\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n    AND FT.MunicipalityId=:MunicipalityId\n\tAND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\n\tMF.FormTitle as formTitle,\n\tMF.DateSubmitted as dateSubmitted,\n\tMF.DateModified as dateModified,\n\tMU.MunicipalityName as municipalityName,\n\tU.FullName as createdBy,\n\tFT.FormType as formDesign,\n\tFS.Status as formStatus,\n\tGR.Lot as lot,\n\tGR.Subdivision as subdivision,\n\tGR.FullAddress as address,\n\tV.CompanyName as primaryVendor,\n\tMF.BalanceDue as balanceDue,\n\tFT.CodeEnforcement as codeEnforcement\nFROM MasterForms MF\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\nLEFT JOIN Users AS U ON U.ID=MF.UserId\nLEFT JOIN MunicipalityGroups AS MG ON MG.id=FS.processOwners\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\n\t\t\t\tGF.RelatedFormGuid as formGuid,\n\t\t\t\tGR.Lot,\n\t\t\t\tSD.Subdivision,\n\t\t\t\tGR.FullAddress\n\t\t\t\tFROM GIS2Forms GF, GisRecords GR, Subdivisions SD\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1\nwhere\n    Closed=:closed\n    AND FT.MunicipalityId=:MunicipalityId\n\tAND :UserId IN (SELECT GM.userId FROM MunicipalityGroupMembers GM WHERE GM.municipalityGroupId=MG.id)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -7555,6 +7573,15 @@
         "fieldType" : {
           "type" : "PRIMITIVE",
           "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dateSubmitted",
+        "fieldName" : "dateSubmitted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
           "list" : false
         }
       }, {

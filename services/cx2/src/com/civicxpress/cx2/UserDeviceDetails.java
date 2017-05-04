@@ -34,13 +34,13 @@ public class UserDeviceDetails implements Serializable {
 
     private Integer id;
     private Integer userId;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
     @Type(type = "DateTime")
     private LocalDateTime lastLogin;
     private String deviceUuid;
     private String deviceLatitude;
     private String deviceLongitude;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
     @Type(type = "DateTime")
     private LocalDateTime devicelastContactTime;
     private String deviceOs;

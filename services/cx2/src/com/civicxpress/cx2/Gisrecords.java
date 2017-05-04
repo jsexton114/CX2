@@ -60,7 +60,7 @@ public class Gisrecords implements Serializable {
     private String usedFor;
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
     private Integer modifiedBy;
     private String zoningClassification;
     private String floodZone;

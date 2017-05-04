@@ -27,6 +27,9 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
+    @JsonProperty("dateSubmitted")
+    @ColumnAlias("dateSubmitted")
+    private LocalDateTime dateSubmitted;
     @JsonProperty("dateModified")
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
@@ -75,6 +78,14 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateSubmitted() {
+        return this.dateSubmitted;
+    }
+
+    public void setDateSubmitted(LocalDateTime dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
     }
 
     public LocalDateTime getDateModified() {
@@ -172,6 +183,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         final ProcessFormsForUserByMunicipalityResponse processFormsForUserByMunicipalityResponse = (ProcessFormsForUserByMunicipalityResponse) o;
         return Objects.equals(getFormGuid(), processFormsForUserByMunicipalityResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), processFormsForUserByMunicipalityResponse.getFormTitle()) &&
+                Objects.equals(getDateSubmitted(), processFormsForUserByMunicipalityResponse.getDateSubmitted()) &&
                 Objects.equals(getDateModified(), processFormsForUserByMunicipalityResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), processFormsForUserByMunicipalityResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), processFormsForUserByMunicipalityResponse.getCreatedBy()) &&
@@ -189,6 +201,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateSubmitted(),
                 getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),

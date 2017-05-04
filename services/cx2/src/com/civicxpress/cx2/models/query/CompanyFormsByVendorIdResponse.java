@@ -35,6 +35,9 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     @JsonProperty("formTitle")
     @ColumnAlias("formTitle")
     private String formTitle;
+    @JsonProperty("dateSubmitted")
+    @ColumnAlias("dateSubmitted")
+    private LocalDateTime dateSubmitted;
     @JsonProperty("dateModified")
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
@@ -64,7 +67,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     private String primaryVendor;
     @JsonProperty("balanceDue")
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -80,6 +83,14 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
 
     public void setFormTitle(String formTitle) {
         this.formTitle = formTitle;
+    }
+
+    public LocalDateTime getDateSubmitted() {
+        return this.dateSubmitted;
+    }
+
+    public void setDateSubmitted(LocalDateTime dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
     }
 
     public LocalDateTime getDateModified() {
@@ -154,11 +165,11 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
     }
 
@@ -169,6 +180,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
         final CompanyFormsByVendorIdResponse companyFormsByVendorIdResponse = (CompanyFormsByVendorIdResponse) o;
         return Objects.equals(getFormGuid(), companyFormsByVendorIdResponse.getFormGuid()) &&
                 Objects.equals(getFormTitle(), companyFormsByVendorIdResponse.getFormTitle()) &&
+                Objects.equals(getDateSubmitted(), companyFormsByVendorIdResponse.getDateSubmitted()) &&
                 Objects.equals(getDateModified(), companyFormsByVendorIdResponse.getDateModified()) &&
                 Objects.equals(getMunicipalityName(), companyFormsByVendorIdResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), companyFormsByVendorIdResponse.getCreatedBy()) &&
@@ -185,6 +197,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     public int hashCode() {
         return Objects.hash(getFormGuid(),
                 getFormTitle(),
+                getDateSubmitted(),
                 getDateModified(),
                 getMunicipalityName(),
                 getCreatedBy(),

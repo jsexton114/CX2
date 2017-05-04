@@ -51,7 +51,7 @@ public class MasterInspections implements Serializable {
     @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT })
     @Type(type = "DateTime")
     private LocalDateTime dateRequested;
-    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.UPDATE, Scope.INSERT })
+    @ServerDefinedProperty( value = VariableType.DATE_TIME, scopes = { Scope.INSERT, Scope.UPDATE })
     @Type(type = "DateTime")
     private LocalDateTime dateModified;
     private Integer assignedTo;

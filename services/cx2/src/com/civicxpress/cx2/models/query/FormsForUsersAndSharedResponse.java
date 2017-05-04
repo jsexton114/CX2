@@ -29,6 +29,9 @@ public class FormsForUsersAndSharedResponse implements Serializable {
     @JsonProperty("formGuid")
     @ColumnAlias("formGuid")
     private String formGuid;
+    @JsonProperty("dateSubmitted")
+    @ColumnAlias("dateSubmitted")
+    private LocalDateTime dateSubmitted;
     @JsonProperty("dateModified")
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
@@ -61,7 +64,7 @@ public class FormsForUsersAndSharedResponse implements Serializable {
     private String primaryVendor;
     @JsonProperty("balanceDue")
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -69,6 +72,14 @@ public class FormsForUsersAndSharedResponse implements Serializable {
 
     public void setFormGuid(String formGuid) {
         this.formGuid = formGuid;
+    }
+
+    public LocalDateTime getDateSubmitted() {
+        return this.dateSubmitted;
+    }
+
+    public void setDateSubmitted(LocalDateTime dateSubmitted) {
+        this.dateSubmitted = dateSubmitted;
     }
 
     public LocalDateTime getDateModified() {
@@ -151,11 +162,11 @@ public class FormsForUsersAndSharedResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
     }
 
@@ -165,6 +176,7 @@ public class FormsForUsersAndSharedResponse implements Serializable {
         if (!(o instanceof FormsForUsersAndSharedResponse)) return false;
         final FormsForUsersAndSharedResponse formsForUsersAndSharedResponse = (FormsForUsersAndSharedResponse) o;
         return Objects.equals(getFormGuid(), formsForUsersAndSharedResponse.getFormGuid()) &&
+                Objects.equals(getDateSubmitted(), formsForUsersAndSharedResponse.getDateSubmitted()) &&
                 Objects.equals(getDateModified(), formsForUsersAndSharedResponse.getDateModified()) &&
                 Objects.equals(getFormTitle(), formsForUsersAndSharedResponse.getFormTitle()) &&
                 Objects.equals(getMunicipalityName(), formsForUsersAndSharedResponse.getMunicipalityName()) &&
@@ -181,6 +193,7 @@ public class FormsForUsersAndSharedResponse implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getFormGuid(),
+                getDateSubmitted(),
                 getDateModified(),
                 getFormTitle(),
                 getMunicipalityName(),
