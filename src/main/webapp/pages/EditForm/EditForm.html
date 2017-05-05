@@ -932,9 +932,6 @@
                                 <wm-grid-column binding="attachToEmail" caption="Attach To Status Email" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                     <wm-checkbox scopedatavalue="row['attachToEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                 </wm-grid-column>
-                                <wm-grid-column binding="emailLetterCreator" caption="Email Letter Creator" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                    <wm-checkbox scopedatavalue="row['emailLetterCreator']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                </wm-grid-column>
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="Add Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -959,12 +956,6 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn133">
                                             <wm-form-field name="attachToEmail" displayname="Attach To Email" show="true" primary-key="false" generator="assigned" key="attachToEmail" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
                                             defaultvalue="bind:false" hint="When selected, the letter that is generated will be attached to the email that is sent out when the form enters this status. &quot;Send Email&quot; must be selected on the &quot;Form Status Options&quot;."></wm-form-field>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow95">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn134">
-                                            <wm-form-field name="emailLetterCreator" displayname="Email Letter Creator" show="true" primary-key="false" generator="assigned" key="emailLetterCreator" type="boolean" readonly="false" required="false" widget="checkbox"
-                                            placeholder="" defaultvalue="bind:false"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
