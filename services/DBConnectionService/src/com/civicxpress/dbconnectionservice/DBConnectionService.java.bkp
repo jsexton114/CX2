@@ -43,7 +43,7 @@ public class DBConnectionService {
         
         logger.error("ERROR: "+singleton.sqlUrl);
         
-        return DBUtils.getConnection(singleton.sqlUrl, singleton.sqlUser, singleton.sqlPassword, singleton.sqlSchema);
+        return DBUtils.getConnection(singleton.sqlUrl, singleton.sqlUser, singleton.sqlPassword);
     }
     
     public static Connection getMunicipalityDBConnection(Long municipalityId) throws SQLException {

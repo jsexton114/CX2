@@ -41,8 +41,6 @@ public class DBConnectionService {
             singleton = new DBConnectionService();
         }
         
-        logger.error("ERROR: "+singleton.sqlUrl);
-        
         return DBUtils.getConnection(singleton.sqlUrl, singleton.sqlUser, singleton.sqlPassword);
     }
     
@@ -55,6 +53,8 @@ public class DBConnectionService {
     	DBRow muniDetails = DBUtils.selectOne(cx2Conn, getMuniDbDetailsQuery, muniDbDetailsParams);
     	
     	String muniUrl = cx2Conn.getMetaData().getURL().replaceAll("databaseName=.+", "databaseName="+muniDetails.getString("DbName"));
+    	
+    	cx2Conn.close();
     	
     	return DBUtils.getConnection(muniUrl, muniDetails.getString("DbUser"), muniDetails.getString("DbPassword"));
     }
