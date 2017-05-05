@@ -28,4 +28,10 @@ Application.$controller("EmployeeLocationsPageController", ["$scope", function($
         };
     };
 
+
+    $scope.panel1Actionsclick = function($item) {
+
+        $scope.Variables.svEmployeeLocations.update();
+    };
+
 }]);

@@ -1,4 +1,38 @@
 {
+  "Actions" : {
+    "_id" : "wm-Actions-wm.Variable-1491338704490",
+    "name" : "Actions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Refresh",
+      "icon" : "wi wi-refresh",
+      "link" : "#/EmployeeLocations"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "BreadCrum" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1491338704490",
+    "name" : "BreadCrum",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Municipality Administration",
+      "icon" : "wi wi-domain",
+      "link" : "#/MunicipalityAdministration"
+    }, {
+      "label" : "Employee Locations",
+      "icon" : "wi wi-location-on",
+      "link" : "#/EmployeeLocations"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
   "svEmployeeLocations" : {
     "_id" : "wm-svEmployeeLocations-wm.ServiceVariable-1493901845573",
     "name" : "svEmployeeLocations",
