@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
+import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.civicxpress.letters.LetterTemplate;
 import com.civicxpress.letters.SectionalTemplatePdf;
 import com.civicxpress.letters.Cx2DataAccess;
-import com.civicxpress.letters.DatabaseConnectionInfo;
 import com.civicxpress.letters.GlobalFormInfo;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
@@ -44,20 +43,17 @@ public class LetterService {
     @Value("${cx2.password}")
     private String defaultSqlPassword = "F!yingFishCove1957";
 
-    public List<String> getAvailableTokens(int formTypeId) {
-		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    public List<String> getAvailableTokens(int formTypeId) throws SQLException {
+		Cx2DataAccess db = new Cx2DataAccess();
         List<String> availableTokens = null;
         availableTokens = LetterTemplate.getAvailableTokens(db, formTypeId);
         return availableTokens;
     }
 
-    public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) {
+    public SectionalTemplatePdf getLetterTemplate(Integer letterTemplateId) throws SQLException {
     	SectionalTemplatePdf lt = null;
-//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-//		dbInfo.readFromWebContext();
-//		Cx2DataAccess db = new Cx2DataAccess(dbInfo);
 
-		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
+		Cx2DataAccess db = new Cx2DataAccess();
 
 		if (letterTemplateId == null) {
 			lt = new SectionalTemplatePdf();
@@ -70,16 +66,14 @@ public class LetterService {
     }
 
     public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) throws SQLException {
-    	Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Cx2DataAccess db = new Cx2DataAccess();
 
     	db.updateLetterTemplate(letterTemplate, formTypeId, new Long(securityService.getUserId()));
     }
 
-    public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) {
+    public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) throws SQLException {
 		SectionalTemplatePdf lt = null;
-//		DatabaseConnectionInfo dbInfo = new DatabaseConnectionInfo();
-//		dbInfo.readFromWebContext();
-		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
+		Cx2DataAccess db = new Cx2DataAccess();
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
         Map<String, String> textTokens = LetterTemplate.getTextTokenValues(db, formTypeId, formGuid);

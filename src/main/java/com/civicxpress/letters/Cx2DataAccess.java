@@ -6,84 +6,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 
 public class Cx2DataAccess {
 
-    private DatabaseConnectionInfo dbInfo = null;
-    
-    public Cx2DataAccess() {
-    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
-    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
+    public Cx2DataAccess() {}
+
+    private Connection getDbConnection() throws SQLException {
+        return DBConnectionService.getConnection();
     }
 
-//    public Cx2DataAccess(DatabaseConnectionInfo dbInfo) {
-//    	this.dbInfo = dbInfo;
-//    }
-   
-    public Cx2DataAccess(String sqlUrl, String username, String password) {
-    	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://64.87.23.26:1433;", "cx2", "F!yingFishCove1957", "cx2", 1433);
-    // 	this.dbInfo = new DatabaseConnectionInfo("jdbc:sqlserver://192.168.2.211:1433;", "cx2", "F!yingFishCove1957", "cx2_dev", 1433);
-    	//this.dbInfo = new DatabaseConnectionInfo(sqlUrl, username, password, username, 1433);
+    private Connection getMunicipalityDbConnection(Long municipalityId) throws SQLException {
+        return DBConnectionService.getMunicipalityDBConnection(municipalityId);
     }
 
-    private Connection getDbConnection() {
-        Connection connection = null;
-        SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setURL(dbInfo.getDbUrl());
-        ds.setUser(dbInfo.getDbUser());
-        ds.setPassword(dbInfo.getDbPassword());
-        ds.setDatabaseName(dbInfo.getDbName());
-        ds.setPortNumber(dbInfo.getDbPortNumber());
-        try {
-            connection = ds.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    private Connection getMunicipalityDbConnection(Long municipalityId) {
-        Connection municipalityConnection = null;
-        SQLServerDataSource ds = new SQLServerDataSource();
-        Connection connection = getDbConnection();
-        CallableStatement statement = null;
-        ResultSet rs = null;
-        ds.setURL(dbInfo.getDbUrl());
-        ds.setPortNumber(dbInfo.getDbPortNumber());
-        try {
-            statement = connection.prepareCall("{call getMunicipalityDbInfo(?)}");
-            statement.setLong("municipalityId", municipalityId);
-            statement.execute();
-            rs = statement.getResultSet();
-            if (rs.next()) {
-                // [DbName], [DbUser], [DbPassword]
-                String dbName = rs.getString("DbName");
-                String dbUser = rs.getString("DbUser");
-                String dbPassword = rs.getString("DbPassword");
-                ds.setDatabaseName(dbName);
-                ds.setUser(dbUser);
-                ds.setPassword(dbPassword);
-                try {
-                    municipalityConnection = ds.getConnection();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return municipalityConnection;
-    }
-
-    private List<String> getColumnValuesById(String storedProcedure, String idField, long idValue) {
+    private List<String> getColumnValuesById(String storedProcedure, String idField, long idValue) throws SQLException {
         List<String> columnValues = new ArrayList<String>();
         Connection connection = getDbConnection();
         CallableStatement statement = null;
@@ -112,12 +49,12 @@ public class Cx2DataAccess {
         return columnValues;
     }
 
-    public List<String> getFormTypeFieldNames(long formTypeId) {
+    public List<String> getFormTypeFieldNames(long formTypeId) throws SQLException {
         List<String> fieldNames = getColumnValuesById("getFormTypeFieldNames", "formTypeId", formTypeId);
         return fieldNames;
     }
 
-    public DynamicFormType getFormType(long formTypeId) {
+    public DynamicFormType getFormType(long formTypeId) throws SQLException {
         DynamicFormType dynamicFormType = null;
         Connection connection = getDbConnection();
         CallableStatement statement = null;
@@ -148,7 +85,7 @@ public class Cx2DataAccess {
         return dynamicFormType;
     }
 
-    public DynamicForm getFormInfo(Long formTypeId, String formGuid) {
+    public DynamicForm getFormInfo(Long formTypeId, String formGuid) throws SQLException {
         DynamicForm dynamicForm = null;
         DynamicFormType formType = null;
         Connection connection = getDbConnection();
@@ -167,7 +104,9 @@ public class Cx2DataAccess {
                 dynamicForm = new DynamicForm(formType, formTitle, creatorFullName);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	connection.rollback();
+        	
+            throw e;
         } finally {
             try {
                 rs.close();
@@ -180,7 +119,7 @@ public class Cx2DataAccess {
         return dynamicForm;
     }
 
-    public GlobalFormInfo getGlobalFormInfo(Long formTypeId, String formGuid) {
+    public GlobalFormInfo getGlobalFormInfo(Long formTypeId, String formGuid) throws SQLException {
         GlobalFormInfo globalFormInfo = null;
         Connection connection = getDbConnection();
         CallableStatement statement = null;
@@ -253,7 +192,7 @@ public class Cx2DataAccess {
                 globalFormInfo.setLocationLongitude(rs.getDouble("LocationLongitude"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         } finally {
             try {
                 rs.close();
@@ -266,7 +205,7 @@ public class Cx2DataAccess {
         return globalFormInfo;
     }
 
-    public DynamicForm getFormData(Long formTypeId, String formGuid) {
+    public DynamicForm getFormData(Long formTypeId, String formGuid) throws SQLException {
         DynamicForm dynamicForm = null;
         DynamicFormType formType = null;
         Long municipalityId;
@@ -298,7 +237,9 @@ public class Cx2DataAccess {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            municipalityConnection.rollback();
+            
+            throw e;
         } finally {
             try {
                 rs.close();
@@ -308,16 +249,17 @@ public class Cx2DataAccess {
                 e.printStackTrace();
             }
         }
+        
         dynamicForm.setFormDataValues(formDataValues);
         return dynamicForm;
     }
 
-    public List<String> getLetterTemplatesForFormStatus(int formStatusId) {
+    public List<String> getLetterTemplatesForFormStatus(int formStatusId) throws SQLException {
         List<String> letterTemplates = getColumnValuesById("getLetterTemplatesForFormStatus", "formStatusId", formStatusId);
         return letterTemplates;
     }
 
-    public SectionalTemplatePdf getLetterTemplate(int letterTemplateId) {
+    public SectionalTemplatePdf getLetterTemplate(int letterTemplateId) throws SQLException {
     	SectionalTemplatePdf letterTemplate = null;
         Connection connection;
         CallableStatement statement = null;
@@ -372,7 +314,9 @@ public class Cx2DataAccess {
             	
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+        	connection.rollback();
+        	
+            throw e;
         } finally {
             try {
                 rsLetterTemplate.close();

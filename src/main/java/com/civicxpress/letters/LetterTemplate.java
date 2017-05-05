@@ -3,6 +3,7 @@ package com.civicxpress.letters;
 import com.google.gson.Gson;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,7 +74,7 @@ public class LetterTemplate {
 //        return tokenValuesJson;
 //    }
 
-    public static Map<String, String> getTextTokenValues(Cx2DataAccess db, Long formTypeId, String formGuid) {
+    public static Map<String, String> getTextTokenValues(Cx2DataAccess db, Long formTypeId, String formGuid) throws SQLException {
         List<String> avaliableTokens = null;
         DynamicForm form = db.getFormData(formTypeId, formGuid); //TODO: see why global form data is collected twice
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
@@ -194,7 +195,7 @@ public class LetterTemplate {
         return returnValue;
     }
 
-    public static List<String> getAvailableTokens(Cx2DataAccess data, long formTypeId) {
+    public static List<String> getAvailableTokens(Cx2DataAccess data, long formTypeId) throws SQLException {
         List<String> availableTokens = new ArrayList<String>();
         List<String> fieldNames = new ArrayList<String>();
         fieldNames.addAll(Arrays.asList(GLOBAL_TEXT_TOKENS));

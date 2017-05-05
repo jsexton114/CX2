@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.letters.GlobalFormInfo;
 import com.civicxpress.letters.LetterTemplate;
-import com.civicxpress.MultiDatabaseHelper;
 import com.civicxpress.letters.SectionalTemplatePdf;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.civicxpress.esigngenie.ESignGenieApi;
@@ -66,6 +65,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import com.google.gson.reflect.TypeToken;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.formservice.model.*;
@@ -100,7 +101,7 @@ public class FormService {
     
     public static void main(String args[]) { // Function for testing/debugging purposes
     	try {
-    		Connection cx2Conn = DBUtils.getConnection("jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2", "cx2", "F!yingFishCove1957");
+    		Connection cx2Conn = DBConnectionService.getConnection();
 	    	DBQueryParams queryParams = new DBQueryParams();
     		
     		FormService formService = new FormService();
@@ -113,7 +114,7 @@ public class FormService {
     }
     
     public UserPermissionsPojo getUserPermissions(String formGuid) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	UserPermissionsPojo userPermissions = getUserPermissions(cx2Conn, formGuid);
     	
     	cx2Conn.close();
@@ -149,7 +150,7 @@ public class FormService {
 
     private byte[] getMunicipalityLogo(Long formTypeId) throws SQLException {
     	DBQueryParams params = new DBQueryParams();
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         params.addLong("formTypeId", formTypeId);
         DBRow municipalityLogoRow = DBUtils.selectOne(cx2Conn, "SELECT M.Logo FROM Municipalities M, FormTypes FT WHERE FT.ID=:formTypeId AND M.ID=FT.MunicipalityId", params);
         byte[] municipalityLogo = municipalityLogoRow.getBytes("Logo");
@@ -186,7 +187,7 @@ public class FormService {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         FormDataPojo formDataPojo = new FormDataPojo();
         DBQueryParams params = new DBQueryParams();
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         params.addString("formGuid", formGuid);
         DBRow masterFormData = DBUtils.selectOne(cx2Conn, "SELECT MF.FormTypeId, MF.FormTitle, U.FullName FROM MasterForms MF, Users U WHERE U.ID=MF.UserId AND FormGUID=:formGuid", params);
         
@@ -201,7 +202,7 @@ public class FormService {
     private String getFriendlyFormType(Long formTypeId) throws SQLException { 
         String friendlyFormType = null;
         DBQueryParams params = new DBQueryParams();
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         params.addString("formTypeId", formTypeId.toString());
         DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM [FormTypes] WHERE ID=:formTypeId", params).get(0);
         friendlyFormType  = formTypeData.getString("FormType");
@@ -212,7 +213,7 @@ public class FormService {
     private Map<String, Object> getFormDataByLabel(String formGuid) throws SQLServerException, SQLException {
         // NOTE: all DB code should be refactorred out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
         DBQueryParams params = new DBQueryParams();
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         params.addString("formGuid", formGuid);
         DBRow masterFormData = DBUtils.selectOne(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", params);
         params.addLong("formTypeId", masterFormData.getLong("FormTypeId"));
@@ -233,7 +234,7 @@ public class FormService {
     
     private UserDataPojo getUserData() throws SQLServerException, SQLException {
         // NOTE: all DB code should be refactored out to a data abstraction layer class that doesn't expose vendor DB references or SQL references
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         DBQueryParams params = new DBQueryParams();
         params.addLong("userId", Long.parseLong(securityService.getUserId()));
         DBRow userDataRow = DBUtils.selectOne(cx2Conn, "SELECT FirstName, LastName, Email FROM Users WHERE ID=:userId", params);
@@ -434,7 +435,7 @@ public class FormService {
     }
     
     public Map<String, Object> getFormData(String formGuid) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams formTbNameParams = new DBQueryParams();
     	formTbNameParams.addString("formGuid", formGuid);
@@ -449,7 +450,7 @@ public class FormService {
 		
 		Long municipalityId = formInfo.getLong("MunicipalityId");
 		
-		Connection formDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+		Connection formDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
 		
 		cx2Conn.close();
 		
@@ -457,7 +458,7 @@ public class FormService {
     }
     
     public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-      	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+      	Connection cx2Conn = DBConnectionService.getConnection();
       	DBQueryParams queryParams = new DBQueryParams();
     
         queryParams.addLong("formTypeId",  formTypeId);
@@ -468,9 +469,9 @@ public class FormService {
     }
     
     public Long saveFormType(Long municipalityId, String formType, String description) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
-        Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+        Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
         muniDbConn.setAutoCommit(false);
     	Long newFormTypeId = null;
         
@@ -542,7 +543,7 @@ public class FormService {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
-    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
     	String newFormGuid = null;
     	
     	try {
@@ -611,7 +612,7 @@ public class FormService {
     }
     
     public void saveFormData(String formGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	cx2Conn.setAutoCommit(false);
     	
@@ -679,7 +680,7 @@ public class FormService {
     }
     
     public void uploadDocuments(MultipartFile[] files, String formGuid) throws SQLException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         
     	cx2Conn.setAutoCommit(false);
     	
@@ -696,7 +697,7 @@ public class FormService {
     }
     
     public void updateDocumentFromLT(String base64FileData, String filename, String mimetype, Long documentId) throws SQLException { // For use by LeadTools
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         
         cx2Conn.setAutoCommit(false);
         
@@ -753,7 +754,7 @@ public class FormService {
     }
     
     public DownloadResponse downloadDocument(Long documentId) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBRow documentData = getDocument(cx2Conn, documentId);
     	
@@ -773,7 +774,7 @@ public class FormService {
     }
     
     public HttpEntity editDocument(Long documentId, Integer resolution, String options) throws Exception {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBRow documentData = getDocument(cx2Conn, documentId);
     	
@@ -797,7 +798,7 @@ public class FormService {
     }
     
     public void sendLetter(String formGuid, Integer letterTemplateId, String formLink) throws SQLException, MessagingException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams params = new DBQueryParams();
     	params.addInteger("letterTemplateId", letterTemplateId);
@@ -876,8 +877,8 @@ public class FormService {
         tr.close();
     }
     
-    private byte[] createLetterPdf(Integer letterTemplateId, Long formTypeId, String formGuid) {
-		Cx2DataAccess db = new Cx2DataAccess(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    private byte[] createLetterPdf(Integer letterTemplateId, Long formTypeId, String formGuid) throws SQLException {
+		Cx2DataAccess db = new Cx2DataAccess();
     	SectionalTemplatePdf lt = null;
 		lt = db.getLetterTemplate(letterTemplateId);
         GlobalFormInfo globalFormInfo = db.getGlobalFormInfo(formTypeId, formGuid);
@@ -888,7 +889,7 @@ public class FormService {
     }
     
     private void sendStatusUpdateMail(String formGuid, Long formStatusId, String formLink) throws MessagingException, SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	Boolean sendEmail;
     	
         DBQueryParams params = new DBQueryParams();
@@ -1030,7 +1031,7 @@ public class FormService {
     }
     
     private void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
 		
     	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
     		cx2Conn.close();
@@ -1063,7 +1064,7 @@ public class FormService {
     				queryParams);
     		
     		if (formTypeData.getBoolean("AutomaticFees") && DBUtils.selectQuery(cx2Conn, "SELECT RecalculateAutoFees FROM FormStatuses WHERE ID=:newFormStatusId", queryParams).get(0).getBoolean("RecalculateAutoFees")) {
-    			muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, formTypeData.getLong("MunicipalityId"));
+    			muniDbConn = DBConnectionService.getMunicipalityDBConnection(formTypeData.getLong("MunicipalityId"));
     			DBRow formFieldValues = DBUtils.selectQuery(muniDbConn, "SELECT * FROM "+DBUtils.getSqlSafeString(formTypeData.getString("FormTableName"))+" WHERE FormGUID=:formGuid", queryParams).get(0);
     			
     			DBQueryParams feeQueryParams = calculateAutoFees(formTypeData, formFieldValues.getFieldValues());
@@ -1155,7 +1156,7 @@ public class FormService {
     }
     
     public Long saveDraft(Long formTypeId, String formData, Long draftId) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams params = new DBQueryParams();
         params.addLong("formTypeId", formTypeId);
@@ -1175,7 +1176,7 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
     	
