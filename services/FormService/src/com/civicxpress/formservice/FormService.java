@@ -1018,7 +1018,7 @@ public class FormService {
     	String returnTitle = null;
 		String cleanTitle = null;
 		Date dt = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd") ;
 		String cleanDate = dateFormat.format(dt);
 		cleanTitle = formTitle.replaceAll("[^\\w\\d]+", "-");
 		returnTitle = cleanTitle + " " + cleanDate;
