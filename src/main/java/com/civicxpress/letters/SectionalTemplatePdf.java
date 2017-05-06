@@ -183,13 +183,13 @@ public class SectionalTemplatePdf {
         textOffset = 0;
         String text = applyTextTokens(section.getText(), tokens);
         PDType1Font font = PDType1Font.HELVETICA;
-        if (textSettings.isBold()) font = PDType1Font.HELVETICA_BOLD;
+        if (textSettings.getIsBold()) font = PDType1Font.HELVETICA_BOLD;
         pdfDocument.addImage(x, y, imageWidth, image);
         if (hasImage) textOffset += imageWidth;
         pdfDocument.addTextWithWrapping(x + textOffset, y, width, text,
                 font, textFontSize, textJustification, textLineHeight);
        
-//        System.out.println(String.format("%f, %f, %f, %f, %d, %f, '%s', %b, '%s'", x, y, section.getHeight(), width, textFontSize, textLineHeight, textJustification, textSettings.isBold(), text));
+//        System.out.println(String.format("%f, %f, %f, %f, %d, %f, '%s', %b, '%s'", x, y, section.getHeight(), width, textFontSize, textLineHeight, textJustification, textSettings.getIsBold(), text));
     }
 
     public void saveToFile(String filePath) {

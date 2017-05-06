@@ -307,7 +307,7 @@ public class Cx2DataAccess {
             		settings.setFontSize(rsLetterTemplateDetail.getInt("FontSize"));
             		settings.setLineHeight(rsLetterTemplateDetail.getInt("LineHeight"));
             		settings.setJustification(PdfDocument.textJustificationFromString(rsLetterTemplateDetail.getString("Justification")));
-            		settings.setBold(rsLetterTemplateDetail.getBoolean("IsBold"));
+            		settings.setIsBold(rsLetterTemplateDetail.getBoolean("IsBold"));
             		section.setText(rsLetterTemplateDetail.getString("Text"));
             		sections.add(section);
             	}
@@ -363,7 +363,7 @@ public class Cx2DataAccess {
                           sectionStatement.setInt("fontSize", settings.getFontSize());
                           sectionStatement.setInt("lineHeight", settings.getLineHeight());
                           sectionStatement.setString("justification", settings.getJustification().toString());
-                          sectionStatement.setBoolean("isBold", settings.isBold());
+                          sectionStatement.setBoolean("isBold", settings.getIsBold());
                           sectionStatement.setString("text", section.getText());
                           sectionStatement.execute();
                           sectionIndex++;

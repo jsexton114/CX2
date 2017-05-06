@@ -10,7 +10,7 @@ public class LetterElementSettings {
     private int fontSize = DEFAULT_FONT_SIZE;
     private int lineHeight = DEFAULT_LINE_HEIGHT; // TODO: can this be calculated?
     private TextJustification justification = DEFAULT_TEXT_JUSTIFICATION;
-    private boolean bold = DEFAULT_IS_BOLD;
+    private boolean isBold = DEFAULT_IS_BOLD;
 
     public LetterElementSettings() {
 
@@ -44,11 +44,11 @@ public class LetterElementSettings {
         this.justification = justification;
     }
 
-    public boolean isBold() {
-        return bold;
+    public boolean getIsBold() {
+        return this.isBold;
     }
 
-    public void setBold(boolean bold) {
-        this.bold = bold;
+    public void setIsBold(boolean isBold) {
+        this.isBold = isBold;
     }
 }

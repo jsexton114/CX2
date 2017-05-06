@@ -58,7 +58,7 @@ public class TemplateSection {
 
     public void setText(String text, TextJustification justification, boolean isBold) {
         this.setText(text, justification);
-        this.setBold(isBold);
+        this.setIsBold(isBold);
     }
 
     public float getX() { return x; }
@@ -97,8 +97,8 @@ public class TemplateSection {
         this.getTextSettings().setJustification(justification);
     }
 
-    public void setBold(boolean isBold) {
-        this.getTextSettings().setBold(isBold);
+    public void setIsBold(boolean isBold) {
+        this.getTextSettings().setIsBold(isBold);
     }
 
 }
