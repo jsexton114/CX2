@@ -23,27 +23,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                        <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" title="Totals by Payment Type" name="panelTotalsByPaymentType" class="panel-primary">
-                            <wm-layoutgrid name="layoutgrid3">
-                                <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_1">
-                                        <wm-grid title="" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" navigation="None" name="gridTotalsByPaymentType">
-                                            <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="paymentAmount" caption="Total Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        </wm-grid>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                                        <wm-chart type="Pie" title="" height="180px" iconclass="wi wi-pie-chart" name="chartPaymentTypes" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" xaxisdatakey="paymentMethod" yaxisdatakey="paymentAmount"
-                                        theme="Annabelle" nodatamessage="No Data Available" offsettop="10" offsetbottom="20" borderwidth="1em unset"></wm-chart>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                            </wm-layoutgrid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="1em unset">
+                <wm-gridrow name="gridrow14">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
@@ -76,6 +56,27 @@
                         <wm-tabs name="tabsMuniTransactions">
                             <wm-tabpane name="tabpaneTransactions" title="Transactions">
                                 <wm-layoutgrid name="layoutgrid4">
+                                    <wm-gridrow name="gridrow14_2">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn23">
+                                            <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" title="Totals by Payment Type" name="panelTotalsByPaymentType" class="panel-primary">
+                                                <wm-layoutgrid name="layoutgrid3">
+                                                    <wm-gridrow name="gridrow8">
+                                                        <wm-gridcolumn columnwidth="8" name="gridcolumn16_1">
+                                                            <wm-grid title="" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" navigation="None" name="gridTotalsByPaymentType">
+                                                                <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="paymentAmount" caption="Total Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true"
+                                                                readonly="false"></wm-grid-column>
+                                                            </wm-grid>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn22">
+                                                            <wm-chart type="Pie" title="" height="180px" iconclass="wi wi-pie-chart" name="chartPaymentTypes" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" xaxisdatakey="paymentMethod" yaxisdatakey="paymentAmount"
+                                                            theme="Annabelle" nodatamessage="No Data Available" offsettop="10" offsetbottom="20" borderwidth="1em unset"></wm-chart>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-panel>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn25">
                                             <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
@@ -97,7 +98,19 @@
                             <wm-tabpane name="tabpaneFees" title="Fees" show="false">
                                 <wm-layoutgrid name="layoutgrid5">
                                     <wm-gridrow name="gridrow14_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn27"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                                            <wm-panel iconclass="wi wi-attach-money" autoclose="outsideClick" title="Fees by Payment Status" name="panelPaidUnpaid" class="panel-primary">
+                                                <wm-layoutgrid name="layoutgrid6">
+                                                    <wm-gridrow name="gridrow16">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn25_1"></wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn26"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                            </wm-panel>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow15">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn24"></wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
