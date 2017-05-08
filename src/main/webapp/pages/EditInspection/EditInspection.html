@@ -564,10 +564,10 @@
             <wm-label name="labelOutcomeFees" caption="These are the fees that are associated with the selected inspection outcome. You can set a single flat fee, or multiple fees that escalate each time this inspection outcome occurs."></wm-label>
             <wm-livegrid formlayout="dialog" name="livegridOutcomeFee">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeFeeData.dataSet" navigation="Classic" name="gridOutcomeFee" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                     <wm-grid-column binding="orderToApply" caption="Order To Apply" type="integer" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="amount" caption="Fee Amount" type="float" generator="assigned" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="accountCode" caption="Accounting Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="New Fee" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Fee" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>

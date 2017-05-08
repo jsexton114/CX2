@@ -4333,13 +4333,13 @@
           "scale" : 0
         }, {
           "fieldName" : "prefixNumberStart",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
           "columnName" : "PrefixNumberStart",
           "isPrimaryKey" : false,
           "notNull" : true,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 38,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "1",

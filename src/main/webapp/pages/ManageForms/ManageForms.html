@@ -164,6 +164,7 @@
             <wm-livegrid formlayout="dialog" name="livegridFormsInCategory">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?"
                 filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                     <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="formTypes.description" caption="Description" type="text" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
                     <wm-grid-column binding="formTypes.active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="FormTypes">
@@ -175,7 +176,6 @@
                     <wm-grid-column binding="formTypes.codeEnforcement" caption="Code Enforcement" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="FormTypes">
                         <wm-checkbox scopedatavalue="row['formTypes.codeEnforcement']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                     </wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>

@@ -826,11 +826,11 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Municipality User Groups" iconclass="wi wi-group" name="dialogShowMunicipalityGroups" width="75%">
             <wm-livegrid formlayout="dialog" name="livegridMunicipalityGroups">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvMunicipalityGroupsData.dataSet" navigation="Classic" name="gridMunicipalityGroups" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                     <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="New Group" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Group" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                    <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogShowMunicipalityGroups.close()" shortcutkey=""></wm-grid-action>
+                    <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.dialogShowMunicipalityGroups.close()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-group" title="Manage Users" action="Widgets.dialogManageSelectedGroup.open()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -880,9 +880,9 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn112">
                         <wm-livegrid formlayout="inline" name="livegridGroupMembers">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvGroupMembersData.dataSet" navigation="Classic" name="gridGroupMembers" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="users.fullName" caption="Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddUserToGroup.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.dialogManageSelectedGroup.close()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -926,6 +926,7 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn141_2">
                         <wm-livegrid formlayout="dialog" name="livegrid8">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" navigation="Classic" name="gridStatusLetters" filtermode="multicolumn" exportformat="EXCEL">
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="letterTemplates.letterTitle" caption="Letter Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="LetterTemplates"></wm-grid-column>
                                 <wm-grid-column binding="attachToItem" caption="Attach To Form" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                     <wm-checkbox scopedatavalue="row['attachToItem']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
@@ -933,7 +934,6 @@
                                 <wm-grid-column binding="attachToEmail" caption="Attach To Status Email" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                     <wm-checkbox scopedatavalue="row['attachToEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                 </wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="Add Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
