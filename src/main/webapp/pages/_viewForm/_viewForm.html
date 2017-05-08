@@ -134,6 +134,7 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn125">
                                                 <wm-label padding="unset 0.5em" name="label29" caption="The following locations have been associated with this form."></wm-label>
                                                 <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Development" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -142,8 +143,6 @@
                                                     <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
                                                     shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
@@ -195,8 +194,9 @@
                                                 <wm-livegrid formlayout="inline" name="livegridFormVendors">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL"
                                                     showrecordcount="true">
-                                                        <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false" show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors"
-                                                        readonly="false">
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                        <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false"
+                                                        show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors" readonly="false">
                                                             <wm-checkbox scopedatavalue="row['primaryVendor']" disabled="Enable" class="" data-ng-class="" on-change="primaryVendorChange(row['primaryVendor'])"></wm-checkbox>
                                                         </wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
@@ -205,8 +205,6 @@
                                                         <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="sharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
                                                         filterwidget="date" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
                                                         shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleVendors &amp;&amp; Variables.Cx2Vendors2formData.dataSet.data.length > 0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="Widgets.dialogVendorDetails.open()"
@@ -232,13 +230,13 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn135">
                                                 <wm-livegrid formlayout="dialog" name="livegrid5">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                         <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date"
                                                         readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
                                                         <wm-grid-column binding="users.fullName" caption="Created By" type="string" primary-key="false" generator="assigned" readonly="true"
                                                         edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Attachment" show="bind:Variables.stvCurrentStatus.dataSet.allowAttachments" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment"
                                                         action="Widgets.dialogUploadDocument.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
@@ -265,14 +263,14 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn139">
                                                 <wm-livegrid formlayout="dialog" name="livegrid1">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SharedWithData.dataSet" navigation="Classic" name="gridSharedwith" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                        <wm-grid-column binding="usersBySharedWithUser.fullName" caption="Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                        <wm-grid-column binding="usersBySharedWithUser.fullName" caption="Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
+                                                        related-entity-name="Users"></wm-grid-column>
                                                         <wm-grid-column binding="usersBySharedWithUser.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
                                                         related-entity-name="Users"></wm-grid-column>
                                                         <wm-grid-column binding="createdOn" caption="Date Added" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('createdOn') | toLocalDateString}}</wm-grid-column>
                                                         <wm-grid-column binding="usersByCreatedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned"
                                                         readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add User" show="bind:Variables.svUserPermissions.dataSet.canView" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-action key="customButton" display-name="Invite User" show="bind:Variables.svUserPermissions.dataSet.canView" class="btn-secondary" iconclass="wi wi-plus" title="Invite User"
@@ -319,6 +317,7 @@
                                         <wm-gridrow name="gridrow57">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn119">
                                                 <wm-grid title="" dataset="bind:Variables.svInspectionsOfForm.dataSet" navigation="Classic" name="gridFormInspections" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionDesign.inspectDesignName" caption="Inspection Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="addedAt" caption="Date Requested" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
@@ -326,8 +325,6 @@
                                                     <wm-grid-column binding="masterInspections.requestedFor" caption="Requested For" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date"
                                                     readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="masterInspections.inspectionOutcome.outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Request Inspection" show="bind:Variables.CurrentForm.firstRecord.formStatuses.allowInspections||Variables.svUserPermissions.dataSet.isEmployee||Variables.svUserPermissions.dataSet.isAdmin"
                                                     class="btn-primary" iconclass="wi wi-plus" title="Request Inspection" action="Widgets.dialogInspectionRequest.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="Widgets.dialogViewInspection.open()"
@@ -357,8 +354,9 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn115">
                                                 <wm-livegrid formlayout="dialog" name="livegrid4">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2FeesData.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                        <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text"
-                                                        show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                        <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
                                                         formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'UnpaidFee-class':row.paidStatus=='Unpaid'}"
@@ -371,8 +369,6 @@
                                                         datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                                         <wm-grid-column binding="transactionComments" caption="Transaction Comments" type="string" col-ng-class="{'UnpaidFee-class':row.paidStatus=='Unpaid', 'paidFee-class':row.paidStatus=='Paid'}"
                                                         edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Fee" show="bind:Variables.svUserPermissions.dataSet.isEmployee || Variables.svUserPermissions.dataSet.isAdmin" class="btn-primary"
                                                         iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-action key="customButton" display-name="Add All To Cart" show="bind:(Variables.stvCurrentStatus.dataSet.allowPayment === true || Variables.svUserPermissions.dataSet.isAdmin === true || Variables.svUserPermissions.dataSet.isEmployee === true)"
@@ -485,8 +481,8 @@
                                         <wm-gridrow name="gridrow110">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn201_1">
                                                 <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="letterTitle" caption="Letter Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download Letter" action="Variables.svCreateLetter.invoke()"
                                                     disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-email" title="Send Letter" action="customRow1Action($event)" disabled="false"></wm-grid-row-action>

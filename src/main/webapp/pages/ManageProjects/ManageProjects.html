@@ -24,6 +24,7 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
                                         <wm-livegrid formlayout="dialog" name="livegridProjects">
                                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvProjectsData.dataSet" navigation="Classic" name="gridProjects" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
@@ -32,7 +33,6 @@
                                                 show="true" readonly="false">
                                                     <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                 </wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()"
                                                 disabled="false"></wm-grid-row-action>

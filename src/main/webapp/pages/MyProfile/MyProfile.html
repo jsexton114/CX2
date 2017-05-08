@@ -115,6 +115,7 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn34_1" horizontalalign="center">
                                         <wm-livegrid formlayout="dialog" name="livegridBillingInfo" show="true">
                                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvBillingInformationData.dataSet" navigation="Classic" name="gridBillingInfo" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="lastName" caption="Last Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="company" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -124,7 +125,6 @@
                                                 <wm-grid-column binding="states.stateName" caption="State" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="States"></wm-grid-column>
                                                 <wm-grid-column binding="postalCode" caption="Postal Code" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="country" caption="Country" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="New Billing Address" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Billing Address" action="addNewRow()" shortcutkey=""
                                                 disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
@@ -215,6 +215,7 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn34_1" horizontalalign="center">
                                         <wm-livegrid formlayout="dialog" name="livegrid1">
                                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetUserSubscriptions.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="municipalities.logo" caption="Logo" type="blob" widget-type="image" primary-key="false" generator="assigned" edit-widget-type="upload" sortable="false" searchable="false"
                                                 show="true" filterwidget="text" related-entity-name="Municipalities" readonly="false"><img ng-if="columnValue != null" class="" data-ng-src="{{'services/cx2/Municipalities/' + row.municipalities.id + '/content/'+ 'logo'}}" width="48px">
@@ -222,9 +223,8 @@
                                                 <wm-grid-column binding="municipalities.phone" caption="Phone Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="municipalities.email" caption="Email Address" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                                 <wm-grid-column binding="dateSubscribed" caption="Date Subscribed" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateSubscribed') | toLocalDateString:true}}</wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text"
-                                                sortable="false" searchable="false" show="true"></wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="addNewRow" display-name="Add Municipality" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Municipality"
+                                                action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                             <wm-liveform novalidate="false" errormessage="You have already subscribed to that municipality." title="Subscribe to Municipality" formlayout="dialog" iconclass="wi wi-library-add" dataset="bind:Variables.GetUserSubscriptions.dataSet"

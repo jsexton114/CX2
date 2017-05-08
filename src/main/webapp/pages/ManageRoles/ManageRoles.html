@@ -17,10 +17,10 @@
                                 <wm-tabpane name="tabpane3" title="CX Admin">
                                     <wm-livegrid formlayout="dialog" name="livegridCXAdmin">
                                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.CXAdminRolesData.dataSet" navigation="Classic" name="gridCXAdmin" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                             <wm-grid-column binding="roleName" caption="Role" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="users.fullName" caption="Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                             <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="Add CXAdmin" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add CXAdmin" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>

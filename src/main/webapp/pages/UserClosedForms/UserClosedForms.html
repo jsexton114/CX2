@@ -36,7 +36,7 @@
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
                                         <wm-grid title="" dataset="bind:Variables.FormsForUsersAndShared.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="80px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                             <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="dateSubmitted" caption="Date Submitted" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateSubmitted') | toLocalDateString:true}}</wm-grid-column>

@@ -9,13 +9,13 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                         <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
                             <wm-grid title="" dataset="bind:Variables.svFeesInCartOfUser.dataSet" navigation="Classic" name="gridFeesList" showrecordcount="true">
+                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="itemTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="parentItemName" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey=""
                                 disabled="bind:feeTotal <= 0"></wm-grid-action>

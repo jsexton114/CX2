@@ -46,6 +46,7 @@
                                     <wm-gridrow name="gridrow6">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn9">
                                             <wm-grid title="" dataset="bind:Variables.svInspectionList.dataSet" navigation="Classic" name="gridInspections" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="subdivision" caption="Development" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
@@ -56,7 +57,6 @@
                                                 <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}}</wm-grid-column>
                                                 <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                 <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -65,6 +65,7 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabMYTEAM" title="My Team">
                                 <wm-grid title="" dataset="bind:Variables.svTeamInspectionList.dataSet" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true" name="gridTeamInspections">
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                     <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="subdivision" caption="Development" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Homebuilder'" readonly="false"></wm-grid-column>
@@ -75,7 +76,6 @@
                                     <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}}</wm-grid-column>
                                     <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>

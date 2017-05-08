@@ -118,6 +118,7 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn125">
                                                 <wm-label padding="unset 0.5em" name="label29" caption="The following locations have been associated with the form for this inspection."></wm-label>
                                                 <wm-grid title="" dataset="bind:Variables.lvGis.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Development" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
@@ -126,7 +127,6 @@
                                                     <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true" related-entity-name="Gisrecords"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
@@ -141,15 +141,15 @@
                                 <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS" show="true">
                                     <wm-livegrid formlayout="dialog" name="livegrid5">
                                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvDocuments.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                             <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
                                             <wm-grid-column binding="users.fullName" caption="Created By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text"
                                             show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-success" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()" accessroles="Inspector,InspectorManager,CodeManager,CodeOfficer,CXAdmin,MunicipalityAdmin"
                                             shortcutkey="" disabled="false"></wm-grid-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="Everyone" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()" accessroles="Authenticated"
                                             disabled="false"></wm-grid-row-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin"
@@ -159,10 +159,10 @@
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneViolations" title="VIOLATIONS" show="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.trackViolations">
                                     <wm-grid title="" dataset="bind:Variables.lvViolations.dataSet" navigation="Classic" name="gridViolations" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                         <wm-grid-column binding="code.codeNumber" caption="Code Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
                                         <wm-grid-column binding="code.codeTitle" caption="Code Title" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
                                         <wm-grid-column binding="notes" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Violation" show="true" class="btn-success" iconclass="wi wi-plus" title="New" action="Widgets.dialogViolation.open()" accessroles="Inspector,InspectorManager,CXAdmin"
                                         shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="" accessroles="Inspector,InspectorManager,CXAdmin" disabled="false"></wm-grid-row-action>

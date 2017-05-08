@@ -28,6 +28,7 @@
                         <wm-panel iconclass="wi wi-find-in-page" autoclose="outsideClick" name="panelInspectionDesigns" title="Municipality Inspections" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridInspectiondesign">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionDesignData.dataSet" navigation="Classic" name="gridInspectiondesign" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                     <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="description" caption="Description" type="text" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="createdAt" caption="Date Created" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('createdAt') | toLocalDateString:true}}</wm-grid-column>
@@ -38,9 +39,7 @@
                                     <wm-grid-column binding="municipalityInternalInspection" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                         <wm-checkbox scopedatavalue="row['municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Inspection" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey=""
-                                    disabled="false"></wm-grid-action>
+                                    <wm-grid-action key="addNewRow" display-name="New Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Inspection" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditInspection.invoke()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dlgDeleteInspectionDesign.open()" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
@@ -53,9 +52,9 @@
                         <wm-panel iconclass="wi wi-group-work" autoclose="outsideClick" title="Inspection Categories" class="panel-primary" name="panelInspectionCategories">
                             <wm-livegrid formlayout="dialog" name="livegridInspectioncategories">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionCategoriesData.dataSet" navigation="Classic" name="gridInspectioncategories" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                     <wm-grid-column binding="inspectionCategory" caption="Category" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="inspectionCategoryDescription" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-find-in-page" title="View Inspections" action="Widgets.dialogInspectionWithCategory.open()"

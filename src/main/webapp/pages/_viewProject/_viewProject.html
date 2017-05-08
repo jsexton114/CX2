@@ -111,12 +111,13 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn137">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectSharedWithData.dataSet" navigation="Classic" name="gridProjectMembers" filtermode="multicolumn" exportformat="EXCEL"
                                                 showrecordcount="true">
-                                                    <wm-grid-column binding="usersByProjectSharedWithUser.fullName" caption="Project Member" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="usersByProjectSharedWithUser.fullName" caption="Project Member" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text"
+                                                    show="true" related-entity-name="Users"></wm-grid-column>
                                                     <wm-grid-column binding="projectSharedOn" caption="Date Added" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
                                                     filterwidget="text" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="usersByProjectSharedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
                                                     related-entity-name="Users"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Member" show="bind:addMember" class="btn-primary" iconclass="wi wi-plus" title="Add Member" action="Widgets.dialogAddMember.open()"
                                                     shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-action key="customButton" display-name="Invite Member" show="bind:addMember" class="btn-secondary" iconclass="wi wi-plus" title="Invite Member" shortcutkey="" disabled="false"></wm-grid-action>
@@ -129,7 +130,9 @@
                                 <wm-tabpane name="tabpaneTASKS" title="TASKS">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectTasksData.dataSet" navigation="Classic" name="gridTasks" confirmdelete="Warning! Deleting this Task/Milestone will also delete all associated Tasks/Milestones that have this record selected as &quot;Predecessor&quot;. Would you like to proceed?"
                                     nodatamessage="No Tasks found." filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                        <wm-grid-column binding="name" caption="Title" type="string" primary-key="false" generator="assigned" col-ng-class="{'milestone-class':row.type=='Milestone'}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                        <wm-grid-column binding="name" caption="Title" type="string" primary-key="false" generator="assigned" col-ng-class="{'milestone-class':row.type=='Milestone'}" edit-widget-type="text" show="true"
+                                        readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="type" caption="Type" type="string" generator="assigned" col-ng-class="{'milestone-class':row.type==&quot;Milestone&quot;}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="startAt" caption="Start Date" type="timestamp" primary-key="false" generator="assigned" col-ng-class="{'milestone-class':row.type=='Milestone'}" datepattern="MM-dd-yyyy"
                                         formatpattern="toDate" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false"></wm-grid-column>
@@ -139,7 +142,6 @@
                                         edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                         <wm-grid-column binding="percentComplete" caption="Percent Complete" type="integer" primary-key="false" generator="assigned" col-ng-class="{'milestone-class':row.type=='Milestone'}" edit-widget-type="number"
                                         show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Task" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Task" action="Widgets.dialogAddtask.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Widgets.dialogUpdateTask.open()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -151,6 +153,7 @@
                                         <wm-gridrow name="gridrow61">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn127">
                                                 <wm-grid title="" dataset="bind:Variables.ProjectGISRecords.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Development" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -159,7 +162,6 @@
                                                     <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
                                                     shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
@@ -185,7 +187,9 @@
                                                 <wm-livegrid formlayout="inline" name="livegridFormVendors">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvVendorsToProjects.dataSet" navigation="Classic" name="gridProjectVendors" filtermode="multicolumn" exportformat="EXCEL"
                                                     showrecordcount="true">
-                                                        <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false" show="true" readonly="false">
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                        <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false"
+                                                        show="true" readonly="false">
                                                             <wm-checkbox scopedatavalue="row['primaryVendor']" disabled="Enable" class="" data-ng-class="" on-change="primaryVendorChange(row['primaryVendor'])"></wm-checkbox>
                                                         </wm-grid-column>
                                                         <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
@@ -194,7 +198,6 @@
                                                         <wm-grid-column binding="vendor.companyWebsite" caption="Website" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
                                                         <wm-grid-column binding="sharedOn" caption="Date Added" type="datetime" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
                                                         filterwidget="date" readonly="false"></wm-grid-column>
-                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add Contractor" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Contractor" action="Widgets.dialogAddVendor.open()"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="Widgets.dialogVendorDetails.open()"
@@ -209,6 +212,7 @@
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneFORMS" title="FORMS">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectForms.dataSet" navigation="Classic" name="gridProjectForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                         <wm-grid-column-group name="group1" caption="Form Details">
                                             <wm-grid-column binding="masterForms.formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.users.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -218,10 +222,9 @@
                                             <wm-grid-column binding="masterForms.vendor.companyName" caption="Primary Vendor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="masterForms.balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         </wm-grid-column-group>
-                                        <wm-grid-column binding="addedAt" caption="Date Added" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                        <wm-grid-column binding="addedAt" caption="Date Added" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('addedAt') | toLocalDateString}}</wm-grid-column>
                                         <wm-grid-column binding="users.fullName" caption="Added By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="comments" caption="Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                         <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="Widgets.dialogAddFormsToProject.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.GoToForms.invoke()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Variables.DeleteProjectForms.invoke()" disabled="false"></wm-grid-row-action>

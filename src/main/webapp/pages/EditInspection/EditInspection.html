@@ -288,10 +288,10 @@
                                             <wm-livegrid formlayout="dialog" name="livegridInspectioncategorymappin">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionCategoryMappingData.dataSet" navigation="Classic" name="gridInspectioncategorymapping" filtermode="multicolumn"
                                                 exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="inspectionCategories.inspectionCategory" caption="Category" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionCategories"></wm-grid-column>
                                                     <wm-grid-column binding="inspectionCategories.inspectionCategoryDescription" caption="Description" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"
                                                     related-entity-name="InspectionCategories"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Category" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Category" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
@@ -343,6 +343,7 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn69">
                                             <wm-livegrid formlayout="dialog" name="livegridOutcome">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="outcomeOrder" caption="Outcome Order" type="integer" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
@@ -354,7 +355,6 @@
                                                     <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Outcome" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Outcome" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="bind:row['assessFeeYn']" class="btn-transparent" iconclass="wi wi-attach-money" title="Fees" action="Widgets.dialogOutcomeFee.open()"
@@ -461,14 +461,15 @@
                                             <wm-livegrid formlayout="dialog" name="livegridInspectionCodeSets">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodesToInspection.dataSet" navigation="Classic" name="gridInspectionCodeSets" filtermode="multicolumn" exportformat="EXCEL"
                                                 showrecordcount="true">
-                                                    <wm-grid-column binding="codeSets.globalYn" caption="Scope" type="boolean" widget-type="label" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="CodeSets">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="codeSets.globalYn" caption="Scope" type="boolean" widget-type="label" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true"
+                                                    related-entity-name="CodeSets">
                                                         <wm-label caption="{{row.getProperty('codeSets.globalYn')==true?' Global':Variables.CurrentInspectionObj.firstRecord.municipalities.municipalityName}}"=""="" class="" data-ng-class=""></wm-label>
                                                     </wm-grid-column>
                                                     <wm-grid-column binding="codeSets.codeSetTitle" caption="Code Set" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="CodeSets"></wm-grid-column>
                                                     <wm-grid-column binding="dateAdded" caption="Date Added" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('dateAdded') | toLocalDateString}}</wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
-                                                    searchable="false" show="true"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Add Code Set" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Code Set" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Code Set" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Code Set"
+                                                    action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                                 <wm-liveform novalidate="false" errormessage="" title="Code Set Details" formlayout="dialog" iconclass="wi wi-hammer" dataset="bind:Variables.lvCodesToInspection.dataSet" captionalign="left" captionposition="top"
@@ -504,15 +505,15 @@
                             <wm-tabpane name="tabpaneLetters" title="Letters">
                                 <wm-livegrid formlayout="dialog" name="livegridLetters">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                         <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                         <wm-grid-column binding="createdDate" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('createdDate') | toLocalDateString}}</wm-grid-column>
                                         <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text"
                                         show="true" related-entity-name="Users"></wm-grid-column>
                                         <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
-                                        searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                        <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRow()"
+                                        shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>

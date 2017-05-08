@@ -119,6 +119,7 @@
                                                     <wm-gridrow name="gridrow4">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                                             <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByUser.dataSet" navigation="Classic" name="gridUserForms" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found">
+                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectView.datavalue.viewName==='Standard'" readonly="false"></wm-grid-column>
@@ -131,7 +132,6 @@
                                                                 readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
-                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                             </wm-grid>
                                                         </wm-gridcolumn>
@@ -241,6 +241,7 @@
                                                     <wm-gridrow name="gridrow4">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                                             <wm-grid title="" dataset="bind:Variables.SearchFormByVendor.dataSet" navigation="Classic" name="gridVENDOR" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found" loadingdatamsg="Searching">
+                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewContractor.datavalue.viewName==='Standard'"
@@ -255,7 +256,6 @@
                                                                 readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
-                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                             </wm-grid>
                                                         </wm-gridcolumn>
@@ -449,6 +449,7 @@
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                                             <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByAddress.dataSet" navigation="Classic" name="gridFormsAddress" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found"
                                                             loadingdatamsg="Searching">
+                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAddress.datavalue.viewName==='Standard'"
@@ -463,7 +464,6 @@
                                                                 readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
-                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                             </wm-grid>
                                                         </wm-gridcolumn>
@@ -520,6 +520,7 @@
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                                             <wm-grid title="" dataset="bind:Variables.svSearchAllFormsByFormTitle.dataSet" navigation="Classic" name="gridAdvanced" filtermode="multicolumn" showrecordcount="true" nodatamessage="No Forms Found"
                                                             loadingdatamsg="Searching">
+                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                                 <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="bind:Widgets.selectViewAdvanced.datavalue.viewName==='Standard'"
@@ -534,7 +535,6 @@
                                                                 readonly="false"></wm-grid-column>
                                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                                 </wm-grid-column>
-                                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                             </wm-grid>
                                                         </wm-gridcolumn>

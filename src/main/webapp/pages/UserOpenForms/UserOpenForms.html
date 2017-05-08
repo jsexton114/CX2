@@ -38,7 +38,7 @@
                                         <wm-gridrow name="gridrow4">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                                                 <wm-grid title="" dataset="bind:Variables.FormsForUsersAndShared.dataSet" navigation="Classic" name="gridOpenForms" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="80px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="dateSubmitted" caption="Date Submitted" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateSubmitted') | toLocalDateString:true}}</wm-grid-column>
@@ -65,11 +65,11 @@
                             <wm-tabpane name="tabpaneDrafts" title="Drafts">
                                 <wm-panel iconclass="wi wi-warning" autoclose="outsideClick" name="panelDraft" title="Unsubmitted Drafts" class="panel-primary">
                                     <wm-grid editmode="inline" title="" dataset="bind:Variables.Cx2FormDraftData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                         <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
                                         <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false"
-                                        searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="Open Draft" action="updaterowAction($event)" disabled="false" icon="wi wi-assignment"></wm-grid-row-action>
+                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="Open Draft" action="updaterowAction($event)"
+                                        disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-panel>

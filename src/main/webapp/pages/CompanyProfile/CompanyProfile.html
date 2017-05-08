@@ -125,13 +125,13 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
-                                        <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true" disabled="true"
-                                        checkedvalue="true" uncheckedvalue="false" hint="When &quot;Active&quot;, your company can be selected on forms in the municipalities where it has been approved for business, and your company forms can move forward with inspection scheduling. If your insurance has expired, your company will become inactive in CivicXpress until you provide a new COI."></wm-form-field>
-                                    </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="4" name="gridcolumn20">
                                         <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date" placeholder="Select date"
                                         outputformat="yyyy-MM-dd" datepattern="MM-dd-yyyy" disabled="true" defaultvalue="CURRENT_DATE"></wm-form-field>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
+                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true" disabled="true"
+                                        checkedvalue="true" uncheckedvalue="false" hint="When &quot;Active&quot;, your company can be selected on forms in the municipalities where it has been approved for business, and your company forms can move forward with inspection scheduling. If your insurance has expired, your company will become inactive in CivicXpress until you provide a new COI."></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -146,13 +146,13 @@
                         <wm-panel iconclass="wi wi-notepad" name="panel1" title="Licenses" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegrid1">
                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.VendorLicensesData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                     <wm-grid-column binding="vendorLicenseTypes.licenseType" caption="License Type" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="VendorLicenseTypes" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="licenseNumber" caption="License Number" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="issuedDate" caption="Date Issued" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="expirationDate" caption="Expiration Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                     <wm-grid-column binding="scope" caption="Scope" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New License" show="true" class="btn-primary" iconclass="wi wi-plus" title="New License" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
