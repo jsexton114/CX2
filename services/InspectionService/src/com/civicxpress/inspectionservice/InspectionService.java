@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -33,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.civicxpress.MultiDatabaseHelper;
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.tekdog.dbutils.DBQueryParams;
 import com.tekdog.dbutils.DBRow;
@@ -56,22 +55,10 @@ public class InspectionService {
     @Autowired
     private SecurityService securityService;
 
-    @Value("${cx2.url}")
-    private String sqlUrl;
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser;
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword;
-
     public Long saveInspectionDesign(Long municipalityId, String inspectionName, String description) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
-        Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+        Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
         muniDbConn.setAutoCommit(false);
     	Long newInspectionDesignId = null;
         
@@ -121,7 +108,7 @@ public class InspectionService {
     }
     
     public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
     	
@@ -129,7 +116,7 @@ public class InspectionService {
     	
     	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
     	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
-    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
     	String newInspectionGuid = null;
     	
     	try {
@@ -275,7 +262,7 @@ public class InspectionService {
     }
     
     public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
     	try {
@@ -372,7 +359,7 @@ public class InspectionService {
     }
     
     public void setInspectionOutcome(String inspectionGuid, Long inspectionOutcomeId, String comments, String formLink) throws SQLException, MessagingException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         cx2Conn.setAutoCommit(false);
         
         try {
@@ -435,7 +422,7 @@ public class InspectionService {
     }
     
     public void addViolation(String inspectionGuid, Long codeId, String notes, MultipartFile[] pictures) throws SQLException, IOException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	cx2Conn.setAutoCommit(false);
     	
@@ -483,7 +470,7 @@ public class InspectionService {
     
     // Dynamic fields
     public void saveDynamicFieldData(String inspectionGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	cx2Conn.setAutoCommit(false);
     	
@@ -517,7 +504,7 @@ public class InspectionService {
     }
     
     public void saveDynamicField(Long inspectionDesignId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
@@ -528,7 +515,7 @@ public class InspectionService {
     }
     
     public Map<String, Object> getDynamicFieldData(String inspectionGuid) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams formTbNameParams = new DBQueryParams();
     	formTbNameParams.addString("inspectionGuid", inspectionGuid);
@@ -543,7 +530,7 @@ public class InspectionService {
 		
 		Long municipalityId = formInfo.getLong("MunicipalityId");
 		
-		Connection formDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+		Connection formDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
 		
 		cx2Conn.close();
 		
@@ -552,7 +539,7 @@ public class InspectionService {
     
     // Attachments
     public void uploadDocuments(MultipartFile[] files, String inspectionGuid) throws SQLException, IOException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
     	try {

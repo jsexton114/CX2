@@ -14,4 +14,12 @@ import com.wavemaker.tools.api.core.models.AccessSpecifier;
 @RestController
 @RequestMapping(value = "/dBConnection")
 public class DBConnectionController {
+
+    @Autowired
+    private DBConnectionService dBConnectionService;
+
+    @RequestMapping(value = "/generateController", method = RequestMethod.GET)
+    public void generateController() {
+        dBConnectionService.generateController();
+    }
 }

@@ -35,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wavemaker.runtime.file.model.DownloadResponse;
@@ -86,18 +85,6 @@ public class FormService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser = "cx2";
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
     
     public static void main(String args[]) { // Function for testing/debugging purposes
     	try {
@@ -542,7 +529,7 @@ public class FormService {
     private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId) throws SQLException {
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("formTypeId", formTypeId);
-    	Long municipalityId = DBUtils.selectQuery(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).get(0).getLong("MunicipalityId");
+    	Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).getLong("MunicipalityId");
     	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
     	String newFormGuid = null;
     	
@@ -897,122 +884,121 @@ public class FormService {
         DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, FS.Status as FormStatus, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
         sendEmail = formData.getBoolean("SendEmail");
         
-        	String formType = formData.getString("FormType");
-        	String formTitle = formData.getString("FormTitle");
-        	String recipientFullName = formData.getString("FullName");
-        	String recipientEmail = formData.getString("Email");
-        	String emailSubject = formData.getString("EmailSubjectLine");
-        	String emailBody = formData.getString("EmailTextBody");
-        	String municipality = formData.getString("MunicipalityName");
-        	String municipalitySignature = formData.getString("GlobalEmailSig");
-        	String formStatus = formData.getString("FormStatus");
-        	Long formTypeId = formData.getLong("FormTypeId");
+    	String formType = formData.getString("FormType");
+    	String formTitle = formData.getString("FormTitle");
+    	String recipientFullName = formData.getString("FullName");
+    	String recipientEmail = formData.getString("Email");
+    	String emailSubject = formData.getString("EmailSubjectLine");
+    	String emailBody = formData.getString("EmailTextBody");
+    	String municipality = formData.getString("MunicipalityName");
+    	String municipalitySignature = formData.getString("GlobalEmailSig");
+    	String formStatus = formData.getString("FormStatus");
+    	Long formTypeId = formData.getLong("FormTypeId");
 
-	        Properties props = System.getProperties();
-	        props.put("mail.smtp.starttls.enable", "true");
-	        props.put("mail.smtp.host", "smtp.gmail.com");
-	        props.put("mail.smtp.port", "587");
-	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.starttls.required", "true");
-	        props.put("mail.smtp.ssl.enabled","true");
-	        props.put("mail.imap.ssl.enabled", "true");
-	
-	        Session session = Session.getDefaultInstance(props, null);
-	
-	        MimeMessage message = new MimeMessage(session);
-	        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
-	        
-	        InternetAddress recipientAddress;
-	        recipientAddress = new InternetAddress(recipientEmail);
-	        
-	        message.setRecipient(Message.RecipientType.TO, recipientAddress);
-	        
-	        List<DBRow> sharedWithUsers = DBUtils.selectQuery(cx2Conn, "SELECT U.Email FROM SharedWith SW INNER JOIN Users U ON U.ID=SW.SharedWithUser WHERE SW.RelatedGUID=:formGuid", params);
-	        
-	        if (sharedWithUsers != null) {
-		        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
-		        for (int i = 0; i < sharedWithUsers.size(); i++) {
-		        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
-		        }
-		        
-		        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        InternetAddress recipientAddress;
+        recipientAddress = new InternetAddress(recipientEmail);
+        
+        message.setRecipient(Message.RecipientType.TO, recipientAddress);
+        
+        List<DBRow> sharedWithUsers = DBUtils.selectQuery(cx2Conn, "SELECT U.Email FROM SharedWith SW INNER JOIN Users U ON U.ID=SW.SharedWithUser WHERE SW.RelatedGUID=:formGuid", params);
+        
+        if (sharedWithUsers != null) {
+	        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
+	        for (int i = 0; i < sharedWithUsers.size(); i++) {
+	        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
 	        }
 	        
-	        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
-	        
-	        if (emailBody != null) {
-	        	emailContent.append(emailBody);
-		        emailContent.append("<br /><br />");
-	        } else {
-	        	emailContent.append("The status of your form has been updated to " + formStatus + ".<br /><br />");
+	        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
+        }
+        
+        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
+        
+        if (emailBody != null) {
+        	emailContent.append(emailBody);
+	        emailContent.append("<br /><br />");
+        } else {
+        	emailContent.append("The status of your form has been updated to " + formStatus + ".<br /><br />");
+        }
+        
+        emailContent.append(municipality);
+        emailContent.append("<br />");
+        emailContent.append(formType);
+        emailContent.append("<br />");
+        emailContent.append(formTitle);
+        emailContent.append("<br />");
+        emailContent.append("<a href ='"+formLink+"'> Click Here to View Form </a>");
+        
+        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
+        
+        Multipart messageContents = new MimeMultipart();
+        
+        MimeBodyPart messageBody = new MimeBodyPart();
+        messageBody.setContent(emailContent.toString(), "text/html");
+        
+        messageContents.addBodyPart(messageBody);
+        
+        params.addLong("formStatusId", formStatusId);
+        List<DBRow> statusLetterTemplates = DBUtils.selectQuery(cx2Conn, "select * from LetterTemplateToFormStatus WHERE FormStatusId=:formStatusId", params);
+        
+        if (statusLetterTemplates != null) {
+	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
+	        	Boolean attachToEmail = statusLetterTemplate.getBoolean("AttachToEmail");
+	        	Boolean attachToItem = statusLetterTemplate.getBoolean("AttachToItem");
+	        	
+	        	if (attachToEmail || attachToItem) {
+	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
+	        		String filename = cleanFormTitleAndDateForFilename(formTitle) + ".pdf";
+	        		
+	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
+	                
+	                if (attachToEmail) {
+		                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
+		                MimeBodyPart letterAttachment = new MimeBodyPart();
+		                letterAttachment.setDataHandler(new DataHandler(fileDS));
+		                letterAttachment.setFileName(filename);
+		                
+		                messageContents.addBodyPart(letterAttachment);
+	                }
+	                
+	                if (attachToItem) {
+		        		DBQueryParams attachParams = new DBQueryParams();
+		        		attachParams.addString("formGuid", formGuid);
+		        		attachParams.addString("filename", filename);
+		        		attachParams.addBytes("letterPdf", fileBytes);
+		        		attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+	                	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+	                }
+	        	}
 	        }
-	        
-	        emailContent.append(municipality);
-	        emailContent.append("<br />");
-	        emailContent.append(formType);
-	        emailContent.append("<br />");
-	        emailContent.append(formTitle);
-	        emailContent.append("<br />");
-	        emailContent.append("<a href ='"+formLink+"'> Click Here to View Form </a>");
-	        
-	        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
-	        
-	        Multipart messageContents = new MimeMultipart();
-	        
-	        MimeBodyPart messageBody = new MimeBodyPart();
-	        messageBody.setContent(emailContent.toString(), "text/html");
-	        
-	        messageContents.addBodyPart(messageBody);
-	        
-	        params.addLong("formStatusId", formStatusId);
-	        List<DBRow> statusLetterTemplates = DBUtils.selectQuery(cx2Conn, "select * from LetterTemplateToFormStatus WHERE FormStatusId=:formStatusId", params);
-	        
-	        if (statusLetterTemplates != null) {
-    	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
-    	        	Boolean attachToEmail = statusLetterTemplate.getBoolean("AttachToEmail");
-    	        	Boolean attachToItem = statusLetterTemplate.getBoolean("AttachToItem");
-    	        	
-    	        	if (attachToEmail || attachToItem) {
-    	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
-    	        		String filename = cleanFormTitleAndDateForFilename(formTitle) + ".pdf";
-    	        		
-    	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
-    	                
-    	                if (attachToEmail) {
-    		                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
-    		                MimeBodyPart letterAttachment = new MimeBodyPart();
-    		                letterAttachment.setDataHandler(new DataHandler(fileDS));
-    		                letterAttachment.setFileName(filename);
-    		                
-    		                messageContents.addBodyPart(letterAttachment);
-    	                }
-    	                
-    	                if (attachToItem) {
-    		        		DBQueryParams attachParams = new DBQueryParams();
-    		        		attachParams.addString("formGuid", formGuid);
-    		        		attachParams.addString("filename", filename);
-    		        		attachParams.addBytes("letterPdf", fileBytes);
-    		        		attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
-    	                	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
-    	                }
-    	        	}
-    	        }
-	        
-	        if (sendEmail) {
-    	        message.setSubject(emailSubject);
-    	        message.setContent(messageContents);
-    	        // Send smtp message
-    	        Transport tr = session.getTransport("smtp");
-    	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
-    	        message.saveChanges();
-    	        tr.sendMessage(message, message.getAllRecipients());
-    	        tr.close();
-	        }
+        }
+        
+        if (sendEmail) {
+	        message.setSubject(emailSubject);
+	        message.setContent(messageContents);
+	        // Send smtp message
+	        Transport tr = session.getTransport("smtp");
+	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+	        message.saveChanges();
+	        tr.sendMessage(message, message.getAllRecipients());
+	        tr.close();
         }
         
         cx2Conn.close();
     }
-    
     
     private static String cleanFormTitleAndDateForFilename(String formTitle) {
     	String returnTitle = null;

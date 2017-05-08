@@ -6,7 +6,6 @@ package com.civicxpress.checkoutservice;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,12 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.tekdog.dbutils.DBUtils;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
-import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 //import com.civicxpress.checkoutservice.model.*;
 
@@ -41,18 +39,9 @@ public class CheckoutService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser = "cx2";
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
 
     public void municipalityCheckout(Long municipalityId, String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long[] feeIds) throws Exception {
-    	Connection connection = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection connection = DBConnectionService.getConnection();
     	CallableStatement checkoutStatement = null;
     	
     	BigDecimal amountDue = DBUtils.selectOne(connection, "SELECT SUM(Amount) as amountDue FROM Fees WHERE ID IN ("+StringUtils.join(feeIds, ',')+")", null).getBigDecimal("amountDue");

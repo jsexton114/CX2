@@ -3,64 +3,21 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.gisrecordservice;
 
-import javax.activation.DataHandler;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.util.ByteArrayDataSource;
-import javax.servlet.http.HttpServletRequest;
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 
-import com.civicxpress.dynamicfieldservice.DynamicFieldService;
-import com.civicxpress.esigngenie.ESignGenieApi;
-
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.xerces.impl.dv.util.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.wavemaker.runtime.file.model.DownloadResponse;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.LongSerializationPolicy;
-import com.google.gson.reflect.TypeToken;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.gisrecordservice.model.*;
@@ -72,18 +29,6 @@ public class GisRecordService {
 
     @Autowired
     private SecurityService securityService;
-
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
-
-    @Value("${cx2.username}")
-    private String defaultSqlUser = "cx2";
-
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
 
     private void uploadDocuments(Connection cx2Conn, MultipartFile[] files, Long gisRecordId) throws SQLException, IOException {
     	StringBuilder documentAddQuery = new StringBuilder("INSERT INTO Document (GisRecordId, Filename, Mimetype, Contents, CreatedBy) VALUES ");
@@ -112,7 +57,7 @@ public class GisRecordService {
     }
 
     public void uploadDocuments(MultipartFile[] files, Long gisRecordId) throws SQLException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
 
     	cx2Conn.setAutoCommit(false);
 

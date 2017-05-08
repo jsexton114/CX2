@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -34,6 +33,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.civicxpress.MultiDatabaseHelper;
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.tekdog.dbutils.DBQueryParams;
 import com.tekdog.dbutils.DBRow;
@@ -56,20 +56,8 @@ public class InspectionService {
     @Autowired
     private SecurityService securityService;
 
-    @Value("${cx2.url}")
-    private String sqlUrl;
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser;
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword;
-
     public Long saveInspectionDesign(Long municipalityId, String inspectionName, String description) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
         Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
         muniDbConn.setAutoCommit(false);
@@ -121,7 +109,7 @@ public class InspectionService {
     }
     
     public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
     	
@@ -133,9 +121,10 @@ public class InspectionService {
     	String newInspectionGuid = null;
     	
     	try {
+    		Long currentUserId = Long.parseLong(securityService.getUserId());
 	    	muniDbConn.setAutoCommit(false);
 	    	queryParams.addString("formGuid", formGuid);
-	    	queryParams.addLong("requestedBy", Long.parseLong(securityService.getUserId()));
+	    	queryParams.addLong("requestedBy", currentUserId);
 	    	queryParams.addDate("requestedFor", requestedFor);
 	    	
 	    	/*
@@ -196,7 +185,10 @@ public class InspectionService {
 	    	
 	    	Long newInspectionId = DBUtils.selectOne(cx2Conn, "SELECT @@IDENTITY as newInspectionId", null).getLong("newInspectionId");
 	    	queryParams.addLong("newInspectionId", newInspectionId);
-	    	newInspectionGuid = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid FROM MasterInspections WHERE ID=:newInspectionId", queryParams).getString("InspectionGuid");
+	    	
+	    	DBRow newInspectionData = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid, InspectionOutcomeId FROM MasterInspections WHERE ID=:newInspectionId", queryParams);
+	    	newInspectionGuid = newInspectionData.getString("InspectionGuid");
+	    	Long newInspectionOutcomeId = newInspectionData.getLong("InspectionOutcomeId");
 	    	queryParams.addString("newInspectionGuid", newInspectionGuid);
 	    	
 	    	String inspectionTableName = inspectionDesignData.getString("InspectionTableName");
@@ -235,6 +227,8 @@ public class InspectionService {
 	    	Calendar requestedForCal = Calendar.getInstance();
 	    	requestedForCal.setTime(requestedFor);
 	    	
+	    	DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", newInspectionGuid, newInspectionOutcomeId, null, "Inspection requested.", currentUserId).execute();
+	    	
 	    	// Same day fee
 	    	BigDecimal sameDayFee = inspectionDesignData.getBigDecimal("SameDayInspectionFee");
 	    	if (todayCal.get(Calendar.YEAR) == requestedForCal.get(Calendar.YEAR) && todayCal.get(Calendar.DAY_OF_YEAR) == requestedForCal.get(Calendar.DAY_OF_YEAR)
@@ -243,6 +237,8 @@ public class InspectionService {
 	    		queryParams.addString("sameDayAccountingCode", inspectionDesignData.getString("SameDayInspectionFeeAcctCode"));
 	    		
 	    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Fees (InspectionGuid, FormGuid, Amount, FeeType, AutoFeeYN, AccountingCode, PaidStatus) VALUES (:newInspectionGuid, :formGuid, :sameDayFee, 'Same Day Scheduling Fee', 1, :sameDayAccountingCode, 'Unpaid')", queryParams);
+	    		
+	    		DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", newInspectionGuid, newInspectionOutcomeId, newInspectionOutcomeId, "A Same Day fee was charged for this inspection.", currentUserId).execute();
 	    	}
 	    	
 	    	String newInspectionQuery = "INSERT INTO "+inspectionTableName+" ("+newInspectionQueryFieldNames.toString()+") VALUES ("+newInspectionQueryVariableNames.toString()+")";
@@ -267,7 +263,7 @@ public class InspectionService {
     }
     
     public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
     	try {
@@ -364,25 +360,30 @@ public class InspectionService {
     }
     
     public void setInspectionOutcome(String inspectionGuid, Long inspectionOutcomeId, String comments, String formLink) throws SQLException, MessagingException {
-        Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+        Connection cx2Conn = DBConnectionService.getConnection();
         cx2Conn.setAutoCommit(false);
         
         try {
+        	Long currentUserId = Long.parseLong(securityService.getUserId());
+        	
         	DBQueryParams params = new DBQueryParams();
         	params.addString("inspectionGuid", inspectionGuid);
         	params.addLong("newOutcomeId", inspectionOutcomeId);
-        	params.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+        	params.addLong("createdBy", currentUserId);
         	
         	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT MI.*, IND.MunicipalityId as MunicipalityId, RU.Email as RequestorEmail, RU.FullName as RequestorFullName, IND.InspectDesignName FROM MasterInspections MI INNER JOIN Users RU ON RU.ID=MI.RequestedBy INNER JOIN InspectionDesign IND ON IND.ID=MI.InspectionDesignId WHERE InspectionGUID=:inspectionGuid", params);
         	Long municipalityId = inspectionData.getLong("MunicipalityId");
+        	Long oldOutcomeId = inspectionData.getLong("InspectionOutcomeId");
         	
-        	params.addLong("oldOutcomeId", inspectionData.getLong("InspectionOutcomeId"));
+        	params.addLong("oldOutcomeId", oldOutcomeId);
         	params.addString("comments", comments);
         	
         	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET InspectionOutcomeId=:newOutcomeId, "
     				+"Closed=(SELECT ConsiderClosed FROM InspectionOutcome WHERE ID=:newOutcomeId) WHERE InspectionGUID=:inspectionGuid",
     				params);
     		
+        	DBUtils.prepareProcedure(cx2Conn, "addInspectionHistory", inspectionGuid, inspectionOutcomeId, oldOutcomeId, comments, currentUserId).execute();
+        	
     		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO InspectionHistory (InspectionGUID,NewOutcomeId,OldOutcomeId,Comments,CreatedBy) "
     				+"VALUES (:inspectionGuid,:newOutcomeId,:oldOutcomeId,:comments,:createdBy)",
     				params);
@@ -422,7 +423,7 @@ public class InspectionService {
     }
     
     public void addViolation(String inspectionGuid, Long codeId, String notes, MultipartFile[] pictures) throws SQLException, IOException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	cx2Conn.setAutoCommit(false);
     	
@@ -470,7 +471,7 @@ public class InspectionService {
     
     // Dynamic fields
     public void saveDynamicFieldData(String inspectionGuid, HashMap<String, Object> fieldData) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	cx2Conn.setAutoCommit(false);
     	
@@ -504,7 +505,7 @@ public class InspectionService {
     }
     
     public void saveDynamicField(Long inspectionDesignId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
@@ -515,7 +516,7 @@ public class InspectionService {
     }
     
     public Map<String, Object> getDynamicFieldData(String inspectionGuid) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	
     	DBQueryParams formTbNameParams = new DBQueryParams();
     	formTbNameParams.addString("inspectionGuid", inspectionGuid);
@@ -539,7 +540,7 @@ public class InspectionService {
     
     // Attachments
     public void uploadDocuments(MultipartFile[] files, String inspectionGuid) throws SQLException, IOException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
     	try {

@@ -1732,8 +1732,8 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
-    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
+where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser))
+    AND (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId)
         ]]>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="allowPayment" type="java.lang.Boolean"/>
@@ -1774,8 +1774,8 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser ))
-    AND (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)) wmTempTable
+where FS.AllowPayment=:allowPayment and FE.PaidStatus=:paidStatus and (UserId=:creatorUser or MF.FormGUID IN (select relatedGuid from SharedWith WHERE SharedWithUser = :sharedWithUser))
+    AND (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId)) wmTempTable
         ]]>
     <query-param name="creatorUser" type="java.lang.Integer"/>
     <query-param name="allowPayment" type="java.lang.Boolean"/>

@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 
 import com.civicxpress.letters.LetterTemplate;
@@ -33,15 +32,6 @@ public class LetterService {
 
     @Autowired
     private SecurityService securityService;
-
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://192.168.2.211:1433;databaseName=CX2_DEV";
-
-    @Value("${cx2.username}")
-    private String defaultSqlUser = "cx2";
-
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
 
     public List<String> getAvailableTokens(int formTypeId) throws SQLException {
 		Cx2DataAccess db = new Cx2DataAccess();

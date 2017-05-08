@@ -35,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wavemaker.runtime.file.model.DownloadResponse;
@@ -86,18 +85,6 @@ public class FormService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser = "cx2";
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
     
     public static void main(String args[]) { // Function for testing/debugging purposes
     	try {

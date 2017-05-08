@@ -9,16 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Arrays;
 
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.tekdog.dbutils.*;
 
 //import com.civicxpress.userservice.model.*;
@@ -40,31 +39,9 @@ public class UserService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}") 
-    private String sqlUrl;
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser;
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword = "F!yingFishCove1957";
-
-    /**
-     * This is sample java operation that accepts an input from the caller and responds with "Hello".
-     *
-     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
-     * getUserName() and getUserId() etc which returns the information based on the caller context.
-     *
-     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
-     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
-     */
      
     public void saveMunicipalityLogo(MultipartFile photo[], Long municipalityId) throws Exception { // TODO: Move me
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	
     	queryParams.addLong("municipalityId", municipalityId);
@@ -79,7 +56,7 @@ public class UserService {
     }
     
     public void saveUserPhoto(MultipartFile photo[], Long userId) throws Exception {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	
     	if ((userId == null || !userId.equals(Long.parseLong(securityService.getUserId())))  && !Arrays.asList(securityService.getUserRoles()).contains("CXAdmin")) {

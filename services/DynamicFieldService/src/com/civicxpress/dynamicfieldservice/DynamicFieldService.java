@@ -16,9 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
-import com.civicxpress.MultiDatabaseHelper;
+import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.tekdog.dbutils.DBQueryParams;
 import com.tekdog.dbutils.DBRow;
 import com.tekdog.dbutils.DBUtils;
@@ -37,18 +36,6 @@ public class DynamicFieldService {
 
     @Autowired
     private SecurityService securityService;
-    
-    @Value("${cx2.url}")
-    private String sqlUrl;
-    
-    @Value("${cx2.username}")
-    private String defaultSqlUser;
-    
-    @Value("${cx2.schemaName}")
-    private String defaultSqlDatabase;
-    
-    @Value("${cx2.password}")
-    private String defaultSqlPassword;
 
     @HideFromClient
     public static Map<String, Object> getFieldData(Connection muniDbConn, String itemGuid, String itemType, String fieldDataTableName) throws SQLException {
@@ -72,14 +59,14 @@ public class DynamicFieldService {
 
     @HideFromClient
     public static void saveDynamicField(Connection cx2Conn, Long parentObjectId, Long municipalityId, String parentObjectIdColumnName, String itemTableName, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label);
+      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label).replaceAll("^\\d+", ""); // Make sure no leading numbers remain
     
       	cx2Conn.setAutoCommit(false);
       	DBQueryParams queryParams = new DBQueryParams();
     
       	queryParams.addLong("parentItemId", parentObjectId);
     
-      	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+      	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
       	muniDbConn.setAutoCommit(false);
     
       	try {
@@ -127,7 +114,7 @@ public class DynamicFieldService {
     }
     
     public void updateDynamicField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
-    	Connection cx2Conn = DBUtils.getConnection(sqlUrl, defaultSqlUser, defaultSqlPassword);
+    	Connection cx2Conn = DBConnectionService.getConnection();
 
     	cx2Conn.setAutoCommit(false);
     	DBQueryParams queryParams = new DBQueryParams();
@@ -175,7 +162,7 @@ public class DynamicFieldService {
     	
     	List<DBRow> formFieldsMetaData = DBUtils.selectQuery(cx2Conn, "SELECT FTF.FieldName as FieldName, FFT.SqlType as SqlType FROM FormTypeFields FTF, FormFieldTypes FFT WHERE FFT.ID=FTF.FieldTypeId AND FTF."+parentObjectIdName+"=:parentObjectId", queryParams);
     	
-    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
     	muniDbConn.setAutoCommit(false);
     	
     	try {
@@ -221,6 +208,8 @@ public class DynamicFieldService {
 	    	formSaveQuery.deleteCharAt(formSaveQuery.length()-1);
 	    	
 	    	formSaveQuery.append(" WHERE "+parentObjectGuidName+"=:parentObjectGuid");
+	    	
+	    	System.out.println(formSaveQuery.toString());
 	    	
 	    	DBUtils.simpleQuery(muniDbConn, formSaveQuery.toString(), queryParams);
 	    	

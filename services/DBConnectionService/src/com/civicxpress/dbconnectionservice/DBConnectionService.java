@@ -5,9 +5,10 @@ package com.civicxpress.dbconnectionservice;
 
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
 import java.sql.Connection;
@@ -21,27 +22,37 @@ import com.tekdog.dbutils.*;
 public class DBConnectionService {
 
     private static final Logger logger = LoggerFactory.getLogger(DBConnectionService.class);
+    
+    private static String sqlUrl;// = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
+    private static String sqlUser = "cx2";
+    private static String sqlSchema;
+    private static String sqlPassword;// = "F!yingFishCove1957";
 
     @Value("${cx2.url}")
-    private String sqlUrl = "jdbc:sqlserver://64.87.23.26:1433;databaseName=cx2";
+    public void setSqlUrl(String url) {
+    	sqlUrl = url;
+    }
     
     @Value("${cx2.username}")
-    private String sqlUser = "cx2";
+    public void setUsername(String username) {
+    	sqlUser = username;
+    }
     
     @Value("${cx2.schemaName}")
-    private String sqlSchema;
+    public void setSchemaName(String schemaName) {
+    	sqlSchema = schemaName;
+    }
     
     @Value("${cx2.password}")
-    private String sqlPassword = "F!yingFishCove1957";
-
-    private static DBConnectionService singleton = null;
+    public void setPassword(String password) {
+    	sqlPassword = password;
+    }
     
+    @ExposeToClient
+    public void generateController() {} // Method that is exposed to client but does nothing. This is used to ensure that Wavemaker puts the @Autowired in the controller that we need for values to set properly.
+
     public static Connection getConnection() throws SQLException {
-        if (singleton == null) {
-            singleton = new DBConnectionService();
-        }
-        
-        return DBUtils.getConnection(singleton.sqlUrl, singleton.sqlUser, singleton.sqlPassword);
+        return DBUtils.getConnection(sqlUrl, sqlUser, sqlPassword);
     }
     
     public static Connection getMunicipalityDBConnection(Long municipalityId) throws SQLException {
