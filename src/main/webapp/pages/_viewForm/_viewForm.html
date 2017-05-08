@@ -254,9 +254,8 @@
                                     <wm-layoutgrid name="layoutgrid20">
                                         <wm-gridrow name="gridrow66">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn137">
-                                                <wm-label padding="unset 0.5em" name="label84" caption="This form has been shared with the following users."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label84" caption="This form has been shared with the following users, who can see the form content and complete transactions for the form."></wm-label>
                                                 <wm-label padding="unset 0.5em" name="label32" caption="If you would like to share the form with someone else, use the &quot;+Add User&quot; button to perform a search for CivicXpress users. If that user is not in the system, use the &quot;+Invite User&quot; button to send them an invitation to view the form."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label64" caption="Users who appear below can complete transactions for the form."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow67">
@@ -373,12 +372,12 @@
                                                         iconclass="wi wi-plus" title="Add Fee" action="addNewRowAction($event);addNewRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-action key="customButton" display-name="Add All To Cart" show="bind:(Variables.stvCurrentStatus.dataSet.allowPayment === true || Variables.svUserPermissions.dataSet.isAdmin === true || Variables.svUserPermissions.dataSet.isEmployee === true)"
                                                         class="btn-primary" iconclass="wi wi-add-shopping-cart" title="AddAllToCart" action="customButtonAction($event)" shortcutkey="" disabled="false" icon="wi wi-shopping-cart"></wm-grid-action>
+                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:!itemInCart(row.getProperty('id')) &amp;&amp; row.getProperty('paidStatus') === 'Unpaid' &amp;&amp; (Variables.stvCurrentStatus.dataSet.allowPayment === true || Variables.svUserPermissions.dataSet.isAdmin === true || Variables.svUserPermissions.dataSet.isEmployee === true)"
+                                                        class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="updaterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; (Variables.svUserPermissions.dataSet.isEmployee || Variables.svUserPermissions.dataSet.isAdmin)"
                                                         class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event);editRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:row.getProperty('paidStatus') !== 'Paid' &amp;&amp; (Variables.svUserPermissions.dataSet.isEmployee || Variables.svUserPermissions.dataSet.isAdmin)"
                                                         class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
-                                                        <wm-grid-row-action key="customRow" display-name="" show="bind:!itemInCart(row.getProperty('id')) &amp;&amp; row.getProperty('paidStatus') === 'Unpaid' &amp;&amp; (Variables.stvCurrentStatus.dataSet.allowPayment === true || Variables.svUserPermissions.dataSet.isAdmin === true || Variables.svUserPermissions.dataSet.isEmployee === true)"
-                                                        class="btn-transparent" iconclass="wi wi-add-shopping-cart" title="Add to Cart" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                                     </wm-grid>
                                                     <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.Cx2FeesData.dataSet" captionalign="left" captionposition="top"
                                                     name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)" on-success="liveformFeesSuccess($event, $operation, $data)">
@@ -476,7 +475,11 @@
                                 <wm-tabpane name="tabpaneLetters" title="LETTERS" accessroles="MunicipalityEmployee,MunicipalityAdmin,InspectorManager,Inspector,GISAdmin,CXAdmin,CodeOfficer,CodeManager">
                                     <wm-layoutgrid name="layoutgrid32">
                                         <wm-gridrow name="gridrow109">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn199_1"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn199_1">
+                                                <wm-label padding="unset 0.5em" name="label137" caption="These are the letter templates that have been associated with this form design."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label138" caption="These letter can be set to be automatically generated, emailed, and attached to the form when the form enters a status, as specified on the &quot;Edit Form&quot; page."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label139" caption="To &quot;manually&quot; generate one of the letters below using the form content as it stands at this moment, use the &quot;Generate Letter&quot; action icon below."></wm-label>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow110">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn201_1">
