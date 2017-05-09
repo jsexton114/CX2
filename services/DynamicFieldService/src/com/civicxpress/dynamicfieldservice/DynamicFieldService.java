@@ -59,7 +59,7 @@ public class DynamicFieldService {
 
     @HideFromClient
     public static void saveDynamicField(Connection cx2Conn, Long parentObjectId, Long municipalityId, String parentObjectIdColumnName, String itemTableName, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label).replaceAll("^\\d+", ""); // Make sure no leading numbers remain
+      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label, 3).replaceAll("^\\d+", ""); // Make sure no leading numbers remain
     
       	cx2Conn.setAutoCommit(false);
       	DBQueryParams queryParams = new DBQueryParams();
