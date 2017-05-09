@@ -384,17 +384,29 @@
                                                         <wm-layoutgrid columns="1" name="layoutgrid13">
                                                             <wm-gridrow name="gridrow45_2">
                                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
-                                                                    <wm-label name="labelmanfeeselect" caption="Which fee would you like to manually add to the form?" required="true" show="bind:isNewFee"></wm-label>
+                                                                    <wm-label name="labelmanfeeselect" caption="Which fee would you like to add to the form?" required="true" show="bind:isNewFee" width="355px"></wm-label>
                                                                     <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
-                                                                    displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
-                                                                    <wm-label name="labelmanfeeselect2" caption="If the manual fee type you're looking for is not listed, please contact your Municipality Admin." show="bind:isNewFee" class="help-block"
-                                                                    fontsize="0.8" fontunit="em"></wm-label>
-                                                                    <wm-form-field name="feeType" displayname="Fee" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
-                                                                    maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
-                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true"
-                                                                    step="0.01" widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
-                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false"
-                                                                    widget="text" maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
+                                                                    displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc" width="355px"></wm-select>
+                                                                    <wm-label name="labelmanfeeselect2" caption="If the fee you're looking for is not listed, please contact your Municipality Admin." show="bind:isNewFee" class="help-block"
+                                                                    fontsize="0.8" fontunit="em" width="355px"></wm-label>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                            <wm-gridrow name="gridrow45_21">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn104_21">
+                                                                    <wm-form-field name="feeType" displayname="Fee" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text" maxchars="255"
+                                                                    inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                            <wm-gridrow name="gridrow45_22">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn104_22">
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true" step="0.01" widget="currency"
+                                                                    maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                            <wm-gridrow name="gridrow45_23">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn104_23">
+                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false" widget="text" maxchars="500"
+                                                                    inputtype="text" placeholder="Enter Comments"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
@@ -476,9 +488,9 @@
                                     <wm-layoutgrid name="layoutgrid32">
                                         <wm-gridrow name="gridrow109">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn199_1">
-                                                <wm-label padding="unset 0.5em" name="label137" caption="These are the letter templates that have been associated with this form design."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label138" caption="These letter can be set to be automatically generated, emailed, and attached to the form when the form enters a status, as specified on the &quot;Edit Form&quot; page."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label139" caption="To &quot;manually&quot; generate one of the letters below using the form content as it stands at this moment, use the &quot;Generate Letter&quot; action icon below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label137" caption="The letter templates below have been associated with this form design."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label138" caption="Letters can be set on this form's &quot;Edit Form&quot; page to be automatically generated, emailed, and attached to the form when the form enters a specified status."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label139" caption="To &quot;manually&quot; generate one of the letters below, which will display the form content as it stands at this moment, use the &quot;Generate Letter&quot; button."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow110">
@@ -486,8 +498,9 @@
                                                 <wm-grid title="" dataset="bind:Variables.lvLetterTemplates.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="letterTitle" caption="Letter Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download Letter" action="Variables.svCreateLetter.invoke()"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download Letter"
+                                                    action="Variables.svCreateLetter.invoke()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow1" display-name="" show="true" class="btn-transparent" iconclass="wi wi-email" title="Send Letter" action="customRow1Action($event)" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
