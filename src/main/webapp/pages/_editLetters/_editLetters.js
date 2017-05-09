@@ -13,7 +13,6 @@ Application.$controller("_editLettersPageController", ["$scope", function($scope
          * '$scope.Widgets.username.datavalue'
          */
     };
-
 }]);
 
 Application.$controller("gridLettersController", ["$scope", "$timeout",
@@ -37,7 +36,6 @@ Application.$controller("gridLettersController", ["$scope", "$timeout",
                 updateAndOpenDialog();
             });
         };
-
     }
 ]);
 
@@ -62,10 +60,12 @@ Application.$controller("dialogLetterTemplateController", ["$scope",
         $scope.Math = window.Math;
 
         $scope.insertField = function(field) {
-            insertAtCursor($('textarea.target-token-field')[0], field);
+            insertAtCursor($('textarea.target-token-field'), field);
         };
 
-        function insertAtCursor(myField, myValue) { // http://stackoverflow.com/a/41426040
+        function insertAtCursor(jqField, myValue) { // http://stackoverflow.com/a/41426040
+            var myField = jqField[0];
+
             if (document.selection) { // IE support
                 sel = document.selection.createRange();
                 sel.text = myValue;
@@ -86,6 +86,7 @@ Application.$controller("dialogLetterTemplateController", ["$scope",
             }
 
             myField.focus();
+            jqField.trigger("change");
         }
     }
 ]);

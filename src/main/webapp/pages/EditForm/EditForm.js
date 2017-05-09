@@ -39,22 +39,20 @@ Application.$controller("EditFormPageController", ["$scope", "wmToaster", functi
     };
 
     $scope.svGetAvailableTokensonSuccess = function(variable, data) {
-        console.log($scope.Variables.svGetAvailableTokens);
-        $scope.tokensByTwo = [];
+        // $scope.tokensByTwo = [];
 
-        data.forEach(function(token, index) {
-            if (index % 2 === 0) {
-                $scope.tokensByTwo.push([]);
-            }
+        // data.forEach(function(token, index) {
+        //     if (index % 2 === 0) {
+        //         $scope.tokensByTwo.push([]);
+        //     }
 
-            $scope.tokensByTwo[$scope.tokensByTwo.length - 1].push(token);
-        });
+        //     $scope.tokensByTwo[$scope.tokensByTwo.length - 1].push(token);
+        // });
     };
 
     $scope.svGetLetterTemplateonSuccess = function(variable, data) {
-        console.log(data);
-    };
 
+    };
 }]);
 
 Application.$controller("liveformUpdateFormTypeController", ["$scope",
@@ -143,10 +141,8 @@ Application.$controller("lfFormTypeStatusController", ["$scope",
         $scope.allowAuthorEditsChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === false) {
                 $scope.Widgets.lfFormTypeStatus.formWidgets.allowSharedWithEdits.datavalue = false;
-
             }
         };
-
     }
 ]);
 
