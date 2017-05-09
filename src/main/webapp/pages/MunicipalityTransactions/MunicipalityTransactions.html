@@ -28,12 +28,11 @@
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
                             <wm-container class="col-md-7" name="container3">
-                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
-                                placeholder="" width="169px"></wm-select>
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""
+                                width="169px"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn22_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn32">
                         <wm-composite name="compositeStart" padding="unset unset unset 2em">
                             <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
@@ -50,6 +49,9 @@
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn22_1b">
+                        <wm-button class="btn-primary" caption="View Fees Report" type="button" margin="unset 0.5em" name="btnViewReport" on-click="btnViewReportClick($event, $scope)"></wm-button>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
@@ -64,13 +66,12 @@
                                                         <wm-gridcolumn columnwidth="8" name="gridcolumn16_1">
                                                             <wm-grid title="" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" navigation="None" name="gridTotalsByPaymentType">
                                                                 <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                                <wm-grid-column binding="paymentAmount" caption="Total Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true"
-                                                                readonly="false"></wm-grid-column>
+                                                                <wm-grid-column binding="paymentAmount" caption="Total Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                             </wm-grid>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                                                            <wm-chart type="Pie" title="" height="180px" iconclass="wi wi-pie-chart" name="chartPaymentTypes" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" xaxisdatakey="paymentMethod" yaxisdatakey="paymentAmount"
-                                                            theme="Annabelle" nodatamessage="No Data Available" offsettop="10" offsetbottom="20" borderwidth="1em unset"></wm-chart>
+                                                            <wm-chart type="Pie" title="" height="180px" iconclass="wi wi-pie-chart" name="chartPaymentTypes" dataset="bind:Variables.svGetTotalsByPaymentMethod.dataSet" xaxisdatakey="paymentMethod" yaxisdatakey="paymentAmount" theme="Annabelle" nodatamessage="No Data Available"
+                                                            offsettop="10" offsetbottom="20" borderwidth="1em unset"></wm-chart>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
@@ -86,10 +87,8 @@
                                                 <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="transactionDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('transactionDate') | toLocalDateString}}</wm-grid-column>
-                                                <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2"
-                                                edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()"
-                                                disabled="false"></wm-grid-row-action>
+                                                <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
