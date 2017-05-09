@@ -95,10 +95,6 @@
     "type" : "integer"
   } ]
 }, {
-  "name" : "EditLetter",
-  "type" : "PAGE",
-  "params" : [ ]
-}, {
   "name" : "EmployeeLocations",
   "type" : "PAGE",
   "params" : [ ]
@@ -354,7 +350,13 @@
 }, {
   "name" : "_editLetters",
   "type" : "PARTIAL",
-  "params" : [ ]
+  "params" : [ {
+    "name" : "formTypeId",
+    "type" : "integer"
+  }, {
+    "name" : "inspectionDesignId",
+    "type" : "integer"
+  } ]
 }, {
   "name" : "_viewForm",
   "type" : "PARTIAL",

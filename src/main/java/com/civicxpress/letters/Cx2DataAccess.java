@@ -343,8 +343,18 @@ public class Cx2DataAccess {
               templateStatement = connection.prepareCall("{ call updateLetterTemplate(?,?,?,?,?,?)}");
               templateStatement.setInt("id", letterTemplate.getId());
               templateStatement.setString("letterTitle", letterTemplate.getTitle());
-              templateStatement.setLong("formTypeId", formTypeId);
-              templateStatement.setLong("inspectionDesignId", inspectionDesignId);
+              
+              if (formTypeId != null) {
+            	  templateStatement.setLong("formTypeId", formTypeId);
+              } else {
+            	  templateStatement.setObject("formTypeId", formTypeId);
+              }
+              
+              if (inspectionDesignId != null) {
+            	  templateStatement.setLong("inspectionDesignId", inspectionDesignId);
+              } else {
+            	  templateStatement.setObject("inspectionDesignId", inspectionDesignId);
+              }
               templateStatement.setLong("userId", userId);
               templateStatement.registerOutParameter("letterTemplateId", java.sql.Types.INTEGER);
               templateStatement.execute();
