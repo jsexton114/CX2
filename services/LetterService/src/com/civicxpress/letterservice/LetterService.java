@@ -55,10 +55,10 @@ public class LetterService {
 		return lt;
     }
 
-    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId) throws SQLException {
+    public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId, Long inspectionDesignId) throws SQLException {
     	Cx2DataAccess db = new Cx2DataAccess();
 
-    	db.updateLetterTemplate(letterTemplate, formTypeId, new Long(securityService.getUserId()));
+    	db.updateLetterTemplate(letterTemplate, formTypeId, inspectionDesignId, new Long(securityService.getUserId()));
     }
 
     public DownloadResponse createLetter(Long formTypeId, String formGuid, int letterTemplateId) throws SQLException {
