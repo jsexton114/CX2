@@ -503,53 +503,9 @@
                                 </wm-layoutgrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneLetters" title="Letters">
-                                <wm-livegrid formlayout="dialog" name="livegridLetters">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplatesData.dataSet" navigation="Classic" name="gridLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                        <wm-grid-column binding="letterTitle" caption="Letter Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="createdDate" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('createdDate') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text"
-                                        show="true" related-entity-name="Users"></wm-grid-column>
-                                        <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRow()"
-                                        shortcutkey="" disabled="false"></wm-grid-action>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Letter Details" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top" name="liveformLetters">
-                                        <wm-layoutgrid columns="1" name="layoutgrid26">
-                                            <wm-gridrow name="gridrow99">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn143">
-                                                    <wm-form-field name="letterTitle" displayname="Letter Title" required="true" show="true" generator="assigned" primary-key="false" key="letterTitle" type="string" is-related="false" maxchars="255" pc-display="true"
-                                                    mobile-display="true" widget="text"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow100">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn144">
-                                                    <wm-form-field name="letterBody" displayname="Letter Body" required="false" show="true" generator="assigned" primary-key="false" key="letterBody" type="text" is-related="false" maxchars="2147483647" pc-display="true"
-                                                    mobile-display="true" widget="textarea"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow101">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn145">
-                                                    <wm-form-field name="formTypes" displayname="Form Types" required="false" show="false" generator="assigned" primary-key="false" key="formTypes" type="list" is-related="true" pc-display="true" mobile-display="true"
-                                                    widget="select"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow102">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn146">
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" required="false" show="false" generator="assigned" primary-key="false" key="inspectionDesign" type="list" is-related="true" pc-display="true"
-                                                    mobile-display="true" widget="select" dataset="bind:Variables.CurrentInspectionObj.dataSet" datafield="All Fields" displayfield="inspectDesignName" defaultvalue="bind:Variables.CurrentInspectionObj.firstRecord"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="letterId" displayname="Letter Id" required="true" show="false" generator="identity" primary-key="true" key="letterId" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
-                                        widget="number"></wm-form-field>
-                                        <wm-form-action key="save" class="form-save btn-primary" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
+                                <wm-container name="container2" content="_editLetters">
+                                    <wm-param name="inspectionDesignId" value="bind:pageParams.InspectionDesignId" type="integer"></wm-param>
+                                </wm-container>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCXADMIN" title="CX Admin" accessroles="CXAdmin"></wm-tabpane>
                         </wm-tabs>

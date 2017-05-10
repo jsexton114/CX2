@@ -188,19 +188,9 @@ Application.$controller("lfUpdateInspectionDesignController", ["$scope",
     }
 ]);
 
-Application.$controller("gridLettersController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
-Application.$controller("liveformLettersController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
+
+
 
 
 
