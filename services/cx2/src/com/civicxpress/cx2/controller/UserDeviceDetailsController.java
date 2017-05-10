@@ -100,6 +100,13 @@ public class UserDeviceDetailsController {
         return deletedUserDeviceDetails != null;
     }
 
+    @RequestMapping(value = "/deviceUuid-userId", method = RequestMethod.GET)
+    @ApiOperation(value = "Returns the matching UserDeviceDetails with given unique key values.")
+    public UserDeviceDetails getByDeviceUuidAndUserId(@RequestParam("deviceUuid") String deviceUuid, @RequestParam("userId") Integer userId) {
+        LOGGER.debug("Getting UserDeviceDetails with uniques key DeviceUuidAndUserId");
+        return userDeviceDetailsService.getByDeviceUuidAndUserId(deviceUuid, userId);
+    }
+
     /**
      * @deprecated Use {@link #findUserDeviceDetails(String, Pageable)} instead.
      */

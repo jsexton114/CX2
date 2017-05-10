@@ -86,7 +86,7 @@ public class FormHistory implements Serializable {
         this.oldStatusId = oldStatusId;
     }
 
-    @Column(name = "`Comments`", nullable = true, length = 500)
+    @Column(name = "`Comments`", nullable = true, length = 1000)
     public String getComments() {
         return this.comments;
     }

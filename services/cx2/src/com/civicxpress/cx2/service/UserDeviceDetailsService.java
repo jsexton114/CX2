@@ -51,6 +51,15 @@ public interface UserDeviceDetailsService {
 	 */
 	UserDeviceDetails findById(Integer userdevicedetailsId);
 
+    /**
+	 * Find and return the UserDeviceDetails for given deviceUuid  anduserId  if exists.
+	 *
+	 * @param deviceUuid value of deviceUuid; value cannot be null.
+	 * @param userId value of userId; value cannot be null.
+	 * @return UserDeviceDetails associated with the given inputs.
+     * @throws EntityNotFoundException if no matching UserDeviceDetails found.
+	 */
+    UserDeviceDetails getByDeviceUuidAndUserId(String deviceUuid, Integer userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing UserDeviceDetails. It replaces all fields of the existing UserDeviceDetails with the given userDeviceDetails.

@@ -43,7 +43,7 @@ public class Document implements Serializable {
     private byte[] contents;
     @Type(type = "DateTime")
     private LocalDateTime dateCreated;
-    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.INSERT, Scope.UPDATE })
+    @ServerDefinedProperty( value = VariableType.USER_ID, scopes = { Scope.UPDATE, Scope.INSERT })
     private int createdBy;
     private Integer violationId;
     private Integer gisRecordId;
