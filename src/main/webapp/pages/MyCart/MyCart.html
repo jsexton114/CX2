@@ -17,8 +17,8 @@
                                 <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey=""
-                                disabled="bind:feeTotal <= 0"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
+                                <!-- TODO: The Chase payment mechanism should be triggered by a standard HTML submit button with a few hidden input form values, per my example at http://www.labwindow.com/PaymentRequest.html -- JES -->
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
