@@ -35,8 +35,8 @@ public class LetterController {
     @RequestMapping(value = "/availableTokens", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public List<String> getAvailableTokens(@RequestParam(value = "formTypeId", required = false) int formTypeId) throws SQLException {
-        return letterService.getAvailableTokens(formTypeId);
+    public List<String> getAvailableTokens(@RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "formTypeId", required = false) Long inspectionDesignId) throws SQLException {
+        return letterService.getAvailableTokens(formTypeId, inspectionDesignId);
     }
 
     @RequestMapping(value = "/letterTemplate", method = RequestMethod.GET)
@@ -47,6 +47,8 @@ public class LetterController {
     }
 
     @RequestMapping(value = "/letterTemplate", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void updateLetterTemplate(@RequestBody SectionalTemplatePdf letterTemplate, @RequestParam(value = "formTypeId", required = false) Long formTypeId, @RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId) throws SQLException {
         letterService.updateLetterTemplate(letterTemplate, formTypeId, inspectionDesignId);
     }

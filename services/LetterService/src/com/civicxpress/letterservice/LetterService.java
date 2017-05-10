@@ -32,11 +32,19 @@ public class LetterService {
 
     @Autowired
     private SecurityService securityService;
+    
+    private long nullToMinusOne(Long longValue) {
+    	if (longValue == null) {
+    		return -1L;
+    	} else {
+    		return longValue;
+    	}
+    }
 
-    public List<String> getAvailableTokens(int formTypeId) throws SQLException {
+    public List<String> getAvailableTokens(Long formTypeId, Long inspectionDesignId) throws SQLException {
 		Cx2DataAccess db = new Cx2DataAccess();
         List<String> availableTokens = null;
-        availableTokens = LetterTemplate.getAvailableTokens(db, formTypeId);
+        availableTokens = LetterTemplate.getAvailableTokens(db, nullToMinusOne(formTypeId), nullToMinusOne(inspectionDesignId));
         return availableTokens;
     }
 

@@ -1,7 +1,9 @@
 package com.civicxpress.letters;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.*;
@@ -13,6 +15,11 @@ public class LetterTemplate {
     private static final String[] GLOBAL_TEXT_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
             "Location", "LocationMap", "Fees", "AmountDue", "Owner", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
+    
+    private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
+            "Location", "LocationMap", "Fees", "AmountDue", "Owner", "Tenant",
+            "Violations", "ExpiresDate", "IssuedDate"};
+    
     private static final String[] GLOBAL_IMAGE_TOKENS = {"MunicipalityLogo"};
     private static final String TOKEN_PATTERN = "\\[(.*?)\\]";
     private static final int COMPLETE_TOKEN_GROUP_INDEX = 0;
@@ -44,7 +51,8 @@ public class LetterTemplate {
         String returnLetter = null;
         Map<String, String> tokenValues = null;
         Gson gson = new Gson();
-        tokenValues = gson.fromJson(tokenValuesJson, Map.class);
+        Type mapType = new TypeToken<Map<String, String>>(){}.getType();
+        tokenValues = gson.fromJson(tokenValuesJson, mapType);
         returnLetter = createLetter(tokenValues);
         return returnLetter;
     }
@@ -81,7 +89,7 @@ public class LetterTemplate {
         Map<String, Object> dynamicFormDataValues = form.getFormDataValues();
         Map<String, String> returnTokenValues = new HashMap<String, String>();
         Iterator availableTokensIterator = null;
-        avaliableTokens = getAvailableTokens(db, formTypeId);
+        avaliableTokens = getAvailableTokens(db, formTypeId, -1);
         availableTokensIterator = avaliableTokens.iterator();
         while (availableTokensIterator.hasNext()) {
             String completeToken = (String) availableTokensIterator.next();
@@ -195,12 +203,12 @@ public class LetterTemplate {
         return returnValue;
     }
 
-    public static List<String> getAvailableTokens(Cx2DataAccess data, long formTypeId) throws SQLException {
+    public static List<String> getAvailableTokens(Cx2DataAccess data, long formTypeId, long inspectionDesignId) throws SQLException {
         List<String> availableTokens = new ArrayList<String>();
         List<String> fieldNames = new ArrayList<String>();
         fieldNames.addAll(Arrays.asList(GLOBAL_TEXT_TOKENS));
         fieldNames.addAll(Arrays.asList(GLOBAL_IMAGE_TOKENS));
-        fieldNames.addAll(data.getFormTypeFieldNames(formTypeId));
+        fieldNames.addAll(data.getFormTypeFieldNames(formTypeId, inspectionDesignId));
         for (String fieldName : fieldNames) {
             availableTokens.add("[" + fieldName + "]");
         }

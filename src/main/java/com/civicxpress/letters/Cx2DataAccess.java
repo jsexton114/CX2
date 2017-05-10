@@ -6,9 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.civicxpress.dbconnectionservice.DBConnectionService;
 
 public class Cx2DataAccess {
+	
+	private static final Logger logger = Logger.getLogger(Cx2DataAccess.class);
 
     public Cx2DataAccess() {}
 
@@ -35,6 +39,49 @@ public class Cx2DataAccess {
                 cellValue = rs.getString(1);
                 columnValues.add(cellValue);
             }
+        } catch (SQLException e) {
+        	logger.error(e.getMessage());
+            throw e;
+        } finally {
+            try {
+                rs.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                logger.error(e.getMessage());
+            }
+        }
+        return columnValues;
+    }
+
+    public List<String> getFormTypeFieldNames(long formTypeId, long inspectionDesignId) throws SQLException {
+        List<String> fieldNames = new ArrayList<String>();
+        
+        if (formTypeId >= 0) {
+        	fieldNames = getColumnValuesById("getFormTypeFieldNames", "formTypeId", formTypeId);
+        } else if (inspectionDesignId >= 0) {
+        	fieldNames = getColumnValuesById("getInspectionFieldNames", "inspectionDesignId", inspectionDesignId);
+        }
+        
+        return fieldNames;
+    }
+
+    public DynamicInspectionDesign getInspectionDesign(long inspectionDesignId) throws SQLException {
+        DynamicInspectionDesign dynamicInspectionDesign = null;
+        Connection connection = getDbConnection();
+        CallableStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("{call getInspectionDesign(?)}");
+            statement.setLong("inspectionDesignId", inspectionDesignId);
+            statement.execute();
+            rs = statement.getResultSet();
+            if (rs.next()) {
+                String name = rs.getString("Name");
+                String tableName = rs.getString("TableName");
+                Long municipalityId = rs.getLong("MunicipalityId");
+                dynamicInspectionDesign = new DynamicInspectionDesign(name, tableName, municipalityId);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -46,12 +93,7 @@ public class Cx2DataAccess {
                 e.printStackTrace();
             }
         }
-        return columnValues;
-    }
-
-    public List<String> getFormTypeFieldNames(long formTypeId) throws SQLException {
-        List<String> fieldNames = getColumnValuesById("getFormTypeFieldNames", "formTypeId", formTypeId);
-        return fieldNames;
+        return dynamicInspectionDesign;
     }
 
     public DynamicFormType getFormType(long formTypeId) throws SQLException {
@@ -70,7 +112,6 @@ public class Cx2DataAccess {
                 Long municipalityId = rs.getLong("MunicipalityId");
                 dynamicFormType = new DynamicFormType(formType, formTableName, municipalityId);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -92,8 +133,7 @@ public class Cx2DataAccess {
         CallableStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareCall("{call getFormInfo(?,?)}");
-            statement.setLong("formTypeId", formTypeId);
+            statement = connection.prepareCall("{call getFormInfo(?)}");
             statement.setString("formGuid", formGuid);
             statement.execute();
             rs = statement.getResultSet();
@@ -117,6 +157,127 @@ public class Cx2DataAccess {
             }
         }
         return dynamicForm;
+    }
+    
+    public DynamicInspection getInspectionInfo(Long inspectionDesignId, String inspectionGuid) throws SQLException {
+        DynamicInspection dynamicInspection = null;
+        DynamicInspectionDesign inspectionDesign = null;
+        Connection connection = getDbConnection();
+        CallableStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("{call getInspectionInfo(?)}");
+            statement.setString("inspectionGuid", inspectionGuid);
+            statement.execute();
+            rs = statement.getResultSet();
+            if (rs.next()) {
+                String inspectionTitle = rs.getString("InspectionTitle");
+                String creatorFullName = rs.getString("FullName");
+                inspectionDesign = getInspectionDesign(inspectionDesignId);
+                dynamicInspection = new DynamicInspection(inspectionDesign, inspectionTitle, creatorFullName);
+            }
+        } catch (Exception e) {
+        	connection.rollback();
+        	
+            throw e;
+        } finally {
+            try {
+                rs.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return dynamicInspection;
+    }
+    
+    public GlobalInspectionInfo getGlobalInspectionInfo(String inspectionGuid) throws SQLException {
+    	GlobalInspectionInfo globalInspectionInfo = null;
+
+        Connection connection = getDbConnection();
+        CallableStatement statement = null;
+        ResultSet rs = null;
+        try {
+            statement = connection.prepareCall("{call getGlobalInspectionInfo(?)}");
+            statement.setString("inspectionGuid", inspectionGuid);
+            statement.execute();
+            rs = statement.getResultSet();
+            if (rs.next()) {
+                Address municipalityAddress = new Address(null,
+                        rs.getString("MunicipalityAddress1"),
+                        rs.getString("MunicipalityAddress2"),
+                        rs.getString("MunicipalityCity"),
+                        rs.getString("MunicipalityState"),
+                        rs.getString("MunicipalityPostalCode"),
+                        null
+                );
+                Address vendorAddress = new Address(null,
+                        rs.getString("VendorAddress1"),
+                        rs.getString("VendorAddress2"),
+                        rs.getString("VendorCity"),
+                        rs.getString("VendorState"),
+                        rs.getString("VendorPostalCode"),
+                        null
+                );
+                globalInspectionInfo = new GlobalInspectionInfo();
+                // FormTypeId  FormType  FormTableName  MunicialityLogo  MunicipalityName
+                globalInspectionInfo.setInspectionDesignId(rs.getLong("InspectionDesignId"));
+                globalInspectionInfo.setInspectionType(rs.getString("InspectDesignName"));
+                globalInspectionInfo.setTableName(rs.getString("InspectionTableName"));
+                globalInspectionInfo.setMunicipalityLogo(rs.getBytes("MunicipalityLogo")); 
+                globalInspectionInfo.setMunicipalityName(rs.getString("MunicipalityName"));
+                // MunicipalityAddress1  MunicipalityAddress2  MunicipalityCity  MunicipalityState  MunicipalityPostalCode  
+                municipalityAddress.setId(rs.getLong("MunicipalityAddressId"));
+                globalInspectionInfo.setMunicipalityAddress(municipalityAddress);
+                // MunicipalityPhone  MunicipalityEmail  VendorCompanyName  
+                globalInspectionInfo.setMunicipalityPhone(rs.getString("MunicipalityPhone"));
+                globalInspectionInfo.setMunicipalityEmail(rs.getString("MunicipalityEmail"));
+                globalInspectionInfo.setVendorCompanyName(rs.getString("VendorCompanyName"));
+                // VendorAddress1  VendorAddress2  VendorCity  VendorState  VendorCountry  VendorPostalCode
+                vendorAddress.setId(rs.getLong("VendorAddressId"));
+                globalInspectionInfo.setVendorAddress(vendorAddress);
+                // FormGUID  TotalFees  BalanceDue  FormTitle  ExpiresDate  IssuedDate
+                globalInspectionInfo.setInspectionGuid(rs.getString("InspectionGuid"));
+                globalInspectionInfo.setFormGuid(rs.getString("FormGUID"));
+                globalInspectionInfo.setTotalFees(rs.getBigDecimal("TotalFees"));
+                globalInspectionInfo.setBalanceDue(rs.getBigDecimal("BalanceDue"));
+                globalInspectionInfo.setFormTitle(rs.getString("FormTitle"));
+                globalInspectionInfo.setExpiresDate(rs.getDate("ExpiresDate"));
+                globalInspectionInfo.setIssuedDate(rs.getDate("IssuedDate"));
+                // OwnerFirstName  OwnerLastName  TenantFirstName  TenantLastName  LocationParcel  LocationLot
+                globalInspectionInfo.setOwnerFirstName(rs.getString("OwnerFirstName"));
+                globalInspectionInfo.setOwnerLastName(rs.getString("OwnerLastName"));
+                globalInspectionInfo.setTenantFirstName(rs.getString("TenantFirstName"));
+                globalInspectionInfo.setTenantLastName(rs.getString("TenantLastName"));
+                globalInspectionInfo.setLocationParcel(rs.getString("LocationParcel"));
+                globalInspectionInfo.setLocationLot(rs.getString("LocationLot"));
+                // LocationAddress1  LocationAddress2  LocationState  LocationPostalCode  
+                globalInspectionInfo.setLocationAddress(new Address(null,
+                        rs.getString("LocationAddress1"),
+                        rs.getString("LocationAddress2"),
+                        rs.getString("LocationCity"),
+                        rs.getString("LocationState"),
+                        rs.getString("LocationPostalCode"),
+                        null
+                ));
+                // LocationLatitude  LocationLongitude
+                globalInspectionInfo.setLocationLatitude(rs.getDouble("LocationLatitude"));
+                globalInspectionInfo.setLocationLongitude(rs.getDouble("LocationLongitude"));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                rs.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return globalInspectionInfo;
     }
 
     public GlobalFormInfo getGlobalFormInfo(Long formTypeId, String formGuid) throws SQLException {
@@ -311,7 +472,6 @@ public class Cx2DataAccess {
             		section.setText(rsLetterTemplateDetail.getString("Text"));
             		sections.add(section);
             	}
-            	
             }
         } catch (SQLException e) {
         	connection.rollback();
