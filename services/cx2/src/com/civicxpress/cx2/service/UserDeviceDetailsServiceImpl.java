@@ -75,6 +75,25 @@ public class UserDeviceDetailsServiceImpl implements UserDeviceDetailsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public UserDeviceDetails getByDeviceIdAndUserIdAndDeviceOs(String deviceId, Integer userId, String deviceOs) {
+        Map<String, Object> deviceIdAndUserIdAndDeviceOsMap = new HashMap<>();
+        deviceIdAndUserIdAndDeviceOsMap.put("deviceId", deviceId);
+        deviceIdAndUserIdAndDeviceOsMap.put("userId", userId);
+        deviceIdAndUserIdAndDeviceOsMap.put("deviceOs", deviceOs);
+
+        LOGGER.debug("Finding UserDeviceDetails by unique keys: {}", deviceIdAndUserIdAndDeviceOsMap);
+        UserDeviceDetails userDeviceDetails = this.wmGenericDao.findByUniqueKey(deviceIdAndUserIdAndDeviceOsMap);
+
+        if (userDeviceDetails == null){
+            LOGGER.debug("No UserDeviceDetails found with given unique key values: {}", deviceIdAndUserIdAndDeviceOsMap);
+            throw new EntityNotFoundException(String.valueOf(deviceIdAndUserIdAndDeviceOsMap));
+        }
+
+        return userDeviceDetails;
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public UserDeviceDetails getByDeviceUuidAndUserId(String deviceUuid, Integer userId) {
         Map<String, Object> deviceUuidAndUserIdMap = new HashMap<>();
         deviceUuidAndUserIdMap.put("deviceUuid", deviceUuid);

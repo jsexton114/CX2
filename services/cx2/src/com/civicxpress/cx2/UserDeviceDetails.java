@@ -31,6 +31,7 @@ import com.wavemaker.runtime.data.replacers.providers.VariableType;
  */
 @Entity
 @Table(name = "`UserDeviceDetails`", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"`DeviceId`", "`UserId`", "`DeviceOS`"}),
         @UniqueConstraint(columnNames = {"`DeviceUUID`", "`UserId`"})})
 public class UserDeviceDetails implements Serializable {
 
@@ -47,6 +48,7 @@ public class UserDeviceDetails implements Serializable {
     private LocalDateTime devicelastContactTime;
     private String deviceOs;
     private String deviceModel;
+    private String deviceId;
     private Users users;
 
     @Id
@@ -130,6 +132,15 @@ public class UserDeviceDetails implements Serializable {
 
     public void setDeviceModel(String deviceModel) {
         this.deviceModel = deviceModel;
+    }
+
+    @Column(name = "`DeviceId`", nullable = true, length = 255)
+    public String getDeviceId() {
+        return this.deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

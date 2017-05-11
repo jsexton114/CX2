@@ -21229,7 +21229,7 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
@@ -21262,8 +21262,41 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : ""
+      },
+      "fieldName" : "deviceId",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "string",
+      "length" : 255,
+      "name" : "DeviceId",
+      "nullable" : true,
+      "oldName" : "DeviceId",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : true,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "string",
+      "unique" : false
     } ],
     "constraints" : [ {
+      "columns" : [ "DeviceId", "UserId", "DeviceOS" ],
+      "composite" : true,
+      "name" : "UK_UserDeviceDetails_DevxcEOz",
+      "schemaName" : null,
+      "type" : "UNIQUE",
+      "virtual" : false
+    }, {
       "columns" : [ "DeviceUUID", "UserId" ],
       "composite" : true,
       "name" : "UK_UserDeviceDetails_DevZtRD4",
