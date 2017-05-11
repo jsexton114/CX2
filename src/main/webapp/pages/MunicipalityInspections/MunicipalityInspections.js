@@ -19,3 +19,10 @@ Application.$controller("MunicipalityInspectionsPageController", ["$scope", "$lo
     };
 
 }]);
+
+Application.$controller("dialogNewCaseController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
