@@ -59,11 +59,13 @@ public class PushNotification {
     @Autowired
     private UserDeviceDetailsService userDeviceDetailsService;
 
-    public void registerDevice(String deviceId, String deviceOs, Integer userId) {
+    public void registerDevice(String deviceId, String deviceOs, Integer userId, String deviceUUID, String deviceModel) {
     	UserDeviceDetails userDeviceDetails = new UserDeviceDetails();
     	userDeviceDetails.setDeviceId(deviceId);
     	userDeviceDetails.setDeviceOs(deviceOs);
     	userDeviceDetails.setUserId(userId);
+    	userDeviceDetails.setDeviceUuid(deviceUUID);
+    	userDeviceDetails.setDeviceModel(deviceModel);
     	userDeviceDetailsService.create(userDeviceDetails);
 	}
 	

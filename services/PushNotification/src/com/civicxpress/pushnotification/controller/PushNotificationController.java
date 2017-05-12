@@ -30,8 +30,8 @@ public class PushNotificationController {
     @RequestMapping(value = "/registerDevice", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void registerDevice(@RequestParam(value = "deviceId", required = false) String deviceId, @RequestParam(value = "deviceOs", required = false) String deviceOs, @RequestParam(value = "userId", required = false) Integer userId) {
-        pushNotification.registerDevice(deviceId, deviceOs, userId);
+    public void registerDevice(@RequestParam(value = "deviceId", required = false) String deviceId, @RequestParam(value = "deviceOs", required = false) String deviceOs, @RequestParam(value = "userId", required = false) Integer userId, @RequestParam(value = "deviceUUID", required = false) String deviceUUID, @RequestParam(value = "deviceModel", required = false) String deviceModel) {
+        pushNotification.registerDevice(deviceId, deviceOs, userId, deviceUUID, deviceModel);
     }
 
     @RequestMapping(value = "/unregisterDevice", method = RequestMethod.GET)
