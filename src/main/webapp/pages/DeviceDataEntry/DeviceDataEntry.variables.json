@@ -383,6 +383,19 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "deviceId",
+        "type" : "string",
+        "fullyQualifiedType" : "string",
+        "columnName" : "DeviceId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 255,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "UserDeviceDetails",
       "fullyQualifiedName" : "com.civicxpress.cx2.UserDeviceDetails",
@@ -402,5 +415,41 @@
       "package" : "com.civicxpress.cx2.UserDeviceDetails"
     } ],
     "package" : "com.civicxpress.cx2.UserDeviceDetails"
+  },
+  "svSendNotification" : {
+    "_id" : "wm-svSendNotification-wm.ServiceVariable-1494578510277",
+    "name" : "svSendNotification",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "isList" : true,
+      "target" : "String",
+      "value" : "bind:['Check','Done']",
+      "type" : "string"
+    }, {
+      "target" : "deviceToken",
+      "value" : "eHh3oUFZG6U:APA91bF_1qtGwukDTkwAIURZtR5disEStQbXz601H_KdELC0hGnqlkQhSjs2vJYV2JFFP6KuSTWf7wis8Dha8gbYHbl-62AwDGUdmoDClRFcgmZa9UvcjZ4PpOE7DkHKBC0vx1EgcfUu",
+      "type" : "string"
+    }, {
+      "target" : "deviceOS",
+      "value" : "Android",
+      "type" : "string"
+    } ],
+    "type" : "integer",
+    "service" : "PushNotification",
+    "operation" : "notify",
+    "operationId" : "PushNotificationController_notify",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "PushNotification",
+    "spinnerContext" : "page"
   }
 }

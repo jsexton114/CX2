@@ -20,6 +20,13 @@ public class PushNotificationController {
     @Autowired
     private PushNotification pushNotification;
 
+    @RequestMapping(value = "/notify", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void notify(@RequestBody String[] message, @RequestParam(value = "deviceToken", required = false) String deviceToken, @RequestParam(value = "deviceOS", required = false) String deviceOS) {
+        pushNotification.notify(message, deviceToken, deviceOS);
+    }
+
     @RequestMapping(value = "/registerDevice", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

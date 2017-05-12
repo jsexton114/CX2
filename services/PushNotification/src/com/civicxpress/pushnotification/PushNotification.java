@@ -10,6 +10,10 @@ import com.civicxpress.cx2.service.UserDeviceDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.File;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -68,6 +72,75 @@ public class PushNotification {
     	userDeviceDetails = userDeviceDetailsService.getByDeviceIdAndUserIdAndDeviceOs(deviceId, userId, deviceOs);
     	userDeviceDetailsService.delete(userDeviceDetails.getId());
 	}
+	
+	private void sendIOSNotification(List<String> deviceIds, String message) {
+    	boolean production = false;
+    	String iosCertificate = this.getClass().getResource("").getPath() + iosCertificateName;
+ 
+    	try {
+            	File file = new File(iosCertificate);
+            	logger.info(iosCertificate);
+            	AppleNotificationServer jksServer = new AppleNotificationServerBasicImpl(file, iosCertificateKey, production);
+            	PushNotificationPayload payload = PushNotificationPayload.alert(message);
+            	PushNotificationManager pushManager = new PushNotificationManager();
+            	pushManager.initializeConnection(jksServer);
+            	PushedNotifications notifications = pushManager.sendNotifications(payload, Devices.asDevices(deviceIds));
+ 
+        	} catch (Exception e) {
+            	e.printStackTrace();
+        	}
+ 
+	}
+	
+	
+	private void sendAndroidNotification(List<String> deviceIds, String message) {
+    	try {
+        	Sender sender = new Sender(apiKey);
+        	// use this to send message with payload data
+        	Message messageObj = new Message.Builder()
+                	.collapseKey("message")
+                	.timeToLive(3)
+                	.delayWhileIdle(true)
+                	.addData("message", message) //you can get this message on client side app
+                	.build();
+ 
+        	//Use this code for multicast messages
+        	MulticastResult multicastResult = sender.send(messageObj, deviceIds, 1);
+   	}
+    	catch (Exception e) {
+        	e.printStackTrace();
+    	}
+ 
+	}
+ 
+ 
+  public void notify(String[] message, String deviceToken, String deviceOS) {
+    	try {
+        	
+ 
+        	List<String> androidDevices = new ArrayList<String>();
+        	List<String> iosDevices = new ArrayList<String>();
+        	int size = message.length;
+            for (int i=0;i<size;i++){
+                if(deviceOS.equals("Android")){
+                    androidDevices.add(deviceToken);
+                    sendAndroidNotification(androidDevices, message[i]);;
+                }
+                else{
+                    iosDevices.add(deviceToken);
+                    sendIOSNotification(iosDevices, message[i]);
+                }
+            }
+                
+            }
+        	
+    	catch(Exception e) {
+        	e.printStackTrace();
+    	}
+    
+	}
+ 
+
    
 
 }
