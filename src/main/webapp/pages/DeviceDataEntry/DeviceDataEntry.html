@@ -7,6 +7,7 @@
             <wm-livegrid formlayout="dialog" name="livegrid1">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="User Device Details" dataset="bind:Variables.Cx2UserDeviceDetailsData.dataSet" navigation="Classic" name="grid1">
                     <wm-grid-column binding="users.fullName" caption="Full Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                    <wm-grid-column binding="deviceId" caption="Device Id" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                     <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                     <wm-grid-column binding="lastLogin" caption="Last Login" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" mobiledisplay="false" edit-widget-type="datetime"
                     show="true"></wm-grid-column>
@@ -21,6 +22,7 @@
                     <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                    <wm-grid-row-action key="customRow" display-name="" title="SendNotification" value="" iconclass="wi wi-notifications" class="btn-transparent" show="true" action="Widgets.dialog1.open()" icon="wi wi-notifications"></wm-grid-row-action>
                 </wm-grid>
                 <wm-liveform novalidate="false" errormessage="" title="User Device Details" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UserDeviceDetailsData.dataSet" captionalign="left" captionposition="top" name="liveform1">
                     <wm-layoutgrid columns="1" name="layoutgrid1">
@@ -64,8 +66,27 @@
                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                 </wm-liveform>
             </wm-livegrid>
-            <wm-button class="btn-default" caption="Button" type="button" margin="unset 0.5em" name="button1" on-click="Variables.svSendNotification.invoke()"></wm-button>
         </wm-page-content>
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Send Notification" iconclass="wi wi-notifications" name="dialog1">
+            <wm-layoutgrid name="layoutgrid2">
+                <wm-gridrow name="gridrow7" padding="1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                        <wm-composite name="composite1">
+                            <wm-label class="col-md-3 control-label" name="label5" caption="Message"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-textarea name="textareaMessage"></wm-textarea>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button2"></wm-button>
+                <wm-button class="btn-secondary" caption="Send Notification" type="button" margin="unset 0.5em" name="button3" iconclass="wi wi-send" on-click="button3Click($event, $scope)"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
 </wm-page>

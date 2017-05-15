@@ -1,8 +1,8 @@
-Application.$controller("DeviceDataEntryPageController", ["$scope", function ($scope) {
+Application.$controller("DeviceDataEntryPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -18,15 +18,33 @@ Application.$controller("DeviceDataEntryPageController", ["$scope", function ($s
 
 
 Application.$controller("grid1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveform1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.button3Click = function($event, $isolateScope) {
+            var temp = []
+            temp.push($scope.Widgets.textareaMessage.datavalue);
+            $scope.Variables.svSendNotification.setInput({
+                'String': temp
+            });
+            $scope.Variables.svSendNotification.update();
+
+        };
+
+    }
 ]);

@@ -422,20 +422,14 @@
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "isList" : true,
-      "target" : "String",
-      "value" : "bind:['Check','Done']",
-      "type" : "string"
-    }, {
       "target" : "deviceToken",
-      "value" : "eHh3oUFZG6U:APA91bF_1qtGwukDTkwAIURZtR5disEStQbXz601H_KdELC0hGnqlkQhSjs2vJYV2JFFP6KuSTWf7wis8Dha8gbYHbl-62AwDGUdmoDClRFcgmZa9UvcjZ4PpOE7DkHKBC0vx1EgcfUu",
+      "value" : "bind:Widgets.grid1.selecteditem.deviceId",
       "type" : "string"
     }, {
       "target" : "deviceOS",
-      "value" : "Android",
+      "value" : "bind:Widgets.grid1.selecteditem.deviceOs",
       "type" : "string"
     } ],
-    "type" : "integer",
     "service" : "PushNotification",
     "operation" : "notify",
     "operationId" : "PushNotificationController_notify",
@@ -444,6 +438,7 @@
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 20,
+    "onSuccess" : "Widgets.dialog1.close()",
     "startUpdate" : false,
     "autoUpdate" : false,
     "inFlightBehavior" : "executeLast",
