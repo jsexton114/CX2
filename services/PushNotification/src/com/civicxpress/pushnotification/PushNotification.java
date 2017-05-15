@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.File;
 import java.util.*;
+import org.joda.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -61,12 +62,16 @@ public class PushNotification {
 
     public void registerDevice(String deviceId, String deviceOs, Integer userId, String deviceUUID, String deviceModel) {
     	UserDeviceDetails userDeviceDetails = new UserDeviceDetails();
+    	LocalDateTime date = new LocalDateTime();
     	userDeviceDetails.setDeviceId(deviceId);
     	userDeviceDetails.setDeviceOs(deviceOs);
     	userDeviceDetails.setUserId(userId);
     	userDeviceDetails.setDeviceUuid(deviceUUID);
     	userDeviceDetails.setDeviceModel(deviceModel);
-    	userDeviceDetailsService.create(userDeviceDetails);
+    	userDeviceDetails.setDevicelastContactTime(date);
+    	userDeviceDetails.setLastLogin(date);
+    	logger.info(userDeviceDetails.toString());
+    	userDeviceDetailsService.create(userDeviceDetails); 
 	}
 	
 	public void unregisterDevice(String deviceId,Integer userId, String deviceOs) {

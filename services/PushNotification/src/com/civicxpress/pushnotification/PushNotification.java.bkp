@@ -64,7 +64,7 @@ public class PushNotification {
     	userDeviceDetails.setDeviceId(deviceId);
     	userDeviceDetails.setDeviceOs(deviceOs);
     	userDeviceDetails.setUserId(userId);
-    		userDeviceDetails.setDeviceUuid(deviceUUID);
+    	userDeviceDetails.setDeviceUuid(deviceUUID);
     	userDeviceDetails.setDeviceModel(deviceModel);
     	userDeviceDetailsService.create(userDeviceDetails);
 	}
