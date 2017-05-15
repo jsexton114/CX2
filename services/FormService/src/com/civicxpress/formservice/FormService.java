@@ -113,7 +113,7 @@ public class FormService {
     public Long copyFormDesign(Long formDesignId) throws SQLException {
     	Connection connection = DBConnectionService.getConnection();
     	connection.setAutoCommit(false);
-        CallableStatement templateStatement = connection.prepareCall("{ call updateLetterTemplate(?,?)}");
+        CallableStatement templateStatement = connection.prepareCall("{ call copyFormDesign(?,?)}");
         templateStatement.setLong("formDesignId", formDesignId);
         templateStatement.registerOutParameter("copyFormDesignId", java.sql.Types.BIGINT);
         templateStatement.execute();

@@ -46,6 +46,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -107,6 +108,17 @@ public class FormService {
     	cx2Conn.close();
     	
     	return userPermissions;
+    }
+    
+    public Long copyFormDesign(Long formDesignId) throws SQLException {
+    	Connection connection = DBConnectionService.getConnection();
+    	connection.setAutoCommit(false);
+        CallableStatement templateStatement = connection.prepareCall("{ call updateLetterTemplate(?,?)}");
+        templateStatement.setLong("formDesignId", formDesignId);
+        templateStatement.registerOutParameter("copyFormDesignId", java.sql.Types.BIGINT);
+        templateStatement.execute();
+        
+        return templateStatement.getLong("copyFormDesignId");
     }
     
     public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {

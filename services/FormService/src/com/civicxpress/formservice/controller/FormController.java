@@ -34,6 +34,8 @@ public class FormController {
     private FormService formService;
 
     @RequestMapping(value = "/copyFormDesign", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public Long copyFormDesign(@RequestParam(value = "formDesignId", required = false) Long formDesignId) throws SQLException {
         return formService.copyFormDesign(formDesignId);
     }
