@@ -101,8 +101,8 @@
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                         <wm-panel iconclass="wi wi-list" autoclose="outsideClick" name="panelInspection" title="Inspection Content" class="panel-success">
-                            <wm-tabs name="INSTRUCTIONS">
-                                <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="true">
+                            <wm-tabs name="INSTRUCTIONS" defaultpaneindex="bind:Variables.lvDynamicFields.dataSet.data.length > 0 ? 0 : 1">
+                                <wm-tabpane name="tabpaneInspections" title="INSPECTION" show="bind:Variables.lvDynamicFields.dataSet.data.length > 0">
                                     <dynamic-form-fields form-field-list="Variables.lvDynamicFields.dataSet.data" form-data="Variables.svFieldData.dataSet"></dynamic-form-fields>
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow name="formSaveControlRow" padding="2em unset unset unset">

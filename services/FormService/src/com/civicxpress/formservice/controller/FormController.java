@@ -33,6 +33,11 @@ public class FormController {
     @Autowired
     private FormService formService;
 
+    @RequestMapping(value = "/copyFormDesign", method = RequestMethod.GET)
+    public Long copyFormDesign(@RequestParam(value = "formDesignId", required = false) Long formDesignId) throws SQLException {
+        return formService.copyFormDesign(formDesignId);
+    }
+
     @RequestMapping(value = "/downloadDocument", produces = "application/octet-stream", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

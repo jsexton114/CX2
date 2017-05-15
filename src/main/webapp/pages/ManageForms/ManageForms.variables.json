@@ -4621,6 +4621,34 @@
     } ],
     "operation" : "toast"
   },
+  "nocFormDesignCopied" : {
+    "_id" : "wm-nocFormDesignCopied-wm.NotificationVariable-1494881689679",
+    "name" : "nocFormDesignCopied",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "<strong>Success</strong><br/>Form Design copied successfully.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Success",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
+  },
   "nocRecordCreated" : {
     "_id" : "wm-nocRecordCreated-wm.NotificationVariable-1485801308994",
     "name" : "nocRecordCreated",
@@ -5159,6 +5187,33 @@
     "type" : "string",
     "isList" : false,
     "saveInPhonegap" : false
+  },
+  "svCopyFormDesign" : {
+    "_id" : "wm-svCopyFormDesign-wm.ServiceVariable-1494881406096",
+    "name" : "svCopyFormDesign",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formDesignId",
+      "value" : "bind:Widgets.gridFormTypes.selecteditem.id",
+      "type" : "integer"
+    } ],
+    "type" : "integer",
+    "service" : "FormService",
+    "operation" : "copyFormDesign",
+    "operationId" : "FormController_copyFormDesign",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Variables.nocFormDesignCopied.invoke();Variables.lvGetMunicipalityFormTypes.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Form"
   },
   "svSaveFormType" : {
     "_id" : "wm-svSaveFormType-wm.ServiceVariable-1484775476826",
