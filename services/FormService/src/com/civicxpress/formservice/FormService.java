@@ -110,15 +110,18 @@ public class FormService {
     	return userPermissions;
     }
     
-    public Long copyFormDesign(Long formDesignId) throws SQLException {
+    public Long copyFormDesign(Long formDesignId, String newName, boolean copyStatus, boolean copyFields, boolean copyCategories) throws SQLException {
     	Connection connection = DBConnectionService.getConnection();
-    	connection.setAutoCommit(false);
-        CallableStatement templateStatement = connection.prepareCall("{ call copyFormDesign(?,?)}");
-        templateStatement.setLong("formDesignId", formDesignId);
-        templateStatement.registerOutParameter("copyFormDesignId", java.sql.Types.BIGINT);
-        templateStatement.execute();
+        CallableStatement copyStatement = connection.prepareCall("{ call copyFormDesign(?,?,?,?,?,?)}");
+        copyStatement.setString("newName", newName);
+        copyStatement.setBoolean("copyStatus", copyStatus);
+        copyStatement.setBoolean("copyFields", copyFields);
+        copyStatement.setBoolean("copyCategories", copyCategories);
+        copyStatement.setLong("formDesignId", formDesignId);
+        copyStatement.registerOutParameter("copyFormDesignId", java.sql.Types.BIGINT);
+        copyStatement.execute();
         
-        return templateStatement.getLong("copyFormDesignId");
+        return copyStatement.getLong("copyFormDesignId");
     }
     
     public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {

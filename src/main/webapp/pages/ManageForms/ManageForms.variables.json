@@ -5197,6 +5197,22 @@
       "target" : "formDesignId",
       "value" : "bind:Widgets.gridFormTypes.selecteditem.id",
       "type" : "integer"
+    }, {
+      "target" : "copyStatus",
+      "value" : "bind:Widgets.checkboxCopyStatus.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "copyFields",
+      "value" : "bind:Widgets.checkboxCopyFields.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "copyCategories",
+      "value" : "bind:Widgets.checkboxCopyCategories.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "newName",
+      "value" : "bind:Widgets.textDesignCopyName.datavalue",
+      "type" : "string"
     } ],
     "type" : "integer",
     "service" : "FormService",

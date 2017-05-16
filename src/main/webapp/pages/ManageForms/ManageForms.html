@@ -47,8 +47,7 @@
                                             <wm-grid-action key="addNewRow" display-name="New Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Form" action="Widgets.dialogCreateForm.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteFormDesign.open()" disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="customRow" display-name="" title="Copy" value="" iconclass="wi wi-content-copy" class="btn-transparent" show="true" action="Variables.svCopyFormDesign.invoke()"
-                                            icon="wi wi-content-copy"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-content-copy" title="Copy" action="Widgets.dialogCopyFormDesign.open()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -205,6 +204,50 @@
                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                 </wm-liveform>
             </wm-livegrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view4">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Copy Form Design" iconclass="wi wi-content-copy" name="dialogCopyFormDesign">
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-primary" caption="Copy" type="button" margin="unset 0.5em" name="button5" iconclass="wi wi-save" on-click="Variables.svCopyFormDesign.invoke();Widgets.dialogCopyFormDesign.close()"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid name="layoutgrid9" columns="1">
+                <wm-gridrow name="gridrow19">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn24">
+                        <wm-composite name="composite2">
+                            <wm-label class="col-md-3 control-label" name="label5" caption="Name"></wm-label>
+                            <wm-container class="col-md-9" name="container2">
+                                <wm-text name="textDesignCopyName" datavalue="bind:'Copy of ' + Widgets.gridFormTypes.selecteditem.formType"></wm-text>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow20">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25">
+                        <wm-composite name="composite5">
+                            <wm-label class="col-md-3 control-label" name="label7" caption="Copy Statuses?"></wm-label>
+                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyStatus"></wm-checkbox>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow21">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn26_1">
+                        <wm-composite name="composite8">
+                            <wm-label class="col-md-3 control-label" name="label10" caption="Copy Fields?"></wm-label>
+                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyFields"></wm-checkbox>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow22">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                        <wm-composite name="composite9">
+                            <wm-label class="col-md-3 control-label" name="label11" caption="Copy Categories?"></wm-label>
+                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyCategories"></wm-checkbox>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
 </wm-page>

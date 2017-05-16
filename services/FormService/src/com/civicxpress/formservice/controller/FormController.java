@@ -3,10 +3,10 @@ package com.civicxpress.formservice.controller;
 
 import com.civicxpress.formservice.FormService;
 import java.lang.Long;
+import java.lang.String;
 import java.sql.SQLException;
 import com.wavemaker.runtime.file.model.DownloadResponse;
 import java.lang.Integer;
-import java.lang.String;
 import java.lang.Exception;
 import org.apache.http.HttpEntity;
 import java.lang.Object;
@@ -36,8 +36,8 @@ public class FormController {
     @RequestMapping(value = "/copyFormDesign", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public Long copyFormDesign(@RequestParam(value = "formDesignId", required = false) Long formDesignId) throws SQLException {
-        return formService.copyFormDesign(formDesignId);
+    public Long copyFormDesign(@RequestParam(value = "formDesignId", required = false) Long formDesignId, @RequestParam(value = "newName", required = false) String newName, @RequestParam(value = "copyStatus", required = false) boolean copyStatus, @RequestParam(value = "copyFields", required = false) boolean copyFields, @RequestParam(value = "copyCategories", required = false) boolean copyCategories) throws SQLException {
+        return formService.copyFormDesign(formDesignId, newName, copyStatus, copyFields, copyCategories);
     }
 
     @RequestMapping(value = "/downloadDocument", produces = "application/octet-stream", method = RequestMethod.GET)
