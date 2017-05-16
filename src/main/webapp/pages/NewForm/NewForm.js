@@ -52,6 +52,73 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.vendorIds = '';
     $scope.sharedUserString = '';
 
+    /*
+     * Draft Loading Functions (Had to split this out due to a breaking Wavemaker change where they decided not to actually load wizard steps at all until you get to them. Split it into functions here to keep it somewhat together)
+     */
+    function loadDraftVariables() {
+        // Form data
+        angular.forEach($scope.draftData.formFields, function(value, key) {
+            $scope.formData[key] = value;
+        });
+
+        // Location(s)
+        $scope.Variables.stvGisData.dataSet = angular.copy($scope.draftData.locations);
+
+        // Contractor(s)
+        $scope.Variables.stvVendors.dataSet = angular.copy($scope.draftData.vendors);
+
+        // Attachments
+        if ($scope.documents === true) {
+            $scope.draftData.attachments.forEach(function(attachment, index) {
+                $scope.Variables.stvDocuments.dataSet.push({
+                    Filename: attachment.Filename,
+                    Mimetype: attachment.Mimetype,
+                    Contents: base64ToFile(attachment.Contents, attachment.Filename, attachment.Mimetype)
+                });
+            });
+        }
+    }
+
+    function loadDraftOwner() {
+        var newOwner = $scope.draftData.owner.ownerType === 'new';
+        var ownerIsContractor = $scope.draftData.owner.ownerType === 'contractor';
+
+        if (newOwner || ownerIsContractor) {
+            $scope.Widgets.checkboxOtherOwner.datavalue = newOwner;
+            $scope.Widgets.checkboxVendorIsOwner.datavalue = ownerIsContractor;
+
+            angular.forEach($scope.draftData.owner, function(value, key) {
+                if (!$scope.Widgets.lfOwner.formfields[key]) {
+                    return; // continue; this is not a part of the form, but rather a value for checkboxes or other meta data
+                }
+
+                $scope.Widgets.lfOwner.formfields[key].value = value;
+            });
+        } else if ($scope.draftData.owner.ownerType === 'selected') {
+            // Select owner in the table - see gridOwnersDatarender for continuation
+        }
+    }
+
+    function loadDraftBehalfOf() {
+        angular.forEach($scope.draftData.onBehalfOf, function(value, key) {
+            if (!$scope.Widgets.lfSubmitOnBehalf.formfields[key]) {
+                return; // continue; this is not a part of the form, but rather a value for the 'New User' checkbox or other metadata
+            }
+
+            $scope.Widgets.lfSubmitOnBehalf.formfields[key].value = value;
+        });
+
+        $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
+
+        if (!$scope.draftData.onBehalfOf.newUser && !!$scope.draftData.onBehalfOf.id) {
+            $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
+            $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
+        }
+    }
+
+    /*
+     * Code for seeing whether or not everything has loaded
+     */
     function iterateLoading() {
         itemsLoaded += 1;
 
@@ -60,27 +127,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
             $timeout(function() {
                 if ($scope.draftData !== null) { // Load draft data
-                    // Form data
-                    angular.forEach($scope.draftData.formFields, function(value, key) {
-                        $scope.formData[key] = value;
-                    });
-
-                    // Location(s)
-                    $scope.Variables.stvGisData.dataSet = angular.copy($scope.draftData.locations);
-
-                    // Contractor(s)
-                    $scope.Variables.stvVendors.dataSet = angular.copy($scope.draftData.vendors);
-
-                    // Attachments
-                    if ($scope.documents === true) {
-                        $scope.draftData.attachments.forEach(function(attachment, index) {
-                            $scope.Variables.stvDocuments.dataSet.push({
-                                Filename: attachment.Filename,
-                                Mimetype: attachment.Mimetype,
-                                Contents: base64ToFile(attachment.Contents, attachment.Filename, attachment.Mimetype)
-                            });
-                        });
-                    }
+                    loadDraftVariables();
                 }
             });
         }
@@ -346,23 +393,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
 
         if (!!$scope.draftData) {
-            var newOwner = $scope.draftData.owner.ownerType === 'new';
-            var ownerIsContractor = $scope.draftData.owner.ownerType === 'contractor';
-
-            if (newOwner || ownerIsContractor) {
-                $scope.Widgets.checkboxOtherOwner.datavalue = newOwner;
-                $scope.Widgets.checkboxVendorIsOwner.datavalue = ownerIsContractor;
-
-                angular.forEach($scope.draftData.owner, function(value, key) {
-                    if (!$scope.Widgets.lfOwner.formfields[key]) {
-                        return; // continue; this is not a part of the form, but rather a value for checkboxes or other meta data
-                    }
-
-                    $scope.Widgets.lfOwner.formfields[key].value = value;
-                });
-            } else if ($scope.draftData.owner.ownerType === 'selected') {
-                // Select owner in the table - see gridOwnersDatarender for continuation
-            }
+            loadDraftOwner();
         }
     };
 
@@ -373,7 +404,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.svGetOwnersonSuccess = function(variable, data) {};
 
     $scope.buttonCreateSigningDocumentClick = function($event, $isolateScope) {
-
         // TODO: get values from WM
         $scope.Variables.svGetSignLink.setInput('formGuid', "983DD3B3-C40C-E711-80C9-0CC47A46DD63");
         $scope.Variables.svGetSignLink.setInput('formTitle', "form title test");
@@ -389,7 +419,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Variables.svGetSignLink.setInput('emailIdOfRecipientParty', "jason_sexton@hotmail.com");
 
         $scope.Variables.svGetSignLink.update();
-
     };
 
     $scope.svGetSignLinkonSuccess = function(variable, data) {
@@ -540,20 +569,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
         if (!!$scope.draftData) {
-            angular.forEach($scope.draftData.onBehalfOf, function(value, key) {
-                if (!$scope.Widgets.lfSubmitOnBehalf.formfields[key]) {
-                    return; // continue; this is not a part of the form, but rather a value for the 'New User' checkbox or other metadata
-                }
-
-                $scope.Widgets.lfSubmitOnBehalf.formfields[key].value = value;
-            });
-
-            $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
-
-            if (!$scope.draftData.onBehalfOf.newUser && !!$scope.draftData.onBehalfOf.id) {
-                $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
-                $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
-            }
+            loadDraftBehalfOf();
         }
     };
 
