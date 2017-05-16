@@ -40,7 +40,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2" title="Submit on Behalf" ng-if="loaded &amp;&amp; submitOnBehalf" show="true" enableskip="true" on-skip="wizardstep2Skip($scope, currentStep, stepIndex)">
+                            <wm-wizardstep name="wizardstep2" title="Submit on Behalf" ng-if="loaded &amp;&amp; submitOnBehalf" show="true" enableskip="true" on-skip="wizardstep2Skip($scope, currentStep, stepIndex)" on-load="wizardstep2Load($scope, stepIndex)">
                                 <wm-layoutgrid name="layoutgrid14">
                                     <wm-gridrow name="gridrow47_1" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn90_2">

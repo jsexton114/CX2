@@ -60,24 +60,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
             $timeout(function() {
                 if ($scope.draftData !== null) { // Load draft data
-                    // Submit on Behalf
-                    if ($scope.submitOnBehalf === true) {
-                        angular.forEach($scope.draftData.onBehalfOf, function(value, key) {
-                            if (!$scope.Widgets.lfSubmitOnBehalf.formfields[key]) {
-                                return; // continue; this is not a part of the form, but rather a value for the 'New User' checkbox or other metadata
-                            }
-
-                            $scope.Widgets.lfSubmitOnBehalf.formfields[key].value = value;
-                        });
-
-                        $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
-
-                        if (!$scope.draftData.onBehalfOf.newUser && !!$scope.draftData.onBehalfOf.id) {
-                            $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
-                            $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
-                        }
-                    }
-
                     // Form data
                     angular.forEach($scope.draftData.formFields, function(value, key) {
                         $scope.formData[key] = value;
@@ -88,27 +70,6 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
                     // Contractor(s)
                     $scope.Variables.stvVendors.dataSet = angular.copy($scope.draftData.vendors);
-
-                    // Owner
-                    if ($scope.ownerInfo === true) {
-                        var newOwner = $scope.draftData.owner.ownerType === 'new';
-                        var ownerIsContractor = $scope.draftData.owner.ownerType === 'contractor';
-
-                        if (newOwner || ownerIsContractor) {
-                            $scope.Widgets.checkboxOtherOwner.datavalue = newOwner;
-                            $scope.Widgets.checkboxVendorIsOwner.datavalue = ownerIsContractor;
-
-                            angular.forEach($scope.draftData.owner, function(value, key) {
-                                if (!$scope.Widgets.lfOwner.formfields[key]) {
-                                    return; // continue; this is not a part of the form, but rather a value for checkboxes or other meta data
-                                }
-
-                                $scope.Widgets.lfOwner.formfields[key].value = value;
-                            });
-                        } else if ($scope.draftData.owner.ownerType === 'selected') {
-                            // Select owner in the table - see gridOwnersDatarender for continuation
-                        }
-                    }
 
                     // Attachments
                     if ($scope.documents === true) {
@@ -383,6 +344,26 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
                 $('div[name=gridOwners] div.app-grid-content table td[data-col-id=0]').click();
             }, 1);
         }
+
+        if (!!$scope.draftData) {
+            var newOwner = $scope.draftData.owner.ownerType === 'new';
+            var ownerIsContractor = $scope.draftData.owner.ownerType === 'contractor';
+
+            if (newOwner || ownerIsContractor) {
+                $scope.Widgets.checkboxOtherOwner.datavalue = newOwner;
+                $scope.Widgets.checkboxVendorIsOwner.datavalue = ownerIsContractor;
+
+                angular.forEach($scope.draftData.owner, function(value, key) {
+                    if (!$scope.Widgets.lfOwner.formfields[key]) {
+                        return; // continue; this is not a part of the form, but rather a value for checkboxes or other meta data
+                    }
+
+                    $scope.Widgets.lfOwner.formfields[key].value = value;
+                });
+            } else if ($scope.draftData.owner.ownerType === 'selected') {
+                // Select owner in the table - see gridOwnersDatarender for continuation
+            }
+        }
     };
 
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
@@ -556,6 +537,26 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             $isolateScope.selectItem($data[0]);
         }
     };
+
+    $scope.wizardstep2Load = function($isolateScope, stepIndex) {
+        if (!!$scope.draftData) {
+            angular.forEach($scope.draftData.onBehalfOf, function(value, key) {
+                if (!$scope.Widgets.lfSubmitOnBehalf.formfields[key]) {
+                    return; // continue; this is not a part of the form, but rather a value for the 'New User' checkbox or other metadata
+                }
+
+                $scope.Widgets.lfSubmitOnBehalf.formfields[key].value = value;
+            });
+
+            $scope.Widgets.checkboxNewUser.datavalue = !!$scope.draftData.onBehalfOf.newUser;
+
+            if (!$scope.draftData.onBehalfOf.newUser && !!$scope.draftData.onBehalfOf.id) {
+                $scope.draftData.onBehalfOf.fullName = ($scope.draftData.onBehalfOf.firstName + " " + $scope.draftData.onBehalfOf.lastName);
+                $scope.Widgets.searchOnBehalfOfUser.datavalue = $scope.draftData.onBehalfOf;
+            }
+        }
+    };
+
 }]);
 
 
