@@ -36,6 +36,7 @@ import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
+import com.civicxpress.cx2.InspectionDraft;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.LetterTemplates;
@@ -183,6 +184,15 @@ public class InspectionDesignController {
 
         LOGGER.debug("Fetching all associated inspectionCategoryMappings");
         return inspectionDesignService.findAssociatedInspectionCategoryMappings(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/inspectionDrafts", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the inspectionDrafts instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<InspectionDraft> findAssociatedInspectionDrafts(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated inspectionDrafts");
+        return inspectionDesignService.findAssociatedInspectionDrafts(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/inspectionOutcomes", method=RequestMethod.GET)

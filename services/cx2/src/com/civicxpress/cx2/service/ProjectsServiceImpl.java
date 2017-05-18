@@ -110,19 +110,19 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
-        if(projectsCreated.getMasterCaseses() != null) {
-            for(MasterCases masterCasese : projectsCreated.getMasterCaseses()) {
-                masterCasese.setProjects(projectsCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
-                masterCasesService.create(masterCasese);
-            }
-        }
-
         if(projectsCreated.getMasterInspectionses() != null) {
             for(MasterInspections masterInspectionse : projectsCreated.getMasterInspectionses()) {
                 masterInspectionse.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
                 masterInspectionsService.create(masterInspectionse);
+            }
+        }
+
+        if(projectsCreated.getMasterCaseses() != null) {
+            for(MasterCases masterCasese : projectsCreated.getMasterCaseses()) {
+                masterCasese.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
+                masterCasesService.create(masterCasese);
             }
         }
 
@@ -142,19 +142,19 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
-        if(projectsCreated.getProjectSharedWiths() != null) {
-            for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
-                projectSharedWith.setProjects(projectsCreated);
-                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
-                projectSharedWithService.create(projectSharedWith);
-            }
-        }
-
         if(projectsCreated.getProjectTaskses() != null) {
             for(ProjectTasks projectTaskse : projectsCreated.getProjectTaskses()) {
                 projectTaskse.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child ProjectTasks with information: {}", projectTaskse);
                 projectTasksService.create(projectTaskse);
+            }
+        }
+
+        if(projectsCreated.getProjectSharedWiths() != null) {
+            for(ProjectSharedWith projectSharedWith : projectsCreated.getProjectSharedWiths()) {
+                projectSharedWith.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child ProjectSharedWith with information: {}", projectSharedWith);
+                projectSharedWithService.create(projectSharedWith);
             }
         }
 
@@ -269,17 +269,6 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterCases> findAssociatedMasterCaseses(String projectGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCaseses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -287,6 +276,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCaseses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCaseses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -313,17 +313,6 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated projectSharedWiths");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
-
-        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<ProjectTasks> findAssociatedProjectTaskses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated projectTaskses");
 
@@ -331,6 +320,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return projectTasksService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<ProjectSharedWith> findAssociatedProjectSharedWiths(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated projectSharedWiths");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return projectSharedWithService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

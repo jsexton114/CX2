@@ -75,6 +75,7 @@ public class InspectionDesign implements Serializable {
     private List<CodesToInspection> codesToInspections;
     private List<FormTypeFields> formTypeFieldses;
     private List<InspectionCategoryMapping> inspectionCategoryMappings;
+    private List<InspectionDraft> inspectionDrafts;
     private List<InspectionOutcome> inspectionOutcomes;
     private List<InspectionSequence> inspectionSequences;
     private List<LetterTemplates> letterTemplateses;
@@ -471,6 +472,16 @@ public class InspectionDesign implements Serializable {
 
     public void setInspectionCategoryMappings(List<InspectionCategoryMapping> inspectionCategoryMappings) {
         this.inspectionCategoryMappings = inspectionCategoryMappings;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionDesign")
+    public List<InspectionDraft> getInspectionDrafts() {
+        return this.inspectionDrafts;
+    }
+
+    public void setInspectionDrafts(List<InspectionDraft> inspectionDrafts) {
+        this.inspectionDrafts = inspectionDrafts;
     }
 
     @JsonInclude(Include.NON_EMPTY)

@@ -27,6 +27,7 @@ import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
+import com.civicxpress.cx2.InspectionDraft;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.LetterTemplates;
@@ -46,6 +47,10 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
     @Autowired
 	@Qualifier("cx2.LetterTemplatesService")
 	private LetterTemplatesService letterTemplatesService;
+
+    @Autowired
+	@Qualifier("cx2.InspectionDraftService")
+	private InspectionDraftService inspectionDraftService;
 
     @Autowired
 	@Qualifier("cx2.InspectionSequenceService")
@@ -105,6 +110,14 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
                 inspectionCategoryMapping.setInspectionDesign(inspectionDesignCreated);
                 LOGGER.debug("Creating a new child InspectionCategoryMapping with information: {}", inspectionCategoryMapping);
                 inspectionCategoryMappingService.create(inspectionCategoryMapping);
+            }
+        }
+
+        if(inspectionDesignCreated.getInspectionDrafts() != null) {
+            for(InspectionDraft inspectionDraft : inspectionDesignCreated.getInspectionDrafts()) {
+                inspectionDraft.setInspectionDesign(inspectionDesignCreated);
+                LOGGER.debug("Creating a new child InspectionDraft with information: {}", inspectionDraft);
+                inspectionDraftService.create(inspectionDraft);
             }
         }
 
@@ -254,6 +267,17 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionDraft> findAssociatedInspectionDrafts(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDrafts");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionDesign.id = '" + id + "'");
+
+        return inspectionDraftService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionOutcome> findAssociatedInspectionOutcomes(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionOutcomes");
 
@@ -303,6 +327,15 @@ public class InspectionDesignServiceImpl implements InspectionDesignService {
 	 */
 	protected void setLetterTemplatesService(LetterTemplatesService service) {
         this.letterTemplatesService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionDraftService instance
+	 */
+	protected void setInspectionDraftService(InspectionDraftService service) {
+        this.inspectionDraftService = service;
     }
 
     /**

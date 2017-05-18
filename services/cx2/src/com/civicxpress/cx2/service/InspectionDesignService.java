@@ -20,6 +20,7 @@ import com.civicxpress.cx2.CodesToInspection;
 import com.civicxpress.cx2.FormTypeFields;
 import com.civicxpress.cx2.InspectionCategoryMapping;
 import com.civicxpress.cx2.InspectionDesign;
+import com.civicxpress.cx2.InspectionDraft;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionSequence;
 import com.civicxpress.cx2.LetterTemplates;
@@ -182,6 +183,18 @@ public interface InspectionDesignService {
      * @see Page
      */
     Page<InspectionCategoryMapping> findAssociatedInspectionCategoryMappings(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated inspectionDrafts for given InspectionDesign id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated InspectionDraft instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<InspectionDraft> findAssociatedInspectionDrafts(Integer id, Pageable pageable);
 
     /*
      * Returns the associated inspectionOutcomes for given InspectionDesign id.

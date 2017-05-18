@@ -26,6 +26,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormMessages;
 import com.civicxpress.cx2.FormsToInspections;
+import com.civicxpress.cx2.InspectionDraft;
 import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.MasterCases;
 import com.civicxpress.cx2.MasterInspections;
@@ -41,6 +42,10 @@ import com.civicxpress.cx2.Violations;
 public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MasterInspectionsServiceImpl.class);
+
+    @Autowired
+	@Qualifier("cx2.InspectionDraftService")
+	private InspectionDraftService inspectionDraftService;
 
     @Autowired
 	@Qualifier("cx2.FormsToInspectionsService")
@@ -100,6 +105,14 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
                 formsToInspectionse.setMasterInspections(masterInspectionsCreated);
                 LOGGER.debug("Creating a new child FormsToInspections with information: {}", formsToInspectionse);
                 formsToInspectionsService.create(formsToInspectionse);
+            }
+        }
+
+        if(masterInspectionsCreated.getInspectionDrafts() != null) {
+            for(InspectionDraft inspectionDraft : masterInspectionsCreated.getInspectionDrafts()) {
+                inspectionDraft.setMasterInspections(masterInspectionsCreated);
+                LOGGER.debug("Creating a new child InspectionDraft with information: {}", inspectionDraft);
+                inspectionDraftService.create(inspectionDraft);
             }
         }
 
@@ -241,6 +254,17 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<InspectionDraft> findAssociatedInspectionDrafts(String inspectionGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated inspectionDrafts");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
+
+        return inspectionDraftService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectionHistory> findAssociatedInspectionHistories(String inspectionGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated inspectionHistories");
 
@@ -270,6 +294,15 @@ public class MasterInspectionsServiceImpl implements MasterInspectionsService {
         queryBuilder.append("masterInspections.inspectionGuid = '" + inspectionGuid + "'");
 
         return violationsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service InspectionDraftService instance
+	 */
+	protected void setInspectionDraftService(InspectionDraftService service) {
+        this.inspectionDraftService = service;
     }
 
     /**
