@@ -78,10 +78,10 @@
         <security:intercept-url pattern="/services/cXPasswordReset/validateSignupToken" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings" access="permitAll" method="GET"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Roles" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
@@ -95,11 +95,12 @@
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/bannedDetails" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/deleteToken" access="permitAll" method="DELETE"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/getUserID" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/inspection/dynamicFielddata" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/prefabs/**/servicedefs" access="permitAll"/>
         <security:intercept-url pattern="/services/resetPasswordMail/sendWelcomeEmail" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/security/**" access="permitAll"/>
         <security:intercept-url pattern="/services/servicedefs" access="permitAll"/>
-        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/**" access="permitAll" method="OPTIONS"/>
         <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:headers disabled="true"/>
