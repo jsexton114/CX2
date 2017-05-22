@@ -32,6 +32,9 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
             $scope.Variables.svInspectionList.update();
         }
     };
+
+
+
 }]);
 
 Application.$controller("gridInspectionsController", ["$scope", "$location",
@@ -61,6 +64,20 @@ Application.$controller("pagedialogViewInspectionController", ["$scope",
 ]);
 
 Application.$controller("gridTeamInspectionsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridDraftController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformDraftController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
