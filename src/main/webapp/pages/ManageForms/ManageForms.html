@@ -209,41 +209,47 @@
     <wm-view class="dialog-view" name="view4">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Copy Form Design" iconclass="wi wi-content-copy" name="dialogCopyFormDesign">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Copy" type="button" margin="unset 0.5em" name="button5" iconclass="wi wi-save" on-click="Variables.svCopyFormDesign.invoke();Widgets.dialogCopyFormDesign.close()"></wm-button>
+                <wm-button class="btn-primary" caption="Create" type="button" margin="unset 0.5em" name="button5" iconclass="wi wi-plus" on-click="Variables.svCopyFormDesign.invoke();Widgets.dialogCopyFormDesign.close()"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid9" columns="1">
+                <wm-gridrow name="gridrow19_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20">
+                        <wm-label padding="unset 0.5em" name="label9" caption="Using the &quot;+Create&quot; button will generate a copy of the selected form."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label10_1" caption="By default, all &quot;Form Settings&quot; will be copied (Form Details, Form Naming, Form Options, and Automatic Fees if applicable), but you can also choose to copy form Categories, Fields, and Statuses using the checkboxes below."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn24">
                         <wm-composite name="composite2">
-                            <wm-label class="col-md-3 control-label" name="label5" caption="Name"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label5" caption="Form Name" fontunit="px" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container2">
                                 <wm-text name="textDesignCopyName" datavalue="bind:'Copy of ' + Widgets.gridFormTypes.selecteditem.formType"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn25">
-                        <wm-composite name="composite5">
-                            <wm-label class="col-md-3 control-label" name="label7" caption="Copy Statuses?"></wm-label>
-                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyStatus"></wm-checkbox>
+                <wm-gridrow name="gridrow22">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                        <wm-composite name="composite9">
+                            <wm-label class="col-md-3 form-control-static" name="label11" caption="Copy Categories?" fontweight="bold"></wm-label>
+                            <wm-checkbox caption="" class="col-md-9" name="checkboxCopyCategories" disabled="true"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow21">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn26_1">
-                        <wm-composite name="composite8">
-                            <wm-label class="col-md-3 control-label" name="label10" caption="Copy Fields?"></wm-label>
-                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyFields"></wm-checkbox>
+                        <wm-composite name="composite8" show="true">
+                            <wm-label class="col-md-3 form-control-static" name="label10" caption="Copy Fields?" fontweight="bold"></wm-label>
+                            <wm-checkbox caption="" class="col-md-9" name="checkboxCopyFields" disabled="true"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow22">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                        <wm-composite name="composite9">
-                            <wm-label class="col-md-3 control-label" name="label11" caption="Copy Categories?"></wm-label>
-                            <wm-checkbox caption="Label" class="col-md-9" name="checkboxCopyCategories"></wm-checkbox>
+                <wm-gridrow name="gridrow20">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn25">
+                        <wm-composite name="composite5">
+                            <wm-label class="col-md-3 form-control-static" name="label7" caption="Copy Statuses?" fontweight="bold"></wm-label>
+                            <wm-checkbox caption="" class="col-md-9" name="checkboxCopyStatus"></wm-checkbox>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
