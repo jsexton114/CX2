@@ -147,6 +147,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFormsByCategory(ExportType exportType, Integer formCategory, Boolean isActive, Boolean municipalityInternalForm, Pageable pageable);
 
+    Page<CountOfMunicipalityFormsResponse> executeCountOfMunicipalityForms(String municipalityId, Pageable pageable);
+
+    Downloadable exportCountOfMunicipalityForms(ExportType exportType, String municipalityId, Pageable pageable);
+
     SumOfFeesInUsersCartResponse executeSumOfFeesInUsersCart(Integer user);
 
     Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable);

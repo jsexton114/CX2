@@ -620,6 +620,25 @@ public class QueryExecutionController {
         return queryService.exportFormsByCategory(exportType, formCategory, isActive, municipalityInternalForm, pageable);
     }
 
+    @RequestMapping(value = "/queries/CountOfMunicipalityForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CountOfMunicipalityForms")
+    public Page<CountOfMunicipalityFormsResponse> executeCountOfMunicipalityForms(@RequestParam(value = "MunicipalityId") String municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: CountOfMunicipalityForms");
+        Page<CountOfMunicipalityFormsResponse> _result = queryService.executeCountOfMunicipalityForms(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: CountOfMunicipalityForms, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CountOfMunicipalityForms")
+    @RequestMapping(value = "/queries/CountOfMunicipalityForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountOfMunicipalityForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") String municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CountOfMunicipalityForms");
+
+        return queryService.exportCountOfMunicipalityForms(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/sumOfFeesInUsersCart", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "sumOfFeesInUsersCart")

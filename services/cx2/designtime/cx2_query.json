@@ -2174,6 +2174,44 @@
       } ]
     }
   },
+  "CountOfMunicipalityForms" : {
+    "name" : "CountOfMunicipalityForms",
+    "description" : "CountOfMunicipalityForms",
+    "version" : "V2",
+    "queryString" : "select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId",
+    "countQueryString" : "select count(*) from (select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CountOfMunicipalityFormsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formsCount",
+        "fieldName" : "formsCount",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CountOfMunicipalityProjects" : {
     "name" : "CountOfMunicipalityProjects",
     "description" : "CountOfMunicipalityProjects",

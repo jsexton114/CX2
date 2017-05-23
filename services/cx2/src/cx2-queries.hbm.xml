@@ -702,6 +702,20 @@ FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.A
     <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     </sql-query>
 
+    <sql-query name="CountOfMunicipalityForms">
+        <![CDATA[
+        select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="CountOfMunicipalityForms__count">
+        <![CDATA[
+        select count(*) from (select count(*) as formsCount from MasterForms where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.String"/>
+    </sql-query>
+
     <query name="sumOfFeesInUsersCart">
         <![CDATA[
         select sum(fees.amount) as sumOfFeesInCart from MyCart where userId=:user and fees.paidStatus='Unpaid'
