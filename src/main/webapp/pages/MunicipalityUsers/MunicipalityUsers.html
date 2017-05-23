@@ -227,9 +227,9 @@
                                             <wm-livegrid formlayout="dialog" name="Municipalitygroups">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GetMunicipalityGroups.dataSet" navigation="Classic" name="gridMunicipalitygroups" filtermode="multicolumn" exportformat="EXCEL"
                                                 showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="groupName" caption="Group Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="groupDescription" caption="Group Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Group" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Group" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-people" title="Manage Users" action="Widgets.GroupMembersData.open()" disabled="false"></wm-grid-row-action>
@@ -342,7 +342,7 @@
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
                 <wm-gridrow name="gridrow19">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="0em unset 2em unset">
                         <wm-composite name="composite3" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label8786" caption="Select User" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
@@ -353,7 +353,7 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn35" padding="2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn35">
                         <wm-composite name="composite4" show="true" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label24" caption="Select Role" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container7">
