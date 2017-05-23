@@ -20,7 +20,12 @@
                             <wm-tabs name="tabsMessages">
                                 <wm-tabpane name="tabpaneInbox" title="Inbox">
                                     <wm-layoutgrid name="layoutgrid5_1">
-                                        <wm-gridrow name="gridrow13_1" padding="1em unset">
+                                        <wm-gridrow name="gridrow17">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn27_2">
+                                                <wm-label padding="unset 0.5em" name="label10" caption="Your inbox displays all messages where you have been tagged by another CivicXpress user on a Form, Inspection, Project, or GIS record."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow13_1" padding="1em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
                                                 <wm-composite name="composite4" width="240px">
                                                     <wm-label class="col-md-4 form-control-static" name="label8_1" caption="Status" fontweight="bold"></wm-label>
@@ -30,7 +35,7 @@
                                                 </wm-composite>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow14_1" padding="1em unset">
+                                        <wm-gridrow name="gridrow14_1" padding="1em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                                                 <wm-grid title="" dataset="bind:Variables.svGetUserMessages.dataSet" navigation="Classic" name="gridInbox" filtermode="multicolumn" showrecordcount="true">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
@@ -56,20 +61,31 @@
                                     </wm-layoutgrid>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneSent" title="Sent">
-                                    <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent" filtermode="multicolumn" showrecordcount="true">
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                        <wm-grid-column binding="sourceType" caption="Source Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="postedAt" caption="Date Sent" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('postedAt') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-column binding="message" caption="Message" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
-                                        edit-widget-type="text" show="true" readonly="false">
-                                            <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                        </wm-grid-column>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
+                                    <wm-layoutgrid name="layoutgrid8">
+                                        <wm-gridrow name="gridrow18_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn28_2">
+                                                <wm-label padding="unset 0.5em" name="label11_1" caption="All messages that you have posted on a Form, Inspection, Project, or GIS record appear here."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow19_1" padding="1em unset unset unset">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
+                                                <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent" filtermode="multicolumn" showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="sourceType" caption="Source Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="postedByFullName" caption="Sent By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="postedAt" caption="Date Sent" type="string" edit-widget-type="text" show="true" readonly="false">{{row.getProperty('postedAt') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-column binding="message" caption="Message" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="municipalityMessage" caption="Internal" type="string" widget-type="checkbox" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
+                                                    edit-widget-type="text" show="true" readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
                                 </wm-tabpane>
                             </wm-tabs>
                         </wm-panel>
@@ -173,7 +189,7 @@
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow20" padding="unset unset 3em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them a notification that they have been tagged on your message."
+                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them a notification and will cause your message to show up in their inbox."
                         horizontalalign="center" textalign="left"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>

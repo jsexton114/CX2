@@ -262,7 +262,7 @@
                                         <wm-gridrow name="gridrow66">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn137">
                                                 <wm-label padding="unset 0.5em" name="label84" caption="This form has been shared with the following users, who can see the form content and complete transactions for the form."></wm-label>
-                                                <wm-label padding="unset 0.5em" name="label32" caption="If you would like to share the form with someone else, use the &quot;+Add User&quot; button to perform a search for CivicXpress users. If that user is not in the system, use the &quot;+Invite User&quot; button to send them an invitation to view the form."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label32" caption="If form sharing is enabled, use the &quot;+Add User&quot; button to share this form with additional registered CivicXpress users."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow67">
@@ -278,8 +278,6 @@
                                                         <wm-grid-column binding="usersByCreatedBy.fullName" caption="Added By" type="string" primary-key="false" generator="assigned"
                                                         readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                                         <wm-grid-action key="addNewRow" display-name="Add User" show="bind:Variables.svUserPermissions.dataSet.canView" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="addNewRow()"
-                                                        shortcutkey="" disabled="false"></wm-grid-action>
-                                                        <wm-grid-action key="customButton" display-name="Invite User" show="bind:Variables.svUserPermissions.dataSet.canView" class="btn-secondary" iconclass="wi wi-plus" title="Invite User"
                                                         shortcutkey="" disabled="false"></wm-grid-action>
                                                         <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.svUserPermissions.dataSet.canView" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                         disabled="false"></wm-grid-row-action>
@@ -445,7 +443,8 @@
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn121">
-                                                <wm-label padding="unset 0.5em" name="label28_1" caption="If you would like to communicate with the municipality regarding this form, leave a message below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label28_1" caption="If you would like to communicate with the municipality or other CivicXpress users regarding this form, leave a message below."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label140" caption="Use the &quot;Tag People&quot; button if you would like to send a notification to a specific user and cause your message to appear in their inbox."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow59">
@@ -544,6 +543,7 @@
                                         <wm-gridrow padding="unset unset 1em unset" name="gridrow84_2">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn156_4">
                                                 <wm-label padding="unset 0.5em" caption="Municipality employees can communicate internally with each other regarding the form here. This tab is only visible to Municipality employees." name="label92"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label141" caption="Use the &quot;Tag People&quot; button if you would like to send a notification to a specific user and cause your message to appear in their inbox."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow85_1">
@@ -987,7 +987,7 @@
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow20" padding="unset unset 3em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them a notification that they have been tagged on your message."
+                        <wm-label padding="unset 0.5em unset unset" name="Instructions" caption="You may tag as many people as you like by searching for them then clicking the “+Add Tag” button. Tagging somebody will send them a notification and will cause your message to show up in their inbox."
                         horizontalalign="center" textalign="left"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>

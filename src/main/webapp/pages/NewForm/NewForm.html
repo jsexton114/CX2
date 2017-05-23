@@ -11,7 +11,7 @@
                         <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstepInstructions" title="Instructions">
-                                <wm-layoutgrid name="layoutgrid56">
+                                <wm-layoutgrid name="layoutgriid56">
                                     <wm-gridrow name="gridrow6" padding="2em unset unset unset">
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
@@ -338,8 +338,8 @@
                                     <wm-gridrow name="gridrow53" padding="2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn96_2">
                                             <wm-label padding="unset 0.5em" name="label25" caption="Would you like to share this form with other users?"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to perform a search. If you would like to share your form with somebody who has not registered for CivicXpress, please use the &quot;+Invite User&quot; button, provide their contact information, and they will receive an email invitation to view your form."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to complete transactions for the form."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to share your form with other CivicXpress users."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to view the form content and complete transactions for the form."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow54">
@@ -350,7 +350,6 @@
                                                 <wm-grid-column binding="LastName" caption="Last Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-column binding="Email" caption="Email Address" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                 <wm-grid-action key="customButton" display-name="Add User" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add User" action="Widgets.dialogAddContact.open()" shortcutkey="" disabled="false" icon="wi wi-plus"></wm-grid-action>
-                                                <wm-grid-action key="customButton1" display-name="Invite User" show="true" class="btn-secondary" iconclass="wi wi-plus" title="Invite User" shortcutkey="" disabled="false"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
