@@ -53,8 +53,9 @@
                                 <wm-layoutgrid name="layoutgrid4_1">
                                     <wm-gridrow name="gridrow44">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn75">
-                                            <wm-label padding="unset 0.5em" name="label56" caption="These users are employees of your municipality. They are granted access to the &quot;My Municipality&quot; dashboard, where they can process forms, create projects, maintain land records, and approve/suspend contractors."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label58" caption="Municipality Employees can also be assigned additional Inspection or Code Enforcement roles, or made a Municipality Admin."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label56" caption="These users are employees of your municipality. They are granted access to the &quot;My Municipality&quot; dashboard, where they can process forms, create projects, maintain land records, approve/suspend contractors, and view financial transactions."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label58" caption="Municipality Employees can also be assigned additional Inspection or Code Enforcement roles, or be made a Municipality Admin."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label69" caption="Municipality Employees must also be a municipality Subscriber." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
@@ -83,6 +84,7 @@
                                     <wm-gridrow name="gridrow45">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn76">
                                             <wm-label padding="unset 0.5em" name="label55" caption="These users are Municipality Employees who have been granted access to the &quot;Inspections&quot; dashboard. They can schedule and perform inspections."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label64" caption="In addition to being a municipality Subscriber, Inspectors must also have the Municipality Employee role." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
@@ -111,6 +113,7 @@
                                     <wm-gridrow name="gridrow46">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn77">
                                             <wm-label padding="unset 0.5em" name="label54" caption="These users are Municipality Employees who have been granted access to the &quot;Inspections&quot; dashboard. In addition to scheduling and performing inspections, they can also maintain inspection designs and categories."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label65" caption="In addition to being a municipality Subscriber, Inspector Managers must also have the Municipality Employee and Inspector roles." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
@@ -138,7 +141,8 @@
                                 <wm-layoutgrid name="layoutgrid4_1">
                                     <wm-gridrow name="gridrow47">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn78">
-                                            <wm-label padding="unset 0.5em" name="label53" caption="These users are Municipality Employees who have been granted access to the &quot;Code Enforcement&quot; dashboard. They can review and process cases."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label53" caption="These users are Municipality Employees who have been granted access to the &quot;Code Enforcement&quot; dashboard. They can review and process cases. &quot;Cases&quot; are just forms where the &quot;Code Enforcement&quot; setting is checked."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label66" caption="In addition to being a municipality Subscriber, Code Officers must also have the Municipality Employee role." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
@@ -166,7 +170,8 @@
                                 <wm-layoutgrid name="layoutgrid4_1">
                                     <wm-gridrow name="gridrow48">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn79">
-                                            <wm-label padding="unset 0.5em" name="label52" caption="These users are Municipality Employees who have been granted access to the &quot;Code Enforcement&quot; dashboard. In addition to reviewing and processing cases, they can also maintain case types and letters."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label52" caption="These users are Municipality Employees who have been granted access to the &quot;Code Enforcement&quot; dashboard. In addition to reviewing and processing cases, they can also maintain form designs and categories."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label67" caption="In addition to being a municipality Subscriber, Code Managers must also have the Municipality Employee and Code Officer roles." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow13">
@@ -194,7 +199,9 @@
                                     <wm-gridrow name="gridrow18_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn80">
                                             <wm-label padding="unset 0.5em" name="label51" caption="These users are Municipality Employees who have been granted access to the &quot;Administration&quot; dashboard."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label59" caption="In addition to the tasks that an employee can perform, they can also assign user roles, manage user groups, manage manual fee types, set the municipality schedule and contact information, and manage form designs, inspection designs, and case types."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label59" caption="In addition to the tasks that an employee can perform, they can also assign user roles, manage user groups, manage manual fee types, set the municipality schedule and contact information, and manage form and inspection designs."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label68" caption="In addition to being a municipality Subscriber, Municipality Admins must also have the Municipality Employee, Inspector, Inspector Manager, Code Officer, and Code Manager roles."
+                                            fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow19_1">
@@ -219,7 +226,8 @@
                                     <wm-gridrow name="gridrow49">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn81">
                                             <wm-label padding="unset 0.5em" name="label50" caption="These user groups are composed of Municipality Employees."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label60" caption="Groups are used to control which users are responsible for processing forms and which are given write access to forms, based on the current form &quot;status&quot;. These permissions are controlled per form design on the form status settings."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label60" caption="Groups are used to control which municipality employees are responsible for processing forms and which are given write access to forms, based on the current form status for any given form that has been submitted by a user."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label62" caption="The &quot;Process Owner&quot; group and &quot;Write Access&quot; group permissions are controlled for each form status (per individual form) on the Edit Form page."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow50">
@@ -341,23 +349,23 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button4" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
+                <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn35">
+                        <wm-composite name="composite4" show="true" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label24" caption="Municipality Role" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container7">
+                                <wm-select name="textSelectRole" datavalue="bind:Variables.stvSelectedRole.dataSet.dataValue" dataset="bind:Variables.stvRoles.dataSet" datafield="dataValue" displayfield="dataValue" disabled="true"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow19">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="0em unset 2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="0em unset unset unset">
                         <wm-composite name="composite3" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label8786" caption="Select User" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
                                 <wm-search name="textSelectUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="id" placeholder="Search by Name or Email Address"
                                 orderby="fullName:asc"></wm-search>
-                            </wm-container>
-                        </wm-composite>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn35">
-                        <wm-composite name="composite4" show="true" required="true">
-                            <wm-label class="col-md-3 form-control-static" name="label24" caption="Select Role" fontweight="bold"></wm-label>
-                            <wm-container class="col-md-9" name="container7">
-                                <wm-select name="textSelectRole" datavalue="bind:Variables.stvSelectedRole.dataSet.dataValue" dataset="bind:Variables.stvRoles.dataSet" datafield="dataValue" displayfield="dataValue"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
