@@ -345,7 +345,8 @@
                                                 <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="New Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Form" action="Widgets.dialogNewForm.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()" shortcutkey="" disabled="false"
+                                                position="header"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
@@ -367,7 +368,8 @@
                                                 <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                                 </wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="New Case" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Case" action="Widgets.dialogNewCase.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="addNewRow" display-name="Submit Case" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Case" action="Widgets.dialogNewCase.open()" shortcutkey="" disabled="false"
+                                                position="header"></wm-grid-action>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
