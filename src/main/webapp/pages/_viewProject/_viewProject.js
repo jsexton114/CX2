@@ -453,3 +453,41 @@ Application.$controller("dialogVendorDetailsController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridDocumentsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            window.open('resources/leadTools/index.html?docId=' + $rowData.id);
+
+        };
+
+    }
+]);
+
+Application.$controller("dialogUploadDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.docsToUpload = [];
+
+        $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
+            $scope.docsToUpload = [];
+        };
+
+        $scope.buttonUploadFileClick = function($event, $isolateScope) {
+            var filesContents = [];
+
+            $scope.docsToUpload.forEach(function(doc, index) {
+                filesContents.push(doc.Contents);
+            });
+            $scope.Variables.svUploadDocument.setInput('files', filesContents);
+            $scope.Variables.svUploadDocument.update();
+            $scope.docsToUpload = [];
+            $scope.Widgets.dialogUploadDocument.close();
+        };
+
+    }
+]);

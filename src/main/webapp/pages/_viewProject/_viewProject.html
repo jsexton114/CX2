@@ -146,7 +146,38 @@
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneDOCUMENTS" title="ATTACHMENTS" show="false"></wm-tabpane>
+                                <wm-tabpane name="tabpaneDOCUMENTS" title="ATTACHMENTS" show="true">
+                                    <wm-layoutgrid name="layoutgrid19">
+                                        <wm-gridrow name="gridrow64">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn133">
+                                                <wm-label padding="unset 0.5em" name="label83" caption="The following documents have been attached to this project."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label31" caption="If you would like to upload any documents related to this project (such as blueprints, schematics, photos, etc.), please use the &quot;+Add Attachment&quot; button."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label63" caption="Documents can be downloaded to local storage or marked up and revised using the &quot;Actions&quot; below."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow65">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn135">
+                                                <wm-livegrid formlayout="dialog" name="livegrid5">
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                        <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date"
+                                                        readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
+                                                        <wm-grid-column binding="users.fullName" caption="Created By" type="string" primary-key="false" generator="assigned" readonly="true"
+                                                        edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                        <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()"
+                                                        shortcutkey="" disabled="false"></wm-grid-action>
+                                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
+                                                        disabled="false"></wm-grid-row-action>
+                                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                    </wm-grid>
+                                                </wm-livegrid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneMAPS" title="LOCATION">
                                     <wm-layoutgrid name="layoutgrid17">
                                         <wm-gridrow name="gridrow61">
@@ -1103,6 +1134,26 @@
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions11">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button25" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view5">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Document Upload" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-close="dialogUploadDocumentClose($event, $scope)">
+            <wm-layoutgrid name="layoutgrid23">
+                <wm-gridrow name="gridrow32">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn82_0">
+                        <wm-label padding="unset 0.5em 2em 0.5em" caption="Click the &quot;Choose Files&quot; button to select one or many documents you would like to add to the project, then click the &quot;Upload&quot; button to attach the file(s)." name="label82_0"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow85">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn167">
+                        <input type="file" name="docsToUpload" ng-file-model="docsToUpload" multiple="">
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions5">
+                <wm-button class="btn-primary" caption="Upload" on-click="buttonUploadFileClick($event, $scope)" name="buttonUploadFile" iconclass="wi wi-file-upload" disabled="bind:docsToUpload.length === 0"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button13" on-click="Widgets.dialogUploadDocument.close()" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
     </wm-view>
