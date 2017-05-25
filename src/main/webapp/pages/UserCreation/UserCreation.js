@@ -57,7 +57,8 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
 
         // For updating the password 
         $scope.Variables.UpdatePwdAndCF.setInput({
-            "cf": $scope.Widgets.radiosetCF.datavalue,
+            "cf": "Immediately",
+            // "cf": $scope.Widgets.radiosetCF.datavalue,
             "password": $scope.Widgets.textPwd.datavalue,
             "newUser": data.id,
         });
