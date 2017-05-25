@@ -27,6 +27,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "CountOfFormsForMunicipality" : {
+    "_id" : "wm-CountOfFormsForMunicipality-wm.ServiceVariable-1495719417880",
+    "name" : "CountOfFormsForMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountOfFormsForMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeCountOfFormsForMunicipality",
+    "operationId" : "QueryExecutionController_executeCountOfFormsForMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svClosedCasesCount" : {
     "_id" : "wm-svClosedCasesCount-wm.ServiceVariable-1491479427504",
     "name" : "svClosedCasesCount",
