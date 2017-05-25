@@ -158,6 +158,33 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svCountOfMunicipalityCodeSets" : {
+    "_id" : "wm-svCountOfMunicipalityCodeSets-wm.ServiceVariable-1495723954164",
+    "name" : "svCountOfMunicipalityCodeSets",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MunicipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID | stringToNumber",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountOfMunicipalityCodeSetsResponse",
+    "service" : "cx2",
+    "operation" : "executeCountOfMunicipalityCodeSets",
+    "operationId" : "QueryExecutionController_executeCountOfMunicipalityCodeSets",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "svOpenCasesCount" : {
     "_id" : "wm-svOpenCasesCount-wm.ServiceVariable-1491479296272",
     "name" : "svOpenCasesCount",
