@@ -36,7 +36,12 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
 
     $scope.svCheckoutonSuccess = function(variable, data) {
+
         $scope.Variables.svCartItemIds.update();
+        $scope.Widgets.wizardCheckOut.show = false
+        $scope.Widgets.containerPaymentRecieved.show = true
+            // $scope.$parent.Widgets.pagedialog1.close();
+
     };
 
 }]);

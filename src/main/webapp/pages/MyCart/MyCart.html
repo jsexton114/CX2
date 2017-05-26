@@ -1,9 +1,6 @@
 <wm-page data-ng-controller="MyCartPageController" pagetitle="My Cart" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
-        <wm-page-content columnwidth="10" name="page_content1">
+        <wm-page-content columnwidth="12" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow3_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_2">
@@ -59,8 +56,8 @@
                                     <wm-gridrow name="gridrow7" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="8" name="gridcolumn10">
-                                            <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')" required="true">
-                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'" fontweight="bold"></wm-label>
+                                            <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')" required="{{((Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card'))}}">
+                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'" fontweight="bold" required="false"></wm-label>
                                                 <wm-container class="col-md-9" name="container2">
                                                     <wm-text name="textPaymentNumber"></wm-text>
                                                 </wm-container>
@@ -88,10 +85,16 @@
                         </wm-wizard>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow10">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn14_2">
+                        <wm-container name="containerPaymentRecieved" margin="1em" backgroundcolor="#ffffff" horizontalalign="center" show="false">
+                            <wm-label padding="unset 0.5em" name="label8" class="h3" caption="Thank you! The payment you submitted has been processed."></wm-label>
+                        </wm-container>
+                    </wm-gridcolumn>
+                </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
         <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>

@@ -6,6 +6,8 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+
+
         $scope.today = moment().valueOf();
         // var breadCrumbs = $scope.pageParams.breadCrumbs;
         // currentBreadCrumb = breadCrumbs[breadCrumbs.length - 1];
@@ -60,6 +62,9 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
             // }
         }
     }
+
+
+
 
     $scope.SharedWithDataonSuccess = function(variable, data) {
         $scope.sharedWith = data;

@@ -21,3 +21,16 @@ Application.$controller("topnavPageController", ["$scope", "$location", "$window
     };
 
 }]);
+
+Application.$controller("pagedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.pagedialog1Ok = function($event, $isolateScope) {
+            $scope.$parent.$parent.Widgets.container1.Variables.Cx2FeesData.update();
+
+        };
+
+    }
+]);
