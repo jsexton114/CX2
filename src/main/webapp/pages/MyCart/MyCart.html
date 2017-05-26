@@ -4,7 +4,7 @@
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow3_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_2">
-                        <wm-wizard stepstyle="justified" name="wizardCheckOut" nextbtnlabel="Proceed to Checkout" donebtnlabel="Submit" on-done="wizardCheckOutDone($scope, steps)">
+                        <wm-wizard stepstyle="justified" name="wizardCheckOut" nextbtnlabel="Proceed to Checkout" donebtnlabel="Submit" on-done="wizardCheckOutDone($scope, steps)" cancelable="false">
                             <wm-wizardstep name="wizardstep1" iconclass="wi wi-shopping-cart" title="Review Cart" on-next="wizardstep1Next($scope, currentStep, stepIndex)">
                                 <wm-layoutgrid name="layoutgrid2">
                                     <wm-gridrow name="gridrow4" padding="1em unset">
@@ -35,7 +35,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2" title="Check Out" iconclass="wi wi-attach-money">
+                            <wm-wizardstep name="wizardstep2" title="Municipality Checkout" iconclass="wi wi-attach-money">
                                 <wm-layoutgrid name="layoutgrid2">
                                     <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn4">
