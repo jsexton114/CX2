@@ -662,6 +662,65 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "stvPaymentOptions" : {
+    "_id" : "wm-stvPaymentOptions-wm.Variable-1491546466742",
+    "name" : "stvPaymentOptions",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "paymentType" : "Cash"
+    }, {
+      "paymentType" : "Check"
+    }, {
+      "paymentType" : "Credit Card"
+    }, {
+      "paymentType" : "Account Credit"
+    }, {
+      "paymentType" : "Offline Credit Card"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svCheckout" : {
+    "_id" : "wm-svCheckout-wm.ServiceVariable-1493838503181",
+    "name" : "svCheckout",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "paymentMethod",
+      "value" : "bind:Widgets.radiosetPaymentOptions.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "paymentNumber",
+      "value" : "bind:Widgets.textPaymentNumber.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "comments",
+      "value" : "bind:Widgets.textareaComments.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "amountReceived",
+      "value" : "bind:Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart",
+      "type" : "number"
+    } ],
+    "service" : "CheckoutService",
+    "operation" : "municipalityCheckout",
+    "operationId" : "CheckoutController_municipalityCheckout",
+    "operationType" : "post",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "svCheckoutonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Checkout"
+  },
   "svFeesInCartOfUser" : {
     "_id" : "wm-svFeesInCartByUser-wm.ServiceVariable-1489057728480",
     "name" : "svFeesInCartOfUser",
@@ -689,35 +748,34 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
-    "spinnerContext" : "page"
+    "spinnerContext" : "wizardstep2"
   },
-  "svUpdateFeesStatus" : {
-    "_id" : "wm-svUpdateFeesStatus-wm.ServiceVariable-1488959907749",
-    "name" : "svUpdateFeesStatus",
+  "svSumOfFeesInUsersCart" : {
+    "_id" : "wm-svSumOfFeesInUsersCart-wm.ServiceVariable-1491548183610",
+    "name" : "svSumOfFeesInUsersCart",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
-      "target" : "feeEntry",
-      "value" : "bind:Widgets.gridFeesList.selecteditem.id",
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
       "type" : "integer"
     } ],
-    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "type" : "com.civicxpress.cx2.models.query.SumOfFeesInUsersCartResponse",
     "service" : "cx2",
-    "operation" : "executeUpdateFeesStatus",
-    "operationId" : "QueryExecutionController_executeUpdateFeesStatus",
-    "operationType" : "put",
+    "operation" : "executeSumOfFeesInUsersCart",
+    "operationId" : "QueryExecutionController_executeSumOfFeesInUsersCart",
+    "operationType" : "get",
     "serviceType" : "DataService",
     "dataSet" : [ ],
     "isList" : false,
     "maxResults" : 20,
     "designMaxResults" : 10,
-    "onSuccess" : "Variables.lvFeesData.listRecords()",
     "startUpdate" : false,
-    "autoUpdate" : false,
+    "autoUpdate" : true,
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
-    "spinnerContext" : "page"
+    "spinnerContext" : "wizardstep2"
   }
 }

@@ -9,9 +9,62 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
         $scope.$broadcast('feeListUpdate', data.content);
     };
+
+    $scope.wizardstep1Next = function($isolateScope, currentStep, stepIndex) {
+        $scope.Variables.svCartItemIds.update();
+        $scope.Variables.svSumOfFeesInUsersCart.update();
+
+        // let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        // for (let i = 0; i < temp.length; i++) {
+        //     if ((temp[i] == "MunicipalityEmployee")) {
+        //         $scope.Variables.goToPage_MunicipalityCheckOut.navigate();
+        //     }
+        // }
+    };
+
+
+    $scope.wizardCheckOutDone = function($isolateScope, steps) {
+        var feeIds = [];
+
+        $scope.Variables.svCartItemIds.dataSet.content.forEach(function(cartItem, index) {
+            feeIds.push(cartItem.feeId);
+        });
+
+        $scope.Variables.svCheckout.setInput("Long", feeIds);
+        $scope.Variables.svCheckout.update();
+    };
+
+
+    $scope.svCheckoutonSuccess = function(variable, data) {
+        $scope.Variables.svCartItemIds.update();
+    };
+
 }]);
 
 Application.$controller("pagedialogNewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+
+
+Application.$controller("iframedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewInspectionController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
@@ -35,16 +88,6 @@ Application.$controller("gridFeesListController", ["$scope",
             $scope.feeTotal = newFeeTotal;
         });
 
-        $scope.customButtonAction = function($event) {
-            $scope.Variables.svCartItemIds.update();
-            let temp = $scope.Variables.loggedInUser.dataSet.roles;
-            for (let i = 0; i < temp.length; i++) {
-                if ((temp[i] == "MunicipalityEmployee")) {
-                    $scope.Variables.goToPage_MunicipalityCheckOut.navigate();
-                }
-            }
-        };
-
         $scope.updaterowAction = function($event, $rowData) {
             if ($rowData.itemType == 'form') {
                 $scope.Widgets.pagedialogViewForm.open();
@@ -52,27 +95,5 @@ Application.$controller("gridFeesListController", ["$scope",
                 $scope.Widgets.pagedialogViewInspection.open();
             }
         };
-
-    }
-]);
-
-Application.$controller("iframedialog1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("pagedialogViewFormController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("pagedialogViewInspectionController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
     }
 ]);

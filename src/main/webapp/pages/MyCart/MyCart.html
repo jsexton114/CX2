@@ -5,31 +5,87 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
-                        <wm-panel iconclass="wi wi-shopping-cart" autoclose="outsideClick" name="panelMyCart" title="My Cart" class="panel-primary">
-                            <wm-grid title="" dataset="bind:Variables.svFeesInCartOfUser.dataSet" navigation="Classic" name="gridFeesList" showrecordcount="true">
-                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                <wm-grid-column binding="itemTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="parentItemName" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
-                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="true" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
-                                <!-- TODO: The Chase payment mechanism should be triggered by a standard HTML submit button with a few hidden input form values, per my example at http://www.labwindow.com/PaymentRequest.html -- JES -->
-                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
-                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
-                            </wm-grid>
-                        </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities, and it covers bank transaction costs associated with credit card transactions."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label3" caption="This convenience fee may be avoided by paying in person at the municipality payment counter."></wm-label>
+                <wm-gridrow name="gridrow3_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn3_2">
+                        <wm-wizard stepstyle="justified" name="wizardCheckOut" nextbtnlabel="Proceed to Checkout" donebtnlabel="Submit" on-done="wizardCheckOutDone($scope, steps)">
+                            <wm-wizardstep name="wizardstep1" iconclass="wi wi-shopping-cart" title="Review Cart" on-next="wizardstep1Next($scope, currentStep, stepIndex)">
+                                <wm-layoutgrid name="layoutgrid2">
+                                    <wm-gridrow name="gridrow4" padding="1em unset">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                                            <wm-grid title="" dataset="bind:Variables.svFeesInCartOfUser.dataSet" navigation="Classic" name="gridFeesList" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                <wm-grid-column binding="itemTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="parentItemName" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="false" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)"
+                                                shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
+                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()"
+                                                disabled="false"></wm-grid-row-action>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow5">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                            <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities, and it covers bank transaction costs associated with credit card transactions."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label3" caption="This convenience fee may be avoided by paying in person at the municipality payment counter."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                            <wm-wizardstep name="wizardstep2" title="Check Out" iconclass="wi wi-attach-money">
+                                <wm-layoutgrid name="layoutgrid2">
+                                    <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                                            <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: '+ ((Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart || 0) | toCurrency:'$':2)" class="h1"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow5" padding=".2em unset">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                            <wm-label padding="unset 0.5em" name="label6" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType"
+                                            usekeys="false"></wm-radioset>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow7" padding=".2em unset">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn10">
+                                            <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')" required="true">
+                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'" fontweight="bold"></wm-label>
+                                                <wm-container class="col-md-9" name="container2">
+                                                    <wm-text name="textPaymentNumber"></wm-text>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn12_1"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow8">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn14_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="8" name="gridcolumn12">
+                                            <wm-composite name="compositeComments" required="true">
+                                                <wm-label class="col-md-3 form-control-static" name="labelComments" caption="Comments" fontweight="bold"></wm-label>
+                                                <wm-container class="col-md-9" name="container3">
+                                                    <wm-textarea name="textareaComments" placeholder="Place Your Comments"></wm-textarea>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="3" name="gridcolumn11"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow9">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn14" horizontalalign="right"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-wizardstep>
+                        </wm-wizard>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
