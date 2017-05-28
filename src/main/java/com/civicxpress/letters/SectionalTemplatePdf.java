@@ -135,6 +135,16 @@ public class SectionalTemplatePdf {
         return fileBytesOutput;
     }
 
+    public byte[] createLetter(GlobalInspectionInfo globalInspectionInfo, Map<String, String> tokens) {
+        byte[] fileBytesOutput = null;
+        this.setMunicipalityLogo(globalInspectionInfo.getMunicipalityLogo());
+        this.generatePdfOutput(tokens);
+        ByteArrayOutputStream fileStream = new ByteArrayOutputStream();
+        this.saveToFile(fileStream);
+        fileBytesOutput = fileStream.toByteArray();
+        return fileBytesOutput;
+    }
+
 	public List<TemplateSectionRow> getAllRows() {
 		return allRows;
 	}

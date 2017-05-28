@@ -3,13 +3,23 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.inspectionservice;
 
+import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
+
+import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.letters.GlobalInspectionInfo;
+import com.civicxpress.letters.LetterTemplate;
+import com.civicxpress.letters.SectionalTemplatePdf;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -294,6 +304,97 @@ public class InspectionService {
     	}
     }
     
+    public void sendLetter(String inspectionGuid, Integer letterTemplateId, String formLink) throws SQLException, MessagingException {
+    	Connection cx2Conn = DBConnectionService.getConnection();
+    	
+    	DBQueryParams params = new DBQueryParams();
+    	params.addInteger("letterTemplateId", letterTemplateId);
+    	params.addString("inspectionGuid", inspectionGuid);
+    	
+    	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "select InspectionDesign.ID as InspectionDesignId, InspectionDesign.InspectDesignName, MasterInspections.InspectionTitle, RU.FullName, RU.Email, InspectionOutcome.Outcome as InspectionOutcome, MU.MunicipalityName, MU.GlobalEmailSig from MasterInspections INNER JOIN Users RU ON RU.ID=MasterInspections.RequestedBy INNER JOIN InspectionOutcome ON InspectionOutcome.ID=MasterInspections.InspectionOutcomeId INNER JOIN InspectionDesign ON InspectionDesign.ID=MasterInspections.InspectionDesignId INNER JOIN Municipalities MU ON MU.ID=InspectionDesign.MunicipalityId WHERE MasterInspections.InspectionGUID=:inspectionGuid", params);
+    	Long inspectionDesignId = inspectionData.getLong("InspectionDesignId");
+    	String recipientEmail = inspectionData.getString("Email");
+    	String recipientFullName = inspectionData.getString("FullName");
+    	String inspectionDesignName = inspectionData.getString("InspectDesignName");
+    	String inspectionTitle = inspectionData.getString("InspectionTitle");
+    	String municipality = inspectionData.getString("MunicipalityName");
+    	String municipalitySignature = inspectionData.getString("GlobalEmailSig");
+    	
+    	DBRow letterTemplateData = DBUtils.selectOne(cx2Conn, "SELECT * FROM LetterTemplates WHERE ID=:letterTemplateId", params);
+    	String letterTitle = letterTemplateData.getString("LetterTitle");
+    	
+    	byte[] letterPdf = createLetterPdf(letterTemplateId, inspectionDesignId, inspectionGuid);
+    	
+    	Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        InternetAddress recipientAddress;
+        recipientAddress = new InternetAddress(recipientEmail);
+        
+        message.setRecipient(Message.RecipientType.TO, recipientAddress);
+        
+        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
+        
+        emailContent.append("Here is a PDF copy of your " + letterTitle + ".");
+	    emailContent.append("<br /><br />");
+        
+        emailContent.append(municipality);
+        emailContent.append("<br />");
+        emailContent.append(inspectionDesignName);
+        emailContent.append("<br />");
+        emailContent.append(inspectionTitle);
+        emailContent.append("<br />");
+        emailContent.append("<a href ='"+formLink+"'> Click Here to View Inspection </a>");
+        
+        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
+        
+        Multipart messageContents = new MimeMultipart();
+        
+        MimeBodyPart messageBody = new MimeBodyPart();
+        messageBody.setContent(emailContent.toString(), "text/html");
+        
+        messageContents.addBodyPart(messageBody);
+		String filename = letterTemplateId.toString()+".pdf";
+		
+        ByteArrayDataSource fileDS = new ByteArrayDataSource(letterPdf, "application/pdf");
+        MimeBodyPart letterAttachment = new MimeBodyPart();
+        letterAttachment.setDataHandler(new DataHandler(fileDS));
+        letterAttachment.setFileName(filename);
+        
+        messageContents.addBodyPart(letterAttachment);
+        
+        message.setSubject(letterTitle + " for form " + inspectionTitle);
+        message.setContent(messageContents);
+        // Send smtp message
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+    }
+
+    private byte[] createLetterPdf(Integer letterTemplateId, Long inspectionDesignId, String inspectionGuid) throws SQLException {
+		Cx2DataAccess db = new Cx2DataAccess();
+    	SectionalTemplatePdf lt = null;
+		lt = db.getLetterTemplate(letterTemplateId);
+        GlobalInspectionInfo globalInspectionInfo = db.getGlobalInspectionInfo(inspectionGuid);
+        Map<String, String> textTokens = LetterTemplate.getTextTokenValuesForInspection(db, inspectionDesignId, inspectionGuid);
+        byte[] fileBytes = lt.createLetter(globalInspectionInfo, textTokens);
+        
+        return fileBytes;
+    }
+
     private String sendOutcomeUpdateMail(String requestorFullName ,String requestorEmail,String emailSubject,String emailBody,String municipality,String inspectionDesign,String inspectionOutcome,String lot,String fullAddress,String subdivision,String municipalitySignature,String inspectionTitle,String formLink) throws MessagingException {
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");

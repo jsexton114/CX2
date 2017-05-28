@@ -118,8 +118,45 @@ public class LetterTemplate {
         return returnTokenValues;
     }
     
+    public static Map<String, String> getTextTokenValuesForInspection(Cx2DataAccess db, Long inspectionDesignId, String inspectionGuid) throws SQLException {
+        List<String> avaliableTokens = null;
+        DynamicInspection form = db.getInspectionData(inspectionDesignId, inspectionGuid); //TODO: see why global form data is collected twice
+        GlobalInspectionInfo globalInspectionInfo = db.getGlobalInspectionInfo(inspectionGuid);
+        Map<String, Object> dynamicFormDataValues = form.getFormDataValues();
+        Map<String, String> returnTokenValues = new HashMap<String, String>();
+        Iterator availableTokensIterator = null;
+        avaliableTokens = getAvailableTokens(db, -1, inspectionDesignId);
+        availableTokensIterator = avaliableTokens.iterator();
+        while (availableTokensIterator.hasNext()) {
+            String completeToken = (String) availableTokensIterator.next();
+            String tokenName = getTokenName(completeToken);
+            String stringValue = null;
+            boolean isExistingDynamicToken = dynamicFormDataValues.containsKey(tokenName); 
+            Object objectValue = null;
+            boolean isNullValue = true;
+            if (isExistingDynamicToken) {
+            	objectValue = dynamicFormDataValues.get(tokenName);
+            	isNullValue = (objectValue == null);
+            }
+            if (!isNullValue) {
+                if (objectValue instanceof String) {
+                	stringValue = objectValue.toString();
+                }
+            } else {
+	            // if it's a global token, populate value here
+	            if (Arrays.asList(GLOBAL_INSPECTION_TOKENS).contains(tokenName)) {
+	            	stringValue = getGlobalInspectionValueByTokenName(globalInspectionInfo, tokenName);
+	            } 
+            }
+            if (stringValue == null) stringValue = "";
+            returnTokenValues.put(tokenName, stringValue);
+        }
+        return returnTokenValues;
+    }
+
     private static String getGlobalFormValueByTokenName(GlobalFormInfo globalFormInfo, String tokenName) {
         // NOTE: this is inelegant maybe, but will perform better than using reflection
+        // Insane that FormInfo and InspectionInfo aren't derived from a common parent class - JS
         String returnValue = null;
         final String s = GLOBAL_TEXT_TOKENS[1];
         switch (tokenName) {
@@ -195,6 +232,91 @@ public class LetterTemplate {
                 break;
             case "IssuedDate":
                 Date issuedDate = globalFormInfo.getIssuedDate();
+                if (issuedDate != null) {
+                    returnValue = issuedDate.toString();
+                }
+                break;
+        }
+        return returnValue;
+    }
+    
+    private static String getGlobalInspectionValueByTokenName(GlobalInspectionInfo globalInspectionInfo, String tokenName) {
+        // NOTE: this is inelegant maybe, but will perform better than using reflection
+        String returnValue = null;
+        final String s = GLOBAL_INSPECTION_TOKENS[1];
+        switch (tokenName) {
+            case "FormType":
+                returnValue = globalInspectionInfo.getInspectionType();
+                break;
+            case "FormTitle":
+                returnValue = globalInspectionInfo.getFormTitle();
+                break;
+            case "MunicipalityName":
+                returnValue = globalInspectionInfo.getMunicipalityName();
+                break;
+//            case "MunicipalityLogo":
+//                returnValue = globalInspectionInfo.getMunicipalityLogo(); // TODO: deal with byte logo
+            case "MunicipalityAddress":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().toString();
+                break;
+            case "MunicipalityAddressLine1":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().getAddressLine1();
+                break;
+            case "MunicipalityAddressLine2":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().getAddressLine2();
+                break;
+            case "MunicipalityCity":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().getCity();
+                break;
+            case "MunicipalityState":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().getState();
+                break;
+            case "MunicipalityPostalCode":
+                returnValue = globalInspectionInfo.getMunicipalityAddress().getPostalCode();
+                break;
+            case "ContractorName":
+                returnValue = globalInspectionInfo.getVendorCompanyName();
+                break;
+            case "ContractorAddress":
+                returnValue = globalInspectionInfo.getVendorAddress().toString();
+                break;
+            case "Location":
+                returnValue = globalInspectionInfo.getLocationAddress().toString();
+                break;
+            case "LocationMap":
+                double latitude = globalInspectionInfo.getLocationLatitude();
+                double longitude = globalInspectionInfo.getLocationLongitude();
+                returnValue = latitude + ", " + longitude;
+                break;
+            case "Fees":
+                BigDecimal totalFees = globalInspectionInfo.getTotalFees();
+                if (totalFees != null) {
+                    returnValue = totalFees.toString();
+                }
+                break;
+            case "AmountDue":
+                BigDecimal balanceDue = globalInspectionInfo.getBalanceDue();
+                if (balanceDue != null) {
+                    returnValue = balanceDue.toString();
+                }
+                break;
+            case "Owner":
+                returnValue = globalInspectionInfo.getOwnerFirstName() + " " + globalInspectionInfo.getOwnerLastName();
+                break;
+            case "Tenant":
+                returnValue = globalInspectionInfo.getTenantFirstName() + " " + globalInspectionInfo.getTenantLastName();
+                break;
+            case "Violations":
+                returnValue = "getViolations()"; // TODO: implement violations
+                break;
+            case "ExpiresDate":
+                Date expiresData = globalInspectionInfo.getExpiresDate();
+                if (expiresData != null) {
+                    returnValue = expiresData.toString();
+                }
+                break;
+            case "IssuedDate":
+                Date issuedDate = globalInspectionInfo.getIssuedDate();
                 if (issuedDate != null) {
                     returnValue = issuedDate.toString();
                 }

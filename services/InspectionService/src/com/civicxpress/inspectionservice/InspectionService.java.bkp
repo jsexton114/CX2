@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.civicxpress.MultiDatabaseHelper;
 import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.civicxpress.dynamicfieldservice.DynamicFieldService;
 import com.tekdog.dbutils.DBQueryParams;
@@ -59,7 +58,7 @@ public class InspectionService {
     public Long saveInspectionDesign(Long municipalityId, String inspectionName, String description) throws SQLException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
-        Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+        Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
         muniDbConn.setAutoCommit(false);
     	Long newInspectionDesignId = null;
         
@@ -117,7 +116,7 @@ public class InspectionService {
     	
     	DBRow inspectionDesignData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionDesign WHERE ID=:inspectionDesignId", queryParams);
     	Long municipalityId = inspectionDesignData.getLong("MunicipalityId");
-    	Connection muniDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+    	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
     	String newInspectionGuid = null;
     	
     	try {
@@ -531,7 +530,7 @@ public class InspectionService {
 		
 		Long municipalityId = formInfo.getLong("MunicipalityId");
 		
-		Connection formDbConn = MultiDatabaseHelper.getMunicipalityDbConnection(cx2Conn, municipalityId);
+		Connection formDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
 		
 		cx2Conn.close();
 		

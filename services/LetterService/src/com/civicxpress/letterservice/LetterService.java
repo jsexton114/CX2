@@ -20,6 +20,7 @@ import com.civicxpress.letters.LetterTemplate;
 import com.civicxpress.letters.SectionalTemplatePdf;
 import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.letters.GlobalFormInfo;
+import com.civicxpress.letters.GlobalInspectionInfo;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -83,4 +84,22 @@ public class LetterService {
         dr.setFileName(formGuid + ".pdf");
         return dr;
     }
+
+    public DownloadResponse createLetterForInspection(Long inspectionDesignId, String inspectionGuid, int letterTemplateId) throws SQLException {
+		SectionalTemplatePdf lt = null;
+		Cx2DataAccess db = new Cx2DataAccess();
+		lt = db.getLetterTemplate(letterTemplateId);
+        GlobalInspectionInfo globalFormInfo = db.getGlobalInspectionInfo(inspectionGuid);
+        Map<String, String> textTokens = LetterTemplate.getTextTokenValuesForInspection(db, inspectionDesignId, inspectionGuid);
+        byte[] fileBytes = lt.createLetter(globalFormInfo, textTokens);
+        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
+        DownloadResponse dr = new DownloadResponse();
+        dr.setContents(downloadBais);
+        dr.setContentType("application/pdf");
+        dr.setFileName(inspectionGuid + ".pdf");
+        return dr;
+    }
+
+
+    
 }

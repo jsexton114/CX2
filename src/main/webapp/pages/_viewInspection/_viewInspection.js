@@ -412,3 +412,16 @@ Application.$controller("dialogRemoveViolationController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridLettersController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.customRow1Action = function($event, $rowData) {
+            $scope.Variables.svSendLetter.setInput("formLink", window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
+            $scope.Variables.svSendLetter.setInput("letterTemplateId", $rowData.id);
+            $scope.Variables.svSendLetter.update();
+        };
+    }
+]);

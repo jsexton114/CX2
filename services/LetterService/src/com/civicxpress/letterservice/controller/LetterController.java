@@ -32,6 +32,13 @@ public class LetterController {
         return letterService.createLetter(formTypeId, formGuid, letterTemplateId);
     }
 
+    @RequestMapping(value = "/letterForInspection", produces = "application/octet-stream", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public DownloadResponse createLetterForInspection(@RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "letterTemplateId", required = false) int letterTemplateId) throws SQLException {
+        return letterService.createLetterForInspection(inspectionDesignId, inspectionGuid, letterTemplateId);
+    }
+
     @RequestMapping(value = "/availableTokens", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

@@ -415,6 +415,55 @@ public class Cx2DataAccess {
         return dynamicForm;
     }
 
+    public DynamicInspection getInspectionData(Long inspectionDesignId, String inspectionGuid) throws SQLException {
+        DynamicInspection dynamicForm = null;
+        DynamicInspectionDesign formType = null;
+        Long municipalityId;
+        Connection municipalityConnection;
+        CallableStatement statement = null;
+        ResultSet rs = null;
+        String formTableName = null;
+        ResultSetMetaData resultSetMetaData = null;
+        int columnCount;
+        Map<String, Object> formDataValues = new HashMap<String, Object>();
+        dynamicForm = getInspectionInfo(inspectionDesignId, inspectionGuid);
+        formType = dynamicForm.getDynamicInspectionType();
+        formTableName = formType.getTableName();
+        municipalityId = formType.getMunicipalityId();
+        municipalityConnection = getMunicipalityDbConnection(municipalityId);
+        try {
+            statement = municipalityConnection.prepareCall("{call getInspectionData(?,?)}");
+            statement.setString("tableName", formTableName);
+            statement.setString("inspectionGuid", inspectionGuid);
+            statement.execute();
+            rs = statement.getResultSet();
+            resultSetMetaData = rs.getMetaData();
+            columnCount = resultSetMetaData.getColumnCount();
+            if (rs.next()) {
+                for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                    String columnName = resultSetMetaData.getColumnLabel(columnIndex);
+                    Object columnValue = rs.getObject(columnIndex);
+                    formDataValues.put(columnName, columnValue);
+                }
+            }
+        } catch (SQLException e) {
+            municipalityConnection.rollback();
+            
+            throw e;
+        } finally {
+            try {
+                rs.close();
+                statement.close();
+                municipalityConnection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        dynamicForm.setFormDataValues(formDataValues);
+        return dynamicForm;
+    }
+
     public List<String> getLetterTemplatesForFormStatus(int formStatusId) throws SQLException {
         List<String> letterTemplates = getColumnValuesById("getLetterTemplatesForFormStatus", "formStatusId", formStatusId);
         return letterTemplates;
