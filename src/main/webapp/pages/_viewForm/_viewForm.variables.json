@@ -2540,7 +2540,7 @@
       "primaryFields" : [ "formGuid" ]
     },
     "bindCount" : 8,
-    "spinnerContext" : "page",
+    "spinnerContext" : "panelFormInfo",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",
     "properties" : [ "formTypes", "formStatuses", "giscontacts", "municipalityGroups", "municipalities", "users", "vendor" ],
@@ -5380,6 +5380,7 @@
     },
     "isDefault" : true,
     "bindCount" : 1,
+    "spinnerContext" : "tabpaneFees",
     "tableName" : "Fees",
     "tableType" : "TABLE",
     "properties" : [ "masterForms", "masterInspections", "projects", "vendor", "gisrecords", "municipalities", "users" ],
@@ -6117,6 +6118,7 @@
     },
     "isDefault" : true,
     "bindCount" : 1,
+    "spinnerContext" : "tabpaneVendor",
     "tableName" : "Vendors2Form",
     "tableType" : "TABLE",
     "properties" : [ "masterForms", "vendor" ],
@@ -9432,6 +9434,7 @@
     },
     "isDefault" : true,
     "bindCount" : 1,
+    "spinnerContext" : "tabpaneMessages",
     "tableName" : "FormMessages",
     "tableType" : "TABLE",
     "properties" : [ "gisrecords", "masterInspections", "masterForms", "projects", "users" ],
@@ -10525,7 +10528,7 @@
       "primaryFields" : [ "id" ]
     },
     "bindCount" : 4,
-    "spinnerContext" : "livelistStatus",
+    "spinnerContext" : "panelFormInfo",
     "tableName" : "FormStatuses",
     "tableType" : "TABLE",
     "properties" : [ "municipalityGroupsByWriteAccess", "formTypes", "municipalityGroupsByProcessOwners" ],
@@ -11343,7 +11346,7 @@
       "primaryFields" : [ "id" ]
     },
     "bindCount" : 1,
-    "spinnerContext" : "page",
+    "spinnerContext" : "viewShowTaggedPeople",
     "spinnerMessage" : "Please wait......",
     "tableName" : "FormMessageTagging",
     "tableType" : "TABLE",
@@ -19935,6 +19938,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
+    "spinnerContext" : "tabpaneIntenalMessages",
     "tableName" : "FormMessages",
     "tableType" : "TABLE",
     "properties" : [ "gisrecords", "masterInspections", "masterForms", "projects", "users" ],

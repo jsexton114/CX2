@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.civicxpress.dbconnectionservice.DBConnectionService;
-import com.tekdog.dbutils.DBUtils;
+import com.tekdog.dbutils.*;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
@@ -41,8 +41,11 @@ public class CheckoutService {
     private SecurityService securityService;
 
     public void municipalityCheckout(Long municipalityId, String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long[] feeIds) throws Exception {
+        DBQueryParams queryParams = new DBQueryParams();
     	Connection connection = DBConnectionService.getConnection();
     	CallableStatement checkoutStatement = null;
+    	
+    	 queryParams.addString("comments",  comments);
     	
     	BigDecimal amountDue = DBUtils.selectOne(connection, "SELECT SUM(Amount) as amountDue FROM Fees WHERE ID IN ("+StringUtils.join(feeIds, ',')+")", null).getBigDecimal("amountDue");
     	
@@ -68,6 +71,10 @@ public class CheckoutService {
 	        for (Long feeId : feeIds) { // Mark fees as paid.
 	        	CallableStatement feeStatement = DBUtils.prepareProcedure(connection, "payFee", feeId, transactionId, currentUserId);
 	        	feeStatement.execute();
+// Updating TransactionComments
+	        		DBUtils.simpleUpdateQuery(connection, " UPDATE Fees SET TransactionComments=:comments where ID="+feeId,
+    				queryParams);
+	        
 	        }
 	        
 	        connection.commit();
