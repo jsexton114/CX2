@@ -8,18 +8,21 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
+import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.civicxpress.cx2.Vendor;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +32,7 @@ public class VerifyPasswordResetTokenResponse implements Serializable {
 
     @JsonProperty("ExpirationDate")
     @ColumnAlias("ExpirationDate")
-    private java.sql.Date expirationDate;
+    private Date expirationDate;
     @JsonProperty("ID")
     @ColumnAlias("ID")
     private BigDecimal id;
@@ -40,11 +43,11 @@ public class VerifyPasswordResetTokenResponse implements Serializable {
     @ColumnAlias("UserId")
     private BigDecimal userId;
 
-    public java.sql.Date getExpirationDate() {
+    public Date getExpirationDate() {
         return this.expirationDate;
     }
 
-    public void setExpirationDate(java.sql.Date expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 

@@ -8,18 +8,21 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import org.joda.time.LocalDateTime;
 
+import com.civicxpress.cx2.ContractorTypes;
 import com.civicxpress.cx2.FormFieldTypes;
 import com.civicxpress.cx2.FormTypes;
+import com.civicxpress.cx2.Gisrecords;
 import com.civicxpress.cx2.MasterForms;
 import com.civicxpress.cx2.Municipalities;
 import com.civicxpress.cx2.Projects;
+import com.civicxpress.cx2.States;
 import com.civicxpress.cx2.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wavemaker.runtime.data.annotations.ColumnAlias;
@@ -34,19 +37,19 @@ public class MunicipalityProjectsResponse implements Serializable {
     private Integer createdBy;
     @JsonProperty("createdDate")
     @ColumnAlias("createdDate")
-    private Date createdDate;
+    private java.util.Date createdDate;
     @JsonProperty("estEndDate")
     @ColumnAlias("estEndDate")
-    private Date estEndDate;
+    private java.util.Date estEndDate;
     @JsonProperty("estStartDate")
     @ColumnAlias("estStartDate")
-    private Date estStartDate;
+    private java.util.Date estStartDate;
     @JsonProperty("modifiedBy")
     @ColumnAlias("modifiedBy")
     private Integer modifiedBy;
     @JsonProperty("modifiedDate")
     @ColumnAlias("modifiedDate")
-    private Date modifiedDate;
+    private java.util.Date modifiedDate;
     @JsonProperty("municipalities")
     @ColumnAlias("municipalities")
     private Municipalities municipalities;
@@ -100,27 +103,27 @@ public class MunicipalityProjectsResponse implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedDate() {
+    public java.util.Date getCreatedDate() {
         return this.createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(java.util.Date createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getEstEndDate() {
+    public java.util.Date getEstEndDate() {
         return this.estEndDate;
     }
 
-    public void setEstEndDate(Date estEndDate) {
+    public void setEstEndDate(java.util.Date estEndDate) {
         this.estEndDate = estEndDate;
     }
 
-    public Date getEstStartDate() {
+    public java.util.Date getEstStartDate() {
         return this.estStartDate;
     }
 
-    public void setEstStartDate(Date estStartDate) {
+    public void setEstStartDate(java.util.Date estStartDate) {
         this.estStartDate = estStartDate;
     }
 
@@ -132,11 +135,11 @@ public class MunicipalityProjectsResponse implements Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    public Date getModifiedDate() {
+    public java.util.Date getModifiedDate() {
         return this.modifiedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
+    public void setModifiedDate(java.util.Date modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 

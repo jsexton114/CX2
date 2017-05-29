@@ -1,0 +1,126 @@
+<wm-partial data-ng-controller="GISContactsOfFormPageController" name="partial1">
+    <wm-grid title="" dataset="bind:Variables.svGISContactsOfForm.dataSet" navigation="Classic" name="gridGISContacts">
+        <wm-grid-column binding="Full Name" caption="Full Name" type="string" widget-type="label" edit-widget-type="text" searchable="false" show="true" readonly="false">
+            <wm-label caption="{{row.getProperty('firstName')+' '+row.getProperty('lastName')}}" class="" data-ng-class=""></wm-label>
+        </wm-grid-column>
+        <wm-grid-column binding="contactType" caption="Contact Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+        <wm-grid-column binding="phone" caption="Phone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" sortable="false" searchable="false" show="true"></wm-grid-column>
+        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="" disabled="false"></wm-grid-row-action>
+        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-search" title="View" action="Widgets.dialog1.open()" disabled="false"></wm-grid-row-action>
+    </wm-grid>
+    <wm-view class="dialog-view" name="view1">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Person Details" iconclass="wi wi-person" name="dialog1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1">
+                        <wm-label padding="unset 0.5em" caption="First Name" name="label1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2">
+                        <wm-label padding="unset 0.5em" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].firstName" name="label2"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3">
+                        <wm-label padding="unset 0.5em" caption="Last Name" name="label3"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4">
+                        <wm-label padding="unset 0.5em" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].lastName" name="label4"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn5">
+                        <wm-label padding="unset 0.5em" name="label5" caption="Email"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn6">
+                        <wm-label padding="unset 0.5em" name="label6" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].email"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow4">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn7">
+                        <wm-label padding="unset 0.5em" name="label25" caption="ContactType"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn8">
+                        <wm-label padding="unset 0.5em" name="label7" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].contactType"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow5">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn9">
+                        <wm-label padding="unset 0.5em" name="label24" caption="Phone"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn10">
+                        <wm-label padding="unset 0.5em" name="label8" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].phone"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn11">
+                        <wm-label padding="unset 0.5em" name="label23" caption="Address1"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn12">
+                        <wm-label padding="unset 0.5em" name="label9" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].address1"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow7">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn13">
+                        <wm-label padding="unset 0.5em" name="label22" caption="Address2"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn14">
+                        <wm-label padding="unset 0.5em" name="label10" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].address2"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow8">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn15">
+                        <wm-label padding="unset 0.5em" name="label20" caption="City"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn16">
+                        <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].city"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn17">
+                        <wm-label padding="unset 0.5em" name="label19" caption="State"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn18">
+                        <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].states.stateName"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow10">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn19">
+                        <wm-label padding="unset 0.5em" name="label18" caption="Country"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn20">
+                        <wm-label padding="unset 0.5em" name="label13" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].country"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow11">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn21">
+                        <wm-label padding="unset 0.5em" name="label17" caption="PostalCode"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn22">
+                        <wm-label padding="unset 0.5em" name="label14" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].postalCode"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow12">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn23">
+                        <wm-label padding="unset 0.5em" name="label16" caption="Notes"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn24">
+                        <wm-label padding="unset 0.5em" name="label15" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].notes"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow13">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn25">
+                        <wm-label padding="unset 0.5em" name="label26" caption="Active"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn26">
+                        <wm-label padding="unset 0.5em" name="label27" caption="bind:Variables.lvSelectedContactDetails.dataSet.data[$i].active"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+            <wm-dialogactions name="dialogactions1">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button1"></wm-button>
+            </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+</wm-partial>

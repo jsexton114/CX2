@@ -8,9 +8,13 @@ package com.civicxpress.cx2.models.query;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
+
+import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

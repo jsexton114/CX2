@@ -166,28 +166,8 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneOwner" title="OWNER" show="bind:Variables.lvFormType.dataSet.data[$i].requireOwner">
-                                    <wm-livelist listclass="list-group" template="true" itemsperrow="xs-1 sm-2 md-3 lg-4" class="list-card" dataset="bind:Variables.lvOwner.dataSet" navigation="None" name="livelist5">
-                                        <wm-listtemplate layout="media" name="listtemplate5">
-                                            <wm-card name="card2">
-                                                <wm-card-content fontsize="0.8" fontunit="em" name="card_content2">
-                                                    <wm-layoutgrid columns="2" name="layoutgrid29">
-                                                        <wm-gridrow name="gridrow84">
-                                                            <wm-gridcolumn colwidth="6" columnwidth="12" padding="unset 1.25em" class="col-xs-6" name="gridcolumn164">
-                                                                <wm-label name="Name" caption="bind:Variables.lvOwner.dataSet.data[$i].firstName + (!!Variables.lvOwner.dataSet.data[$i].lastName ? ' '+Variables.lvOwner.dataSet.data[$i].lastName : '')" fontunit="em"
-                                                                color="#000" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
-                                                                <wm-label name="City" caption="bind:Variables.lvOwner.dataSet.city" class="h5" margin="0px unset unset unset" whitespace="nowrap"></wm-label>
-                                                                <wm-label name="Address1" caption="bind:Variables.lvOwner.dataSet.address1" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap"></wm-label>
-                                                                <wm-label name="Address2" caption="bind:Variables.lvOwner.dataSet.address2" class="text-muted p" whitespace="nowrap"></wm-label>
-                                                                <wm-anchor name="PhoneNumber" caption="bind:Variables.lvOwner.dataSet.phone" class="h5" hyperlink="bind:'tel:'+Variables.lvOwner.dataSet.data[$i].phone" margin="0px unset" whitespace="nowrap"></wm-anchor>
-                                                                <wm-anchor name="EmailID" class="p text-muted" hyperlink="bind:'mailto://'+Variables.lvOwner.dataSet.data[$i].email" caption="bind:Variables.lvOwner.dataSet.email" whitespace="nowrap"></wm-anchor>
-                                                            </wm-gridcolumn>
-                                                        </wm-gridrow>
-                                                    </wm-layoutgrid>
-                                                </wm-card-content>
-                                            </wm-card>
-                                        </wm-listtemplate>
-                                    </wm-livelist>
+                                <wm-tabpane name="tabpaneOwner" title="CONTACTS" show="bind:Variables.lvFormType.dataSet.data[$i].requireOwner" content="GISContactsOfForm" deferload="false">
+                                    <wm-param name="FormGUID" value="bind:pageParams.FormGUID" type="string"></wm-param>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneVendor" title="CONTRACTOR" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
                                     <wm-layoutgrid name="layoutgrid18">
