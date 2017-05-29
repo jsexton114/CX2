@@ -3,15 +3,14 @@ Application.$controller("leftnavPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+        let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        $scope.showDashBoard = true;
+        //Checking if user is muniadmin or cxadmin or muniemp
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "MunicipalityEmployee") || (temp[i] == "Inspector") || (temp[i] == "MunicipalityAdmin") || (temp[i] == "InspectorManager") || (temp[i] == "CodeManager") || (temp[i] == "CodeOfficer")) {
+                $scope.showDashBoard = false;
+            }
+        }
     };
 
 
