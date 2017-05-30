@@ -24,7 +24,21 @@ Application.$controller("gridGISContactsController", ["$scope",
 	}
 ]);
 
-Application.$controller("dialog1Controller", ["$scope",
+Application.$controller("dialogPersonDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogEditDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("liveformEditPersonDetailsController", ["$scope",
 	function($scope) {
 		"use strict";
 		$scope.ctrlScope = $scope;
