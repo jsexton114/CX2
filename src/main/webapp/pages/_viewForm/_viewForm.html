@@ -143,10 +143,10 @@
                                                 <wm-label padding="unset 0.5em" name="label29" caption="The following locations have been associated with this form."></wm-label>
                                                 <wm-grid title="" dataset="bind:Variables.Gis2formsData.dataSet" navigation="Classic" name="gridLocation" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Development" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.parcel" caption="Parcel" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.subdivisions.subdivision" caption="Development" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.section" caption="Section" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                    <wm-grid-column binding="gisrecords.lot" caption="Lot" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.streetNumber" caption="Street Number" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.streetName" caption="Street Name" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-column binding="gisrecords.city" caption="City" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
@@ -871,10 +871,12 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow73">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn151">
-                        <wm-label padding="unset 0.5em" name="label39" caption="Is Hostile?" hint="bind:Widgets.gridLocation.selecteditem.gisrecords.isHostile"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label39" caption="Is Hostile?" hint="bind:Widgets.gridLocation.selecteditem.gisrecords.isHostile" accessroles="CodeManager,CodeOfficer,CXAdmin,GISAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn152">
-                        <wm-label padding="unset 0.5em" name="label56" caption="bind:Widgets.gridLocation.selecteditem.gisrecords.isHostile"></wm-label>
+                        <wm-composite name="composite11_1">
+                            <wm-checkbox caption="" class="col-md-12" name="checkbox3" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Widgets.gridLocation.selecteditem.gisrecords.isHostile" disabled="true" accessroles="CodeManager,CodeOfficer,CXAdmin,GISAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"></wm-checkbox>
+                        </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow45_1">
