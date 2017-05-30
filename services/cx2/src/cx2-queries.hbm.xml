@@ -3050,6 +3050,20 @@ group by FC.Category) wmTempTable
     <query-param name="FormGUID" type="java.lang.String"/>
     </sql-query>
 
+    <query name="selectGisRecordsOfForm">
+        <![CDATA[
+        select gisrecordId as gisrecordId,gisrecords.lot as lot,gisrecords.fullAddress as fullAddress  from Gis2forms where relatedFormGuid=:relatedFormGuid
+        ]]>
+    <query-param name="relatedFormGuid" type="java.lang.String"/>
+    </query>
+
+    <query name="selectGisRecordsOfForm__count">
+        <![CDATA[
+        select count(*)  from Gis2forms where relatedFormGuid=:relatedFormGuid
+        ]]>
+    <query-param name="relatedFormGuid" type="java.lang.String"/>
+    </query>
+
     <sql-query name="RemoveVendorFromMasterForms">
         <![CDATA[
         Update MasterForms set  CXVendorId=null where FormGUID=:hb

@@ -2844,6 +2844,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("GetWriteAccessGroupMembersByFormGUID", params, exportType, GetWriteAccessGroupMembersByFormGuidResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<SelectGisRecordsOfFormResponse> executeSelectGisRecordsOfForm(String relatedFormGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("relatedFormGuid", relatedFormGuid);
+
+        return queryExecutor.executeNamedQuery("selectGisRecordsOfForm", params, SelectGisRecordsOfFormResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSelectGisRecordsOfForm(ExportType exportType, String relatedFormGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("relatedFormGuid", relatedFormGuid);
+
+        return queryExecutor.exportNamedQueryData("selectGisRecordsOfForm", params, exportType, SelectGisRecordsOfFormResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeRemoveVendorFromMasterForms(RemoveVendorFromMasterFormsRequest removeVendorFromMasterFormsRequest) {

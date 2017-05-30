@@ -2428,6 +2428,25 @@ public class QueryExecutionController {
         return queryService.exportGetWriteAccessGroupMembersByFormGUID(exportType, formGuid, pageable);
     }
 
+    @RequestMapping(value = "/queries/selectGisRecordsOfForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "selectGisRecordsOfForm")
+    public Page<SelectGisRecordsOfFormResponse> executeSelectGisRecordsOfForm(@RequestParam(value = "relatedFormGuid") String relatedFormGuid, Pageable pageable) {
+        LOGGER.debug("Executing named query: selectGisRecordsOfForm");
+        Page<SelectGisRecordsOfFormResponse> _result = queryService.executeSelectGisRecordsOfForm(relatedFormGuid, pageable);
+        LOGGER.debug("got the result for named query: selectGisRecordsOfForm, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query selectGisRecordsOfForm")
+    @RequestMapping(value = "/queries/selectGisRecordsOfForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportSelectGisRecordsOfForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "relatedFormGuid") String relatedFormGuid, Pageable pageable) {
+        LOGGER.debug("Exporting named query: selectGisRecordsOfForm");
+
+        return queryService.exportSelectGisRecordsOfForm(exportType, relatedFormGuid, pageable);
+    }
+
     @RequestMapping(value = "/queries/RemoveVendorFromMasterForms", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "RemoveVendorFromMasterForms")

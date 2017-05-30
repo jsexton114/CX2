@@ -523,6 +523,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetWriteAccessGroupMembersByFormGUID(ExportType exportType, String formGuid, Pageable pageable);
 
+    Page<SelectGisRecordsOfFormResponse> executeSelectGisRecordsOfForm(String relatedFormGuid, Pageable pageable);
+
+    Downloadable exportSelectGisRecordsOfForm(ExportType exportType, String relatedFormGuid, Pageable pageable);
+
     Integer executeRemoveVendorFromMasterForms(RemoveVendorFromMasterFormsRequest removeVendorFromMasterFormsRequest);
 
     Page<ProjectFormsResponse> executeProjectForms(String project, Pageable pageable);

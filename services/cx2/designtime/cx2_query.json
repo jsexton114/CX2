@@ -14752,6 +14752,62 @@
       } ]
     }
   },
+  "selectGisRecordsOfForm" : {
+    "name" : "selectGisRecordsOfForm",
+    "description" : "selectGisRecordsOfForm",
+    "version" : "V2",
+    "queryString" : "select gisrecordId as gisrecordId,gisrecords.lot as lot,gisrecords.fullAddress as fullAddress  from Gis2forms where relatedFormGuid=:relatedFormGuid",
+    "countQueryString" : "select count(*)  from Gis2forms where relatedFormGuid=:relatedFormGuid",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "relatedFormGuid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "4B2A1156-4B16-E711-80CB-0CC47A46DD63",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.SelectGisRecordsOfFormResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "gisrecordId",
+        "fieldName" : "gisrecordId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "fullAddress",
+        "fieldName" : "fullAddress",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "setMessageReadStatus" : {
     "name" : "setMessageReadStatus",
     "description" : "setMessageReadStatus",
