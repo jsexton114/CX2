@@ -433,17 +433,17 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append(inspectionTitle);
         emailContent.append("<br />");
-        emailContent.append(fullAddress);
+        emailContent.append("<a href ='"+formLink+ "'> Click Here to View Inspection </a>");
         emailContent.append("<br />");
-        emailContent.append(subdivision);
+        emailContent.append("Outcome: "+inspectionOutcome);
+        emailContent.append("<br /><br />");
+        emailContent.append("Address: "+fullAddress);
         emailContent.append("<br />");
-        emailContent.append(lot);
+        emailContent.append("Subdivision: "+subdivision);
         emailContent.append("<br />");
-        emailContent.append(inspectionOutcome);
-        emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+ "'> Click Here to View Form </a>");
-        
-        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
+        emailContent.append("Lot: "+lot);
+        emailContent.append("<br /><br />");
+        emailContent.append(municipalitySignature +"<br/><br/>");
         
         message.setSubject(emailSubject);
         message.setContent(emailContent.toString(), "text/html");

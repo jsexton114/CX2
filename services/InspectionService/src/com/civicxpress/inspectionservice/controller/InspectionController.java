@@ -76,6 +76,8 @@ public class InspectionController {
     }
 
     @RequestMapping(value = "/sendLetter", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void sendLetter(@RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "letterTemplateId", required = false) Integer letterTemplateId, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
         inspectionService.sendLetter(inspectionGuid, letterTemplateId, formLink);
     }
