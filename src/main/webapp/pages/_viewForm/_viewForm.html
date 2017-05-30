@@ -421,7 +421,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope)">
+                                <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope);Variables.lvFormOwner.listRecords()">
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn121">
@@ -520,7 +520,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneIntenalMessages" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" on-select="tabpaneIntenalMessagesSelect($event, $scope)">
+                                <wm-tabpane name="tabpaneIntenalMessages" title="INTERNAL" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" on-select="tabpaneIntenalMessagesSelect($event, $scope);Variables.lvFormOwner.listRecords()">
                                     <wm-layoutgrid name="layoutgrid30">
                                         <wm-gridrow padding="unset unset 1em unset" name="gridrow84_2">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn156_4">

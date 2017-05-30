@@ -104,6 +104,16 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
         let people = $scope.Variables.PeopleList.dataSet;
 
+        //Checking if createdBy is tagged with message, if not tagging him
+        if ($scope.Variables.lvFormOwner.dataSet.data.length > 0) {
+            let owner = $scope.Variables.lvFormOwner.dataSet.data[0];
+            let ownerFound = _.find(people, ['id', owner.id]);
+            if (ownerFound == undefined) {
+                people.push(owner);
+            }
+        }
+
+
         if (people.length === 0) {
             // DO nothing
         } else {
