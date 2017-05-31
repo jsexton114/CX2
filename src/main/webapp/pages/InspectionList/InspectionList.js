@@ -29,10 +29,10 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
             var inspectionLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
             return '<label>' + 'Inspection- ' + aM.inspectionTitle + '</label></br>' +
                 '<label>' + 'By -' + aM.requestedByFullName + '</label></br>' +
-                '<label>' + 'On- ' + aM.requestedFor + '</label></br>' +
+                '<label>' + 'On- ' + moment(aM.requestedFor).format('MM-DD-YYYY hh:mm a') + '</label></br>' +
                 '<label>' + 'At- ' + aM.fullAddress + '</label> </br>' +
                 '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label></br>' +
-                '<a href=' + inspectionLink + 'target="_self">Inspection</a>'
+                '<a href=' + inspectionLink + 'target="_self">View Inspection</a>'
         };
     };
 
@@ -50,7 +50,6 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
 
 
     $scope.svTeamInspectionListonSuccess = function(variable, data) {
-
         _.forEach(data.content, function(obj) {
             if (obj.assignedTo == $scope.Variables.loggedInUser.dataSet.id) {
                 obj.markerIcon = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
@@ -58,6 +57,27 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
                 obj.markerIcon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
             }
         });
+        $scope.Variables.svTotalInspections.dataSet = _.clone(data.content);
+
+    };
+
+
+    $scope.selectInspectionFilterChange = function($event, $isolateScope, newVal, oldVal) {
+        $scope.Variables.svTotalInspections.dataSet = _.clone($scope.Variables.svTeamInspectionList.dataSet.content);
+        if (newVal == "My") { //
+            let others = _.remove($scope.Variables.svTotalInspections.dataSet, function(obj) {
+                if (obj.assignedTo != $scope.Variables.loggedInUser.dataSet.id) {
+                    return true;
+                }
+            });
+        } else if (newVal == "Team") { //
+            let others = _.remove($scope.Variables.svTotalInspections.dataSet, function(obj) {
+                if (obj.assignedTo == $scope.Variables.loggedInUser.dataSet.id) {
+                    return true;
+                }
+            });
+        } else { //nothing
+        }
     };
 
 }]);
