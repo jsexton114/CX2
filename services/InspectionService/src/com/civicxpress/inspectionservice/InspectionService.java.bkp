@@ -433,9 +433,9 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append(inspectionTitle);
         emailContent.append("<br />");
-        emailContent.append("Outcome: "+inspectionOutcome);
-        emailContent.append("<br />");
         emailContent.append("<a href ='"+formLink+ "'> Click Here to View Inspection </a>");
+        emailContent.append("<br />");
+        emailContent.append("Outcome: "+inspectionOutcome);
         emailContent.append("<br /><br />");
         emailContent.append("Address: "+fullAddress);
         emailContent.append("<br />");
@@ -443,8 +443,7 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append("Lot: "+lot);
         emailContent.append("<br /><br />");
-        
-        emailContent.append("<br/><br/>"+ municipalitySignature +"<br/><br/>");
+        emailContent.append(municipalitySignature +"<br/><br/>");
         
         message.setSubject(emailSubject);
         message.setContent(emailContent.toString(), "text/html");

@@ -509,7 +509,7 @@ public class InspectionService {
 	        			gisRecordData.getString("Lot"),
 	        			gisRecordData.getString("FullAddress"),
 	        			gisRecordData.getString("Subdivision"),
-	        			municipalityData.getString("MunicipalitySignature"),
+	        			municipalityData.getString("GlobalEmailSig"),
 	        			inspectionData.getString("InspectionTitle"),
 	        			formLink
 	        	);
