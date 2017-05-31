@@ -23,6 +23,19 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
 
     $scope.dateRanges = $scope.getDateRanges();
 
+    $scope.googlemaps1Load = function($isolateScope) {
+        $isolateScope.setInfoWindow = function() {
+            var aM = $isolateScope.activeMarker;
+            return '<label>' + 'Inspection- ' + aM.inspectionTitle + '</label></br>' +
+                '<label>' + 'By -' + aM.requestedByFullName + '</label></br>' +
+                '<label>' + 'On- ' + aM.requestedFor + '</label></br>' +
+                '<label>' + 'At- ' + aM.fullAddress + '</label> </br>' +
+                '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label>'
+
+
+        };
+    };
+
     $scope.buttonRefreshInspectionListClick = function($event, $isolateScope) {
         $scope.dateRanges = $scope.getDateRanges();
 

@@ -117,7 +117,7 @@ public class InspectionService {
         return newInspectionDesignId;
     }
     
-    public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException {
+    public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException,MessagingException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
@@ -198,6 +198,7 @@ public class InspectionService {
 	    	DBRow newInspectionData = DBUtils.selectOne(cx2Conn, "SELECT InspectionGuid, InspectionOutcomeId FROM MasterInspections WHERE ID=:newInspectionId", queryParams);
 	    	newInspectionGuid = newInspectionData.getString("InspectionGuid");
 	    	Long newInspectionOutcomeId = newInspectionData.getLong("InspectionOutcomeId");
+	    	
 	    	queryParams.addString("newInspectionGuid", newInspectionGuid);
 	    	
 	    	String inspectionTableName = inspectionDesignData.getString("InspectionTableName");
@@ -257,6 +258,11 @@ public class InspectionService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormsToInspections (RelatedFormGUID, RelatedInspectionGUID, AddedBy) VALUES (:formGuid, :newInspectionGuid, :requestedBy)", queryParams);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE InspectionDesign SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:inspectionDesignId", queryParams);
+	    		
+	   // 		//Just to send Mail
+    // 		String inspectionComment="You have requested a new Inspection";
+    // 		String inspectionLink="Test";
+	   // 	setInspectionOutcome(newInspectionGuid,newInspectionOutcomeId,inspectionComment,inspectionLink);
 	    	
 	    	muniDbConn.commit();
 	    	cx2Conn.commit();
