@@ -32,7 +32,7 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
                 '<label>' + 'On- ' + moment(aM.requestedFor).format('MM-DD-YYYY hh:mm a') + '</label></br>' +
                 '<label>' + 'At- ' + aM.fullAddress + '</label> </br>' +
                 '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label></br>' +
-                '<a href=' + inspectionLink + 'target="_self">View Inspection</a>'
+                '<a target="_blank" href=' + inspectionLink + '>View Inspection</a>'
         };
     };
 
