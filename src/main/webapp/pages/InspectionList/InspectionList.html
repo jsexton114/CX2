@@ -12,14 +12,15 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
-                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2"
-                        class="h4"></wm-label>
+                        <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
-                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" class="panel-transparent" content="selectMunicipality">
-                            <wm-param name="muniType" value="e" type="string"></wm-param>
-                            <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
-                        </wm-panel>
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
+                            </wm-container>
+                        </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow4">
@@ -79,16 +80,35 @@
                                     <wm-grid-row-action key="viewInspection" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="viewInspectionAction($event)" disabled="false"></wm-grid-row-action>
                                 </wm-grid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpaneMap" title="Map">
+                                <wm-layoutgrid name="layoutgrid5">
+                                    <wm-gridrow name="gridrow11" padding="1em unset unset unset">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn13">
+                                            <wm-composite name="composite2">
+                                                <wm-label class="col-md-3 form-control-static" name="label3" caption="Filter" fontweight="bold"></wm-label>
+                                                <wm-container class="col-md-9" name="container2">
+                                                    <wm-select name="selectInspectionFilter" dataset="All,My,Team" on-change="selectInspectionFilterChange($event, $scope, newVal, oldVal)" datavalue="All"></wm-select>
+                                                </wm-container>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn16"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow12">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                                            <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTotalInspections.dataSet" info="requestedByFullName" markertype="Address" zoom="6" on-load="googlemaps1Load($scope)" height="500px" shade="#0000FF"
+                                            icon="markerIcon"></wm-prefab>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpane3" title="Drafts">
                                 <wm-livegrid formlayout="dialog" name="livegrid1">
                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2InspectionDraftData.dataSet" navigation="Classic" name="gridDraft">
                                         <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
                                         <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="MasterInspections"></wm-grid-column>
-                                        <wm-grid-column binding="masterInspections.dateRequested" caption="Date Requested" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime"
-                                        show="true" related-entity-name="MasterInspections"></wm-grid-column>
+                                        <wm-grid-column binding="masterInspections.dateRequested" caption="Date Requested" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime" show="true" related-entity-name="MasterInspections"></wm-grid-column>
                                         <wm-grid-column binding="inspectionData" caption="Inspection Data" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" accessroles="CXAdmin" shortcutkey="" disabled="false"></wm-grid-action>
                                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-save" title="Save" action="Variables.svSaveDraft.invoke()" disabled="false"></wm-grid-row-action>
@@ -97,26 +117,24 @@
                                         <wm-layoutgrid columns="1" name="layoutgrid4">
                                             <wm-gridrow name="gridrow7_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                    <wm-form-field name="inspectionData" displayname="Inspection Data" show="true" primary-key="false" generator="assigned" key="inspectionData" type="string" readonly="false" required="false" widget="text"
-                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="inspectionData" displayname="Inspection Data" show="true" primary-key="false" generator="assigned" key="inspectionData" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow8">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn9_2">
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="true" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" placeholder="Select value" displayexpression="inspectDesignName"></wm-form-field>
+                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="true" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
+                                                    displayexpression="inspectDesignName"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow9">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                    <wm-form-field name="masterInspections" displayname="Master Inspections" show="true" primary-key="false" generator="assigned" key="masterInspections" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" maxchars="32" placeholder="Select value" displayexpression="inspectionGuid"></wm-form-field>
+                                                    <wm-form-field name="masterInspections" displayname="Master Inspections" show="true" primary-key="false" generator="assigned" key="masterInspections" type="list" is-related="true" readonly="false" required="false" widget="select" maxchars="32" placeholder="Select value"
+                                                    displayexpression="inspectionGuid"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow10">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
-                                                    displayexpression="fullName"></wm-form-field>
+                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value" displayexpression="fullName"></wm-form-field>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
@@ -125,27 +143,6 @@
                                         <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-livegrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneMap" title="Map">
-                                <wm-layoutgrid name="layoutgrid5">
-                                    <wm-gridrow name="gridrow11" padding="1em unset unset unset">
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn16"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                            <wm-composite name="composite2">
-                                                <wm-label class="col-md-3 control-label" name="label3" caption="Filter"></wm-label>
-                                                <wm-container class="col-md-9" name="container2">
-                                                    <wm-select name="selectInspectionFilter" dataset="All,My,Team" on-change="selectInspectionFilterChange($event, $scope, newVal, oldVal)" datavalue="All"></wm-select>
-                                                </wm-container>
-                                            </wm-composite>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow12">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                                            <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTotalInspections.dataSet" info="requestedByFullName" markertype="Address" zoom="6" on-load="googlemaps1Load($scope)"
-                                            height="500px" shade="#0000FF" icon="markerIcon"></wm-prefab>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
                             </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>

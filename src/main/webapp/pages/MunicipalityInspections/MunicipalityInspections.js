@@ -10,7 +10,7 @@ Application.$controller("MunicipalityInspectionsPageController", ["$scope", "$lo
     };
 
     $scope.goToInspectionList = function($event, maxDay, municipalityId) {
-        municipalityId = municipalityId || $scope.Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID;
+        municipalityId = municipalityId || $scope.Widgets.selectMunicipality.datavalue.ID;
 
         $location.path("/InspectionList").search({
             municipalityId: municipalityId,
@@ -21,8 +21,8 @@ Application.$controller("MunicipalityInspectionsPageController", ["$scope", "$lo
 }]);
 
 Application.$controller("dialogNewCaseController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

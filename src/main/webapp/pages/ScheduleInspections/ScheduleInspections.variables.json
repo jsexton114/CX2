@@ -52,7 +52,7 @@
       "type" : "string"
     }, {
       "target" : "municipality",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetInspectionsByOutcomeResponse",
@@ -83,7 +83,7 @@
       "type" : "string"
     }, {
       "target" : "municipality",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.GetInspectionsByOutcomeResponse",
@@ -111,7 +111,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "municipalityId",
-      "value" : "bind:Widgets.panelSelectMunicipality.Widgets.selectMunicipality.datavalue.ID",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.Users",

@@ -134,7 +134,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 JOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId
 JOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID
 where IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)
-Order By inspectionZone DESC
+Order By requestedFor, dateAssigned ASC
         ]]>
     <query-param name="outcome" type="java.lang.String"/>
     <query-param name="municipality" type="java.lang.Integer"/>
@@ -1621,7 +1621,7 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
 
     <query name="getInspectorsByMunicipality">
         <![CDATA[
-        from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId)
+        from Users where id in (select userId from Roles where (roleName='Inspector' or roleName='Inspector Manager') and municipalityId=:municipalityId) order by fullName asc
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     </query>
