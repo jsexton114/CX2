@@ -259,11 +259,7 @@ public class InspectionService {
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE InspectionDesign SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:inspectionDesignId", queryParams);
 	    		
-	   // 		//Just to send Mail
-    // 		String inspectionComment="You have requested a new Inspection";
-    // 		String inspectionLink="Test";
-	   // 	setInspectionOutcome(newInspectionGuid,newInspectionOutcomeId,inspectionComment,inspectionLink);
-	    	
+	      	
 	    	muniDbConn.commit();
 	    	cx2Conn.commit();
     	} catch (SQLException e) {

@@ -26,13 +26,13 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
     $scope.googlemaps1Load = function($isolateScope) {
         $isolateScope.setInfoWindow = function() {
             var aM = $isolateScope.activeMarker;
+            var inspectionLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
             return '<label>' + 'Inspection- ' + aM.inspectionTitle + '</label></br>' +
                 '<label>' + 'By -' + aM.requestedByFullName + '</label></br>' +
                 '<label>' + 'On- ' + aM.requestedFor + '</label></br>' +
                 '<label>' + 'At- ' + aM.fullAddress + '</label> </br>' +
-                '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label>'
-
-
+                '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label></br>' +
+                '<a href=' + inspectionLink + 'target="_self">Inspection</a>'
         };
     };
 
@@ -47,6 +47,18 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
     };
 
 
+
+
+    $scope.svTeamInspectionListonSuccess = function(variable, data) {
+
+        _.forEach(data.content, function(obj) {
+            if (obj.assignedTo == $scope.Variables.loggedInUser.dataSet.id) {
+                obj.markerIcon = "http://maps.google.com/mapfiles/ms/micons/red-dot.png";
+            } else {
+                obj.markerIcon = "http://maps.google.com/mapfiles/ms/micons/blue-dot.png";
+            }
+        });
+    };
 
 }]);
 

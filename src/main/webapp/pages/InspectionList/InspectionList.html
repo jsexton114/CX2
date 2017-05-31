@@ -123,7 +123,8 @@
                                 </wm-livegrid>
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneMap" title="Map">
-                                <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTeamInspectionList.dataSet" info="requestedByFullName" markertype="Address" zoom="6" on-load="googlemaps1Load($scope)"></wm-prefab>
+                                <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTeamInspectionList.dataSet" info="requestedByFullName" markertype="Address" zoom="6" on-load="googlemaps1Load($scope)" height="350px" shade="#0000FF"
+                                icon="markerIcon"></wm-prefab>
                             </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
