@@ -3333,6 +3333,106 @@ VA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalSta
     <query-param name="approvalStatus" type="java.lang.String"/>
     </sql-query>
 
+    <sql-query name="FeesOfMunicipality">
+        <![CDATA[
+        SELECT 
+    FE.ID as feeId,
+    FE.PaidDate as paidDate,
+    FE.PaidStatus as paidStatus,
+    FE.AccountingCode as accountingCode,
+    PU.FullName as paidBy,
+    FE.TransactionId as transactionId,
+    FE.FeeType as feeType,
+    MF.FormGuid as formGuid,
+	DateModified as dateModified,
+	MF.FormTitle as formTitle,
+	MU.MunicipalityName as municipalityName,
+	U.FullName as createdBy,
+	FT.FormType as formType,
+	FS.Status as formStatus,
+	GR.Lot as lot,
+	FE.Comments as feeComments,
+	GR.Subdivision as subdivision,
+	GR.FullAddress as address,
+	V.CompanyName as primaryVendor,
+	FE.Amount as amount,
+	PH.PaymentMethod as paymentMethod,
+	PH.PaymentNumber as paymentNumber
+FROM Fees FE
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN PaymentHistory AS PH  ON PH.TransactionId=FE.TransactionId
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT JOIN Users AS PU ON PU.ID=FE.PaidByUserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.PaidDate BETWEEN :startDate and :endDate
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="startDate" type="java.sql.Date"/>
+    <query-param name="endDate" type="java.sql.Date"/>
+    </sql-query>
+
+    <sql-query name="FeesOfMunicipality__count">
+        <![CDATA[
+        select count(*) from (SELECT 
+    FE.ID as feeId,
+    FE.PaidDate as paidDate,
+    FE.PaidStatus as paidStatus,
+    FE.AccountingCode as accountingCode,
+    PU.FullName as paidBy,
+    FE.TransactionId as transactionId,
+    FE.FeeType as feeType,
+    MF.FormGuid as formGuid,
+	DateModified as dateModified,
+	MF.FormTitle as formTitle,
+	MU.MunicipalityName as municipalityName,
+	U.FullName as createdBy,
+	FT.FormType as formType,
+	FS.Status as formStatus,
+	GR.Lot as lot,
+	FE.Comments as feeComments,
+	GR.Subdivision as subdivision,
+	GR.FullAddress as address,
+	V.CompanyName as primaryVendor,
+	FE.Amount as amount,
+	PH.PaymentMethod as paymentMethod,
+	PH.PaymentNumber as paymentNumber
+FROM Fees FE
+LEFT OUTER JOIN MasterForms AS MF  ON MF.FormGuid=FE.FormGuid
+LEFT OUTER JOIN PaymentHistory AS PH  ON PH.TransactionId=FE.TransactionId
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT JOIN Users AS PU ON PU.ID=FE.PaidByUserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
+where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.PaidDate BETWEEN :startDate and :endDate) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="paidStatus" type="java.lang.String"/>
+    <query-param name="startDate" type="java.sql.Date"/>
+    <query-param name="endDate" type="java.sql.Date"/>
+    </sql-query>
+
     <sql-query name="resetPasswordForUser">
         <![CDATA[
         UPDATE Users SET Password=:newPassword where ID in (select UserId from UserPasswordResetTokens where ExpirationDate >= GETDATE() and Token = :token)

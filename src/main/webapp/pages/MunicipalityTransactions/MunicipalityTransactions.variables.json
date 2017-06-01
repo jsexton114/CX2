@@ -69,6 +69,45 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
   },
+  "svFeesOfMunicipality" : {
+    "_id" : "wm-svFeesOfMunicipality-wm.ServiceVariable-1496321250237",
+    "name" : "svFeesOfMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "paidStatus",
+      "value" : "Paid",
+      "type" : "string"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.datavalue",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.datavalue",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FeesOfMunicipalityResponse",
+    "service" : "cx2",
+    "operation" : "executeFeesOfMunicipality",
+    "operationId" : "QueryExecutionController_executeFeesOfMunicipality",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  },
   "svGetTotalsByPaymentMethod" : {
     "_id" : "wm-svGetTotalsByPaymentMethod-wm.ServiceVariable-1493584505673",
     "name" : "svGetTotalsByPaymentMethod",

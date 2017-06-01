@@ -579,6 +579,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportMunicipalitiesByVendorStatus(ExportType exportType, Integer vendorId, String approvalStatus, Pageable pageable);
 
+    Page<FeesOfMunicipalityResponse> executeFeesOfMunicipality(Integer municipalityId, String paidStatus, Date startDate, Date endDate, Pageable pageable);
+
+    Downloadable exportFeesOfMunicipality(ExportType exportType, Integer municipalityId, String paidStatus, Date startDate, Date endDate, Pageable pageable);
+
     Integer executeResetPasswordForUser(ResetPasswordForUserRequest resetPasswordForUserRequest);
 
     Integer executeUpdateUserPreferences(UpdateUserPreferencesRequest updateUserPreferencesRequest);

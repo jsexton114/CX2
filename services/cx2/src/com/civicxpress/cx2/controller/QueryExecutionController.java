@@ -2696,6 +2696,25 @@ public class QueryExecutionController {
         return queryService.exportMunicipalitiesByVendorStatus(exportType, vendorId, approvalStatus, pageable);
     }
 
+    @RequestMapping(value = "/queries/FeesOfMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FeesOfMunicipality")
+    public Page<FeesOfMunicipalityResponse> executeFeesOfMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: FeesOfMunicipality");
+        Page<FeesOfMunicipalityResponse> _result = queryService.executeFeesOfMunicipality(municipalityId, paidStatus, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: FeesOfMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FeesOfMunicipality")
+    @RequestMapping(value = "/queries/FeesOfMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFeesOfMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "paidStatus") String paidStatus, @RequestParam(value = "startDate") Date startDate, @RequestParam(value = "endDate") Date endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FeesOfMunicipality");
+
+        return queryService.exportFeesOfMunicipality(exportType, municipalityId, paidStatus, startDate, endDate, pageable);
+    }
+
     @RequestMapping(value = "/queries/resetPasswordForUser", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Resets password for a user, given user ID as Integer and password as String.")

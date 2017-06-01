@@ -3145,6 +3145,32 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("municipalitiesByVendorStatus", params, exportType, MunicipalitiesByVendorStatusResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<FeesOfMunicipalityResponse> executeFeesOfMunicipality(Integer municipalityId, String paidStatus, Date startDate, Date endDate, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipalityId", municipalityId);
+        params.put("paidStatus", paidStatus);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("FeesOfMunicipality", params, FeesOfMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFeesOfMunicipality(ExportType exportType, Integer municipalityId, String paidStatus, Date startDate, Date endDate, Pageable pageable) {
+        Map params = new HashMap(4);
+
+        params.put("municipalityId", municipalityId);
+        params.put("paidStatus", paidStatus);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("FeesOfMunicipality", params, exportType, FeesOfMunicipalityResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeResetPasswordForUser(ResetPasswordForUserRequest resetPasswordForUserRequest) {

@@ -93,3 +93,10 @@ Application.$controller("gridTotalsByPaymentTypeController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("gridFeesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
