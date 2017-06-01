@@ -24,7 +24,13 @@ Application.$controller("ForgotPasswordPageController", ["$scope", "wmToaster", 
             wmToaster.show('error', 'ERROR', 'That email address does not exist in our system.', 6000);
             $scope.Widgets.signup.show = true;
         } else {
-            var tempLink = window.location.hostname + "/#/ResetPassword?token=";
+
+            var tempLink
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/ResetPassword?token=";
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/ResetPassword?token=";
+            }
             $scope.Variables.sendResetPasswordbyUserID.setInput({
                 'resetLink': tempLink,
                 'userID': data.content[0].ID
