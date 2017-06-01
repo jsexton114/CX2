@@ -21,12 +21,18 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
-                        <wm-tabs name="tabs1">
-                            <wm-tabpane name="tabpaneSubmitted" title="Submitted">
-                                <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panel1" title="Open Forms" class="panel-primary">
+                        <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" title="Open Forms" name="panel5" class="panel-primary">
+                            <wm-tabs name="tabs1">
+                                <wm-tabpane name="tabpaneSubmitted" title="Submitted">
                                     <wm-layoutgrid name="layoutgrid2">
+                                        <wm-gridrow name="gridrow8">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn11" padding="unset unset 1em unset">
+                                                <wm-label padding="unset 0.5em unset 0.2em" name="label4" caption="Forms that you have submitted are displayed here. &quot;Open&quot; forms are still being processed by the municipality and may require additional attention and interaction."></wm-label>
+                                                <wm-label padding="unset 0.5em unset 0.2em" name="label5" caption="Please use the &quot;Messages&quot; feature on the form itself if you have any questions for the municipality regarding your submission."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
                                         <wm-gridrow name="gridrow3">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn311_1" padding="1em unset">
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn311_1">
                                                 <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                                     <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                                     <wm-container class="col-md-9" name="container1" width="180px">
@@ -34,6 +40,7 @@
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10"></wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow4">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn5">
@@ -60,21 +67,30 @@
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
-                                </wm-panel>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneDrafts" title="Drafts">
-                                <wm-panel iconclass="wi wi-warning" autoclose="outsideClick" name="panelDraft" title="Unsubmitted Drafts" class="panel-primary">
-                                    <wm-grid editmode="inline" title="" dataset="bind:Variables.Cx2FormDraftData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                        <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                                        <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="Open Draft" action="updaterowAction($event)"
-                                        disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                </wm-panel>
-                            </wm-tabpane>
-                        </wm-tabs>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneDrafts" title="Drafts">
+                                    <wm-layoutgrid name="layoutgrid3">
+                                        <wm-gridrow name="gridrow6">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                                                <wm-label padding="unset 0.5em unset 0.2em" name="label3" caption="Forms that you have saved as a draft are displayed here. You may resume the wizard and submit your form at any time, or delete unused drafts."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow7">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                                                <wm-grid editmode="inline" title="" dataset="bind:Variables.Cx2FormDraftData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
+                                                    <wm-grid-column binding="dateCreated" caption="Date Created" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-assignment" title="Open Draft"
+                                                    action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
+                            </wm-tabs>
+                        </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

@@ -23,15 +23,21 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-book-binder" autoclose="outsideClick" name="panel1" title="Closed Forms" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
+                                <wm-gridrow name="gridrow6">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn8_1" padding="unset unset 1em unset">
+                                        <wm-label padding="unset 0.5em unset 0.2em" name="label2" caption="Forms that you have submitted that are considered &quot;Closed&quot; are displayed here. Form processing is complete for these submissions."></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow3">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn3_1" padding="1em unset">
-                                        <wm-composite name="composite1" margin="unset unset unset 0.2em">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn3_1">
+                                        <wm-composite name="composite1" margin="unset unset unset 0.2px">
                                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                             <wm-container class="col-md-9" name="container1" width="180px">
                                                 <wm-select name="selectView" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn7"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">

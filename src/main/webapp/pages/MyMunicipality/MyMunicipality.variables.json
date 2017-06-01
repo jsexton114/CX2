@@ -123,6 +123,45 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svCountOfOpenFormsForUser" : {
+    "_id" : "wm-svCountOfOpenFormsForUser-wm.ServiceVariable-1496324372468",
+    "name" : "svCountOfOpenFormsForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "closed",
+      "value" : false,
+      "type" : "boolean"
+    }, {
+      "target" : "creatorUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "sharedWithUser",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "municipalityId",
+      "value" : "bind:Widgets.selectStandardUserMunicipalites.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CountOfUserFormsResponse",
+    "service" : "cx2",
+    "operation" : "executeCountOfUserForms",
+    "operationId" : "QueryExecutionController_executeCountOfUserForms",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "VendorsCountForMunicipalities" : {
     "_id" : "wm-VendorsCountForMunicipalities-wm.ServiceVariable-1484037329080",
     "name" : "VendorsCountForMunicipalities",
