@@ -8,6 +8,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
         $scope.$broadcast('feeListUpdate', data.content);
+
     };
 
     $scope.wizardstep1Next = function($isolateScope, currentStep, stepIndex) {
@@ -89,7 +90,9 @@ Application.$controller("gridFeesListController", ["$scope",
             fees.forEach(function(fee, index) {
                 newFeeTotal += fee.amount;
             });
-
+            if (newFeeTotal == 0) {
+                $scope.Widgets.wizardstep1.disablenext = true;
+            }
             $scope.feeTotal = newFeeTotal;
         });
 
