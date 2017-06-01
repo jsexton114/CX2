@@ -803,3 +803,17 @@ Application.$controller("gridLettersController", ["$scope",
         };
     }
 ]);
+
+Application.$controller("dialog1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("dialogOwnerDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
