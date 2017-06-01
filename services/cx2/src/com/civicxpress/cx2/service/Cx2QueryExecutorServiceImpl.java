@@ -797,6 +797,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("AddGIStoProjects", params);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Users> executeProcessOwnersOfForm(String formGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formGuid", formGuid);
+
+        return queryExecutor.executeNamedQuery("ProcessOwnersOfForm", params, Users.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportProcessOwnersOfForm(ExportType exportType, String formGuid, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("formGuid", formGuid);
+
+        return queryExecutor.exportNamedQueryData("ProcessOwnersOfForm", params, exportType, Users.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeDeleteDraft(Long draftId) {

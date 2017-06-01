@@ -7915,6 +7915,34 @@
       } ]
     }
   },
+  "ProcessOwnersOfForm" : {
+    "name" : "ProcessOwnersOfForm",
+    "description" : "ProcessOwnersOfForm",
+    "version" : "V2",
+    "queryString" : "from Users where id IN (SELECT userId FROM MunicipalityGroupMembers WHERE municipalityGroupId=(select assignedToGroupId from MasterForms where formGuid=:formGuid))",
+    "countQueryString" : "select count(*) from Users where id IN (SELECT userId FROM MunicipalityGroupMembers WHERE municipalityGroupId=(select assignedToGroupId from MasterForms where formGuid=:formGuid))",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "formGuid",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "EECE3D9D-1AFD-E611-80C9-0CC47A46DD63",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.Users",
+      "returns" : "ENTITY",
+      "responseType" : "PAGINATED"
+    }
+  },
   "ProjectForms" : {
     "name" : "ProjectForms",
     "description" : "ProjectForms",

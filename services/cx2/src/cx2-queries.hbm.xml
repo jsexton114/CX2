@@ -1005,6 +1005,20 @@ where MC.userId=:user and fees.PaidStatus='Unpaid') wmTempTable
     <query-param name="AddedAt" type="java.sql.Timestamp"/>
     </sql-query>
 
+    <query name="ProcessOwnersOfForm">
+        <![CDATA[
+        from Users where id IN (SELECT userId FROM MunicipalityGroupMembers WHERE municipalityGroupId=(select assignedToGroupId from MasterForms where formGuid=:formGuid))
+        ]]>
+    <query-param name="formGuid" type="java.lang.String"/>
+    </query>
+
+    <query name="ProcessOwnersOfForm__count">
+        <![CDATA[
+        select count(*) from Users where id IN (SELECT userId FROM MunicipalityGroupMembers WHERE municipalityGroupId=(select assignedToGroupId from MasterForms where formGuid=:formGuid))
+        ]]>
+    <query-param name="formGuid" type="java.lang.String"/>
+    </query>
+
     <sql-query name="DeleteDraft">
         <![CDATA[
         delete from FormDraft where id=:draftId

@@ -163,6 +163,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeAddGIStoProjects(AddGistoProjectsRequest addGistoProjectsRequest);
 
+    Page<Users> executeProcessOwnersOfForm(String formGuid, Pageable pageable);
+
+    Downloadable exportProcessOwnersOfForm(ExportType exportType, String formGuid, Pageable pageable);
+
     Integer executeDeleteDraft(Long draftId);
 
     Integer executeUpdateVendorForMasterForms(UpdateVendorForMasterFormsRequest updateVendorForMasterFormsRequest);

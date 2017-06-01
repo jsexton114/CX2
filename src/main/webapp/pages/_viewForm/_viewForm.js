@@ -240,15 +240,16 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.tabpaneMessagesSelect = function($event, $isolateScope) {
-        $scope.Variables.PeopleList.dataSet = [];
+
+        $scope.Variables.PeopleList.dataSet = _.clone($scope.Variables.stvProcessOwners.dataSet);
     };
 
     $scope.tabpaneIntenalMessagesSelect = function($event, $isolateScope) {
-        $scope.Variables.PeopleList.dataSet = [];
+        $scope.Variables.PeopleList.dataSet = _.clone($scope.Variables.stvProcessOwners.dataSet);
     };
 
     $scope.svSendFormMessagesMailonSuccess = function(variable, data) {
-        $scope.Variables.PeopleList.dataSet = [];
+        $scope.Variables.PeopleList.dataSet = _.clone($scope.Variables.stvProcessOwners.dataSet);
     };
 
     $scope.textAddMessageKeyup = function($event, $isolateScope) {
@@ -309,6 +310,12 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
         $scope.Variables.svSetFormStatus.setInput('formLink', window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
         $scope.Variables.svSetFormStatus.update();
     };
+
+    $scope.svProcessOwnersOfFormonSuccess = function(variable, data) {
+        $scope.Variables.stvProcessOwners.dataSet = _.clone(data.content);
+        $scope.Variables.PeopleList.dataSet = _.clone(data.content)
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",

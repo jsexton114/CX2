@@ -698,6 +698,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/ProcessOwnersOfForm", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "ProcessOwnersOfForm")
+    public Page<Users> executeProcessOwnersOfForm(@RequestParam(value = "formGuid") String formGuid, Pageable pageable) {
+        LOGGER.debug("Executing named query: ProcessOwnersOfForm");
+        Page<Users> _result = queryService.executeProcessOwnersOfForm(formGuid, pageable);
+        LOGGER.debug("got the result for named query: ProcessOwnersOfForm, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query ProcessOwnersOfForm")
+    @RequestMapping(value = "/queries/ProcessOwnersOfForm/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportProcessOwnersOfForm(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "formGuid") String formGuid, Pageable pageable) {
+        LOGGER.debug("Exporting named query: ProcessOwnersOfForm");
+
+        return queryService.exportProcessOwnersOfForm(exportType, formGuid, pageable);
+    }
+
     @RequestMapping(value = "/queries/DeleteDraft", method = RequestMethod.DELETE)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "DeleteDraft")

@@ -23601,6 +23601,17 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "stvProcessOwners" : {
+    "_id" : "wm-stvProcessOwners-wm.Variable-1496298189203",
+    "name" : "stvProcessOwners",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : { },
+    "type" : "entry",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "stvTagSelection" : {
     "_id" : "wm-stvTagSelection-wm.Variable-1490276083765",
     "name" : "stvTagSelection",
@@ -24576,6 +24587,34 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svProcessOwnersOfForm" : {
+    "_id" : "wm-svProcessOwnersOfForm-wm.ServiceVariable-1496298003916",
+    "name" : "svProcessOwnersOfForm",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "formGuid",
+      "value" : "bind:pageParams.FormGUID",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.Users",
+    "service" : "cx2",
+    "operation" : "executeProcessOwnersOfForm",
+    "operationId" : "QueryExecutionController_executeProcessOwnersOfForm",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 100,
+    "onSuccess" : "svProcessOwnersOfFormonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "tabpaneMessages"
   },
   "svRecordHistory" : {
     "_id" : "wm-svRecordHistory-wm.ServiceVariable-1488988222087",

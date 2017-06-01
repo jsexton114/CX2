@@ -421,7 +421,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope);Variables.lvFormOwner.listRecords()">
+                                <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope);Variables.lvFormOwner.listRecords();Variables.svProcessOwnersOfForm.invoke()">
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn121">
