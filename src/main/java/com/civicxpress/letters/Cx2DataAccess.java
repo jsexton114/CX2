@@ -262,8 +262,10 @@ public class Cx2DataAccess {
                         null
                 ));
                 // LocationLatitude  LocationLongitude
-                globalInspectionInfo.setLocationLatitude(rs.getDouble("LocationLatitude"));
-                globalInspectionInfo.setLocationLongitude(rs.getDouble("LocationLongitude"));
+                Double locationLatitude = rs.getDouble("LocationLatitude");
+                if (!rs.wasNull()) globalInspectionInfo.setLocationLatitude(locationLatitude);
+                Double locationLongitude = rs.getDouble("LocationLongitude");
+                if (!rs.wasNull()) globalInspectionInfo.setLocationLongitude(locationLongitude);
             }
         } catch (Exception e) {
             throw e;
@@ -433,6 +435,7 @@ public class Cx2DataAccess {
         municipalityConnection = getMunicipalityDbConnection(municipalityId);
         try {
             statement = municipalityConnection.prepareCall("{call getInspectionData(?,?)}");
+            municipalityConnection.setAutoCommit(false);
             statement.setString("tableName", formTableName);
             statement.setString("inspectionGuid", inspectionGuid);
             statement.execute();
@@ -452,8 +455,8 @@ public class Cx2DataAccess {
             throw e;
         } finally {
             try {
-                rs.close();
-                statement.close();
+                if (rs != null) rs.close();
+                if (statement != null) statement.close();
                 municipalityConnection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
