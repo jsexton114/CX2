@@ -1,6 +1,11 @@
 <wm-partial data-ng-controller="newFormDialogPageController" name="partial1">
     <wm-container name="containerDialog">
         <wm-layoutgrid name="layoutgrid1">
+            <wm-gridrow name="gridrow4">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                    <wm-label padding="unset 0.5em unset unset" name="label5" caption="Please select a municipality that you are subscribed to where you would like to submit a form." show="bind:pageParams.muniSelectedByPage != 'true' &amp;&amp; Variables.StandardUserMunicipalities.dataSet.content.length > 1"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
             <wm-gridrow name="gridrow1">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn1">
                     <wm-composite name="composite4_1" show="bind:pageParams.muniSelectedByPage != 'true' &amp;&amp; Variables.StandardUserMunicipalities.dataSet.content.length > 1" padding="unset unset 2em unset">
@@ -9,6 +14,11 @@
                             <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="ID" displayfield="MunicipalityName" name="selectMunicipality" orderby="MunicipalityName:asc" placeholder="Select Municipality" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
                         </wm-container>
                     </wm-composite>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow5">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
+                    <wm-label padding="unset 0.5em unset unset" name="label4" caption="Select a form below that you would like to submit to the municipality. If you would like to narrow down the selections you may &quot;Filter by Category&quot;."></wm-label>
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-gridrow name="gridrow2">
@@ -29,6 +39,12 @@
                             <wm-select name="selectForm" dataset="bind:Variables.svFormTypes.dataSet" datafield="ID" displayfield="FormType" placeholder="Select Form" orderby="FormType:asc"></wm-select>
                         </wm-container>
                     </wm-composite>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow6">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                    <wm-label padding="unset 0.5em unset unset" name="label6" caption="Note: a &quot;Case&quot; is simply a form that has been marked to be used for Code Enforcement purposes. You will only be able to select cases on this &quot;Submit Case&quot; dialog."
+                    show="bind:pageParams.isCase == 'true'"></wm-label>
                 </wm-gridcolumn>
             </wm-gridrow>
         </wm-layoutgrid>
