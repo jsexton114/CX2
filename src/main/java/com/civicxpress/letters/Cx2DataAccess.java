@@ -262,10 +262,16 @@ public class Cx2DataAccess {
                         null
                 ));
                 // LocationLatitude  LocationLongitude
-                Double locationLatitude = rs.getDouble("LocationLatitude");
-                if (!rs.wasNull()) globalInspectionInfo.setLocationLatitude(locationLatitude);
-                Double locationLongitude = rs.getDouble("LocationLongitude");
-                if (!rs.wasNull()) globalInspectionInfo.setLocationLongitude(locationLongitude);
+                String locationLatitudeString = rs.getString("LocationLatitude");
+                if (locationLatitudeString.length() != 0) {
+                    Double locationLatitude = rs.getDouble("LocationLatitude");
+                    if (!rs.wasNull()) globalInspectionInfo.setLocationLatitude(locationLatitude);
+                }
+                String locationLongitudeString = rs.getString("LocationLongitude");
+                if (locationLongitudeString.length() != 0) {
+                    Double locationLongitude = rs.getDouble("LocationLongitude");
+                    if (!rs.wasNull()) globalInspectionInfo.setLocationLongitude(locationLongitude);
+                }
             }
         } catch (Exception e) {
             throw e;
@@ -351,8 +357,17 @@ public class Cx2DataAccess {
                         null
                 ));
                 // LocationLatitude  LocationLongitude
-                globalFormInfo.setLocationLatitude(rs.getDouble("LocationLatitude"));
-                globalFormInfo.setLocationLongitude(rs.getDouble("LocationLongitude"));
+                // look at how much extra code has to be written because the database is designed incorrectly
+                String locationLatitudeString = rs.getString("LocationLatitude");
+                if (locationLatitudeString.length() != 0) {
+                    Double locationLatitude = rs.getDouble("LocationLatitude");
+                    if (!rs.wasNull()) globalFormInfo.setLocationLatitude(locationLatitude);
+                }
+                String locationLongitudeString = rs.getString("LocationLongitude");
+                if (locationLongitudeString.length() != 0) {
+                    Double locationLongitude = rs.getDouble("LocationLongitude");
+                    if (!rs.wasNull()) globalFormInfo.setLocationLongitude(locationLongitude);
+                }
             }
         } catch (Exception e) {
             throw e;
