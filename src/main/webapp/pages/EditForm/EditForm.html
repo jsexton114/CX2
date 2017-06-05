@@ -446,6 +446,7 @@
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-action key="customButton" display-name="Copy from other Form" show="true" class="btn-primary" iconclass="wi wi-content-copy" title="copyStatuses" action="Widgets.dialogCopyStatuses.open()"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-notepad" title="Letters" action="Widgets.dialogFormStatusLetters.open()"
                                                     disabled="false"></wm-grid-row-action>
@@ -924,6 +925,36 @@
             <wm-dialogactions name="dialogactions2_1">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button4_1" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view5">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Copy Statuses" iconclass="wi wi-content-copy" name="dialogCopyStatuses">
+            <wm-dialogactions name="dialogactions3">
+                <wm-button class="btn-primary" caption="Copy" on-click="Variables.svCopyFormStatuses.invoke();Widgets.dialogCopyStatuses.close()" name="buttonCopyStatuses" iconclass="wi wi-save"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogCopyStatuses.close()"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid name="layoutgrid25_1" columns="1">
+                <wm-gridrow name="gridrow94_2">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn136_1">
+                        <wm-composite name="composite3_1">
+                            <wm-label class="col-md-3 control-label" name="label44" caption="From Form Design"></wm-label>
+                            <wm-container class="col-md-9" name="container5">
+                                <wm-select name="selectCopyFormDesign" dataset="bind:Variables.lvMuniForms.dataSet" datafield="All Fields" displayfield="formType"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow95">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn137_1">
+                        <wm-composite name="composite4_1">
+                            <wm-label class="col-md-3 control-label" caption="Replace Old Statuses" name="label45"></wm-label>
+                            <wm-composite name="composite5">
+                                <wm-checkbox caption="" class="col-md-9" name="checkboxReplaceOldStatuses"></wm-checkbox>
+                            </wm-composite>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
         </wm-dialog>
     </wm-view>
 </wm-page>

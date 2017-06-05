@@ -40,6 +40,13 @@ public class FormController {
         return formService.copyFormDesign(formDesignId, newName, copyStatus, copyFields, copyCategories);
     }
 
+    @RequestMapping(value = "/copyFormStatuses", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void copyFormStatuses(@RequestParam(value = "fromFormDesignId", required = false) Long fromFormDesignId, @RequestParam(value = "toFormDesignId", required = false) Long toFormDesignId, @RequestParam(value = "replaceCurrent", required = false) boolean replaceCurrent) throws SQLException {
+        formService.copyFormStatuses(fromFormDesignId, toFormDesignId, replaceCurrent);
+    }
+
     @RequestMapping(value = "/downloadDocument", produces = "application/octet-stream", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")

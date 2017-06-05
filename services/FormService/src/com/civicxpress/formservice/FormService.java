@@ -124,6 +124,15 @@ public class FormService {
         return copyStatement.getLong("copyFormDesignId");
     }
     
+    public void copyFormStatuses(Long fromFormDesignId, Long toFormDesignId, boolean replaceCurrent) throws SQLException {
+    	Connection connection = DBConnectionService.getConnection();
+        CallableStatement copyStatement = connection.prepareCall("{ call copyFormStatuses(?,?,?)}");
+        copyStatement.setLong("fromFormDesignId", fromFormDesignId);
+        copyStatement.setLong("toFormDesignId", toFormDesignId);
+        copyStatement.setBoolean("replaceCurrent", replaceCurrent);
+        copyStatement.execute();
+    }
+
     public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {
         System.out.println("fieldDataJsonString: " + fieldDataJsonString);
         Gson gson = new Gson();
