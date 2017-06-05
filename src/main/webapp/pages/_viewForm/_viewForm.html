@@ -292,7 +292,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneInspections" title="INSPECTIONS" show="bind:Variables.lvFormType.dataSet.data[$i].inspections">
+                                <wm-tabpane name="tabpaneInspections" title="INSPECTIONS" show="bind:Variables.lvFormType.dataSet.data[$i].inspections" on-select="Variables.svInspectorManagerByMunicipality.invoke()">
                                     <wm-layoutgrid name="layoutgrid15">
                                         <wm-gridrow name="gridrow56">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn117">

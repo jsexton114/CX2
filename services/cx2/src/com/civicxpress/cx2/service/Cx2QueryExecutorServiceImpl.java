@@ -245,6 +245,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("getEmailId", params, exportType, GetEmailIdResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<OutcomeByDesignResponse> executeOutcomeByDesign(Integer inspectionDesign, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("inspectionDesign", inspectionDesign);
+        params.put("outcome", outcome);
+
+        return queryExecutor.executeNamedQuery("OutcomeByDesign", params, OutcomeByDesignResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportOutcomeByDesign(ExportType exportType, Integer inspectionDesign, String outcome, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("inspectionDesign", inspectionDesign);
+        params.put("outcome", outcome);
+
+        return queryExecutor.exportNamedQueryData("OutcomeByDesign", params, exportType, OutcomeByDesignResponse.class, pageable);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest) {
@@ -506,6 +528,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("OpenedOrClosedFormsForUserOrSharedWith", params, exportType, MasterForms.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(Integer municipalityId, String roleName, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityId", municipalityId);
+        params.put("roleName", roleName);
+
+        return queryExecutor.executeNamedQuery("InspectorManagerByMunicipality", params, InspectorManagerByMunicipalityResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportInspectorManagerByMunicipality(ExportType exportType, Integer municipalityId, String roleName, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("municipalityId", municipalityId);
+        params.put("roleName", roleName);
+
+        return queryExecutor.exportNamedQueryData("InspectorManagerByMunicipality", params, exportType, InspectorManagerByMunicipalityResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -2068,17 +2112,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(value = "cx2TransactionManager")
     @Override
-    public Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
-        Map params = new HashMap(2);
-
-        params.put("logoBytes", updateMunicipalityLogoRequest.getLogoBytes());
-        params.put("municipalityId", updateMunicipalityLogoRequest.getMunicipalityId());
-
-        return queryExecutor.executeNamedQueryForUpdate("updateMunicipalityLogo", params);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
     public Integer executeUpdateTrackViolations(UpdateTrackViolationsRequest updateTrackViolationsRequest) {
         Map params = new HashMap(2);
 
@@ -2086,6 +2119,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("formType", updateTrackViolationsRequest.getFormType());
 
         return queryExecutor.executeNamedQueryForUpdate("updateTrackViolations", params);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest) {
+        Map params = new HashMap(2);
+
+        params.put("logoBytes", updateMunicipalityLogoRequest.getLogoBytes());
+        params.put("municipalityId", updateMunicipalityLogoRequest.getMunicipalityId());
+
+        return queryExecutor.executeNamedQueryForUpdate("updateMunicipalityLogo", params);
     }
 
     @Transactional(value = "cx2TransactionManager")

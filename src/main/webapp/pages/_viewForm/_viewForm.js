@@ -316,6 +316,24 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
         $scope.Variables.PeopleList.dataSet = _.clone(data.content)
     };
 
+
+    $scope.svScheduleInspectiononSuccess = function(variable, data) {
+        //fetching outcomes of design
+        $scope.Variables.svOutcomeByDesign.setInput({
+            inspectionDesign: $scope.Variables.stvSelectedInspectionDesign.dataSet.id,
+        });
+        $scope.Variables.svOutcomeByDesign.update();
+
+    };
+
+
+    $scope.svOutcomeByDesignonSuccess = function(variable, data) {
+        debugger
+        if (data.content[0].sendEmail) {
+
+        }
+    };
+
 }]);
 
 Application.$controller("gridSharedwithController", ["$scope",
@@ -715,21 +733,25 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         }
 
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
+
+            // Scheduling Inspections
             $scope.Variables.svScheduleInspection.setInput({
                 inspectionDesignId: $scope.inspectionObject.id,
                 requestedFor: getRequestedFor()
             });
-
             $scope.Variables.svScheduleInspection.update();
+
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
+            $scope.Variables.stvSelectedInspectionDesign.dataSet = newVal;
             $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
             $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
+            $scope.Variables.stvSelectedInspectionDesign.dataSet = $scope.inspectionObject;
             updateMinMaxDates(newVal);
         };
 
@@ -805,15 +827,15 @@ Application.$controller("gridLettersController", ["$scope",
 ]);
 
 Application.$controller("dialog1Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("dialogOwnerDetailsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

@@ -7514,6 +7514,60 @@
       "responseType" : "PAGINATED"
     }
   },
+  "InspectorManagerByMunicipality" : {
+    "name" : "InspectorManagerByMunicipality",
+    "description" : "InspectorManagerByMunicipality",
+    "version" : "V2",
+    "queryString" : "select users.email as managerEmail, users.fullName as managerFullName from Roles  where municipalityId=:municipalityId and roleName=:roleName",
+    "countQueryString" : "select count(*)  from Roles  where municipalityId=:municipalityId and roleName=:roleName",
+    "nativeSql" : false,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "2",
+      "required" : true
+    }, {
+      "name" : "roleName",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "InspectorManager",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.InspectorManagerByMunicipalityResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "managerEmail",
+        "fieldName" : "managerEmail",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "managerFullName",
+        "fieldName" : "managerFullName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "ManualFeeTypeCountForMunicipality" : {
     "name" : "ManualFeeTypeCountForMunicipality",
     "description" : "ManualFeeTypeCountForMunicipality",
@@ -7927,6 +7981,141 @@
       "typeRef" : "com.civicxpress.cx2.MasterForms",
       "returns" : "ENTITY",
       "responseType" : "PAGINATED"
+    }
+  },
+  "OutcomeByDesign" : {
+    "name" : "OutcomeByDesign",
+    "description" : "OutcomeByDesign",
+    "version" : "V2",
+    "queryString" : "select * from InspectionOutcome where InspectDesignId=:inspectionDesign and Outcome=:outcome",
+    "countQueryString" : "select count(*) from (select * from InspectionOutcome where InspectDesignId=:inspectionDesign and Outcome=:outcome) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "inspectionDesign",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "33",
+      "required" : true
+    }, {
+      "name" : "outcome",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "Requested",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.OutcomeByDesignResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "InspectDesignId",
+        "fieldName" : "inspectDesignId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "Outcome",
+        "fieldName" : "outcome",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AssessFeeYN",
+        "fieldName" : "assessFeeYn",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "ConsiderClosed",
+        "fieldName" : "considerClosed",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "OutcomeOrder",
+        "fieldName" : "outcomeOrder",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "SendEmail",
+        "fieldName" : "sendEmail",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "EmailSubjectLine",
+        "fieldName" : "emailSubjectLine",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "EmailBodyText",
+        "fieldName" : "emailBodyText",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "AutoReInspection",
+        "fieldName" : "autoReInspection",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "DaysToAutoReInspection",
+        "fieldName" : "daysToAutoReInspection",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
     }
   },
   "PreferenceForUser" : {

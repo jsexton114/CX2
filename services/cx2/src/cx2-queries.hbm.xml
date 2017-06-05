@@ -256,6 +256,22 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="OutcomeByDesign">
+        <![CDATA[
+        select * from InspectionOutcome where InspectDesignId=:inspectionDesign and Outcome=:outcome
+        ]]>
+    <query-param name="inspectionDesign" type="java.lang.Integer"/>
+    <query-param name="outcome" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="OutcomeByDesign__count">
+        <![CDATA[
+        select count(*) from (select * from InspectionOutcome where InspectDesignId=:inspectionDesign and Outcome=:outcome) wmTempTable
+        ]]>
+    <query-param name="inspectionDesign" type="java.lang.Integer"/>
+    <query-param name="outcome" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="UpdatePasswordAndCF">
         <![CDATA[
         UPDATE Users SET Password=:password, CommunicationFrequency=:cf where ID=:newUser
@@ -564,6 +580,22 @@ where   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         select count(*) from MasterForms where UserId=:userId or FormGUID IN (select relatedGuid from  SharedWith where SharedWithUser = :userId)
         ]]>
     <query-param name="userId" type="java.lang.Long"/>
+    </query>
+
+    <query name="InspectorManagerByMunicipality">
+        <![CDATA[
+        select users.email as managerEmail, users.fullName as managerFullName from Roles  where municipalityId=:municipalityId and roleName=:roleName
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="roleName" type="java.lang.String"/>
+    </query>
+
+    <query name="InspectorManagerByMunicipality__count">
+        <![CDATA[
+        select count(*)  from Roles  where municipalityId=:municipalityId and roleName=:roleName
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="roleName" type="java.lang.String"/>
     </query>
 
     <sql-query name="searchUsersByEmailOrName">
@@ -2111,20 +2143,20 @@ FC.ID=:formCategory and FC.ID=FM.FormCategoryId and FM.FormTypeId=FT.ID and FT.A
     <query-param name="vendorId" type="java.lang.Integer"/>
     </sql-query>
 
-    <sql-query name="updateMunicipalityLogo">
-        <![CDATA[
-        update Municipalities set logo=:logoBytes where ID=:municipalityId
-        ]]>
-    <query-param name="logoBytes" type="java.lang.Byte"/>
-    <query-param name="municipalityId" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="updateTrackViolations">
         <![CDATA[
         update FormTypes set TrackViolations=:TrackViolations where ID=:formType
         ]]>
     <query-param name="TrackViolations" type="java.lang.Boolean"/>
     <query-param name="formType" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="updateMunicipalityLogo">
+        <![CDATA[
+        update Municipalities set logo=:logoBytes where ID=:municipalityId
+        ]]>
+    <query-param name="logoBytes" type="java.lang.Byte"/>
+    <query-param name="municipalityId" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="SetPrimaryVendorStatusForFormandVendor">

@@ -80,6 +80,11 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
         }
     };
 
+
+    $scope.Cx2InspectionDraftDataonError = function(variable, data) {
+        //nothing	
+    };
+
 }]);
 
 Application.$controller("gridInspectionsController", ["$scope", "$location",

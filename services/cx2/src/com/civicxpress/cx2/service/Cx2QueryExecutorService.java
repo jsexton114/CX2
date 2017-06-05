@@ -65,6 +65,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable);
 
+    Page<OutcomeByDesignResponse> executeOutcomeByDesign(Integer inspectionDesign, String outcome, Pageable pageable);
+
+    Downloadable exportOutcomeByDesign(ExportType exportType, Integer inspectionDesign, String outcome, Pageable pageable);
+
     Integer executeUpdatePasswordAndCF(UpdatePasswordAndCfRequest updatePasswordAndCfRequest);
 
     Page<CheckingUserWithMunicipalityInRolesResponse> executeCheckingUserWithMunicipalityInRoles(Integer muncipality, Integer user, Pageable pageable);
@@ -110,6 +114,10 @@ public interface Cx2QueryExecutorService {
     Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable);
 
     Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable);
+
+    Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(Integer municipalityId, String roleName, Pageable pageable);
+
+    Downloadable exportInspectorManagerByMunicipality(ExportType exportType, Integer municipalityId, String roleName, Pageable pageable);
 
     Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable);
 
@@ -389,9 +397,9 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportCountOfCompnayFormsByVendorId(ExportType exportType, Boolean closed, Integer vendorId, Pageable pageable);
 
-    Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest);
-
     Integer executeUpdateTrackViolations(UpdateTrackViolationsRequest updateTrackViolationsRequest);
+
+    Integer executeUpdateMunicipalityLogo(UpdateMunicipalityLogoRequest updateMunicipalityLogoRequest);
 
     Integer executeSetPrimaryVendorStatusForFormandVendor(SetPrimaryVendorStatusForFormandVendorRequest setPrimaryVendorStatusForFormandVendorRequest);
 
