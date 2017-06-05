@@ -263,12 +263,12 @@ public class Cx2DataAccess {
                 ));
                 // LocationLatitude  LocationLongitude
                 String locationLatitudeString = rs.getString("LocationLatitude");
-                if (locationLatitudeString.length() != 0) {
+                if (!rs.wasNull() && locationLatitudeString.length() != 0) {
                     Double locationLatitude = rs.getDouble("LocationLatitude");
                     if (!rs.wasNull()) globalInspectionInfo.setLocationLatitude(locationLatitude);
                 }
                 String locationLongitudeString = rs.getString("LocationLongitude");
-                if (locationLongitudeString.length() != 0) {
+                if (!rs.wasNull() && locationLongitudeString.length() != 0) {
                     Double locationLongitude = rs.getDouble("LocationLongitude");
                     if (!rs.wasNull()) globalInspectionInfo.setLocationLongitude(locationLongitude);
                 }
@@ -359,12 +359,12 @@ public class Cx2DataAccess {
                 // LocationLatitude  LocationLongitude
                 // look at how much extra code has to be written because the database is designed incorrectly
                 String locationLatitudeString = rs.getString("LocationLatitude");
-                if (locationLatitudeString.length() != 0) {
+                if (!rs.wasNull() && locationLatitudeString.length() != 0) {
                     Double locationLatitude = rs.getDouble("LocationLatitude");
                     if (!rs.wasNull()) globalFormInfo.setLocationLatitude(locationLatitude);
                 }
                 String locationLongitudeString = rs.getString("LocationLongitude");
-                if (locationLongitudeString.length() != 0) {
+                if (!rs.wasNull() && locationLongitudeString.length() != 0) {
                     Double locationLongitude = rs.getDouble("LocationLongitude");
                     if (!rs.wasNull()) globalFormInfo.setLocationLongitude(locationLongitude);
                 }
