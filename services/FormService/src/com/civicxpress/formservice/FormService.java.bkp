@@ -123,10 +123,10 @@ public class FormService {
         
         return copyStatement.getLong("copyFormDesignId");
     }
-    
+
     public void copyFormStatuses(Long fromFormDesignId, Long toFormDesignId, boolean replaceCurrent) throws SQLException {
     	Connection connection = DBConnectionService.getConnection();
-        CallableStatement copyStatement = connection.prepareCall("{ call copyFormStatuses(?,?,?,?,?,?)}");
+        CallableStatement copyStatement = connection.prepareCall("{ call copyFormStatuses(?,?,?)}");
         copyStatement.setLong("fromFormDesignId", fromFormDesignId);
         copyStatement.setLong("toFormDesignId", toFormDesignId);
         copyStatement.setBoolean("replaceCurrent", replaceCurrent);

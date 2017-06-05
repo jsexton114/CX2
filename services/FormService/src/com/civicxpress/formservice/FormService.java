@@ -113,6 +113,7 @@ public class FormService {
     public Long copyFormDesign(Long formDesignId, String newName, boolean copyStatus, boolean copyFields, boolean copyCategories) throws SQLException {
     	Connection connection = DBConnectionService.getConnection();
         CallableStatement copyStatement = connection.prepareCall("{ call copyFormDesign(?,?,?,?,?,?)}");
+        Long returnFormDesignId;
         copyStatement.setString("newName", newName);
         copyStatement.setBoolean("copyStatus", copyStatus);
         copyStatement.setBoolean("copyFields", copyFields);
@@ -120,10 +121,11 @@ public class FormService {
         copyStatement.setLong("formDesignId", formDesignId);
         copyStatement.registerOutParameter("copyFormDesignId", java.sql.Types.BIGINT);
         copyStatement.execute();
-        
-        return copyStatement.getLong("copyFormDesignId");
+        returnFormDesignId = copyStatement.getLong("copyFormDesignId");
+        connection.close();
+        return returnFormDesignId;
     }
-    
+
     public void copyFormStatuses(Long fromFormDesignId, Long toFormDesignId, boolean replaceCurrent) throws SQLException {
     	Connection connection = DBConnectionService.getConnection();
         CallableStatement copyStatement = connection.prepareCall("{ call copyFormStatuses(?,?,?)}");
@@ -131,6 +133,7 @@ public class FormService {
         copyStatement.setLong("toFormDesignId", toFormDesignId);
         copyStatement.setBoolean("replaceCurrent", replaceCurrent);
         copyStatement.execute();
+        connection.close();
     }
 
     public String getSigningDocumentResponse(String formGuid, String formTitle, String creatorFullName, String fieldDataJsonString, String municipalityLogo, String clientId, String clientSecret, String firstNameOfRecipientParty, String lastNameOfRecipientParty, String emailIdOfRecipientParty) throws IOException, java.sql.SQLException {
