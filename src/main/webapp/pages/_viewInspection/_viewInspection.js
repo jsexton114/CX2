@@ -15,7 +15,14 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
     };
 
     $scope.buttonUpdateOutcomeClick = function($event, $isolateScope) {
-        $scope.Variables.svSetInspectionOutcome.setInput('formLink', window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid);
+        var tempLink;
+        if (window.location.hostname == "www.wavemakeronline.com") {
+            tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+        } else {
+            tempLink = "https://" + window.location.hostname + "/#/ViewInspection?inspectionGuid=" +
+                $scope.pageParams.inspectionGuid;
+        }
+        $scope.Variables.svSetInspectionOutcome.setInput('formLink', tempLink);
         $scope.Variables.svSetInspectionOutcome.update();
     };
 
@@ -84,7 +91,13 @@ Application.$controller("_viewInspectionPageController", ["$scope", function($sc
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
-            var tempLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+            var tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/ViewInspection?inspectionGuid=" +
+                    $scope.pageParams.inspectionGuid;
+            }
             $scope.Variables.svSendInspectionMessagesMail.setInput({
                 'inspectionLink': tempLink,
                 'recipient': $scope.messageMailingList,
@@ -419,7 +432,14 @@ Application.$controller("gridLettersController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
-            $scope.Variables.svSendLetter.setInput("formLink", window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/ViewInspection?inspectionGuid=" +
+                    $scope.pageParams.inspectionGuid;
+            }
+
+            $scope.Variables.svSendLetter.setInput("formLink", tempLink);
             $scope.Variables.svSendLetter.setInput("letterTemplateId", $rowData.id);
             $scope.Variables.svSendLetter.update();
         };

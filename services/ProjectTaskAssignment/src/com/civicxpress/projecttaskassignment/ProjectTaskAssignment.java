@@ -79,7 +79,7 @@ public class ProjectTaskAssignment {
         emailContent =emailContent + "You have been assigned a task for "+projectName+". You may access the task by clicking the following link:" ;
       
         emailContent =emailContent+"<br />";
-        emailContent = emailContent+"<a href ='"+projectURL+ "'> Click Here to View Project </a>";
+        emailContent = emailContent+"<a href ='"+projectURL+ "'> "+projectURL+" </a>";
         
         emailContent =emailContent+ "<br/><br/>"+municipalitySignature ;
         

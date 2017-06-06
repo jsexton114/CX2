@@ -107,7 +107,7 @@ public class ProjectMessagingMailService {
         
         emailContent = emailContent+"If you would like to reply, "; 
          
-        emailContent = emailContent+"<a href ='"+projectURL+ "'>Click Here</a>";
+        emailContent = emailContent+"<a href ='"+projectURL+ "'>"+projectURL+"</a>";
          
         emailContent = emailContent+" to view the project and write a message.";
          

@@ -100,7 +100,7 @@ public class InspectionMessagingMailService {
         
         emailContent = emailContent+"If you would like to reply, "; 
          
-        emailContent = emailContent+"<a href ='"+inspectionURL+ "'>"+inspectionURL+"</a>";
+        emailContent = emailContent+"<a href ='"+inspectionURL+ "'>Click Here</a>";
          
         emailContent = emailContent+" to view the inspection and write a message.";
          

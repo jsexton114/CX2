@@ -21,6 +21,8 @@ public class ProjectMessagingMailController {
     private ProjectMessagingMailService projectMessagingMailService;
 
     @RequestMapping(value = "/sendMessagingMail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String sendMessagingMail(@RequestParam(value = "sender", required = false) String sender, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "projectTitle", required = false) String projectTitle, @RequestParam(value = "projectLink", required = false) String projectLink) throws MessagingException {
         return projectMessagingMailService.sendMessagingMail(sender, comments, recipient, municipality, municipalitySignature, projectTitle, projectLink);
     }

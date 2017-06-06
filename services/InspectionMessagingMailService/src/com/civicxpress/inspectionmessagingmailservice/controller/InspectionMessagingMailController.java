@@ -21,6 +21,8 @@ public class InspectionMessagingMailController {
     private InspectionMessagingMailService inspectionMessagingMailService;
 
     @RequestMapping(value = "/sendMessagingMail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String sendMessagingMail(@RequestParam(value = "sender", required = false) String sender, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "inspectionType", required = false) String inspectionType, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "inspectionTitle", required = false) String inspectionTitle, @RequestParam(value = "inspectionLink", required = false) String inspectionLink) throws MessagingException {
         return inspectionMessagingMailService.sendMessagingMail(sender, comments, username, recipient, municipality, inspectionType, municipalitySignature, inspectionTitle, inspectionLink);
     }

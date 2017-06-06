@@ -107,7 +107,7 @@ public class GisMessagingMailService {
         
         emailContent = emailContent+"If you would like to reply, "; 
          
-        emailContent = emailContent+"<a href ='"+gisURL+ "'>Click Here</a>";
+        emailContent = emailContent+"<a href ='"+gisURL+ "'>"+gisURL+"</a>";
          
         emailContent = emailContent+" to view the form and write a message.";
          

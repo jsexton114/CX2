@@ -1,7 +1,7 @@
 /*Copyright (c) 2015-2016 wavemaker-com All Rights Reserved.
  This software is the confidential and proprietary information of wavemaker-com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with wavemaker-com*/
-package com.civicxpress.inspectionmessagingmailservice;
+package com.civicxpress.projecttaskassignment;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,11 +22,9 @@ import javax.mail.Transport;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.ArrayList;
-import java.util.*;
 
 
-//import com.civicxpress.inspectionmessagingmailservice.model.*;
+//import com.civicxpress.projecttaskassignment.model.*;
 
 /**
  * This is a singleton class with all its public methods exposed as REST APIs via generated controller class.
@@ -39,19 +37,20 @@ import java.util.*;
  * Complex Types/Objects will become part of the Request body in the generated API.
  */
 @ExposeToClient
-public class InspectionMessagingMailService {
+public class ProjectTaskAssignment {
 
-    private static final Logger logger = LoggerFactory.getLogger(InspectionMessagingMailService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProjectTaskAssignment.class);
      private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-  
+   // private static final String PROJECT_URL = "http://e12561a71473b.cloud.wavemakeronline.com/CivicXpress/#/ViewProject?ProjectGUID=";
+   
 
     @Autowired
     private SecurityService securityService;
-
-    public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String inspectionType,String municipalitySignature,String inspectionTitle,String inspectionLink) throws MessagingException {
+    
+     public String sendAssignedTaskMail(String username ,String recipient,String emailSubject,String municipalitySignature,String projectName,String projectLink) throws MessagingException {
         
-        //logger.info("_______________________________________________________________"+comments);
+      
         
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -67,46 +66,22 @@ public class InspectionMessagingMailService {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
-        //message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
         
-        //String[] recipient={"sagar.vemala@wavemaker.com","anvesh.nara@wavemaker.com"};
-       
-     //String recipient="sagar.vemala@wavemaker.com,anvesh.nara@wavemaker.com";
-     ArrayList recipientList= new ArrayList(Arrays.asList(recipient.split(",")));
-
-
-        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        String projectURL=  projectLink;
+        logger.info(projectLink);
         
-         for (int i = 0; i < recipientList.size(); i++)
-                 {
-                  recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
-                  }
+        String emailContent = "Hi" + " "+username+","+"<br />";
         
-        message.setRecipients(Message.RecipientType.TO, recipientAddress);
+     
+        emailContent =emailContent+"<br />";
         
-        String emailSubject="New Message on CivicXpress inspection "+inspectionTitle;
-        
-        String inspectionURL= inspectionLink;
-        logger.info(inspectionLink);
-        
-        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" inspection ";
-        emailContent = emailContent+"<a href ='"+inspectionURL+"'>"+inspectionTitle+"</a>):";
+        emailContent =emailContent + "You have been assigned a task for "+projectName+". You may access the task by clicking the following link:" ;
       
-        emailContent = emailContent+"<br /><br />";
+        emailContent =emailContent+"<br />";
+        emailContent = emailContent+"<a href ='"+projectURL+ "'> Click Here to View Project </a>";
         
-        emailContent = emailContent+"<blockquote>"+comments+"</blockquote>";
-        
-        emailContent = emailContent+"<br /><br />";
-        
-        emailContent = emailContent+"If you would like to reply, "; 
-         
-        emailContent = emailContent+"<a href ='"+inspectionURL+ "'>"+inspectionURL+"</a>";
-         
-        emailContent = emailContent+" to view the inspection and write a message.";
-         
-        emailContent = emailContent+"<br /><br />";
-        
-        emailContent = emailContent+ "<br/><br/>"+ municipalitySignature ;
+        emailContent =emailContent+ "<br/><br/>"+municipalitySignature ;
         
         message.setSubject(emailSubject);
         message.setContent(emailContent, "text/html");
@@ -116,7 +91,7 @@ public class InspectionMessagingMailService {
         message.saveChanges();
         tr.sendMessage(message, message.getAllRecipients());
         tr.close();
-        String displayMessage = "Message sent successfully ";
+        String displayMessage = "Message sent successfully to  " + recipient;
         logger.info(displayMessage);
         return displayMessage;
     }

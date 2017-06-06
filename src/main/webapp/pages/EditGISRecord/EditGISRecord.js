@@ -49,7 +49,12 @@ Application.$controller("EditGISRecordPageController", ["$scope", function($scop
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
-            var tempLink = window.location.hostname + "/#/EditGISRecord?GISRecordId=" + $scope.pageParams.GISRecordId;
+            var tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/EditGISRecord?GISRecordId=" + $scope.pageParams.GISRecordId;
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/EditGISRecord?GISRecordId=" + $scope.pageParams.GISRecordId;
+            }
             $scope.Variables.svSendGISMessagesMail.setInput({
                 'gisLink': tempLink,
                 'recipient': $scope.messageMailingList,

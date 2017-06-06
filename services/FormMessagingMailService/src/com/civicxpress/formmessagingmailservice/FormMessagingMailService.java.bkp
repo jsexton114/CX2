@@ -109,7 +109,7 @@ public class FormMessagingMailService {
         
         emailContent = emailContent+"If you would like to reply, "; 
          
-        emailContent = emailContent+"<a href ='"+formURL+ "'>"+formURL+"</a>";
+        emailContent = emailContent+"<a href ='"+formURL+ "'>Click Here</a>";
          
         emailContent = emailContent+" to view the form and write a message.";
          

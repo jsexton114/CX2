@@ -131,7 +131,13 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
-            var tempLink = window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            let tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            } else {
+                tempLink = "https://" + window.location.hostname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            }
+
             $scope.Variables.svSendFormMessagesMail.setInput({
                 'formLink': tempLink,
                 'recipient': $scope.messageMailingList,
@@ -307,7 +313,13 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.buttonUpdateStatusClick = function($event, $isolateScope) {
-        $scope.Variables.svSetFormStatus.setInput('formLink', window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
+        let tempLink;
+        if (window.location.hostname == "www.wavemakeronline.com") {
+            tempLink = "https://" + window.location.hostname + window.location.pathname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+        } else {
+            tempLink = "https://" + window.location.hostname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+        }
+        $scope.Variables.svSetFormStatus.setInput('formLink', tempLink);
         $scope.Variables.svSetFormStatus.update();
     };
 
@@ -819,7 +831,13 @@ Application.$controller("gridLettersController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
-            $scope.Variables.svSendLetter.setInput("formLink", window.location.hostname + "/#/Forms?FormGUID=" + $scope.pageParams.FormGUID);
+            let tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            } else {
+                tempLink = "https://" + window.location.hostname + "#/Forms?FormGUID=" + $scope.pageParams.FormGUID;
+            }
+            $scope.Variables.svSendLetter.setInput("formLink", tempLink);
             $scope.Variables.svSendLetter.setInput("letterTemplateId", $rowData.id);
             $scope.Variables.svSendLetter.update();
         };

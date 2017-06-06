@@ -21,6 +21,8 @@ public class InspectionOutcomeUpdateController {
     private InspectionOutcomeUpdate inspectionOutcomeUpdate;
 
     @RequestMapping(value = "/sendOutcomeUpdateMail", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String sendOutcomeUpdateMail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "emailSubject", required = false) String emailSubject, @RequestParam(value = "emailBody", required = false) String emailBody, @RequestParam(value = "municipality", required = false) String municipality, @RequestParam(value = "inspectionDesign", required = false) String inspectionDesign, @RequestParam(value = "feesAssessed", required = false) String feesAssessed, @RequestParam(value = "lot", required = false) String lot, @RequestParam(value = "fullAddress", required = false) String fullAddress, @RequestParam(value = "inspectionOutcome", required = false) String inspectionOutcome, @RequestParam(value = "subdivision", required = false) String subdivision, @RequestParam(value = "municipalitySignature", required = false) String municipalitySignature, @RequestParam(value = "inspectionTitle", required = false) String inspectionTitle, @RequestParam(value = "formLink", required = false) String formLink) throws MessagingException {
         return inspectionOutcomeUpdate.sendOutcomeUpdateMail(username, recipient, emailSubject, emailBody, municipality, inspectionDesign, feesAssessed, lot, fullAddress, inspectionOutcome, subdivision, municipalitySignature, inspectionTitle, formLink);
     }

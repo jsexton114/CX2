@@ -74,7 +74,13 @@ Application.$controller("_viewProjectPageController", ["$scope", function($scope
             $scope.messageMailingList = $scope.messageMailingList.substring(0, $scope.messageMailingList.length - 1);
 
             // Send Mails of Message
-            var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID
+            var tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+            }
+
             $scope.Variables.svSendProjectMessagesMail.setInput({
                 'projectLink': tempLink,
                 'recipient': $scope.messageMailingList,
@@ -104,7 +110,13 @@ Application.$controller("_viewProjectPageController", ["$scope", function($scope
     $scope.InsertTaskonSuccess = function(variable, data) {
         if ($scope.Widgets.selectProjectAssignedTo.datavalue != undefined) {
             var user = $scope.Widgets.selectProjectAssignedTo.datavalue.firstName + ' ' + $scope.Widgets.selectProjectAssignedTo.datavalue.lastName;
-            var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.FormGUID
+            var tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+            } else {
+                tempLink = "https://" + window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+            }
+
             $scope.Variables.svAssignedTaskMail.setInput({
                 'projectLink': tempLink,
                 'username': user,
@@ -119,7 +131,12 @@ Application.$controller("_viewProjectPageController", ["$scope", function($scope
         if ($scope.Widgets.selectUpdateProjectAssignedTo.datavalue != undefined) {
             if ($scope.Widgets.gridTasks.selecteditem.usersByAssignedTo.id != $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.id) {
                 var user = $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.firstName + ' ' + $scope.Widgets.selectUpdateProjectAssignedTo.datavalue.lastName;
-                var tempLink = window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.FormGUID
+                var tempLink;
+                if (window.location.hostname == "www.wavemakeronline.com") {
+                    tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+                } else {
+                    tempLink = "https://" + window.location.hostname + "/#/ViewProject?ProjectGUID=" + $scope.pageParams.ProjectGUID;
+                }
                 $scope.Variables.svAssignedTaskMail.setInput({
                     'projectLink': tempLink,
                     'username': user,

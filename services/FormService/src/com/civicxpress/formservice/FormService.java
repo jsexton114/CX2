@@ -967,7 +967,7 @@ public class FormService {
         emailContent.append("<br />");
         emailContent.append(formTitle);
         emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+"'> Click Here to View Form </a>");
+        emailContent.append("<a href ='"+formLink+"'> "+formLink+"</a>");
         
         emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
         

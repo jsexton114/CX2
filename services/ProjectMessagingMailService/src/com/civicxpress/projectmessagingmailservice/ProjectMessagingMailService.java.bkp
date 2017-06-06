@@ -1,8 +1,7 @@
 /*Copyright (c) 2015-2016 wavemaker-com All Rights Reserved.
  This software is the confidential and proprietary information of wavemaker-com You shall not disclose such Confidential Information and shall use it only in accordance
  with the terms of the source code license agreement you entered into with wavemaker-com*/
-package com.civicxpress.inspectionmessagingmailservice;
-
+package com.civicxpress.projectmessagingmailservice;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -26,7 +25,7 @@ import java.util.ArrayList;
 import java.util.*;
 
 
-//import com.civicxpress.inspectionmessagingmailservice.model.*;
+//import com.civicxpress.formmessagingmailservice.model.*;
 
 /**
  * This is a singleton class with all its public methods exposed as REST APIs via generated controller class.
@@ -39,17 +38,25 @@ import java.util.*;
  * Complex Types/Objects will become part of the Request body in the generated API.
  */
 @ExposeToClient
-public class InspectionMessagingMailService {
+public class ProjectMessagingMailService {
 
-    private static final Logger logger = LoggerFactory.getLogger(InspectionMessagingMailService.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProjectMessagingMailService.class);
      private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
     private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
-  
 
     @Autowired
     private SecurityService securityService;
 
-    public String sendMessagingMail(String sender,String comments,String username ,String recipient,String municipality,String inspectionType,String municipalitySignature,String inspectionTitle,String inspectionLink) throws MessagingException {
+    /**
+     * This is sample java operation that accepts an input from the caller and responds with "Hello".
+     *
+     * SecurityService that is Autowired will provide access to the security context of the caller. It has methods like isAuthenticated(),
+     * getUserName() and getUserId() etc which returns the information based on the caller context.
+     *
+     * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
+     * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
+     */
+  public String sendMessagingMail(String sender,String comments,String recipient,String municipality,String municipalitySignature,String projectTitle,String projectLink) throws MessagingException {
         
         //logger.info("_______________________________________________________________"+comments);
         
@@ -84,13 +91,13 @@ public class InspectionMessagingMailService {
         
         message.setRecipients(Message.RecipientType.TO, recipientAddress);
         
-        String emailSubject="New Message on CivicXpress inspection "+inspectionTitle;
+        String emailSubject="New Message on CivicXpress Project "+projectTitle;
         
-        String inspectionURL= inspectionLink;
-        logger.info(inspectionLink);
+        String projectURL= projectLink;
+        logger.info(projectLink);
         
-        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" inspection ";
-        emailContent = emailContent+"<a href ='"+inspectionURL+"'>"+inspectionTitle+"</a>):";
+        String emailContent = "You have been tagged by "+sender+" on the following message (on "+municipality+" project ";
+        emailContent = emailContent+"<a href ='"+projectURL+"'>"+projectTitle+"</a>):";
       
         emailContent = emailContent+"<br /><br />";
         
@@ -100,9 +107,9 @@ public class InspectionMessagingMailService {
         
         emailContent = emailContent+"If you would like to reply, "; 
          
-        emailContent = emailContent+"<a href ='"+inspectionURL+ "'>"+inspectionURL+"</a>";
+        emailContent = emailContent+"<a href ='"+projectURL+ "'>Click Here</a>";
          
-        emailContent = emailContent+" to view the inspection and write a message.";
+        emailContent = emailContent+" to view the project and write a message.";
          
         emailContent = emailContent+"<br /><br />";
         

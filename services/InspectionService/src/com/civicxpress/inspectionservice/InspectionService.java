@@ -357,7 +357,7 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append(inspectionTitle);
         emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+"'> Click Here to View Inspection </a>");
+        emailContent.append("<a href ='"+formLink+"'> "+formLink+" </a>");
         
         emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
         
@@ -435,7 +435,7 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append(inspectionTitle);
         emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+ "'> Click Here to View Inspection </a>");
+        emailContent.append("<a href ='"+formLink+ "'>"+formLink+"</a>");
         emailContent.append("<br />");
         emailContent.append("Outcome: "+inspectionOutcome);
         emailContent.append("<br /><br />");

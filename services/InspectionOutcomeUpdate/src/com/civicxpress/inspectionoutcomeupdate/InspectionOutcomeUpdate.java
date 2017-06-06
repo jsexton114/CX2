@@ -102,7 +102,7 @@ public class InspectionOutcomeUpdate {
         emailContent =emailContent+"<br />";
          emailContent =emailContent + feesAssessed ;
         emailContent =emailContent+"<br />";
-        emailContent = emailContent+"<a href ='"+formURL+ "'> Click Here to View Form </a>";
+        emailContent = emailContent+"<a href ='"+formURL+ "'> "+formURL+" </a>";
         
         emailContent =emailContent+ "<br/><br/>"+ municipalitySignature +"<br/><br/>";
         
