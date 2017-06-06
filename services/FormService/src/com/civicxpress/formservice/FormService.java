@@ -853,7 +853,7 @@ public class FormService {
         
         StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
         
-        emailContent.append("Here is a PDF copy of your " + letterTitle + ".");
+        emailContent.append("Here is the PDF copy of your " + letterTitle + ".");
 	    emailContent.append("<br /><br />");
         
         emailContent.append(municipality);
@@ -862,7 +862,7 @@ public class FormService {
         emailContent.append("<br />");
         emailContent.append(formTitle);
         emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+"'> Click Here to View Form </a>");
+        emailContent.append("<a href ='"+formLink+"'> "+formLink+" </a>");
         
         emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
         
