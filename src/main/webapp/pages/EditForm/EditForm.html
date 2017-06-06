@@ -332,7 +332,11 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn80">
                                             <wm-label padding="unset 0.5em" name="label15" caption="You can add this form to one or many form categories. This will affect where the form appears to CivicXpress users, makes the form searchable by category, and is used to generate municipality statistics and reporting."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label35_1" caption="&quot;Internal Only&quot; categories are only visible to municipality employees."></wm-label>
-                                            <wm-label padding="1em 0.5em unset 0.5em" name="label36_1" caption="Note: forms can be added to both public and internal categories. To control visibility of the form itself, you must use the &quot;Municipality Internal Form&quot; toggle on the &quot;Settings&quot; tab."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow87">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn121">
+                                            <wm-label padding="unset 0.5em" name="label36_1" caption="Note: forms can be added to both public and internal categories. To control visibility of the form itself, you must use the &quot;Municipality Internal Form&quot; checkbox on the &quot;Settings&quot; tab above."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow26">
@@ -410,22 +414,18 @@
                                     <wm-gridrow name="gridrow58">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn85">
                                             <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed, from submission to completion."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow100_2">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn137">
-                                            <wm-label padding="unset 0.5em" name="label34" caption="Users can save their form as a draft first, or they can submit the form directly to the municipality, which causes the form to move into the first status listed below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form types, and a minimum of one form status is required."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow98">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn135">
-                                            <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label34" caption="When users submit a form to the municipality it will advance into the first status listed below."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form designs. A minimum of one form status is required."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow99_2">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn136">
-                                            <wm-label padding="unset 0.5em" name="label45_1" caption="You can also use the &quot;Letters&quot; icon if you would like to have a letter template (created on the &quot;Letters&quot; tab to the right) generated when the form enters a status."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label45_1" caption="If you would like to have a PDF of a &quot;Letter&quot; generated when the form enters a particular status, use the &quot;Letters&quot; icon to specify which letter template should be created. Letter templates are built for each form design on the &quot;Letters&quot; tab above."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow59">
@@ -446,7 +446,8 @@
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                                    <wm-grid-action key="customButton" display-name="Copy from other Form" show="true" class="btn-primary" iconclass="wi wi-content-copy" title="copyStatuses" action="Widgets.dialogCopyStatuses.open()"></wm-grid-action>
+                                                    <wm-grid-action key="customButton" display-name="Import Statuses" show="true" class="btn-primary" iconclass="wi wi-content-copy" title="copyStatuses" action="Widgets.dialogCopyStatuses.open()"
+                                                    disabled="false"></wm-grid-action>
                                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-notepad" title="Letters" action="Widgets.dialogFormStatusLetters.open()"
                                                     disabled="false"></wm-grid-row-action>
@@ -610,7 +611,7 @@
                                                 <wm-layoutgrid name="layoutgrid19">
                                                     <wm-gridrow name="gridrow74">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn109">
-                                                            <wm-label padding="unset 0.5em" name="labelInspCat" caption="In order to allow inspections to be requested for this form, you must first assign inspection categories. Inspection categories determine which inspections can be requested for this form."></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="labelInspCat" caption="In order to allow inspections to be requested for this form, you must first assign one or more inspection categories to the form design."></wm-label>
                                                             <wm-label padding="unset 0.5em" name="label46_1" caption="Unless you force an &quot;Inspection Sequence&quot; below, users will be able to choose from a list of all inspections in these categories when requesting an inspection."></wm-label>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
@@ -662,7 +663,7 @@
                                                 <wm-layoutgrid name="layoutgrid17">
                                                     <wm-gridrow name="gridrow73" padding="unset unset 1em unset">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn105">
-                                                            <wm-label padding="unset 0.5em" name="labelInspSeq1" caption="Once inspection categories have been assigned, all inspections in those categories will be available for request when the form is in a form status that is set to &quot;Allow Inspection Requests&quot;."></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="labelInspSeq1" caption="Once inspection categories have been assigned, all inspections in those categories will be available for request (when the form is in a form status that is set to &quot;Allow Inspection Requests&quot;)."></wm-label>
                                                             <wm-label padding="unset 0.5em" name="labelInspSeq2" caption="If a specific inspection sequence must take place, please select &quot;Force Inspection Sequence&quot; and sort the inspections below."></wm-label>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
@@ -872,15 +873,27 @@
     <wm-view class="dialog-view" name="view4">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Form Status Letters" iconclass="wi wi-notepad" name="dialogFormStatusLetters" class="modal-larger">
             <wm-layoutgrid name="layoutgrid25">
+                <wm-gridrow name="gridrow91">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn125">
+                        <wm-label padding="unset 0.5em" name="label45_2" caption="Form Status:" fontsize="15"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label42" fontweight="bold" caption="bind:Widgets.gridFormTypeStatus.selecteditem.status" fontsize="18"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow95_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn130">
-                        <wm-label padding="unset 0.5em" name="label43_1" caption="This is the list of letters that will be generated when the form enters the selected status. To create or update letter templates for this form, browse to the &quot;Letters&quot; tab on the &quot;Edit Form&quot; page."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label43_1" caption="The letters below will be generated as a PDF when the form enters the selected status."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label44_1" caption="You can choose to attach the letter to the form (recommended), and if an email is being sent for this form status, you can also attach the letter to that email."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow92_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn126">
+                        <wm-label padding="unset 0.5em" name="label43" caption="To create or update letter templates for this form design, browse to the &quot;Letters&quot; tab on the &quot;Edit Form&quot; page."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow94">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn141_2">
                         <wm-livegrid formlayout="dialog" name="livegrid8">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" navigation="Classic" name="gridStatusLetters" filtermode="multicolumn" exportformat="EXCEL">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" navigation="Classic" name="gridStatusLetters" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="letterTemplates.letterTitle" caption="Letter Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="LetterTemplates"></wm-grid-column>
                                 <wm-grid-column binding="attachToItem" caption="Attach To Form" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
@@ -890,16 +903,17 @@
                                     <wm-checkbox scopedatavalue="row['attachToEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                 </wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="Add Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Letter" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.dialogFormStatusLetters.close()" shortcutkey="" disabled="false"></wm-grid-action>
                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
                                 <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                             </wm-grid>
-                            <wm-liveform novalidate="false" errormessage="" title="Add Letter for Status" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" captionalign="left" captionposition="top"
+                            <wm-liveform novalidate="false" errormessage="" title="Status Letter Settings" formlayout="dialog" iconclass="wi wi-settings" dataset="bind:Variables.lvLetterTemplateToFormStatus.dataSet" captionalign="left" captionposition="top"
                             name="liveformStatusLetters" on-beforeservicecall="liveformStatusLettersBeforeservicecall($event, $operation, $data)">
                                 <wm-layoutgrid columns="1" name="layoutgrid27">
                                     <wm-gridrow name="gridrow92">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn131">
                                             <wm-form-field name="letterTemplates" displayname="Letter Templates" show="true" primary-key="false" generator="assigned" key="letterTemplates" type="list" is-related="true" readonly="false" required="true" widget="select"
-                                            placeholder="Select value" orderby="letterTitle:asc" dataset="bind:Variables.lvLetterTemplatesData.dataSet" displayfield="letterTitle" datafield="All Fields"></wm-form-field>
+                                            placeholder="Select Letter" orderby="letterTitle:asc" dataset="bind:Variables.lvLetterTemplatesData.dataSet" displayfield="letterTitle" datafield="All Fields"></wm-form-field>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow93">
@@ -922,36 +936,48 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
-            <wm-dialogactions name="dialogactions2_1">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button4_1" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view5">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Copy Statuses" iconclass="wi wi-content-copy" name="dialogCopyStatuses">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Import Statuses" iconclass="wi wi-content-copy" name="dialogCopyStatuses">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Copy" on-click="Variables.svCopyFormStatuses.invoke();Widgets.dialogCopyStatuses.close()" name="buttonCopyStatuses" iconclass="wi wi-save"></wm-button>
+                <wm-button class="btn-primary" caption="Import" on-click="Variables.svCopyFormStatuses.invoke();Widgets.dialogCopyStatuses.close()" name="buttonCopyStatuses" iconclass="wi wi-plus"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogCopyStatuses.close()"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid25_1" columns="1">
+                <wm-gridrow name="gridrow90" padding="unset unset 2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn124">
+                        <wm-label padding="unset 0.5em" name="label46" caption="Using this function will import all form statuses from the &quot;Source Form Design&quot; that you specify below."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label47" caption="Note: all form statuses and their corresponding &quot;Form Status Options&quot; will be imported, but the &quot;Form Status Letters&quot; settings will not be imported (as letter templates are unique to each form design)."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow94_2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn136_1">
                         <wm-composite name="composite3_1">
-                            <wm-label class="col-md-3 control-label" name="label44" caption="From Form Design"></wm-label>
-                            <wm-container class="col-md-9" name="container5">
-                                <wm-select name="selectCopyFormDesign" dataset="bind:Variables.lvMuniForms.dataSet" datafield="All Fields" displayfield="formType"></wm-select>
+                            <wm-label class="col-md-4 form-control-static" name="label44" caption="Source Form Design" fontweight="bold" padding="unset 0.5em"></wm-label>
+                            <wm-container class="col-md-8" name="container5" padding="unset 0.5em unset unset">
+                                <wm-select name="selectCopyFormDesign" dataset="bind:Variables.lvMuniForms.dataSet" datafield="All Fields" displayfield="formType" placeholder="Select Form Design"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow88" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn122">
+                        <wm-label padding="unset 0.5em" name="label48" caption="This is the source form whose statuses you would like to copy over to the form design that you are currently editing." class="help-block" fontsize="0.8" fontunit="em"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow95">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn137_1">
-                        <wm-composite name="composite4_1">
-                            <wm-label class="col-md-3 control-label" caption="Replace Old Statuses" name="label45"></wm-label>
-                            <wm-composite name="composite5">
-                                <wm-checkbox caption="" class="col-md-9" name="checkboxReplaceOldStatuses"></wm-checkbox>
-                            </wm-composite>
+                        <wm-composite name="composite4_1" show="true">
+                            <wm-label class="col-md-4 form-control-static" caption="Replace Old Statuses" name="label45" fontweight="bold" padding="unset 0.5em"></wm-label>
+                            <wm-checkbox caption="" class="col-md-8" name="checkboxReplaceOldStatuses" datavalue="true" checkedvalue="true" uncheckedvalue="false" disabled="true"></wm-checkbox>
                         </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow89">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn123">
+                        <wm-label padding="unset 0.5em" name="label49" caption="When selected, all of the existing statuses on the form design you are currently editing will be replaced by the new statuses imported from the &quot;Source Form Design&quot; selected above."
+                        class="help-block" fontsize="0.8" fontunit="em"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

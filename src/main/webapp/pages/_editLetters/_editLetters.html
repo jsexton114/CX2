@@ -2,7 +2,16 @@
     <wm-layoutgrid name="layoutgrid28">
         <wm-gridrow name="gridrow96">
             <wm-gridcolumn columnwidth="12" name="gridcolumn131_1">
-                <wm-label padding="unset 0.5em" name="label44_1" caption="The letter templates created here can either be generated automatically when the form enters a status (controlled on the &quot;Statuses&quot; tab), or they can be created manually by municipality employees on the &quot;Letters&quot; tab while viewing the form."></wm-label>
+                <wm-label padding="unset 0.5em" name="label8" caption="The &quot;Letter Template Designer&quot; is used to create documents that display the data submitted by the user on the form (a Certificate of Occupancy or Permit, for example)." show="bind:pageParams.formTypeId > 0"></wm-label>
+                <wm-label padding="unset 0.5em" name="label44_1" caption="Letters can be generated automatically when the form enters a status (specified on the &quot;Statuses&quot; tab), or manually generated at any time by a municipality employee on the &quot;Letters&quot; tab of the form."
+                show="bind:pageParams.formTypeId > 0"></wm-label>
+            </wm-gridcolumn>
+        </wm-gridrow>
+        <wm-gridrow name="gridrow10">
+            <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                <wm-label padding="unset 0.5em" name="label9" caption="The &quot;Letter Template Designer&quot; is used to create documents that display the results of the inspection (a Violation Notice, for example)." show="bind:pageParams.inspectionDesignId > 0"></wm-label>
+                <wm-label padding="unset 0.5em" name="label4" caption="Letters can be generated automatically when the inspection enters an outcome (specified on the &quot;Outcomes&quot; tab), or manually generated at any time by a municipality employee on the &quot;Letters&quot; tab of the inspection."
+                show="bind:pageParams.inspectionDesignId > 0"></wm-label>
             </wm-gridcolumn>
         </wm-gridrow>
         <wm-gridrow name="gridrow97">
@@ -16,7 +25,7 @@
                         <wm-grid-column binding="usersByModifiedBy.fullName" caption="Modified By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"
                         related-entity-name="Users"></wm-grid-column>
                         <wm-grid-column binding="modifiedDate" caption="Date Modified" type="datetime" generator="assigned" readonly="true" edit-widget-type="datetime" show="true" filterwidget="date">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                        <wm-grid-action key="addNewRow" display-name="New Letter" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter" action="addNewRowAction($event)"
+                        <wm-grid-action key="addNewRow" display-name="New Letter Template" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Letter Template" action="addNewRowAction($event)"
                         shortcutkey="" disabled="false"></wm-grid-action>
                         <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                         <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
@@ -25,7 +34,7 @@
             </wm-gridcolumn>
         </wm-gridrow>
     </wm-layoutgrid>
-    <wm-liveform novalidate="false" errormessage="" title="Edit Letter Template" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top" name="liveformLetters">
+    <wm-liveform novalidate="false" errormessage="" title="Edit Letter Template" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.lvLetterTemplatesData.dataSet" captionalign="left" captionposition="top" name="liveformLetters" show="true">
         <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number"></wm-form-field>
         <wm-form-field name="formTypes" displayname="Form Types" show="false" primary-key="false" generator="assigned" key="formTypes" type="list" is-related="true" readonly="false" required="false" widget="select" dataset="bind:Variables.CurrentFormObj.dataSet"
         datafield="All Fields" displayfield="formType" defaultvalue="bind:Variables.CurrentFormObj.firstRecord" placeholder="Select value"></wm-form-field>
@@ -39,6 +48,19 @@
     <wm-view class="dialog-view" name="view6">
         <wm-dialog dialogtype="design-dialog" class="modal-larger" modal="true" title="Letter Template Designer" iconclass="wi wi-notepad" name="dialogLetterTemplate">
             <wm-layoutgrid columns="2" name="layoutgrid26-a">
+                <wm-gridrow name="gridrow99_1" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn146">
+                        <wm-label name="label2_1" caption="Letter Name" fontweight="bold" class="col-md-12 form-control-static"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="9" name="gridcolumn9">
+                        <input class="form-control app-textbox" name="letterTitle" type="text" ng-model="Variables.svGetLetterTemplate.dataSet.title">
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9" padding="unset unset 1em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn11">
+                        <wm-label padding="unset 0.5em unset unset" name="label6" caption="Select from the &quot;Available Fields&quot; to the left and place them into the various blocks which form your &quot;Letter Content&quot; to the right. PDFs of this letter that are generated will be formatted exactly as it appears in the &quot;Letter Content&quot; section below."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow99-a">
                     <wm-gridcolumn columnwidth="3" name="gridcolumn143-a">
                         <!--put tokens here  -->
@@ -56,26 +78,24 @@
                         <wm-layoutgrid columns="1" name="layoutgrid26">
                             <wm-gridrow name="gridrow99">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn143">
-                                    <wm-label name="label2_1" caption="Letter Name" fontweight="bold"></wm-label>
-                                    <input class="form-control app-textbox" name="letterTitle" type="text" ng-model="Variables.svGetLetterTemplate.dataSet.title">
+                                    <wm-label name="label2_1" caption="Letter Content" fontweight="bold" class="col-md-12 form-control-static"></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow100">
-                                <wm-layoutgrid columns="3" name="layoutgrid26-02">
-                                    <wm-gridrow ng-repeat="letterRow in Variables.svGetLetterTemplate.dataSet.allRows" name="gridrow100-{{$index}}" style="white-space: nowrap;">
-                                        <wm-gridcolumn ng-repeat="rowSection in letterRow.sections" columnwidth="{{Math.round(12 * (rowSection.width / 540))}}" name="gridcolumn144-{{$index}}">
-                                            <!--<select name="letterJustification{{$index}}" class="form-control" ng-model="rowSection.textSettings.justification" ><option value="Left">Left</option><option value="Centered">Centered</option><option value="Right">Right</option></select><input name="letterFontSize{{$index}}" type="text" class="form-control" ng-model="rowSection.textSettings.fontSize" /><input name="letterBold{{$index}}" type="checkbox" class="form-control" ng-model="rowSection.textSettings.isBold" />
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn143_1">
+                                    <wm-layoutgrid columns="3" name="layoutgrid26-02">
+                                        <wm-gridrow ng-repeat="letterRow in Variables.svGetLetterTemplate.dataSet.allRows" name="gridrow100-{{$index}}" style="white-space: nowrap;">
+                                            <wm-gridcolumn ng-repeat="rowSection in letterRow.sections" columnwidth="{{Math.round(12 * (rowSection.width / 540))}}" name="gridcolumn144-{{$index}}">
+                                                <!--<select name="letterJustification{{$index}}" class="form-control" ng-model="rowSection.textSettings.justification" ><option value="Left">Left</option><option value="Centered">Centered</option><option value="Right">Right</option></select><input name="letterFontSize{{$index}}" type="text" class="form-control" ng-model="rowSection.textSettings.fontSize" /><input name="letterBold{{$index}}" type="checkbox" class="form-control" ng-model="rowSection.textSettings.isBold" />
                                             -->
-                                            <textarea name="letterHeader{{$index}}" class="form-control app-textarea token-field" show="true" key="letterHeader01" maxchars="1000" ng-model="rowSection.text" style="resize: none;"></textarea>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
+                                                <textarea name="letterHeader{{$index}}" class="form-control app-textarea token-field" show="true" key="letterHeader01" maxchars="1000" ng-model="rowSection.text" style="resize: none;"></textarea>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
                     </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow99_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn146"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions4">
