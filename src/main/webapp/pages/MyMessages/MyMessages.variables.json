@@ -2470,6 +2470,22 @@
     "inputFields" : { },
     "package" : "com.civicxpress.cx2.FormMessages"
   },
+  "stvSelectedInboxMessage" : {
+    "_id" : "wm-stvSelectedInboxMessage-wm.Variable-1496751672208",
+    "name" : "stvSelectedInboxMessage",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ {
+      "target" : "dataValue",
+      "value" : "bind:Widgets.gridInbox.selecteditem"
+    } ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "entry",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "stvSourceGuid" : {
     "_id" : "wm-stvSourceGuid-wm.Variable-1493037300872",
     "name" : "stvSourceGuid",

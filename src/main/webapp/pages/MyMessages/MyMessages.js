@@ -187,13 +187,13 @@ Application.$controller("dialogReplyController", ["$scope",
 
         $scope.buttonAddMessageClick = function($event, $isolateScope) {
 
-            switch ($scope.Widgets.gridInbox.selecteditem.sourceCategory) {
+            switch ($scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceCategory) {
                 case "Form":
                     // Posting Message
                     $scope.Variables.PostFormMessage.setInput({
                         'municipalityMessage': $scope.Widgets.checkboxInternal.datavalue,
                         'message': $scope.Widgets.textAddMessage.datavalue,
-                        'relatedFormGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
+                        'relatedFormGuid': $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceGuid,
                         'relatedInspectionGuid': undefined,
                         'relatedProjectGuid': undefined,
                         'gisrecordId': undefined
@@ -206,7 +206,7 @@ Application.$controller("dialogReplyController", ["$scope",
                         'municipalityMessage': $scope.Widgets.checkboxInternal.datavalue,
                         'message': $scope.Widgets.textAddMessage.datavalue,
                         'relatedFormGuid': undefined,
-                        'relatedInspectionGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
+                        'relatedInspectionGuid': $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceGuid,
                         'relatedProjectGuid': undefined,
                         'gisrecordId': undefined
                     });
@@ -219,7 +219,7 @@ Application.$controller("dialogReplyController", ["$scope",
                         'message': $scope.Widgets.textAddMessage.datavalue,
                         'relatedFormGuid': undefined,
                         'relatedInspectionGuid': undefined,
-                        'relatedProjectGuid': $scope.Widgets.gridInbox.selecteditem.sourceGuid,
+                        'relatedProjectGuid': $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceGuid,
                         'gisrecordId': undefined
                     });
                     $scope.Variables.PostFormMessage.insertRecord();
@@ -232,7 +232,7 @@ Application.$controller("dialogReplyController", ["$scope",
                         'relatedFormGuid': undefined,
                         'relatedInspectionGuid': undefined,
                         'relatedProjectGuid': undefined,
-                        'gisrecordId': $scope.Widgets.gridInbox.selecteditem.sourceGuid
+                        'gisrecordId': $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceGuid
                     });
                     $scope.Variables.PostFormMessage.insertRecord();
                     break;
