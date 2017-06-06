@@ -19,6 +19,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionOutcomeFee;
+import com.civicxpress.cx2.LetterTemplateToInspectionOutcome;
 import com.civicxpress.cx2.MasterInspections;
 
 /**
@@ -187,6 +188,18 @@ public interface InspectionOutcomeService {
      * @see Page
      */
     Page<InspectionOutcomeFee> findAssociatedInspectionOutcomeFees(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated letterTemplateToInspectionOutcomes for given InspectionOutcome id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated LetterTemplateToInspectionOutcome instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<LetterTemplateToInspectionOutcome> findAssociatedLetterTemplateToInspectionOutcomes(Integer id, Pageable pageable);
 
     /*
      * Returns the associated masterInspectionses for given InspectionOutcome id.

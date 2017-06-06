@@ -35,6 +35,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionOutcomeFee;
+import com.civicxpress.cx2.LetterTemplateToInspectionOutcome;
 import com.civicxpress.cx2.MasterInspections;
 import com.civicxpress.cx2.service.InspectionOutcomeService;
 
@@ -186,6 +187,15 @@ public class InspectionOutcomeController {
 
         LOGGER.debug("Fetching all associated inspectionOutcomeFees");
         return inspectionOutcomeService.findAssociatedInspectionOutcomeFees(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/letterTemplateToInspectionOutcomes", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateToInspectionOutcomes instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplateToInspectionOutcome> findAssociatedLetterTemplateToInspectionOutcomes(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateToInspectionOutcomes");
+        return inspectionOutcomeService.findAssociatedLetterTemplateToInspectionOutcomes(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/masterInspectionses", method=RequestMethod.GET)

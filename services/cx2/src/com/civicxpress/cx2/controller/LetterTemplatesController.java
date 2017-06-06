@@ -33,6 +33,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
+import com.civicxpress.cx2.LetterTemplateToInspectionOutcome;
 import com.civicxpress.cx2.LetterTemplates;
 import com.civicxpress.cx2.service.LetterTemplatesService;
 
@@ -159,6 +160,15 @@ public class LetterTemplatesController {
 
         LOGGER.debug("Fetching all associated letterTemplateToFormStatuses");
         return letterTemplatesService.findAssociatedLetterTemplateToFormStatuses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/letterTemplateToInspectionOutcomes", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the letterTemplateToInspectionOutcomes instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<LetterTemplateToInspectionOutcome> findAssociatedLetterTemplateToInspectionOutcomes(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated letterTemplateToInspectionOutcomes");
+        return letterTemplatesService.findAssociatedLetterTemplateToInspectionOutcomes(id, pageable);
     }
 
     /**

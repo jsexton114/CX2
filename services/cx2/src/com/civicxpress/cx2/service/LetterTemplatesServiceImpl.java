@@ -24,6 +24,7 @@ import com.wavemaker.runtime.data.model.AggregationInfo;
 import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.LetterTemplateToFormStatus;
+import com.civicxpress.cx2.LetterTemplateToInspectionOutcome;
 import com.civicxpress.cx2.LetterTemplates;
 
 
@@ -40,6 +41,10 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
     @Autowired
 	@Qualifier("cx2.LetterTemplateToFormStatusService")
 	private LetterTemplateToFormStatusService letterTemplateToFormStatusService;
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplateToInspectionOutcomeService")
+	private LetterTemplateToInspectionOutcomeService letterTemplateToInspectionOutcomeService;
 
     @Autowired
     @Qualifier("cx2.LetterTemplatesDao")
@@ -59,6 +64,14 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
                 letterTemplateToFormStatuse.setLetterTemplates(letterTemplatesCreated);
                 LOGGER.debug("Creating a new child LetterTemplateToFormStatus with information: {}", letterTemplateToFormStatuse);
                 letterTemplateToFormStatusService.create(letterTemplateToFormStatuse);
+            }
+        }
+
+        if(letterTemplatesCreated.getLetterTemplateToInspectionOutcomes() != null) {
+            for(LetterTemplateToInspectionOutcome letterTemplateToInspectionOutcome : letterTemplatesCreated.getLetterTemplateToInspectionOutcomes()) {
+                letterTemplateToInspectionOutcome.setLetterTemplates(letterTemplatesCreated);
+                LOGGER.debug("Creating a new child LetterTemplateToInspectionOutcome with information: {}", letterTemplateToInspectionOutcome);
+                letterTemplateToInspectionOutcomeService.create(letterTemplateToInspectionOutcome);
             }
         }
         return letterTemplatesCreated;
@@ -152,6 +165,17 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
         return letterTemplateToFormStatusService.findAll(queryBuilder.toString(), pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<LetterTemplateToInspectionOutcome> findAssociatedLetterTemplateToInspectionOutcomes(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateToInspectionOutcomes");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("letterTemplates.id = '" + id + "'");
+
+        return letterTemplateToInspectionOutcomeService.findAll(queryBuilder.toString(), pageable);
+    }
+
     /**
 	 * This setter method should only be used by unit tests
 	 *
@@ -159,6 +183,15 @@ public class LetterTemplatesServiceImpl implements LetterTemplatesService {
 	 */
 	protected void setLetterTemplateToFormStatusService(LetterTemplateToFormStatusService service) {
         this.letterTemplateToFormStatusService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplateToInspectionOutcomeService instance
+	 */
+	protected void setLetterTemplateToInspectionOutcomeService(LetterTemplateToInspectionOutcomeService service) {
+        this.letterTemplateToInspectionOutcomeService = service;
     }
 
 }

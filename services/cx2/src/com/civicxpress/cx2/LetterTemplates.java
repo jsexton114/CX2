@@ -55,6 +55,7 @@ public class LetterTemplates implements Serializable {
     private Users usersByCreatedBy;
     private Users usersByModifiedBy;
     private List<LetterTemplateToFormStatus> letterTemplateToFormStatuses;
+    private List<LetterTemplateToInspectionOutcome> letterTemplateToInspectionOutcomes;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -203,6 +204,16 @@ public class LetterTemplates implements Serializable {
 
     public void setLetterTemplateToFormStatuses(List<LetterTemplateToFormStatus> letterTemplateToFormStatuses) {
         this.letterTemplateToFormStatuses = letterTemplateToFormStatuses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "letterTemplates")
+    public List<LetterTemplateToInspectionOutcome> getLetterTemplateToInspectionOutcomes() {
+        return this.letterTemplateToInspectionOutcomes;
+    }
+
+    public void setLetterTemplateToInspectionOutcomes(List<LetterTemplateToInspectionOutcome> letterTemplateToInspectionOutcomes) {
+        this.letterTemplateToInspectionOutcomes = letterTemplateToInspectionOutcomes;
     }
 
     @Override

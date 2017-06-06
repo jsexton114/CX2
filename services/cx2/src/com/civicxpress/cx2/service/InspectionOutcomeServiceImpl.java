@@ -27,6 +27,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 import com.civicxpress.cx2.InspectionHistory;
 import com.civicxpress.cx2.InspectionOutcome;
 import com.civicxpress.cx2.InspectionOutcomeFee;
+import com.civicxpress.cx2.LetterTemplateToInspectionOutcome;
 import com.civicxpress.cx2.MasterInspections;
 
 
@@ -51,6 +52,10 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
     @Autowired
 	@Qualifier("cx2.MasterInspectionsService")
 	private MasterInspectionsService masterInspectionsService;
+
+    @Autowired
+	@Qualifier("cx2.LetterTemplateToInspectionOutcomeService")
+	private LetterTemplateToInspectionOutcomeService letterTemplateToInspectionOutcomeService;
 
     @Autowired
     @Qualifier("cx2.InspectionOutcomeDao")
@@ -86,6 +91,14 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
                 inspectionOutcomeFee.setInspectionOutcome(inspectionOutcomeCreated);
                 LOGGER.debug("Creating a new child InspectionOutcomeFee with information: {}", inspectionOutcomeFee);
                 inspectionOutcomeFeeService.create(inspectionOutcomeFee);
+            }
+        }
+
+        if(inspectionOutcomeCreated.getLetterTemplateToInspectionOutcomes() != null) {
+            for(LetterTemplateToInspectionOutcome letterTemplateToInspectionOutcome : inspectionOutcomeCreated.getLetterTemplateToInspectionOutcomes()) {
+                letterTemplateToInspectionOutcome.setInspectionOutcome(inspectionOutcomeCreated);
+                LOGGER.debug("Creating a new child LetterTemplateToInspectionOutcome with information: {}", letterTemplateToInspectionOutcome);
+                letterTemplateToInspectionOutcomeService.create(letterTemplateToInspectionOutcome);
             }
         }
 
@@ -228,6 +241,17 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<LetterTemplateToInspectionOutcome> findAssociatedLetterTemplateToInspectionOutcomes(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated letterTemplateToInspectionOutcomes");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("inspectionOutcome.id = '" + id + "'");
+
+        return letterTemplateToInspectionOutcomeService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterInspections> findAssociatedMasterInspectionses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterInspectionses");
 
@@ -262,6 +286,15 @@ public class InspectionOutcomeServiceImpl implements InspectionOutcomeService {
 	 */
 	protected void setMasterInspectionsService(MasterInspectionsService service) {
         this.masterInspectionsService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
+	 * @param service LetterTemplateToInspectionOutcomeService instance
+	 */
+	protected void setLetterTemplateToInspectionOutcomeService(LetterTemplateToInspectionOutcomeService service) {
+        this.letterTemplateToInspectionOutcomeService = service;
     }
 
 }

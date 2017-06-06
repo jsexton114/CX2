@@ -48,6 +48,7 @@ public class InspectionOutcome implements Serializable {
     private List<InspectionHistory> inspectionHistoriesForNewOutcomeId;
     private List<InspectionHistory> inspectionHistoriesForOldOutcomeId;
     private List<InspectionOutcomeFee> inspectionOutcomeFees;
+    private List<LetterTemplateToInspectionOutcome> letterTemplateToInspectionOutcomes;
     private List<MasterInspections> masterInspectionses;
 
     @Id
@@ -193,6 +194,16 @@ public class InspectionOutcome implements Serializable {
 
     public void setInspectionOutcomeFees(List<InspectionOutcomeFee> inspectionOutcomeFees) {
         this.inspectionOutcomeFees = inspectionOutcomeFees;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "inspectionOutcome")
+    public List<LetterTemplateToInspectionOutcome> getLetterTemplateToInspectionOutcomes() {
+        return this.letterTemplateToInspectionOutcomes;
+    }
+
+    public void setLetterTemplateToInspectionOutcomes(List<LetterTemplateToInspectionOutcome> letterTemplateToInspectionOutcomes) {
+        this.letterTemplateToInspectionOutcomes = letterTemplateToInspectionOutcomes;
     }
 
     @JsonInclude(Include.NON_EMPTY)
