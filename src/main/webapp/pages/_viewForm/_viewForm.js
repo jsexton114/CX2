@@ -329,21 +329,21 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
 
-    $scope.svScheduleInspectiononSuccess = function(variable, data) {
-        //fetching outcomes of design
-        $scope.Variables.svOutcomeByDesign.setInput({
-            inspectionDesign: $scope.Variables.stvSelectedInspectionDesign.dataSet.id,
-        });
-        $scope.Variables.svOutcomeByDesign.update();
+    // $scope.svScheduleInspectiononSuccess = function(variable, data) {
+    //     //fetching outcomes of design
+    //     $scope.Variables.svOutcomeByDesign.setInput({
+    //         inspectionDesign: $scope.Variables.stvSelectedInspectionDesign.dataSet.id,
+    //     });
+    //     $scope.Variables.svOutcomeByDesign.update();
 
-    };
+    // };
 
 
     $scope.svOutcomeByDesignonSuccess = function(variable, data) {
-        debugger
-        if (data.content[0].sendEmail) {
+        // To Do
+        // if (data.content[0].sendEmail) {
 
-        }
+        // }
     };
 
 }]);
@@ -699,6 +699,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
 
         $scope.cannotAddInspection = function() {
+
             return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || ((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling)");
         };
 
@@ -756,14 +757,14 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
-            $scope.Variables.stvSelectedInspectionDesign.dataSet = newVal;
+            $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone(newVal);
             $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
             $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
-            $scope.Variables.stvSelectedInspectionDesign.dataSet = $scope.inspectionObject;
+            $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone($scope.inspectionObject);
             updateMinMaxDates(newVal);
         };
 
