@@ -30,6 +30,13 @@
   "type" : "PARTIAL",
   "params" : [ ]
 }, {
+  "name" : "CompanyDetails",
+  "type" : "PARTIAL",
+  "params" : [ {
+    "name" : "companyID",
+    "type" : "integer"
+  } ]
+}, {
   "name" : "CompanyForms",
   "type" : "PAGE",
   "params" : [ {

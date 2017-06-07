@@ -28,6 +28,7 @@ Application.$controller("pagedialog1Controller", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.pagedialog1Ok = function($event, $isolateScope) {
+            debugger
             if ($scope.$parent.$parent.Widgets.container1 == undefined) { // nothing
             } else {
                 $scope.$parent.$parent.Widgets.container1.Variables.Cx2FeesData.update();

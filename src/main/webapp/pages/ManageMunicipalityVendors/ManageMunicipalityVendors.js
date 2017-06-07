@@ -19,10 +19,7 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
-            $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
-            $scope.Variables.VendorLicensesData.update();
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
             $scope.Widgets.viewCompanyDetails.open();
 
         };
@@ -38,13 +35,8 @@ Application.$controller("gridSuspendedController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
-            $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
-            $scope.Variables.VendorLicensesData.update();
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
             $scope.Widgets.viewCompanyDetails.open();
-
-
 
         };
 
@@ -69,24 +61,12 @@ Application.$controller("grid5Controller", ["$scope",
 
 
 
-
-
-Application.$controller("liveform4Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
 Application.$controller("gridPendingController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
         $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.VendorProfile.setFilter('id', $rowData.vendorId)
-            $scope.Variables.VendorProfile.update();
-            $scope.Variables.VendorLicensesData.setFilter('vendorId', $rowData.vendorId)
-            $scope.Variables.VendorLicensesData.update();
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
             $scope.Widgets.viewCompanyDetails.open();
 
         };

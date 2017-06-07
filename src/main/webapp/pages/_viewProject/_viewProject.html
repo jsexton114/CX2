@@ -1081,60 +1081,13 @@
         iconclass="wi wi-trash"></wm-confirmdialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewVendorDetails">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Contractor Details" iconclass="wi wi-work" name="dialogVendorDetails">
-            <wm-layoutgrid name="layoutgrid31">
-                <wm-gridrow name="gridrow90_1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn166">
-                        <wm-label padding="unset 0.5em" caption="Company Name" name="label103" hint="Name"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn167_1">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.companyName" name="label104" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow91">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn168">
-                        <wm-label padding="unset 0.5em" caption="Contractor Type" name="label105"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn169">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.contractorTypes.contractorType" name="label106" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow96">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn178">
-                        <wm-label padding="unset 0.5em" caption="Address" name="label111"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn179">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.fullAddress" name="label116" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow95">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn176">
-                        <wm-label padding="unset 0.5em" caption="Company Phone" name="label110"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn177">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.companyPhone" name="label115" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow93">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn172">
-                        <wm-label padding="unset 0.5em" caption="Company Email" name="label108"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn173">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.companyEmail" name="label113" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow94">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn174_1">
-                        <wm-label padding="unset 0.5em" caption="Company Website" name="label109"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn175_1">
-                        <wm-label padding="unset 0.5em" caption="bind:Widgets.gridProjectVendors.selecteditem.vendor.companyWebsite" name="label114" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-            </wm-layoutgrid>
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Contractor Details" iconclass="wi wi-work" name="dialogVendorDetails" width="75%">
             <wm-dialogactions name="dialogactions11">
                 <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button25" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
+            <wm-container name="containerVendor" content="CompanyDetails">
+                <wm-param name="companyID" value="bind:Widgets.gridProjectVendors.selecteditem.vendorId" type="integer"></wm-param>
+            </wm-container>
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view5">

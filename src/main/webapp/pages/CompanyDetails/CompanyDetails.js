@@ -1,27 +1,17 @@
-Application.$controller("CompanyProfilePageController", ["$scope", "_", function($scope, _) {
+Application.$controller("CompanyDetailsPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-
-        //current date
-        $scope._ = _;
-        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyID);
-
-        // $('[name="liveform1"]').on('change', '.app-blob-upload', function() {
-        //     debugger;
-        //     readURL(this);
-        // })
-
-        // function readURL(input) {
-        //     if (input.files && input.files[0]) {
-        //         var pdffile_url = URL.createObjectURL(input.files[0]);
-        //         debugger;
-
-
-        //     }
-
-        // }
+        /*
+         * variables can be accessed through '$scope.Variables' property here
+         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
+         * $scope.Variables.loggedInUser.getData()
+         *
+         * widgets can be accessed through '$scope.Widgets' property here
+         * e.g. to get value of text widget named 'username' use following script
+         * '$scope.Widgets.username.datavalue'
+         */
     };
 
     $scope.CurrentVendorObjonBeforeDatasetReady = function(variable, data) {
@@ -38,7 +28,12 @@ Application.$controller("CompanyProfilePageController", ["$scope", "_", function
 }]);
 
 
-
+Application.$controller("liveform1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
 
 Application.$controller("grid1Controller", ["$scope",
     function($scope) {
