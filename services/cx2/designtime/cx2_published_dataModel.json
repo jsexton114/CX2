@@ -22146,13 +22146,13 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : false,
+      "partOfUniqueKey" : true,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "string",
-      "unique" : false
+      "unique" : true
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -22328,13 +22328,13 @@
       "partOfAnyRelation" : false,
       "partOfForeignKey" : false,
       "partOfPrimaryKey" : false,
-      "partOfUniqueKey" : true,
+      "partOfUniqueKey" : false,
       "precision" : 0,
       "primaryKey" : false,
       "scale" : 0,
       "sequenceSchema" : null,
       "sqlType" : "string",
-      "unique" : true
+      "unique" : false
     }, {
       "columnValue" : {
         "type" : "user-defined",
@@ -22493,9 +22493,9 @@
       "unique" : false
     } ],
     "constraints" : [ {
-      "columns" : [ "FeinNumber" ],
+      "columns" : [ "CompanyEmail" ],
       "composite" : false,
-      "name" : "UK_Vendor_FeinNumber",
+      "name" : "UK_Vendor_CompanyEmail",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false

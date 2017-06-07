@@ -186,7 +186,6 @@ Application.$controller("dialogReplyController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.buttonAddMessageClick = function($event, $isolateScope) {
-
             switch ($scope.Variables.stvSelectedInboxMessage.dataSet.dataValue.sourceCategory) {
                 case "Form":
                     // Posting Message

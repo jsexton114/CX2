@@ -61,13 +61,13 @@ public interface VendorService {
 	Vendor findById(Integer vendorId);
 
     /**
-	 * Find and return the Vendor for given feinNumber  if exists.
+	 * Find and return the Vendor for given companyEmail  if exists.
 	 *
-	 * @param feinNumber value of feinNumber; value cannot be null.
+	 * @param companyEmail value of companyEmail; value cannot be null.
 	 * @return Vendor associated with the given inputs.
      * @throws EntityNotFoundException if no matching Vendor found.
 	 */
-    Vendor getByFeinNumber(String feinNumber)throws EntityNotFoundException;
+    Vendor getByCompanyEmail(String companyEmail)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing Vendor. It replaces all fields of the existing Vendor with the given vendor.

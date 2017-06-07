@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
  */
 @Entity
 @Table(name = "`Vendor`", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"`FeinNumber`"})})
+        @UniqueConstraint(columnNames = {"`CompanyEmail`"})})
 public class Vendor implements Serializable {
 
     private Integer id;

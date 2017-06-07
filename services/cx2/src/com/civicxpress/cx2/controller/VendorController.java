@@ -155,11 +155,11 @@ public class VendorController {
         return deletedVendor != null;
     }
 
-    @RequestMapping(value = "/feinNumber/{feinNumber}", method = RequestMethod.GET)
+    @RequestMapping(value = "/companyEmail/{companyEmail}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Vendor with given unique key values.")
-    public Vendor getByFeinNumber(@PathVariable("feinNumber") String feinNumber) {
-        LOGGER.debug("Getting Vendor with uniques key FeinNumber");
-        return vendorService.getByFeinNumber(feinNumber);
+    public Vendor getByCompanyEmail(@PathVariable("companyEmail") String companyEmail) {
+        LOGGER.debug("Getting Vendor with uniques key CompanyEmail");
+        return vendorService.getByCompanyEmail(companyEmail);
     }
 
     /**

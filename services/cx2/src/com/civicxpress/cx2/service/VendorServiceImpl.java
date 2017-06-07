@@ -190,16 +190,16 @@ public class VendorServiceImpl implements VendorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Vendor getByFeinNumber(String feinNumber) {
-        Map<String, Object> feinNumberMap = new HashMap<>();
-        feinNumberMap.put("feinNumber", feinNumber);
+    public Vendor getByCompanyEmail(String companyEmail) {
+        Map<String, Object> companyEmailMap = new HashMap<>();
+        companyEmailMap.put("companyEmail", companyEmail);
 
-        LOGGER.debug("Finding Vendor by unique keys: {}", feinNumberMap);
-        Vendor vendor = this.wmGenericDao.findByUniqueKey(feinNumberMap);
+        LOGGER.debug("Finding Vendor by unique keys: {}", companyEmailMap);
+        Vendor vendor = this.wmGenericDao.findByUniqueKey(companyEmailMap);
 
         if (vendor == null){
-            LOGGER.debug("No Vendor found with given unique key values: {}", feinNumberMap);
-            throw new EntityNotFoundException(String.valueOf(feinNumberMap));
+            LOGGER.debug("No Vendor found with given unique key values: {}", companyEmailMap);
+            throw new EntityNotFoundException(String.valueOf(companyEmailMap));
         }
 
         return vendor;

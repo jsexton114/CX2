@@ -100,110 +100,104 @@
                 <wm-layoutgrid columns="3" name="layoutgrid5">
                     <wm-gridrow name="gridrow12">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn12_1">
-                            <wm-form-field name="companyName" displayname="Company Name" required="false" show="true" generator="assigned" primary-key="false" key="companyName" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyName
-"></wm-form-field>
+                            <wm-form-field name="companyName" displayname="Company Name" required="false" show="true" generator="assigned" primary-key="false" key="companyName" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyName
+" inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn13_1">
-                            <wm-form-field name="address1" displayname="Address1" required="false" show="true" generator="assigned" primary-key="false" key="address1" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address1"></wm-form-field>
+                            <wm-form-field name="address1" displayname="Address1" required="false" show="true" generator="assigned" primary-key="false" key="address1" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address1"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn14">
-                            <wm-form-field name="address2" displayname="Address2" required="false" show="true" generator="assigned" primary-key="false" key="address2" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address2"></wm-form-field>
+                            <wm-form-field name="address2" displayname="Address2" required="false" show="true" generator="assigned" primary-key="false" key="address2" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].address2"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow13">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn15_1">
-                            <wm-form-field name="city" displayname="City" required="false" show="true" generator="assigned" primary-key="false" key="city" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].city"></wm-form-field>
+                            <wm-form-field name="city" displayname="City" required="false" show="true" generator="assigned" primary-key="false" key="city" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].city"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn16">
-                            <wm-form-field displayname="State" widget="text" show="true" type="custom" name="state" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].states.stateName"></wm-form-field>
+                            <wm-form-field name="state" displayname="State" widget="text" show="true" type="custom" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].states.stateName" inputtype="text" key="state" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn17">
-                            <wm-form-field name="postalCode" displayname="Postal Code" required="false" show="true" generator="assigned" primary-key="false" key="postalCode" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].postalCode"></wm-form-field>
+                            <wm-form-field name="postalCode" displayname="Postal Code" required="false" show="true" generator="assigned" primary-key="false" key="postalCode" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].postalCode"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow14">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn18_2">
-                            <wm-form-field name="country" displayname="Country" required="false" show="true" generator="assigned" primary-key="false" key="country" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].country"></wm-form-field>
+                            <wm-form-field name="country" displayname="Country" required="false" show="true" generator="assigned" primary-key="false" key="country" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].country"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn19">
-                            <wm-form-field name="companyPhone" displayname="Company Phone" required="false" show="true" generator="assigned" primary-key="false" key="companyPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyPhone"></wm-form-field>
+                            <wm-form-field name="companyPhone" displayname="Company Phone" required="false" show="true" generator="assigned" primary-key="false" key="companyPhone" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyPhone"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn20">
-                            <wm-form-field name="altPhone" displayname="Alternate Phone" required="false" show="true" generator="assigned" primary-key="false" key="altPhone" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].altPhone"></wm-form-field>
+                            <wm-form-field name="altPhone" displayname="Alternate Phone" required="false" show="true" generator="assigned" primary-key="false" key="altPhone" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].altPhone"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow15">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn21">
-                            <wm-form-field name="faxNumber" displayname="Fax Number" required="false" show="true" generator="assigned" primary-key="false" key="faxNumber" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].faxNumber"></wm-form-field>
+                            <wm-form-field name="faxNumber" displayname="Fax Number" required="false" show="true" generator="assigned" primary-key="false" key="faxNumber" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].faxNumber"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn22">
-                            <wm-form-field name="companyEmail" displayname="Company Email" required="false" show="true" generator="assigned" primary-key="false" key="companyEmail" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyEmail"></wm-form-field>
+                            <wm-form-field name="companyEmail" displayname="Company Email" required="false" show="true" generator="assigned" primary-key="false" key="companyEmail" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyEmail"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn23">
-                            <wm-form-field name="companyWebsite" displayname="Company Website" required="false" show="true" generator="assigned" primary-key="false" key="companyWebsite" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyWebsite"></wm-form-field>
+                            <wm-form-field name="companyWebsite" displayname="Company Website" required="false" show="true" generator="assigned" primary-key="false" key="companyWebsite" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].companyWebsite"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow16_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn24">
-                            <wm-form-field name="typeOfBusiness" displayname="Type of Business" required="false" show="true" generator="assigned" primary-key="false" key="typeOfBusiness" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true"
-                            widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].typeOfBusiness"></wm-form-field>
+                            <wm-form-field name="typeOfBusiness" displayname="Type of Business" required="false" show="true" generator="assigned" primary-key="false" key="typeOfBusiness" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].typeOfBusiness"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn25">
-                            <wm-form-field name="businessClassification" displayname="Business Classification" required="false" show="true" generator="assigned" primary-key="false" key="businessClassification" type="string" is-related="false" maxchars="255"
-                            pc-display="true" mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].businessClassification"></wm-form-field>
+                            <wm-form-field name="businessClassification" displayname="Business Classification" required="false" show="true" generator="assigned" primary-key="false" key="businessClassification" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].businessClassification"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn26">
-                            <wm-form-field displayname="Contractor Types" widget="text" show="true" type="custom" name="contractorTypes" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].contractorTypes.contractorType"></wm-form-field>
+                            <wm-form-field name="contractorTypes" displayname="Contractor Types" widget="text" show="true" type="custom" defaultvalue="bind:Variables.VendorProfile.dataSet.data[$i].contractorTypes.contractorType" inputtype="text" key="contractorTypes"
+                            placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow17_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn27_1">
-                            <wm-form-field name="numberOfEmployees" displayname="Number of Employees" required="false" show="true" generator="assigned" primary-key="false" key="numberOfEmployees" type="integer" is-related="false" step="0" pc-display="true"
-                            mobile-display="true" widget="number" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].numberOfEmployees"></wm-form-field>
+                            <wm-form-field name="numberOfEmployees" displayname="Number of Employees" required="false" show="true" generator="assigned" primary-key="false" key="numberOfEmployees" type="integer" step="0" widget="number" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].numberOfEmployees"
+                            inputtype="number" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn29">
-                            <wm-form-field name="stateRegNumber" displayname="State Registration Number" required="false" show="true" generator="assigned" primary-key="false" key="stateRegNumber" type="string" is-related="false" maxchars="255" pc-display="true"
-                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].stateRegNumber"></wm-form-field>
+                            <wm-form-field name="stateRegNumber" displayname="State Registration Number" required="false" show="true" generator="assigned" primary-key="false" key="stateRegNumber" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].stateRegNumber"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn35">
-                            <wm-form-field name="feinNumber" displayname="Employer Identification Number (EIN)" required="false" show="true" generator="assigned" primary-key="false" key="feinNumber" type="string" is-related="false" maxchars="255" pc-display="true"
-                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].feinNumber"></wm-form-field>
+                            <wm-form-field name="insuranceCompany" displayname="Insurance Company" required="false" show="true" generator="assigned" primary-key="false" key="insuranceCompany" type="string" maxchars="255" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceCompany"
+                            inputtype="text" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                     <wm-gridrow name="gridrow18">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn30">
-                            <wm-form-field name="insuranceCompany" displayname="Insurance Company" required="false" show="true" generator="assigned" primary-key="false" key="insuranceCompany" type="string" is-related="false" maxchars="255" pc-display="true"
-                            mobile-display="true" widget="text" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceCompany"></wm-form-field>
+                            <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" required="false" show="true" generator="assigned" primary-key="false" key="insuranceExpires" type="date" widget="date" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceExpires"
+                            datepattern="MM-dd-yyyy" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn31">
-                            <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" required="false" show="true" generator="assigned" primary-key="false" key="insuranceExpires" type="date" is-related="false" pc-display="true" mobile-display="true"
-                            widget="date" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].insuranceExpires" datepattern="MM-dd-yyyy"></wm-form-field>
+                            <wm-form-field name="coi" displayname="Certificate of Insurance (COI)" widget="text" show="true" type="custom" inputtype="text" key="coi" placeholder="Enter value"></wm-form-field>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="4" name="gridcolumn36">
-                            <wm-form-field displayname="Certificate of Insurance (COI)" widget="text" show="true" type="custom" name="coi"></wm-form-field>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
-                    <wm-gridrow name="gridrow20_1">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn33_1">
-                            <wm-form-field name="lastUpdated" displayname="Last Updated" required="false" show="true" generator="assigned" primary-key="false" key="lastUpdated" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date"
-                            defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].lastUpdated" datepattern="MM-dd-yyyy"></wm-form-field>
+                            <wm-form-field name="lastUpdated" displayname="Last Updated" required="false" show="true" generator="assigned" primary-key="false" key="lastUpdated" type="date" widget="date" defaultvalue="bind:Variables.VendorProfile.dataSet.data[0].lastUpdated"
+                            datepattern="MM-dd-yyyy" placeholder="Select date" outputformat="yyyy-MM-dd"></wm-form-field>
                         </wm-gridcolumn>
                     </wm-gridrow>
                 </wm-layoutgrid>
-                <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
-                <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
-                <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
             </wm-liveform>
             <wm-panel iconclass="wi wi-notepad" autoclose="outsideClick" name="panel4" title="Licenses" class="panel-primary">
                 <wm-grid title="" dataset="bind:Variables.VendorLicensesData.dataSet" navigation="Classic" name="grid5" filtermode="multicolumn" exportformat="EXCEL" iconclass="">
