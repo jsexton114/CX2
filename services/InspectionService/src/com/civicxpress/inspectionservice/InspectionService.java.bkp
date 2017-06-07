@@ -357,7 +357,7 @@ public class InspectionService {
         emailContent.append("<br />");
         emailContent.append(inspectionTitle);
         emailContent.append("<br />");
-        emailContent.append("<a href ='"+formLink+"'> Click Here to View Inspection </a>");
+        emailContent.append("<a href ='"+formLink+"'> "+formLink+" </a>");
         
         emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
         
@@ -476,6 +476,8 @@ public class InspectionService {
         	DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT MI.*, IND.MunicipalityId as MunicipalityId, RU.Email as RequestorEmail, RU.FullName as RequestorFullName, IND.InspectDesignName FROM MasterInspections MI INNER JOIN Users RU ON RU.ID=MI.RequestedBy INNER JOIN InspectionDesign IND ON IND.ID=MI.InspectionDesignId WHERE InspectionGUID=:inspectionGuid", params);
         	Long municipalityId = inspectionData.getLong("MunicipalityId");
         	Long oldOutcomeId = inspectionData.getLong("InspectionOutcomeId");
+    		String inspectionTitle = inspectionData.getString("InspectionTitle");
+			Long inspectionDesignId = inspectionData.getLong("InspectionDesignId");
         	
         	params.addLong("oldOutcomeId", oldOutcomeId);
         	params.addString("comments", comments);
@@ -492,9 +494,49 @@ public class InspectionService {
         	
         	cx2Conn.commit();
         	
+			System.out.println("*JS* outcomeLetterTemplates code");
+			System.out.println("*JS* inspectionOutcomeId: " + inspectionOutcomeId);
+			List<DBRow> outcomeLetterTemplates = DBUtils.selectQuery(cx2Conn, "SELECT * FROM [LetterTemplateToInspectionOutcome] WHERE [InspectionOutcomeId]=:newOutcomeId", params);
+			System.out.println("*JS* outcomeLetterTemplates != null: " + String.valueOf(outcomeLetterTemplates != null));
+			if (outcomeLetterTemplates != null) {
+				for (DBRow outcomeLetterTemplate : outcomeLetterTemplates) {
+					Boolean attachToEmail = outcomeLetterTemplate.getBoolean("AttachToEmail");
+					Boolean attachToItem = outcomeLetterTemplate.getBoolean("AttachToItem");
+					
+					if (attachToEmail || attachToItem) {
+						Integer letterTemplateId = outcomeLetterTemplate.getInteger("LetterTemplateId");
+						String filename = cleanInspectionTitleAndDateForFilename(inspectionTitle) + ".pdf";
+						System.out.println("*JS* letterTemplateId: " + letterTemplateId);
+						System.out.println("*JS* filename: " + filename);
+						System.out.println("*JS* inspectionDesignId: " + inspectionDesignId);
+						byte[] letterPdf = createLetterPdf(letterTemplateId, inspectionDesignId, inspectionGuid);
+
+						if (attachToItem) {
+							DBQueryParams attachParams = new DBQueryParams();
+							attachParams.addString("inspectionGuid", inspectionGuid);
+							System.out.println("*JS* inspectionGuid: " + inspectionGuid);
+							attachParams.addString("filename", filename);
+							attachParams.addBytes("letterPdf", letterPdf);
+							attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+							DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:inspectionGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+						}
+
+						// if (attachToEmail) {
+						//     ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
+						//     MimeBodyPart letterAttachment = new MimeBodyPart();
+						//     letterAttachment.setDataHandler(new DataHandler(fileDS));
+						//     letterAttachment.setFileName(filename);
+							
+						//     messageContents.addBodyPart(letterAttachment);
+						// }
+					}
+				}
+			}
+
         	DBRow outcomeData = DBUtils.selectOne(cx2Conn, "SELECT * FROM InspectionOutcome WHERE ID=:newOutcomeId", params);
-        	
-        	if (outcomeData.getBoolean("SendEmail")) {
+			Boolean sendEmail = outcomeData.getBoolean("SendEmail");
+
+        	if (sendEmail) {
         		params.addLong("municipalityId", municipalityId);
             	DBRow municipalityData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Municipalities WHERE ID=:municipalityId", params);
             	params.addString("formGuid", inspectionData.getString("FormGuid"));
@@ -524,6 +566,18 @@ public class InspectionService {
         }
     }
     
+	private static String cleanInspectionTitleAndDateForFilename(String inspectionTitle) {
+    	String returnTitle = null;
+		String cleanTitle = null;
+		Date dt = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd") ;
+		String cleanDate = dateFormat.format(dt);
+		cleanTitle = inspectionTitle.replaceAll("[^\\w\\d]+", "-");
+		returnTitle = cleanTitle + " " + cleanDate;
+		return returnTitle;
+    }
+    
+
     public void addViolation(String inspectionGuid, Long codeId, String notes, MultipartFile[] pictures) throws SQLException, IOException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	

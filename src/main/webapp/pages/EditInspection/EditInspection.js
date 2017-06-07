@@ -238,22 +238,27 @@ Application.$controller("liveformInspectionCodeSetsController", ["$scope",
 ]);
 
 Application.$controller("dialogInspectionOutcomeLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.liveInspectionOutcomeLettersBeforeservicecall = function($event, $operation, $data) {
+            $data.inspectionOutcomeId = $scope.Widgets.gridOutcome.selectedItems[0].id;
+        };
+
+    }
 ]);
 
 Application.$controller("gridStatusLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("liveInspectionOutcomeLettersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
