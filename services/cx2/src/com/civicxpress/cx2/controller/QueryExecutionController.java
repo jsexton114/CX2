@@ -324,6 +324,25 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/MunicipalityForms", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "MunicipalityForms")
+    public Page<MunicipalityFormsResponse> executeMunicipalityForms(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Executing named query: MunicipalityForms");
+        Page<MunicipalityFormsResponse> _result = queryService.executeMunicipalityForms(municipalityId, municipalityInternalForm, closed, startd, endd, pageable);
+        LOGGER.debug("got the result for named query: MunicipalityForms, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query MunicipalityForms")
+    @RequestMapping(value = "/queries/MunicipalityForms/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportMunicipalityForms(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "municipalityInternalForm", required = false) Boolean municipalityInternalForm, @RequestParam(value = "Closed", required = false) Boolean closed, @RequestParam(value = "startd") Timestamp startd, @RequestParam(value = "endd") Timestamp endd, Pageable pageable) {
+        LOGGER.debug("Exporting named query: MunicipalityForms");
+
+        return queryService.exportMunicipalityForms(exportType, municipalityId, municipalityInternalForm, closed, startd, endd, pageable);
+    }
+
     @RequestMapping(value = "/queries/CountOfMunicipalityProjects", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "CountOfMunicipalityProjects")
@@ -2830,6 +2849,16 @@ public class QueryExecutionController {
         return queryService.exportFetchRolesForUserWithMunicipality(exportType, user, municipality, pageable);
     }
 
+    @RequestMapping(value = "/queries/updateAssessFeeYN", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "updateAssessFeeYNAndForInspectionOutcome")
+    public IntegerWrapper executeUpdateAssessFeeYN(@Valid @RequestBody UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
+        LOGGER.debug("Executing named query: updateAssessFeeYN");
+        Integer _result = queryService.executeUpdateAssessFeeYN(updateAssessFeeYnRequest);
+        LOGGER.debug("got the result for named query: updateAssessFeeYN, result:{}", _result);
+        return new IntegerWrapper(_result);
+    }
+
     @RequestMapping(value = "/queries/SearchAllFormsByUser", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "SearchAllFormsByUser")
@@ -2847,16 +2876,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: SearchAllFormsByUser");
 
         return queryService.exportSearchAllFormsByUser(exportType, sharedWithUser, municipalityId, formcategoryId, formtypeId, publicRead, municipalityInternalForm, closed, startd, endd, pageable);
-    }
-
-    @RequestMapping(value = "/queries/updateAssessFeeYN", method = RequestMethod.PUT)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "updateAssessFeeYNAndForInspectionOutcome")
-    public IntegerWrapper executeUpdateAssessFeeYN(@Valid @RequestBody UpdateAssessFeeYnRequest updateAssessFeeYnRequest) {
-        LOGGER.debug("Executing named query: updateAssessFeeYN");
-        Integer _result = queryService.executeUpdateAssessFeeYN(updateAssessFeeYnRequest);
-        LOGGER.debug("got the result for named query: updateAssessFeeYN, result:{}", _result);
-        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/SetModifiedDateForProject", method = RequestMethod.PUT)

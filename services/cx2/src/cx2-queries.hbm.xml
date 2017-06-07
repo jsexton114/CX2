@@ -343,6 +343,94 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="FormCategoryId" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="MunicipalityForms">
+        <![CDATA[
+        SELECT MF.FormGuid as formGuid,
+MF.FormTitle as formTitle,
+U.FullName as createdBy,
+MF.DateSubmitted as dateSubmitted,
+MU.MunicipalityName as municipalityName,
+
+FT.FormType as formDesign,
+FS.Status as formStatus,
+GR.Lot as lot,GR.Subdivision as subdivision,
+GR.FullAddress as address,
+V.CompanyName as primaryVendor,
+MF.BalanceDue as balanceDue,
+FT.ID as formTypeID,
+FT.CodeEnforcement as codeEnforcement,
+FT.MunicipalityInternalForm as municipalityInternalForm,
+FC.ID as FormCategory,
+MF.DateModified as dateModified
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
+LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 
+where  
+   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) 
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:Closed IS NULL OR  Closed=:Closed)
+	AND DateSubmitted BETWEEN :startd and :endd
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    </sql-query>
+
+    <sql-query name="MunicipalityForms__count">
+        <![CDATA[
+        select count(*) from (SELECT MF.FormGuid as formGuid,
+MF.FormTitle as formTitle,
+U.FullName as createdBy,
+MF.DateSubmitted as dateSubmitted,
+MU.MunicipalityName as municipalityName,
+
+FT.FormType as formDesign,
+FS.Status as formStatus,
+GR.Lot as lot,GR.Subdivision as subdivision,
+GR.FullAddress as address,
+V.CompanyName as primaryVendor,
+MF.BalanceDue as balanceDue,
+FT.ID as formTypeID,
+FT.CodeEnforcement as codeEnforcement,
+FT.MunicipalityInternalForm as municipalityInternalForm,
+FC.ID as FormCategory,
+MF.DateModified as dateModified
+FROM MasterForms MF
+LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
+LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
+LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
+LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
+LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
+LEFT JOIN Users AS U ON U.ID=MF.UserId
+LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 
+where  
+   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) 
+	and(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)
+	and (:Closed IS NULL OR  Closed=:Closed)
+	AND DateSubmitted BETWEEN :startd and :endd) wmTempTable
+        ]]>
+    <query-param name="municipalityId" type="java.lang.Integer"/>
+    <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
+    <query-param name="Closed" type="java.lang.Boolean"/>
+    <query-param name="startd" type="java.sql.Timestamp"/>
+    <query-param name="endd" type="java.sql.Timestamp"/>
+    </sql-query>
+
     <sql-query name="CountOfMunicipalityProjects">
         <![CDATA[
         select count(*) as count from Projects where MunicipalityId=:municipalityId and Active=:Active
@@ -3525,6 +3613,14 @@ where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidS
     <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="updateAssessFeeYN">
+        <![CDATA[
+        update InspectionOutcome set AssessFeeYN=:AssessFeeYN where ID=:id
+        ]]>
+    <query-param name="AssessFeeYN" type="java.lang.Boolean"/>
+    <query-param name="id" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="SearchAllFormsByUser">
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
@@ -3599,14 +3695,6 @@ where   ( UserId=:sharedWithUser or MF.FormGUID IN
     <query-param name="Closed" type="java.lang.Boolean"/>
     <query-param name="startd" type="java.sql.Timestamp"/>
     <query-param name="endd" type="java.sql.Timestamp"/>
-    </sql-query>
-
-    <sql-query name="updateAssessFeeYN">
-        <![CDATA[
-        update InspectionOutcome set AssessFeeYN=:AssessFeeYN where ID=:id
-        ]]>
-    <query-param name="AssessFeeYN" type="java.lang.Boolean"/>
-    <query-param name="id" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="SetModifiedDateForProject">

@@ -85,6 +85,10 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertCategoryMapping(InsertCategoryMappingRequest insertCategoryMappingRequest);
 
+    Page<MunicipalityFormsResponse> executeMunicipalityForms(Integer municipalityId, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
+    Downloadable exportMunicipalityForms(ExportType exportType, Integer municipalityId, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
+
     Page<CountOfMunicipalityProjectsResponse> executeCountOfMunicipalityProjects(Integer municipalityId, Boolean active, Pageable pageable);
 
     Downloadable exportCountOfMunicipalityProjects(ExportType exportType, Integer municipalityId, Boolean active, Pageable pageable);
@@ -607,11 +611,11 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportFetchRolesForUserWithMunicipality(ExportType exportType, Integer user, Integer municipality, Pageable pageable);
 
+    Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
+
     Page<SearchAllFormsByUserResponse> executeSearchAllFormsByUser(Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean publicRead, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
 
     Downloadable exportSearchAllFormsByUser(ExportType exportType, Integer sharedWithUser, Integer municipalityId, Integer formcategoryId, Integer formtypeId, Boolean publicRead, Boolean municipalityInternalForm, Boolean closed, Timestamp startd, Timestamp endd, Pageable pageable);
-
-    Integer executeUpdateAssessFeeYN(UpdateAssessFeeYnRequest updateAssessFeeYnRequest);
 
     Integer executeSetModifiedDateForProject(SetModifiedDateForProjectRequest setModifiedDateForProjectRequest);
 

@@ -7710,6 +7710,216 @@
       } ]
     }
   },
+  "MunicipalityForms" : {
+    "name" : "MunicipalityForms",
+    "description" : "MunicipalityForms",
+    "version" : "V2",
+    "queryString" : "SELECT MF.FormGuid as formGuid,\r\nMF.FormTitle as formTitle,\r\nU.FullName as createdBy,\r\nMF.DateSubmitted as dateSubmitted,\r\nMU.MunicipalityName as municipalityName,\r\n\r\nFT.FormType as formDesign,\r\nFS.Status as formStatus,\r\nGR.Lot as lot,GR.Subdivision as subdivision,\r\nGR.FullAddress as address,\r\nV.CompanyName as primaryVendor,\r\nMF.BalanceDue as balanceDue,\r\nFT.ID as formTypeID,\r\nFT.CodeEnforcement as codeEnforcement,\r\nFT.MunicipalityInternalForm as municipalityInternalForm,\r\nFC.ID as FormCategory,\r\nMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 \r\nwhere  \r\n   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) \r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd",
+    "countQueryString" : "select count(*) from (SELECT MF.FormGuid as formGuid,\r\nMF.FormTitle as formTitle,\r\nU.FullName as createdBy,\r\nMF.DateSubmitted as dateSubmitted,\r\nMU.MunicipalityName as municipalityName,\r\n\r\nFT.FormType as formDesign,\r\nFS.Status as formStatus,\r\nGR.Lot as lot,GR.Subdivision as subdivision,\r\nGR.FullAddress as address,\r\nV.CompanyName as primaryVendor,\r\nMF.BalanceDue as balanceDue,\r\nFT.ID as formTypeID,\r\nFT.CodeEnforcement as codeEnforcement,\r\nFT.MunicipalityInternalForm as municipalityInternalForm,\r\nFC.ID as FormCategory,\r\nMF.DateModified as dateModified\r\nFROM MasterForms MF\r\nLEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId\r\nLEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId\r\nLEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId\r\nLEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID\r\nLEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId\r\nLEFT JOIN Users AS U ON U.ID=MF.UserId\r\nLEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId\r\nLEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,\r\n\t\t\t\tGF.RelatedFormGuid as formGuid,GR.Lot,SD.Subdivision,GR.FullAddress FROM GIS2Forms GF, GisRecords GR, Subdivisions SD\r\n\t\t\t\tWHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId\r\n) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1 \r\nwhere  \r\n   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId) \r\n\tand(:municipalityInternalForm IS NULL OR FT.MunicipalityInternalForm=:municipalityInternalForm)\r\n\tand (:Closed IS NULL OR  Closed=:Closed)\r\n\tAND DateSubmitted BETWEEN :startd and :endd) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "municipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "municipalityInternalForm",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "Closed",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : false
+    }, {
+      "name" : "startd",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1473069947000,
+      "required" : true
+    }, {
+      "name" : "endd",
+      "type" : "timestamp",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : 1497521151000,
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.MunicipalityFormsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "formGuid",
+        "fieldName" : "formGuid",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formTitle",
+        "fieldName" : "formTitle",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "createdBy",
+        "fieldName" : "createdBy",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "dateSubmitted",
+        "fieldName" : "dateSubmitted",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityName",
+        "fieldName" : "municipalityName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formDesign",
+        "fieldName" : "formDesign",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "formStatus",
+        "fieldName" : "formStatus",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "lot",
+        "fieldName" : "lot",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "subdivision",
+        "fieldName" : "subdivision",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "address",
+        "fieldName" : "address",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "primaryVendor",
+        "fieldName" : "primaryVendor",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "balanceDue",
+        "fieldName" : "balanceDue",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.math.BigDecimal",
+          "list" : false
+        }
+      }, {
+        "name" : "formTypeID",
+        "fieldName" : "formTypeId",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "codeEnforcement",
+        "fieldName" : "codeEnforcement",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "municipalityInternalForm",
+        "fieldName" : "municipalityInternalForm",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Boolean",
+          "list" : false
+        }
+      }, {
+        "name" : "FormCategory",
+        "fieldName" : "formCategory",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "dateModified",
+        "fieldName" : "dateModified",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "org.joda.time.LocalDateTime",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "MunicipalityProjects" : {
     "name" : "MunicipalityProjects",
     "description" : "MunicipalityProjects",

@@ -26,7 +26,7 @@
                 <wm-gridrow name="gridrow6">
                     <wm-gridrow name="gridrow7_1">
                         <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
-                            <wm-composite name="composite3" show="false" accessroles="CXAdmin">
+                            <wm-composite name="composite3" show="true" accessroles="CXAdmin">
                                 <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
                                 <wm-container class="col-md-7" name="container3">
                                     <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
@@ -36,7 +36,7 @@
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
                         <wm-gridcolumn columnwidth="3" name="gridcolumn32">
-                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="false">
+                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
                                 <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
                                 <wm-container class="col-md-8" name="containerStart">
                                     <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" datavalue="START DATE" placeholder="Start Date"></wm-date>
@@ -44,7 +44,7 @@
                             </wm-composite>
                         </wm-gridcolumn>
                         <wm-gridcolumn columnwidth="3" name="gridcolumn33">
-                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="false">
+                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
                                 <wm-label padding="unset 0.5em" name="label13" class="col-md-4 form-control-static" fontweight="bold" caption="End Date"></wm-label>
                                 <wm-container class="col-md-8" name="containerEnd">
                                     <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
@@ -76,29 +76,25 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.Cx2MasterFormsData.dataSet" navigation="Classic" name="gridMunicipalityForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="users.fullName" caption="Submitted By" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                            <wm-grid-column binding="dateSubmitted" caption="Date Submitted" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateSubmitted') | toLocalDateString:true}}</wm-grid-column>
-                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text"
-                            show="true" related-entity-name="Municipalities"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.formType" caption="Form" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormTypes"></wm-grid-column>
-                            <wm-grid-column binding="formStatuses.status" caption="Form Status" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="FormStatuses"></wm-grid-column>
-                            <wm-grid-column binding="vendor.companyName" caption="Primary Contractor" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Vendor"></wm-grid-column>
-                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="big_decimal" generator="assigned" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="formTypes.codeEnforcement" caption="Code Enforcement" type="boolean" widget-type="checkbox" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="FormTypes">
-                                <wm-checkbox scopedatavalue="row['formTypes.codeEnforcement']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                        <wm-grid title="" dataset="bind:Variables.svSearchAllForms.dataSet" navigation="Classic" name="gridMunicipalityForm" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found">
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                            <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateSubmitted" caption="Date Submitted" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="primaryVendor" caption="Primary Contractor" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" filterwidget="number" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                             </wm-grid-column>
-                            <wm-grid-column binding="formTypes.municipalityInternalForm" caption="Internal" type="boolean" widget-type="checkbox" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="FormTypes">
-                                <wm-checkbox scopedatavalue="row['formTypes.municipalityInternalForm']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                            <wm-grid-column binding="codeEnforcement" caption="Code Enforcement" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                <wm-checkbox scopedatavalue="row['codeEnforcement']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
-                            <wm-grid-column binding="closed" caption="Closed" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                <wm-checkbox scopedatavalue="row['closed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                            <wm-grid-column binding="municipalityInternalForm" caption="Municipality Internal Form" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
+                                <wm-checkbox scopedatavalue="row['municipalityInternalForm']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
-                            <wm-grid-column binding="dateModified" caption="Date Modified" type="timestamp" generator="assigned" edit-widget-type="timestamp" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateModified') | toLocalDateString}}</wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)"
-                            disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -108,7 +104,7 @@
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
         <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
-            <wm-param name="FormGUID" value="bind:Widgets.gridMunicipalityForms.selecteditem.formGuid" type="string"></wm-param>
+            <wm-param name="FormGUID" value="bind:Widgets.gridMunicipalityForm.selecteditem.formGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
 </wm-page>

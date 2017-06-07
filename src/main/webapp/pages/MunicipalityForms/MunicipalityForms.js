@@ -40,13 +40,6 @@ Application.$controller("MunicipalityFormsPageController", ["$scope", function($
         }
     };
 
-    $scope.getStartDateTime = function() {
-        return !!$scope.Widgets.datetimeStart.datavalue ? moment($scope.Widgets.datetimeStart.datavalue).startOf('day').valueOf() : undefined;
-    };
-
-    $scope.getEndDateTime = function() {
-        return !!$scope.Widgets.datetimeEnd.datavalue ? moment($scope.Widgets.datetimeEnd.datavalue).endOf('day').valueOf() : undefined;
-    };
 
 }]);
 
@@ -63,6 +56,13 @@ Application.$controller("gridMunicipalityFormsController", ["$scope",
 ]);
 
 Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("gridMunicipalityFormController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
