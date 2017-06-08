@@ -45,7 +45,8 @@
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn79">
                                                             <wm-form-field name="municipalityInternalInspection" displayname="Municipality Internal Inspection" show="true" primary-key="false" generator="assigned" key="municipalityInternalInspection" type="boolean"
                                                             readonly="false" required="false" widget="checkbox" defaultvalue="false" hint="This hides the inspection design from standard CivicXpress users and makes it available only to Municipality Employees."
-                                                            placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                            placeholder="" checkedvalue="true" uncheckedvalue="false" accessroles="CXAdmin"></wm-form-field>
+                                                            <wm-label padding="unset 0.5em" name="label18" caption="This field is currently only visible to CXAdmin pending future development." fontweight="bold" fontstyle="italic" accessroles="CXAdmin"></wm-label>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn80_1"></wm-gridcolumn>
                                                     </wm-gridrow>
@@ -201,12 +202,14 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn82" padding="unset 1em unset unset">
                                                                 <wm-form-field name="allowCancel" displayname="Allow Cancellations" show="true" primary-key="false" generator="assigned" key="allowCancel" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="false" placeholder="" on-change="allowCancelChange($event, $scope, newVal, oldVal)" hint="If enabled, users will be able to cancel this inspection while it is in the &quot;Requested&quot; or &quot;Scheduled&quot; Outcomes. The municipality can optionally assess a fee for cancellations below."
-                                                                checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                checkedvalue="true" uncheckedvalue="false" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label19" caption="This field is currently only visible to CXAdmin pending future development." fontstyle="italic" fontweight="bold" accessroles="CXAdmin"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57_3">
                                                                 <wm-form-field name="allowSameDayCancel" displayname="Allow Same Day Cancellations" show="true" primary-key="false" generator="assigned" key="allowSameDayCancel" type="boolean" readonly="false"
                                                                 required="false" widget="checkbox" defaultvalue="false" placeholder="" hint="If enabled, users will be able to cancel this inspection on the same day that it is scheduled to be performed. The municipality can optionally assess a fee for same day cancellations below. &quot;Allow Cancellations&quot; must be selected to enable this setting."
-                                                                disabled="bind:!Widgets.lfUpdateInspectionDesign.formWidgets.allowCancel.datavalue" checkedvalue="true" uncheckedvalue="false" margin="unset 1em unset unset"></wm-form-field>
+                                                                disabled="bind:!Widgets.lfUpdateInspectionDesign.formWidgets.allowCancel.datavalue" checkedvalue="true" uncheckedvalue="false" margin="unset 1em unset unset" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label20" caption="This field is currently only visible to CXAdmin pending future development." fontstyle="italic" fontweight="bold" accessroles="CXAdmin"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -219,7 +222,7 @@
                                                     <wm-layoutgrid name="layoutgrid13">
                                                         <wm-gridrow name="gridrow42" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn66_1">
-                                                                <wm-label padding="unset 0.5em" name="label11" caption="These are the &quot;high level&quot; inspection fees that can be assessed with this inspection design, which are enabled with the &quot;Allow Same Day Inspections&quot;, &quot;Allow Cancellations&quot;, and &quot;Allow Same Day Cancellations&quot; settings above."></wm-label>
+                                                                <wm-label padding="unset 0.5em" name="label11" caption="These are the &quot;high level&quot; inspection fees that can be assessed with this inspection design, which are enabled with the &quot;Allow Same Day Inspections&quot; setting above."></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow43" padding="unset unset 1em unset">
@@ -237,23 +240,29 @@
                                                         <wm-gridrow name="gridrow40_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn61" padding="unset 1em unset unset">
                                                                 <wm-form-field name="cancelFee" displayname="Cancellation Fee" show="bind:Widgets.lfUpdateInspectionDesign.formWidgets.allowCancel.datavalue" primary-key="false" generator="assigned" key="cancelFee"
-                                                                type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="false"></wm-form-field>
+                                                                type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="false" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label21" caption="This field is currently only visible to CXAdmin pending future development." fontweight="bold" fontstyle="italic" accessroles="CXAdmin"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn64_1" padding="unset 1em unset unset">
                                                                 <wm-form-field name="cancelFeeAccount" displayname="Cancellation Fee Accounting Code" show="bind:Widgets.lfUpdateInspectionDesign.formWidgets.allowCancel.datavalue" primary-key="false" generator="assigned"
                                                                 key="cancelFeeAccount" type="string" readonly="false" required="bind:Widgets.lfUpdateInspectionDesign.formWidgets.cancelFee.datavalue > 0" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                disabled="false"></wm-form-field>
+                                                                disabled="false" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label22" caption="This field is currently only visible to CXAdmin pending future development." accessroles="CXAdmin" fontstyle="italic"
+                                                                fontweight="bold"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow41_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn63" padding="unset 1em unset unset">
                                                                 <wm-form-field name="sameDayCancelFee" displayname="Same Day Cancellation Fee" show="bind:Widgets.lfUpdateInspectionDesign.formWidgets.allowSameDayCancel.datavalue" primary-key="false" generator="assigned"
-                                                                key="sameDayCancelFee" type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="false"></wm-form-field>
+                                                                key="sameDayCancelFee" type="integer" maxvalue="1000000000000" readonly="false" required="false" step="0.01" widget="currency" minvalue="0" placeholder="Enter value" disabled="false" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label23" accessroles="CXAdmin" caption="This field is currently only visible to CXAdmin pending future development." fontweight="bold"
+                                                                fontstyle="italic"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn65" padding="unset 1em unset unset">
                                                                 <wm-form-field name="sameDayCancelAcctCode" displayname="Same Day Cancellation Accounting Code" show="bind:Widgets.lfUpdateInspectionDesign.formWidgets.allowSameDayCancel.datavalue" primary-key="false"
                                                                 generator="assigned" key="sameDayCancelAcctCode" type="string" readonly="false" required="bind:Widgets.lfUpdateInspectionDesign.formWidgets.sameDayCancelFee.datavalue > 0" widget="text" maxchars="255"
-                                                                inputtype="text" placeholder="Enter value" disabled="false"></wm-form-field>
+                                                                inputtype="text" placeholder="Enter value" disabled="false" accessroles="CXAdmin"></wm-form-field>
+                                                                <wm-label padding="unset 0.5em" name="label24" accessroles="CXAdmin" fontstyle="italic" fontweight="bold" caption="This field is currently only visible to CXAdmin pending future development."></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow49_1">
@@ -343,7 +352,7 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn69">
                                             <wm-livegrid formlayout="dialog" name="livegridOutcome">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.InspectionOutcomeData.dataSet" navigation="Classic" name="gridOutcome" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="outcomeOrder" caption="Outcome Order" type="integer" primary-key="false" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="outcome" caption="Outcome" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="assessFeeYn" caption="Assess Fee" type="boolean" widget-type="checkbox" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">

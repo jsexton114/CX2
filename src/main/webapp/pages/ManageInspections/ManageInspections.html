@@ -36,9 +36,6 @@
                                     show="true" readonly="false">
                                         <wm-checkbox scopedatavalue="row['active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                     </wm-grid-column>
-                                    <wm-grid-column binding="municipalityInternalInspection" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                        <wm-checkbox scopedatavalue="row['municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                    </wm-grid-column>
                                     <wm-grid-action key="addNewRow" display-name="New Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Inspection" action="Widgets.dlgCreateInspectionDesign.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.goToPage_EditInspection.invoke()" disabled="false"></wm-grid-row-action>
                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dlgDeleteInspectionDesign.open()" disabled="false"></wm-grid-row-action>
