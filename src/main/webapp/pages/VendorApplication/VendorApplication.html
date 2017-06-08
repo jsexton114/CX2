@@ -122,6 +122,12 @@
                                         outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
+                                <wm-gridrow name="gridrow1">
+                                    <wm-gridcolumn name="gridcolumn1" columnwidth="4">
+                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="true" widget="checkbox" defaultvalue="true" checkedvalue="true"
+                                        uncheckedvalue="false"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                             </wm-layoutgrid>
                             <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                             <wm-form-action key="save" display-name="Submit" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Submit" disabled="false" type="submit" update-mode="true"></wm-form-action>
