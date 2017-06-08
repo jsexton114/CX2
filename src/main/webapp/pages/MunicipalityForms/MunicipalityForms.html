@@ -94,7 +94,7 @@
                             <wm-grid-column binding="municipalityInternalForm" caption="Municipality Internal Form" type="string" widget-type="checkbox" edit-widget-type="text" show="true" readonly="false">
                                 <wm-checkbox scopedatavalue="row['municipalityInternalForm']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                             </wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Widgets.pagedialogViewForm.open()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>

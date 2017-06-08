@@ -95,6 +95,8 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
-        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewInspection" modal="true" class="modal-larger" title="View Inspection" iconclass="wi wi-assignment"></wm-pagedialog>
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewInspection" modal="true" class="modal-larger" title="View Inspection" iconclass="wi wi-assignment">
+            <wm-param name="inspectionGuid" value="bind:Widgets.gridMunicipalityInspections.selecteditem.inspectionGuid" type="string"></wm-param>
+        </wm-pagedialog>
     </wm-view>
 </wm-page>
