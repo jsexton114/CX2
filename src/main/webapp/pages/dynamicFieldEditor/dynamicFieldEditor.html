@@ -179,7 +179,7 @@
                 <wm-gridrow name="gridrow86">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn116_1">
                         <wm-composite name="composite10" show="bind:(Widgets.selectFormFieldType.datavalue.label === 'Number' || Widgets.selectFormFieldType.datavalue.label === 'Calculated') &amp;&amp; !pageParams.inspectionDesignId">
-                            <wm-label class="col-md-3 control-label" name="label38" caption="Automatic Fee Type"></wm-label>
+                            <wm-label class="col-md-3 form-control-static" name="label38" caption="Automatic Fee" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container11">
                                 <wm-select name="selectAutoFeeType" placeholder="None" dataset="bind:Variables.stvAutoFeeTypes.dataSet" datafield="value" displayfield="label"></wm-select>
                             </wm-container>
@@ -204,7 +204,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Dynamic Field" iconclass="wi wi-text-fields" name="dlgDeleteDynamicField">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Dynamic Field" iconclass="wi wi-trash" name="dlgDeleteDynamicField">
             <wm-layoutgrid name="layoutgrid4">
                 <wm-gridrow name="gridrow18">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn34">

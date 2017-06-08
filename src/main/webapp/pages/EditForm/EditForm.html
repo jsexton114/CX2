@@ -66,10 +66,14 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn71_1">
                                                 <wm-panel iconclass="wi wi-spellcheck" autoclose="outsideClick" name="panel10_1" title="Form Naming" class="panel-primary">
                                                     <wm-layoutgrid name="layoutgrid10_1">
+                                                        <wm-gridrow name="gridrow94_3">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn128">
+                                                                <wm-label name="label25" caption="These settings control the appearance of the unique Form Title that is generated for each form of this design that is submitted."></wm-label>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
                                                         <wm-gridrow name="gridrow61" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn91">
-                                                                <wm-label name="label25" caption="These settings control the appearance of the unique Form Title that is generated for each form of this design that is submitted."></wm-label>
-                                                                <wm-label name="label20" caption="Form Naming options can only be set once during initial form design setup. After the first form of this Form Design has been submitted by a user, these settings are automatically disabled in order to prevent changes causing duplicate Form Titles."></wm-label>
+                                                                <wm-label name="label20" caption="Form Naming options can only be set one time during initial form design setup. After a user has submitted the first form of this design, these settings are automatically permanently disabled (in order to prevent changes leading to duplicate Form Titles)."></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow43_2" padding="unset unset 1em unset">
@@ -328,15 +332,14 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneCATEGORIES" title="Categories">
                                 <wm-layoutgrid name="layoutgrid6">
-                                    <wm-gridrow name="gridrow55">
+                                    <wm-gridrow name="gridrow55" padding="unset unset 1em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn80">
-                                            <wm-label padding="unset 0.5em" name="label15" caption="You can add this form to one or many form categories. This will affect where the form appears to CivicXpress users, makes the form searchable by category, and is used to generate municipality statistics and reporting."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label35_1" caption="&quot;Internal Only&quot; categories are only visible to municipality employees."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label15" caption="You may add this form to one or many form categories. This will affect where the form appears to CivicXpress users, makes the form searchable by category, and is used to generate municipality statistics and reporting."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow87">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn121">
-                                            <wm-label padding="unset 0.5em" name="label36_1" caption="Note: forms can be added to both public and internal categories. To control visibility of the form itself, you must use the &quot;Municipality Internal Form&quot; checkbox on the &quot;Settings&quot; tab above."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label36_1" caption="Note: forms can be added to both public and &quot;Internal Only&quot; form categories. To control the visibility of the form itself, you must use the &quot;Municipality Internal Form&quot; checkbox on the &quot;Settings&quot; tab above."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow26">
@@ -370,7 +373,7 @@
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow30">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn62_1" padding="2em unset unset unset">
-                                                                <wm-label name="label62_1" caption="If this form belongs in a category that isn't available above, you can create a new category on the Manage Forms page." margin="unset 0.5em unset unset"></wm-label>
+                                                                <wm-label name="label62_1" caption="If this form belongs in a category that isn't listed above, you can create a new category on the Manage Forms page." margin="unset 0.5em unset unset"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
@@ -390,14 +393,13 @@
                                 <wm-layoutgrid name="layoutgrid13">
                                     <wm-gridrow name="gridrow56_1" padding="unset unset 1em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn81_1">
-                                            <wm-label padding="unset 0.5em" name="label16" caption="Form Fields are used to collect information and guide a user who is submitting this form design. A minimum of one form field is required."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label19" caption="What data would you like to collect?"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label16" caption="Form Fields are used to collect data and present information to the user who is submitting this form. A minimum of one form field is required."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow83_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn112_2">
-                                            <wm-label padding="unset 0.5em" name="label33_1" caption="Please note: there are three fields created by default on new form designs, that are linked to the &quot;Automatic Fees&quot; on the Settings tab- &quot;Total Square Feet (100)&quot;, &quot;Total Units (101)&quot;, and &quot;Has Basement (102)&quot;."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label36" caption="If you delete these default fields but want to utilize the automatic fees, you will have to create a new field and set the &quot;Automatic Fee Type&quot; for that field."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label33_1" caption="Note: there are three fields created by default on new form designs that are linked to the &quot;Automatic Fees&quot; on the Settings tab- &quot;Total Square Feet (100)&quot;, &quot;Total Units (101)&quot;, and &quot;Has Basement (102)&quot;."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label36" caption="If you delete these default fields, but would still like to utilize the automatic fees, you will have to create a new &quot;Number&quot; field and set the &quot;Automatic Fee&quot; to either &quot;Unit Fee&quot; or &quot;Square Footage&quot; for that field."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow57">
@@ -411,21 +413,15 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneSTATUS" title="Statuses">
                                 <wm-layoutgrid name="layoutgrid14">
-                                    <wm-gridrow name="gridrow58">
+                                    <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn85">
-                                            <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed, from submission to completion."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label17" caption="Form Statuses are the steps that a form takes while being processed, from submission to completion. When users submit a form to the municipality it will advance into the first status listed below."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form designs. A minimum of one form status is required."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow100_2">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn137">
-                                            <wm-label padding="unset 0.5em" name="label34" caption="When users submit a form to the municipality it will advance into the first status listed below."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label35" caption="&quot;Submitted&quot; is the first status provided by default on new form designs. A minimum of one form status is required."></wm-label>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow99_2">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn136">
-                                            <wm-label padding="unset 0.5em" name="label45_1" caption="If you would like to have a PDF of a &quot;Letter&quot; generated when the form enters a particular status, use the &quot;Letters&quot; icon to specify which letter template should be created. Letter templates are built for each form design on the &quot;Letters&quot; tab above."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label18" caption="Use the &quot;Edit&quot; icon to view the Form Status Options and control how you would like this form design to be processed by your municipality."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow59">
@@ -873,7 +869,7 @@
     <wm-view class="dialog-view" name="view4">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Form Status Letters" iconclass="wi wi-notepad" name="dialogFormStatusLetters" class="modal-larger">
             <wm-layoutgrid name="layoutgrid25">
-                <wm-gridrow name="gridrow91">
+                <wm-gridrow name="gridrow91" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn125">
                         <wm-label padding="unset 0.5em" name="label45_2" caption="Form Status:" fontsize="15"></wm-label>
                         <wm-label padding="unset 0.5em" name="label42" fontweight="bold" caption="bind:Widgets.gridFormTypeStatus.selecteditem.status" fontsize="18"></wm-label>
@@ -882,7 +878,7 @@
                 <wm-gridrow name="gridrow95_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn130">
                         <wm-label padding="unset 0.5em" name="label43_1" caption="The letters below will be generated as a PDF when the form enters the selected status."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label44_1" caption="You can choose to attach the letter to the form (recommended), and if an email is being sent for this form status, you can also attach the letter to that email."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label44_1" caption="You can choose to attach the letter to the form (recommended), and if an email is being sent for this form status (controlled on the &quot;Form Status Options&quot; menu), you can also attach the letter to that email."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow92_1">
@@ -941,22 +937,21 @@
     <wm-view class="dialog-view" name="view5">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Import Statuses" iconclass="wi wi-content-copy" name="dialogCopyStatuses">
             <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-primary" caption="Import" on-click="Variables.svCopyFormStatuses.invoke();Widgets.dialogCopyStatuses.close()" name="buttonCopyStatuses" iconclass="wi wi-plus"></wm-button>
+                <wm-button class="btn-primary" caption="Import" on-click="Variables.svCopyFormStatuses.invoke();Widgets.dialogCopyStatuses.close()" name="buttonCopyStatuses" iconclass="wi wi-plus" disabled="bind:!Widgets.selectCopyFormDesign.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button6" iconclass="wi wi-cancel" on-click="Widgets.dialogCopyStatuses.close()"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid25_1" columns="1">
                 <wm-gridrow name="gridrow90" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn124">
                         <wm-label padding="unset 0.5em" name="label46" caption="Using this function will import all form statuses from the &quot;Source Form Design&quot; that you specify below."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label47" caption="Note: all form statuses and their corresponding &quot;Form Status Options&quot; will be imported, but the &quot;Form Status Letters&quot; settings will not be imported (as letter templates are unique to each form design)."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow94_2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn136_1">
                         <wm-composite name="composite3_1">
-                            <wm-label class="col-md-4 form-control-static" name="label44" caption="Source Form Design" fontweight="bold" padding="unset 0.5em"></wm-label>
+                            <wm-label class="col-md-4 form-control-static" name="label44" caption="Source Form Design" fontweight="bold" padding="unset 0.5em" required="true"></wm-label>
                             <wm-container class="col-md-8" name="container5" padding="unset 0.5em unset unset">
-                                <wm-select name="selectCopyFormDesign" dataset="bind:Variables.lvMuniForms.dataSet" datafield="All Fields" displayfield="formType" placeholder="Select Form Design"></wm-select>
+                                <wm-select name="selectCopyFormDesign" dataset="bind:Variables.lvMuniForms.dataSet" datafield="All Fields" displayfield="formType" placeholder="Select Form Design" required="true"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -974,10 +969,15 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow89">
+                <wm-gridrow name="gridrow89" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn123">
                         <wm-label padding="unset 0.5em" name="label49" caption="When selected, all of the existing statuses on the form design you are currently editing will be replaced by the new statuses imported from the &quot;Source Form Design&quot; selected above."
                         class="help-block" fontsize="0.8" fontunit="em"></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow93_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn127">
+                        <wm-label padding="unset 0.5em" name="label47" caption="Note: all form statuses and their corresponding &quot;Form Status Options&quot; will be imported, but the &quot;Form Status Letters&quot; settings will not be imported (as letter templates are unique to each form design)."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
