@@ -199,7 +199,7 @@
                     </wm-layoutgrid>
                     <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                     <wm-form-field name="formCategories" displayname="Form Categories" show="false" primary-key="false" generator="assigned" key="formCategories" type="list" is-related="true" readonly="false" required="false" widget="select"
-                    placeholder="Select value" dataset="bind:Widgets.gridFormsInCategory.selecteditem.formCategories" datafield="All Fields" displayfield="category" defaultvalue="bind:Widgets.gridFormsInCategory.selecteditem.formCategories"></wm-form-field>
+                    placeholder="Select value" dataset="bind:Widgets.gridFormcategories.selecteditem" datafield="All Fields" defaultvalue="bind:Widgets.gridFormcategories.selecteditem" displayfield="category"></wm-form-field>
                     <wm-form-action key="save" display-name="Add Form" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Add Form" disabled="false" type="submit" update-mode="true"></wm-form-action>
                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                 </wm-liveform>

@@ -5188,6 +5188,22 @@
     "isList" : false,
     "saveInPhonegap" : false
   },
+  "stvSelectedCategory" : {
+    "_id" : "wm-stvSelectedCategory-wm.Variable-1496914039743",
+    "name" : "stvSelectedCategory",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ {
+      "target" : "dataValue",
+      "value" : "bind:Widgets.gridFormcategories.selecteditem"
+    } ],
+    "dataSet" : {
+      "dataValue" : ""
+    },
+    "type" : "entry",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "svCopyFormDesign" : {
     "_id" : "wm-svCopyFormDesign-wm.ServiceVariable-1494881406096",
     "name" : "svCopyFormDesign",
