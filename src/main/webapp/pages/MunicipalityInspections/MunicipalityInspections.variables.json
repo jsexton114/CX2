@@ -190,5 +190,32 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "svMunicipalityInspectionCount" : {
+    "_id" : "wm-svMunicipalityInspectionCount-wm.ServiceVariable-1496900859456",
+    "name" : "svMunicipalityInspectionCount",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.MunicipalityInspectionCountResponse",
+    "service" : "cx2",
+    "operation" : "executeMunicipalityInspectionCount",
+    "operationId" : "QueryExecutionController_executeMunicipalityInspectionCount",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   }
 }

@@ -256,6 +256,20 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <query name="MunicipalityInspectionCount">
+        <![CDATA[
+        select count(*) as inspectionsCount from MasterInspections where inspectionDesign.municipalityId=:municipality
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </query>
+
+    <query name="MunicipalityInspectionCount__count">
+        <![CDATA[
+        select count(*)  from MasterInspections where inspectionDesign.municipalityId=:municipality
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </query>
+
     <sql-query name="OutcomeByDesign">
         <![CDATA[
         select * from InspectionOutcome where InspectDesignId=:inspectionDesign and Outcome=:outcome
@@ -4131,6 +4145,78 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
         select count(*) from (SELECT RoleName, MunicipalityId FROM Roles WHERE UserId=:userId) wmTempTable
         ]]>
     <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="ALLMunicipalityInspections">
+        <![CDATA[
+        select MI.inspectionGuid as inspectionGuid,
+MI.assignedTo as assignedTo,
+MI.DateAssigned as dateAssigned,
+assignedUser.fullName as assignedToPersonName,
+IO.outcome as outcome,
+MI.inspectionTitle as inspectionTitle,
+gis.inspectionZone as inspectionZone,
+MI.requestedFor as requestedFor,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+gis.subdivision as subdivision,
+requestedBy.fullName as requestedByFullName,
+ID.inspectDesignName as inspectDesignName
+from MasterInspections as MI
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.InspectionZone,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1
+LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
+LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
+LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
+LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
+where (:municipality IS NULL OR ID.municipalityId=:municipality) and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
+    </sql-query>
+
+    <sql-query name="ALLMunicipalityInspections__count">
+        <![CDATA[
+        select count(*) from (select MI.inspectionGuid as inspectionGuid,
+MI.assignedTo as assignedTo,
+MI.DateAssigned as dateAssigned,
+assignedUser.fullName as assignedToPersonName,
+IO.outcome as outcome,
+MI.inspectionTitle as inspectionTitle,
+gis.inspectionZone as inspectionZone,
+MI.requestedFor as requestedFor,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+gis.subdivision as subdivision,
+requestedBy.fullName as requestedByFullName,
+ID.inspectDesignName as inspectDesignName
+from MasterInspections as MI
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				SD.Subdivision,
+				GR.InspectionZone,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=MI.FormGUID AND gis.rn=1
+LEFT OUTER JOIN Users assignedUser on assignedUser.id=MI.assignedTo
+LEFT OUTER JOIN Users requestedBy on requestedBy.id=MI.requestedBy
+LEFT OUTER JOIN InspectionDesign ID on ID.ID=MI.InspectionDesignId
+LEFT OUTER JOIN InspectionOutcome IO ON IO.ID=MI.InspectionOutcomeId
+where (:municipality IS NULL OR ID.municipalityId=:municipality) and (:startDate is null or MI.DateAssigned >= :startDate) and (:endDate is null or MI.DateAssigned <= :endDate)) wmTempTable
+        ]]>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    <query-param name="startDate" type="org.joda.time.LocalDateTime"/>
+    <query-param name="endDate" type="org.joda.time.LocalDateTime"/>
     </sql-query>
 
     <sql-query name="DeleteProjectForms">

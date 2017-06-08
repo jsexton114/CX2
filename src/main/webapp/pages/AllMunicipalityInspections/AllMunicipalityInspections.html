@@ -1,10 +1,100 @@
-<wm-page data-ng-controller="AllMunicipalityInspectionsPageController" pagetitle="All Municipality Inspections"> 
-    <wm-header content="header"></wm-header> 
-    <wm-top-nav content="topnav"></wm-top-nav> 
-    <wm-content> 
-        <wm-left-panel columnwidth="2" content="leftnav"></wm-left-panel> 
-        <wm-page-content columnwidth="10"> 
-        </wm-page-content> 
-    </wm-content> 
-    <wm-footer content="footer"></wm-footer> 
+<wm-page data-ng-controller="AllMunicipalityInspectionsPageController" pagetitle="All Municipality Inspections" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+    <wm-content name="content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
+            <wm-layoutgrid name="layoutgrid1">
+                <wm-gridrow name="gridrow1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1">
+                        <wm-breadcrumb dataset="bind:Variables.Breadcrumbs.dataSet" name="breadcrumb1"></wm-breadcrumb>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow2">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                        <wm-label caption="Municipality Forms" fontweight="bold" name="label1" class="h4"></wm-label>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                        <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
+                            <wm-label class="col-md-3 form-control-static" name="label3" fontweight="bold" caption="Select Municipality"></wm-label>
+                            <wm-container class="col-md-9" name="container1">
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" orderby="MunicipalityName:asc" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridrow name="gridrow7_1">
+                        <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
+                            <wm-composite name="composite3" show="true" accessroles="CXAdmin">
+                                <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
+                                <wm-container class="col-md-7" name="container3">
+                                    <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                    placeholder="" width="169px"></wm-select>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn32">
+                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
+                                <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
+                                <wm-container class="col-md-8" name="containerStart">
+                                    <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" placeholder="Start Date"></wm-date>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                        <wm-gridcolumn columnwidth="3" name="gridcolumn33">
+                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
+                                <wm-label padding="unset 0.5em" name="label13" class="col-md-4 form-control-static" fontweight="bold" caption="End Date"></wm-label>
+                                <wm-container class="col-md-8" name="containerEnd">
+                                    <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
+                                </wm-container>
+                            </wm-composite>
+                        </wm-gridcolumn>
+                    </wm-gridrow>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow12">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn20">
+                        <wm-panel iconclass="" autoclose="outsideClick" title="" name="panelCharts" accessroles="CXAdmin" show="false">
+                            <wm-layoutgrid name="layoutgridCharts">
+                                <wm-gridrow name="gridrow13">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn22"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn23"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow14">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn24"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn25"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow10">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn15">
+                        <wm-label padding="unset 0.5em" name="label3_1" caption="All forms that have been submitted to the municipality are shown here. This includes both Forms and Cases (&quot;Code Enforcement&quot; forms), both Public and &quot;Internal&quot; forms, and both &quot;Open&quot; and &quot;Closed&quot; forms in all statuses."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow3">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn5">
+                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found">
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                            <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                        </wm-grid>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-page-content>
+    </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
+    <wm-view class="dialog-view" name="view3">
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewInspection" modal="true" class="modal-larger" title="View Inspection" iconclass="wi wi-assignment"></wm-pagedialog>
+    </wm-view>
 </wm-page>

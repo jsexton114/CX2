@@ -1,1 +1,83 @@
-{ }
+{
+  "Breadcrumbs" : {
+    "_id" : "wm-Breadcrumbs-wm.Variable-1494512677480",
+    "name" : "Breadcrumbs",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "Inspections DashBoard",
+      "icon" : "wi wi-account-balance",
+      "link" : "#/MunicipalityInspections"
+    }, {
+      "label" : "Municipality Inspections",
+      "icon" : "wi wi-assignment",
+      "link" : "#/AllMunicipalityInspections"
+    } ],
+    "type" : "string",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
+  "stvPeriods" : {
+    "_id" : "wm-stvPeriods-wm.Variable-1494514430159",
+    "name" : "stvPeriods",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "dataValue" : "All Time"
+    }, {
+      "dataValue" : "This Year"
+    }, {
+      "dataValue" : "This Half"
+    }, {
+      "dataValue" : "This Quarter"
+    }, {
+      "dataValue" : "This Month"
+    }, {
+      "dataValue" : "This Week"
+    }, {
+      "dataValue" : "Today"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svSearchAllInspections" : {
+    "_id" : "wm-svSearchAllFormsByUser-wm.ServiceVariable-1491901178781",
+    "name" : "svSearchAllInspections",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "municipality",
+      "value" : "bind:Widgets.selectMunicipality.datavalue.ID",
+      "type" : "integer"
+    }, {
+      "target" : "startDate",
+      "value" : "bind:Widgets.datetimeStart.timestamp",
+      "type" : "string"
+    }, {
+      "target" : "endDate",
+      "value" : "bind:Widgets.datetimeEnd.timestamp",
+      "type" : "string"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.AllmunicipalityInspectionsResponse",
+    "service" : "cx2",
+    "operation" : "executeALLMunicipalityInspections",
+    "operationId" : "QueryExecutionController_executeALLMunicipalityInspections",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "designMaxResults" : 10,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  }
+}

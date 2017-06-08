@@ -65,6 +65,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable);
 
+    MunicipalityInspectionCountResponse executeMunicipalityInspectionCount(Integer municipality);
+
     Page<OutcomeByDesignResponse> executeOutcomeByDesign(Integer inspectionDesign, String outcome, Pageable pageable);
 
     Downloadable exportOutcomeByDesign(ExportType exportType, Integer inspectionDesign, String outcome, Pageable pageable);
@@ -656,6 +658,10 @@ public interface Cx2QueryExecutorService {
     Page<GetRolesForUserResponse> executeGetRolesForUser(Integer userId, Pageable pageable);
 
     Downloadable exportGetRolesForUser(ExportType exportType, Integer userId, Pageable pageable);
+
+    Page<AllmunicipalityInspectionsResponse> executeALLMunicipalityInspections(Integer municipality, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+
+    Downloadable exportALLMunicipalityInspections(ExportType exportType, Integer municipality, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 
     Integer executeDeleteProjectForms(Integer projectForm);
 

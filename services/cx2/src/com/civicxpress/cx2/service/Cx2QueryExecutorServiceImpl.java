@@ -247,6 +247,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public MunicipalityInspectionCountResponse executeMunicipalityInspectionCount(Integer municipality) {
+        Map params = new HashMap(1);
+
+        params.put("municipality", municipality);
+
+        return queryExecutor.executeNamedQuery("MunicipalityInspectionCount", params, MunicipalityInspectionCountResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<OutcomeByDesignResponse> executeOutcomeByDesign(Integer inspectionDesign, String outcome, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -3607,6 +3617,30 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("userId", userId);
 
         return queryExecutor.exportNamedQueryData("getRolesForUser", params, exportType, GetRolesForUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<AllmunicipalityInspectionsResponse> executeALLMunicipalityInspections(Integer municipality, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.executeNamedQuery("ALLMunicipalityInspections", params, AllmunicipalityInspectionsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportALLMunicipalityInspections(ExportType exportType, Integer municipality, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
+        Map params = new HashMap(3);
+
+        params.put("municipality", municipality);
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+
+        return queryExecutor.exportNamedQueryData("ALLMunicipalityInspections", params, exportType, AllmunicipalityInspectionsResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

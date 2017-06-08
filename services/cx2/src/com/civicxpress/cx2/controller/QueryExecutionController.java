@@ -227,6 +227,16 @@ public class QueryExecutionController {
         return queryService.exportGetEmailId(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/MunicipalityInspectionCount", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "MunicipalityInspectionCount")
+    public MunicipalityInspectionCountResponse executeMunicipalityInspectionCount(@RequestParam(value = "municipality") Integer municipality) {
+        LOGGER.debug("Executing named query: MunicipalityInspectionCount");
+        MunicipalityInspectionCountResponse _result = queryService.executeMunicipalityInspectionCount(municipality);
+        LOGGER.debug("got the result for named query: MunicipalityInspectionCount, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/OutcomeByDesign", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "OutcomeByDesign")
@@ -3067,6 +3077,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: getRolesForUser");
 
         return queryService.exportGetRolesForUser(exportType, userId, pageable);
+    }
+
+    @RequestMapping(value = "/queries/ALLMunicipalityInspections", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "ALLMunicipalityInspections")
+    public Page<AllmunicipalityInspectionsResponse> executeALLMunicipalityInspections(@RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+        LOGGER.debug("Executing named query: ALLMunicipalityInspections");
+        Page<AllmunicipalityInspectionsResponse> _result = queryService.executeALLMunicipalityInspections(municipality, startDate, endDate, pageable);
+        LOGGER.debug("got the result for named query: ALLMunicipalityInspections, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query ALLMunicipalityInspections")
+    @RequestMapping(value = "/queries/ALLMunicipalityInspections/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportALLMunicipalityInspections(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+        LOGGER.debug("Exporting named query: ALLMunicipalityInspections");
+
+        return queryService.exportALLMunicipalityInspections(exportType, municipality, startDate, endDate, pageable);
     }
 
     @RequestMapping(value = "/queries/DeleteProjectForms", method = RequestMethod.DELETE)
