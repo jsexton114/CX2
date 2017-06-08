@@ -33,6 +33,7 @@
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn22_1b"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="3" name="gridcolumn32">
                         <wm-composite name="compositeStart" padding="unset unset unset 2em">
                             <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
@@ -48,9 +49,6 @@
                                 <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
                             </wm-container>
                         </wm-composite>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn22_1b">
-                        <wm-button class="btn-primary" caption="View Fees Report" type="button" margin="unset 0.5em" name="btnViewReport" on-click="btnViewReportClick($event, $scope)"></wm-button>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
@@ -84,12 +82,12 @@
                                             <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="userName" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paymentMethod" caption="Payment Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="transactionDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('transactionDate') | toLocalDateString}}</wm-grid-column>
                                                 <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2"
                                                 edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="userName" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()"
                                                 disabled="false"></wm-grid-row-action>
                                             </wm-grid>
@@ -99,29 +97,32 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneFees" title="Fees" show="true">
                                 <wm-layoutgrid name="layoutgrid5">
-                                    <wm-gridrow name="gridrow14_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                                            <wm-grid title="" dataset="bind:Variables.svFeesOfMunicipality.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn">
-                                                <wm-grid-column binding="amount" caption="Amount" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formType" caption="Form Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="municipalityName" caption="Municipality Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="feeComments" caption="Fee Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="subdivision" caption="Subdivision" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="dateModified" caption="Date Modified" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paidDate" caption="Paid Date" type="string" datepattern="MM-dd-yyyy hh:mm" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paidBy" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
+                                    <wm-gridrow name="gridrow15_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn24_1"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow15">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn24"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn24" horizontalalign="right">
+                                            <wm-button class="btn-primary" caption="View Report" type="button" margin="unset unset unset 0.5em" name="btnViewReport" on-click="btnViewReportClick($event, $scope)" iconclass="wi wi-equalizer"></wm-button>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow14_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn27">
+                                            <wm-grid title="" dataset="bind:Variables.svFeesOfMunicipality.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" showrecordcount="true">
+                                                <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="feeType" caption="Fee Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="feeComments" caption="Fee Comments" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formType" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="address" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paidBy" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="paidDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('paidDate') | toLocalDateString:true}}</wm-grid-column>
+                                                <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
