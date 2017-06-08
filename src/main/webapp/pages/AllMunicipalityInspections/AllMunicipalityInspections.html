@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
-                        <wm-label caption="Municipality Forms" fontweight="bold" name="label1" class="h4"></wm-label>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="1em unset">
+                        <wm-label caption="Municipality Inspections" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label3" fontweight="bold" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -71,22 +71,23 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                        <wm-label padding="unset 0.5em" name="label3_1" caption="All forms that have been submitted to the municipality are shown here. This includes both Forms and Cases (&quot;Code Enforcement&quot; forms), both Public and &quot;Internal&quot; forms, and both &quot;Open&quot; and &quot;Closed&quot; forms in all statuses."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label3_1" caption="All inspections that have been generated for the municipality are shown here. This includes inspections that have been requested, scheduled, and performed, and shows both &quot;Open&quot; and &quot;Closed&quot; inspections in all outcomes."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found">
+                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found"
+                        exportformat="EXCEL">
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                             <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="inspectDesignName" caption="Inspect Design" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}</wm-grid-column>
                             <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -95,7 +96,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
-        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewInspection" modal="true" class="modal-larger" title="View Inspection" iconclass="wi wi-assignment">
+        <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewInspection" modal="true" class="modal-larger" title="View Inspection" iconclass="wi wi-find-in-page">
             <wm-param name="inspectionGuid" value="bind:Widgets.gridMunicipalityInspections.selecteditem.inspectionGuid" type="string"></wm-param>
         </wm-pagedialog>
     </wm-view>
