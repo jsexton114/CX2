@@ -397,7 +397,7 @@ public class InspectionService {
         return fileBytes;
     }
 
-    private String sendOutcomeUpdateMail(String requestorFullName ,String requestorEmail,String emailSubject,String emailBody,String municipality,String inspectionDesign,String inspectionOutcome,String lot,String fullAddress,String subdivision,String municipalitySignature,String inspectionTitle,String formLink, MimeBodyPart letterAttachment) throws MessagingException {
+    private String sendOutcomeUpdateMail(String requestorFullName ,String requestorEmail,String emailSubject,String emailBody,String municipality,String inspectionDesign,String inspectionOutcome,String lot,String fullAddress,String subdivision,String municipalitySignature,String inspectionTitle,String formLink, String filename, byte[] letterPdf) throws MessagingException {
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -446,9 +446,21 @@ public class InspectionService {
         emailContent.append("Lot: "+lot);
         emailContent.append("<br /><br />");
         emailContent.append(municipalitySignature +"<br/><br/>");
-        
+
+		Multipart messageContents = new MimeMultipart();
+        MimeBodyPart messageBody = new MimeBodyPart();
+        messageBody.setContent(emailContent.toString(), "text/html");
+        messageContents.addBodyPart(messageBody);
+		if (letterPdf != null) {
+			ByteArrayDataSource fileDS = new ByteArrayDataSource(letterPdf, "application/pdf");
+			MimeBodyPart letterAttachment = new MimeBodyPart();
+			letterAttachment.setDataHandler(new DataHandler(fileDS));
+			letterAttachment.setFileName(filename);
+			messageContents.addBodyPart(letterAttachment);
+		}
+
         message.setSubject(emailSubject);
-        message.setContent(emailContent.toString(), "text/html");
+        message.setContent(messageContents);
         // Send smtp message
         Transport tr = session.getTransport("smtp");
         tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
@@ -478,7 +490,8 @@ public class InspectionService {
         	Long oldOutcomeId = inspectionData.getLong("InspectionOutcomeId");
     		String inspectionTitle = inspectionData.getString("InspectionTitle");
 			Long inspectionDesignId = inspectionData.getLong("InspectionDesignId");
-        	
+        	String formGuid = inspectionData.getString("FormGuid");
+
         	params.addLong("oldOutcomeId", oldOutcomeId);
         	params.addString("comments", comments);
         	
@@ -491,14 +504,13 @@ public class InspectionService {
     		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO InspectionHistory (InspectionGUID,NewOutcomeId,OldOutcomeId,Comments,CreatedBy) "
     				+"VALUES (:inspectionGuid,:newOutcomeId,:oldOutcomeId,:comments,:createdBy)",
     				params);
-        	
-        	cx2Conn.commit();
-        	
-			System.out.println("*JS* outcomeLetterTemplates code");
-			System.out.println("*JS* inspectionOutcomeId: " + inspectionOutcomeId);
+
+			cx2Conn.commit();
+
 			MimeBodyPart letterAttachment = null;
 			List<DBRow> outcomeLetterTemplates = DBUtils.selectQuery(cx2Conn, "SELECT * FROM [LetterTemplateToInspectionOutcome] WHERE [InspectionOutcomeId]=:newOutcomeId", params);
-			System.out.println("*JS* outcomeLetterTemplates != null: " + String.valueOf(outcomeLetterTemplates != null));
+			String filename = null;
+			byte[] letterPdf = null;
 			if (outcomeLetterTemplates != null) {
 				for (DBRow outcomeLetterTemplate : outcomeLetterTemplates) {
 					Boolean attachToEmail = outcomeLetterTemplate.getBoolean("AttachToEmail");
@@ -506,29 +518,23 @@ public class InspectionService {
 					
 					if (attachToEmail || attachToItem) {
 						Integer letterTemplateId = outcomeLetterTemplate.getInteger("LetterTemplateId");
-						String filename = cleanInspectionTitleAndDateForFilename(inspectionTitle) + ".pdf";
-						System.out.println("*JS* letterTemplateId: " + letterTemplateId);
-						System.out.println("*JS* filename: " + filename);
-						System.out.println("*JS* inspectionDesignId: " + inspectionDesignId);
-						byte[] letterPdf = createLetterPdf(letterTemplateId, inspectionDesignId, inspectionGuid);
+						filename = cleanInspectionTitleAndDateForFilename(inspectionTitle) + ".pdf";
+						letterPdf = createLetterPdf(letterTemplateId, inspectionDesignId, inspectionGuid);
 
 						if (attachToItem) {
 							DBQueryParams attachParams = new DBQueryParams();
 							attachParams.addString("inspectionGuid", inspectionGuid);
-							System.out.println("*JS* inspectionGuid: " + inspectionGuid);
+							attachParams.addString("formGuid", formGuid);
 							attachParams.addString("filename", filename);
 							attachParams.addBytes("letterPdf", letterPdf);
 							attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
 							DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:inspectionGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+							DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+							cx2Conn.commit();
 						}
 
-						if (attachToEmail) {
-						    ByteArrayDataSource fileDS = new ByteArrayDataSource(letterPdf, "application/pdf");
-						    
-						    letterAttachment.setDataHandler(new DataHandler(fileDS));
-						    letterAttachment.setFileName(filename);
-							
-							letterAttachment = new MimeBodyPart();
+						if (!attachToEmail) {
+							letterPdf = null;
 						}
 					}
 				}
@@ -556,10 +562,10 @@ public class InspectionService {
 	        			gisRecordData.getString("Subdivision"),
 	        			municipalityData.getString("GlobalEmailSig"),
 	        			inspectionData.getString("InspectionTitle"),
-	        			formLink, 
-						letterAttachment
+	        			formLink, filename, letterPdf
 	        	);
         	}
+        	
         } catch (SQLException e) {
         	cx2Conn.rollback();
         	throw e;
