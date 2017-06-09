@@ -429,16 +429,30 @@
                                             <wm-livegrid formlayout="dialog" name="livegrid1">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="gridFormTypeStatus" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                    <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="status" caption="Status" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="description" caption="Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="sendEmail" caption="Send Email" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                    <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" width="8%" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="status" caption="Status" type="string" width="12%" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="description" caption="Description" type="string" width="20%" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="sendEmail" caption="Send Email" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true"
+                                                    readonly="false">
                                                         <wm-checkbox scopedatavalue="row['sendEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
-                                                    <wm-grid-column binding="advanceOnZero" caption="Advance on Zero" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                    <wm-grid-column binding="recalculateAutoFees" caption="Recalculate Auto Fees" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true"
+                                                    readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['recalculateAutoFees']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-column binding="allowPayment" caption="Allow User Payments" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true"
+                                                    readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['allowPayment']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-column binding="advanceOnZero" caption="Advance on Zero Balance" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true"
+                                                    readonly="false">
                                                         <wm-checkbox scopedatavalue="row['advanceOnZero']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
-                                                    <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                    <wm-grid-column binding="allowInspections" caption="Allow Inspection Requests" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true"
+                                                    readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['allowInspections']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
+                                                    <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" width="10%" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="New Status" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Status" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
@@ -453,6 +467,12 @@
                                                 <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-control-point" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
                                                 name="lfFormTypeStatus" on-error="liveform2Error($event, $operation, $data)">
                                                     <wm-layoutgrid columns="3" name="StatusLayout">
+                                                        <wm-gridrow name="gridrowHeader">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumnHeader">
+                                                                <wm-label name="labelHeader1" caption="Form Status:" padding="unset 0.5em" show="false"></wm-label>
+                                                                <wm-label name="labelHeader2" caption="bind:Widgets.gridFormTypeStatus.selecteditem.status" padding="unset 0.5em" fontweight="bold" show="false"></wm-label>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
                                                         <wm-gridrow name="gridrowSettings">
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumnstatus">
                                                                 <wm-panel iconclass="wi wi-settings" name="panel5" title="General Settings" class="panel-primary">
@@ -551,11 +571,11 @@
                                                                     <wm-gridrow name="gridrow23_2" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn44_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" readonly="false"
-                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="When selected, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="When selected, Automatic Fees will be recalculated (based on changes made to form fields or fee adjustments) when the form advances to this status. Fees that have already been paid will not be recalculated. This setting is not available if &quot;Consider Closed&quot; is selected."
                                                                             checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn43_2" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="allowPayment" displayname="Allow Payments" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" readonly="false" required="false"
+                                                                            <wm-form-field name="allowPayment" displayname="Allow User Payments" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" readonly="false" required="false"
                                                                             widget="checkbox" defaultvalue="false" placeholder="" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process payments. This setting is not available if &quot;Consider Closed&quot; is selected."
                                                                             checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
