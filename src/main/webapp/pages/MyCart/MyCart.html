@@ -18,15 +18,17 @@
                                                 <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
-                                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="false" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
+                                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="false" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)"
+                                                shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                            <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to either a $1.00 or 3.5% convenience fee, whichever is greater."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to a convenience fee of 3.0% plus $0.50 per transaction."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities, and it covers bank transaction costs associated with credit card transactions."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label3" caption="This convenience fee may be avoided by paying in person at the municipality payment counter."></wm-label>
                                         </wm-gridcolumn>
@@ -47,7 +49,8 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
+                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType"
+                                            usekeys="false"></wm-radioset>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".2em unset">

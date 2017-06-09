@@ -9,9 +9,10 @@
             <wm-gridrow name="gridrow1">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn1">
                     <wm-composite name="composite4_1" show="bind:pageParams.muniSelectedByPage != 'true' &amp;&amp; Variables.StandardUserMunicipalities.dataSet.content.length > 1" padding="unset unset 2em unset">
-                        <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold"></wm-label>
+                        <wm-label class="col-md-3 form-control-static" caption="Select Municipality" name="label20" width="160px" fontweight="bold" required="true"></wm-label>
                         <wm-container class="col-md-9" name="container4" width="240px">
-                            <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="ID" displayfield="MunicipalityName" name="selectMunicipality" orderby="MunicipalityName:asc" placeholder="Select Municipality" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
+                            <wm-select dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="ID" displayfield="MunicipalityName" name="selectMunicipality" orderby="MunicipalityName:asc" placeholder="Select Municipality" on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"
+                            required="true"></wm-select>
                         </wm-container>
                     </wm-composite>
                 </wm-gridcolumn>
@@ -34,9 +35,9 @@
             <wm-gridrow name="gridrow3">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                     <wm-composite name="composite4" show="bind:!!Variables.svFormTypes.dataSet.content.length" padding="unset unset 1em unset">
-                        <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form" width="160px" fontweight="bold"></wm-label>
+                        <wm-label class="col-md-3 form-control-static" name="label19" caption="Select Form" width="160px" fontweight="bold" required="true"></wm-label>
                         <wm-container class="col-md-9" name="container3" width="240px">
-                            <wm-select name="selectForm" dataset="bind:Variables.svFormTypes.dataSet" datafield="ID" displayfield="FormType" placeholder="Select Form" orderby="FormType:asc"></wm-select>
+                            <wm-select name="selectForm" dataset="bind:Variables.svFormTypes.dataSet" datafield="ID" displayfield="FormType" placeholder="Select Form" orderby="FormType:asc" required="true"></wm-select>
                         </wm-container>
                     </wm-composite>
                 </wm-gridcolumn>

@@ -143,6 +143,17 @@ Application.$controller("lfFormTypeStatusController", ["$scope",
                 $scope.Widgets.lfFormTypeStatus.formWidgets.allowSharedWithEdits.datavalue = false;
             }
         };
+
+        $scope.considerClosedChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === true) {
+                $scope.Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue = false;
+                $scope.Widgets.lfFormTypeStatus.formWidgets.allowSharedWithEdits.datavalue = false;
+                $scope.Widgets.lfFormTypeStatus.formWidgets.recalculateAutoFees.datavalue = false;
+                $scope.Widgets.lfFormTypeStatus.formWidgets.allowPayment.datavalue = false;
+                $scope.Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue = false;
+                $scope.Widgets.lfFormTypeStatus.formWidgets.allowInspections.datavalue = false;
+            }
+        };
     }
 ]);
 

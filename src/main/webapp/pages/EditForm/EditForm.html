@@ -438,9 +438,6 @@
                                                     <wm-grid-column binding="advanceOnZero" caption="Advance on Zero" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['advanceOnZero']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
-                                                    <wm-grid-column binding="publicRead" caption="Public Read" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
-                                                        <wm-checkbox scopedatavalue="row['publicRead']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                                                    </wm-grid-column>
                                                     <wm-grid-column binding="considerClosed" caption="Consider Closed" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['considerClosed']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
@@ -505,18 +502,21 @@
                                                                     <wm-gridrow name="gridrow120_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn42_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowAuthorEdits" displayname="Allow &quot;Submitted By&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowAuthorEdits" type="boolean"
-                                                                            readonly="false" required="false" widget="checkbox" placeholder="" hint="This allows the user who submitted the form to make edits to the form information during this status."
-                                                                            defaultvalue="false" on-change="allowAuthorEditsChange($event, $scope, newVal, oldVal)" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                            readonly="false" required="false" widget="checkbox" placeholder="" hint="This allows the user who submitted the form to make edits to the form information during this status. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            defaultvalue="false" on-change="allowAuthorEditsChange($event, $scope, newVal, oldVal)" checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn36_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowSharedWithEdits" displayname="Allow &quot;Shared With&quot; Edits" show="true" primary-key="false" generator="assigned" key="allowSharedWithEdits" type="boolean"
-                                                                            readonly="false" required="false" widget="checkbox" placeholder="" hint="If &quot;Allow Created By Edits&quot; is enabled, you can also allow users who the form has been shared with to edit the form information during this status."
-                                                                            defaultvalue="false" disabled="bind:!Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                            readonly="false" required="false" widget="checkbox" placeholder="" hint="If &quot;Allow Created By Edits&quot; is enabled, you can also allow users who the form has been shared with to edit the form information during this status. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            defaultvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue || !Widgets.lfFormTypeStatus.formWidgets.allowAuthorEdits.datavalue" checkedvalue="true"
+                                                                            uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="publicRead" displayname="Allow Public Read Access" show="true" primary-key="false" generator="assigned" key="publicRead" type="boolean" readonly="false" required="false"
                                                                             widget="checkbox" defaultvalue="false" hint="The form will be considered a &quot;Public Record&quot; while it is in this status, allowing the public to view the form." checkedvalue="true"
-                                                                            uncheckedvalue="false" placeholder=""></wm-form-field>
+                                                                            uncheckedvalue="false" placeholder="" accessroles="CXAdmin" disabled="true"></wm-form-field>
+                                                                            <wm-label padding="unset 1em" name="label27_1" caption="This field is currently disabled and only visible to CXAdmin pending future development." fontweight="bold"
+                                                                            fontstyle="italic" accessroles="CXAdmin"></wm-label>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -551,20 +551,21 @@
                                                                     <wm-gridrow name="gridrow23_2" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn44_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" readonly="false"
-                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="When selected, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."
-                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="When selected, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn43_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowPayment" displayname="Allow Payments" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" readonly="false" required="false"
-                                                                            widget="checkbox" defaultvalue="false" placeholder="" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process fees."
-                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                            widget="checkbox" defaultvalue="false" placeholder="" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process payments. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn43_3" padding="unset 1em unset unset"></wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow1136_2">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn128_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="advanceOnZero" displayname="Advance on Zero Balance" show="true" primary-key="false" generator="assigned" key="advanceOnZero" type="boolean" readonly="false"
-                                                                            required="false" widget="checkbox" defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When selected, the form will automatically advance to the specified status when all fees on the form are paid."></wm-form-field>
+                                                                            required="false" widget="checkbox" defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When selected, the form will automatically advance to the specified status when all fees on the form are paid. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn129" padding="unset 1em unset unset">
                                                                             <wm-form-field name="statusToBeOnForAdvanceOnZero" displayname="Advance to Status" show="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" primary-key="false" generator="assigned"
@@ -584,8 +585,8 @@
                                                                     <wm-gridrow name="gridrow23_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn45_1" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowInspections" displayname="Allow Inspection Requests" show="true" primary-key="false" generator="assigned" key="allowInspections" type="boolean" readonly="false"
-                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="This allows inspections to be requested by the end user while the form is in this status. Municipality employees can always request an inspection."
-                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="This allows inspections to be requested by the end user while the form is in this status. Municipality employees can always request an inspection. This setting is not available if &quot;Consider Closed&quot; is selected."
+                                                                            checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.lfFormTypeStatus.formWidgets.considerClosed.datavalue"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
@@ -597,8 +598,8 @@
                                                                     <wm-gridrow name="gridrow24_1" padding="unset unset 1em unset">
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn48" padding="unset 1em unset unset">
                                                                             <wm-form-field name="considerClosed" displayname="Consider Closed" show="true" primary-key="false" generator="assigned" key="considerClosed" type="boolean" readonly="false" required="false"
-                                                                            widget="checkbox" defaultvalue="false" placeholder="" hint="This should be reserved for the final form status and is used to indicate that form processing is complete." checkedvalue="true"
-                                                                            uncheckedvalue="false"></wm-form-field>
+                                                                            widget="checkbox" defaultvalue="false" placeholder="" hint="This setting indicates that form processing is complete, and should be reserved for a final form status. When selected, several other Form Status Options will become unavailable."
+                                                                            on-change="considerClosedChange($event, $scope, newVal, oldVal)" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
