@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="unset unset 1em unset">
                         <wm-label caption="Inspection Management" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -23,7 +23,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow2" padding="1em unset">
+                <wm-gridrow name="gridrow2" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-find-in-page" autoclose="outsideClick" name="panelInspectionDesigns" title="Municipality Inspections" class="panel-primary">
                             <wm-livegrid formlayout="dialog" name="livegridInspectiondesign">
@@ -44,7 +44,7 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow4_1" padding="1em unset">
+                <wm-gridrow name="gridrow4_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
                         <wm-panel iconclass="wi wi-group-work" autoclose="outsideClick" title="Inspection Categories" class="panel-primary" name="panelInspectionCategories">
                             <wm-livegrid formlayout="dialog" name="livegridInspectioncategories">
@@ -135,9 +135,6 @@
     </wm-view>
     <wm-view class="dialog-view" name="viewInspectionWithCategory">
         <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Inspections in Category: &quot;+Widgets.gridInspectioncategories.selecteditem.inspectionCategory" iconclass="wi wi-find-in-page" name="dialogInspectionWithCategory" width="60%">
-            <wm-dialogactions name="dialogactions3">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button5" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
             <wm-livegrid formlayout="dialog" name="livegridInspectionWithCategory">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvInspectionCategoryMappingData.dataSet" navigation="Classic" name="gridInspectionWithCategory" confirmdelete="Are you sure you would like to remove the selected inspection from this category?"
                 filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
@@ -147,11 +144,8 @@
                     <wm-grid-column binding="inspectionDesign.active" caption="Active" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true" related-entity-name="InspectionDesign">
                         <wm-checkbox scopedatavalue="row['inspectionDesign.active']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                     </wm-grid-column>
-                    <wm-grid-column binding="inspectionDesign.municipalityInternalInspection" caption="Internal Only" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" readonly="true" edit-widget-type="checkbox" show="true"
-                    related-entity-name="InspectionDesign">
-                        <wm-checkbox scopedatavalue="row['inspectionDesign.municipalityInternalInspection']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
-                    </wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Inspection" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Inspection" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-action key="customButton" display-name="Close" show="true" class="btn-secondary" iconclass="wi wi-cancel" title="Close" action="Widgets.dialogInspectionWithCategory.close()" shortcutkey="" disabled="false"></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.ngGoToInspection.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>

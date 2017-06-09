@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="unset unset 1em unset">
                         <wm-label caption="Form Management" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -23,7 +23,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow2">
+                <wm-gridrow name="gridrow2" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-assignment" name="panelMyForms" title="Municipality Forms" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid3">
@@ -158,9 +158,6 @@
     </wm-view>
     <wm-view class="dialog-view" name="viewFormsInCategory">
         <wm-dialog dialogtype="design-dialog" modal="true" title="bind:&quot;Forms in Category: &quot; +Widgets.gridFormcategories.selecteditem.category" iconclass="wi wi-assignment" name="dialogFormsInCategory" width="60%">
-            <wm-dialogactions name="dialogactions2">
-                <wm-button class="btn-secondary" caption="Close" on-click="closeDialog()" name="button3" iconclass="wi wi-cancel"></wm-button>
-            </wm-dialogactions>
             <wm-label padding=".5em 0.5em 1em 0.5em" name="label4" fontweight="bold" caption="This is an &quot;Internal-Only&quot; Form Category, which is only visible to Municipality Employees." show="bind:Widgets.gridFormcategories.selecteditem.municipalityInternalCategory"></wm-label>
             <wm-livegrid formlayout="dialog" name="livegridFormsInCategory">
                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFormCategoryMappingData.dataSet" navigation="Classic" name="gridFormsInCategory" confirmdelete="Are you sure you would like to remove the selected form from this category?"
@@ -178,6 +175,7 @@
                         <wm-checkbox scopedatavalue="row['formTypes.codeEnforcement']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                     </wm-grid-column>
                     <wm-grid-action key="addNewRow" display-name="Add Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Form" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                    <wm-grid-action key="customButton" display-name="Close" title="Close" value="" iconclass="wi wi-cancel" class="btn-secondary" show="true" action="Widgets.dialogFormsInCategory.close()" shortcutkey=""></wm-grid-action>
                     <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="Variables.nvGotoEditForm.invoke()" disabled="false"></wm-grid-row-action>
                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                 </wm-grid>
@@ -216,7 +214,7 @@
                 <wm-gridrow name="gridrow19_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20">
                         <wm-label padding="unset 0.5em" name="label9" caption="Using the &quot;+Create&quot; button will generate a copy of the selected form."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label10_1" caption="By default, all &quot;Form Settings&quot; will be copied (Form Details, Form Naming, Form Options, and Automatic Fees if applicable), but you can also choose to copy form Categories, Fields, and Statuses using the checkboxes below."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label10_1" caption="By default, all &quot;Form Settings&quot; will be copied (Form Details, Form Naming, Form Options, and Automatic Fees if applicable), but you can also choose to copy form statuses using the checkbox below."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow19">
@@ -231,17 +229,19 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow22">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                        <wm-composite name="composite9">
+                        <wm-composite name="composite9" accessroles="CXAdmin">
                             <wm-label class="col-md-3 form-control-static" name="label11" caption="Copy Categories?" fontweight="bold"></wm-label>
                             <wm-checkbox caption="" class="col-md-9" name="checkboxCopyCategories" disabled="true"></wm-checkbox>
+                            <wm-label padding="unset 0.5em" name="label12" fontweight="bold" fontstyle="italic" caption="This field has been disabled and made visible only to CXAdmin pending future development."></wm-label>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow21">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn26_1">
-                        <wm-composite name="composite8" show="true">
+                        <wm-composite name="composite8" show="true" accessroles="CXAdmin">
                             <wm-label class="col-md-3 form-control-static" name="label10" caption="Copy Fields?" fontweight="bold"></wm-label>
                             <wm-checkbox caption="" class="col-md-9" name="checkboxCopyFields" disabled="true"></wm-checkbox>
+                            <wm-label padding="unset 0.5em" name="label11_1" caption="This field has been disabled and made visible only to CXAdmin pending future development." fontstyle="italic" fontweight="bold"></wm-label>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
