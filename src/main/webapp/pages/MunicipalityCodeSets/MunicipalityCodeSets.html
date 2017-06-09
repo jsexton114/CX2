@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow7">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn17_1" padding="unset unset 1em unset">
                         <wm-label name="label5" caption="Municipality Code Sets" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn19_1" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -23,8 +23,14 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow5_1">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                        <wm-label padding="unset 0.5em" name="label3" caption="Code Sets are assigned individually to inspection designs where the &quot;Track Violations&quot; setting is enabled, and allow inspectors to cite violations of specific codes on an inspection."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label4" caption="The following code sets can be cited as violations within your municipality only."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow5">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn12" padding="2em unset" horizontalalign="center">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn12" horizontalalign="center">
                         <wm-livegrid formlayout="dialog" name="livegridCodeSets">
                             <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvCodeSetsData.dataSet" navigation="Classic" name="gridCodeSets" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
