@@ -4231,6 +4231,53 @@
       } ]
     }
   },
+  "FormTypesForMunicipalitySettings" : {
+    "name" : "FormTypesForMunicipalitySettings",
+    "description" : "FormTypesForMunicipalitySettings",
+    "version" : "V2",
+    "queryString" : "select ID,FormType from FormTypes where MunicipalityId=:MunicipalityId",
+    "countQueryString" : "select count(*) from (select ID,FormType from FormTypes where MunicipalityId=:MunicipalityId) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "MunicipalityId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FormTypesForMunicipalitySettingsResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      }, {
+        "name" : "FormType",
+        "fieldName" : "formType",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "FormsByCategory" : {
     "name" : "FormsByCategory",
     "description" : "FormsByCategory",
@@ -10346,6 +10393,55 @@
     "request" : {
       "wrapped" : true,
       "typeRef" : "com.civicxpress.cx2.models.query.UpdateConsiderClosedForInspectionOutcomeRequest",
+      "method" : "PUT"
+    },
+    "response" : {
+      "typeRef" : "java.lang.Integer",
+      "returns" : "ENTITY",
+      "responseType" : "SINGLE"
+    }
+  },
+  "UpdateContractorManagementSettings" : {
+    "name" : "UpdateContractorManagementSettings",
+    "description" : "UpdateContractorManagementSettings",
+    "version" : "V2",
+    "queryString" : "update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId where ID=:municipality",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "UPDATE",
+    "parameters" : [ {
+      "name" : "autoApproveContractors",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : true,
+      "required" : true
+    }, {
+      "name" : "separateContractorApplicationRequired",
+      "type" : "boolean",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : false,
+      "required" : true
+    }, {
+      "name" : "formId",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    }, {
+      "name" : "municipality",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "1",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : true,
+      "typeRef" : "com.civicxpress.cx2.models.query.UpdateContractorManagementSettingsRequest",
       "method" : "PUT"
     },
     "response" : {

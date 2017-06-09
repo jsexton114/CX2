@@ -66,6 +66,9 @@ public class Municipalities implements Serializable {
     private int userLimit;
     private int formLimit;
     private boolean allowOfflineCc;
+    private boolean autoApproveContractors;
+    private boolean separateContractorApplicationRequired;
+    private Integer contractorApplicationFormId;
     private States states;
     private List<CodeSets> codeSetses;
     private List<CaseTypes> caseTypeses;
@@ -364,6 +367,33 @@ public class Municipalities implements Serializable {
 
     public void setAllowOfflineCc(boolean allowOfflineCc) {
         this.allowOfflineCc = allowOfflineCc;
+    }
+
+    @Column(name = "`AutoApproveContractors`", nullable = false)
+    public boolean isAutoApproveContractors() {
+        return this.autoApproveContractors;
+    }
+
+    public void setAutoApproveContractors(boolean autoApproveContractors) {
+        this.autoApproveContractors = autoApproveContractors;
+    }
+
+    @Column(name = "`SeparateContractorApplicationRequired`", nullable = false)
+    public boolean isSeparateContractorApplicationRequired() {
+        return this.separateContractorApplicationRequired;
+    }
+
+    public void setSeparateContractorApplicationRequired(boolean separateContractorApplicationRequired) {
+        this.separateContractorApplicationRequired = separateContractorApplicationRequired;
+    }
+
+    @Column(name = "`ContractorApplicationFormId`", nullable = true, scale = 0, precision = 10)
+    public Integer getContractorApplicationFormId() {
+        return this.contractorApplicationFormId;
+    }
+
+    public void setContractorApplicationFormId(Integer contractorApplicationFormId) {
+        this.contractorApplicationFormId = contractorApplicationFormId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

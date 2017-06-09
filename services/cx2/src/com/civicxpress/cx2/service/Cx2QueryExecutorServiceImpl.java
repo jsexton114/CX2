@@ -1201,6 +1201,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<FormTypesForMunicipalitySettingsResponse> executeFormTypesForMunicipalitySettings(Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.executeNamedQuery("FormTypesForMunicipalitySettings", params, FormTypesForMunicipalitySettingsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportFormTypesForMunicipalitySettings(ExportType exportType, Integer municipalityId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("MunicipalityId", municipalityId);
+
+        return queryExecutor.exportNamedQueryData("FormTypesForMunicipalitySettings", params, exportType, FormTypesForMunicipalitySettingsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<GetListofUsersResponse> executeGetListofUsers(Integer municipalityId, String email, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -2455,6 +2475,19 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
 
         return queryExecutor.exportNamedQueryData("UserCount", params, exportType, UserCountResponse.class, pageable);
+    }
+
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeUpdateContractorManagementSettings(UpdateContractorManagementSettingsRequest updateContractorManagementSettingsRequest) {
+        Map params = new HashMap(4);
+
+        params.put("autoApproveContractors", updateContractorManagementSettingsRequest.getAutoApproveContractors());
+        params.put("separateContractorApplicationRequired", updateContractorManagementSettingsRequest.getSeparateContractorApplicationRequired());
+        params.put("formId", updateContractorManagementSettingsRequest.getFormId());
+        params.put("municipality", updateContractorManagementSettingsRequest.getMunicipality());
+
+        return queryExecutor.executeNamedQueryForUpdate("UpdateContractorManagementSettings", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

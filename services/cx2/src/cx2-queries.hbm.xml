@@ -1392,6 +1392,20 @@ where id IN (select userId from Roles where roleName=:RoleName and municipalityI
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="FormTypesForMunicipalitySettings">
+        <![CDATA[
+        select ID,FormType from FormTypes where MunicipalityId=:MunicipalityId
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="FormTypesForMunicipalitySettings__count">
+        <![CDATA[
+        select count(*) from (select ID,FormType from FormTypes where MunicipalityId=:MunicipalityId) wmTempTable
+        ]]>
+    <query-param name="MunicipalityId" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="getListofUsers">
         <![CDATA[
         select a.UserId , b.Email, b.FullName from Roles a INNER JOIN Users b on a.UserId = b.ID where a.RoleName IN ('MunicipalityEmployee','MunicipalityAdmin') and a.MunicipalityId =:municipalityID and (b.Email LIKE LOWER(concat('%',:Email,'%')) OR LOWER(b.FullName) LIKE LOWER(CONCAT('%',:Email,'%')))
@@ -2634,6 +2648,16 @@ where  FT.CodeEnforcement=:codeEnforcement and
         <![CDATA[
         select count(*) from (select count(*) as usersCount from Users) wmTempTable
         ]]>
+    </sql-query>
+
+    <sql-query name="UpdateContractorManagementSettings">
+        <![CDATA[
+        update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId where ID=:municipality
+        ]]>
+    <query-param name="autoApproveContractors" type="java.lang.Boolean"/>
+    <query-param name="separateContractorApplicationRequired" type="java.lang.Boolean"/>
+    <query-param name="formId" type="java.lang.Integer"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 
     <query name="AllFeesOfFormsForCreatedByAndSharedWithByMunicipality">

@@ -1045,6 +1045,25 @@ public class QueryExecutionController {
         return queryService.exportGetMunicipalityGroupIdIDs(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/FormTypesForMunicipalitySettings", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FormTypesForMunicipalitySettings")
+    public Page<FormTypesForMunicipalitySettingsResponse> executeFormTypesForMunicipalitySettings(@RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Executing named query: FormTypesForMunicipalitySettings");
+        Page<FormTypesForMunicipalitySettingsResponse> _result = queryService.executeFormTypesForMunicipalitySettings(municipalityId, pageable);
+        LOGGER.debug("got the result for named query: FormTypesForMunicipalitySettings, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query FormTypesForMunicipalitySettings")
+    @RequestMapping(value = "/queries/FormTypesForMunicipalitySettings/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportFormTypesForMunicipalitySettings(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "MunicipalityId") Integer municipalityId, Pageable pageable) {
+        LOGGER.debug("Exporting named query: FormTypesForMunicipalitySettings");
+
+        return queryService.exportFormTypesForMunicipalitySettings(exportType, municipalityId, pageable);
+    }
+
     @RequestMapping(value = "/queries/getListofUsers", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "to get List of user based on municipality ID and role Name")
@@ -2109,6 +2128,16 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: UserCount");
 
         return queryService.exportUserCount(exportType, pageable);
+    }
+
+    @RequestMapping(value = "/queries/UpdateContractorManagementSettings", method = RequestMethod.PUT)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "UpdateContractorManagementSettings")
+    public IntegerWrapper executeUpdateContractorManagementSettings(@Valid @RequestBody UpdateContractorManagementSettingsRequest updateContractorManagementSettingsRequest) {
+        LOGGER.debug("Executing named query: UpdateContractorManagementSettings");
+        Integer _result = queryService.executeUpdateContractorManagementSettings(updateContractorManagementSettingsRequest);
+        LOGGER.debug("got the result for named query: UpdateContractorManagementSettings, result:{}", _result);
+        return new IntegerWrapper(_result);
     }
 
     @RequestMapping(value = "/queries/AllFeesOfFormsForCreatedByAndSharedWithByMunicipality", method = RequestMethod.GET)

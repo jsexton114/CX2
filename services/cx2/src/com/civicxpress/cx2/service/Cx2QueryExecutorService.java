@@ -235,6 +235,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetMunicipalityGroupIdIDs(ExportType exportType, Integer userId, Pageable pageable);
 
+    Page<FormTypesForMunicipalitySettingsResponse> executeFormTypesForMunicipalitySettings(Integer municipalityId, Pageable pageable);
+
+    Downloadable exportFormTypesForMunicipalitySettings(ExportType exportType, Integer municipalityId, Pageable pageable);
+
     Page<GetListofUsersResponse> executeGetListofUsers(Integer municipalityId, String email, Pageable pageable);
 
     Downloadable exportGetListofUsers(ExportType exportType, Integer municipalityId, String email, Pageable pageable);
@@ -456,6 +460,8 @@ public interface Cx2QueryExecutorService {
     Page<UserCountResponse> executeUserCount(Pageable pageable);
 
     Downloadable exportUserCount(ExportType exportType, Pageable pageable);
+
+    Integer executeUpdateContractorManagementSettings(UpdateContractorManagementSettingsRequest updateContractorManagementSettingsRequest);
 
     Page<AllFeesOfFormsForCreatedByAndSharedWithByMunicipalityResponse> executeAllFeesOfFormsForCreatedByAndSharedWithByMunicipality(Boolean allowPayment, Integer municipalityId, String paidStatus, Integer userId, Pageable pageable);
 

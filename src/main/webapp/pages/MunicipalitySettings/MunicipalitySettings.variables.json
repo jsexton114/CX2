@@ -595,13 +595,52 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "autoApproveContractors",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AutoApproveContractors",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
+      }, {
+        "fieldName" : "separateContractorApplicationRequired",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "SeparateContractorApplicationRequired",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "contractorApplicationFormId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ContractorApplicationFormId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 34,
+    "bindCount" : 36,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
@@ -614,6 +653,73 @@
     } ],
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Municipalities"
+  },
+  "svFormTypesForMunicipalitySettings" : {
+    "_id" : "wm-svFormTypesForMunicipalitySettings-wm.ServiceVariable-1497011305777",
+    "name" : "svFormTypesForMunicipalitySettings",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "MunicipalityId",
+      "value" : "bind:Variables.SelectedMunicipalityObj.firstRecord.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.FormTypesForMunicipalitySettingsResponse",
+    "service" : "cx2",
+    "operation" : "executeFormTypesForMunicipalitySettings",
+    "operationId" : "QueryExecutionController_executeFormTypesForMunicipalitySettings",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 100,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "panelContractorManagment"
+  },
+  "svUpdateContractorManagementSettings" : {
+    "_id" : "wm-svUpdateContractorManagementSettings-wm.ServiceVariable-1497011739310",
+    "name" : "svUpdateContractorManagementSettings",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "separateContractorApplicationRequired",
+      "value" : "bind:Widgets.checkboxSeparateContractorApplic.datavalue",
+      "type" : "boolean"
+    }, {
+      "target" : "municipality",
+      "value" : "bind:Variables.SelectedMunicipalityObj.firstRecord.id",
+      "type" : "integer"
+    }, {
+      "target" : "formId",
+      "value" : "bind:Widgets.selectForm.datavalue",
+      "type" : "integer"
+    }, {
+      "target" : "autoApproveContractors",
+      "value" : "bind:Widgets.checkboxAutoApproveContractors.datavalue",
+      "type" : "boolean"
+    } ],
+    "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
+    "service" : "cx2",
+    "operation" : "executeUpdateContractorManagementSettings",
+    "operationId" : "QueryExecutionController_executeUpdateContractorManagementSettings",
+    "operationType" : "put",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "onSuccess" : "Variables.SelectedMunicipalityObj.listRecords()",
+    "startUpdate" : false,
+    "autoUpdate" : false,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "panelContractorManagment"
   },
   "svUpdateLogo" : {
     "_id" : "wm-svUpateLogo-wm.ServiceVariable-1492720747289",
@@ -1133,6 +1239,45 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "autoApproveContractors",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AutoApproveContractors",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
+      }, {
+        "fieldName" : "separateContractorApplicationRequired",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "SeparateContractorApplicationRequired",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "contractorApplicationFormId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ContractorApplicationFormId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
