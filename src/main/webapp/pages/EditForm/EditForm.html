@@ -435,6 +435,9 @@
                                                     <wm-grid-column binding="sendEmail" caption="Send Email" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['sendEmail']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
+                                                    <wm-grid-column binding="advanceOnZero" caption="Advance on Zero" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
+                                                        <wm-checkbox scopedatavalue="row['advanceOnZero']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
+                                                    </wm-grid-column>
                                                     <wm-grid-column binding="publicRead" caption="Public Read" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['publicRead']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
@@ -546,27 +549,31 @@
                                                             <wm-gridcolumn columnwidth="12" name="gridcolumn64_2">
                                                                 <wm-panel iconclass="wi wi-attach-money" name="panel10_2" title="Payments" class="panel-primary">
                                                                     <wm-gridrow name="gridrow23_2" padding="unset unset 1em unset">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn44_2" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" readonly="false"
+                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="When selected, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."
+                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                        </wm-gridcolumn>
                                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn43_2" padding="unset 1em unset unset">
                                                                             <wm-form-field name="allowPayment" displayname="Allow Payments" show="true" primary-key="false" generator="assigned" key="allowPayment" type="boolean" readonly="false" required="false"
                                                                             widget="checkbox" defaultvalue="false" placeholder="" hint="This allows form fees to be paid by the end user while the form is in this status. Municipality employees can always process fees."
                                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
-                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn44_2" padding="unset 1em unset unset">
-                                                                            <wm-form-field name="recalculateAutoFees" displayname="Recalculate Automatic Fees" show="true" primary-key="false" generator="assigned" key="recalculateAutoFees" type="boolean" readonly="false"
-                                                                            required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="If enabled, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."
-                                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
-                                                                        </wm-gridcolumn>
-                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn128_1">
-                                                                            <wm-form-field name="advanceOnZero" displayname="Advance On Zero" show="true" primary-key="false" generator="assigned" key="advanceOnZero" type="boolean" readonly="false" required="true"
-                                                                            widget="checkbox" defaultvalue="false" placeholder=""></wm-form-field>
-                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn43_3" padding="unset 1em unset unset"></wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                     <wm-gridrow name="gridrow1136_2">
-                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn129">
-                                                                            <wm-form-field name="statusToBeOnForAdvanceOnZero" displayname="Status To Be On For Advance On Zero" show="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" primary-key="false"
-                                                                            generator="assigned" key="statusToBeOnForAdvanceOnZero" type="integer" readonly="false" required="false" step="0" widget="select" inputtype="number" placeholder="Enter value"
-                                                                            dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" defaultvalue="bind:Variables.StatusesData.firstRecord.id"></wm-form-field>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn128_1" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="advanceOnZero" displayname="Advance on Zero Balance" show="true" primary-key="false" generator="assigned" key="advanceOnZero" type="boolean" readonly="false"
+                                                                            required="false" widget="checkbox" defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When selected, the form will automatically advance to the specified status when all fees on the form are paid."></wm-form-field>
                                                                         </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn129" padding="unset 1em unset unset">
+                                                                            <wm-form-field name="statusToBeOnForAdvanceOnZero" displayname="Advance to Status" show="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" primary-key="false" generator="assigned"
+                                                                            key="statusToBeOnForAdvanceOnZero" type="integer" readonly="false" required="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" step="0" widget="select" inputtype="number"
+                                                                            placeholder="Select Status" dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" defaultvalue="bind:Variables.StatusesData.firstRecord.id"></wm-form-field>
+                                                                            <wm-label padding="unset 1em" name="label27_9" show="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" caption="Specify the status that you would like the form to advance to automatically when all fees are paid."
+                                                                            class="help-block" fontsize="0.8" fontunit="em"></wm-label>
+                                                                        </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn129_2" padding="unset 1em unset unset"></wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
                                                             </wm-gridcolumn>
