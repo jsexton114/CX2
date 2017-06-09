@@ -556,6 +556,17 @@
                                                                             required="false" widget="checkbox" placeholder="" defaultvalue="false" hint="If enabled, Automatic Fees will be recalculated when the form enters this status. Fees that have already been paid will not be recalculated."
                                                                             checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                                         </wm-gridcolumn>
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn128_1">
+                                                                            <wm-form-field name="advanceOnZero" displayname="Advance On Zero" show="true" primary-key="false" generator="assigned" key="advanceOnZero" type="boolean" readonly="false" required="true"
+                                                                            widget="checkbox" defaultvalue="false" placeholder=""></wm-form-field>
+                                                                        </wm-gridcolumn>
+                                                                    </wm-gridrow>
+                                                                    <wm-gridrow name="gridrow1136_2">
+                                                                        <wm-gridcolumn columnwidth="4" name="gridcolumn129">
+                                                                            <wm-form-field name="statusToBeOnForAdvanceOnZero" displayname="Status To Be On For Advance On Zero" show="bind:Widgets.lfFormTypeStatus.formWidgets.advanceOnZero.datavalue" primary-key="false"
+                                                                            generator="assigned" key="statusToBeOnForAdvanceOnZero" type="integer" readonly="false" required="false" step="0" widget="select" inputtype="number" placeholder="Enter value"
+                                                                            dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" defaultvalue="bind:Variables.StatusesData.firstRecord.id"></wm-form-field>
+                                                                        </wm-gridcolumn>
                                                                     </wm-gridrow>
                                                                 </wm-panel>
                                                             </wm-gridcolumn>

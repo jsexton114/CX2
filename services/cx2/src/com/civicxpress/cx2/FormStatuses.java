@@ -54,6 +54,8 @@ public class FormStatuses implements Serializable {
     private Boolean allowAttachments;
     private Integer writeAccess;
     private boolean publicRead;
+    private boolean advanceOnZero;
+    private Integer statusToBeOnForAdvanceOnZero;
     private MunicipalityGroups municipalityGroupsByWriteAccess;
     private FormTypes formTypes;
     private MunicipalityGroups municipalityGroupsByProcessOwners;
@@ -251,6 +253,24 @@ public class FormStatuses implements Serializable {
 
     public void setPublicRead(boolean publicRead) {
         this.publicRead = publicRead;
+    }
+
+    @Column(name = "`AdvanceOnZero`", nullable = false)
+    public boolean isAdvanceOnZero() {
+        return this.advanceOnZero;
+    }
+
+    public void setAdvanceOnZero(boolean advanceOnZero) {
+        this.advanceOnZero = advanceOnZero;
+    }
+
+    @Column(name = "`StatusToBeOnForAdvanceOnZero`", nullable = true, scale = 0, precision = 10)
+    public Integer getStatusToBeOnForAdvanceOnZero() {
+        return this.statusToBeOnForAdvanceOnZero;
+    }
+
+    public void setStatusToBeOnForAdvanceOnZero(Integer statusToBeOnForAdvanceOnZero) {
+        this.statusToBeOnForAdvanceOnZero = statusToBeOnForAdvanceOnZero;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

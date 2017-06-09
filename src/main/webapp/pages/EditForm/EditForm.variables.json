@@ -11849,6 +11849,32 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "advanceOnZero",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "statusToBeOnForAdvanceOnZero",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StatusToBeOnForAdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -16390,7 +16416,7 @@
     "type" : "FormStatuses",
     "isList" : true,
     "saveInPhonegap" : false,
-    "maxResults" : 20,
+    "maxResults" : 50,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : false,
@@ -17423,6 +17449,32 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "advanceOnZero",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AdvanceOnZero",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "statusToBeOnForAdvanceOnZero",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "StatusToBeOnForAdvanceOnZero",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormStatuses",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormStatuses",
@@ -17430,7 +17482,7 @@
       "primaryFields" : [ "id" ]
     },
     "isDefault" : true,
-    "bindCount" : 1,
+    "bindCount" : 3,
     "tableName" : "FormStatuses",
     "tableType" : "TABLE",
     "properties" : [ "municipalityGroupsByWriteAccess", "formTypes", "municipalityGroupsByProcessOwners" ],
