@@ -11,8 +11,8 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow56">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn147" padding="2em unset">
-                        <wm-label name="label4" caption="Search Forms" fontweight="bold" class="h4"></wm-label>
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn147" padding="unset unset 1em unset">
+                        <wm-label name="label4" caption="Form Search" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow19">
@@ -22,21 +22,21 @@
                                 <wm-layoutgrid name="layoutgridByUser">
                                     <wm-gridrow name="gridrow23">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn70">
-                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label17" width="100%"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label17" width="100%" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn71">
                                             <wm-select name="selectMunicipality" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
-                                            on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            on-change="selectMunicipalityChange($event, $scope, newVal, oldVal)" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1" orderby="MunicipalityName:asc"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn72"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn29">
-                                            <wm-label class="col-md-3 form-control-static" name="label5" caption="Select User" width="100%" fontweight="bold"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" name="label5" caption="Select User" width="100%" fontweight="bold" required="true"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn10">
                                             <wm-search name="searchUser" placeholder="Search by Name or Email Address" dataset="bind:Variables.AllUsers.dataSet" searchkey="users.email,users.fullName" displaylabel="users.fullName+' ('+users.email+')'" displayimagesrc="users.photo"
-                                            datafield="All Fields" orderby="users.fullName:asc"></wm-search>
+                                            datafield="All Fields" orderby="users.fullName:asc" required="true"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn21"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -98,7 +98,7 @@
                                     <wm-gridrow name="gridrow12" padding=".5em unset">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn19"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" name="gridcolumn20" horizontalalign="right">
-                                            <wm-button class="btn-primary" caption="Search" type="button" name="buttonSearch" on-click="buttonSearchClick($event, $scope)" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" name="buttonSearch" on-click="buttonSearchClick($event, $scope)" iconclass="wi wi-search" disabled="bind:Widgets.searchUser.datavalue == null"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn26"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -106,8 +106,8 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn34">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" name="panelSearchResults" margin="1em unset" title="Search Results" class="panel-primary">
                                                 <wm-layoutgrid name="layoutgrid2">
-                                                    <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1" padding="1em unset">
+                                                    <wm-gridrow name="gridrow3" padding="1em unset unset unset">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                                                             <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                                                 <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                                                 <wm-container class="col-md-9" name="container1" width="180px">
@@ -146,20 +146,21 @@
                                 <wm-layoutgrid name="layoutgridVendor">
                                     <wm-gridrow name="gridrow25">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn75">
-                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label19" width="100%"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label19" width="100%" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn76">
                                             <wm-select dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" name="selectMuncipalityForVENDOR"
-                                            on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            on-change="selectMuncipalityForVENDORChange($event, $scope, newVal, oldVal)" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1" orderby="MunicipalityName:asc"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn77"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow26">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn79">
-                                            <wm-label class="col-md-3 form-control-static" caption="Select Contractor" width="100%" name="label20" fontweight="bold"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" caption="Select Contractor" width="100%" name="label20" fontweight="bold" required="true"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn80">
-                                            <wm-select dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc"></wm-select>
+                                            <wm-select dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc" placeholder="Select Contractor"
+                                            required="true"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn81"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -220,7 +221,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow31">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn100"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn101">
-                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonByVendorClick($event, $scope)" name="buttonByVendor" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonByVendorClick($event, $scope)" name="buttonByVendor" iconclass="wi wi-search" disabled="bind:Widgets.selectVendor.datavalue == null"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn102"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -228,8 +229,8 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn104">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel3">
                                                 <wm-layoutgrid name="layoutgrid2">
-                                                    <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1" padding="1em unset">
+                                                    <wm-gridrow name="gridrow3" padding="1em unset unset unset">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                                                             <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                                                 <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                                                 <wm-container class="col-md-9" name="container1" width="180px">
@@ -270,11 +271,11 @@
                                 <wm-layoutgrid name="layoutgridAddress">
                                     <wm-gridrow name="gridrow34">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn108">
-                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label27" width="100%"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" caption="Select Municipality" fontweight="bold" name="label27" width="100%" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn109">
                                             <wm-select dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord" name="selectMunicipalityForAddress"
-                                            on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)"></wm-select>
+                                            on-change="selectMunicipalityForAddressChange($event, $scope, newVal, oldVal)" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1" orderby="MunicipalityName:asc"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn107"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -338,7 +339,7 @@
                                             </wm-container>
                                             <wm-container name="containerParcel" show="bind:Widgets.radiosetSelectAddressType.datavalue=='Parcel'">
                                                 <wm-layoutgrid name="layoutgrid10">
-                                                    <wm-gridrow name="gridrow28" padding="unset unset 0.5em unset">
+                                                    <wm-gridrow name="gridrow28">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn65">
                                                             <wm-search placeholder="Search by Parcel Number" dataset="bind:Variables.GISRecords.dataSet" searchkey="parcel" displaylabel="bind:'('+$[data[$i].parcel]+') '+$[data[$i].fullAddress]" datafield="All Fields"
                                                             name="searchParcel"></wm-search>
@@ -346,7 +347,7 @@
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow41_1">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn99">
-                                                            <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000"></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label23_1" caption="Example: 13-11-21-00-08-010.000" class="help-block" fontunit="em" fontsize="0.8"></wm-label>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                     <wm-gridrow name="gridrow29" padding="1em unset unset unset">
@@ -427,7 +428,7 @@
                                     <wm-gridrow padding=".5em unset" name="gridrow40">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn133"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn134">
-                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonSearchByAddressClick($event, $scope)" name="buttonSearchByAddress" iconclass="wi wi-search"></wm-button>
+                                            <wm-button class="btn-primary" caption="Search" type="button" on-click="buttonSearchByAddressClick($event, $scope)" name="buttonSearchByAddress" iconclass="wi wi-search" disabled="bind:(Widgets.searchAddress.datavalue || Widgets.searchSubdivision.datavalue || Widgets.searchParcel.datavalue) == null"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn135"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -435,8 +436,8 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn137">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel4">
                                                 <wm-layoutgrid name="layoutgrid2">
-                                                    <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1" padding="1em unset">
+                                                    <wm-gridrow name="gridrow3" padding="1em unset unset unset">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                                                             <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                                                 <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                                                 <wm-container class="col-md-9" name="container1" width="180px">
@@ -478,20 +479,21 @@
                                 <wm-layoutgrid name="layoutgridAdvanced">
                                     <wm-gridrow name="gridrow22">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn66">
-                                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold" width="100%"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold" width="100%" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn67">
-                                            <wm-select dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" name="selectMunicipalityAdvanced" placeholder="Select Municipality" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"></wm-select>
+                                            <wm-select dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" name="selectMunicipalityAdvanced" placeholder="" datavalue="bind:Variables.EmployeesMunicipalities.firstRecord"
+                                            show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1" orderby="MunicipalityName:asc"></wm-select>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn68"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow padding=".5em unset" name="gridrow18">
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn52">
-                                            <wm-label class="col-md-3 form-control-static" caption="Select Form Title" width="100%" name="label15" fontweight="bold"></wm-label>
+                                            <wm-label class="col-md-3 form-control-static" caption="Select Form Title" width="100%" name="label15" fontweight="bold" required="true"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn53">
                                             <wm-search dataset="bind:Variables.GetFormsFromMasterFormByMunicipality.dataSet" datafield="All Fields" displayfield="formTitle" name="selectFormTypesForAdvanced" orderby="formTitle:asc" displaylabel="formTitle"
-                                            searchkey="formTitle" placeholder="Search by Form Title" type="autocomplete"></wm-search>
+                                            searchkey="formTitle" placeholder="Search by Form Title" type="autocomplete" required="true"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn54"></wm-gridcolumn>
                                     </wm-gridrow>
@@ -506,8 +508,8 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn63">
                                             <wm-panel iconclass="wi wi-assignment" autoclose="outsideClick" margin="1em unset" title="Search Results" class="panel-primary" name="panel5">
                                                 <wm-layoutgrid name="layoutgrid2">
-                                                    <wm-gridrow name="gridrow3">
-                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1" padding="1em unset">
+                                                    <wm-gridrow name="gridrow3" padding="1em unset unset unset">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn3_1">
                                                             <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                                                 <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
                                                                 <wm-container class="col-md-9" name="container1" width="180px">

@@ -48,6 +48,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/DocumentService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/DynamicFieldService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -70,6 +77,13 @@
             <resource>
                 <filtering>true</filtering>
                 <directory>services/FormService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>services/FormStatusUpdate/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
@@ -112,6 +126,13 @@
             <resource>
                 <filtering>true</filtering>
                 <directory>services/LetterService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>services/MapMultipleFeesWithTransaction/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
                 </excludes>
@@ -251,16 +272,19 @@
                                 <source>services/CheckoutService/src</source>
                                 <source>services/DBConnectionService/src</source>
                                 <source>services/DocumentProxyService/src</source>
+                                <source>services/DocumentService/src</source>
                                 <source>services/DynamicFieldService/src</source>
                                 <source>services/FileService/src</source>
                                 <source>services/FormMessagingMailService/src</source>
                                 <source>services/FormService/src</source>
+                                <source>services/FormStatusUpdate/src</source>
                                 <source>services/GisMessagingMailService/src</source>
                                 <source>services/GisRecordService/src</source>
                                 <source>services/InspectionMessagingMailService/src</source>
                                 <source>services/InspectionOutcomeUpdate/src</source>
                                 <source>services/InspectionService/src</source>
                                 <source>services/LetterService/src</source>
+                                <source>services/MapMultipleFeesWithTransaction/src</source>
                                 <source>services/ProjectMessagingMailService/src</source>
                                 <source>services/ProjectTaskAssignment/src</source>
                                 <source>services/PushNotification/src</source>
