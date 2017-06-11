@@ -139,6 +139,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/PaymentService/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/ProjectMessagingMailService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -285,6 +292,7 @@
                                 <source>services/InspectionService/src</source>
                                 <source>services/LetterService/src</source>
                                 <source>services/MapMultipleFeesWithTransaction/src</source>
+                                <source>services/PaymentService/src</source>
                                 <source>services/ProjectMessagingMailService/src</source>
                                 <source>services/ProjectTaskAssignment/src</source>
                                 <source>services/PushNotification/src</source>
