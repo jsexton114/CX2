@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="unset unset 1em unset">
                         <wm-label caption="Inspection Assignment" fontweight="bold" name="label2" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -29,9 +29,16 @@
                         <wm-tabs name="tabsInspections">
                             <wm-tabpane name="tabpaneUnassignedInspections" title="Requested">
                                 <wm-layoutgrid name="layoutgrid2" columns="2">
+                                    <wm-gridrow name="gridrow6">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn9">
+                                            <wm-label padding="unset 0.5em" name="label3" caption="The following inspections have been requested for your municipality."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label5" caption="Select one or many inspections, choose an inspector from the list, and use the &quot;+Assign&quot; button to assign the inspection(s) to that inspector."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="9" name="gridcolumn11" horizontalalign="right">
-                                            <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="gridUnassignedInspections" radioselect="false" multiselect="true" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                            <wm-grid title="" dataset="bind:Variables.svGetInspectionsByOutcome.dataSet" navigation="Classic" name="gridUnassignedInspections" radioselect="false" multiselect="true" filtermode="multicolumn" showrecordcount="true"
+                                            exportformat="EXCEL">
                                                 <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -40,8 +47,8 @@
                                                 <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="requestedFor" caption="Requested For" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-button class="btn-primary" caption="bind:'Assign' + (!!Widgets.gridInspectors.selecteditem.id ? (' to ' + Widgets.gridInspectors.selecteditem.fullName) : '')" type="button" margin="unset 0.5em" name="buttonAssignInspector" disabled="bind:!Widgets.gridUnassignedInspections.selecteditem.length || !Widgets.gridInspectors.selecteditem.id"
-                                            on-click="buttonAssignInspectorClick($event, $scope)" iconclass="wi wi-plus"></wm-button>
+                                            <wm-button class="btn-primary" caption="bind:'Assign' + (!!Widgets.gridInspectors.selecteditem.id ? (' to ' + Widgets.gridInspectors.selecteditem.fullName) : '')" type="button" margin="unset 0.5em" name="buttonAssignInspector"
+                                            disabled="bind:!Widgets.gridUnassignedInspections.selecteditem.length || !Widgets.gridInspectors.selecteditem.id" on-click="buttonAssignInspectorClick($event, $scope)" iconclass="wi wi-plus"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn12">
                                             <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" title="Inspectors" name="panel2" class="panel-primary">
@@ -55,9 +62,16 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpaneAssignedInspections" title="Scheduled">
                                 <wm-layoutgrid columns="2" name="layoutgrid3_1">
+                                    <wm-gridrow name="gridrow7">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn11_1">
+                                            <wm-label padding="unset 0.5em" name="label4" caption="The following inspections have already been assigned to an inspector, and have moved into the &quot;Scheduled&quot; inspection outcome."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label6" caption="You may reassign one or many inspections to a new inspector by selecting the inspection(s), choosing an inspector, and using the &quot;Reassign&quot; button."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="9" horizontalalign="right" name="gridcolumn7">
-                                            <wm-grid title="" dataset="bind:Variables.svGetAssignedInspections.dataSet" navigation="Classic" radioselect="false" multiselect="true" name="gridAssignedInspections" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                            <wm-grid title="" dataset="bind:Variables.svGetAssignedInspections.dataSet" navigation="Classic" radioselect="false" multiselect="true" name="gridAssignedInspections" filtermode="multicolumn" showrecordcount="true"
+                                            exportformat="EXCEL">
                                                 <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -67,8 +81,8 @@
                                                 <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-button class="btn-primary" caption="Reassign" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem" name="buttonReassign" on-click="buttonReassignClick($event, $scope)"
-                                            iconclass="wi wi-update"></wm-button>
+                                            <wm-button class="btn-primary" caption="Reassign" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem" name="buttonReassign"
+                                            on-click="buttonReassignClick($event, $scope)" iconclass="wi wi-update"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn8">
                                             <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" title="Inspectors" name="panel3" class="panel-primary">

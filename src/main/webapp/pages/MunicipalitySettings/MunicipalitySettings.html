@@ -138,14 +138,15 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow20">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn33" padding="unset unset 1em unset">
-                        <wm-panel iconclass="wi wi-user" title="Contractor Managment" class="panel-primary" name="panelContractorManagment">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn33">
+                        <wm-panel iconclass="wi wi-work" title="Contractor Management" class="panel-primary" name="panelContractorManagment">
                             <wm-layoutgrid name="layoutgrid6_1">
                                 <wm-gridrow padding="1em unset unset unset" name="gridrow21">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn34">
                                         <wm-composite name="composite11">
-                                            <wm-checkbox caption="Auto Approve Contractors" class="col-md-push-3 col-md-9" name="checkboxAutoApproveContractors" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractors"></wm-checkbox>
+                                            <wm-checkbox caption="Auto-Approve Contractors" class="col-md-push-3 col-md-9" name="checkboxAutoApproveContractors" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractors"></wm-checkbox>
                                         </wm-composite>
+                                        <wm-label padding="unset 0.5em" name="label17" class="col-md-push-3 col-md-9 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors who submit their company information to your municipality will skip the municipality review process (managed on the &quot;Municipality Contractor Management&quot; page) and automatically be granted a review status of &quot;Approved&quot;."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn36_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -154,20 +155,23 @@
                                         <wm-composite name="composite12">
                                             <wm-checkbox caption="Separate Contractor Application Required" class="col-md-push-3 col-md-9" name="checkboxSeparateContractorApplic" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].separateContractorApplicationRequired"></wm-checkbox>
                                         </wm-composite>
+                                        <wm-label padding="unset 0.5em" name="label18_1" class="col-md-push-3 col-md-9 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the &quot;system&quot; contractor registration."></wm-label>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn47">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn47" padding="0.5em unset unset 2em">
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
-                                            <wm-label class="col-md-3 control-label" name="label18" caption="Select Form"></wm-label>
-                                            <wm-container class="col-md-9" name="container11">
+                                            <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
+                                            <wm-container class="col-md-9" name="container11" padding="unset 2em unset unset">
                                                 <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.svFormTypesForMunicipalitySettings.firstRecord.id"></wm-select>
                                             </wm-container>
                                         </wm-composite>
+                                        <wm-label padding="0.8em 0.5em unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company to do business within your municipality."
+                                        show="bind:Widgets.checkboxSeparateContractorApplic.datavalue"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow26">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn48"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn49_2" horizontalalign="right">
-                                        <wm-button class="btn-primary" caption="Save" type="button" margin="unset 2em unset unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -182,6 +186,7 @@
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn54_1" horizontalalign="center">
                                         <wm-label padding="0.5em" name="label14" caption="Upload your Municipality Logo for use throughout CivicXpress." width="100%"></wm-label>
+                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="For the best results, please use an image with a transparent background." width="100%"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -194,17 +199,10 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow41">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn63"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn61" horizontalalign="center" padding="1em unset 3em unset">
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn61" horizontalalign="center" padding="1em unset">
                                         <wm-button class="btn-primary" caption="Upload Logo" type="button" name="button5" iconclass="wi wi-upload" on-click="Widgets.dialog1.open()"></wm-button>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn62" horizontalalign="left"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow42_1">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn53_2"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn54_2" horizontalalign="center">
-                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="For the best results, please use an image with a transparent background." width="100%"></wm-label>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn55_2"></wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>

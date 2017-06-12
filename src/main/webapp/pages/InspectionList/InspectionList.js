@@ -27,11 +27,11 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
         $isolateScope.setInfoWindow = function() {
             var aM = $isolateScope.activeMarker;
             var inspectionLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
-            return '<label>' + 'Inspection- ' + aM.inspectionTitle + '</label></br>' +
-                '<label>' + 'By -' + aM.requestedByFullName + '</label></br>' +
-                '<label>' + 'On- ' + moment(aM.requestedFor).format('MM-DD-YYYY hh:mm a') + '</label></br>' +
-                '<label>' + 'At- ' + aM.fullAddress + '</label> </br>' +
-                '<label>' + 'Assigned To- ' + aM.assignedToPersonName + '</label></br>' +
+            return '<label>' + 'Location: ' + aM.fullAddress + '</label> </br>' +
+                '<label>' + 'Inspection Title: ' + aM.inspectionTitle + '</label></br>' +
+                '<label>' + 'Requested By: ' + aM.requestedByFullName + '</label></br>' +
+                '<label>' + 'Date Requested: ' + moment(aM.requestedFor).format('MM-DD-YYYY') + '</label></br>' +
+                '<label>' + 'Assigned To: ' + aM.assignedToPersonName + '</label></br>' +
                 '<a target="_blank" href=' + inspectionLink + '>View Inspection</a>'
         };
     };

@@ -11,11 +11,11 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn29" padding="unset unset 1em unset">
                         <wm-label caption="bind:(!!pageParams.maxDay ? (pageParams.maxDay==='today' ? &quot;Today's&quot; : (pageParams.maxDay.charAt(0).toUpperCase() + pageParams.maxDay.substring(1)) ) : '') + ' Inspections'" fontweight="bold" name="label2"
                         class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -29,7 +29,12 @@
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabMYASSIGNMENTS" title="My Assignments">
                                 <wm-layoutgrid name="layoutgrid2">
-                                    <wm-gridrow name="gridrow13">
+                                    <wm-gridrow name="gridrow16">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn22">
+                                            <wm-label padding="unset 0.5em" name="label7" caption="These inspections have been assigned to you by an Inspector Manager."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow13" padding="1em unset unset unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn15_1">
                                             <wm-composite margin="unset unset unset 0.2em" name="composite4">
                                                 <wm-label class="col-md-3 form-control-static" caption="Select View" fontweight="bold" width="100px" name="label5"></wm-label>
@@ -64,7 +69,12 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabMYTEAM" title="My Team">
                                 <wm-layoutgrid name="layoutgrid6">
-                                    <wm-gridrow name="gridrow14">
+                                    <wm-gridrow name="gridrow17_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn24">
+                                            <wm-label padding="unset 0.5em" name="label8" caption="These inspections have been assigned to all inspectors at your municipality, including you, by an Inspector Manager."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow14" padding="1em unset unset unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn17">
                                             <wm-composite margin="unset unset unset 0.2em" name="composite5">
                                                 <wm-label class="col-md-3 form-control-static" caption="Select View" fontweight="bold" width="100px" name="label6"></wm-label>
@@ -97,13 +107,13 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneMap" title="Map">
+                            <wm-tabpane name="tabpaneMap" title="Map View">
                                 <wm-layoutgrid name="layoutgrid5">
                                     <wm-gridrow name="gridrow11" padding="1em unset unset unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn13">
-                                            <wm-composite name="composite2">
-                                                <wm-label class="col-md-3 form-control-static" name="label3" caption="Filter" fontweight="bold"></wm-label>
-                                                <wm-container class="col-md-9" name="container2">
+                                            <wm-composite name="composite2" margin="unset unset unset 0.2em">
+                                                <wm-label class="col-md-3 form-control-static" name="label3" caption="Filter Results" fontweight="bold" width="100px"></wm-label>
+                                                <wm-container class="col-md-9" name="container2" width="180px">
                                                     <wm-select name="selectInspectionFilter" dataset="All,My,Team" on-change="selectInspectionFilterChange($event, $scope, newVal, oldVal)" datavalue="All"></wm-select>
                                                 </wm-container>
                                             </wm-composite>
@@ -112,57 +122,71 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow12">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                                            <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTotalInspections.dataSet" info="requestedByFullName" markertype="Address" zoom="6" on-load="googlemaps1Load($scope)"
+                                            <wm-prefab prefabname="googlemaps" name="googlemaps1" address="fullAddress" locations="bind:Variables.svTotalInspections.dataSet" info="requestedByFullName" markertype="Address" zoom="12" on-load="googlemaps1Load($scope)"
                                             height="500px" shade="#0000FF" icon="markerIcon"></wm-prefab>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpane3" title="Drafts">
-                                <wm-livegrid formlayout="dialog" name="livegrid1">
-                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2InspectionDraftData.dataSet" navigation="Classic" name="gridDraft">
-                                        <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
-                                        <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="MasterInspections"></wm-grid-column>
-                                        <wm-grid-column binding="masterInspections.dateRequested" caption="Date Requested" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate" edit-widget-type="datetime"
-                                        show="true" related-entity-name="MasterInspections"></wm-grid-column>
-                                        <wm-grid-column binding="inspectionData" caption="Inspection Data" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                        <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
-                                        <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                        <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-save" title="Save" action="Variables.svSaveDraft.invoke()" disabled="false"></wm-grid-row-action>
-                                    </wm-grid>
-                                    <wm-liveform novalidate="false" errormessage="" title="Inspection Draft" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2InspectionDraftData.dataSet" captionalign="left" captionposition="top" name="liveformDraft">
-                                        <wm-layoutgrid columns="1" name="layoutgrid4">
-                                            <wm-gridrow name="gridrow7_1">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                                    <wm-form-field name="inspectionData" displayname="Inspection Data" show="true" primary-key="false" generator="assigned" key="inspectionData" type="string" readonly="false" required="false" widget="text"
-                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow8">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn9_2">
-                                                    <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="true" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" placeholder="Select value" displayexpression="inspectDesignName"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow9">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn10">
-                                                    <wm-form-field name="masterInspections" displayname="Master Inspections" show="true" primary-key="false" generator="assigned" key="masterInspections" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" maxchars="32" placeholder="Select value" displayexpression="inspectionGuid"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                            <wm-gridrow name="gridrow10">
-                                                <wm-gridcolumn columnwidth="12" name="gridcolumn11">
-                                                    <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value"
-                                                    displayexpression="fullName"></wm-form-field>
-                                                </wm-gridcolumn>
-                                            </wm-gridrow>
-                                        </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                    </wm-liveform>
-                                </wm-livegrid>
+                            <wm-tabpane name="tabpane3" title="Drafts" accessroles="CXAdmin">
+                                <wm-layoutgrid name="layoutgrid6_1">
+                                    <wm-gridrow name="gridrow14_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn18_1">
+                                            <wm-label padding="unset 0.5em" name="label6_1" caption="This tab is currently only visible to CXAdmin. This is a partially (?) developed area that was being implemented for the mobile inspections app, (which is currently on hold)."
+                                            fontweight="bold" fontstyle="italic"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow15_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn20">
+                                            <wm-livegrid formlayout="dialog" name="livegrid1">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2InspectionDraftData.dataSet" navigation="Classic" name="gridDraft">
+                                                    <wm-grid-column binding="inspectionDesign.inspectDesignName" caption="Design Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="InspectionDesign"></wm-grid-column>
+                                                    <wm-grid-column binding="masterInspections.inspectionTitle" caption="Inspection Title" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="MasterInspections"></wm-grid-column>
+                                                    <wm-grid-column binding="masterInspections.dateRequested" caption="Date Requested" type="datetime" generator="assigned" readonly="true" datepattern="MM-dd-yyyy hh:mm a" formatpattern="toDate"
+                                                    edit-widget-type="datetime" show="true" related-entity-name="MasterInspections"></wm-grid-column>
+                                                    <wm-grid-column binding="inspectionData" caption="Inspection Data" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-save" title="Save" action="Variables.svSaveDraft.invoke()" disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                                <wm-liveform novalidate="false" errormessage="" title="Inspection Draft" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2InspectionDraftData.dataSet" captionalign="left" captionposition="top"
+                                                name="liveformDraft">
+                                                    <wm-layoutgrid columns="1" name="layoutgrid4">
+                                                        <wm-gridrow name="gridrow7_1">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn8">
+                                                                <wm-form-field name="inspectionData" displayname="Inspection Data" show="true" primary-key="false" generator="assigned" key="inspectionData" type="string" readonly="false" required="false" widget="text"
+                                                                maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow8">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn9_2">
+                                                                <wm-form-field name="inspectionDesign" displayname="Inspection Design" show="true" primary-key="false" generator="assigned" key="inspectionDesign" type="list" is-related="true" readonly="false"
+                                                                required="false" widget="select" placeholder="Select value" displayexpression="inspectDesignName"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow9">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                                                <wm-form-field name="masterInspections" displayname="Master Inspections" show="true" primary-key="false" generator="assigned" key="masterInspections" type="list" is-related="true" readonly="false"
+                                                                required="false" widget="select" maxchars="32" placeholder="Select value" displayexpression="inspectionGuid"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow10">
+                                                            <wm-gridcolumn columnwidth="12" name="gridcolumn11">
+                                                                <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                                                placeholder="Select value" displayexpression="fullName"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                    </wm-layoutgrid>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                    update-mode="true"></wm-form-action>
+                                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                </wm-liveform>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
                             </wm-tabpane>
                         </wm-tabs>
                     </wm-gridcolumn>
