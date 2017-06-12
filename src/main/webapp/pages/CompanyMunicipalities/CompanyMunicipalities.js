@@ -42,7 +42,8 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else if ($scope.formFields[0].value.separateContractorApplicationRequired) {
-                debugger
+
+
                 $scope.Variables.goToPage_NewForm.setData({
                     'formTypeId': $scope.formFields[0].value.contractorApplicationFormId,
                     'companyId': $scope.pageParams.companyId

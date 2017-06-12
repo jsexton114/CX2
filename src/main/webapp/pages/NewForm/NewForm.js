@@ -293,27 +293,42 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        debugger
 
-        if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
-            debugger
+        if ($scope.pageParams.draftId === undefined) {
 
-            //check  if it loaded from draft
-            if ($scope.pageParams.companyId) {
-                $scope.Variables.lvSubmitContractorApplication.setInput({
-                    'vendorId': $scope.pageParams.companyId
-                });
+            if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
+
+
+
+                if ($scope.pageParams.companyId === undefined) {
+                    $scope.Variables.lvSubmitContractorApplication.setInput({
+                        'vendorId': $scope.Variables.CompanyId.dataSet.dataValue
+                    });
+
+                } else {
+                    $scope.Variables.lvSubmitContractorApplication.setInput({
+                        'vendorId': $scope.pageParams.companyId
+                    });
+                }
+
+                $scope.Variables.lvSubmitContractorApplication.insertRecord();
+
+            } else {
+
+                $scope.Variables.goToPage_UserOpenForms.navigate();
+            }
+
+        } else {
+            // If form is loaded from draft checking if it is VendorApplication form, if yes submitContract application else navigate to Openforms
+            if ($scope.Variables.CompanyId.dataSet.dataValue === undefined) {
+                $scope.Variables.goToPage_UserOpenForms.navigate();
+
             } else {
                 $scope.Variables.lvSubmitContractorApplication.setInput({
                     'vendorId': $scope.Variables.CompanyId.dataSet.dataValue
                 });
+                $scope.Variables.lvSubmitContractorApplication.insertRecord();
             }
-
-            $scope.Variables.lvSubmitContractorApplication.insertRecord();
-
-        } else {
-            debugger
-            $scope.Variables.goToPage_UserOpenForms.navigate();
         }
     };
 
@@ -522,7 +537,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     }
 
     function doDraftSave(draftModel) {
-        debugger
+
         if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
             //check if saving draft for second(As this time companyId will not be in url)
             if ($scope.pageParams.companyId) {
