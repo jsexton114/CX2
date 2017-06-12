@@ -49,6 +49,7 @@
                                         <wm-gridcolumn columnwidth="10" name="gridcolumn8">
                                             <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
                                         </wm-gridcolumn>
+
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn9">
                                             <wm-html name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
                                                 <form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST">
@@ -58,6 +59,7 @@
                                                 </form>
                                             </wm-html>
                                         </wm-gridcolumn>
+
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>

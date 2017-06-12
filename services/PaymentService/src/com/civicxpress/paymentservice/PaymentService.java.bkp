@@ -46,17 +46,10 @@ public class PaymentService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String chargeCreditCard(HttpServletRequest request) {
+    public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("Starting chargeCreditCard() with request url " + request.getRequestURL().toString());
-        
-        String result = null;
-        if (securityService.isAuthenticated()) {
-            result = "Hello, You are logged in as "+  securityService.getLoggedInUser().getUserName();
-        } else {
-            result = "Hello, You are not authenticated yet!";
-        }
-        logger.debug("Returning {}", result);
-        return result;
+        String stripeToken = request.getParameter("stripeToken");
+        logger.debug("stripeToken: " + stripeToken);
     }
     
     public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -65,7 +58,7 @@ public class PaymentService {
  	          //String page="you want to redirect ";
  	          //page="Main";
  	        //response.sendRedirect(request.getContextPath() + "#/" + page);
- 	        response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/CXAdmin");
+ 	        response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/Main");
  	    
  	    } catch (Exception ex) {
  	        throw new ServletException(ex);
