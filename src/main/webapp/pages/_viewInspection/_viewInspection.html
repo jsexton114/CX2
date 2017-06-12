@@ -169,58 +169,6 @@
                                         <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogViewViolation.open()" disabled="false"></wm-grid-row-action>
                                     </wm-grid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneFees" title="FEES" show="true">
-                                    <wm-livegrid formlayout="dialog" name="livegrid4">
-                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFees.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true" show="true">
-                                            <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text" show="true"
-                                            readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
-                                            formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
-                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="comments" caption="Fee Comments" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
-                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
-                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
-                                            datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="transactionComments" caption="Transaction Comments" type="string" primary-key="false" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
-                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-column binding="users.fullName" caption="Paid By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                        </wm-grid>
-                                        <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.lvFees.dataSet" captionalign="left" captionposition="top" name="liveformFees"
-                                        on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)" on-success="liveformFeesSuccess($event, $operation, $data)">
-                                            <wm-layoutgrid columns="1" name="layoutgrid13">
-                                                <wm-gridrow name="gridrow45_2">
-                                                    <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
-                                                        <wm-label name="labelmanfeeselect" caption="Which fee would you like to manually add to the form?" required="true" show="bind:isNewFee"></wm-label>
-                                                        <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet" displayfield="feeType"
-                                                        placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
-                                                        <wm-label name="labelmanfeeselect2" caption="If the manual fee type you're looking for is not listed, please contact your Municipality Admin." show="bind:isNewFee" class="help-block"
-                                                        fontsize="0.8" fontunit="em"></wm-label>
-                                                        <wm-form-field name="feeType" displayname="Fee" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
-                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
-                                                        <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true" step="0.01"
-                                                        widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
-                                                        <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false" widget="text"
-                                                        maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
-                                                    </wm-gridcolumn>
-                                                </wm-gridrow>
-                                            </wm-layoutgrid>
-                                            <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true" widget="text" maxchars="255"
-                                            inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
-                                            <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" readonly="false" required="true" widget="text"
-                                            defaultvalue="Unpaid" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
-                                            defaultvalue="false" placeholder=""></wm-form-field>
-                                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                            placeholder=""></wm-form-field>
-                                            <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"
-                                            type="submit" update-mode="true"></wm-form-action>
-                                            <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                        </wm-liveform>
-                                    </wm-livegrid>
-                                </wm-tabpane>
                                 <wm-tabpane name="tabpaneMessages" title="MESSAGES" on-select="tabpaneMessagesSelect($event, $scope)">
                                     <wm-layoutgrid name="layoutgrid16">
                                         <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
@@ -359,6 +307,72 @@
                                                 name="buttonAddInternalMessage"></wm-button>
                                                 <wm-button class="btn-secondary" caption="Tag People" type="button" iconclass="wi wi-tag" on-click="buttonInternalTagPeopleClick($event, $scope)" badgevalue="bind:Variables.PeopleList.dataSet.length"
                                                 name="buttonInternalTagPeople"></wm-button>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                    </wm-layoutgrid>
+                                </wm-tabpane>
+                                <wm-tabpane name="tabpaneFees" title="FEES" show="true" accessroles="CXAdmin">
+                                    <wm-layoutgrid name="layoutgrid21">
+                                        <wm-gridrow name="gridrow73_1">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn127_1">
+                                                <wm-label padding="unset 0.5em" name="label102" caption="This tab is currently only visible to CXAdmin for testing purposes." fontweight="bold" fontstyle="italic"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label103" caption="All fees that have been generated as a result of this inspection are displayed here. They are also shown on the &quot;Source Form&quot; where this inspection was generated."></wm-label>
+                                            </wm-gridcolumn>
+                                        </wm-gridrow>
+                                        <wm-gridrow name="gridrow74">
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn129">
+                                                <wm-livegrid formlayout="dialog" name="livegrid4">
+                                                    <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFees.dataSet" navigation="Classic" name="gridFees" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true"
+                                                    show="true">
+                                                        <wm-grid-column binding="feeType" caption="Fee" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}" edit-widget-type="text"
+                                                        show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="accountingCode" caption="Accounting Code" type="string" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="comments" caption="Fee Comments" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" generator="assigned" col-ng-class="{'pendingFee-class':row.paidStatus=='Pending', 'paidFee-class':row.paidStatus=='Paid'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="paidDate" caption="Payment Date" type="date" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                                        datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="transactionComments" caption="Transaction Comments" type="string" primary-key="false" generator="assigned" col-ng-class="{'paidFee-class':row.paidStatus=='Paid', 'pendingFee-class':row.paidStatus=='Pending'}"
+                                                        edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                        <wm-grid-column binding="users.fullName" caption="Paid By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                    </wm-grid>
+                                                    <wm-liveform novalidate="false" errormessage="" title="Fee Details" formlayout="dialog" iconclass="wi wi-attach-money" dataset="bind:Variables.lvFees.dataSet" captionalign="left" captionposition="top"
+                                                    name="liveformFees" on-beforeservicecall="liveformFeesBeforeservicecall($event, $operation, $data)" on-success="liveformFeesSuccess($event, $operation, $data)">
+                                                        <wm-layoutgrid columns="1" name="layoutgrid13">
+                                                            <wm-gridrow name="gridrow45_2">
+                                                                <wm-gridcolumn columnwidth="12" name="gridcolumn104_2">
+                                                                    <wm-label name="labelmanfeeselect" caption="Which fee would you like to manually add to the form?" required="true" show="bind:isNewFee"></wm-label>
+                                                                    <wm-select name="selectManualFeeType" displayname="Manual Fee Type" show="bind:isNewFee" required="bind:isNewFee" type="string" dataset="bind:Variables.lvManualFeeTypes.dataSet"
+                                                                    displayfield="feeType" placeholder="Select Fee" datafield="All Fields" orderby="feeType:asc"></wm-select>
+                                                                    <wm-label name="labelmanfeeselect2" caption="If the manual fee type you're looking for is not listed, please contact your Municipality Admin." show="bind:isNewFee" class="help-block"
+                                                                    fontsize="0.8" fontunit="em"></wm-label>
+                                                                    <wm-form-field name="feeType" displayname="Fee" show="bind:!isNewFee" primary-key="false" generator="assigned" key="feeType" type="string" readonly="true" required="true" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.feeType"></wm-form-field>
+                                                                    <wm-form-field name="amount" displayname="Amount" show="true" primary-key="false" generator="assigned" key="amount" type="big_decimal" readonly="false" required="true"
+                                                                    step="0.01" widget="currency" maxchars="255" placeholder="Enter Amount" minvalue="0"></wm-form-field>
+                                                                    <wm-form-field name="comments" displayname="Comments" show="true" primary-key="false" generator="assigned" key="comments" type="string" readonly="false" required="false"
+                                                                    widget="text" maxchars="500" inputtype="text" placeholder="Enter Comments"></wm-form-field>
+                                                                </wm-gridcolumn>
+                                                            </wm-gridrow>
+                                                        </wm-layoutgrid>
+                                                        <wm-form-field name="accountingCode" displayname="Accounting Code" show="false" primary-key="false" generator="assigned" key="accountingCode" type="string" readonly="false" required="true" widget="text"
+                                                        maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="bind:Widgets.selectManualFeeType.datavalue.accountingCode"></wm-form-field>
+                                                        <wm-form-field name="paidStatus" displayname="Paid Status" show="false" primary-key="false" generator="assigned" key="paidStatus" type="string" readonly="false" required="true" widget="text"
+                                                        defaultvalue="Unpaid" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        <wm-form-field name="autoFeeYn" displayname="Auto Fee Yn" show="false" primary-key="false" generator="assigned" key="autoFeeYn" type="boolean" readonly="false" required="true" widget="checkbox"
+                                                        defaultvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                        placeholder=""></wm-form-field>
+                                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee"
+                                                        disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                        <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                        update-mode="true"></wm-form-action>
+                                                    </wm-liveform>
+                                                </wm-livegrid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                     </wm-layoutgrid>
