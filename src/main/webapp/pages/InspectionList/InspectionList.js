@@ -93,6 +93,7 @@ Application.$controller("gridInspectionsController", ["$scope", "$location",
         $scope.ctrlScope = $scope;
 
         $scope.viewInspectionAction = function($event, $rowData) {
+            $scope.Variables.stvInspectionGUID.dataSet.dataValue = $rowData.inspectionGuid
             $scope.Widgets.pagedialogViewInspection.open();
 
         };
@@ -117,6 +118,13 @@ Application.$controller("gridTeamInspectionsController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.viewInspectionAction = function($event, $rowData) {
+
+            $scope.Variables.stvInspectionGUID.dataSet.dataValue = $rowData.inspectionGuid
+            $scope.Widgets.pagedialogViewInspection.open();
+
+        };
     }
 ]);
 
