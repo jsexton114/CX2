@@ -54,16 +54,15 @@
                                                     <wm-gridrow name="gridrow11">
                                                         <wm-gridcolumn columnwidth="12" name="gridcolumn12">
                                                             <wm-form-field name="municipalities" displayname="What municipality would you like to do business with?" show="true" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true"
-                                                            required="required" widget="select" placeholder="Select Municipality" displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
+                                                            readonly="false" required="true" widget="select" placeholder="Select Municipality" displayexpression="municipalityName" orderby="municipalityName:asc"></wm-form-field>
                                                         </wm-gridcolumn>
                                                     </wm-gridrow>
                                                 </wm-layoutgrid>
-                                                <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" widget="select" placeholder="Select value" dataset="bind:Variables.CurrentVendorObj.dataSet"
-                                                datafield="All Fields" displayfield="companyName" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"></wm-form-field>
-                                                <wm-form-field name="approvalStatus" displayname="Approval Status" show="false" primary-key="false" generator="assigned" key="approvalStatus" type="string" widget="text" maxchars="255" inputtype="text"
-                                                placeholder="Enter value" defaultvalue="Pending"></wm-form-field>
-                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                                placeholder=""></wm-form-field>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                                <wm-form-field name="approvalStatus" displayname="Approval Status" show="false" primary-key="false" generator="assigned" key="approvalStatus" type="string" readonly="false" required="false"
+                                                widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="Pending"></wm-form-field>
+                                                <wm-form-field name="vendor" displayname="Vendor" show="false" primary-key="false" generator="assigned" key="vendor" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                                placeholder="Select value" dataset="bind:Variables.CurrentVendorObj.dataSet" datafield="All Fields" displayfield="companyName" defaultvalue="bind:Variables.CurrentVendorObj.firstRecord"></wm-form-field>
                                                 <wm-form-action key="save" display-name="Add Municipality" show="true" class="form-save btn-primary" iconclass="wi wi-plus" title="Save" action="saveAction($event);saveAction1($event)" disabled="bind:Widgets.municipalities.datavalue == null"
                                                 type="button" update-mode="true"></wm-form-action>
                                                 <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"

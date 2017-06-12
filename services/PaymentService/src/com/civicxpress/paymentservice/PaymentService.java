@@ -4,6 +4,8 @@
 package com.civicxpress.paymentservice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +57,19 @@ public class PaymentService {
         }
         logger.debug("Returning {}", result);
         return result;
+    }
+    
+    public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        logger.debug("Callback invoked");
+ 	    try {
+ 	          //String page="you want to redirect ";
+ 	          //page="Main";
+ 	        //response.sendRedirect(request.getContextPath() + "#/" + page);
+ 	        response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/Main");
+ 	    
+ 	    } catch (Exception ex) {
+ 	        throw new ServletException(ex);
+ 	    }
     }
 
 }

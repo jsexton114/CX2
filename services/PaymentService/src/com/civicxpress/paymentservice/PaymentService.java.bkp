@@ -4,6 +4,8 @@
 package com.civicxpress.paymentservice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,17 +46,30 @@ public class PaymentService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    public String sampleJavaOperation(String name, HttpServletRequest request) {
-        logger.debug("Starting sample operation with request url " + request.getRequestURL().toString());
+    public String chargeCreditCard(HttpServletRequest request) {
+        logger.debug("Starting chargeCreditCard() with request url " + request.getRequestURL().toString());
         
         String result = null;
         if (securityService.isAuthenticated()) {
-            result = "Hello " + name + ", You are logged in as "+  securityService.getLoggedInUser().getUserName();
+            result = "Hello, You are logged in as "+  securityService.getLoggedInUser().getUserName();
         } else {
-            result = "Hello " + name + ", You are not authenticated yet!";
+            result = "Hello, You are not authenticated yet!";
         }
         logger.debug("Returning {}", result);
         return result;
+    }
+    
+    public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        logger.debug("Callback invoked");
+ 	    try {
+ 	          //String page="you want to redirect ";
+ 	          //page="Main";
+ 	        //response.sendRedirect(request.getContextPath() + "#/" + page);
+ 	        response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/CXAdmin");
+ 	    
+ 	    } catch (Exception ex) {
+ 	        throw new ServletException(ex);
+ 	    }
     }
 
 }

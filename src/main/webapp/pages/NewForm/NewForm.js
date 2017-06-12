@@ -293,7 +293,28 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-        $scope.Variables.goToPage_UserOpenForms.navigate();
+        debugger
+
+        if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
+            debugger
+
+            //check  if it loaded from draft
+            if ($scope.pageParams.companyId) {
+                $scope.Variables.lvSubmitContractorApplication.setInput({
+                    'vendorId': $scope.pageParams.companyId
+                });
+            } else {
+                $scope.Variables.lvSubmitContractorApplication.setInput({
+                    'vendorId': $scope.Variables.CompanyId.dataSet.dataValue
+                });
+            }
+
+            $scope.Variables.lvSubmitContractorApplication.insertRecord();
+
+        } else {
+            debugger
+            $scope.Variables.goToPage_UserOpenForms.navigate();
+        }
     };
 
     $scope.checkboxNewUserChange = function($event, $isolateScope, newVal, oldVal) {
@@ -434,6 +455,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             locations: [],
             vendors: [],
             owner: {},
+            formForVendorId: {},
             attachments: []
         };
 
@@ -452,6 +474,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         // Form Fields
         draftModel.formFields = angular.copy($scope.formData);
+        //formForVendorId
+        draftModel.formForVendorId = angular.copy($scope.Variables.CompanyId.dataSet.dataValue);
 
         // Owner
         if ($scope.ownerInfo === true) {
@@ -498,6 +522,16 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     }
 
     function doDraftSave(draftModel) {
+        debugger
+        if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
+            //check if saving draft for second(As this time companyId will not be in url)
+            if ($scope.pageParams.companyId) {
+                draftModel.formForVendorId = $scope.pageParams.companyId;
+            }
+        } else {
+            //Do nothing
+        }
+
         $scope.Variables.svSaveDraft.setInput("String", JSON.stringify(draftModel));
         $scope.Variables.svSaveDraft.update();
     }
@@ -546,8 +580,8 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
 
         var draftData = data[0];
-
         $scope.draftData = JSON.parse(draftData.formData);
+        $scope.Variables.CompanyId.dataSet.dataValue = _.clone($scope.draftData.formForVendorId);
         $scope.formTypeId = draftData.formTypeId;
     };
 

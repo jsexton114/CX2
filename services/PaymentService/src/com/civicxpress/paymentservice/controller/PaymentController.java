@@ -3,6 +3,8 @@ package com.civicxpress.paymentservice.controller;
 
 import com.civicxpress.paymentservice.PaymentService;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
 import java.lang.String;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
@@ -20,7 +22,16 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+    @RequestMapping(value = "/callback", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        paymentService.callback(request, response);
+    }
+
     @RequestMapping(value = "/chargeCreditCard", produces = "application/json", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public String chargeCreditCard(HttpServletRequest request) {
         return paymentService.chargeCreditCard(request);
     }
