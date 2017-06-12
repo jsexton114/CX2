@@ -58,7 +58,11 @@ public class PaymentService {
  	          //String page="you want to redirect ";
  	          //page="Main";
  	        //response.sendRedirect(request.getContextPath() + "#/" + page);
- 	        response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/Main");
+ 	        //response.sendRedirect("https://www.wavemakeronline.com/run-j4lrgncwgl/CivicXpress/#/Main");
+ 	        
+            String stripeToken = request.getParameter("stripeToken");
+            logger.debug("stripeToken: " + stripeToken);
+
  	    
  	    } catch (Exception ex) {
  	        throw new ServletException(ex);
