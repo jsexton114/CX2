@@ -61,7 +61,7 @@ public class PaymentService {
      * Methods in this class can declare HttpServletRequest, HttpServletResponse as input parameters to access the
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
-    @HideFromClient
+    
     public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
         logger.debug("Starting chargeCreditCard() with request url " + request.getRequestURL().toString());
         String token = null; 
@@ -104,15 +104,15 @@ public class PaymentService {
 		// PaymentMethod, PaymentNumber, AmountReceived, Comments, CreatedBy
 
  	    try {
-		    response.sendRedirect(request.getContextPath() + "#/PaymentResponse");
+ 	        System.out.println("request.getContextPath(): " + request.getContextPath());
+		    response.sendRedirect(request.getContextPath() + "/CivicXpress/#/PaymentResponse");
  	    } catch (IOException e) {
             e.printStackTrace();
  	    }
 
     }
 
-    @HideFromClient    
-    public void writePaymentToDatabase(String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long createdBy) {
+    private void writePaymentToDatabase(String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long createdBy) {
         
     }
     

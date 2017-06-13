@@ -104,7 +104,8 @@ public class PaymentService {
 		// PaymentMethod, PaymentNumber, AmountReceived, Comments, CreatedBy
 
  	    try {
-		    response.sendRedirect(request.getContextPath() + "#/PaymentResponse");
+ 	        System.out.println("request.getContextPath(): " + request.getContextPath());
+		    response.sendRedirect(request.getContextPath() + "/#/PaymentResponse");
  	    } catch (IOException e) {
             e.printStackTrace();
  	    }

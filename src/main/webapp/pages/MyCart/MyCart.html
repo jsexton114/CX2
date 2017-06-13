@@ -27,7 +27,6 @@
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                                             <wm-label padding="unset 0.5em" name="label1" caption="All credit card transactions are subject to a convenience fee of 3.0% plus $0.50 per transaction."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label2" caption="This fee is imposed by CivicXpress, not the participating municipalities, and it covers bank transaction costs associated with credit card transactions."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label3" caption="This convenience fee may be avoided by paying in person at the municipality payment counter."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -42,7 +41,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                            <wm-label name="paymentTypeLabel" padding="unset 0.5em" name="label6" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="paymentTypeLabel" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
@@ -51,10 +50,10 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn9">
                                             <wm-html name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
-                                                <form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST">
-                                                    <!--<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Widget" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"
-                                                    data-locale="auto"></script>-->
-                                                </form>
+                                                <!--<form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST">
+                                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Widget" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"
+                                                    data-locale="auto"></script>
+                                                </form>-->
                                             </wm-html>
                                         </wm-gridcolumn>
                                     </wm-gridrow>

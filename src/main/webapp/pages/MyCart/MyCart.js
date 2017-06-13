@@ -50,6 +50,8 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
             $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
             $scope.Widgets.radiosetPaymentOptions.show = false;
             $scope.Widgets.paymentTypeLabel.show = false;
+            $scope.Widgets.compositeComments.show = false;
+            $scope.Widgets.wizardstep2.disabledone = true;
         }
     };
 
