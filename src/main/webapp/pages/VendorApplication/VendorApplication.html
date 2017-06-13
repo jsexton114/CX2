@@ -15,14 +15,10 @@
                         <wm-liveform novalidate="false" errormessage="" title="Contractor Application" iconclass="wi wi-work" defaultmode="Edit" dataset="bind:Variables.VendorData.dataSet" captionalign="left" captionposition="top" name="liveformVendorApplication"
                         class="panel-primary" on-error="liveformVendorApplicationError($event, $operation, $data)" insertmessage="Your application has been submitted and you have been set as a &quot;Company Admin&quot;. Please log out and log back in to view the &quot;My Company&quot; dashbaord.">
                             <wm-layoutgrid columns="3" name="layoutgrid3">
-                                <wm-gridrow name="gridrow10">
+                                <wm-gridrow name="gridrow10" padding="unset unset 2em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn24">
-                                        <wm-label padding="unset 0.5em" name="lblInstructions" caption="If you would like your company to be made available for selection on new forms in CivicXpress, please complete the following application."></wm-label>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow11" padding="unset unset 2em unset">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn27_1">
-                                        <wm-label padding="unset 0.5em" name="label3" caption="After you submit the application, you will be asked to log out and log back in, then you will see a new &quot;My Company&quot; dashboard where you can manage your company information and select municipalities to do business with."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="lblInstructions" caption="If you are a business owner who would like your company to be available in CivicXpress, please begin by providing the following information."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label3_1" caption="Submitting this &quot;system-level&quot; application will create your company in CivicXpress, set you as the &quot;Company Admin&quot;, and grant you access to a new &quot;My Company&quot; dashboard, where you can then apply to do business in specific municipalities."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow25">
@@ -126,6 +122,11 @@
                                     <wm-gridcolumn name="gridcolumn1" columnwidth="4">
                                         <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="true" widget="checkbox" defaultvalue="true" checkedvalue="true"
                                         uncheckedvalue="false"></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow11" padding="2em unset unset unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn27_1">
+                                        <wm-label padding="unset 0.5em" name="label3" caption="Note: after you submit the application, you must log out and log back in before you will see the new &quot;My Company&quot; dashboard."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
