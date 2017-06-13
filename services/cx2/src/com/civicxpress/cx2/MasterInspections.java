@@ -62,6 +62,8 @@ public class MasterInspections implements Serializable {
     @Type(type = "DateTime")
     private LocalDateTime requestedFor;
     private int id;
+    @Type(type = "DateTime")
+    private LocalDateTime dateCreated;
     private InspectionOutcome inspectionOutcome;
     private MasterForms masterForms;
     private Gisrecords gisrecords;
@@ -251,6 +253,15 @@ public class MasterInspections implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Column(name = "`DateCreated`", nullable = false)
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

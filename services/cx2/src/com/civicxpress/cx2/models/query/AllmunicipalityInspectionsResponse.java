@@ -56,6 +56,8 @@ public class AllmunicipalityInspectionsResponse implements Serializable {
     private String requestedByFullName;
     @ColumnAlias("inspectDesignName")
     private String inspectDesignName;
+    @ColumnAlias("dateCreated")
+    private LocalDateTime dateCreated;
 
     public String getInspectionGuid() {
         return this.inspectionGuid;
@@ -161,6 +163,14 @@ public class AllmunicipalityInspectionsResponse implements Serializable {
         this.inspectDesignName = inspectDesignName;
     }
 
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,7 +188,8 @@ public class AllmunicipalityInspectionsResponse implements Serializable {
                 Objects.equals(getLot(), allmunicipalityInspectionsResponse.getLot()) &&
                 Objects.equals(getSubdivision(), allmunicipalityInspectionsResponse.getSubdivision()) &&
                 Objects.equals(getRequestedByFullName(), allmunicipalityInspectionsResponse.getRequestedByFullName()) &&
-                Objects.equals(getInspectDesignName(), allmunicipalityInspectionsResponse.getInspectDesignName());
+                Objects.equals(getInspectDesignName(), allmunicipalityInspectionsResponse.getInspectDesignName()) &&
+                Objects.equals(getDateCreated(), allmunicipalityInspectionsResponse.getDateCreated());
     }
 
     @Override
@@ -195,6 +206,7 @@ public class AllmunicipalityInspectionsResponse implements Serializable {
                 getLot(),
                 getSubdivision(),
                 getRequestedByFullName(),
-                getInspectDesignName());
+                getInspectDesignName(),
+                getDateCreated());
     }
 }
