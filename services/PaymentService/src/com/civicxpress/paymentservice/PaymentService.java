@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.civicxpress.checkoutservice.CheckoutService;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.APIException;
@@ -77,12 +78,42 @@ public class PaymentService {
 		params.put("description", "Municipality fees");
 		params.put("source", token);
 		try {
+		    
+		    String returnUrl = null;
+		    String status = null;
 			charge = Charge.create(params);
+			status = charge.getStatus();
 			System.out.println("charge.getDescription(): " + charge.getDescription());
 			System.out.println("charge.getAmount(): " + charge.getAmount());
-			System.out.println("charge.getStatus(): " + charge.getStatus());
+			System.out.println("charge.getStatus(): " + status);
+			System.out.println("status.length(): " + status.length());
 			System.out.println("charge.getId(): " + charge.getId());
 			System.out.println("charge.getOutcome(): " + charge.getOutcome());
+
+			// TODO: If success -- else back to cart
+    		// TODO: write charge ID and outcome to database
+    		// PaymentMethod, PaymentNumber, AmountReceived, Comments, CreatedBy
+    		if (status.equals("succeeded")) {
+    		    System.out.println("Succeed branch");
+        		BigDecimal decimalAmount = new BigDecimal(charge.getAmount() / 100);
+        		System.out.println("decimalAmount: " + decimalAmount.toString());
+                writePaymentToDatabase("Credit Card", charge.getId(), decimalAmount, "");
+                System.out.println("writePaymentToDatabase()");
+         	    returnUrl = request.getContextPath() + "/#/PaymentResponse";
+         	    System.out.println("returnUrl: " + returnUrl);
+    		} else {
+    		    // TODO: how will user know there was a problem?
+    		    System.out.println("Did not succeed branch");
+    		    returnUrl = request.getContextPath() + "/#/MyCart";
+    		    System.out.println("returnUrl: " + returnUrl);
+    		}
+
+     	    try {
+    		    response.sendRedirect(returnUrl);
+     	    } catch (IOException e) {
+                e.printStackTrace();
+     	    }
+
 		} catch (AuthenticationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,22 +129,16 @@ public class PaymentService {
 		} catch (APIException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		// TODO: write charge ID and outcome to database
-		// PaymentMethod, PaymentNumber, AmountReceived, Comments, CreatedBy
-
- 	    try {
- 	        System.out.println("request.getContextPath(): " + request.getContextPath());
-		    response.sendRedirect(request.getContextPath() + "/#/PaymentResponse");
- 	    } catch (IOException e) {
-            e.printStackTrace();
- 	    }
 
     }
 
-    private void writePaymentToDatabase(String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long createdBy) {
-        
+    private void writePaymentToDatabase(String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments) throws Exception {
+        CheckoutService checkout = new CheckoutService();
+        checkout.municipalityCheckout(null, paymentMethod, paymentNumber, amountReceived, comments, new Long[0]);
     }
     
     public void callback(HttpServletRequest request, HttpServletResponse response,Object obj) throws ServletException {
