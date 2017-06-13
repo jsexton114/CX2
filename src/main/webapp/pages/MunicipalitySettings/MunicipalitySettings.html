@@ -155,24 +155,24 @@
                                         <wm-composite name="composite12">
                                             <wm-checkbox caption="Separate Contractor Application Required" class="col-md-push-3 col-md-9" name="checkboxSeparateContractorApplic" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].separateContractorApplicationRequired"></wm-checkbox>
                                         </wm-composite>
-                                        <wm-label padding="unset 0.5em" name="label18_1" class="col-md-push-3 col-md-9 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the &quot;system&quot; contractor registration."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label18_1" class="col-md-push-3 col-md-9 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the system-level contractor application."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn47" padding="0.5em unset unset 2em">
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
                                             <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
                                             <wm-container class="col-md-9" name="container11" padding="unset 2em unset unset">
                                                 <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
-                                                placeholder="Select Form"></wm-select>
+                                                placeholder="Select Form" orderby="formType:asc" required="true"></wm-select>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-label padding="0.8em 0.5em unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company to do business within your municipality."
+                                        <wm-label padding="0.8em 2em unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
                                         show="bind:Widgets.checkboxSeparateContractorApplic.datavalue"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow26">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn48"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn49_2" horizontalalign="right">
-                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()" disabled="bind:Widgets.checkboxSeparateContractorApplic.datavalue &amp;&amp; !Widgets.selectForm.datavalue"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
