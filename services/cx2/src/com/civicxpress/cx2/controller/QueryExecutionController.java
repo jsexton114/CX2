@@ -439,25 +439,6 @@ public class QueryExecutionController {
         return _result;
     }
 
-    @RequestMapping(value = "/queries/countProjectsByVendors", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "countProjectsByVendors")
-    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Executing named query: countProjectsByVendors");
-        Page<CountProjectsByVendorsResponse> _result = queryService.executeCountProjectsByVendors(vendorId, active, pageable);
-        LOGGER.debug("got the result for named query: countProjectsByVendors, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query countProjectsByVendors")
-    @RequestMapping(value = "/queries/countProjectsByVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportCountProjectsByVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
-        LOGGER.debug("Exporting named query: countProjectsByVendors");
-
-        return queryService.exportCountProjectsByVendors(exportType, vendorId, active, pageable);
-    }
-
     @RequestMapping(value = "/queries/searchWithFormTitle", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "searchWithFormTitle")
@@ -475,6 +456,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: searchWithFormTitle");
 
         return queryService.exportSearchWithFormTitle(exportType, municipalityId, publicRead, municipalityInternalForm, formTitle, pageable);
+    }
+
+    @RequestMapping(value = "/queries/countProjectsByVendors", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "countProjectsByVendors")
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(@RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Executing named query: countProjectsByVendors");
+        Page<CountProjectsByVendorsResponse> _result = queryService.executeCountProjectsByVendors(vendorId, active, pageable);
+        LOGGER.debug("got the result for named query: countProjectsByVendors, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query countProjectsByVendors")
+    @RequestMapping(value = "/queries/countProjectsByVendors/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCountProjectsByVendors(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendorId") Integer vendorId, @RequestParam(value = "active") Boolean active, Pageable pageable) {
+        LOGGER.debug("Exporting named query: countProjectsByVendors");
+
+        return queryService.exportCountProjectsByVendors(exportType, vendorId, active, pageable);
     }
 
     @RequestMapping(value = "/queries/OpenedOrClosedFormsForUserOrSharedWith", method = RequestMethod.GET)
@@ -647,6 +647,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: InspectionsOfForm");
 
         return queryService.exportInspectionsOfForm(exportType, form, pageable);
+    }
+
+    @RequestMapping(value = "/queries/CompanyUsers", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CompanyUsers")
+    public Page<CompanyUsersResponse> executeCompanyUsers(@RequestParam(value = "vendor") List<Integer> vendor, Pageable pageable) {
+        LOGGER.debug("Executing named query: CompanyUsers");
+        Page<CompanyUsersResponse> _result = queryService.executeCompanyUsers(vendor, pageable);
+        LOGGER.debug("got the result for named query: CompanyUsers, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CompanyUsers")
+    @RequestMapping(value = "/queries/CompanyUsers/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCompanyUsers(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor") List<Integer> vendor, Pageable pageable) {
+        LOGGER.debug("Exporting named query: CompanyUsers");
+
+        return queryService.exportCompanyUsers(exportType, vendor, pageable);
     }
 
     @RequestMapping(value = "/queries/InsertMasterInspections", method = RequestMethod.POST)

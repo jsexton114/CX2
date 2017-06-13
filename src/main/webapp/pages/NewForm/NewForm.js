@@ -433,6 +433,10 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         }
     };
 
+    $scope.wizardstepSharingLoad = function($isolateScope, stepIndex) {
+        debugger
+    };
+
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         setLFFieldsRO($scope.Widgets.lfOwner, !newVal);
     };
@@ -620,6 +624,11 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         if (!!$scope.draftData) {
             loadDraftBehalfOf();
         }
+    };
+
+
+    $scope.svFetchCompanyUsersonSuccess = function(variable, data) {
+        debugger
     };
 
 }]);

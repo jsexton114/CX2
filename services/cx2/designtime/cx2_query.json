@@ -1876,6 +1876,71 @@
       } ]
     }
   },
+  "CompanyUsers" : {
+    "name" : "CompanyUsers",
+    "description" : "CompanyUsers",
+    "version" : "V2",
+    "queryString" : "select U.FirstName,U.LastName,U.Email,U.ID from Users U, VendorUsers VU \nwhere \nVU.UserId=U.ID\nand\nVU.VendorId in :vendor",
+    "countQueryString" : null,
+    "nativeSql" : true,
+    "fetchCount" : false,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "vendor",
+      "type" : "integer",
+      "list" : true,
+      "variableType" : "PROMPT",
+      "testValue" : [ "2", "26" ],
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CompanyUsersResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "FirstName",
+        "fieldName" : "firstName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "LastName",
+        "fieldName" : "lastName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "Email",
+        "fieldName" : "email",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "ID",
+        "fieldName" : "id",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CounCasesByStatusAndMunicipality" : {
     "name" : "CounCasesByStatusAndMunicipality",
     "description" : "CounCasesByStatusAndMunicipality",

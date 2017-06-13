@@ -594,16 +594,6 @@ group by FeeType) wmTempTable
     <query-param name="municipalityId" type="java.lang.Integer"/>
     </sql-query>
 
-    <query name="countProjectsByVendors">
-        <![CDATA[
-        select count(*) as projectsCount
-from VendorsToProject
-where vendorId=:vendorId and projects.active=:active
-        ]]>
-    <query-param name="vendorId" type="java.lang.Integer"/>
-    <query-param name="active" type="java.lang.Boolean"/>
-    </query>
-
     <sql-query name="searchWithFormTitle">
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
@@ -669,6 +659,16 @@ where   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
     <query-param name="municipalityInternalForm" type="java.lang.Boolean"/>
     <query-param name="formTitle" type="java.lang.String"/>
     </sql-query>
+
+    <query name="countProjectsByVendors">
+        <![CDATA[
+        select count(*) as projectsCount
+from VendorsToProject
+where vendorId=:vendorId and projects.active=:active
+        ]]>
+    <query-param name="vendorId" type="java.lang.Integer"/>
+    <query-param name="active" type="java.lang.Boolean"/>
+    </query>
 
     <query name="OpenedOrClosedFormsForUserOrSharedWith">
         <![CDATA[
@@ -980,6 +980,17 @@ where M.UserId=:userId and(:municipalityId IS NULL OR  MUNI.ID=:municipalityId))
         ]]>
     <query-param name="form" type="java.lang.String"/>
     </query>
+
+    <sql-query name="CompanyUsers">
+        <![CDATA[
+        select U.FirstName,U.LastName,U.Email,U.ID from Users U, VendorUsers VU 
+where 
+VU.UserId=U.ID
+and
+VU.VendorId in :vendor
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
 
     <sql-query name="InsertMasterInspections">
         <![CDATA[

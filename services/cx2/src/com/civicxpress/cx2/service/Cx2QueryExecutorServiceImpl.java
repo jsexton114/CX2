@@ -502,28 +502,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("vendorId", vendorId);
-        params.put("active", active);
-
-        return queryExecutor.executeNamedQuery("countProjectsByVendors", params, CountProjectsByVendorsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
-        Map params = new HashMap(2);
-
-        params.put("vendorId", vendorId);
-        params.put("active", active);
-
-        return queryExecutor.exportNamedQueryData("countProjectsByVendors", params, exportType, CountProjectsByVendorsResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable) {
         Map params = new HashMap(4);
 
@@ -546,6 +524,28 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("formTitle", formTitle);
 
         return queryExecutor.exportNamedQueryData("searchWithFormTitle", params, exportType, SearchWithFormTitleResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.executeNamedQuery("countProjectsByVendors", params, CountProjectsByVendorsResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable) {
+        Map params = new HashMap(2);
+
+        params.put("vendorId", vendorId);
+        params.put("active", active);
+
+        return queryExecutor.exportNamedQueryData("countProjectsByVendors", params, exportType, CountProjectsByVendorsResponse.class, pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -744,6 +744,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("form", form);
 
         return queryExecutor.exportNamedQueryData("InspectionsOfForm", params, exportType, FormsToInspections.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<CompanyUsersResponse> executeCompanyUsers(List<Integer> vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("CompanyUsers", params, CompanyUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCompanyUsers(ExportType exportType, List<Integer> vendor, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("vendor", vendor);
+
+        return queryExecutor.exportNamedQueryData("CompanyUsers", params, exportType, CompanyUsersResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

@@ -109,13 +109,13 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateWorkMunicipality(UpdateWorkMunicipalityRequest updateWorkMunicipalityRequest);
 
-    Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable);
-
-    Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable);
-
     Page<SearchWithFormTitleResponse> executeSearchWithFormTitle(Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable);
 
     Downloadable exportSearchWithFormTitle(ExportType exportType, Integer municipalityId, Boolean publicRead, Boolean municipalityInternalForm, String formTitle, Pageable pageable);
+
+    Page<CountProjectsByVendorsResponse> executeCountProjectsByVendors(Integer vendorId, Boolean active, Pageable pageable);
+
+    Downloadable exportCountProjectsByVendors(ExportType exportType, Integer vendorId, Boolean active, Pageable pageable);
 
     Page<MasterForms> executeOpenedOrClosedFormsForUserOrSharedWith(Long userId, Pageable pageable);
 
@@ -152,6 +152,10 @@ public interface Cx2QueryExecutorService {
     Page<FormsToInspections> executeInspectionsOfForm(String form, Pageable pageable);
 
     Downloadable exportInspectionsOfForm(ExportType exportType, String form, Pageable pageable);
+
+    Page<CompanyUsersResponse> executeCompanyUsers(List<Integer> vendor, Pageable pageable);
+
+    Downloadable exportCompanyUsers(ExportType exportType, List<Integer> vendor, Pageable pageable);
 
     Integer executeInsertMasterInspections(InsertMasterInspectionsRequest insertMasterInspectionsRequest);
 
