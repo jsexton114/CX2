@@ -161,7 +161,8 @@
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
                                             <wm-label class="col-md-3 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
                                             <wm-container class="col-md-9" name="container11" padding="unset 2em unset unset">
-                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.svFormTypesForMunicipalitySettings.firstRecord.id"></wm-select>
+                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
+                                                placeholder="Select Form"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-label padding="0.8em 0.5em unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company to do business within your municipality."

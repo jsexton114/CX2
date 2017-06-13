@@ -17,6 +17,18 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.stripe.Stripe;
+import com.stripe.exception.APIConnectionException;
+import com.stripe.exception.APIException;
+import com.stripe.exception.AuthenticationException;
+import com.stripe.exception.CardException;
+import com.stripe.exception.InvalidRequestException;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
+import com.stripe.net.RequestOptions;
+
 //import com.civicxpress.paymentservice.model.*;
 
 /**
@@ -48,8 +60,45 @@ public class PaymentService {
      */
     public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("Starting chargeCreditCard() with request url " + request.getRequestURL().toString());
-        String stripeToken = request.getParameter("stripeToken");
-        logger.debug("stripeToken: " + stripeToken);
+        String token = null; 
+        Map<String, Object> params = null;
+		Charge charge = null;
+
+        logger.debug("stripeToken: " + token);
+		Stripe.apiKey = "sk_test_YnCjI8HSaQteOmL7R8xUzU85";
+		token = request.getParameter("stripeToken");
+		params = new HashMap<String, Object>();
+		params.put("amount", 1000);
+		params.put("currency", "usd");
+		params.put("description", "Municipality fees");
+		params.put("source", token);
+		try {
+			charge = Charge.create(params);
+			System.out.println("charge.getCustomer(): " + charge.getCustomer());
+			System.out.println("charge.getDescription(): " + charge.getDescription());
+			System.out.println("charge.getAmount(): " + charge.getAmount());
+			System.out.println("charge.getStatus(): " + charge.getStatus());
+			System.out.println("charge.getId(): " + charge.getId());
+			System.out.println("charge.getOutcome(): " + charge.getOutcome());
+		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidRequestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (APIConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (APIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// TODO: write charge ID and outcome to database
+
     }
     
     public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {

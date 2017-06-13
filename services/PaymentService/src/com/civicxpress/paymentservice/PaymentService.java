@@ -101,7 +101,7 @@ public class PaymentService {
 
     }
     
-    public void callback(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void callback(HttpServletRequest request, HttpServletResponse response,Object obj) throws ServletException {
         logger.debug("Callback invoked");
  	    try {
  	          //String page="you want to redirect ";

@@ -26,7 +26,6 @@ public class UpdateContractorManagementSettingsRequest implements Serializable {
     @NotNull
     @JsonProperty("separateContractorApplicationRequired")
     private Boolean separateContractorApplicationRequired;
-    @NotNull
     @JsonProperty("formId")
     private Integer formId;
     @NotNull
