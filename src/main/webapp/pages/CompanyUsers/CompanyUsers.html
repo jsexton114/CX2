@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow9">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn23" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn23" padding="unset unset 1em unset">
                         <wm-label name="labelMyCompany" caption="Company User Management" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn24" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn24" padding="unset unset 1em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectCompany" title="" class="panel-transparent" content="selectCompany">
                             <wm-param name="companyId" value="bind:pageParams.companyId" type="integer"></wm-param>
                         </wm-panel>
@@ -25,6 +25,11 @@
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpane1" title="Company Users">
                                 <wm-layoutgrid name="layoutgrid2_1">
+                                    <wm-gridrow name="gridrow20">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn45">
+                                            <wm-label padding="unset 0.5em" name="label32" caption="Company Users are employees of your company. When a user selects your company on a new form, they have the option of sharing their submitted form with your company users."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorUsers.dataSet" navigation="Classic" name="gridVendorUsers" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
@@ -44,6 +49,12 @@
                             </wm-tabpane>
                             <wm-tabpane name="tabpane2" title="Company Admins">
                                 <wm-layoutgrid name="layoutgrid2_1">
+                                    <wm-gridrow name="gridrow21">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn46">
+                                            <wm-label padding="unset 0.5em" name="label30" caption="Company Admins are Company Users who have been granted access to the content on the &quot;My Company&quot; dashboard, where they can control your company profile information, view company forms, and manage company users and municipality applications."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label31" caption="Company Admins must also have the Company User role." fontweight="bold"></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow5">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                             <wm-grid title="" dataset="bind:Variables.VendorAdmins.dataSet" navigation="Classic" name="gridAdmins" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
@@ -76,6 +87,9 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid3">
+                <wm-gridrow name="gridrow22">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn47"></wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn10" padding="1em unset">
                         <wm-search name="searchUser" dataset="bind:Variables.AllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" placeholder="Search by Name or Email Address" required="true"
@@ -155,6 +169,9 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button7_2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
             <wm-layoutgrid name="layoutgrid6">
+                <wm-gridrow name="gridrow23">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn48"></wm-gridcolumn>
+                </wm-gridrow>
                 <wm-gridrow name="gridrow15">
                     <wm-gridcolumn columnwidth="12" padding="1em unset" name="gridcolumn32">
                         <wm-search dataset="bind:Variables.AllUsers.dataSet" searchkey="email,fullName" displaylabel="fullName+' ('+email+')'" displayimagesrc="photo" datafield="All Fields" name="searchForAdmin" placeholder="Search by Name or Email Address"
