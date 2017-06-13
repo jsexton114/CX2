@@ -52,6 +52,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
             $scope.Widgets.paymentTypeLabel.show = false;
             $scope.Widgets.compositeComments.show = false;
             $scope.Widgets.wizardstep2.disabledone = true;
+            //$scope.Widgets.html1.content = '&lt;form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST"&gt;&lt;script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Widget" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png" data-locale="auto"&gt;&lt;/script&gt;&lt;/form&gt;';
         }
     };
 
