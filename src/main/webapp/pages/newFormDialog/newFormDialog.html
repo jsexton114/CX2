@@ -19,7 +19,7 @@
             </wm-gridrow>
             <wm-gridrow name="gridrow5">
                 <wm-gridcolumn columnwidth="12" name="gridcolumn5_1">
-                    <wm-label padding="unset 0.5em unset unset" name="label4" caption="Select a form below that you would like to submit to the municipality. If you would like to narrow down the selections you may &quot;Filter by Category&quot;."></wm-label>
+                    <wm-label padding="unset 0.5em unset unset" name="label4" caption="Select a form below that you would like to submit to the municipality. If you would like to narrow down the selections you may &quot;Filter by Category&quot;." show="bind:!!Variables.svFormTypes.dataSet.content.length"></wm-label>
                 </wm-gridcolumn>
             </wm-gridrow>
             <wm-gridrow name="gridrow2">
@@ -46,6 +46,12 @@
                 <wm-gridcolumn columnwidth="12" name="gridcolumn6">
                     <wm-label padding="unset 0.5em unset unset" name="label6" caption="Note: a &quot;Case&quot; is simply a form that has been marked to be used for Code Enforcement purposes. You will only be able to select cases on this &quot;Submit Case&quot; dialog."
                     show="bind:pageParams.isCase == 'true'"></wm-label>
+                </wm-gridcolumn>
+            </wm-gridrow>
+            <wm-gridrow name="gridrow7">
+                <wm-gridcolumn columnwidth="12" name="gridcolumn7">
+                    <wm-label padding="unset 0.5em unset unset" name="label7" caption="<strong>Uh oh!</strong> You have not subscribed to any municipalities, so there are no forms that you can submit. Please browse to &quot;My Profile&quot; and subscribe to a municipality in order to submit a form."
+                    show="bind:!Variables.StandardUserMunicipalities.dataSet.content.length"></wm-label>
                 </wm-gridcolumn>
             </wm-gridrow>
         </wm-layoutgrid>
