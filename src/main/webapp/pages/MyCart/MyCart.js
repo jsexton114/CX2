@@ -23,7 +23,6 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         // }
     };
 
-
     $scope.wizardCheckOutDone = function($isolateScope, steps) {
         var feeIds = [];
 
@@ -44,6 +43,26 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
             // $scope.$parent.Widgets.pagedialog1.close();
 
     };
+
+
+    $scope.wizardstep2Load = function($isolateScope, stepIndex) {
+        if (!isMunicipalityEmployee() && $scope.Widgets.radiosetPaymentOptions !== null) {
+            $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
+            $scope.Widgets.radiosetPaymentOptions.show = false;
+            $scope.Widgets.paymentTypeLabel.show = false;
+        }
+    };
+
+    function isMunicipalityEmployee() {
+        var returnIsMunicipalityEmployee = false;
+        let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "MunicipalityEmployee")) {
+                returnIsMunicipalityEmployee = true;
+            }
+        }
+        return returnIsMunicipalityEmployee;
+    }
 
 }]);
 

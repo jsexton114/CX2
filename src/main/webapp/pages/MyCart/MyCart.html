@@ -33,7 +33,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2" title="Municipality Checkout" iconclass="wi wi-attach-money">
+                            <wm-wizardstep name="wizardstep2" title="Checkout" iconclass="wi wi-attach-money" on-load="wizardstep2Load($scope, stepIndex)">
                                 <wm-layoutgrid name="layoutgrid2">
                                     <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn4">
@@ -42,24 +42,21 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                            <wm-label padding="unset 0.5em" name="label6" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
+                                            <wm-label name="paymentTypeLabel" padding="unset 0.5em" name="label6" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="10" name="gridcolumn8">
                                             <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
                                         </wm-gridcolumn>
-
                                         <wm-gridcolumn columnwidth="2" name="gridcolumn9">
                                             <wm-html name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
                                                 <form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST">
                                                     <!--<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Widget" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"
-                                                    data-locale="auto">
-                                                    </script>-->
+                                                    data-locale="auto"></script>-->
                                                 </form>
                                             </wm-html>
                                         </wm-gridcolumn>
-
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>

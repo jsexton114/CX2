@@ -27,10 +27,8 @@ public class PaymentController {
         paymentService.callback(request, response, obj);
     }
 
-    @RequestMapping(value = "/chargeCreditCard", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "")
-    public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response) {
-        paymentService.chargeCreditCard(request, response);
+    @RequestMapping(value = "/chargeCreditCard", method = RequestMethod.POST)
+    public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
+        paymentService.chargeCreditCard(request, response, obj);
     }
 }
