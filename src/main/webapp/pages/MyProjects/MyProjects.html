@@ -22,20 +22,32 @@
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-building" autoclose="outsideClick" name="panel1" title="My Projects" class="panel-primary">
-                            <wm-livegrid formlayout="dialog" name="livegridProjectsList">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false" showrecordcount="true"
-                                exportformat="EXCEL">
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                    <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
-                                    <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
-                                    shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                            </wm-livegrid>
+                            <wm-layoutgrid name="layoutgrid4">
+                                <wm-gridrow name="gridrow9">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                                        <wm-label padding="unset 0.5em" name="label5" caption="Projects allow communication, coordination, and document exchange between users, contractors, and municipalities, and may contain multiple associated forms."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label6_1" caption="Projects where you are the Project Owner are displayed here in addition to projects where you have been added as a Project Member."></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow10">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn12">
+                                        <wm-livegrid formlayout="dialog" name="livegridProjectsList">
+                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.UserAndSharedWith.dataSet" navigation="Classic" name="gridProjectsList" filtermode="multicolumn" showrowindex="false" showrecordcount="true"
+                                            exportformat="EXCEL">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                                <wm-grid-column binding="usersByCreatedBy.fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event);addNewRowAction1($event)"
+                                                shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
+                                            </wm-grid>
+                                        </wm-livegrid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>

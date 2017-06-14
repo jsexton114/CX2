@@ -11,13 +11,19 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="unset unset 1em unset">
                         <wm-label name="labelHeader" caption="My Company Projects" class="h4" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset unset 1em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectCompany" title="" content="selectCompany" class="panel-transparent">
                             <wm-param name="companyId" value="bind:pageParams.companyId" type="integer"></wm-param>
                         </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow9">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn10">
+                        <wm-label padding="unset 0.5em" name="label7_1" caption="Projects allow communication, coordination, and document exchange between users, contractors, and municipalities, and may contain multiple associated forms."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label6_1" caption="Projects that your company is involved with are displayed here. If you would like to contribute to a project, please contact the Project Owner and request to be added as a Project Member."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
@@ -28,9 +34,8 @@
                             <wm-grid-column binding="companyName" caption="Company Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Project" action="Widgets.dialogCreateProject.open()"
-                            accessroles="CXAdmin,CXVendorAdmin" shortcutkey="" disabled="false"></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()"
+                            disabled="false"></wm-grid-row-action>
                             <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" accessroles="CXAdmin,CXVendorAdmin"
                             disabled="false"></wm-grid-row-action>
                         </wm-grid>

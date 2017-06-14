@@ -11,16 +11,16 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="unset unset 1em unset">
                         <wm-label name="label1" caption="My Company Forms" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset unset 1em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectCompany" title="" content="selectCompany" class="panel-transparent">
                             <wm-param name="companyId" value="bind:pageParams.companyId" type="integer"></wm-param>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow3">
+                <wm-gridrow name="gridrow3" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn4_1">
                         <wm-panel iconclass="wi wi-book-open" autoclose="outsideClick" name="panelOpenForms" title="Open Forms" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
@@ -30,7 +30,7 @@
                                         <wm-label padding="unset 0.5em unset 0.2em" name="label6" caption="Please use the &quot;Messages&quot; feature on the form itself if you have any questions for the municipality or form submitter regarding the form."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow3">
+                                <wm-gridrow name="gridrow3" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn3_1">
                                         <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
@@ -59,9 +59,8 @@
                                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                             </wm-grid-column>
                                             <wm-grid-column binding="dateModified" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateModified') | toLocalDateString}}</wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()"
-                                            accessroles="CXVendorAdmin,CXAdmin" shortcutkey="" disabled="false" position="header"></wm-grid-action>
-                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()"
+                                            disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -71,14 +70,14 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                        <wm-panel iconclass="wi wi-book-binder" autoclose="outsideClick" title="Closed Forms" class="panel-primary" name="panelClosedForms" margin="1em unset unset unset">
+                        <wm-panel iconclass="wi wi-book-binder" autoclose="outsideClick" title="Closed Forms" class="panel-primary" name="panelClosedForms">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow10">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn14" padding="unset unset 1em unset">
                                         <wm-label padding="unset 0.5em unset 0.2em" name="label5" caption="Forms with your company selected that are considered &quot;Closed&quot; are displayed here. Form processing is complete for these submissions."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow3">
+                                <wm-gridrow name="gridrow3" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn3_1">
                                         <wm-composite name="composite1" margin="unset unset unset 0.2em">
                                             <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
@@ -107,9 +106,8 @@
                                             <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
                                             </wm-grid-column>
                                             <wm-grid-column binding="dateModified" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateModified') | toLocalDateString}}</wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()"
-                                            accessroles="CXVendorAdmin,CXAdmin" shortcutkey="" disabled="false" position="header"></wm-grid-action>
-                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()"
+                                            disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
