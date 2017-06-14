@@ -12,19 +12,37 @@
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" horizontalalign="right"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow38">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn75" horizontalalign="center" padding="unset 0.5em unset unset">
+                        <wm-panel iconclass="wi wi-gps-fixed" autoclose="outsideClick" title="Address Record" name="panelHeader" height="214px">
+                            <wm-layoutgrid name="layoutgrid16_1">
+                                <wm-gridrow name="gridrow46" padding="1em unset 2em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn84_1">
+                                        <wm-label padding="unset 0.5em" name="label27" caption="bind:Variables.SelectedGISobj.dataSet.data[$i].fullAddress" class="col-md-12" fontweight="bold" fontunit="px" fontsize="18"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow47">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn86_1">
+                                        <wm-label padding="unset 0.5em" name="label28" caption="bind:Variables.SelectedGISobj.dataSet.data[$i].municipalities.municipalityName" class="col-md-12" fontsize="16"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow48">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn88_1">
+                                        <wm-label padding="unset 0.5em" name="labelIsRental" caption="Rental Property" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" class="col-md-12" fontsize="16" fontunit="px"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn73" padding="unset 0.5em unset unset">
                         <wm-chart type="Pie" title="Forms" height="260px" iconclass="wi wi-assignment" name="chartForms" dataset="bind:Variables.svClosedVsOpenFormCount.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle" nodatamessage="No Forms Submitted"
                         labeltype="value" tooltips="true" subheading="bind:Variables.FormsTaggedWithGISRecords.dataSet.totalElements + ' Total Forms'" offsettop="20" offsetbottom="40" showlegend="top" borderwidth="unset unset 2em unset"></wm-chart>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn74" padding="unset 0.5em">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn74" padding="unset 0.5em unset unset">
                         <wm-chart type="Pie" title="Cases" height="260px" iconclass="fa fa-legal" name="chartCases" dataset="bind:Variables.svClosedVsOpenCases.dataSet" xaxisdatakey="considerClosed" yaxisdatakey="formCount" theme="Annabelle" nodatamessage="No Cases Submitted"
                         labeltype="value" subheading="bind:Variables.CasesTaggedWithGISRecords.dataSet.totalElements + ' Total Cases'" offsettop="20" offsetbottom="40" borderwidth="unset unset 2em unset"></wm-chart>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn75" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="labelIsRental" caption="Rental Property" show="bind:Variables.SelectedGISobj.dataSet.data[$i].rentalProperty" margin="20% unset unset unset" class="h2"></wm-label>
-                    </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow17" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow17">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn29">
                         <wm-tabs name="tabs1">
                             <wm-tabpane name="tabpaneDetails" title="Details">
@@ -160,15 +178,27 @@
                                     type="button" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-tabpane>
+                            <wm-tabpane name="Map" title="Map">
+                                <wm-layoutgrid name="layoutgrid11">
+                                    <wm-gridrow name="gridrow34">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn70">
+                                            <wm-prefab prefabname="googlemaps" name="googlemapsGisFullAddress" margin="1em" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="true" address="fullAddress" height="420px"></wm-prefab>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneContacts" title="Contacts">
                                 <wm-layoutgrid name="layoutgrid15">
                                     <wm-gridrow name="gridrow44">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn86"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn86">
+                                            <wm-label padding="unset 0.5em" name="label25" caption="The following contacts are associated with this address record. Contact types include Owner, Tenant, Emergency, Tax Contact, Agent, and Other."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label26" caption="Please use the &quot;Active&quot; flag to distinguish between a current contact and a previously-associated contact."></wm-label>
+                                        </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow45">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn88">
                                             <wm-livegrid formlayout="dialog" name="livegridGISContacts">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GiscontactsData.dataSet" navigation="Classic" name="gridGISContacts" filtermode="multicolumn" exportformat="EXCEL">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GiscontactsData.dataSet" navigation="Classic" name="gridGISContacts" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="contactType" caption="Contact Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="firstName" caption="First Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -231,7 +261,7 @@
                                                                 placeholder="Enter value" defaultvalue="USA"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn37">
-                                                                <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder=""></wm-form-field>
+                                                                <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" widget="checkbox" placeholder="" hint="If selected, this indicates that the contact is a current contact for the selected address."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow16">
@@ -253,10 +283,93 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
+                            <wm-tabpane name="tabpaneForms" title="Forms" accessroles="Everyone">
+                                <wm-layoutgrid name="layoutgrid4">
+                                    <wm-gridrow name="gridrow41">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn81">
+                                            <wm-label padding="unset 0.5em" name="label23" caption="This address has been selected on the following Forms."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow20">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn40">
+                                            <wm-grid title="" dataset="bind:Variables.FormsTaggedWithGISRecords.dataSet" navigation="Classic" name="gridForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
+                                                </wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()" shortcutkey="" disabled="false"
+                                                position="header"></wm-grid-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpaneCases" title="Cases">
+                                <wm-layoutgrid name="layoutgrid5">
+                                    <wm-gridrow name="gridrow40">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn80">
+                                            <wm-label padding="unset 0.5em" name="label22" caption="This address has been selected on the following Cases."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow25">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn46">
+                                            <wm-grid title="" dataset="bind:Variables.CasesTaggedWithGISRecords.dataSet" navigation="Classic" name="gridCases" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
+                                                </wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="Submit Case" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Case" action="Widgets.dialogNewCase.open()" shortcutkey="" disabled="false"
+                                                position="header"></wm-grid-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                            </wm-grid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
+                            <wm-tabpane name="tabpaneDocuments" title="Documents">
+                                <wm-layoutgrid name="layoutgrid13">
+                                    <wm-gridrow name="gridrow38_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_1">
+                                            <wm-label padding="unset 0.5em" name="label21" caption="Documents associated with this address are available below. There may also be additional documents available on the Attachments lists on the associated Forms and Cases."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow39">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
+                                            <wm-livegrid formlayout="dialog" name="livegrid5">
+                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                    <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="dateCreated" caption="Date Added" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
+                                                    <wm-grid-column binding="users.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true"
+                                                    edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                                                    <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()"
+                                                    accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,GISAdmin"
+                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
+                                                    accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,GISAdmin"
+                                                    disabled="false"></wm-grid-row-action>
+                                                </wm-grid>
+                                            </wm-livegrid>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                </wm-layoutgrid>
+                            </wm-tabpane>
                             <wm-tabpane name="tabpaneTransactions" title="Transactions">
                                 <wm-layoutgrid name="layoutgrid14">
                                     <wm-gridrow name="gridrow42">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn82"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn82">
+                                            <wm-label padding="unset 0.5em" name="label24" caption="The following transactions have been recorded for this address record."></wm-label>
+                                        </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow43">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn84">
@@ -330,81 +443,6 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-tabpane>
-                            <wm-tabpane name="tabpaneForms" title="Forms" accessroles="Everyone">
-                                <wm-layoutgrid name="layoutgrid4">
-                                    <wm-gridrow name="gridrow41">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn81"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow20">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn40">
-                                            <wm-grid title="" dataset="bind:Variables.FormsTaggedWithGISRecords.dataSet" navigation="Classic" name="gridForms" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
-                                                </wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()" shortcutkey="" disabled="false"
-                                                position="header"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneCases" title="Cases">
-                                <wm-layoutgrid name="layoutgrid5">
-                                    <wm-gridrow name="gridrow40">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn80"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow25">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn46">
-                                            <wm-grid title="" dataset="bind:Variables.CasesTaggedWithGISRecords.dataSet" navigation="Classic" name="gridCases" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                <wm-grid-column binding="formTitle" caption="Form Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="createdBy" caption="Submitted By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formDesign" caption="Form" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="formStatus" caption="Form Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="balanceDue" caption="Balance Due" type="string" edit-widget-type="text" show="true" readonly="false"><span>{{(!row.getProperty('balanceDue') ? 0 : row.getProperty('balanceDue')) | toCurrency:'$':2}}</span>
-                                                </wm-grid-column>
-                                                <wm-grid-action key="addNewRow" display-name="Submit Case" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Case" action="Widgets.dialogNewCase.open()" shortcutkey="" disabled="false"
-                                                position="header"></wm-grid-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="tabpaneDocuments" title="Documents">
-                                <wm-layoutgrid name="layoutgrid13">
-                                    <wm-gridrow name="gridrow38_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn76_1"></wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow39">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn78">
-                                            <wm-livegrid formlayout="dialog" name="livegrid5">
-                                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2DocumentData.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                    <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                    <wm-grid-column binding="dateCreated" caption="Date Added" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
-                                                    <wm-grid-column binding="users.fullName" caption="Added By" type="string" primary-key="false" generator="assigned" readonly="true"
-                                                    edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
-                                                    <wm-grid-action key="addNewRow" display-name="Add Attachment" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Attachment" action="Widgets.dialogUploadDocument.open()"
-                                                    accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" shortcutkey="" disabled="false"></wm-grid-action>
-                                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin,GISAdmin"
-                                                    disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()"
-                                                    accessroles="CXAdmin,MunicipalityAdmin,MunicipalityEmployee" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXAdmin,MunicipalityAdmin,GISAdmin"
-                                                    disabled="false"></wm-grid-row-action>
-                                                </wm-grid>
-                                            </wm-livegrid>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
                             <wm-tabpane name="tabpaneNotes" title="Notes" accessroles="GISAdmin,CXAdmin,MunicipalityAdmin,MunicipalityEmployee">
                                 <wm-layoutgrid name="layoutgrid16">
                                     <wm-gridrow name="gridrow58" padding="unset unset 1em unset">
@@ -452,15 +490,6 @@
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn159_1">
                                             <wm-button class="btn-primary" caption="Post" type="button" margin="unset 0.5em" name="buttonAddMessage" iconclass="wi wi-send" on-click="buttonAddMessageClick($event, $scope)" disabled="bind:!Widgets.textAddMessage.datavalue"></wm-button>
                                             <wm-button class="btn-secondary" caption="Tag People" type="button" name="buttonTagPeople" iconclass="wi wi-tag" on-click="Widgets.dialogTagPeople.open()" badgevalue="bind:Variables.PeopleList.dataSet.length"></wm-button>
-                                        </wm-gridcolumn>
-                                    </wm-gridrow>
-                                </wm-layoutgrid>
-                            </wm-tabpane>
-                            <wm-tabpane name="Map" title="Map">
-                                <wm-layoutgrid name="layoutgrid11">
-                                    <wm-gridrow name="gridrow34">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn70">
-                                            <wm-prefab prefabname="googlemaps" name="googlemapsGisFullAddress" margin="1em" locations="bind:Variables.SelectedGISobj.firstRecord" markertype="Address" zoom="16" show="true" address="fullAddress" height="420px"></wm-prefab>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
