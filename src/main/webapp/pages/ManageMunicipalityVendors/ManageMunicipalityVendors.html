@@ -35,21 +35,20 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow13">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                                        <wm-livegrid formlayout="dialog" name="livegrid2">
-                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
-                                                show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
-                                                show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogPendingApprovals.open()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-livegrid>
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ReviewVendorApprovals.dataSet" navigation="Classic" name="gridPending" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                            show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                            show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogPendingApprovals.open()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                            disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -67,22 +66,20 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn19">
-                                        <wm-livegrid formlayout="dialog" name="livegrid2_1">
-                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL"
-                                            showrecordcount="true">
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
-                                                show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
-                                                filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewApproved.open()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-livegrid>
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ApprovedVendorApprovals.dataSet" navigation="Classic" name="gridApprovedVendors" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                            show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
+                                            filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewApproved.open()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                            disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -100,21 +97,20 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow17">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn23">
-                                        <wm-livegrid formlayout="dialog" name="livegrid3">
-                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
-                                                show="true" filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
-                                                filterwidget="date" readonly="false"></wm-grid-column>
-                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewSuspended.open()" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                            </wm-grid>
-                                        </wm-livegrid>
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.SuspendedVendorApprovals.dataSet" navigation="Classic" name="gridSuspended" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="vendor.companyName" caption="Company" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvalStatus" caption="Review Status" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="expiresDate" caption="Expiration Date" type="timestamp" primary-key="false" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp"
+                                            show="true" filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="approvedBy" caption="Reviewed By" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="dateApproved" caption="Date Reviewed" type="timestamp" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="timestamp" show="true"
+                                            filterwidget="date" readonly="false"></wm-grid-column>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-mode-edit" title="Review" action="Widgets.dialogReviewSuspended.open()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleterowAction($event)" accessroles="CXAdmin,MunicipalityAdmin"
+                                            disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -224,5 +220,8 @@
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button6" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewDeleteApplication">
+        <wm-confirmdialog name="confirmdialogDeleteApplication" title="Delete Application" message="Are you sure you want to delete this?" iconclass="wi wi-delete" on-ok="Variables.lvDeleteVendorApplication.deleteRecord()"></wm-confirmdialog>
     </wm-view>
 </wm-page>

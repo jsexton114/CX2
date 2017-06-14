@@ -13,35 +13,11 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
 
 
-Application.$controller("gridApprovedVendorsController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
-            $scope.Widgets.viewCompanyDetails.open();
-
-        };
-
-    }
-]);
 
 
 
-Application.$controller("gridSuspendedController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
 
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
-            $scope.Widgets.viewCompanyDetails.open();
 
-        };
-
-    }
-]);
 
 
 
@@ -61,17 +37,7 @@ Application.$controller("grid5Controller", ["$scope",
 
 
 
-Application.$controller("gridPendingController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-        $scope.customRowAction = function($event, $rowData) {
-            $scope.Variables.stvSelectedVendor.dataSet.dataValue = parseInt($rowData.vendorId);
-            $scope.Widgets.viewCompanyDetails.open();
 
-        };
-    }
-]);
 
 
 
@@ -96,5 +62,48 @@ Application.$controller("dialogReviewSuspendedController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
         $scope.today = moment().valueOf();
+    }
+]);
+
+Application.$controller("gridPendingController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.deleterowAction = function($event, $rowData) {
+            $scope.Variables.stvDeletingApplicationId.dataSet.dataValue = $rowData.id;
+            $scope.Widgets.confirmdialogDeleteApplication.open();
+        };
+
+
+    }
+]);
+
+Application.$controller("gridApprovedVendorsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.deleterowAction = function($event, $rowData) {
+            $scope.Variables.stvDeletingApplicationId.dataSet.dataValue = $rowData.id;
+            $scope.Widgets.confirmdialogDeleteApplication.open();
+        };
+    }
+]);
+
+Application.$controller("gridSuspendedController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+        $scope.deleterowAction = function($event, $rowData) {
+            $scope.Variables.stvDeletingApplicationId.dataSet.dataValue = $rowData.id;
+            $scope.Widgets.confirmdialogDeleteApplication.open();
+        };
+    }
+]);
+
+Application.$controller("confirmdialogDeleteApplicationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);
