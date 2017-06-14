@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn3" padding="unset unset 1em unset">
                         <wm-label caption="Municipality Forms" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="1em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label3" fontweight="bold" caption="Select Municipality"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -29,8 +29,8 @@
                             <wm-composite name="composite3" show="true">
                                 <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
                                 <wm-container class="col-md-7" name="container3">
-                                    <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""
-                                    width="169px"></wm-select>
+                                    <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                    placeholder="" width="169px"></wm-select>
                                 </wm-container>
                             </wm-composite>
                         </wm-gridcolumn>

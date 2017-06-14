@@ -12,7 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn3_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn4">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn4" padding="unset unset 1em unset">
                         <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
                             <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
                             <wm-param name="muniType" value="s" type="string"></wm-param>
@@ -28,7 +28,7 @@
                                         <wm-label padding="unset 0.5em" name="label2" caption="This list shows all fees that you are able to pay. It includes fees from forms that you have submitted, inspections that have been requested, and forms that have been shared with you."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow5" padding="1em unset">
+                                <wm-gridrow name="gridrow5">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
                                         <wm-grid title="" dataset="bind:Variables.svfetchUnpaidFeesOfFormsForCreatedByAndSharedWith.dataSet" navigation="Classic" name="gridUnpaidFees" filtermode="multicolumn" showrecordcount="true">
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>

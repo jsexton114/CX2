@@ -11,11 +11,11 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn1" padding="unset unset 1em unset">
                         <wm-label name="label1" caption="Statistics Dashboards" fontweight="bold" class="h4"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow13" padding="unset unset 2em unset">
+                <wm-gridrow name="gridrow13" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn28">
                         <wm-composite name="composite2">
                             <wm-label class="col-md-5 form-control-static" name="label18" caption="Select Dashboard" fontweight="bold"></wm-label>
@@ -35,7 +35,7 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="unset unset 4em unset">
+                <wm-gridrow name="gridrow14" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn30">
                         <wm-composite name="composite3">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
@@ -59,7 +59,7 @@
                         <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow15" padding="2em unset">
+                <wm-gridrow name="gridrow15" padding="2em unset unset unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 1em">
                         <wm-chart type="Pie" title="Submitted Form Designs" height="250px" iconclass="wi wi-assignment" name="chartFormTypes" dataset="bind:Variables.svFormsTypesData.dataSet" labeltype="percent" showlegend="top" xaxisdatakey="formType" yaxisdatakey="counts"
                         theme="Annabelle" offsetleft="0" offsetright="0" offsetbottom="0"></wm-chart>
@@ -69,17 +69,13 @@
                         xaxisdatakey="category" theme="Annabelle"></wm-chart>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow16" padding="2em unset">
+                <wm-gridrow name="gridrow16" padding="2em unset unset unset">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn36" padding="unset 1em">
                         <wm-chart type="Pie" title="Fee Types" height="250px" iconclass="wi wi-attach-money" dataset="bind:Variables.svFeeByTypes.dataSet" labeltype="percent" showlegend="top" name="chartFee" xaxisdatakey="fee" yaxisdatakey="counts" theme="Annabelle"></wm-chart>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn37" padding="unset 1em unset unset">
                         <wm-chart type="Pie" title="Active Contractors" height="250px" iconclass="wi wi-work" name="chartVendors" dataset="bind:Variables.svFormsVendorsData.dataSet" xaxisdatakey="vendorCompany" yaxisdatakey="counts" theme="Annabelle"></wm-chart>
                     </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow17" padding="2em unset">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn39"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn40" padding="unset unset unset 1em"></wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>

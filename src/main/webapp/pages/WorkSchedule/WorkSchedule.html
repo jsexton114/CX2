@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="unset unset 1em unset">
                         <wm-label caption="Municipality Schedule" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -143,37 +143,48 @@
                 <wm-gridrow name="gridrow10">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
                         <wm-panel iconclass="wi wi-today" name="panel2" title="Work Holidays" class="panel-primary">
-                            <wm-livegrid formlayout="dialog" name="livegrid1">
-                                <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                    <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                    <wm-grid-column binding="holiday" caption="Holiday" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-column binding="date" caption="Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
-                                    <wm-grid-action key="addNewRow" display-name="New Holiday" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Holiday" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                    <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                    <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
-                                </wm-grid>
-                                <wm-liveform novalidate="false" errormessage="" title="Holiday Details" formlayout="dialog" iconclass="wi wi-today" dataset="bind:Variables.Cx2HolidaysData.dataSet" captionalign="left" captionposition="top" name="liveform1">
-                                    <wm-layoutgrid columns="1" name="layoutgrid3">
-                                        <wm-gridrow name="gridrow11">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
-                                                <wm-form-field name="holiday" displayname="Holiday Name" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"
-                                                required="true"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow12">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn26">
-                                                <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" datepattern="MM-dd-yyyy" required="true"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
-                                    datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
-                                    placeholder=""></wm-form-field>
-                                    <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                    <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
-                                </wm-liveform>
-                            </wm-livegrid>
+                            <wm-layoutgrid name="layoutgrid6">
+                                <wm-gridrow name="gridrow22">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn24"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow23">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn26_1">
+                                        <wm-livegrid formlayout="dialog" name="livegrid1">
+                                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2HolidaysData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                                <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                                <wm-grid-column binding="holiday" caption="Holiday" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-column binding="date" caption="Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
+                                                <wm-grid-action key="addNewRow" display-name="New Holiday" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Holiday" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                                                <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                            </wm-grid>
+                                            <wm-liveform novalidate="false" errormessage="" title="Holiday Details" formlayout="dialog" iconclass="wi wi-today" dataset="bind:Variables.Cx2HolidaysData.dataSet" captionalign="left" captionposition="top"
+                                            name="liveform1">
+                                                <wm-layoutgrid columns="1" name="layoutgrid3">
+                                                    <wm-gridrow name="gridrow11">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn25_1">
+                                                            <wm-form-field name="holiday" displayname="Holiday Name" show="true" primary-key="false" generator="assigned" key="holiday" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter Holiday Name"
+                                                            required="true"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow12">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn26">
+                                                            <wm-form-field name="date" displayname="Date" show="true" primary-key="false" generator="assigned" key="date" type="date" widget="date" placeholder="Select date" datepattern="MM-dd-yyyy" required="true"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                                <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" widget="select" dataset="bind:Variables.SelectedMunicipalityObj.dataSet"
+                                                datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord" placeholder="Select value"></wm-form-field>
+                                                <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number"
+                                                placeholder=""></wm-form-field>
+                                                <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
+                                                <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
+                                                update-mode="true"></wm-form-action>
+                                            </wm-liveform>
+                                        </wm-livegrid>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>

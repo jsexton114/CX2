@@ -11,10 +11,10 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn1" padding="unset unset 1em unset">
                         <wm-label caption="Manual Fee Management" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="2em unset">
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="unset unset 1em unset">
                         <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
@@ -23,10 +23,10 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow6" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow6">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn7">
-                        <wm-label padding="unset 0.5em" name="label3" caption="The &quot;Manual&quot; fees created here can be manually added by municipality employees to forms after the form has been submitted."></wm-label>
-                        <wm-label padding="unset 0.5em" name="label4" caption="These are not to be confused with &quot;Automatic&quot; fees, set at the form design level on the EditForm page, which are automatically added to a form on submission."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label3" caption="The &quot;Manual&quot; fees displayed here can be manually added to forms by municipality employees after the form has been submitted."></wm-label>
+                        <wm-label padding="unset 0.5em" name="label4" caption="These fees are assessed in addition to, or instead of, the &quot;Automatic&quot; fees that are set at the form design level by the Municipality Admin."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
