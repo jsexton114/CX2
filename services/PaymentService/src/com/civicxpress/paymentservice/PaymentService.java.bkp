@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
@@ -78,11 +77,8 @@ public class PaymentService {
      * caller's request/response objects respectively. These parameters will be injected when request is made (during API invocation).
      */
     
-    public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
-        logger.debug("Starting chargeCreditCard() with request url " + request.getRequestURL().toString());
+    public void callback(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
         String stripeToken = null; 
-        Map<String, Object> params = null;
-		Charge charge = null;
 
 		Stripe.apiKey = "sk_test_YnCjI8HSaQteOmL7R8xUzU85";
 		stripeToken = request.getParameter("stripeToken");
@@ -95,81 +91,24 @@ public class PaymentService {
             logger.debug("!JS!" + key + ": " + map.get(key));
         }
     
-		params = new HashMap<String, Object>();
-		params.put("amount", 999);
-		params.put("currency", "usd");
-		params.put("description", "Municipality fees"); // can this description make a useful receipt from Stripe?
-		params.put("source", stripeToken);
-		try {
-		    
-		    String returnUrl = null;
-		    String status = null;
-			charge = Charge.create(params);
-			status = charge.getStatus();
-			System.out.println("charge.getDescription(): " + charge.getDescription());
-			System.out.println("charge.getAmount(): " + charge.getAmount());
-			System.out.println("charge.getStatus(): " + status);
-			System.out.println("status.length(): " + status.length());
-			System.out.println("charge.getId(): " + charge.getId());
-			System.out.println("charge.getOutcome(): " + charge.getOutcome());
+        String returnUrl = null;
+        Cookie stripeTokenCookie = new Cookie("stripeToken", stripeToken);
+        stripeTokenCookie.setMaxAge(120); // two minutes
+        stripeTokenCookie.setPath("/");
+        response.addCookie(stripeTokenCookie);
+        System.out.println("stripeTokenCookie: " + stripeTokenCookie);
+ 	    returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
+ 	    System.out.println("returnUrl: " + returnUrl);
 
-			// TODO: If success -- else back to cart
-    		// TODO: write charge ID and outcome to database
-    		// PaymentMethod, PaymentNumber, AmountReceived, Comments, CreatedBy
-    		if (status.equals("succeeded")) {
-    		    System.out.println("Succeed branch");
-        		BigDecimal decimalAmount = new BigDecimal(charge.getAmount() / 100);
-        		System.out.println("decimalAmount: " + decimalAmount.toString());
-                //writePaymentToDatabase("Credit Card", charge.getId(), decimalAmount, "");
-                System.out.println("writePaymentToDatabase()");
-                // TODO: MyCart will have to have the token avaiable somehow
-                Cookie stripeTokenCookie = new Cookie("stripeToken", stripeToken);
-                stripeTokenCookie.setMaxAge(120); // two minutes
-                stripeTokenCookie.setPath("/");
-                response.addCookie(stripeTokenCookie);
-                System.out.println("stripeTokenCookie: " + stripeTokenCookie);
-         	    returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
-         	    System.out.println("returnUrl: " + returnUrl);
-    		} else {
-    		    // TODO: how will user know there was a problem?
-    		    System.out.println("Did not succeed branch");
-    		    returnUrl = request.getContextPath() + "/#/MyCart";
-    		    System.out.println("returnUrl: " + returnUrl);
-    		}
-
-     	    try {
-    		    response.sendRedirect(returnUrl);
-     	    } catch (IOException e) {
-                e.printStackTrace();
-     	    }
-
-		} catch (AuthenticationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidRequestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (APIConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CardException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (APIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+ 	    try {
+		    response.sendRedirect(returnUrl);
+ 	    } catch (IOException e) {
+            e.printStackTrace();
+ 	    }
 
     }
 
-    private void writePaymentToDatabase(String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments) throws Exception {
-        CheckoutService checkout = new CheckoutService();
-        checkout.municipalityCheckout(null, paymentMethod, paymentNumber, amountReceived, comments, new Long[0]);
-    }
-    
+/*
     public void callback(HttpServletRequest request, HttpServletResponse response,Object obj) throws ServletException {
         logger.debug("Callback invoked");
  	    try {
@@ -186,5 +125,6 @@ public class PaymentService {
  	        throw new ServletException(ex);
  	    }
     }
+*/
 
 }

@@ -23,12 +23,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @RequestMapping(value = "/callback", method = RequestMethod.POST)
-    public void callback(HttpServletRequest request, HttpServletResponse response, @RequestBody Object obj) throws ServletException {
+    public void callback(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
         paymentService.callback(request, response, obj);
-    }
-
-    @RequestMapping(value = "/chargeCreditCard", method = RequestMethod.POST)
-    public void chargeCreditCard(HttpServletRequest request, HttpServletResponse response, Object obj) throws ServletException {
-        paymentService.chargeCreditCard(request, response, obj);
     }
 }

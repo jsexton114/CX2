@@ -3,22 +3,20 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        //console.log("document.referrer: " + document.referrer);
-        //console.log("window.location: " + window.location);
-        //console.log("document.cookie: " + document.cookie);
+
     };
 
     $scope.wizardstep1Load = function($isolateScope, stepIndex) {
         // if the stripeToken is avaiable, then $scope.Widgets.wizardCheckOut.next(); from wizardstep1Load
-        var stripeToken = null;
+        $scope.stripeToken = null;
         //console.log("wizardstep1Load()");
-        stripeToken = getCookieValue("stripeToken");
+        $scope.stripeToken = getCookieValue("stripeToken");
         //console.log("stripeToken from cookie: " + stripeToken);
-        if (!stripeToken) {
-            stripeToken = getQueryStringByParameter("stripeToken");
+        if (!$scope.stripeToken) {
+            $scope.stripeToken = getQueryStringByParameter("stripeToken");
             //console.log("stripeToken from query string: " + stripeToken);
         }
-        if (stripeToken) {
+        if ($scope.stripeToken) {
             $scope.Widgets.wizardCheckOut.next();
             $scope.Widgets.wizardCheckOut.done();
         }
@@ -50,6 +48,9 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
             });
         }
 
+        if ($scope.stripeToken) {
+            $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
+        }
         $scope.Variables.svCheckout.setInput("Long", feeIds);
         $scope.Variables.svCheckout.update();
     };
@@ -66,7 +67,6 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
-        var stripeToken = null;
         //console.log("!isMunicipalityEmployee(): " + !isMunicipalityEmployee());
         if (!isMunicipalityEmployee()) {
             // not a municipality employee, so hide options other than credit card
@@ -74,10 +74,10 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
                 $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
                 $scope.Widgets.radiosetPaymentOptions.show = false;
                 // when using credit card, look for the stripe token
-                stripeToken = getCookieValue("stripeToken");
-                if (stripeToken) {
+                //stripeToken = getCookieValue("stripeToken");
+                if ($scope.stripeToken) {
                     // hide the stripe button becuase we already have the token
-                    console.log("stripeToken: " + stripeToken);
+                    console.log("stripeToken: " + $scope.stripeToken);
                     if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
                     console.log("$scope.Widgets.wizardstep2.disabledone: " + $scope.Widgets.wizardstep2.disabledone);
                     $scope.Widgets.wizardstep2.disabledone = false;
@@ -114,7 +114,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         var dataDescription = document.createAttribute("data-description");
         var dataLocale = document.createAttribute("data-locale");
         var dataImage = document.createAttribute("data-image");
-        action.value = "https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard";
+        action.value = "https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/callback";
         form.attributes.setNamedItem(action);
         method.value = "POST";
         form.attributes.setNamedItem(method);

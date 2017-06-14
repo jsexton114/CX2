@@ -45,12 +45,12 @@
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
-                                        <wm-gridcolumn columnwidth="10" name="gridcolumn8">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn8">
                                             <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn9">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn9">
                                             <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
-                                                <!--<form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/chargeCreditCard" method="POST">
+                                                <!--<form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/callback" method="POST">
                                                     <script class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Municipality fees" data-locale="auto" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"></script>
                                                 </form>-->
                                             </wm-html>
