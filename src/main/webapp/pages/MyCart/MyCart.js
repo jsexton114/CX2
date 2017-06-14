@@ -3,20 +3,20 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        console.log("document.referrer: " + document.referrer);
-        console.log("window.location: " + window.location);
-        console.log("document.cookie: " + document.cookie);
+        //console.log("document.referrer: " + document.referrer);
+        //console.log("window.location: " + window.location);
+        //console.log("document.cookie: " + document.cookie);
     };
 
     $scope.wizardstep1Load = function($isolateScope, stepIndex) {
         // if the stripeToken is avaiable, then $scope.Widgets.wizardCheckOut.next(); from wizardstep1Load
         var stripeToken = null;
-        console.log("wizardstep1Load()");
+        //console.log("wizardstep1Load()");
         stripeToken = getCookieValue("stripeToken");
-        console.log("stripeToken from cookie: " + stripeToken);
+        //console.log("stripeToken from cookie: " + stripeToken);
         if (!stripeToken) {
             stripeToken = getQueryStringByParameter("stripToken");
-            console.log("stripeToken from query string: " + stripeToken);
+            //console.log("stripeToken from query string: " + stripeToken);
         }
         if (stripeToken) $scope.Widgets.wizardCheckOut.next();
     };
@@ -53,8 +53,8 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     $scope.svCheckoutonSuccess = function(variable, data) {
 
         $scope.Variables.svCartItemIds.update();
-        $scope.Widgets.wizardCheckOut.show = false
-        $scope.Widgets.containerPaymentRecieved.show = true
+        if ($scope.Widgets.wizardCheckOut) $scope.Widgets.wizardCheckOut.show = false
+        if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentRecieved.show = true
             // $scope.$parent.Widgets.pagedialog1.close();
 
     };
@@ -62,22 +62,26 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
         var stripeToken = null;
+        console.log("!isMunicipalityEmployee(): " + !isMunicipalityEmployee());
         if (!isMunicipalityEmployee()) {
+            // not a municipality employee, so hide options other than credit card
             if ($scope.Widgets.radiosetPaymentOptions) {
                 $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
                 $scope.Widgets.radiosetPaymentOptions.show = false;
+                // when using credit card, look for the stripe token
+                stripeToken = getCookieValue("stripeToken");
+                if (stripeToken) {
+                    // hide the stripe button becuase we already have the token
+                    if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
+                } else {
+                    // disable done in the wizard so the user has to click the stripe button to enter credit card information
+                    $scope.Widgets.wizardstep2.disabledone = true;
+                }
             }
             if ($scope.Widgets.paymentTypeLabel) $scope.Widgets.paymentTypeLabel.show = false;
             if ($scope.Widgets.compositeComments) $scope.Widgets.compositeComments.show = false;
         }
-        stripeToken = getCookieValue("stripeToken");
-        if ($scope.Widgets.radiosetPaymentOptions.selectedvalue == "Credit Card") {
-            if (stripeToken) {
-                if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
-            } else {
-                $scope.Widgets.wizardstep2.disabledone = true;
-            }
-        }
+        //console.log("$scope.Widgets.radiosetPaymentOptions.datavalue: " + $scope.Widgets.radiosetPaymentOptions.datavalue);
     };
 
     function getQueryStringByParameter(name) {
