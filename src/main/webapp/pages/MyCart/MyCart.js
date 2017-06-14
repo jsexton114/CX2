@@ -3,7 +3,22 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
+        console.log("document.referrer: " + document.referrer);
+        console.log("window.location: " + window.location);
+        console.log("document.cookie: " + document.cookie);
+    };
 
+    $scope.wizardstep1Load = function($isolateScope, stepIndex) {
+        // if the stripeToken is avaiable, then $scope.Widgets.wizardCheckOut.next(); from wizardstep1Load
+        var stripeToken = null;
+        console.log("wizardstep1Load()");
+        stripeToken = getCookieValue("stripeToken");
+        console.log("stripeToken from cookie: " + stripeToken);
+        if (!stripeToken) {
+            stripeToken = getQueryStringByParameter("stripToken");
+            console.log("stripeToken from query string: " + stripeToken);
+        }
+        if (stripeToken) $scope.Widgets.wizardCheckOut.next();
     };
 
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
@@ -46,14 +61,36 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
-        if (!isMunicipalityEmployee() && $scope.Widgets.radiosetPaymentOptions !== null) {
-            $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
-            $scope.Widgets.radiosetPaymentOptions.show = false;
-            $scope.Widgets.paymentTypeLabel.show = false;
-            $scope.Widgets.compositeComments.show = false;
-            $scope.Widgets.wizardstep2.disabledone = true;
+        var stripeToken = null;
+        if (!isMunicipalityEmployee()) {
+            if ($scope.Widgets.radiosetPaymentOptions) {
+                $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
+                $scope.Widgets.radiosetPaymentOptions.show = false;
+            }
+            if ($scope.Widgets.paymentTypeLabel) $scope.Widgets.paymentTypeLabel.show = false;
+            if ($scope.Widgets.compositeComments) $scope.Widgets.compositeComments.show = false;
+        }
+        stripeToken = getCookieValue("stripeToken");
+        if ($scope.Widgets.radiosetPaymentOptions.selectedvalue == "Credit Card") {
+            if (stripeToken) {
+                if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
+            } else {
+                $scope.Widgets.wizardstep2.disabledone = true;
+            }
         }
     };
+
+    function getQueryStringByParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    function getCookieValue(a) {
+        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    }
 
     function isMunicipalityEmployee() {
         var returnIsMunicipalityEmployee = false;
