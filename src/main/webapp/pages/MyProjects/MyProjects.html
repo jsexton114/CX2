@@ -27,6 +27,7 @@
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn10">
                                         <wm-label padding="unset 0.5em" name="label5" caption="Projects allow communication, coordination, and document exchange between users, contractors, and municipalities, and may contain multiple associated forms."></wm-label>
                                         <wm-label padding="unset 0.5em" name="label6_1" caption="Projects where you are the Project Owner are displayed here in addition to projects where you have been added as a Project Member."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label7_1" caption="Note: you can only delete projects where you are the Project Owner."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow10">
@@ -58,12 +59,13 @@
     <wm-view class="dialog-view" name="viewCreateProject">
         <wm-dialog dialogtype="design-dialog" modal="true" title="New Project" iconclass="wi wi-building" name="dialogCreateProject">
             <wm-layoutgrid name="layoutgrid3">
-                <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow15">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                        <wm-composite name="composite2" required="true">
+                        <wm-composite name="composite2" required="true" show="bind:Variables.StandardUserMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
                             <wm-container class="col-md-9" name="container2" width="300px">
-                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"></wm-select>
+                                <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.StandardUserMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" orderby="MunicipalityName:asc"
+                                datavalue="bind:Variables.StandardUserMunicipalites.firstRecord"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -78,9 +80,9 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow18" padding="1em unset unset unset">
+                <wm-gridrow name="gridrow18">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
-                        <wm-label name="label4" class="col-md-3 form-control-static" fontweight="bold" caption="Description"></wm-label>
+                        <wm-label name="label4" class="col-md-12 form-control-static" fontweight="bold" caption="Project Description"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
@@ -99,7 +101,7 @@
         <wm-dialog dialogtype="design-dialog" modal="true" title="Delete Project" iconclass="wi wi-trash" name="confirmdialogSoftDeleteProjectCo">
             <wm-layoutgrid name="layoutgrid26_1">
                 <wm-gridrow name="gridrow81_1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn159_2" horizontalalign="center">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn159_2" horizontalalign="left">
                         <wm-label padding="unset 0.5em" caption="You are about to delete a project.  Once a project has been deleted you will not be able to undo this.  Are you sure you want to delete this project?" name="label76"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>

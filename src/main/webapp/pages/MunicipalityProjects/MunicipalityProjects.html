@@ -55,9 +55,9 @@
     <wm-view class="dialog-view" name="viewCreateProject">
         <wm-dialog dialogtype="design-dialog" modal="true" title="New Project" iconclass="wi wi-building" name="dialogCreateProject">
             <wm-layoutgrid name="layoutgrid3">
-                <wm-gridrow name="gridrow15" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow15">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                        <wm-composite name="composite2" required="true">
+                        <wm-composite name="composite2" required="true" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Select Municipality" fontweight="bold" width="160px"></wm-label>
                             <wm-container class="col-md-9" name="container2" width="300px">
                                 <wm-select name="selectMunicipalityForCreateProje" dataset="bind:Variables.EmployeesMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" placeholder="Select Municipality" datavalue="bind:Widgets.selectMunicipality.datavalue"
@@ -76,9 +76,9 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow18" padding="1em unset unset unset">
+                <wm-gridrow name="gridrow18">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20" horizontalalign="left">
-                        <wm-label name="label4" class="col-md-3 form-control-static" fontweight="bold" caption="Description"></wm-label>
+                        <wm-label name="label4" class="col-md-12 form-control-static" fontweight="bold" caption="Project Description"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow17">
