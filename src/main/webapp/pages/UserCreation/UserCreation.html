@@ -122,6 +122,20 @@
                         </wm-layoutgrid>
                     </wm-panel>
                 </wm-wizardstep>
+                <wm-wizardstep name="wizardstepContractor" title="Contractor Status" show="true">
+                    <wm-layoutgrid name="layoutgrid2_1" columns="1">
+                        <wm-gridrow name="gridrow22" padding="1em unset unset unset">
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn33" padding="unset 10% unset unset">
+                                <wm-label padding="unset 0.5em 1em 0.5em" name="label15" width="100%" caption="Are you a contractor?"></wm-label>
+                                <wm-radioset height="auto" name="radiosetContractor" dataset="Yes,No" selectedvalue="No"></wm-radioset>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="6" name="gridcolumn34"></wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow9_1">
+                            <wm-gridcolumn columnwidth="12" name="gridcolumn16_1"></wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                </wm-wizardstep>
                 <wm-wizardstep name="wizardstep3" title="Communication" show="false">
                     <wm-panel iconclass="wi wi-notifications" autoclose="outsideClick" name="panel2" title="Notification Frequency">
                         <wm-layoutgrid name="layoutgrid2_1" columns="1">

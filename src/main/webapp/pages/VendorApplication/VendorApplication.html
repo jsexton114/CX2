@@ -111,7 +111,7 @@
                                         outputformat="yyyy-MM-dd" validationmessage="Insurance Expiration Date is required" datepattern="MM-dd-yyyy" defaultvalue="CURRENT_DATE" mindate="bind:Variables.Today.dataSet.dataValue | toDate: 'yyyy-MM-dd'"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                        <wm-form-field name="coi" displayname="Certificate of Insurance" show="true" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="true" widget="upload" maxchars="255" validationmessage="Certificate of Insurance is required"></wm-form-field>
+                                        <wm-form-field name="coi" displayname="Certificate of Insurance" show="false" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="false" widget="upload" maxchars="255" validationmessage="Certificate of Insurance is required"></wm-form-field>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn name="gridcolumn2" columnwidth="4">
                                         <wm-form-field name="lastUpdated" displayname="Last Updated" show="true" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date" placeholder="Select date"

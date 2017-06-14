@@ -1068,6 +1068,32 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "advanceOnZero",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "statusToBeOnForAdvanceOnZero",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StatusToBeOnForAdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "giscontacts",
@@ -1784,6 +1810,45 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -3570,6 +3635,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "projects",
@@ -4959,6 +5036,45 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -6631,6 +6747,32 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "advanceOnZero",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "statusToBeOnForAdvanceOnZero",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StatusToBeOnForAdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatusesByNewStatusId",
@@ -6927,6 +7069,32 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "advanceOnZero",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "statusToBeOnForAdvanceOnZero",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "StatusToBeOnForAdvanceOnZero",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -8649,6 +8817,18 @@
           "notNull" : true,
           "length" : 0,
           "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -10521,6 +10701,32 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "advanceOnZero",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AdvanceOnZero",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "statusToBeOnForAdvanceOnZero",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "StatusToBeOnForAdvanceOnZero",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "FormStatuses",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormStatuses",
@@ -12101,6 +12307,45 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "states",
@@ -13476,6 +13721,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "masterForms",
@@ -14822,6 +15079,45 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -15900,6 +16196,45 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
@@ -18198,6 +18533,45 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -18717,6 +19091,45 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "autoApproveContractors",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AutoApproveContractors",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "true",
+        "scale" : 0
+      }, {
+        "fieldName" : "separateContractorApplicationRequired",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "SeparateContractorApplicationRequired",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "false",
+        "scale" : 0
+      }, {
+        "fieldName" : "contractorApplicationFormId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "ContractorApplicationFormId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
         "scale" : 0
       } ],
       "entityName" : "Municipalities",
@@ -19469,6 +19882,18 @@
           "notNull" : true,
           "length" : 0,
           "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -21287,6 +21712,18 @@
           "notNull" : true,
           "length" : 0,
           "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
@@ -24089,6 +24526,45 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
           "scale" : 0
         } ]
       }, {
