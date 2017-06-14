@@ -20,6 +20,7 @@ import com.wavemaker.runtime.service.annotations.HideFromClient;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.civicxpress.checkoutservice.CheckoutService;
@@ -72,10 +73,18 @@ public class PaymentService {
 		Stripe.apiKey = "sk_test_YnCjI8HSaQteOmL7R8xUzU85";
 		token = request.getParameter("stripeToken");
         logger.debug("stripeToken: " + token);
+    
+        Map map = request.getParameterMap();
+        Iterator it = map.keySet().iterator();
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            logger.debug("!JS!" + key + ": " + map.get(key));
+        }
+    
 		params = new HashMap<String, Object>();
-		params.put("amount", 1000);
+		params.put("amount", 999);
 		params.put("currency", "usd");
-		params.put("description", "Municipality fees");
+		params.put("description", "Municipality fees"); // can this description make a useful receipt from Stripe?
 		params.put("source", token);
 		try {
 		    
@@ -97,9 +106,9 @@ public class PaymentService {
     		    System.out.println("Succeed branch");
         		BigDecimal decimalAmount = new BigDecimal(charge.getAmount() / 100);
         		System.out.println("decimalAmount: " + decimalAmount.toString());
-                writePaymentToDatabase("Credit Card", charge.getId(), decimalAmount, "");
+                //writePaymentToDatabase("Credit Card", charge.getId(), decimalAmount, "");
                 System.out.println("writePaymentToDatabase()");
-         	    returnUrl = request.getContextPath() + "/#/PaymentResponse";
+         	    returnUrl = request.getContextPath() + "/#/MyCart"; // TODO: MyCart will have to have the token avaiable somehow
          	    System.out.println("returnUrl: " + returnUrl);
     		} else {
     		    // TODO: how will user know there was a problem?
