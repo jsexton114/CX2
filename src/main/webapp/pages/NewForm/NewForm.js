@@ -434,7 +434,15 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.wizardstepSharingLoad = function($isolateScope, stepIndex) {
-        debugger
+
+        let selectedComapanyIds = [];
+        _.forEach($scope.Variables.stvVendors.dataSet, function(obj) {
+            selectedComapanyIds.push(obj.ID);
+        });
+        $scope.Variables.svFetchCompanyUsers.setInput({
+            'vendor': selectedComapanyIds
+        });
+        $scope.Variables.svFetchCompanyUsers.update();
     };
 
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
@@ -628,7 +636,17 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
 
     $scope.svFetchCompanyUsersonSuccess = function(variable, data) {
-        debugger
+
+        let companyEmployees = [];
+        _.forEach(data.content, function(obj) {
+            companyEmployees.push({
+                'ID': obj.id,
+                'FirstName': obj.firstName,
+                'LastName': obj.lastName,
+                'Email': obj.email
+            });
+        });
+        $scope.Variables.stvContacts.dataSet = _.clone(companyEmployees);
     };
 
 }]);
