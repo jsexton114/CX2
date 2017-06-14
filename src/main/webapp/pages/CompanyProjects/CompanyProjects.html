@@ -29,9 +29,10 @@
                             <wm-grid-column binding="fullName" caption="Created By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
                             <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New Project" action="Widgets.dialogCreateProject.open()"
-                            shortcutkey="" disabled="false"></wm-grid-action>
+                            accessroles="CXAdmin,CXVendorAdmin" shortcutkey="" disabled="false"></wm-grid-action>
                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Project" action="Widgets.pagedialogViewProject.open()" disabled="false"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.confirmdialogSoftDeleteProjectCo.open()" accessroles="CXAdmin,CXVendorAdmin"
+                            disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>

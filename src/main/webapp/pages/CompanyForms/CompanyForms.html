@@ -60,7 +60,7 @@
                                             </wm-grid-column>
                                             <wm-grid-column binding="dateModified" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateModified') | toLocalDateString}}</wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()"
-                                            shortcutkey="" disabled="false" position="header"></wm-grid-action>
+                                            accessroles="CXVendorAdmin,CXAdmin" shortcutkey="" disabled="false" position="header"></wm-grid-action>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
@@ -108,7 +108,7 @@
                                             </wm-grid-column>
                                             <wm-grid-column binding="dateModified" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateModified') | toLocalDateString}}</wm-grid-column>
                                             <wm-grid-action key="addNewRow" display-name="Submit Form" show="true" class="btn-primary" iconclass="wi wi-plus" title="Submit Form" action="Widgets.dialogNewForm.open()"
-                                            shortcutkey="" disabled="false" position="header"></wm-grid-action>
+                                            accessroles="CXVendorAdmin,CXAdmin" shortcutkey="" disabled="false" position="header"></wm-grid-action>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Form" action="Variables.goToPage_Forms.invoke()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>

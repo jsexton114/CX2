@@ -66,8 +66,10 @@
         <security:intercept-url pattern="/j_spring_security_check" access="permitAll"/>
         <security:intercept-url pattern="/j_spring_security_logout" access="permitAll"/>
         <security:intercept-url pattern="/pages/CXAdmin/**" access="hasAnyRole('ROLE_CXAdmin')"/>
+        <security:intercept-url pattern="/pages/CompanyMunicipalities/**" access="hasAnyRole('ROLE_CXVendorAdmin','ROLE_CXAdmin')"/>
+        <security:intercept-url pattern="/pages/CompanyUsers/**" access="hasAnyRole('ROLE_CXAdmin','ROLE_CXVendorAdmin')"/>
         <security:intercept-url pattern="/pages/ForgotPassword/**" access="permitAll"/>
-        <security:intercept-url pattern="/pages/MyCompany/**" access="hasAnyRole('ROLE_CXVendorAdmin','ROLE_CXAdmin')"/>
+        <security:intercept-url pattern="/pages/MyCompany/**" access="hasAnyRole('ROLE_CXVendorAdmin','ROLE_CXAdmin','ROLE_CompanyEmployee')"/>
         <security:intercept-url pattern="/pages/ResetPassword/**" access="permitAll"/>
         <security:intercept-url pattern="/pages/UserCreation/**" access="permitAll"/>
         <security:intercept-url pattern="/pages/footer/**" access="permitAll"/>
@@ -78,10 +80,10 @@
         <security:intercept-url pattern="/services/cXPasswordReset/validateSignupToken" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings" access="permitAll" method="GET"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities/filter" access="permitAll" method="POST"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/filter" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Roles" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
@@ -250,6 +252,11 @@
                     </bean>
                 </entry>
                 <entry key="GISAdmin">
+                    <bean class="com.wavemaker.commons.model.security.RoleConfig">
+                        <property name="landingPage" value="Main"/>
+                    </bean>
+                </entry>
+                <entry key="CompanyEmployee">
                     <bean class="com.wavemaker.commons.model.security.RoleConfig">
                         <property name="landingPage" value="Main"/>
                     </bean>

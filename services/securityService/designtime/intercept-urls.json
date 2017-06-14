@@ -1,4 +1,14 @@
 [ {
+  "urlPattern" : "/pages/CompanyMunicipalities/**",
+  "permission" : "Role",
+  "roles" : [ "CXVendorAdmin", "CXAdmin" ],
+  "httpMethod" : null
+}, {
+  "urlPattern" : "/pages/CompanyUsers/**",
+  "permission" : "Role",
+  "roles" : [ "CXAdmin", "CXVendorAdmin" ],
+  "httpMethod" : null
+}, {
   "urlPattern" : "/pages/CXAdmin/**",
   "permission" : "Role",
   "roles" : [ "CXAdmin" ],
@@ -21,7 +31,7 @@
 }, {
   "urlPattern" : "/pages/MyCompany/**",
   "permission" : "Role",
-  "roles" : [ "CXVendorAdmin", "CXAdmin" ],
+  "roles" : [ "CXVendorAdmin", "CXAdmin", "CompanyEmployee" ],
   "httpMethod" : null
 }, {
   "urlPattern" : "/pages/ResetPassword/**",

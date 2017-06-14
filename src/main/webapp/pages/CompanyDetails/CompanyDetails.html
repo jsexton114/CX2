@@ -113,12 +113,15 @@
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
-                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true"
-                                        disabled="true" checkedvalue="true" uncheckedvalue="false" hint="When &quot;Active&quot;, your company can be selected on forms in the municipalities where it has been approved for business, and your company forms can move forward with inspection scheduling. If your insurance has expired, your company will become inactive in CivicXpress until you provide a new COI."
+                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="true" disabled="true"
+                                        checkedvalue="true" uncheckedvalue="false" hint="When &quot;Active&quot;, your company can be selected on forms in the municipalities where it has been approved for business, and your company forms can move forward with inspection scheduling. If your insurance has expired, your company will become inactive in CivicXpress until you provide a new COI."
                                         placeholder=""></wm-form-field>
-                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="" disabled="false" type="submit" update-mode="true"></wm-form-action>
-                                        <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" disabled="false" type="button" update-mode="true"></wm-form-action>
+                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                        placeholder=""></wm-form-field>
+                                        <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" action="" accessroles="CXAdmin,CXVendorAdmin" disabled="false" type="submit"
+                                        update-mode="true"></wm-form-action>
+                                        <wm-form-action key="reset" display-name="Reset" show="true" class="form-reset btn-secondary" iconclass="wi wi-refresh" title="Reset" action="reset()" accessroles="CXAdmin,CXVendorAdmin" disabled="false"
+                                        type="button" update-mode="true"></wm-form-action>
                                     </wm-liveform>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -141,9 +144,10 @@
                                             <wm-grid-column binding="issuingAuthority" caption="Issuing Authority" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="expirationDate" caption="Expiration Date" type="date" generator="assigned" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="date" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="scope" caption="Scope" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="New License" show="true" class="btn-primary" iconclass="wi wi-plus" title="New License" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
-                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
-                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-action key="addNewRow" display-name="New License" show="true" class="btn-primary" iconclass="wi wi-plus" title="New License" action="addNewRow()" accessroles="CXAdmin,CXVendorAdmin"
+                                            shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" accessroles="CXVendorAdmin,CXAdmin" disabled="false"></wm-grid-row-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" accessroles="CXVendorAdmin,CXAdmin" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                         <wm-liveform novalidate="false" errormessage="" title="License Details" formlayout="dialog" iconclass="wi wi-notepad" dataset="bind:Variables.VendorLicensesData.dataSet" captionalign="left" captionposition="top"
                                         name="liveform2">

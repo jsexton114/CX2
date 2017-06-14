@@ -1774,6 +1774,45 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractors",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AutoApproveContractors",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "true",
+          "scale" : 0
+        }, {
+          "fieldName" : "separateContractorApplicationRequired",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "SeparateContractorApplicationRequired",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "contractorApplicationFormId",
+          "type" : "integer",
+          "fullyQualifiedType" : "integer",
+          "columnName" : "ContractorApplicationFormId",
+          "isPrimaryKey" : false,
+          "notNull" : false,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "usersByCreatedBy",
