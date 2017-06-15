@@ -7,7 +7,7 @@
             <wm-tabs name="tabsProjects">
                 <wm-tabpane name="tabpane1" title="Projects">
                     <wm-livegrid formlayout="dialog" name="livegrid1">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Projects List" dataset="bind:Variables.ProjectsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.ProjectsData.dataSet" navigation="Classic" name="grid1" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                             <wm-grid-column binding="projectGuid" caption="Project Guid" type="string" primary-key="true" generator="uniqueid" readonly="true" show="true"></wm-grid-column>
                             <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="projectGoals" caption="Project Goals" type="string" generator="assigned" show="true" readonly="false"></wm-grid-column>
@@ -87,13 +87,14 @@
                 </wm-tabpane>
                 <wm-tabpane name="tabpane2" title="Standard Views">
                     <wm-livegrid formlayout="dialog" name="livegrid2">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Standardviews List" dataset="bind:Variables.Cx2StandardViewsData.dataSet" navigation="Basic" name="grid2">
-                            <wm-grid-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="viewName" caption="View Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-column binding="viewDescription" caption="View Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2StandardViewsData.dataSet" navigation="Classic" name="grid2" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                            <wm-grid-column binding="id" caption="Id" type="integer" primary-key="true" generator="identity" readonly="true" edit-widget-type="number" show="true"></wm-grid-column>
+                            <wm-grid-column binding="viewName" caption="View Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="viewDescription" caption="View Description" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                         <wm-liveform novalidate="false" errormessage="" title="Standardviews Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2StandardViewsData.dataSet" captionalign="left" captionposition="top" name="liveform2">
                             <wm-layoutgrid columns="1" name="layoutgrid2">
@@ -116,40 +117,43 @@
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
-                <wm-tabpane name="tabpane3" title="UsersViews">
+                <wm-tabpane name="tabpane3" title="User Views">
                     <wm-livegrid formlayout="dialog" name="livegrid3">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Userviewpreferences List" dataset="bind:Variables.Cx2UserViewPreferencesData.dataSet" navigation="Classic" name="grid3">
-                            <wm-grid-column binding="users.firstName" caption="First Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.lastName" caption="Last Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="users.email" caption="Users Email" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Users" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="standardViews.viewName" caption="View Name" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="StandardViews" readonly="true"></wm-grid-column>
-                            <wm-grid-column binding="standardViews.viewDescription" caption="View Description" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="StandardViews" readonly="true"></wm-grid-column>
-                            <wm-grid-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-grid-action>
-                            <wm-grid-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-grid-row-action>
-                            <wm-grid-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-grid-row-action>
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2UserViewPreferencesData.dataSet" navigation="Classic" name="grid3" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                            <wm-grid-column binding="users.firstName" caption="First Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="users.lastName" caption="Last Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="users.email" caption="Users Email" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
+                            <wm-grid-column binding="standardViews.viewName" caption="View Name" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="StandardViews"></wm-grid-column>
+                            <wm-grid-column binding="standardViews.viewDescription" caption="View Description" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="StandardViews"></wm-grid-column>
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="120px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true"></wm-grid-column>
+                            <wm-grid-action key="addNewRow" display-name="New" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="addNewRow()" shortcutkey="" disabled="false"></wm-grid-action>
+                            <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="editRow()" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                         <wm-liveform novalidate="false" errormessage="" title="Userviewpreferences Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.Cx2UserViewPreferencesData.dataSet" captionalign="left" captionposition="top" name="liveform3">
                             <wm-layoutgrid columns="1" name="layoutgrid3">
                                 <wm-gridrow name="gridrow7">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn15">
-                                        <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="email"></wm-form-field>
+                                        <wm-form-field name="users" displayname="Users" show="true" primary-key="false" generator="assigned" key="users" type="list" is-related="true" readonly="false" required="false" widget="autocomplete" placeholder="Select value"
+                                        displayexpression="email" searchkey="email,fullName" displaylabel="fullName + ' (' + email + ')'" orderby="fullName:asc"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn16">
-                                        <wm-form-field name="standardViews" displayname="Standard Views" show="true" primary-key="false" generator="assigned" key="standardViews" type="list" is-related="true" widget="select" placeholder="Select value" displayexpression="viewName"></wm-form-field>
+                                        <wm-form-field name="standardViews" displayname="Standard Views" show="true" primary-key="false" generator="assigned" key="standardViews" type="list" is-related="true" readonly="false" required="true" widget="select"
+                                        placeholder="Select value" displayexpression="viewName"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
-                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="readonly" required="required" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                            <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                             <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button" update-mode="true"></wm-form-action>
                             <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-success" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                         </wm-liveform>
                     </wm-livegrid>
                 </wm-tabpane>
-                <wm-tabpane name="tabpanefees" title="Cart Fees">
+                <wm-tabpane name="tabpanefees" title="Fees">
                     <wm-livegrid formlayout="dialog" name="livegrid4">
-                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="Fees List" dataset="bind:Variables.lvFeesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
+                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvFeesData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                             <wm-grid-column binding="feeType" caption="Fee Type" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="paidStatus" caption="Paid Status" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="amount" caption="Amount" type="big_decimal" generator="assigned" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
