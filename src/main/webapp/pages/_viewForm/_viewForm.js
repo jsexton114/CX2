@@ -699,7 +699,13 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         $scope.inspectionObject = null;
         $scope.minDaysForInspection = moment().startOf('day').valueOf();
         $scope.maxDaysForInspection = moment().startOf('day').add(15, 'years').valueOf();
+        $scope.disableDateOfInspection = true;
 
+        function checkDisablingDate() {
+
+            var disable = ($scope.Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence ? ($scope.Widgets.selectInspectionDesignBySequence.datavalue === undefined) : ($scope.Widgets.selectInspectionDesign.datavalue === undefined));
+            return disable;
+        }
         $scope.cannotAddInspection = function() {
 
             return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || ((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling)");
@@ -762,12 +768,14 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone(newVal);
             $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
+            $scope.disableDateOfInspection = checkDisablingDate();
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
             $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone($scope.inspectionObject);
             updateMinMaxDates(newVal);
+            $scope.disableDateOfInspection = checkDisablingDate();
         };
 
         function updateDailyInspectionLimit(selectedDate) {
