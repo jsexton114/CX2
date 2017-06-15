@@ -3,7 +3,9 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
     $scope.newUser;
 
     $scope.onPageReady = function() {
-        //Current Date for subscriptions
+        //Current Date 
+        $scope.Variables.Today.dataSet.dataValue = Date.parse(new Date().toDateString());
+
         $('[name="liveform2"]').on('change', '.app-blob-upload', function() {
             readURL(this);
         });
@@ -75,8 +77,15 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
             });
             $scope.Variables.RegisterSubscriptions.insertRecord();
         }
-        $scope.Variables.NewUserToLogin.navigate();
-        window.location.reload();
+        if ($scope.Widgets.radiosetContractor.datavalue == "Yes") {
+            if ($scope.Widgets.checkboxIsCompanyListed.datavalue) {
+
+            } else { //
+            }
+        } else {
+            $scope.Variables.NewUserToLogin.navigate();
+            window.location.reload();
+        }
     };
 
     $scope.wizard1Done = function($isolateScope, steps) {
@@ -161,6 +170,15 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
         $scope.Widgets.textSearchMunicipalities.reset();
     };
 
+
+    $scope.radiosetContractorChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal == "Yes") {
+            $scope.Widgets.checkboxIsCompanyListed.datavalue = false;
+            $scope.Widgets.searchCompany.datavalue = undefined;
+        } else { //do nothing
+        }
+    };
+
 }]);
 
 Application.$controller("liveform2Controller", ["$scope",
@@ -179,5 +197,19 @@ Application.$controller("dialogEULAController", ["$scope",
             $scope.Widgets.checkboxAcceptEULA.datavalue = true;
         };
 
+    }
+]);
+
+Application.$controller("liveformVendorController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("liveformVendorApplicationController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

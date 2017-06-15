@@ -78,12 +78,13 @@
         <security:intercept-url pattern="/services/cXPasswordReset/generateAndSendPasswordTokenForUser" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cXPasswordReset/resetPasswordUsingToken" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cXPasswordReset/validateSignupToken" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/ContractorTypes/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/GlobalSettings" access="permitAll" method="GET"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
-        <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Municipalities/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Municipalities" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Municipalities/*/content/*" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Roles" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/States" access="permitAll" method="GET"/>
@@ -92,6 +93,9 @@
         <security:intercept-url pattern="/services/cx2/UserSubscriptions/export/*" access="isAuthenticated()" method="GET"/>
         <security:intercept-url pattern="/services/cx2/Users" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Users" access="hasAnyRole('ROLE_CXAdmin')" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Vendor/filter" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/Vendor/search" access="isAuthenticated()" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/Vendor" access="isAuthenticated()" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/InsertUserPreference" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/UpdatePasswordAndCF" access="permitAll" method="PUT"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/bannedDetails" access="permitAll" method="GET"/>
