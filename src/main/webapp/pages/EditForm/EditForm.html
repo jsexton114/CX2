@@ -38,8 +38,8 @@
                                                     <wm-gridrow name="gridrow3_1" padding="unset unset 1em unset">
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn112_3" padding="unset 1em unset unset">
                                                             <wm-form-field name="active" displayname="Active" show="true" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" placeholder=""
-                                                            hint="An &quot;Active&quot; form will appear to users as a selection in the New Form wizard. If &quot;Active&quot; is not selected, no new forms of this design can be submitted." defaultvalue="false"
-                                                            checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                            hint="An &quot;Active&quot; form will appear to users as a selection on the &quot;Submit Form&quot; dialog. If &quot;Active&quot; is not selected, no new forms of this design can be submitted."
+                                                            defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn114" padding="unset 1em unset unset">
                                                             <wm-form-field name="municipalityInternalForm" displayname="Municipality Internal Form" show="true" primary-key="false" generator="assigned" key="municipalityInternalForm" type="boolean" readonly="false"
@@ -335,6 +335,7 @@
                                     <wm-gridrow name="gridrow55" padding="unset unset 1em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn80">
                                             <wm-label padding="unset 0.5em" name="label15" caption="You may add this form to one or many form categories. This will affect where the form appears to CivicXpress users, makes the form searchable by category, and is used to generate municipality statistics and reporting."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label50" caption="Forms must be added to at least one category, otherwise they will not be available as a selection on the &quot;Submit Form&quot; dialog."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow87">
@@ -399,7 +400,7 @@
                                     <wm-gridrow name="gridrow83_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn112_2">
                                             <wm-label padding="unset 0.5em" name="label33_1" caption="Note: there are three fields created by default on new form designs that are linked to the &quot;Automatic Fees&quot; on the Settings tab- &quot;Total Square Feet (100)&quot;, &quot;Total Units (101)&quot;, and &quot;Has Basement (102)&quot;."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label36" caption="If you delete these default fields, but would still like to utilize the automatic fees, you will have to create a new &quot;Number&quot; field and set the &quot;Automatic Fee&quot; to either &quot;Unit Fee&quot; or &quot;Square Footage&quot; for that field."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label36" caption="If you delete these default fields, but would still like to utilize the automatic fees, you will have to create a new &quot;Number&quot; or &quot;Calculated&quot; field, then set the &quot;Automatic Fee&quot; to either &quot;Unit Fee&quot; or &quot;Square Footage&quot; for that field."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow57">
