@@ -12,22 +12,31 @@
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstepInstructions" title="Instructions">
                                 <wm-layoutgrid name="layoutgriid56">
-                                    <wm-gridrow name="gridrow6" padding="1em unset">
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn8"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn9" horizontalalign="center">
+                                    <wm-gridrow name="gridrow6" padding="1em unset unset unset">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn8"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="10" name="gridcolumn9" horizontalalign="center">
                                             <wm-picture name="picture2" picturesource="bind:!!Variables.lvFormType.dataSet.data[$i].municipalityId ? &quot;services/cx2/Municipalities/&quot;+Variables.lvFormType.dataSet.data[$i].municipalityId+&quot;/content/logo&quot; : &quot;&quot;" class="muni-logo"></wm-picture>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="4" name="gridcolumn14"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn14"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7">
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn10"></wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="8" name="gridcolumn11" horizontalalign="center">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn15"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="10" name="gridcolumn11" horizontalalign="center">
                                             <wm-label padding="unset 0.5em" name="label7" class="h1" caption="bind:Variables.lvFormType.dataSet.data[$i].formType"></wm-label>
                                         </wm-gridcolumn>
-                                        <wm-gridcolumn columnwidth="2" name="gridcolumn15"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn10"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow66" padding="unset unset 4em unset">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn118"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="10" name="gridcolumn116" horizontalalign="center">
+                                            <wm-label padding="unset 0.5em" name="label42" caption="Use the &quot;Save as Draft&quot; button at any time if you would like to save your progress and resume your form later." textalign="center"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label43" caption="Drafts that have been saved are located on the &quot;Open Forms&quot; page on &quot;My Dashboard&quot;."></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn119"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow46_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn90_1">
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn120"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="10" name="gridcolumn90_1">
                                             <wm-html name="html1" content="bind:Variables.lvFormType.dataSet.data[$i].instructions" margin="unset unset 1em unset">
                                                 bind:'
                                                 <br>
@@ -37,12 +46,7 @@
                                                 </div>')
                                             </wm-html>
                                         </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow66" padding="1em unset unset unset">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn116" horizontalalign="center">
-                                            <wm-label padding="unset 0.5em" name="label42" caption="Use the &quot;Save as Draft&quot; button at any time if you would like to save your progress and resume your form later." textalign="center"></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label43" caption="Drafts that have been saved are located on the &quot;Open Forms&quot; page on &quot;My Dashboard&quot;."></wm-label>
-                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="1" name="gridcolumn121"></wm-gridcolumn>
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
@@ -254,12 +258,14 @@
                                     <wm-gridrow name="gridrow42">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
                                             <wm-composite name="composite4" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection || Variables.svGetOwners.dataSet.content.length > 0">
-                                                <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="false" on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                                <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="false" on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)" checkedvalue="true"
+                                                uncheckedvalue="false"></wm-checkbox>
                                             </wm-composite>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn83">
                                             <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
-                                                <wm-checkbox caption="Contractor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                                <wm-checkbox caption="Contractor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)" datavalue="false" checkedvalue="true"
+                                                uncheckedvalue="false"></wm-checkbox>
                                             </wm-composite>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -395,6 +401,7 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn96_2">
                                             <wm-label padding="unset 0.5em" name="label26" caption="Sharing the form with a user will allow them to view the form content and complete transactions for the form."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label29_2" caption="Use the &quot;+Add User&quot; button to share your form with other CivicXpress users, then proceed to the next step."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label44" caption="By default, your form has been shared with all company employees for the contractor(s) that you selected earlier." show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow54">
