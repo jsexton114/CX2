@@ -50,10 +50,14 @@
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn9">
                                             <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
+                                                Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
+                                                <br/>
+                                                <br/>
                                                 <!--<form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/callback" method="POST">
                                                     <script class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Municipality fees" data-locale="auto" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"></script>
                                                 </form>-->
                                             </wm-html>
+                                            <wm-html id="html2" name="html2" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == false)">Click submit to complete payment of your fees.</wm-html>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".2em unset">
