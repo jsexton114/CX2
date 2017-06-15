@@ -50,6 +50,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
         if ($scope.stripeToken) {
             $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
+            $scope.Variables.svCheckout.setInput("comments", "Strip transaction ID " + $scope.stripeToken);
         }
         $scope.Variables.svCheckout.setInput("Long", feeIds);
         $scope.Variables.svCheckout.update();
@@ -69,36 +70,45 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
         //console.log("!isMunicipalityEmployee(): " + !isMunicipalityEmployee());
         if (!isMunicipalityEmployee()) {
-            // not a municipality employee, so hide options other than credit card
-            if ($scope.Widgets.radiosetPaymentOptions) {
-                $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
-                $scope.Widgets.radiosetPaymentOptions.show = false;
-                // when using credit card, look for the stripe token
-                //stripeToken = getCookieValue("stripeToken");
-                if ($scope.stripeToken) {
-                    // hide the stripe button becuase we already have the token
-                    console.log("stripeToken: " + $scope.stripeToken);
-                    if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
-                    console.log("$scope.Widgets.wizardstep2.disabledone: " + $scope.Widgets.wizardstep2.disabledone);
-                    $scope.Widgets.wizardstep2.disabledone = false;
-                } else {
-                    // Stripe HTML is written programmatically so WM doesn't remove it
-                    var html1 = document.getElementById('html1');
-                    console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
-                    var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "TekDog Inc.", "Municipality fees");
-                    html1.appendChild(form);
-                    // disable done in the wizard so the user has to click the stripe button to enter credit card information
-                    $scope.Widgets.wizardstep2.disabledone = true;
-                }
+            hideOtherPaymentOptions();
+        }
+
+        // when using credit card, look for the stripe token
+        //stripeToken = getCookieValue("stripeToken");
+        if ($scope.stripeToken) {
+            hideOtherPaymentOptions();
+            // hide the stripe button becuase we already have the token
+            console.log("stripeToken: " + $scope.stripeToken);
+            if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
+            console.log("$scope.Widgets.wizardstep2.disabledone: " + $scope.Widgets.wizardstep2.disabledone);
+            $scope.Widgets.wizardstep2.disabledone = false;
+        } else {
+            // Stripe HTML is written programmatically so WM doesn't remove it
+            var html1 = document.getElementById('html1');
+            if (html1.children.length === 0) {
+                console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
+                var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
+                html1.appendChild(form);
             }
-            if ($scope.Widgets.paymentTypeLabel) $scope.Widgets.paymentTypeLabel.show = false;
-            if ($scope.Widgets.compositeComments) {
-                $scope.Widgets.compositeComments.show = false;
-                $scope.Widgets.compositeComments.required = false;
-            }
+            // disable done in the wizard so the user has to click the stripe button to enter credit card information
+            $scope.Widgets.wizardstep2.disabledone = true;
         }
         //console.log("$scope.Widgets.radiosetPaymentOptions.datavalue: " + $scope.Widgets.radiosetPaymentOptions.datavalue);
     };
+
+    function hideOtherPaymentOptions() {
+        // not a municipality employee, so hide options other than credit card
+        if ($scope.Widgets.radiosetPaymentOptions) {
+            $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
+            $scope.Widgets.radiosetPaymentOptions.show = false;
+
+        }
+        if ($scope.Widgets.paymentTypeLabel) $scope.Widgets.paymentTypeLabel.show = false;
+        if ($scope.Widgets.compositeComments) {
+            $scope.Widgets.compositeComments.show = false;
+            $scope.Widgets.compositeComments.required = false;
+        }
+    }
 
     function createStripeButtonHtml(dataKeyValue, dataAmountValue, dataNameValue, dataDescriptionValue) {
         // Stripe HTML is written programmatically so WM doesn't remove it
@@ -114,7 +124,9 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         var dataDescription = document.createAttribute("data-description");
         var dataLocale = document.createAttribute("data-locale");
         var dataImage = document.createAttribute("data-image");
-        action.value = "https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/callback";
+        var contextPath = window.location.origin + window.location.pathname;
+        console.log("contextPath as formed by JavaScript: " + contextPath);
+        action.value = contextPath + "/services/payment/callback";
         form.attributes.setNamedItem(action);
         method.value = "POST";
         form.attributes.setNamedItem(method);

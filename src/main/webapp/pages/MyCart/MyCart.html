@@ -47,16 +47,14 @@
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn8">
                                             <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
+                                            <!--<div ng-repeat="fee in Variables.svFeesInCartOfUser.dataSet" class="app-grid-column dynamic-field-column col-sm-12" name="fee{{$index}}">{{fee.feeType}}
+                                            </div>-->
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                            <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')">
-                                                Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
-                                                <br/>
-                                                <br/>
-                                                <!--<form action="https://www.wavemakeronline.com/run-700gxljbr3/CivicXpress/services/payment/callback" method="POST">
-                                                    <script class="stripe-button" data-key="pk_test_XPwevpSch24R4UhQqbH3bGPB" data-amount="999" data-name="TekDog Inc." data-description="Municipality fees" data-locale="auto" data-image="https://s3.amazonaws.com/stripe-uploads/acct_1ASmehESexevkNnpmerchant-icon-1497016245641-CX200.png"></script>
-                                                </form>-->
-                                            </wm-html>
+                                            Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
+                                            <br/>
+                                            <br/>
+                                            <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')"></wm-html>
                                             <wm-html id="html2" name="html2" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == false)">Click submit to complete payment of your fees.</wm-html>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
