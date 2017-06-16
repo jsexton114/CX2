@@ -167,15 +167,6 @@ public class StatesController {
         return statesService.findAssociatedBillingInformations(id, pageable);
     }
 
-    @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
-    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
-
-        LOGGER.debug("Fetching all associated giscontactses");
-        return statesService.findAssociatedGiscontactses(id, pageable);
-    }
-
     @RequestMapping(value="/{id:.+}/gisrecordses", method=RequestMethod.GET)
     @ApiOperation(value = "Gets the gisrecordses instance associated with the given id.")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
@@ -183,6 +174,15 @@ public class StatesController {
 
         LOGGER.debug("Fetching all associated gisrecordses");
         return statesService.findAssociatedGisrecordses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/giscontactses", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the giscontactses instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Giscontacts> findAssociatedGiscontactses(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated giscontactses");
+        return statesService.findAssociatedGiscontactses(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/globalSettingses", method=RequestMethod.GET)

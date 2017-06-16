@@ -69,6 +69,11 @@ public class Gisrecords implements Serializable {
     private boolean isHostile;
     private String fullAddress;
     private boolean rentalProperty;
+    private String custom1;
+    private String custom2;
+    private String custom3;
+    private String custom4;
+    private String custom5;
     private Users users;
     private Municipalities municipalities;
     private States states;
@@ -351,6 +356,51 @@ public class Gisrecords implements Serializable {
 
     public void setRentalProperty(boolean rentalProperty) {
         this.rentalProperty = rentalProperty;
+    }
+
+    @Column(name = "`Custom1`", nullable = true, length = 255)
+    public String getCustom1() {
+        return this.custom1;
+    }
+
+    public void setCustom1(String custom1) {
+        this.custom1 = custom1;
+    }
+
+    @Column(name = "`Custom2`", nullable = true, length = 255)
+    public String getCustom2() {
+        return this.custom2;
+    }
+
+    public void setCustom2(String custom2) {
+        this.custom2 = custom2;
+    }
+
+    @Column(name = "`Custom3`", nullable = true, length = 255)
+    public String getCustom3() {
+        return this.custom3;
+    }
+
+    public void setCustom3(String custom3) {
+        this.custom3 = custom3;
+    }
+
+    @Column(name = "`Custom4`", nullable = true, length = 255)
+    public String getCustom4() {
+        return this.custom4;
+    }
+
+    public void setCustom4(String custom4) {
+        this.custom4 = custom4;
+    }
+
+    @Column(name = "`Custom5`", nullable = true, length = 255)
+    public String getCustom5() {
+        return this.custom5;
+    }
+
+    public void setCustom5(String custom5) {
+        this.custom5 = custom5;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

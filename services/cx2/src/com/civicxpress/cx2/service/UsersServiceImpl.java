@@ -313,19 +313,19 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
-        if(usersCreated.getGis2formses() != null) {
-            for(Gis2forms gis2formse : usersCreated.getGis2formses()) {
-                gis2formse.setUsers(usersCreated);
-                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
-                gis2formsService.create(gis2formse);
-            }
-        }
-
         if(usersCreated.getGisrecordses() != null) {
             for(Gisrecords gisrecordse : usersCreated.getGisrecordses()) {
                 gisrecordse.setUsers(usersCreated);
                 LOGGER.debug("Creating a new child Gisrecords with information: {}", gisrecordse);
                 gisrecordsService.create(gisrecordse);
+            }
+        }
+
+        if(usersCreated.getGis2formses() != null) {
+            for(Gis2forms gis2formse : usersCreated.getGis2formses()) {
+                gis2formse.setUsers(usersCreated);
+                LOGGER.debug("Creating a new child Gis2forms with information: {}", gis2formse);
+                gis2formsService.create(gis2formse);
             }
         }
 
@@ -811,17 +811,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated gis2formses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("users.id = '" + id + "'");
-
-        return gis2formsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<Gisrecords> findAssociatedGisrecordses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated gisrecordses");
 
@@ -829,6 +818,17 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("users.id = '" + id + "'");
 
         return gisrecordsService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Gis2forms> findAssociatedGis2formses(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated gis2formses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("users.id = '" + id + "'");
+
+        return gis2formsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

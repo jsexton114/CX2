@@ -78,7 +78,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn65_1">
                                                                 <wm-form-field name="rentalProperty" displayname="Rental Property" show="true" primary-key="false" generator="assigned" key="rentalProperty" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="false"></wm-form-field>
+                                                                defaultvalue="false" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow21">
@@ -174,11 +174,29 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn name="gridcolumn1" columnwidth="4"></wm-gridcolumn>
                                                         </wm-gridrow>
+                                                        <wm-gridrow name="gridrow1">
+                                                            <wm-gridcolumn name="gridcolumn2" columnwidth="4">
+                                                                <wm-form-field name="custom1" displayname="Custom1" show="true" primary-key="false" generator="assigned" key="custom1" type="string" readonly="false" required="false" widget="text" maxchars="255"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn name="gridcolumn3" columnwidth="4">
+                                                                <wm-form-field name="custom2" displayname="Custom2" show="true" primary-key="false" generator="assigned" key="custom2" type="string" readonly="false" required="false" widget="text" maxchars="255"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn name="gridcolumn4" columnwidth="4">
+                                                                <wm-form-field name="custom3" displayname="Custom3" show="true" primary-key="false" generator="assigned" key="custom3" type="string" readonly="false" required="false" widget="text" maxchars="255"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
+                                                        <wm-gridrow name="gridrow2">
+                                                            <wm-gridcolumn name="gridcolumn5" columnwidth="4">
+                                                                <wm-form-field name="custom4" displayname="Custom4" show="true" primary-key="false" generator="assigned" key="custom4" type="string" readonly="false" required="false" widget="text" maxchars="255"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="8" name="gridcolumn70_2">
+                                                                <wm-form-field name="custom5" displayname="Custom5" show="true" primary-key="false" generator="assigned" key="custom5" type="string" readonly="false" required="false" widget="text" maxchars="255"></wm-form-field>
+                                                            </wm-gridcolumn>
+                                                        </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="false"
-                                                    widget="select" placeholder="Select value" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                                    placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
+                                                    <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false"
+                                                    required="false" widget="select" placeholder="Select value" dataset="bind:Variables.SelectedMunicipalityObj.dataSet" datafield="All Fields" displayfield="municipalityName" defaultvalue="bind:Variables.SelectedMunicipalityObj.firstRecord"></wm-form-field>
                                                     <wm-form-action key="save" display-name="Save" show="true" class="form-save btn-primary" iconclass="wi wi-save" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                                     <wm-form-action key="cancel" display-name="Cancel" show="true" class="form-cancel btn-secondary" iconclass="wi wi-cancel" title="Cancel" action="cancel()" disabled="false" type="button"
                                                     update-mode="true"></wm-form-action>

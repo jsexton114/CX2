@@ -66,8 +66,8 @@ public class Users implements Serializable {
     private List<FormMessages> formMessageses;
     private List<FormMessageTagging> formMessageTaggings;
     private List<FormsToInspections> formsToInspectionses;
-    private List<Gis2forms> gis2formses;
     private List<Gisrecords> gisrecordses;
+    private List<Gis2forms> gis2formses;
     private List<InspectionDesign> inspectionDesigns;
     private List<InspectionDraft> inspectionDrafts;
     private List<InspectionHistory> inspectionHistories;
@@ -392,22 +392,22 @@ public class Users implements Serializable {
 
     @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
-    public List<Gis2forms> getGis2formses() {
-        return this.gis2formses;
-    }
-
-    public void setGis2formses(List<Gis2forms> gis2formses) {
-        this.gis2formses = gis2formses;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<Gisrecords> getGisrecordses() {
         return this.gisrecordses;
     }
 
     public void setGisrecordses(List<Gisrecords> gisrecordses) {
         this.gisrecordses = gisrecordses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
+    public List<Gis2forms> getGis2formses() {
+        return this.gis2formses;
+    }
+
+    public void setGis2formses(List<Gis2forms> gis2formses) {
+        this.gis2formses = gis2formses;
     }
 
     @JsonInclude(Include.NON_EMPTY)
