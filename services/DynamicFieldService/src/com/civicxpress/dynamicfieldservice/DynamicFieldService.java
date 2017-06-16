@@ -113,7 +113,7 @@ public class DynamicFieldService {
       	}
     }
     
-    public void updateDynamicField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
+    public void updateDynamicField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues,String automaticFeeType) throws SQLException {
     	Connection cx2Conn = DBConnectionService.getConnection();
 
     	cx2Conn.setAutoCommit(false);
@@ -127,8 +127,9 @@ public class DynamicFieldService {
 	    	queryParams.addString("helpText", helpText);
 	    	queryParams.addString("possibleValues", possibleValues);
 	    	queryParams.addLong("formTypeFieldId", formTypeFieldId);
+	    	queryParams.addString("automaticFeeType", automaticFeeType);
 	    	DBUtils.simpleQuery(cx2Conn, "UPDATE FormTypeFields "
-	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, PossibleValues=:possibleValues WHERE ID=:formTypeFieldId",
+	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, PossibleValues=:possibleValues, AutomaticFeeType=:automaticFeeType WHERE ID=:formTypeFieldId",
 	    			queryParams);
 	    	
 	    	cx2Conn.commit();

@@ -26,7 +26,7 @@ public class DynamicFieldController {
     @RequestMapping(value = "/dynamicField", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void updateDynamicField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues) throws SQLException {
-        dynamicFieldService.updateDynamicField(formTypeFieldId, label, displayOrder, required, defaultValue, helpText, possibleValues);
+    public void updateDynamicField(@RequestParam(value = "formTypeFieldId", required = false) Long formTypeFieldId, @RequestParam(value = "label", required = false) String label, @RequestParam(value = "displayOrder", required = false) Integer displayOrder, @RequestParam(value = "required", required = false) Boolean required, @RequestParam(value = "defaultValue", required = false) String defaultValue, @RequestParam(value = "helpText", required = false) String helpText, @RequestParam(value = "possibleValues", required = false) String possibleValues, @RequestParam(value = "automaticFeeType", required = false) String automaticFeeType) throws SQLException {
+        dynamicFieldService.updateDynamicField(formTypeFieldId, label, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
     }
 }

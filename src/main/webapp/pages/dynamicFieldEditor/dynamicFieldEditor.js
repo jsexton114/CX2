@@ -226,7 +226,7 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                     variable = $scope.Variables.svSaveFormField;
                 }
             }
-
+            variable.setInput('automaticFeeType', $scope.Widgets.selectAutoFeeType.datavalue);
             variable.setInput('required', !!$scope.Widgets.checkboxFormFieldRequired.datavalue);
             variable.setInput('possibleValues', possibleValues);
             variable.setInput('defaultValue', defaultValue);
@@ -244,8 +244,8 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
                 $scope.Widgets.checkboxFormFieldRequired.datavalue = formTypeFieldData.required;
                 getDefaultValueWidgetByType(formTypeFieldData.formFieldTypes.label).datavalue = formTypeFieldData.formFieldTypes.label === 'Boolean' ? formTypeFieldData.defaultValue === 'true' : (formTypeFieldData.defaultValue || '');
                 $scope.Widgets.textareaFormFieldHelpText.datavalue = (formTypeFieldData.helpText || '');
+                $scope.Widgets.selectAutoFeeType.datavalue = formTypeFieldData.automaticFeeType;
                 $scope.Widgets.textFormFieldDisplayOrder.datavalue = formTypeFieldData.displayOrder;
-
                 $scope.Variables.stvPossibleValues.dataSet = [];
                 if (!!formTypeFieldData.possibleValues) {
                     var possibleValues = formTypeFieldData.possibleValues.split(',');
@@ -293,8 +293,8 @@ Application.$controller("gridPossibleValuesController", ["$scope",
 ]);
 
 Application.$controller("dlgDeleteDynamicFieldController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

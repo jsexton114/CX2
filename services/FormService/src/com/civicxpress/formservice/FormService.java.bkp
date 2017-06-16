@@ -471,7 +471,7 @@ public class FormService {
 		return DynamicFieldService.getFieldData(formDbConn, formGuid, "form", formTableName);
     }
     
-    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
+    public void saveFormTypeField(Long formTypeId, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeTyp) throws SQLException {
       	Connection cx2Conn = DBConnectionService.getConnection();
       	DBQueryParams queryParams = new DBQueryParams();
     
@@ -479,7 +479,7 @@ public class FormService {
 
         DBRow muniData = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId, FormTableName as ItemTableName from FormTypes WHERE ID=:formTypeId", queryParams);
 
-      	DynamicFieldService.saveDynamicField(cx2Conn, formTypeId, muniData.getLong("MunicipalityId"), "FormTypeId", muniData.getString("ItemTableName"), label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeType);
+      	DynamicFieldService.saveDynamicField(cx2Conn, formTypeId, muniData.getLong("MunicipalityId"), "FormTypeId", muniData.getString("ItemTableName"), label, fieldTypeId, displayOrder, required, defaultValue, helpText, possibleValues, automaticFeeTyp);
     }
     
     public Long saveFormType(Long municipalityId, String formType, String description) throws SQLException {
@@ -853,7 +853,7 @@ public class FormService {
         
         StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
         
-        emailContent.append("Here is a PDF copy of your " + letterTitle + ".");
+        emailContent.append("Here is the PDF copy of your " + letterTitle + ".");
 	    emailContent.append("<br /><br />");
         
         emailContent.append(municipality);

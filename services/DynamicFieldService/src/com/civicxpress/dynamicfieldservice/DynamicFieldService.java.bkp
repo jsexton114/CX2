@@ -59,7 +59,7 @@ public class DynamicFieldService {
 
     @HideFromClient
     public static void saveDynamicField(Connection cx2Conn, Long parentObjectId, Long municipalityId, String parentObjectIdColumnName, String itemTableName, String label, Long fieldTypeId, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues, String automaticFeeType) throws SQLException {
-      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label).replaceAll("^\\d+", ""); // Make sure no leading numbers remain
+      	String fieldName = label == null ? null : DBUtils.getSqlSafeString(label, 3).replaceAll("^\\d+", ""); // Make sure no leading numbers remain
     
       	cx2Conn.setAutoCommit(false);
       	DBQueryParams queryParams = new DBQueryParams();
@@ -113,7 +113,7 @@ public class DynamicFieldService {
       	}
     }
     
-    public void updateDynamicField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues) throws SQLException {
+    public void updateDynamicField(Long formTypeFieldId, String label, Integer displayOrder, Boolean required, String defaultValue, String helpText, String possibleValues,String automaticFeeType) throws SQLException {
     	Connection cx2Conn = DBConnectionService.getConnection();
 
     	cx2Conn.setAutoCommit(false);
@@ -127,8 +127,9 @@ public class DynamicFieldService {
 	    	queryParams.addString("helpText", helpText);
 	    	queryParams.addString("possibleValues", possibleValues);
 	    	queryParams.addLong("formTypeFieldId", formTypeFieldId);
+	    	queryParams.addString("automaticFeeType", automaticFeeType);
 	    	DBUtils.simpleQuery(cx2Conn, "UPDATE FormTypeFields "
-	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, PossibleValues=:possibleValues WHERE ID=:formTypeFieldId",
+	    			+ "SET Label=:label, DisplayOrder=:displayOrder, Required=:required, DefaultValue=:defaultValue, HelpText=:helpText, AutomaticFeeType=:automaticFeeType, PossibleValues=:possibleValues, WHERE ID=:formTypeFieldId",
 	    			queryParams);
 	    	
 	    	cx2Conn.commit();
