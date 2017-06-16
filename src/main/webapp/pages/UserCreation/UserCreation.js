@@ -32,6 +32,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
     var selectedMunicipalites = [];
 
     $scope.CreateUseronSuccess = function(variable, data) {
+        $scope.Variables.stvUserId.dataSet.dataValue = _.clone(data.id);
         //Setting user preference
         $scope.Variables.InsertUserPreference.setInput({
             'UserId': data.id,
@@ -43,6 +44,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
         $scope.Variables.welcomeEmail.setInput('username', data.firstName);
         $scope.Variables.welcomeEmail.setInput('recipient', data.email);
         $scope.Variables.welcomeEmail.update({}, function(data) {});
+
         // For Registering User with Role as USER for first municiality
         $scope.Variables.NewUserRole.setInput({
             "roleName": "User",
@@ -53,9 +55,7 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
             "municipalityId": selectedMunicipalites[0].id
         });
 
-        $scope.Variables.NewUserRole.insertRecord({}, function(data) {
-
-        });
+        $scope.Variables.NewUserRole.insertRecord({}, function(data) {});
 
         // For updating the password 
         $scope.Variables.UpdatePwdAndCF.setInput({
@@ -77,15 +77,61 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
             });
             $scope.Variables.RegisterSubscriptions.insertRecord();
         }
+
         if ($scope.Widgets.radiosetContractor.datavalue == "Yes") {
             if ($scope.Widgets.checkboxIsCompanyListed.datavalue) {
+                // company is not listed, So saving company 
+                $scope.Widgets.liveformVendorApplication.save();
+            } else {
+                // company is  listed, So mapping as companyEmployee and giving role of CompanyEmployee
+                $scope.Variables.lvNewCompanyRole.setInput({
+                    "roleName": "CompanyEmployee",
+                    "description": "CompanyEmployee",
+                    "userId": data.id,
+                });
+                $scope.Variables.lvNewCompanyRole.insertRecord();
+                // Mapping with company as employee
+                $scope.Variables.lvSaveAsVendorEmployee.setInput({
+                    "vendorId": $scope.Widgets.searchCompany.datavalue.id,
+                    "joiningDate": moment().valueOf(),
+                    "userId": data.id,
+                });
+                $scope.Variables.lvSaveAsVendorEmployee.insertRecord();
 
-            } else { //
             }
         } else {
             $scope.Variables.NewUserToLogin.navigate();
             window.location.reload();
         }
+    };
+
+
+    $scope.liveformVendorApplicationSuccess = function($event, $operation, $data) {
+        //giving role of CXVendorAdmin
+        $scope.Variables.lvNewCompanyRole.setInput({
+            "roleName": "CXVendorAdmin",
+            "description": "CXVendorAdmin",
+            "userId": $scope.Variables.stvUserId.dataSet.dataValue,
+        });
+        $scope.Variables.lvNewCompanyRole.insertRecord();
+        // Mapping as CompanyAdmin
+        $scope.Variables.lvSaveAsVendorAdmin.setInput({
+            "vendorId": $data.id,
+            "userId": $scope.Variables.stvUserId.dataSet.dataValue,
+        });
+        $scope.Variables.lvSaveAsVendorAdmin.insertRecord();
+        // Mapping as CompanyEmployee
+        $scope.Variables.lvSaveAsVendorEmployee.setInput({
+            "vendorId": $data.id,
+            "joiningDate": moment().valueOf(),
+            "userId": $scope.Variables.stvUserId.dataSet.dataValue,
+        });
+        $scope.Variables.lvSaveAsVendorEmployee.insertRecord();
+    };
+
+    $scope.lvSaveAsVendorEmployeeonSuccess = function(variable, data) {
+        $scope.Variables.NewUserToLogin.navigate();
+        window.location.reload();
     };
 
     $scope.wizard1Done = function($isolateScope, steps) {
@@ -179,6 +225,22 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
         }
     };
 
+
+    $scope.svCheckForCompanyonSuccess = function(variable, data) {
+        if (data.vendorExist === 1) {
+            $scope.Widgets.companyEmail.datavalue = undefined;
+            $scope.Variables.nocCompanyAlreadyExist.notify();
+        }
+    };
+
+    $scope.checkboxIsCompanyListedChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal) {
+            $scope.Widgets.searchCompany.datavalue = undefined;
+        } else {
+            //do nothing
+        }
+    };
+
 }]);
 
 Application.$controller("liveform2Controller", ["$scope",
@@ -211,5 +273,17 @@ Application.$controller("liveformVendorApplicationController", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.companyEmailBlur = function($event, $isolateScope) {
+            if ($isolateScope.datavalue != "") {
+                $scope.Variables.svCheckForCompany.setInput({
+                    email: $isolateScope.datavalue
+                });
+                $scope.Variables.svCheckForCompany.update();
+            }
+        };
+
+
+
     }
 ]);

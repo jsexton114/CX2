@@ -131,9 +131,10 @@
                             </wm-gridcolumn>
                             <wm-gridcolumn columnwidth="6" name="gridcolumn34" padding="1em unset unset unset">
                                 <wm-search name="searchCompany" type="autocomplete" placeholder="Search for Company" dataset="bind:Variables.lvVendorList.dataSet" displaylabel="companyName" datafield="All Fields" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"
-                                required="bind:!Widgets.checkboxIsCompanyListed.datavalue"></wm-search>
+                                required="bind:(Widgets.radiosetContractor.datavalue==&quot;Yes&quot;)&amp;&amp;(!Widgets.checkboxIsCompanyListed.datavalue)"></wm-search>
                                 <wm-composite name="composite6_1" captionposition="left" horizontalalign="left">
-                                    <wm-checkbox caption="Company Not Listed?" class="col-md-push-3 col-md-9" name="checkboxIsCompanyListed" datavalue="false" checkedvalue="true" uncheckedvalue="false" margin="2em unset unset unset" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-checkbox>
+                                    <wm-checkbox caption="Company Not Listed?" class="col-md-push-3 col-md-9" name="checkboxIsCompanyListed" datavalue="false" checkedvalue="true" uncheckedvalue="false" margin="2em unset unset unset" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"
+                                    on-change="checkboxIsCompanyListedChange($event, $scope, newVal, oldVal)"></wm-checkbox>
                                 </wm-composite>
                             </wm-gridcolumn>
                         </wm-gridrow>
@@ -150,7 +151,7 @@
                                         <wm-gridrow name="gridrow15">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
                                                 <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.lvVendorList.dataSet" captionalign="left" captionposition="top" name="liveformVendorApplication"
-                                                on-error="liveformVendorApplicationError($event, $operation, $data)" insertmessage="Your application has been submitted and you have been set as a &quot;Company Admin&quot;. Please log out and log back in to view the &quot;My Company&quot; dashbaord.">
+                                                on-error="liveformVendorApplicationError($event, $operation, $data)" insertmessage="Your application has been submitted and you have been set as a &quot;Company Admin&quot;." on-success="liveformVendorApplicationSuccess($event, $operation, $data)">
                                                     <wm-layoutgrid name="layoutgrid1">
                                                         <wm-gridrow name="gridrow1">
                                                             <wm-gridcolumn name="gridcolumn1" columnwidth="4">
@@ -159,7 +160,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn name="gridcolumn2" columnwidth="4">
                                                                 <wm-form-field name="companyEmail" displayname="Company Email" show="true" primary-key="false" generator="assigned" key="companyEmail" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
-                                                                widget="text" maxchars="255" inputtype="email" placeholder="Enter value" validationmessage="Company Email is required"></wm-form-field>
+                                                                widget="text" maxchars="255" inputtype="email" placeholder="Enter value" validationmessage="Company Email is required" on-blur="companyEmailBlur($event, $scope)" on-change="companyEmailChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn name="gridcolumn3" columnwidth="4">
                                                                 <wm-form-field name="companyPhone" displayname="Company Phone" show="true" primary-key="false" generator="assigned" key="companyPhone" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
@@ -243,14 +244,13 @@
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
-                                                    <wm-form-field name="coi" displayname="Certificate of Insurance" show="false" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="false" widget="upload" maxchars="255"
-                                                    validationmessage="Certificate of Insurance is required"></wm-form-field>
-                                                    <wm-form-field name="lastUpdated" displayname="Last Updated" show="false" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date"
-                                                    placeholder="Select date" outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy"></wm-form-field>
+                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
                                                     <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="true" widget="checkbox"
                                                     defaultvalue="true" checkedvalue="true" uncheckedvalue="false" placeholder=""></wm-form-field>
-                                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
-                                                    placeholder=""></wm-form-field>
+                                                    <wm-form-field name="lastUpdated" displayname="Last Updated" show="false" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date"
+                                                    placeholder="Select date" outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy"></wm-form-field>
+                                                    <wm-form-field name="coi" displayname="Certificate of Insurance" show="false" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="false" widget="upload"
+                                                    maxchars="255" validationmessage="Certificate of Insurance is required"></wm-form-field>
                                                 </wm-liveform>
                                             </wm-gridcolumn>
                                         </wm-gridrow>

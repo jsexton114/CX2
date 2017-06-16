@@ -96,6 +96,10 @@
         <security:intercept-url pattern="/services/cx2/Vendor/filter" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Vendor/search" access="isAuthenticated()" method="POST"/>
         <security:intercept-url pattern="/services/cx2/Vendor" access="isAuthenticated()" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/Vendor" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/VendorAdmins" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/VendorUsers" access="permitAll" method="POST"/>
+        <security:intercept-url pattern="/services/cx2/queryExecutor/queries/CheckForCompany" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/InsertUserPreference" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/UpdatePasswordAndCF" access="permitAll" method="PUT"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/bannedDetails" access="permitAll" method="GET"/>

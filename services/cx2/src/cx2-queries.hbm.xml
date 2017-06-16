@@ -684,6 +684,20 @@ where vendorId=:vendorId and projects.active=:active
     <query-param name="userId" type="java.lang.Long"/>
     </query>
 
+    <sql-query name="searchUsersByEmailOrName">
+        <![CDATA[
+        SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
+        ]]>
+    <query-param name="searchString" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="searchUsersByEmailOrName__count">
+        <![CDATA[
+        select count(*) from (SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))) wmTempTable
+        ]]>
+    <query-param name="searchString" type="java.lang.String"/>
+    </sql-query>
+
     <query name="InspectorManagerByMunicipality">
         <![CDATA[
         select users.email as managerEmail, users.fullName as managerFullName from Roles  where municipalityId=:municipalityId and roleName=:roleName
@@ -700,20 +714,6 @@ where vendorId=:vendorId and projects.active=:active
     <query-param name="roleName" type="java.lang.String"/>
     </query>
 
-    <sql-query name="searchUsersByEmailOrName">
-        <![CDATA[
-        SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))
-        ]]>
-    <query-param name="searchString" type="java.lang.String"/>
-    </sql-query>
-
-    <sql-query name="searchUsersByEmailOrName__count">
-        <![CDATA[
-        select count(*) from (SELECT ID, FullName, Photo, Email FROM Users WHERE Active=1 AND (Email LIKE CONCAT('%',:searchString,'%') OR FullName LIKE CONCAT('%',:searchString,'%'))) wmTempTable
-        ]]>
-    <query-param name="searchString" type="java.lang.String"/>
-    </sql-query>
-
     <sql-query name="UpdateGlobalEmailSig">
         <![CDATA[
         Update Municipalities set GlobalEmailSig=:gs where ID=:municipality
@@ -728,6 +728,20 @@ where vendorId=:vendorId and projects.active=:active
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CheckForCompany">
+        <![CDATA[
+        select count(*) as vendorExist from Vendor where CompanyEmail=:email
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="CheckForCompany__count">
+        <![CDATA[
+        select count(*) from (select count(*) as vendorExist from Vendor where CompanyEmail=:email) wmTempTable
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
     </sql-query>
 
     <sql-query name="getUserIdFromPasswordResetToken">

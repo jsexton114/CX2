@@ -121,17 +121,19 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportOpenedOrClosedFormsForUserOrSharedWith(ExportType exportType, Long userId, Pageable pageable);
 
-    Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(Integer municipalityId, String roleName, Pageable pageable);
-
-    Downloadable exportInspectorManagerByMunicipality(ExportType exportType, Integer municipalityId, String roleName, Pageable pageable);
-
     Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable);
 
     Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable);
 
+    Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(Integer municipalityId, String roleName, Pageable pageable);
+
+    Downloadable exportInspectorManagerByMunicipality(ExportType exportType, Integer municipalityId, String roleName, Pageable pageable);
+
     Integer executeUpdateGlobalEmailSig(UpdateGlobalEmailSigRequest updateGlobalEmailSigRequest);
 
     Integer executeDeleteFromVendorAdmins(Integer user, Integer vendor);
+
+    CheckForCompanyResponse executeCheckForCompany(String email);
 
     Page<GetUserIdFromPasswordResetTokenResponse> executeGetUserIdFromPasswordResetToken(String token, Pageable pageable);
 

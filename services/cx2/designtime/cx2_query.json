@@ -1588,6 +1588,44 @@
       } ]
     }
   },
+  "CheckForCompany" : {
+    "name" : "CheckForCompany",
+    "description" : "CheckForCompany",
+    "version" : "V2",
+    "queryString" : "select count(*) as vendorExist from Vendor where CompanyEmail=:email",
+    "countQueryString" : "select count(*) from (select count(*) as vendorExist from Vendor where CompanyEmail=:email) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "ss",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.CheckForCompanyResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "vendorExist",
+        "fieldName" : "vendorExist",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "CheckIfCompanyUserIsVendorAdmin" : {
     "name" : "CheckIfCompanyUserIsVendorAdmin",
     "description" : "CheckIfCompanyUserIsVendorAdmin",

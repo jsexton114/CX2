@@ -496,25 +496,6 @@ public class QueryExecutionController {
         return queryService.exportOpenedOrClosedFormsForUserOrSharedWith(exportType, userId, pageable);
     }
 
-    @RequestMapping(value = "/queries/InspectorManagerByMunicipality", method = RequestMethod.GET)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "InspectorManagerByMunicipality")
-    public Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "roleName") String roleName, Pageable pageable) {
-        LOGGER.debug("Executing named query: InspectorManagerByMunicipality");
-        Page<InspectorManagerByMunicipalityResponse> _result = queryService.executeInspectorManagerByMunicipality(municipalityId, roleName, pageable);
-        LOGGER.debug("got the result for named query: InspectorManagerByMunicipality, result:{}", _result);
-        return _result;
-    }
-
-    @ApiOperation(value = "Returns downloadable file for query InspectorManagerByMunicipality")
-    @RequestMapping(value = "/queries/InspectorManagerByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportInspectorManagerByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "roleName") String roleName, Pageable pageable) {
-        LOGGER.debug("Exporting named query: InspectorManagerByMunicipality");
-
-        return queryService.exportInspectorManagerByMunicipality(exportType, municipalityId, roleName, pageable);
-    }
-
     @RequestMapping(value = "/queries/searchUsersByEmailOrName", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "Searches users by email or full name")
@@ -534,6 +515,25 @@ public class QueryExecutionController {
         return queryService.exportSearchUsersByEmailOrName(exportType, searchString, pageable);
     }
 
+    @RequestMapping(value = "/queries/InspectorManagerByMunicipality", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "InspectorManagerByMunicipality")
+    public Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(@RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "roleName") String roleName, Pageable pageable) {
+        LOGGER.debug("Executing named query: InspectorManagerByMunicipality");
+        Page<InspectorManagerByMunicipalityResponse> _result = queryService.executeInspectorManagerByMunicipality(municipalityId, roleName, pageable);
+        LOGGER.debug("got the result for named query: InspectorManagerByMunicipality, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query InspectorManagerByMunicipality")
+    @RequestMapping(value = "/queries/InspectorManagerByMunicipality/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportInspectorManagerByMunicipality(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipalityId") Integer municipalityId, @RequestParam(value = "roleName") String roleName, Pageable pageable) {
+        LOGGER.debug("Exporting named query: InspectorManagerByMunicipality");
+
+        return queryService.exportInspectorManagerByMunicipality(exportType, municipalityId, roleName, pageable);
+    }
+
     @RequestMapping(value = "/queries/UpdateGlobalEmailSig", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "UpdateGlobalEmailSig")
@@ -551,6 +551,16 @@ public class QueryExecutionController {
         LOGGER.debug("Executing named query: DeleteFromVendorAdmins");
         Integer _result = queryService.executeDeleteFromVendorAdmins(user, vendor);
         LOGGER.debug("got the result for named query: DeleteFromVendorAdmins, result:{}", _result);
+        return _result;
+    }
+
+    @RequestMapping(value = "/queries/CheckForCompany", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CheckForCompany")
+    public CheckForCompanyResponse executeCheckForCompany(@RequestParam(value = "email") String email) {
+        LOGGER.debug("Executing named query: CheckForCompany");
+        CheckForCompanyResponse _result = queryService.executeCheckForCompany(email);
+        LOGGER.debug("got the result for named query: CheckForCompany, result:{}", _result);
         return _result;
     }
 

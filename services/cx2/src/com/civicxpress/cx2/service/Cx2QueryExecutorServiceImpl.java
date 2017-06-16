@@ -570,6 +570,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("searchString", searchString);
+
+        return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, SearchUsersByEmailOrNameResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("searchString", searchString);
+
+        return queryExecutor.exportNamedQueryData("searchUsersByEmailOrName", params, exportType, SearchUsersByEmailOrNameResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<InspectorManagerByMunicipalityResponse> executeInspectorManagerByMunicipality(Integer municipalityId, String roleName, Pageable pageable) {
         Map params = new HashMap(2);
 
@@ -588,26 +608,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("roleName", roleName);
 
         return queryExecutor.exportNamedQueryData("InspectorManagerByMunicipality", params, exportType, InspectorManagerByMunicipalityResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<SearchUsersByEmailOrNameResponse> executeSearchUsersByEmailOrName(String searchString, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("searchString", searchString);
-
-        return queryExecutor.executeNamedQuery("searchUsersByEmailOrName", params, SearchUsersByEmailOrNameResponse.class, pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Downloadable exportSearchUsersByEmailOrName(ExportType exportType, String searchString, Pageable pageable) {
-        Map params = new HashMap(1);
-
-        params.put("searchString", searchString);
-
-        return queryExecutor.exportNamedQueryData("searchUsersByEmailOrName", params, exportType, SearchUsersByEmailOrNameResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")
@@ -630,6 +630,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("vendor", vendor);
 
         return queryExecutor.executeNamedQueryForUpdate("DeleteFromVendorAdmins", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public CheckForCompanyResponse executeCheckForCompany(String email) {
+        Map params = new HashMap(1);
+
+        params.put("email", email);
+
+        return queryExecutor.executeNamedQuery("CheckForCompany", params, CheckForCompanyResponse.class);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

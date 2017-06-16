@@ -198,4 +198,24 @@
   "permission" : "PermitAll",
   "roles" : [ ],
   "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/queryExecutor/queries/CheckForCompany",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "GET"
+}, {
+  "urlPattern" : "/services/cx2/VendorAdmins",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/VendorUsers",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
+}, {
+  "urlPattern" : "/services/cx2/Vendor",
+  "permission" : "PermitAll",
+  "roles" : [ ],
+  "httpMethod" : "POST"
 } ]
