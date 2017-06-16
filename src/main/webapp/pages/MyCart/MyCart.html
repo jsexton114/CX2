@@ -32,7 +32,7 @@
                                     </wm-gridrow>
                                 </wm-layoutgrid>
                             </wm-wizardstep>
-                            <wm-wizardstep name="wizardstep2" title="Checkout" iconclass="wi wi-attach-money" on-load="wizardstep2Load($scope, stepIndex)">
+                            <wm-wizardstep name="wizardstep2" title="Checkout" iconclass="wi wi-attach-money" on-load="wizardstep2Load($scope, stepIndex)" on-prev="wizardstep2Prev($scope, currentStep, stepIndex)">
                                 <wm-layoutgrid name="layoutgrid2">
                                     <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn4">
@@ -41,29 +41,31 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow5" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn6">
-                                            <wm-label padding="unset 0.5em" name="paymentTypeLabel" caption="Payment Type" class="h3" fontweight="bold"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="paymentTypeLabel" caption="Payment Type" class="h3" fontweight="bold" show="bind:isMunicipalityEmployee()"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
+                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:(isMunicipalityEmployee() && !stripeToken) ? Variables.stvPaymentOptions.dataSet[0].paymentType : Variables.stvPaymentOptions.dataSet[2].paymentType"
+                                            usekeys="false" show="bind:isMunicipalityEmployee() && !stripeToken"></wm-radioset>
                                             <!--<div ng-repeat="fee in Variables.svFeesInCartOfUser.dataSet" class="app-grid-column dynamic-field-column col-sm-12" name="fee{{$index}}">{{fee.feeType}}
                                             </div>-->
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                            <wm-html id="html0" name="html0" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == true)">Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
-                                                <br/>
-                                                <br/>
+                                            <wm-html id="html0" name="html0" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card') &amp;&amp; !stripeToken">Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirected to the final checkout step.
+                                                <br>
+                                                <br>
                                             </wm-html>
-                                            <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')"></wm-html>
-                                            <wm-html id="html2" name="html2" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == false)">Click submit to complete payment of your fees.</wm-html>
+                                            <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card') &amp;&amp; !stripeToken"></wm-html>
+                                            <wm-html id="html2" name="html2" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card') &amp;&amp; !!stripeToken">Click submit to complete payment of your fees.</wm-html>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow7" padding=".2em unset">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn13"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="8" name="gridcolumn10">
-                                            <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card')" required="{{((Widgets.radiosetPaymentOptions.datavalue=='Check')||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card'))}}">
-                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check'?'Check Number':'Transaction ID'" fontweight="bold" required="false"></wm-label>
+                                            <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )" required="{{((Widgets.radiosetPaymentOptions.datavalue=='Check'
+                                            )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' ))}}">
+                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check' ? 'Check Number': 'Transaction ID'" fontweight="bold" required="false"></wm-label>
                                                 <wm-container class="col-md-9" name="container2">
                                                     <wm-text name="textPaymentNumber"></wm-text>
                                                 </wm-container>
@@ -74,7 +76,7 @@
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn14_1"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="8" name="gridcolumn12">
-                                            <wm-composite name="compositeComments" required="true">
+                                            <wm-composite name="compositeComments" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )" required="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )">
                                                 <wm-label class="col-md-3 form-control-static" name="labelComments" caption="Comments" fontweight="bold"></wm-label>
                                                 <wm-container class="col-md-9" name="container3">
                                                     <wm-textarea name="textareaComments" placeholder="Place Your Comments"></wm-textarea>

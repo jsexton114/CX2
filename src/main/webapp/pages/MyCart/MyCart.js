@@ -1,6 +1,9 @@
 Application.$controller("MyCartPageController", ["$scope", function($scope) {
     "use strict";
 
+    $scope.stripeToken = null;
+    var tdUtils = new TekDogUtilities();
+
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
 
@@ -8,18 +11,17 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     $scope.wizardstep1Load = function($isolateScope, stepIndex) {
         // if the stripeToken is avaiable, then $scope.Widgets.wizardCheckOut.next(); from wizardstep1Load
-        $scope.stripeToken = null;
-        //console.log("wizardstep1Load()");
-        $scope.stripeToken = getCookieValue("stripeToken");
-        //console.log("stripeToken from cookie: " + stripeToken);
-        if (!$scope.stripeToken) {
-            $scope.stripeToken = getQueryStringByParameter("stripeToken");
-            //console.log("stripeToken from query string: " + stripeToken);
-        }
-        if ($scope.stripeToken) {
+        $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
+        if (!!$scope.stripeToken) {
+            console.log("!!$scope.stripeToken");
             $scope.Widgets.wizardCheckOut.next();
-            $scope.Widgets.wizardCheckOut.done();
+            console.log("$scope.Widgets.wizardCheckOut.next();");
+            //$scope.Widgets.wizardCheckOut.done();
+            $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
+            $scope.Variables.svCheckout.setInput("comments", "Stripe payment transaction ID " + $scope.stripeToken);
+            console.log("Stripe payment transaction ID " + $scope.stripeToken);
         }
+        console.log("$scope.stripeToken: " + $scope.stripeToken);
     };
 
     $scope.svFeesInCartByUseronSuccess = function(variable, data) {
@@ -48,67 +50,47 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
             });
         }
 
-        if ($scope.stripeToken) {
-            $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
-            $scope.Variables.svCheckout.setInput("comments", "Stripe payment transaction ID " + $scope.stripeToken);
-        }
         $scope.Variables.svCheckout.setInput("Long", feeIds);
         $scope.Variables.svCheckout.update();
     };
 
-
     $scope.svCheckoutonSuccess = function(variable, data) {
 
         $scope.Variables.svCartItemIds.update();
-        if ($scope.Widgets.wizardCheckOut) $scope.Widgets.wizardCheckOut.show = false
-        if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentRecieved.show = true
-            // $scope.$parent.Widgets.pagedialog1.close();
+        if ($scope.Widgets.wizardCheckOut) $scope.Widgets.wizardCheckOut.show = false;
+        if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentRecieved.show = true;
+        // $scope.$parent.Widgets.pagedialog1.close();
+
+        tdUtils.eraseCookie("stripeToken");
+        $scope.stripeToken = null;
 
     };
-
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
-        //console.log("!isMunicipalityEmployee(): " + !isMunicipalityEmployee());
-        if (!isMunicipalityEmployee()) {
-            hideOtherPaymentOptions();
+        // Stripe HTML is written programmatically so WM doesn't remove it
+        var html1 = document.getElementById('html1');
+        console.log("document.getElementById('html1'): " + document.getElementById('html1'));
+        if (html1) {
+            console.log("html1.children.length: " + html1.children.length);
+        }
+        if (html1 && html1.children.length === 0) {
+            console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
+            var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
+            html1.appendChild(form);
         }
 
-        // when using credit card, look for the stripe token
-        //stripeToken = getCookieValue("stripeToken");
-        if ($scope.stripeToken) {
-            hideOtherPaymentOptions();
-            // hide the stripe button becuase we already have the token
-            console.log("stripeToken: " + $scope.stripeToken);
-            if ($scope.Widgets.html1) $scope.Widgets.html1.show = false;
-            console.log("$scope.Widgets.wizardstep2.disabledone: " + $scope.Widgets.wizardstep2.disabledone);
-            $scope.Widgets.wizardstep2.disabledone = false;
-        } else {
-            // Stripe HTML is written programmatically so WM doesn't remove it
-            var html1 = document.getElementById('html1');
-            if (html1.children.length === 0) {
-                console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
-                var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
-                html1.appendChild(form);
-            }
-            // disable done in the wizard so the user has to click the stripe button to enter credit card information
-            $scope.Widgets.wizardstep2.disabledone = true;
-        }
-        //console.log("$scope.Widgets.radiosetPaymentOptions.datavalue: " + $scope.Widgets.radiosetPaymentOptions.datavalue);
     };
 
-    function hideOtherPaymentOptions() {
-        // not a municipality employee, so hide options other than credit card
-        if ($scope.Widgets.radiosetPaymentOptions) {
-            $scope.Widgets.radiosetPaymentOptions.selectedvalue = "bind:Variables.stvPaymentOptions.dataSet[2].paymentType";
-            $scope.Widgets.radiosetPaymentOptions.show = false;
-
+    $scope.isMunicipalityEmployee = function() {
+        var returnIsMunicipalityEmployee = false;
+        let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "MunicipalityEmployee")) {
+                returnIsMunicipalityEmployee = true;
+            }
         }
-        if ($scope.Widgets.paymentTypeLabel) $scope.Widgets.paymentTypeLabel.show = false;
-        if ($scope.Widgets.compositeComments) {
-            $scope.Widgets.compositeComments.show = false;
-            $scope.Widgets.compositeComments.required = false;
-        }
-    }
+        return returnIsMunicipalityEmployee;
+    };
 
     function createStripeButtonHtml(dataKeyValue, dataAmountValue, dataNameValue, dataDescriptionValue) {
         // Stripe HTML is written programmatically so WM doesn't remove it
@@ -150,28 +132,42 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         return form;
     }
 
-    function getQueryStringByParameter(name) {
+    function TekDogUtilities() {}
+
+    // cookie methods used from 
+    // http://stackoverflow.com/questions/5639346/shortest-function-for-reading-a-cookie-in-javascript
+    TekDogUtilities.prototype.createCookie = function(name, value, days) {
+        // TODO: how to have a "use once" feature of the cookie?
+        var expires;
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/";
+    };
+
+    TekDogUtilities.prototype.eraseCookie = function(name) {
+        this.createCookie(name, "", -1);
+    };
+
+    TekDogUtilities.prototype.getCookieValue = function(a, b) {
+        b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+        return b ? b.pop() : '';
+    };
+
+    TekDogUtilities.prototype.getQueryStringByParameter = function(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    function getCookieValue(a) {
-        var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-        return b ? b.pop() : '';
-    }
 
-    function isMunicipalityEmployee() {
-        var returnIsMunicipalityEmployee = false;
-        let temp = $scope.Variables.loggedInUser.dataSet.roles;
-        for (let i = 0; i < temp.length; i++) {
-            if ((temp[i] == "MunicipalityEmployee")) {
-                returnIsMunicipalityEmployee = true;
-            }
-        }
-        return returnIsMunicipalityEmployee;
-    }
+    $scope.wizardstep2Prev = function($isolateScope, currentStep, stepIndex) {
+        tdUtils.eraseCookie("stripeToken");
+        $scope.stripeToken = null;
+    };
 
 }]);
 
