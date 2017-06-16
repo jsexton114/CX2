@@ -22,6 +22,11 @@ Application.$controller("CompanyUsersPageController", ["$scope", "$filter", func
 
 
 
+
+    $scope.lvGiveCompanyEmployeeRoleonError = function(variable, data) {
+        //Nothing		
+    };
+
 }]);
 
 
@@ -46,7 +51,6 @@ Application.$controller("gridVendorUsersController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
-            debugger
             $scope.Variables.CheckIfCompanyUserIsVendorAdmin.setInput({
                 'user': $rowData.userId
             });
