@@ -293,7 +293,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
-
+        // Logic for contractor application
         if ($scope.pageParams.draftId === undefined) {
 
             if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
@@ -439,10 +439,15 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         _.forEach($scope.Variables.stvVendors.dataSet, function(obj) {
             selectedComapanyIds.push(obj.ID);
         });
-        $scope.Variables.svFetchCompanyUsers.setInput({
-            'vendor': selectedComapanyIds
-        });
-        $scope.Variables.svFetchCompanyUsers.update();
+        // check if vendors exist
+        if (selectedComapanyIds.length > 0) {
+            $scope.Variables.svFetchCompanyUsers.setInput({
+                'vendor': selectedComapanyIds
+            });
+            $scope.Variables.svFetchCompanyUsers.update();
+        } else {
+            //do nothing
+        }
     };
 
     $scope.checkboxOtherOwnerChange = function($event, $isolateScope, newVal, oldVal) {
