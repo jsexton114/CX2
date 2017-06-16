@@ -51,9 +51,10 @@
                                             </div>-->
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn9">
-                                            Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
-                                            <br/>
-                                            <br/>
+                                            <wm-html id="html0" name="html0" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == true)">Click the Pay by Card button to enter your secure credit card information. After verifying your card, you will be redirect to the final checkout step.
+                                                <br/>
+                                                <br/>
+                                            </wm-html>
                                             <wm-html id="html1" name="html1" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card')"></wm-html>
                                             <wm-html id="html2" name="html2" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Credit Card' && Widgets.wizardstep2.disabledone == false)">Click submit to complete payment of your fees.</wm-html>
                                         </wm-gridcolumn>

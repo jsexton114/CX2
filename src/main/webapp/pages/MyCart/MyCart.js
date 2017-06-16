@@ -50,7 +50,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
         if ($scope.stripeToken) {
             $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
-            $scope.Variables.svCheckout.setInput("comments", "Strip transaction ID " + $scope.stripeToken);
+            $scope.Variables.svCheckout.setInput("comments", "Stripe payment transaction ID " + $scope.stripeToken);
         }
         $scope.Variables.svCheckout.setInput("Long", feeIds);
         $scope.Variables.svCheckout.update();
