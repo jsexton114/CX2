@@ -3,15 +3,7 @@ Application.$controller("CompanyDetailsPageController", ["$scope", function($sco
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+
     };
 
     $scope.CurrentVendorObjonBeforeDatasetReady = function(variable, data) {
@@ -23,6 +15,24 @@ Application.$controller("CompanyDetailsPageController", ["$scope", function($sco
 
     $scope.liveform1Beforeservicecall = function($event, $operation, $data) {
         $data.lastUpdated = new Date().getTime();
+    };
+
+
+    $scope.tabpaneDocumentsSelect = function($event, $isolateScope) {
+
+        if ($scope.pageParams.municipalityId != undefined) {
+            $scope.Variables.lvDocuments.setFilter({
+                'municipalityId': $scope.pageParams.municipalityId
+            });
+        } else {
+            $scope.Variables.lvDocuments.setFilter({
+                'municipalityId': undefined
+            });
+        }
+        $scope.Variables.lvDocuments.setFilter({
+            'vendorId': $scope.Variables.CurrentVendorObj.dataSet.data[0].id
+        });
+        $scope.Variables.lvDocuments.update();
     };
 
 }]);
@@ -65,5 +75,47 @@ Application.$controller("liveform2Controller", ["$scope",
             // }
         };
 
+    }
+]);
+
+Application.$controller("gridDocumentsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            window.open('resources/leadTools/index.html?docId=' + $rowData.id);
+        };
+    }
+]);
+
+Application.$controller("dialogUploadDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.dialogUploadDocumentClose = function($event, $isolateScope) {
+            $scope.docsToUpload = [];
+        };
+
+        $scope.buttonUploadFileClick = function($event, $isolateScope) {
+            var filesContents = [];
+
+            $scope.docsToUpload.forEach(function(doc, index) {
+                filesContents.push(doc.Contents);
+            });
+            $scope.Variables.svUploadDocument.setInput('files', filesContents);
+            $scope.Variables.svUploadDocument.update();
+            $scope.docsToUpload = [];
+            $scope.Widgets.dialogUploadDocument.close();
+        };
+
+    }
+]);
+
+Application.$controller("confirmdialogDeleteDocumentController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);

@@ -13,14 +13,6 @@ Application.$controller("ManageMunicipalityVendorsPageController", ["$scope", fu
 
 
 
-
-
-
-
-
-
-
-
 Application.$controller("viewCompanyDetailsController", ["$scope",
     function($scope) {
         "use strict";
@@ -76,6 +68,13 @@ Application.$controller("gridPendingController", ["$scope",
         };
 
 
+
+        $scope.customRowAction = function($event, $rowData) {
+
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = $rowData.vendorId;
+            $scope.Widgets.viewCompanyDetails.open();
+        };
+
     }
 ]);
 
@@ -87,6 +86,11 @@ Application.$controller("gridApprovedVendorsController", ["$scope",
             $scope.Variables.stvDeletingApplicationId.dataSet.dataValue = $rowData.id;
             $scope.Widgets.confirmdialogDeleteApplication.open();
         };
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = $rowData.vendorId;
+            $scope.Widgets.viewCompanyDetails.open();
+        };
     }
 ]);
 
@@ -97,6 +101,11 @@ Application.$controller("gridSuspendedController", ["$scope",
         $scope.deleterowAction = function($event, $rowData) {
             $scope.Variables.stvDeletingApplicationId.dataSet.dataValue = $rowData.id;
             $scope.Widgets.confirmdialogDeleteApplication.open();
+        };
+
+        $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.stvSelectedVendor.dataSet.dataValue = $rowData.vendorId;
+            $scope.Widgets.viewCompanyDetails.open();
         };
     }
 ]);
