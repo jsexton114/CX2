@@ -1009,6 +1009,32 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "municipalityId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "MunicipalityId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "vendorId",
+        "type" : "integer",
+        "fullyQualifiedType" : "integer",
+        "columnName" : "VendorId",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "",
+        "scale" : 0
       } ],
       "entityName" : "Document",
       "fullyQualifiedName" : "com.civicxpress.cx2.Document",
