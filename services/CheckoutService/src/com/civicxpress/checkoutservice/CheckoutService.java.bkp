@@ -8,7 +8,21 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+
+import javax.activation.DataHandler;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -22,6 +36,8 @@ import com.tekdog.dbutils.*;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
+import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.ReceiptPdf;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.APIException;
@@ -48,6 +64,8 @@ import com.stripe.net.RequestOptions;
 public class CheckoutService {
 
     private static final Logger logger = LoggerFactory.getLogger(CheckoutService.class);
+    private static final String RESET_NOTIFICATION_MAIL_ID ="civicxpress@gmail.com ";
+    private static final String RESET_NOTIFICATION_MAIL_PASSWORD ="civicxpress2016!";
 
     @Autowired
     private SecurityService securityService;
@@ -100,6 +118,10 @@ public class CheckoutService {
         				queryParams);
     	        
     	        }
+    	        
+    	        byte[] receiptBytes = createReceiptPdf();
+    	        System.out.println("receiptBytes.length:" + receiptBytes.length);
+    	        sendReceipt("jason_sexton@hotmail.com", receiptBytes);
 	        }
 	        
 	        connection.commit();
@@ -111,6 +133,13 @@ public class CheckoutService {
     	}
     }
     
+    public byte[] createReceiptPdf() {
+		Cx2DataAccess db = new Cx2DataAccess();
+    	ReceiptPdf receiptPdf = new ReceiptPdf();
+        byte[] fileBytes = receiptPdf.fileBytesOutput; 
+        return fileBytes;
+    }
+
     private Boolean chargeCreditCard(BigDecimal amount, String description, String stripeToken) {
         Boolean returnSuccess = false;
         Charge charge = null;
@@ -118,7 +147,7 @@ public class CheckoutService {
         Long amountInCents = amount.longValue() * 100;
         
         params = new HashMap<String, Object>();
-		params.put("amount", amount);
+		params.put("amount", amountInCents);
 		params.put("currency", "usd");
 		params.put("description", description); // can this description make a useful receipt from Stripe?
 		params.put("source", stripeToken);
@@ -162,4 +191,45 @@ public class CheckoutService {
 
         return returnSuccess;
     }
+
+    
+    public void sendReceipt(String recipientEmail, byte[] receiptBytes) throws MessagingException {
+    	Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+        Session session = Session.getDefaultInstance(props, null);
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        InternetAddress recipientAddress;
+        recipientAddress = new InternetAddress(recipientEmail);
+        message.setRecipient(Message.RecipientType.TO, recipientAddress);
+        StringBuilder emailContent = new StringBuilder();
+        emailContent.append("Here is your receipt.");
+	    emailContent.append("<br /><br />");
+        Multipart messageContents = new MimeMultipart();
+        MimeBodyPart messageBody = new MimeBodyPart();
+        messageBody.setContent(emailContent.toString(), "text/html");
+        messageContents.addBodyPart(messageBody);
+		String filename = "civicxpress-receipt.pdf";
+        ByteArrayDataSource fileDS = new ByteArrayDataSource(receiptBytes, "application/pdf");
+        MimeBodyPart letterAttachment = new MimeBodyPart();
+        letterAttachment.setDataHandler(new DataHandler(fileDS));
+        letterAttachment.setFileName(filename);
+        messageContents.addBodyPart(letterAttachment);
+        message.setSubject("CivicXpress receipt");
+        message.setContent(messageContents);
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+        
+    }
+
+    
 }

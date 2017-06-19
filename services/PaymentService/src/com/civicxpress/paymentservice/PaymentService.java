@@ -24,9 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.checkoutservice.CheckoutService;
-import com.civicxpress.ReceiptPdf;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.APIException;
@@ -116,12 +114,6 @@ public class PaymentService {
 
     }
 
-    private byte[] createReceiptPdf(Integer letterTemplateId, Long formTypeId, String formGuid) {
-		Cx2DataAccess db = new Cx2DataAccess();
-    	ReceiptPdf receiptPdf = null;
-        byte[] fileBytes = null; 
-        return fileBytes;
-    }
 
 /*
     public void callback(HttpServletRequest request, HttpServletResponse response,Object obj) throws ServletException {

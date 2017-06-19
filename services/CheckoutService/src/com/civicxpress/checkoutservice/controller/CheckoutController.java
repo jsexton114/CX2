@@ -6,6 +6,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.math.BigDecimal;
 import java.lang.Exception;
+import javax.mail.MessagingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,24 @@ public class CheckoutController {
     @Autowired
     private CheckoutService checkoutService;
 
+    @RequestMapping(value = "/receiptPdf", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public byte[] createReceiptPdf() {
+        return checkoutService.createReceiptPdf();
+    }
+
     @RequestMapping(value = "/municipalityCheckout", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
     public void municipalityCheckout(@RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "paymentMethod", required = false) String paymentMethod, @RequestParam(value = "paymentNumber", required = false) String paymentNumber, @RequestParam(value = "amountReceived", required = false) BigDecimal amountReceived, @RequestParam(value = "comments", required = false) String comments, @RequestBody Long[] feeIds) throws Exception {
         checkoutService.municipalityCheckout(municipalityId, paymentMethod, paymentNumber, amountReceived, comments, feeIds);
+    }
+
+    @RequestMapping(value = "/sendReceipt", method = RequestMethod.POST)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
+    public void sendReceipt(@RequestParam(value = "recipientEmail", required = false) String recipientEmail, @RequestBody byte[] receiptBytes) throws MessagingException {
+        checkoutService.sendReceipt(recipientEmail, receiptBytes);
     }
 }
