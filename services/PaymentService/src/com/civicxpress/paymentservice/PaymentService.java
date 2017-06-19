@@ -99,6 +99,10 @@ public class PaymentService {
         response.addCookie(stripeTokenCookie);
         System.out.println("stripeTokenCookie: " + stripeTokenCookie);
  	    returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
+ 	    System.out.println("request.getContextPath(): " + request.getContextPath());
+ 	    System.out.println("request.getScheme(): " + request.getScheme());
+ 	    System.out.println("request.getServerName(): " + request.getServerName());
+ 	    System.out.println("request.getServletPath(): " + request.getServletPath());
  	    System.out.println("returnUrl: " + returnUrl);
 
  	    try {
