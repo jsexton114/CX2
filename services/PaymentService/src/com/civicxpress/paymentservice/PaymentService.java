@@ -17,13 +17,16 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 import com.wavemaker.runtime.service.annotations.HideFromClient;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.checkoutservice.CheckoutService;
+import com.civicxpress.ReceiptPdf;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.APIException;
@@ -111,6 +114,13 @@ public class PaymentService {
             e.printStackTrace();
  	    }
 
+    }
+
+    private byte[] createReceiptPdf(Integer letterTemplateId, Long formTypeId, String formGuid) {
+		Cx2DataAccess db = new Cx2DataAccess();
+    	ReceiptPdf receiptPdf = null;
+        byte[] fileBytes = null; 
+        return fileBytes;
     }
 
 /*

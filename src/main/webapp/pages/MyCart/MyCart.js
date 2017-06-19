@@ -67,17 +67,6 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     };
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
-        // Stripe HTML is written programmatically so WM doesn't remove it
-        var html1 = document.getElementById('html1');
-        console.log("document.getElementById('html1'): " + document.getElementById('html1'));
-        if (html1) {
-            console.log("html1.children.length: " + html1.children.length);
-        }
-        if (html1 && html1.children.length === 0) {
-            console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
-            var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
-            html1.appendChild(form);
-        }
 
     };
 
@@ -167,6 +156,21 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     $scope.wizardstep2Prev = function($isolateScope, currentStep, stepIndex) {
         tdUtils.eraseCookie("stripeToken");
         $scope.stripeToken = null;
+    };
+
+
+    $scope.svSumOfFeesInUsersCartonSuccess = function(variable, data) {
+        // Stripe HTML is written programmatically so WM doesn't remove it
+        var html1 = document.getElementById('html1');
+        console.log("document.getElementById('html1'): " + document.getElementById('html1'));
+        if (html1) {
+            console.log("html1.children.length: " + html1.children.length);
+        }
+        if (html1 && html1.children.length === 0) {
+            console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
+            var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
+            html1.appendChild(form);
+        }
     };
 
 }]);
