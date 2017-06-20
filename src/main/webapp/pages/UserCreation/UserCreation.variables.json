@@ -10,7 +10,7 @@
       "type" : "string"
     }, {
       "target" : "text",
-      "value" : "Please validate the reCAPTCHA",
+      "value" : "<strong>ERROR</strong><br />Please validate the reCAPTCHA",
       "type" : "string"
     }, {
       "target" : "duration",
@@ -3274,7 +3274,7 @@
     "type" : "Vendor",
     "isList" : false,
     "saveInPhonegap" : false,
-    "maxResults" : 20,
+    "maxResults" : 40,
     "designMaxResults" : 10,
     "inFlightBehavior" : "executeLast",
     "startUpdate" : true,
@@ -3283,7 +3283,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "id asc",
+    "orderBy" : "companyName asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "contractorTypes",
@@ -3714,7 +3714,7 @@
       "type" : "list"
     }, {
       "target" : "text",
-      "value" : "You have already added that Municipality",
+      "value" : "<strong>ERROR</strong><br />You have already added that Municipality",
       "type" : "string"
     }, {
       "target" : "duration",
@@ -4558,11 +4558,11 @@
       "type" : "string"
     }, {
       "target" : "text",
-      "value" : "bind:\"This company is already in CivicXpress as \"+Widgets.searchCompany.datavalue.companyName+\". Please select this company using the search above.\"",
+      "value" : "<strong>ERROR</strong><br />This Company Email is already in use. Please enter that email in the Company Search and select the existing company.",
       "type" : "string"
     }, {
       "target" : "duration",
-      "value" : "5000",
+      "value" : "12000",
       "type" : "number"
     }, {
       "target" : "class",
@@ -4586,7 +4586,7 @@
       "type" : "list"
     }, {
       "target" : "text",
-      "value" : "There is no municipality selected. Search for and select a municipality, then click Add",
+      "value" : "<strong>ERROR</strong><br />There is no municipality selected. Search for and select a municipality, then click Add",
       "type" : "string"
     }, {
       "target" : "duration",
@@ -4614,7 +4614,7 @@
       "type" : "string"
     }, {
       "target" : "text",
-      "value" : "Please check that your passwords match, revalidate the reCAPTCHA, then try again",
+      "value" : "<strong>ERROR</strong><br />Please check that your passwords match, validate the reCAPTCHA, then try again",
       "type" : "string"
     }, {
       "target" : "duration",
@@ -4642,7 +4642,7 @@
       "type" : "string"
     }, {
       "target" : "text",
-      "value" : "Password Requirements have not been met. Please choose a strong password",
+      "value" : "<strong>ERROR</strong><br />Password Requirements have not been met. Please choose a strong password",
       "type" : "string"
     }, {
       "target" : "duration",
@@ -4670,7 +4670,7 @@
       "type" : "string"
     }, {
       "target" : "text",
-      "value" : "Please check that your passwords match, validate the reCAPTCHA, then try again",
+      "value" : "<strong>ERROR</strong><br />Please check that your passwords match, validate the reCAPTCHA, then try again",
       "type" : "string"
     }, {
       "target" : "duration",

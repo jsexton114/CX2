@@ -213,12 +213,13 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
         } else {
             $scope.Variables.NoMuncipalitiesAdded.notify();
         }
+        // clears text to allow for additional muni search
         $scope.Widgets.textSearchMunicipalities.reset();
     };
 
 
     $scope.radiosetContractorChange = function($event, $isolateScope, newVal, oldVal) {
-        if (newVal == "Yes") {
+        if (newVal) {
             $scope.Widgets.checkboxIsCompanyListed.datavalue = false;
             $scope.Widgets.searchCompany.datavalue = undefined;
         } else { //do nothing
@@ -228,16 +229,17 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
 
     $scope.svCheckForCompanyonSuccess = function(variable, data) {
         if (data.vendorExist === 1) {
-            $scope.Widgets.companyEmail.datavalue = undefined;
             $scope.Variables.nocCompanyAlreadyExist.notify();
+            $scope.Widgets.checkboxIsCompanyListed.datavalue = false;
+            // attempt to put provided in-use company email into the searchCompany box so they select that company... doesn't appear to work with autocomplete widget -- $scope.Widgets.searchCompany.datavalue = $scope.Widgets.companyEmail.datavalue;
+            $scope.Widgets.companyEmail.datavalue = undefined;
         }
     };
 
     $scope.checkboxIsCompanyListedChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal) {
             $scope.Widgets.searchCompany.datavalue = undefined;
-        } else {
-            //do nothing
+        } else { //do nothing
         }
     };
 
