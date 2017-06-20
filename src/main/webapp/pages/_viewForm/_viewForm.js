@@ -748,6 +748,23 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             return $scope.inspectionObject.scheduleDateAndTime === true ? $scope.Widgets.datetimeInspectionRequest.datavalue : $scope.Widgets.dateInspectionRequest.datavalue;
         }
 
+        $scope.callInOnly = function() {
+
+            if (!$scope.inspectionObject) {
+                return null;
+            }
+            if ($scope.inspectionObject.callInOnly) {
+                if ($scope.Variables.svUserPermissions.dataSet.isEmployee) {
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
+            }
+
+
+        };
+
         $scope.hasOperatingTimeError = function() {
 
             if (!getRequestedFor()) {
@@ -809,7 +826,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.disableDateOfInspection = checkDisablingDate();
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
-
+            $scope.callInOnly();
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
@@ -820,6 +837,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.disableDateOfInspection = checkDisablingDate();
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
+            $scope.callInOnly();
 
         };
 
@@ -854,7 +872,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         });
 
         $scope.datetimeInspectionRequestChange = function($event, $isolateScope, newVal, oldVal) {
-            debugger
+
             updateDailyInspectionLimit(newVal);
 
             $scope.Variables.svCountInspectionsHourly.setInput({
