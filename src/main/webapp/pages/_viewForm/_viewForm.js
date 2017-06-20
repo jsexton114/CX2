@@ -749,7 +749,12 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         }
 
         $scope.hasOperatingTimeError = function() {
+
             if (!getRequestedFor()) {
+                return false;
+            }
+
+            if (!$scope.inspectionObject.scheduleDateAndTime) {
                 return false;
             }
 
@@ -757,9 +762,12 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 
             var closeMoment = moment($scope.Variables.lvMunicipality.dataSet.data[0].closeTime, 'HH:mm:ss');
             var openMoment = moment($scope.Variables.lvMunicipality.dataSet.data[0].openTime, 'HH:mm:ss');
-            var requestedTimeMoment = moment(requestedMoment.format('HH:mm:ss'));
+
+            var requestedTimeMoment = moment(requestedMoment.format('HH:mm:ss'), 'HH:mm:ss');
+
 
             return (requestedTimeMoment.isBefore(openMoment) || requestedTimeMoment.isAfter(closeMoment));
+
         };
 
         $scope.isSameDayRequest = function() {
@@ -794,21 +802,25 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
+
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone(newVal);
             $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
             $scope.disableDateOfInspection = checkDisablingDate();
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
+
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
+
             $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone($scope.inspectionObject);
             updateMinMaxDates(newVal);
             $scope.disableDateOfInspection = checkDisablingDate();
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
+
         };
 
         function updateDailyInspectionLimit(selectedDate) {
@@ -842,6 +854,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         });
 
         $scope.datetimeInspectionRequestChange = function($event, $isolateScope, newVal, oldVal) {
+            debugger
             updateDailyInspectionLimit(newVal);
 
             $scope.Variables.svCountInspectionsHourly.setInput({

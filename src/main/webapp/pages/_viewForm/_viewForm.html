@@ -1181,7 +1181,7 @@
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions10">
-                <wm-button class="btn-primary" caption="Request Inspection" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus" show="true" disabled="bind:cannotAddInspection()"></wm-button>
+                <wm-button class="btn-primary" caption="Request Inspection" type="button" margin="unset 0.5em" name="button2InspectionRequest" on-click="button2InspectionRequestClick($event, $scope)" iconclass="wi wi-plus" show="true" disabled="bind:cannotAddInspection()||hasOperatingTimeError()"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="closeDialog()" name="button21" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
