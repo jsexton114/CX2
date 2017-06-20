@@ -3140,7 +3140,7 @@ public class QueryExecutionController {
     @RequestMapping(value = "/queries/ALLMunicipalityInspections", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "ALLMunicipalityInspections")
-    public Page<AllmunicipalityInspectionsResponse> executeALLMunicipalityInspections(@RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+    public Page<AllmunicipalityInspectionsResponse> executeALLMunicipalityInspections(@RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Executing named query: ALLMunicipalityInspections");
         Page<AllmunicipalityInspectionsResponse> _result = queryService.executeALLMunicipalityInspections(municipality, startDate, endDate, pageable);
         LOGGER.debug("got the result for named query: ALLMunicipalityInspections, result:{}", _result);
@@ -3150,7 +3150,7 @@ public class QueryExecutionController {
     @ApiOperation(value = "Returns downloadable file for query ALLMunicipalityInspections")
     @RequestMapping(value = "/queries/ALLMunicipalityInspections/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    public Downloadable exportALLMunicipalityInspections(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality", required = false) Integer municipality, @RequestParam(value = "startDate", required = false) LocalDateTime startDate, @RequestParam(value = "endDate", required = false) LocalDateTime endDate, Pageable pageable) {
+    public Downloadable exportALLMunicipalityInspections(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "municipality") Integer municipality, @RequestParam(value = "startDate") LocalDateTime startDate, @RequestParam(value = "endDate") LocalDateTime endDate, Pageable pageable) {
         LOGGER.debug("Exporting named query: ALLMunicipalityInspections");
 
         return queryService.exportALLMunicipalityInspections(exportType, municipality, startDate, endDate, pageable);

@@ -1164,7 +1164,7 @@ public class FormService {
 		}
 		
 		queryParams.addString("totalFees", totalFees.toString());
-		
+		logger.info("______________"+totalFees.toString());
 		return queryParams;
     }
     
