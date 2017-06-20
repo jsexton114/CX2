@@ -1129,7 +1129,7 @@
                             <wm-label class="col-md-3 form-control-static" name="label94" caption="Date" fontweight="bold"></wm-label>
                             <wm-container class="col-md-6" name="container9">
                                 <wm-date name="dateInspectionRequest" mindate="bind:minDaysForInspection" datepattern="MM-dd-yyyy" placeholder="Select Date" maxdate="bind:maxDaysForInspection" disabled="bind:disableDateOfInspection" on-change="dateInspectionRequestChange($event, $scope, newVal, oldVal)"
-                                excludedates="bind:holidayDateList"></wm-date>
+                                excludedates="bind:holidayDateList" excludedays="0,1,2,3,4,5,6"></wm-date>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -1139,7 +1139,8 @@
                         <wm-composite name="composite11" required="true" show="bind:inspectionObject.scheduleDateAndTime">
                             <wm-label class="col-md-3 form-control-static" name="label118" caption="Date+Time" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container17">
-                                <wm-datetime name="datetimeInspectionRequest" mindate="bind:minDaysForInspection" maxdate="bind:maxDaysForInspection" on-change="datetimeInspectionRequestChange($event, $scope, newVal, oldVal)" excludedates="bind:holidayDateList"></wm-datetime>
+                                <wm-datetime name="datetimeInspectionRequest" mindate="bind:minDaysForInspection" maxdate="bind:maxDaysForInspection" on-change="datetimeInspectionRequestChange($event, $scope, newVal, oldVal)" excludedates="bind:holidayDateList"
+                                excludedays="0,1,2,3,4,5,6"></wm-datetime>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
