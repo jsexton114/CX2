@@ -24,34 +24,32 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow6">
-                    <wm-gridrow name="gridrow7_1">
-                        <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
-                            <wm-composite name="composite3" show="true" accessroles="CXAdmin">
-                                <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
-                                <wm-container class="col-md-7" name="container3">
-                                    <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
-                                    placeholder="" width="169px"></wm-select>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn32">
-                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
-                                <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
-                                <wm-container class="col-md-8" name="containerStart">
-                                    <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" placeholder="Start Date"></wm-date>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                        <wm-gridcolumn columnwidth="3" name="gridcolumn33">
-                            <wm-composite name="compositeStart" padding="unset unset unset 2em" accessroles="CXAdmin" show="true">
-                                <wm-label padding="unset 0.5em" name="label13" class="col-md-4 form-control-static" fontweight="bold" caption="End Date"></wm-label>
-                                <wm-container class="col-md-8" name="containerEnd">
-                                    <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
-                                </wm-container>
-                            </wm-composite>
-                        </wm-gridcolumn>
-                    </wm-gridrow>
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
+                        <wm-composite name="composite3" show="true">
+                            <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
+                            <wm-container class="col-md-7" name="container3">
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""
+                                width="169px"></wm-select>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn32">
+                        <wm-composite name="compositeStart" padding="unset unset unset 2em" show="true">
+                            <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-8" name="containerStart">
+                                <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" placeholder="Start Date"></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn33">
+                        <wm-composite name="compositeStart" padding="unset unset unset 2em" show="true">
+                            <wm-label padding="unset 0.5em" name="label13" class="col-md-4 form-control-static" fontweight="bold" caption="End Date"></wm-label>
+                            <wm-container class="col-md-8" name="containerEnd">
+                                <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
+                            </wm-container>
+                        </wm-composite>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow12">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20">
@@ -76,8 +74,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Forms Found"
-                        exportformat="EXCEL">
+                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Inspections Found" exportformat="EXCEL">
                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                             <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -85,8 +82,9 @@
                             <wm-grid-column binding="requestedByFullName" caption="Requested By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectDesignName" caption="Inspection" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="assignedToPersonName" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateAssigned') | toLocalDateString:true}}</wm-grid-column>
+                            <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                            <wm-grid-column binding="dateCreated" caption="Date Created" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>

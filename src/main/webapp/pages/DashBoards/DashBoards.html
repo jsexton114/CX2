@@ -35,28 +35,32 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow14" padding="unset unset 1em unset">
-                    <wm-gridcolumn columnwidth="4" name="gridcolumn30">
-                        <wm-composite name="composite3">
-                            <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold"></wm-label>
+                <wm-gridrow name="gridrow6">
+                    <wm-gridcolumn columnwidth="4" name="gridcolumn30" horizontalalign="left">
+                        <wm-composite name="composite3" show="true">
+                            <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
                             <wm-container class="col-md-7" name="container3">
                                 <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
                                 placeholder=""></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn16"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn17" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" name="label6" caption="OR between" class="col-md-12 form-control-static" fontweight="bold" textalign="right"></wm-label>
+                    <wm-gridcolumn columnwidth="2" name="gridcolumn11"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn32">
+                        <wm-composite name="compositeStart" padding="unset unset unset 2em" show="true">
+                            <wm-label name="label14" caption="Start Date" class="col-md-4 form-control-static" fontweight="bold"></wm-label>
+                            <wm-container class="col-md-8" name="containerStart">
+                                <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" datavalue="START DATE" placeholder="Start Date"></wm-date>
+                            </wm-container>
+                        </wm-composite>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn31">
-                        <wm-date name="datetimeStart" datepattern="MM-dd-yyyy" datavalue="START DATE" placeholder="Start Date"></wm-date>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="1" name="gridcolumn18" horizontalalign="center">
-                        <wm-label padding="unset 0.5em" caption="and" name="label7" class="col-md-12 form-control-static" fontweight="bold"></wm-label>
-                    </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="2" name="gridcolumn32">
-                        <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
+                    <wm-gridcolumn columnwidth="3" name="gridcolumn33">
+                        <wm-composite name="compositeStart" padding="unset unset unset 2em" show="true">
+                            <wm-label padding="unset 0.5em" name="label13" class="col-md-4 form-control-static" fontweight="bold" caption="End Date"></wm-label>
+                            <wm-container class="col-md-8" name="containerEnd">
+                                <wm-date name="datetimeEnd" datepattern="MM-dd-yyyy" placeholder="End Date"></wm-date>
+                            </wm-container>
+                        </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow15" padding="2em unset unset unset">
