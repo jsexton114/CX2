@@ -1,5 +1,8 @@
 package com.civicxpress.letters;
 
+import com.civicxpress.PaymentReceipt;
+import com.civicxpress.cx2.Fees;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDateTime;
 
 import com.civicxpress.dbconnectionservice.DBConnectionService;
 
@@ -547,6 +551,7 @@ public class Cx2DataAccess {
         } finally {
             try {
                 rsLetterTemplate.close();
+                rsLetterTemplateDetail.close();
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
@@ -556,6 +561,64 @@ public class Cx2DataAccess {
     	return letterTemplate;
     }
 
+    public PaymentReceipt getPaymentReceipt(Long transactionId) {
+        PaymentReceipt paymentReceipt = null;
+        Connection connection = null;
+        CallableStatement statement = null;
+        ResultSet rsPaymentReceipt = null;
+        ResultSet rsPaymentReceiptDetail = null;
+        try {
+            connection = getDbConnection();
+            statement = connection.prepareCall("{call getPaymentReceipt(?)}");
+            statement.setLong("transactionId", transactionId);
+            statement.execute();
+            rsPaymentReceipt = statement.getResultSet();
+            if (rsPaymentReceipt.next()) {
+                paymentReceipt.setTransactionId(rsPaymentReceipt.getInt("TransactionId"));
+                paymentReceipt.setPaymentMethod(rsPaymentReceipt.getString("PaymentMethod"));
+                paymentReceipt.setPaymentNumber(rsPaymentReceipt.getString("PaymentNumber"));
+                paymentReceipt.setAmountReceived(rsPaymentReceipt.getFloat("AmountReceived"));
+                paymentReceipt.setComments(rsPaymentReceipt.getString("Comments"));
+                paymentReceipt.setDateCreated(new LocalDateTime(rsPaymentReceipt.getDate("DateCreated")));
+                paymentReceipt.setUserFullName(rsPaymentReceipt.getString("UserFullName"));
+                paymentReceipt.setUserEmail(rsPaymentReceipt.getString("UserEmail"));
+            }
+            if (statement.getMoreResults()) {
+                Fees[] fees = new Fees[0];
+            	rsPaymentReceiptDetail = statement.getResultSet();
+            	if (rsPaymentReceiptDetail.next()) {
+            	    Fees fee = new Fees();
+            	    fee.setFeeType(rsPaymentReceiptDetail.getString("FeeType"));
+            	    fee.setAccountingCode(rsPaymentReceiptDetail.getString("AccountingCode"));
+            	    fee.setPaidStatus(rsPaymentReceiptDetail.getString("PaidStatus"));
+            	    fee.setPaidDate(rsPaymentReceiptDetail.getDate("PaidDate"));
+            	    fee.setComments(rsPaymentReceiptDetail.getString("Comment"));
+            	    fee.setItemTitle(rsPaymentReceiptDetail.getString("ItemTitle"));
+            	    fee.setAmount(rsPaymentReceiptDetail.getBigDecimal("Amount"));
+            	    fee.setTransactionComments(rsPaymentReceiptDetail.getString("TransactionComments"));
+            	    //fee.setMunicipalityName(rsPaymentReceiptDetail.getString("MunicipalityName"));
+            	}
+            }
+        } catch (SQLException e) {
+            try {
+        	    connection.rollback();
+        	    throw e;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                rsPaymentReceipt.close();
+                rsPaymentReceiptDetail.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return paymentReceipt;
+    }
+    
     public void updateLetterTemplate(SectionalTemplatePdf letterTemplate, Long formTypeId, Long inspectionDesignId, Long userId) throws SQLException {
           Connection connection;
           CallableStatement templateStatement = null;

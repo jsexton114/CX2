@@ -26,8 +26,8 @@ public class CheckoutController {
     @RequestMapping(value = "/receiptPdf", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public byte[] createReceiptPdf() {
-        return checkoutService.createReceiptPdf();
+    public byte[] createReceiptPdf(@RequestParam(value = "transactionId", required = false) Long transactionId) {
+        return checkoutService.createReceiptPdf(transactionId);
     }
 
     @RequestMapping(value = "/municipalityCheckout", method = RequestMethod.POST)

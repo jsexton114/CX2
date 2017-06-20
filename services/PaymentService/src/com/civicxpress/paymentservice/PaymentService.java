@@ -99,11 +99,14 @@ public class PaymentService {
         stripeTokenCookie.setPath("/");
         response.addCookie(stripeTokenCookie);
         System.out.println("stripeTokenCookie: " + stripeTokenCookie);
- 	    returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
- 	    System.out.println("request.getContextPath(): " + request.getContextPath());
- 	    System.out.println("request.getScheme(): " + request.getScheme());
- 	    System.out.println("request.getServerName(): " + request.getServerName());
- 	    System.out.println("request.getServletPath(): " + request.getServletPath());
+        String requestUrl = request.getRequestURL().toString();
+        if (requestUrl.contains("civic-dev.com")) {
+            // HACK: In leiu of finding a consistent path function that works in both WMO and deployment
+            requestUrl = "http://civic-dev.com/#/MyCart?stripeToken=" + stripeToken; 
+        } else {
+            returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
+        }
+        System.out.println("requestUrl: " + requestUrl);
  	    System.out.println("returnUrl: " + returnUrl);
 
  	    try {

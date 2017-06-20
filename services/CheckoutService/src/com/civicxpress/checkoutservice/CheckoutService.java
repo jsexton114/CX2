@@ -37,6 +37,7 @@ import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
 import com.civicxpress.letters.Cx2DataAccess;
+import com.civicxpress.PaymentReceipt;
 import com.civicxpress.ReceiptPdf;
 import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
@@ -119,7 +120,7 @@ public class CheckoutService {
     	        
     	        }
     	        
-    	        byte[] receiptBytes = createReceiptPdf();
+    	        byte[] receiptBytes = createReceiptPdf(transactionId);
     	        System.out.println("receiptBytes.length:" + receiptBytes.length);
     	        //sendReceipt("jason_sexton@hotmail.com", receiptBytes);
 	        }
@@ -133,9 +134,12 @@ public class CheckoutService {
     	}
     }
     
-    public byte[] createReceiptPdf() {
+    public byte[] createReceiptPdf(Long transactionId) {
 		Cx2DataAccess db = new Cx2DataAccess();
-    	ReceiptPdf receiptPdf = new ReceiptPdf();
+		PaymentReceipt paymentReceipt = null;
+    	ReceiptPdf receiptPdf = null;
+    	paymentReceipt = db.getPaymentReceipt(transactionId);
+    	receiptPdf = new ReceiptPdf(paymentReceipt);
         byte[] fileBytes = receiptPdf.fileBytesOutput; 
         return fileBytes;
     }
