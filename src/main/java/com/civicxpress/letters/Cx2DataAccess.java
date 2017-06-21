@@ -567,22 +567,23 @@ public class Cx2DataAccess {
         CallableStatement statement = null;
         ResultSet rsPaymentReceipt = null;
         ResultSet rsPaymentReceiptDetail = null;
-        System.out.println("getPaymentReceipt()");
+        logger.debug("getPaymentReceipt()");
+        paymentReceipt = new PaymentReceipt();
         try {
             connection = getDbConnection();
-            System.out.println("getDbConnection()");
-            System.out.println("connection: " + connection);
+            logger.debug("getDbConnection()");
+            logger.debug("connection: " + connection);
             statement = connection.prepareCall("{call getPaymentReceipt(?)}");
-            System.out.println("statement = connection.prepareCall(...)");
+            logger.debug("statement = connection.prepareCall(...)");
             statement.setLong("transactionId", transactionId);
-            System.out.println("transactionId: " + transactionId);
+            logger.debug("transactionId: " + transactionId);
             statement.execute();
-            System.out.println("statement.execute();");
+            logger.debug("statement.execute();");
             rsPaymentReceipt = statement.getResultSet();
-            System.out.println("rsPaymentReceipt = statement.getResultSet();");
-            System.out.println("rsPaymentReceipt: " + rsPaymentReceipt);
+            logger.debug("rsPaymentReceipt = statement.getResultSet();");
+            logger.debug("rsPaymentReceipt: " + rsPaymentReceipt);
             if (rsPaymentReceipt.next()) {
-                System.out.println("rsPaymentReceipt.next()");
+                logger.debug("rsPaymentReceipt.next()");
                 paymentReceipt.setTransactionId(rsPaymentReceipt.getInt("TransactionId"));
                 paymentReceipt.setPaymentMethod(rsPaymentReceipt.getString("PaymentMethod"));
                 paymentReceipt.setPaymentNumber(rsPaymentReceipt.getString("PaymentNumber"));
@@ -592,12 +593,12 @@ public class Cx2DataAccess {
                 paymentReceipt.setUserFullName(rsPaymentReceipt.getString("UserFullName"));
                 paymentReceipt.setUserEmail(rsPaymentReceipt.getString("UserEmail"));
             }
-            if (false) { //(statement.getMoreResults()) {
-                System.out.println("statement.getMoreResults()");
+            if (statement.getMoreResults()) {
+                logger.debug("statement.getMoreResults()");
                 Fees[] fees = new Fees[0];
             	rsPaymentReceiptDetail = statement.getResultSet();
-            	if (rsPaymentReceiptDetail.next()) {
-            	    System.out.println("rsPaymentReceiptDetail.next()");
+            	while (rsPaymentReceiptDetail.next()) {
+            	    logger.debug("rsPaymentReceiptDetail.next()");
             	    Fees fee = new Fees();
             	    fee.setFeeType(rsPaymentReceiptDetail.getString("FeeType"));
             	    fee.setAccountingCode(rsPaymentReceiptDetail.getString("AccountingCode"));
@@ -608,12 +609,13 @@ public class Cx2DataAccess {
             	    fee.setAmount(rsPaymentReceiptDetail.getBigDecimal("Amount"));
             	    fee.setTransactionComments(rsPaymentReceiptDetail.getString("TransactionComments"));
             	    //fee.setMunicipalityName(rsPaymentReceiptDetail.getString("MunicipalityName"));
+                    //fees.add(fee);
             	}
             }
         } catch (SQLException e) {
             try {
         	    connection.rollback();
-        	    System.out.println("connection.rollback();");
+        	    logger.debug("connection.rollback();");
         	    e.printStackTrace();
         	    throw e;
             } catch (SQLException ex) {
@@ -621,16 +623,16 @@ public class Cx2DataAccess {
             }
         } finally {
             try {
-                rsPaymentReceipt.close();
-                rsPaymentReceiptDetail.close();
-                statement.close();
-                connection.close();
-                System.out.println("connection.close();");
+                if (rsPaymentReceipt != null) rsPaymentReceipt.close();
+                if (rsPaymentReceiptDetail != null) rsPaymentReceiptDetail.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+                logger.debug("connection.close();");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("return paymentReceipt;");
+        logger.debug("return paymentReceipt;");
         return paymentReceipt;
     }
     
