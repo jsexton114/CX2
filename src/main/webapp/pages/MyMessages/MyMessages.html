@@ -20,15 +20,15 @@
                             <wm-tabs name="tabsMessages">
                                 <wm-tabpane name="tabpaneInbox" title="Inbox">
                                     <wm-layoutgrid name="layoutgrid5_1">
-                                        <wm-gridrow name="gridrow17">
+                                        <wm-gridrow name="gridrow17" padding="unset unset 2em unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn27_2">
                                                 <wm-label padding="unset 0.5em" name="label10" caption="Your inbox displays all messages where you have been tagged by another CivicXpress user on a Form, Inspection, Project, or GIS record."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
-                                        <wm-gridrow name="gridrow13_1" padding="1em unset unset unset">
+                                        <wm-gridrow name="gridrow13_1">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn22_1">
                                                 <wm-composite name="composite4" width="240px">
-                                                    <wm-label class="col-md-4 form-control-static" name="label8_1" caption="Status" fontweight="bold"></wm-label>
+                                                    <wm-label class="col-md-4 form-control-static" name="label8_1" caption="Status" fontweight="bold" padding="unset 0.5em"></wm-label>
                                                     <wm-container class="col-md-8" name="container4">
                                                         <wm-select name="selectStatus" dataset="bind:Variables.stvStatus.dataSet" datafield="Value" displayfield="Status" datavalue="bind:Variables.stvStatus.dataSet[0].Value" on-change="selectStatusChange($event, $scope, newVal, oldVal)"></wm-select>
                                                     </wm-container>
@@ -37,7 +37,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow14_1" padding="1em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn24_1">
-                                                <wm-grid title="" dataset="bind:Variables.svGetUserMessages.dataSet" navigation="Classic" name="gridInbox" filtermode="multicolumn" showrecordcount="true">
+                                                <wm-grid title="" dataset="bind:Variables.svGetUserMessages.dataSet" navigation="Classic" name="gridInbox" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL" nodatamessage="No messages found.">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="sourceType" caption="Source Type" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" col-ng-class="{'unRead':row['messageRead']==false}" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -69,7 +69,7 @@
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow19_1" padding="1em unset unset unset">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
-                                                <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent" filtermode="multicolumn" showrecordcount="true">
+                                                <wm-grid title="" dataset="bind:Variables.svGetUserSentMessages.dataSet" navigation="Classic" name="gridSent" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL" nodatamessage="No messages found.">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="sourceType" caption="Source Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-column binding="sourceTitle" caption="Source Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
