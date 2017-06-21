@@ -15,6 +15,12 @@
                         <wm-liveform novalidate="false" errormessage="" title="Global Settings" iconclass="wi wi-settings" defaultmode="Edit" dataset="bind:Variables.Cx2GlobalSettingsData.dataSet" captionalign="left" captionposition="top" name="liveform2"
                         formdata="bind:Variables.DefaultData.firstRecord" class="panel-primary">
                             <wm-layoutgrid columns="1" name="layoutgrid3">
+                                <wm-gridrow name="gridrow14" padding="unset unset 3em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
+                                        <wm-form-field name="cxmessage" displayname="CX Login Message" show="true" primary-key="false" generator="assigned" key="cxmessage" type="text" readonly="false" required="false" widget="textarea" maxchars="500" placeholder="Enter value"
+                                        hint="This text is displayed at the top of the Login page, and is a way to communicate important information like system downtime to all CX users. It should be left blank by default and is limited to 500 characters."></wm-form-field>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow21">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn21">
                                         <wm-form-field name="cxwebsite" displayname="CX Website" show="true" primary-key="false" generator="assigned" key="cxwebsite" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
@@ -63,12 +69,7 @@
                                         placeholder="Enter value" width="240px"></wm-form-field>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
-                                <wm-gridrow name="gridrow14" padding="unset unset 3em unset">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn14">
-                                        <wm-form-field name="cxmessage" displayname="CX Message" show="true" primary-key="false" generator="assigned" key="cxmessage" type="text" readonly="false" required="false" widget="textarea" maxchars="5000" placeholder="Enter value"></wm-form-field>
-                                    </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow14_1">
+                                <wm-gridrow name="gridrow14_1" padding="unset unset 3em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn14_1">
                                         <wm-form-field name="cxglobalSignature" displayname="CX Global Signature" show="true" primary-key="false" generator="assigned" key="cxglobalSignature" type="string" readonly="false" required="false" widget="textarea"
                                         maxchars="500" placeholder="Enter value"></wm-form-field>
