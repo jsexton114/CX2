@@ -37,6 +37,7 @@ public class GlobalSettings implements Serializable {
     private String cxemail;
     private String cxpostalCode;
     private String cxeula;
+    private String cxmessage;
     private States states;
 
     @Id
@@ -147,6 +148,15 @@ public class GlobalSettings implements Serializable {
 
     public void setCxeula(String cxeula) {
         this.cxeula = cxeula;
+    }
+
+    @Column(name = "`CXMessage`", nullable = true, length = 5000)
+    public String getCxmessage() {
+        return this.cxmessage;
+    }
+
+    public void setCxmessage(String cxmessage) {
+        this.cxmessage = cxmessage;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

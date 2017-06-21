@@ -2560,6 +2560,18 @@ order by sequenceOrderNumber asc
     <query-param name="active" type="java.lang.Boolean"/>
     </query>
 
+    <sql-query name="FetchCXMessage">
+        <![CDATA[
+        select CXMessage from GlobalSettings
+        ]]>
+    </sql-query>
+
+    <sql-query name="FetchCXMessage__count">
+        <![CDATA[
+        select count(*) from (select CXMessage from GlobalSettings) wmTempTable
+        ]]>
+    </sql-query>
+
     <sql-query name="AddingVendorsToForm">
         <![CDATA[
         insert into Vendors2Form(RelatedFormGUID,SharedOn,VendorId) values(:RelatedFormGUID,:SharedOn,:VendorId)

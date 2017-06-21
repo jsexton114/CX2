@@ -2082,6 +2082,16 @@ public class QueryExecutionController {
         return queryService.exportDistinctInspectionDesignsForFormType(exportType, formTypeId, active, pageable);
     }
 
+    @RequestMapping(value = "/queries/FetchCXMessage", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "FetchCXMessage")
+    public FetchCxmessageResponse executeFetchCXMessage() {
+        LOGGER.debug("Executing named query: FetchCXMessage");
+        FetchCxmessageResponse _result = queryService.executeFetchCXMessage();
+        LOGGER.debug("got the result for named query: FetchCXMessage, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/AddingVendorsToForm", method = RequestMethod.POST)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "AddingVendorsToForm")

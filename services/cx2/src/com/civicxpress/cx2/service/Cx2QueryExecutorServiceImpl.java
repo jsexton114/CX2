@@ -2422,6 +2422,15 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.exportNamedQueryData("distinctInspectionDesignsForFormType", params, exportType, DistinctInspectionDesignsForFormTypeResponse.class, pageable);
     }
 
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public FetchCxmessageResponse executeFetchCXMessage() {
+        Map params = new HashMap(0);
+
+
+        return queryExecutor.executeNamedQuery("FetchCXMessage", params, FetchCxmessageResponse.class);
+    }
+
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest) {

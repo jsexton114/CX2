@@ -451,6 +451,8 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportDistinctInspectionDesignsForFormType(ExportType exportType, Integer formTypeId, Boolean active, Pageable pageable);
 
+    FetchCxmessageResponse executeFetchCXMessage();
+
     Integer executeAddingVendorsToForm(AddingVendorsToFormRequest addingVendorsToFormRequest);
 
     Page<CasesByMunicipalityResponse> executeCasesByMunicipality(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Pageable pageable);

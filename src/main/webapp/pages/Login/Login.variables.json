@@ -52,5 +52,27 @@
     "inFlightBehavior" : "executeLast",
     "transformationRequired" : false,
     "useDefaultSuccessHandler" : true
+  },
+  "svFetchCXMessage" : {
+    "_id" : "wm-svFetchCXMessage-wm.ServiceVariable-1498028419644",
+    "name" : "svFetchCXMessage",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.civicxpress.cx2.models.query.FetchCxmessageResponse",
+    "service" : "cx2",
+    "operation" : "executeFetchCXMessage",
+    "operationId" : "QueryExecutionController_executeFetchCXMessage",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 1,
+    "startUpdate" : true,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
   }
 }

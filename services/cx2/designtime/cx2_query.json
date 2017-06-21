@@ -4079,6 +4079,37 @@
       } ]
     }
   },
+  "FetchCXMessage" : {
+    "name" : "FetchCXMessage",
+    "description" : "FetchCXMessage",
+    "version" : "V2",
+    "queryString" : "select CXMessage from GlobalSettings",
+    "countQueryString" : "select count(*) from (select CXMessage from GlobalSettings) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.FetchCxmessageResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "CXMessage",
+        "fieldName" : "cxmessage",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "FetchRolesForUserWithMunicipality" : {
     "name" : "FetchRolesForUserWithMunicipality",
     "description" : "FetchRolesForUserWithMunicipality",

@@ -9522,6 +9522,32 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "cxmessage",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "text",
+      "length" : 5000,
+      "name" : "CXMessage",
+      "nullable" : true,
+      "oldName" : "CXMessage",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "string",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "GlobalSettings",
