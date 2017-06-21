@@ -567,6 +567,7 @@ public class Cx2DataAccess {
         CallableStatement statement = null;
         ResultSet rsPaymentReceipt = null;
         ResultSet rsPaymentReceiptDetail = null;
+        System.out.println("getPaymentReceipt()");
         try {
             connection = getDbConnection();
             statement = connection.prepareCall("{call getPaymentReceipt(?)}");
@@ -574,6 +575,7 @@ public class Cx2DataAccess {
             statement.execute();
             rsPaymentReceipt = statement.getResultSet();
             if (rsPaymentReceipt.next()) {
+                System.out.println("rsPaymentReceipt.next()");
                 paymentReceipt.setTransactionId(rsPaymentReceipt.getInt("TransactionId"));
                 paymentReceipt.setPaymentMethod(rsPaymentReceipt.getString("PaymentMethod"));
                 paymentReceipt.setPaymentNumber(rsPaymentReceipt.getString("PaymentNumber"));
@@ -584,9 +586,11 @@ public class Cx2DataAccess {
                 paymentReceipt.setUserEmail(rsPaymentReceipt.getString("UserEmail"));
             }
             if (statement.getMoreResults()) {
+                System.out.println("statement.getMoreResults()");
                 Fees[] fees = new Fees[0];
             	rsPaymentReceiptDetail = statement.getResultSet();
             	if (rsPaymentReceiptDetail.next()) {
+            	    System.out.println("rsPaymentReceiptDetail.next()");
             	    Fees fee = new Fees();
             	    fee.setFeeType(rsPaymentReceiptDetail.getString("FeeType"));
             	    fee.setAccountingCode(rsPaymentReceiptDetail.getString("AccountingCode"));
@@ -602,6 +606,8 @@ public class Cx2DataAccess {
         } catch (SQLException e) {
             try {
         	    connection.rollback();
+        	    System.out.println("connection.rollback();");
+        	    e.printStackTrace();
         	    throw e;
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -612,10 +618,12 @@ public class Cx2DataAccess {
                 rsPaymentReceiptDetail.close();
                 statement.close();
                 connection.close();
+                System.out.println("connection.close();");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        System.out.println("return paymentReceipt;");
         return paymentReceipt;
     }
     

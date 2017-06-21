@@ -120,8 +120,8 @@ public class CheckoutService {
     	        
     	        }
     	        
-    	        byte[] receiptBytes = createReceiptPdf(transactionId);
-    	        System.out.println("receiptBytes.length:" + receiptBytes.length);
+    	        //byte[] receiptBytes = createReceiptPdf(transactionId);
+    	        //System.out.println("receiptBytes.length:" + receiptBytes.length);
     	        //sendReceipt("jason_sexton@hotmail.com", receiptBytes);
 	        }
 	        
