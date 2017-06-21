@@ -12,12 +12,7 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="6" name="gridcolumn5_1"></wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="6" name="gridcolumn6">
-                        <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
-                            <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
-                            <wm-param name="muniType" value="s" type="string"></wm-param>
-                        </wm-panel>
-                    </wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="6" name="gridcolumn6"></wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
@@ -27,20 +22,25 @@
                                     <wm-layoutgrid name="layoutgrid2">
                                         <wm-gridrow name="gridrow8">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn11" padding="unset unset 1em unset">
-                                                <wm-label padding="unset 0.5em unset 0.2em" name="label4" caption="Forms that you have submitted, and submitted forms that have been shared with you, are displayed here. &quot;Open&quot; forms are still being processed by the municipality and may require additional attention and interaction."></wm-label>
-                                                <wm-label padding="unset 0.5em unset 0.2em" name="label5" caption="Please use the &quot;Messages&quot; feature on the form itself if you have any questions for the municipality regarding your submission."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label4" caption="Forms that you have submitted, and submitted forms that have been shared with you, are displayed here. &quot;Open&quot; forms are still being processed by the municipality and may require additional attention and interaction."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label5" caption="Please use the &quot;Messages&quot; feature on the form itself if you have any questions for the municipality regarding your submission."></wm-label>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow3">
                                             <wm-gridcolumn columnwidth="6" name="gridcolumn311_1">
-                                                <wm-composite name="composite1" margin="unset unset unset 0.2em">
-                                                    <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px"></wm-label>
+                                                <wm-composite name="composite1" margin="0.5em unset unset unset">
+                                                    <wm-label class="col-md-3 form-control-static" name="label1" caption="Select View" fontweight="bold" width="100px" padding="unset 0.5em"></wm-label>
                                                     <wm-container class="col-md-9" name="container1" width="180px">
                                                         <wm-select name="selectView" dataset="bind:Variables.SelectView.dataSet" datafield="All Fields" displayfield="viewName" datavalue="bind:Variables.PreferenceForUser.firstRecord"></wm-select>
                                                     </wm-container>
                                                 </wm-composite>
                                             </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="6" name="gridcolumn10">
+                                                <wm-panel iconclass="" autoclose="outsideClick" name="panelSelectMunicipality" title="" content="selectMunicipality" class="panel-transparent">
+                                                    <wm-param name="municipalityId" value="bind:pageParams.municipalityId" type="integer"></wm-param>
+                                                    <wm-param name="muniType" value="s" type="string"></wm-param>
+                                                </wm-panel>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow4">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn5">
