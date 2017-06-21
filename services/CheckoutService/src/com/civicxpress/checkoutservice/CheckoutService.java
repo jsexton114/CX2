@@ -120,7 +120,12 @@ public class CheckoutService {
     	        		DBUtils.simpleUpdateQuery(connection, " UPDATE Fees SET TransactionComments=:comments where ID="+feeId,
         				queryParams);
         			// Check for AdvanceOnZeroBalance	
-    	             //checkAdvanceOnZeroBalance(feeId,connection);
+    	             checkAdvanceOnZeroBalance(feeId,connection);
+    	        }
+    	         for (Long feeId : feeIds) { // Mark fees as paid.
+    	        
+        			// Check for AdvanceOnZeroBalance	
+    	            // checkAdvanceOnZeroBalance(feeId,connection);
     	        }
     	        
     	        //byte[] receiptBytes = createReceiptPdf(transactionId);
@@ -244,11 +249,13 @@ public class CheckoutService {
        	String formGuid = "";
     	 DBQueryParams params = new DBQueryParams();
          formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID="+feeId, params).get(0).getString("FormGuid");
+           logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+formGuid);
            params.addString("formGuid", formGuid);
-         DBRow feeData=DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId from cx2.masterforms Inner Join cx2.masterforms MF on MF.FormGUID=:formGuid and MF.BalanceDue = 0  Inner join cx2.FormStatuses FS on MF.FormStatusId = FS.ID and AdvanceOnZero = 1 ", params);
-         Long newStatusId=feeData.getLong("newStatusId");
+           
+        //  DBRow feeData=DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId from cx2.masterforms Inner Join cx2.masterforms MF on MF.FormGUID=:formGuid and MF.BalanceDue = 0  Inner join cx2.FormStatuses FS on MF.FormStatusId = FS.ID and AdvanceOnZero = 1 ", params);
+        //  Long newStatusId=feeData.getLong("newStatusId");
           
-          logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+newStatusId);
+        //   logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+newStatusId);
    }
     
     
