@@ -77,6 +77,7 @@ public class CheckoutService {
         DBQueryParams queryParams = new DBQueryParams();
     	Connection connection = DBConnectionService.getConnection();
     	CallableStatement checkoutStatement = null;
+    	Long transactionId = null;
     	
     	queryParams.addString("comments",  comments);
     	
@@ -94,7 +95,7 @@ public class CheckoutService {
     	try {
     	    Boolean transactionSuccess = false;
 	    	connection.setAutoCommit(false);
-	    	
+
 	    	if (paymentMethod.equals("Credit Card")) {
 	    	    transactionSuccess = chargeCreditCard(amountReceived, "Municipality fees: " + comments, paymentNumber);
 	    	} else {
@@ -103,6 +104,7 @@ public class CheckoutService {
 	    	
 	    	if (transactionSuccess) {
     	        checkoutStatement = connection.prepareCall("{call municipalityCheckout(?,?,?,?,?,?)}");
+    	        checkoutStatement.setQueryTimeout(60);
     	        checkoutStatement.setString("paymentMethod", paymentMethod);
     	        checkoutStatement.setString("paymentNumber", paymentNumber);
     	        checkoutStatement.setBigDecimal("amountReceived", amountReceived);
@@ -111,7 +113,7 @@ public class CheckoutService {
     	        checkoutStatement.registerOutParameter("transactionId", java.sql.Types.NUMERIC);
     	        checkoutStatement.execute();
     	        
-    	        Long transactionId = checkoutStatement.getLong("transactionId");
+    	        transactionId = checkoutStatement.getLong("transactionId");
     	        
     	        for (Long feeId : feeIds) { // Mark fees as paid.
     	        	CallableStatement feeStatement = DBUtils.prepareProcedure(connection, "payFee", feeId, transactionId, currentUserId);
@@ -128,12 +130,16 @@ public class CheckoutService {
     	            // checkAdvanceOnZeroBalance(feeId,connection);
     	        }
     	        
-    	        //byte[] receiptBytes = createReceiptPdf(transactionId);
-    	        //System.out.println("receiptBytes.length:" + receiptBytes.length);
-    	        //sendReceipt("jason_sexton@hotmail.com", receiptBytes);
 	        }
 	        
 	        connection.commit();
+
+	    	if (transactionId != null && transactionSuccess) {
+    	        byte[] receiptBytes = createReceiptPdf(transactionId);
+    	        System.out.println("receiptBytes.length:" + receiptBytes.length);
+    	        sendReceipt("jason_sexton@hotmail.com", receiptBytes);
+	    	}
+
     	} catch (Exception e) {
     		connection.rollback();
     		throw e;

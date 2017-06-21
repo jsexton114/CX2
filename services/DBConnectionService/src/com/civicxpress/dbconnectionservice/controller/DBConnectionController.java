@@ -19,6 +19,8 @@ public class DBConnectionController {
     private DBConnectionService dBConnectionService;
 
     @RequestMapping(value = "/generateController", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public void generateController() {
         dBConnectionService.generateController();
     }

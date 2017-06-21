@@ -570,10 +570,17 @@ public class Cx2DataAccess {
         System.out.println("getPaymentReceipt()");
         try {
             connection = getDbConnection();
+            System.out.println("getDbConnection()");
+            System.out.println("connection: " + connection);
             statement = connection.prepareCall("{call getPaymentReceipt(?)}");
+            System.out.println("statement = connection.prepareCall(...)");
             statement.setLong("transactionId", transactionId);
+            System.out.println("transactionId: " + transactionId);
             statement.execute();
+            System.out.println("statement.execute();");
             rsPaymentReceipt = statement.getResultSet();
+            System.out.println("rsPaymentReceipt = statement.getResultSet();");
+            System.out.println("rsPaymentReceipt: " + rsPaymentReceipt);
             if (rsPaymentReceipt.next()) {
                 System.out.println("rsPaymentReceipt.next()");
                 paymentReceipt.setTransactionId(rsPaymentReceipt.getInt("TransactionId"));
@@ -585,7 +592,7 @@ public class Cx2DataAccess {
                 paymentReceipt.setUserFullName(rsPaymentReceipt.getString("UserFullName"));
                 paymentReceipt.setUserEmail(rsPaymentReceipt.getString("UserEmail"));
             }
-            if (statement.getMoreResults()) {
+            if (false) { //(statement.getMoreResults()) {
                 System.out.println("statement.getMoreResults()");
                 Fees[] fees = new Fees[0];
             	rsPaymentReceiptDetail = statement.getResultSet();
