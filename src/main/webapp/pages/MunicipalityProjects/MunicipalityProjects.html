@@ -36,7 +36,7 @@
                             exportformat="EXCEL">
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="projectName" caption="Project Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
+                                <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" generator="assigned" readonly="true" edit-widget-type="text" show="bind:Variables.EmployeesMunicipalities.dataSet.content.length > 1"></wm-grid-column>
                                 <wm-grid-column binding="usersByCreatedBy.fullName" caption="Project Owner" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                 <wm-grid-column binding="modifiedDate" caption="Date Modified" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('modifiedDate') | toLocalDateString}}</wm-grid-column>
                                 <wm-grid-action key="addNewRow" display-name="New Project" show="true" class="btn-primary" iconclass="wi wi-plus" title="New" action="Widgets.dialogCreateProject.open();addNewRowAction($event)"
