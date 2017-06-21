@@ -414,7 +414,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
     $scope.wizardstep9Load = function($isolateScope, stepIndex) {
         if (!$scope.Widgets.checkboxOtherOwner.datavalue) {
-            let defaultOtherOwner = $scope.$eval("vendorInfo === false && !Variables.svGetOwners.dataSet.content.length");
+            let defaultOtherOwner = $scope.$eval("vendorInfo === false && Variables.svGetOwners.dataSet.content.length=0");
             $scope.Widgets.checkboxOtherOwner.datavalue = defaultOtherOwner;
 
             if (!defaultOtherOwner) {
