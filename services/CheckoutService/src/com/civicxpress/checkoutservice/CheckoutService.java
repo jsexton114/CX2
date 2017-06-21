@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,6 +37,7 @@ import com.tekdog.dbutils.*;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
+import com.civicxpress.formservice.*;
 import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.PaymentReceipt;
 import com.civicxpress.ReceiptPdf;
@@ -114,10 +116,11 @@ public class CheckoutService {
     	        for (Long feeId : feeIds) { // Mark fees as paid.
     	        	CallableStatement feeStatement = DBUtils.prepareProcedure(connection, "payFee", feeId, transactionId, currentUserId);
     	        	feeStatement.execute();
-    // Updating TransactionComments
+                       // Updating TransactionComments
     	        		DBUtils.simpleUpdateQuery(connection, " UPDATE Fees SET TransactionComments=:comments where ID="+feeId,
         				queryParams);
-    	        
+        			// Check for AdvanceOnZeroBalance	
+    	             //checkAdvanceOnZeroBalance(feeId,connection);
     	        }
     	        
     	        //byte[] receiptBytes = createReceiptPdf(transactionId);
@@ -133,6 +136,8 @@ public class CheckoutService {
     		connection.close();
     	}
     }
+    
+   
     
     public byte[] createReceiptPdf(Long transactionId) {
 		Cx2DataAccess db = new Cx2DataAccess();
@@ -234,6 +239,17 @@ public class CheckoutService {
         tr.close();
         
     }
-
+    
+   private void checkAdvanceOnZeroBalance(Long feeId, Connection connection) throws SQLException {
+       	String formGuid = "";
+    	 DBQueryParams params = new DBQueryParams();
+         formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID="+feeId, params).get(0).getString("FormGuid");
+           params.addString("formGuid", formGuid);
+         DBRow feeData=DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId from cx2.masterforms Inner Join cx2.masterforms MF on MF.FormGUID=:formGuid and MF.BalanceDue = 0  Inner join cx2.FormStatuses FS on MF.FormStatusId = FS.ID and AdvanceOnZero = 1 ", params);
+         Long newStatusId=feeData.getLong("newStatusId");
+          
+          logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+newStatusId);
+   }
+    
     
 }

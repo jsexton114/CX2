@@ -1027,6 +1027,130 @@ public class FormService {
         cx2Conn.close();
     }
     
+     private void sendOnZeroStatusUpdateMail(String formGuid, Long formStatusId, String formLink, Connection cx2Conn) throws MessagingException, SQLException {
+    
+    	Boolean sendEmail;
+    	
+        DBQueryParams params = new DBQueryParams();
+        params.addString("formGuid", formGuid);
+        DBRow formData = DBUtils.selectOne(cx2Conn, "select FS.SendEmail, FT.ID as FormTypeId, FT.FormType, MF.FormTitle, RU.FullName, RU.Email, FS.EmailSubjectLine, FS.EmailTextBody, FS.Status as FormStatus, MU.MunicipalityName, MU.GlobalEmailSig from MasterForms MF INNER JOIN Users RU ON RU.ID=MF.UserId INNER JOIN FormStatuses FS ON FS.ID=MF.FormStatusId INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId INNER JOIN Municipalities MU ON MU.ID=FT.MunicipalityId WHERE MF.FormGUID=:formGuid", params);
+        sendEmail = formData.getBoolean("SendEmail");
+        
+    	String formType = formData.getString("FormType");
+    	String formTitle = formData.getString("FormTitle");
+    	String recipientFullName = formData.getString("FullName");
+    	String recipientEmail = formData.getString("Email");
+    	String emailSubject = formData.getString("EmailSubjectLine");
+    	String emailBody = formData.getString("EmailTextBody");
+    	String municipality = formData.getString("MunicipalityName");
+    	String municipalitySignature = formData.getString("GlobalEmailSig");
+    	String formStatus = formData.getString("FormStatus");
+    	Long formTypeId = formData.getLong("FormTypeId");
+
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        InternetAddress recipientAddress;
+        recipientAddress = new InternetAddress(recipientEmail);
+        
+        message.setRecipient(Message.RecipientType.TO, recipientAddress);
+        
+        List<DBRow> sharedWithUsers = DBUtils.selectQuery(cx2Conn, "SELECT U.Email FROM SharedWith SW INNER JOIN Users U ON U.ID=SW.SharedWithUser WHERE SW.RelatedGUID=:formGuid", params);
+        
+        if (sharedWithUsers != null) {
+	        InternetAddress[] sharedWithRecipients = new InternetAddress[sharedWithUsers.size()];
+	        for (int i = 0; i < sharedWithUsers.size(); i++) {
+	        	sharedWithRecipients[i] = new InternetAddress(sharedWithUsers.get(i).getString("Email"));
+	        }
+	        
+	        message.setRecipients(Message.RecipientType.CC, sharedWithRecipients);
+        }
+        
+        StringBuilder emailContent = new StringBuilder("Hi "+recipientFullName+",<br /><br />");
+        
+        if (emailBody != null) {
+        	emailContent.append(emailBody);
+	        emailContent.append("<br /><br />");
+        } else {
+        	emailContent.append("The status of your form has been updated to " + formStatus + ".<br /><br />");
+        }
+        
+        emailContent.append(municipality);
+        emailContent.append("<br />");
+        emailContent.append(formType);
+        emailContent.append("<br />");
+        emailContent.append(formTitle);
+        emailContent.append("<br />");
+        emailContent.append("<a href ='"+formLink+"'> "+formLink+"</a>");
+        
+        emailContent.append( "<br/><br/>"+ municipalitySignature +"<br/><br/>");
+        
+        Multipart messageContents = new MimeMultipart();
+        
+        MimeBodyPart messageBody = new MimeBodyPart();
+        messageBody.setContent(emailContent.toString(), "text/html");
+        
+        messageContents.addBodyPart(messageBody);
+        
+        params.addLong("formStatusId", formStatusId);
+        List<DBRow> statusLetterTemplates = DBUtils.selectQuery(cx2Conn, "select * from LetterTemplateToFormStatus WHERE FormStatusId=:formStatusId", params);
+        
+        if (statusLetterTemplates != null) {
+	        for (DBRow statusLetterTemplate : statusLetterTemplates) {
+	        	Boolean attachToEmail = statusLetterTemplate.getBoolean("AttachToEmail");
+	        	Boolean attachToItem = statusLetterTemplate.getBoolean("AttachToItem");
+	        	
+	        	if (attachToEmail || attachToItem) {
+	        		Integer letterTemplateId = statusLetterTemplate.getInteger("LetterTemplateId");
+	        		String filename = cleanFormTitleAndDateForFilename(formTitle) + ".pdf";
+	        		
+	        		byte[] fileBytes = createLetterPdf(letterTemplateId, formTypeId, formGuid);
+	                
+	                if (attachToEmail) {
+		                ByteArrayDataSource fileDS = new ByteArrayDataSource(fileBytes, "application/pdf");
+		                MimeBodyPart letterAttachment = new MimeBodyPart();
+		                letterAttachment.setDataHandler(new DataHandler(fileDS));
+		                letterAttachment.setFileName(filename);
+		                
+		                messageContents.addBodyPart(letterAttachment);
+	                }
+	                
+	                if (attachToItem) {
+		        		DBQueryParams attachParams = new DBQueryParams();
+		        		attachParams.addString("formGuid", formGuid);
+		        		attachParams.addString("filename", filename);
+		        		attachParams.addBytes("letterPdf", fileBytes);
+		        		attachParams.addLong("createdBy", Long.parseLong(securityService.getUserId()));
+	                	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO Document (ItemGUID, Filename, Mimetype, Contents, CreatedBy) VALUES (:formGuid, :filename, 'application/pdf', :letterPdf, :createdBy)", attachParams);
+	                }
+	        	}
+	        }
+        }
+        
+        if (sendEmail) {
+	        message.setSubject(emailSubject);
+	        message.setContent(messageContents);
+	        // Send smtp message
+	        Transport tr = session.getTransport("smtp");
+	        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+	        message.saveChanges();
+	        tr.sendMessage(message, message.getAllRecipients());
+	        tr.close();
+        }
+       
+    }
+    
     private static String cleanFormTitleAndDateForFilename(String formTitle) {
     	String returnTitle = null;
 		String cleanTitle = null;
@@ -1039,13 +1163,20 @@ public class FormService {
     }
     
     public void setFormStatus(String formGuid, Long formStatusId, String comments, String formLink) throws SQLException, MessagingException {
+       
     	setFormStatus(formGuid, formStatusId, comments);
     	sendStatusUpdateMail(formGuid, formStatusId, formLink);
     }
     
+       public void setOnZeroFormStatus(String formGuid, Long formStatusId, String comments, String formLink, Connection cx2Conn) throws SQLException, MessagingException {
+    	setOnZeroFormStatus(formGuid, formStatusId, comments, cx2Conn);
+    	sendOnZeroStatusUpdateMail(formGuid, formStatusId, formLink, cx2Conn);
+    }
+    
     private void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
-    	Connection cx2Conn = DBConnectionService.getConnection();
-		
+        
+    		Connection cx2Conn = DBConnectionService.getConnection();
+    	
     	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
     		cx2Conn.close();
     		throw new SQLException("Permission Denied");
@@ -1108,6 +1239,69 @@ public class FormService {
     		}
     	}
     }
+    private void setOnZeroFormStatus(String formGuid, Long formStatusId, String comments, Connection cx2Conn) throws SQLException {
+          	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
+    		cx2Conn.close();
+    		throw new SQLException("Permission Denied");
+    	}
+    	
+    	Connection muniDbConn = null;
+    	cx2Conn.setAutoCommit(false);
+    	
+    	try {
+    		DBQueryParams queryParams = new DBQueryParams();
+    		queryParams.addString("formGuid", formGuid);
+    		queryParams.addLong("newFormStatusId", formStatusId);
+    		queryParams.addString("Comments", comments);
+    		
+    		DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
+
+    		queryParams.addLong("OldStatusId", masterFormData.getLong("FormStatusId"));
+    		queryParams.addLong("FormTypeId", masterFormData.getLong("FormTypeId"));
+    		queryParams.addLong("CreatedBy", Long.parseLong(securityService.getUserId()));
+    		
+    		DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:FormTypeId", queryParams).get(0);
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, "
+    				+"Closed=(SELECT ConsiderClosed FROM FormStatuses WHERE ID=:newFormStatusId) WHERE FormGUID=:formGuid",
+    				queryParams);
+    		
+    		DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory (FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) "
+    				+"VALUES (:formGuid,:FormTypeId,:newFormStatusId,:OldStatusId,:Comments,:CreatedBy,SYSUTCDATETIME())",
+    				queryParams);
+    		
+    		if (formTypeData.getBoolean("AutomaticFees") && DBUtils.selectQuery(cx2Conn, "SELECT RecalculateAutoFees FROM FormStatuses WHERE ID=:newFormStatusId", queryParams).get(0).getBoolean("RecalculateAutoFees")) {
+    			muniDbConn = DBConnectionService.getMunicipalityDBConnection(formTypeData.getLong("MunicipalityId"));
+    			DBRow formFieldValues = DBUtils.selectQuery(muniDbConn, "SELECT * FROM "+DBUtils.getSqlSafeString(formTypeData.getString("FormTableName"))+" WHERE FormGUID=:formGuid", queryParams).get(0);
+    			
+    			DBQueryParams feeQueryParams = calculateAutoFees(formTypeData, formFieldValues.getFieldValues());
+    			
+    			feeQueryParams.addString("formGuid", formGuid);
+    			
+    			for (String autoFeeType : autoFeeTypes) {
+	    			String[] autoFeeTypeParts = autoFeeType.split(";");
+	    			String typeName = autoFeeTypeParts[0];
+	    			String argName = autoFeeTypeParts[1];
+	    			
+	    			if (feeQueryParams.paramExists(argName+"Amount")) {
+	    				DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE Fees SET Amount=:"+argName+"Amount WHERE FormGuid=:formGuid AND FeeType='"+typeName+"' AND PaidStatus='Unpaid'", feeQueryParams);
+	    			}
+	    		}
+    		}
+    		
+    		cx2Conn.commit();
+    	} catch (Exception e) {
+    		cx2Conn.rollback();
+    		if (muniDbConn!=null) {
+    			muniDbConn.rollback();
+    		}
+    	} finally {
+    	
+    		if (muniDbConn!=null) {
+    			muniDbConn.close();
+    		}
+    	}
+    }
     
     private DBQueryParams calculateAutoFees(DBRow formTypeData, HashMap<String, Object> fieldData) {
     	BigDecimal totalFees = new BigDecimal("0.00").setScale(2, RoundingMode.HALF_UP);
@@ -1164,7 +1358,7 @@ public class FormService {
 		}
 		
 		queryParams.addString("totalFees", totalFees.toString());
-		logger.info("______________");
+		logger.info("______________"+totalFees.toString());
 		return queryParams;
     }
     
