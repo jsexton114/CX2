@@ -25,6 +25,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -60,6 +61,10 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     @Autowired
 	@Qualifier("cx2.ManualFeeTypesService")
 	private ManualFeeTypesService manualFeeTypesService;
+
+    @Autowired
+	@Qualifier("cx2.DocumentService")
+	private DocumentService documentService;
 
     @Autowired
 	@Qualifier("cx2.InspectionDesignService")
@@ -102,12 +107,12 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 	private CaseTypesService caseTypesService;
 
     @Autowired
-	@Qualifier("cx2.FormCategoriesService")
-	private FormCategoriesService formCategoriesService;
-
-    @Autowired
 	@Qualifier("cx2.MunicipalityGroupsService")
 	private MunicipalityGroupsService municipalityGroupsService;
+
+    @Autowired
+	@Qualifier("cx2.FormCategoriesService")
+	private FormCategoriesService formCategoriesService;
 
     @Autowired
 	@Qualifier("cx2.RolesService")
@@ -147,6 +152,14 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
                 caseTypese.setMunicipalities(municipalitiesCreated);
                 LOGGER.debug("Creating a new child CaseTypes with information: {}", caseTypese);
                 caseTypesService.create(caseTypese);
+            }
+        }
+
+        if(municipalitiesCreated.getDocuments() != null) {
+            for(Document document : municipalitiesCreated.getDocuments()) {
+                document.setMunicipalities(municipalitiesCreated);
+                LOGGER.debug("Creating a new child Document with information: {}", document);
+                documentService.create(document);
             }
         }
 
@@ -373,6 +386,17 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<Document> findAssociatedDocuments(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated documents");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("municipalities.id = '" + id + "'");
+
+        return documentService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<Fees> findAssociatedFeeses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated feeses");
 
@@ -557,6 +581,15 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
+	 * @param service DocumentService instance
+	 */
+	protected void setDocumentService(DocumentService service) {
+        this.documentService = service;
+    }
+
+    /**
+	 * This setter method should only be used by unit tests
+	 *
 	 * @param service InspectionDesignService instance
 	 */
 	protected void setInspectionDesignService(InspectionDesignService service) {
@@ -647,19 +680,19 @@ public class MunicipalitiesServiceImpl implements MunicipalitiesService {
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service FormCategoriesService instance
+	 * @param service MunicipalityGroupsService instance
 	 */
-	protected void setFormCategoriesService(FormCategoriesService service) {
-        this.formCategoriesService = service;
+	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
+        this.municipalityGroupsService = service;
     }
 
     /**
 	 * This setter method should only be used by unit tests
 	 *
-	 * @param service MunicipalityGroupsService instance
+	 * @param service FormCategoriesService instance
 	 */
-	protected void setMunicipalityGroupsService(MunicipalityGroupsService service) {
-        this.municipalityGroupsService = service;
+	protected void setFormCategoriesService(FormCategoriesService service) {
+        this.formCategoriesService = service;
     }
 
     /**

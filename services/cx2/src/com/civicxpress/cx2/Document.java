@@ -49,6 +49,7 @@ public class Document implements Serializable {
     private Integer gisRecordId;
     private Integer municipalityId;
     private Integer vendorId;
+    private Municipalities municipalities;
     private Users users;
 
     @Id
@@ -150,6 +151,20 @@ public class Document implements Serializable {
 
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`MunicipalityId`", referencedColumnName = "`ID`", insertable = false, updatable = false)
+    public Municipalities getMunicipalities() {
+        return this.municipalities;
+    }
+
+    public void setMunicipalities(Municipalities municipalities) {
+        if(municipalities != null) {
+            this.municipalityId = municipalities.getId();
+        }
+
+        this.municipalities = municipalities;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

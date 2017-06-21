@@ -201,6 +201,8 @@
                                     <wm-livegrid formlayout="dialog" name="livegrid5">
                                         <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvDocuments.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
+                                            related-entity-name="Municipalities"></wm-grid-column>
                                             <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="dateCreated" caption="Date Uploaded" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>

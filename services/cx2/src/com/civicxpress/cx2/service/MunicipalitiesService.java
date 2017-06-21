@@ -18,6 +18,7 @@ import com.wavemaker.runtime.file.model.Downloadable;
 
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -180,6 +181,18 @@ public interface MunicipalitiesService {
      * @see Page
      */
     Page<CaseTypes> findAssociatedCaseTypeses(Integer id, Pageable pageable);
+
+    /*
+     * Returns the associated documents for given Municipalities id.
+     *
+     * @param id value of id; value cannot be null
+     * @param pageable Details of the pagination information along with the sorting options. If null returns all matching records.
+     * @return Paginated list of associated Document instances.
+     *
+     * @see Pageable
+     * @see Page
+     */
+    Page<Document> findAssociatedDocuments(Integer id, Pageable pageable);
 
     /*
      * Returns the associated feeses for given Municipalities id.

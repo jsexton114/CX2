@@ -42,6 +42,7 @@ import com.wordnik.swagger.annotations.ApiParam;
 
 import com.civicxpress.cx2.CaseTypes;
 import com.civicxpress.cx2.CodeSets;
+import com.civicxpress.cx2.Document;
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.cx2.FormCategories;
 import com.civicxpress.cx2.FormTypes;
@@ -230,6 +231,15 @@ public class MunicipalitiesController {
 
         LOGGER.debug("Fetching all associated caseTypeses");
         return municipalitiesService.findAssociatedCaseTypeses(id, pageable);
+    }
+
+    @RequestMapping(value="/{id:.+}/documents", method=RequestMethod.GET)
+    @ApiOperation(value = "Gets the documents instance associated with the given id.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Page<Document> findAssociatedDocuments(@PathVariable("id") Integer id, Pageable pageable) {
+
+        LOGGER.debug("Fetching all associated documents");
+        return municipalitiesService.findAssociatedDocuments(id, pageable);
     }
 
     @RequestMapping(value="/{id:.+}/feeses", method=RequestMethod.GET)

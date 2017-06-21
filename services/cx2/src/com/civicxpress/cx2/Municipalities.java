@@ -72,6 +72,7 @@ public class Municipalities implements Serializable {
     private States states;
     private List<CodeSets> codeSetses;
     private List<CaseTypes> caseTypeses;
+    private List<Document> documents;
     private List<Fees> feeses;
     private List<FormCategories> formCategorieses;
     private List<FormTypes> formTypeses;
@@ -428,6 +429,16 @@ public class Municipalities implements Serializable {
 
     public void setCaseTypeses(List<CaseTypes> caseTypeses) {
         this.caseTypeses = caseTypeses;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "municipalities")
+    public List<Document> getDocuments() {
+        return this.documents;
+    }
+
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 
     @JsonInclude(Include.NON_EMPTY)
