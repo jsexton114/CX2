@@ -127,7 +127,7 @@ public class CheckoutService {
     	         for (Long feeId : feeIds) { // Mark fees as paid.
     	        
         			// Check for AdvanceOnZeroBalance	
-    	            // checkAdvanceOnZeroBalance(feeId,connection);
+    	             checkAdvanceOnZeroBalance(feeId,connection);
     	        }
     	        
 	        }
@@ -258,6 +258,8 @@ public class CheckoutService {
            logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+formGuid);
            params.addString("formGuid", formGuid);
            
+           Long isClear=DBUtils.selectQuery(connection ,"SELECT count(*) as isClear from MasterForms where BalanceDue=0 and FormGUID=:formGuid",params).get(0).getLong("isClear");
+             logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+isClear);
         //  DBRow feeData=DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId from cx2.masterforms Inner Join cx2.masterforms MF on MF.FormGUID=:formGuid and MF.BalanceDue = 0  Inner join cx2.FormStatuses FS on MF.FormStatusId = FS.ID and AdvanceOnZero = 1 ", params);
         //  Long newStatusId=feeData.getLong("newStatusId");
           
