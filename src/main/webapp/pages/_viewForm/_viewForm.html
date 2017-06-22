@@ -182,7 +182,7 @@
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn131">
                                                 <wm-livegrid formlayout="inline" name="livegridFormVendors">
                                                     <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.Cx2Vendors2formData.dataSet" navigation="Classic" name="gridFormVendors" filtermode="multicolumn" exportformat="EXCEL"
-                                                    showrecordcount="true">
+                                                    showrecordcount="true" nodatamessage="The property owner is completing this work -- there is no contractor assigned.">
                                                         <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                         <wm-grid-column binding="primaryVendor" caption="Primary" type="boolean" widget-type="checkbox" primary-key="false" generator="assigned" edit-widget-type="checkbox" searchable="false"
                                                         show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors" readonly="false">
