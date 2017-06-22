@@ -105,6 +105,7 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
             if (newVal === 'None') {
                 $scope.Widgets.liveformUpdateFormType.formWidgets.gismap.datavalue = false;
                 $scope.Widgets.liveformUpdateFormType.formWidgets.requireOwner.datavalue = false;
+                $scope.Widgets.liveformUpdateFormType.formWidgets.allowOwnerToCompleteWork.datavalue = false;
             }
         };
 
@@ -127,6 +128,13 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
         $scope.requireOwnerChange = function($event, $isolateScope, newVal, oldVal) {
 
             $scope.Widgets.liveformUpdateFormType.formWidgets.allowOwnerToCompleteWork.datavalue = false
+        };
+
+
+        $scope.selectVendorOptionChange = function($event, $isolateScope, newVal, oldVal) {
+            if (newVal === 'None') {
+                $scope.Widgets.liveformUpdateFormType.formWidgets.allowOwnerToCompleteWork.datavalue = false;
+            }
         };
 
     }

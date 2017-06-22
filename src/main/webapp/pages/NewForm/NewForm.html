@@ -217,17 +217,20 @@
                                             <wm-label padding="unset 0.5em" name="label30" caption="Please specify which company or contractor is associated with this form." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
-                                    <wm-gridrow name="gridrow42" padding="1em unset">
+                                    <wm-gridrow name="gridrow48_1">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
+                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Use the &quot;+Add Contractor&quot; button to select the registered contractor that you would like to link to the form, then proceed to the next step."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label46" caption="If multiple contractors are performing work associated with this form, please select them all and then specify the correct &quot;Primary&quot; contractor." show="bind:Variables.lvFormType.dataSet.data[$i].multipleVendors"></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label45" show="bind:Variables.lvFormType.firstRecord.allowOwnerToCompleteWork" caption="If the owner of the property that you selected previously on the &quot;Location&quot; step will be completing the work associated with this form, please select &quot;Owner is Completing Work&quot;."></wm-label>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow42">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
                                             <wm-composite name="composite114" show="bind:Variables.lvFormType.firstRecord.allowOwnerToCompleteWork">
                                                 <wm-checkbox caption="Owner is Completing Work" class="col-md-push-3 col-md-9" name="checkboxOwnerWork" checkedvalue="true" uncheckedvalue="false" on-change="checkboxOwnerWorkChange($event, $scope, newVal, oldVal)"></wm-checkbox>
                                             </wm-composite>
                                         </wm-gridcolumn>
-                                    </wm-gridrow>
-                                    <wm-gridrow name="gridrow48_1">
-                                        <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
-                                            <wm-label padding="unset 0.5em" name="label20_1" caption="Use the &quot;+Add Contractor&quot; button to locate the contractor that you would like to link to the form, then proceed to the next step. If multiple contractors are involved, please specify the correct &quot;Primary&quot; contractor."></wm-label>
-                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn123"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow49_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn93_1">
@@ -259,7 +262,7 @@
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn93_2">
                                             <wm-label padding="unset 0.5em" name="label26_1" caption="Owners associated with the location(s) you provided earlier are available as selections below."></wm-label>
                                             <wm-label padding="unset 0.5em" name="label36" caption="If the correct current owner is not listed, please select &quot;New Owner&quot; and provide their complete contact information. Be sure to choose the correct location to associate the new owner to if multiple locations have been added to the form."></wm-label>
-                                            <wm-label padding="unset 0.5em" name="label35" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection" caption="If the contractor that you provided earlier should be considered the property owner, please select &quot;Contractor is Owner&quot;."></wm-label>
+                                            <wm-label padding="unset 0.5em" name="label35" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection &amp;&amp; !Widgets.checkboxOwnerWork.datavalue" caption="If the contractor that you provided earlier should be considered the property owner, please select &quot;Contractor is Owner&quot;."></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow42">
@@ -301,76 +304,80 @@
                                             </wm-composite>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow70">
+                                        <wm-gridcolumn columnwidth="12" name="gridcolumn124">
+                                            <wm-liveform novalidate="false" errormessage="" title="Owner Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner" show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue"
+                                            on-success="lfOwnerSuccess($event, $operation, $data)">
+                                                <wm-layoutgrid columns="2" name="layoutgrid15">
+                                                    <wm-gridrow name="gridrow59">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn109">
+                                                            <wm-label padding="unset 0.5em" name="label17" caption="Location" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-label>
+                                                            <wm-select name="gisRecordSelect" displayname="Location" show="true" primary-key="false" generator="assigned" is-related="true" required="bind:Widgets.checkboxOtherOwner.datavalue" dataset="bind:Variables.stvGisData.dataSet" datafield="id" disabled="false"
+                                                            displayfield="fullAddress" width="75%" datavalue="bind:Variables.stvGisData.dataSet[0].id" readonly="false" on-change="gisRecordSelectChange($event, $scope, newVal, oldVal)"></wm-select>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn111"></wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow44">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn88">
+                                                            <wm-form-field name="ownerFirstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" readonly="false" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text" maxchars="255" disabled="false"
+                                                            inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn89">
+                                                            <wm-form-field name="ownerLastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow45">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn90">
+                                                            <wm-form-field name="ownerEmail" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn91">
+                                                            <wm-form-field name="ownerPhone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" readonly="false" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text" maxchars="255" disabled="false"
+                                                            inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow46">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn92">
+                                                            <wm-form-field name="ownerAddress1" displayname="Address 1" show="true" primary-key="false" generator="assigned" key="address1" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn93">
+                                                            <wm-form-field name="ownerAddress2" displayname="Address 2" show="true" primary-key="false" generator="assigned" key="address2" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow47">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn94">
+                                                            <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn95">
+                                                            <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select" disabled="false" placeholder="Select value" displayexpression="stateName"
+                                                            orderby="stateName:asc"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow48">
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn96">
+                                                            <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                        <wm-gridcolumn columnwidth="6" name="gridcolumn97">
+                                                            <wm-form-field name="ownerCountry" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
+                                                            defaultvalue="bind:'USA'"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                    <wm-gridrow name="gridrow49">
+                                                        <wm-gridcolumn columnwidth="12" name="gridcolumn98">
+                                                            <wm-form-field name="ownerNotes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" readonly="false" required="false" widget="textarea" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                        </wm-gridcolumn>
+                                                    </wm-gridrow>
+                                                </wm-layoutgrid>
+                                                <wm-form-field name="ownerGisrecords" displayname="Gisrecords" show="false" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" readonly="false" required="true" widget="select" defaultvalue="bind:{&quot;id&quot;: Widgets.lfOwner.formWidgets.gisRecordSelect.datavalue}"
+                                                placeholder="Select value"></wm-form-field>
+                                                <wm-form-field name="ownerId" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
+                                                <wm-form-field name="ownerContactType" displayname="Contact Type" show="false" primary-key="false" generator="assigned" key="contactType" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                                defaultvalue="bind:'Owner'"></wm-form-field>
+                                                <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="bind:true" checkedvalue="true" uncheckedvalue="false"
+                                                placeholder=""></wm-form-field>
+                                            </wm-liveform>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                 </wm-layoutgrid>
-                                <wm-liveform novalidate="false" errormessage="" title="Owner Details" iconclass="wi wi-account-circle" defaultmode="Edit" dataset="bind:Variables.Cx2GiscontactsData.dataSet" captionalign="left" captionposition="top" name="lfOwner" show="bind:Widgets.checkboxOtherOwner.datavalue || Widgets.checkboxVendorIsOwner.datavalue"
-                                on-success="lfOwnerSuccess($event, $operation, $data)">
-                                    <wm-layoutgrid columns="2" name="layoutgrid15">
-                                        <wm-gridrow name="gridrow59">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn109">
-                                                <wm-label padding="unset 0.5em" name="label17" caption="Location" required="bind:Widgets.checkboxOtherOwner.datavalue"></wm-label>
-                                                <wm-select name="gisRecordSelect" displayname="Location" show="true" primary-key="false" generator="assigned" is-related="true" required="bind:Widgets.checkboxOtherOwner.datavalue" dataset="bind:Variables.stvGisData.dataSet" datafield="id" disabled="false"
-                                                displayfield="fullAddress" width="75%" datavalue="bind:Variables.stvGisData.dataSet[0].id" readonly="false" on-change="gisRecordSelectChange($event, $scope, newVal, oldVal)"></wm-select>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn111"></wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow44">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn88">
-                                                <wm-form-field name="ownerFirstName" displayname="First Name" show="true" primary-key="false" generator="assigned" key="firstName" type="string" readonly="false" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text" maxchars="255" disabled="false"
-                                                inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn89">
-                                                <wm-form-field name="ownerLastName" displayname="Last Name" show="true" primary-key="false" generator="assigned" key="lastName" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow45">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn90">
-                                                <wm-form-field name="ownerEmail" displayname="Email Address" show="true" primary-key="false" generator="assigned" key="email" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="email" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn91">
-                                                <wm-form-field name="ownerPhone" displayname="Phone Number" show="true" primary-key="false" generator="assigned" key="phone" type="string" readonly="false" required="bind:Widgets.checkboxOtherOwner.datavalue" widget="text" maxchars="255" disabled="false"
-                                                inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow46">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn92">
-                                                <wm-form-field name="ownerAddress1" displayname="Address 1" show="true" primary-key="false" generator="assigned" key="address1" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn93">
-                                                <wm-form-field name="ownerAddress2" displayname="Address 2" show="true" primary-key="false" generator="assigned" key="address2" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow47">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn94">
-                                                <wm-form-field name="ownerCity" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn95">
-                                                <wm-form-field name="ownerStates" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select" disabled="false" placeholder="Select value" displayexpression="stateName"
-                                                orderby="stateName:asc"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow48">
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn96">
-                                                <wm-form-field name="ownerPostalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                            <wm-gridcolumn columnwidth="6" name="gridcolumn97">
-                                                <wm-form-field name="ownerCountry" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" disabled="false" inputtype="text" placeholder="Enter value"
-                                                defaultvalue="bind:'USA'"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                        <wm-gridrow name="gridrow49">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn98">
-                                                <wm-form-field name="ownerNotes" displayname="Notes" show="true" primary-key="false" generator="assigned" key="notes" type="string" readonly="false" required="false" widget="textarea" maxchars="500" inputtype="text" placeholder="Enter value"></wm-form-field>
-                                            </wm-gridcolumn>
-                                        </wm-gridrow>
-                                    </wm-layoutgrid>
-                                    <wm-form-field name="ownerGisrecords" displayname="Gisrecords" show="false" primary-key="false" generator="assigned" key="gisrecords" type="list" is-related="true" readonly="false" required="true" widget="select" defaultvalue="bind:{&quot;id&quot;: Widgets.lfOwner.formWidgets.gisRecordSelect.datavalue}"
-                                    placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="ownerId" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                    <wm-form-field name="ownerContactType" displayname="Contact Type" show="false" primary-key="false" generator="assigned" key="contactType" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="bind:'Owner'"></wm-form-field>
-                                    <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="false" widget="checkbox" defaultvalue="bind:true" checkedvalue="true" uncheckedvalue="false"
-                                    placeholder=""></wm-form-field>
-                                </wm-liveform>
                             </wm-wizardstep>
                             <wm-wizardstep name="wizardstep5" title="Attachments" ng-if="loaded &amp;&amp; documents" enableskip="false">
                                 <wm-layoutgrid name="layoutgrid16">
