@@ -654,6 +654,17 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         $scope.Variables.stvContacts.dataSet = _.clone(companyEmployees);
     };
 
+
+    $scope.checkboxOwnerWorkChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal) {
+            $scope.Widgets.textVendorString.datavalue = 0;
+        } else {
+            $scope.Widgets.textVendorString.datavalue = '';
+        }
+
+        $scope.Variables.stvVendors.dataSet = [];
+    };
+
 }]);
 
 
@@ -861,6 +872,8 @@ Application.$controller("dialogAddVendorController", ["$scope",
                     Country: newVendor.country,
                     Primary: ($scope.Variables.stvVendors.dataSet.length === 0 ? true : $scope.Widgets.checkboxVendorIsPrimary.datavalue)
                 });
+
+                $scope.Widgets.textVendorString.datavalue = newVendor.id;
             }
 
             if ($scope.Variables.stvVendors.dataSet.length > 1 && $scope.Widgets.checkboxVendorIsPrimary.datavalue) {

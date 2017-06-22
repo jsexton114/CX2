@@ -8,7 +8,7 @@
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn12">
                         <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner>
-                        <wm-spinner show="false" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
+                        <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstepInstructions" title="Instructions">
                                 <wm-layoutgrid name="layoutgriid56">
@@ -270,7 +270,7 @@
                                             </wm-composite>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn83">
-                                            <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">
+                                            <wm-composite name="compositeVendorIsOwner" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection &amp;&amp; !Widgets.checkboxOwnerWork.datavalue">
                                                 <wm-checkbox caption="Contractor is Owner" class="col-md-push-3 col-md-9" name="checkboxVendorIsOwner" disabled="bind:Widgets.checkboxOtherOwner.datavalue" on-change="checkboxVendorIsOwnerChange($event, $scope, newVal, oldVal)" datavalue="false" checkedvalue="true"
                                                 uncheckedvalue="false"></wm-checkbox>
                                             </wm-composite>

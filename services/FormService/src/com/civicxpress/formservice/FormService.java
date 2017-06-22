@@ -1377,6 +1377,8 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
+        logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+primaryVendorId);
+        logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++"+vendorIds);
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -1485,6 +1487,7 @@ public class FormService {
 	    	
 	    	// Add Vendor(s)
 	    	if (formTypeData.getBoolean("VendorSelection")) {
+	    	    if(vendorIds!=null){
 		    	StringBuilder vendorsQuery = new StringBuilder("INSERT INTO Vendors2Form (RelatedFormGUID, VendorId, PrimaryVendor, SharedOn) VALUES ");
 		    	int vendorIndex = 0;
 		    	
@@ -1506,6 +1509,7 @@ public class FormService {
 	    		}
 	    		
 	    		DBUtils.simpleUpdateQuery(cx2Conn, vendorsQuery.toString(), queryParams);
+	    	    }
 	    	}
 	    	
 	    	// Add sharing
