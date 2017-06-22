@@ -2941,6 +2941,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
+    "orderBy" : "users.fullName asc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "municipalityGroups",
@@ -3291,7 +3292,7 @@
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 3,
+    "bindCount" : 1,
     "tableName" : "MunicipalityGroupMembers",
     "tableType" : "TABLE",
     "properties" : [ "municipalityGroups", "users" ],

@@ -379,18 +379,19 @@
             <wm-layoutgrid name="layoutgrid9">
                 <wm-gridrow name="gridrow32_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn67">
-                        <wm-label padding="unset 0.5em" name="label47_2" class="h3" caption="bind:Variables.GroupMembersData.dataSet.data[$i].municipalityGroups.groupName" fontweight="bold"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label47_2" class="h3" caption="bind:Widgets.gridMunicipalitygroups.selecteditem.groupName" fontweight="bold"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow34_1" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn69_1">
-                        <wm-label padding="unset 0.5em unset 1em" name="label48_1" caption="bind:Variables.GroupMembersData.dataSet.data[$i].municipalityGroups.groupDescription"></wm-label>
+                        <wm-label padding="unset 0.5em unset 1em" name="label48_1" caption="bind:Widgets.gridMunicipalitygroups.selecteditem.groupDescription"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow33">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn69">
                         <wm-livegrid formlayout="dialog" name="livegrid2">
-                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" width="100%" height="100%" showrecordcount="true">
+                            <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.GroupMembersData.dataSet" navigation="Classic" name="grid4" filtermode="multicolumn" exportformat="EXCEL" width="100%" height="100%" showrecordcount="true"
+                            nodatamessage="No users in group.">
                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                 <wm-grid-column binding="users.fullName" caption="Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Users"></wm-grid-column>
                                 <wm-grid-column binding="users.email" caption="Email Address" type="string" generator="assigned" edit-widget-type="text" show="true" related-entity-name="Users" readonly="false"></wm-grid-column>

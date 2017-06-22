@@ -127,7 +127,10 @@
                     <wm-tabpane name="tabpaneLicenses" title="Licenses">
                         <wm-layoutgrid name="layoutgrid4">
                             <wm-gridrow name="gridrow13_1">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn30_1"></wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
+                                    <wm-label padding="unset 0.5em" name="label6" caption="Municipalities may require that you maintain company licensing records. All municipalities can see the licensing information for your company that is maintained here."
+                                    accessroles="CXVendorAdmin,CompanyEmployee"></wm-label>
+                                </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow14_1">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn32_1">
@@ -194,21 +197,26 @@
                     <wm-tabpane name="tabpaneDocuments" title="Documents" on-select="tabpaneDocumentsSelect($event, $scope)">
                         <wm-layoutgrid name="layoutgrid6">
                             <wm-gridrow name="gridrow19">
-                                <wm-gridcolumn columnwidth="12" name="gridcolumn41"></wm-gridcolumn>
+                                <wm-gridcolumn columnwidth="12" name="gridcolumn41">
+                                    <wm-label padding="unset 0.5em" name="label4" caption="Company Documents are maintained here. Some municipalities may require that you provide a Certificate of Insurance or other documentation in order to operate within their municipality."
+                                    accessroles="CXVendorAdmin,CompanyEmployee"></wm-label>
+                                    <wm-label padding="unset 0.5em" name="label5" caption="Note: each municipality can only see documents that you have specifically uploaded to them. You may need to upload the same document to multiple municipalities."
+                                    accessroles="CXVendorAdmin,CompanyEmployee"></wm-label>
+                                </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow18">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn39">
                                     <wm-livegrid formlayout="dialog" name="livegrid5">
-                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvDocuments.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                        <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.lvDocuments.dataSet" navigation="Classic" name="gridDocuments" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true"
+                                        nodatamessage="No documents uploaded." deletemessage="Document deleted successfully">
                                             <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality Name" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
-                                            related-entity-name="Municipalities"></wm-grid-column>
+                                            <wm-grid-column binding="municipalities.municipalityName" caption="Municipality" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Municipalities"></wm-grid-column>
                                             <wm-grid-column binding="filename" caption="File Name" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="mimetype" caption="File Type" type="string" primary-key="false" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="dateCreated" caption="Date Uploaded" type="datetime" primary-key="false" generator="assigned" edit-widget-type="datetime" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
                                             <wm-grid-column binding="users.fullName" caption="Uploaded By" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text"
                                             show="true" related-entity-name="Users"></wm-grid-column>
-                                            <wm-grid-action key="addNewRow" display-name="Add Document" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Document" action="Widgets.dialogUploadDocument.open()" accessroles="Inspector,InspectorManager,CodeManager,CodeOfficer,CXAdmin,MunicipalityAdmin"
+                                            <wm-grid-action key="addNewRow" display-name="Add Document" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Document" action="Widgets.dialogUploadDocument.open()" accessroles="CXAdmin,CXVendorAdmin"
                                             shortcutkey="" disabled="false"></wm-grid-action>
                                             <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pencil" title="Edit" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                             <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-file-download" title="Download" action="Variables.svDownloadDocument.invoke()" accessroles="Authenticated"
@@ -228,13 +236,13 @@
     <wm-view class="dialog-view" name="viewUploadDocument">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Document Upload" iconclass="wi wi-attach-file" name="dialogUploadDocument" on-close="dialogUploadDocumentClose($event, $scope)">
             <wm-layoutgrid name="layoutgrid23">
-                <wm-gridrow name="gridrow32" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow32" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn82_0">
                         <wm-label padding="unset 0.5em" caption="First, select the municipality where you would like to provide documentation, then use the &quot;Choose Files&quot; button to select one or many documents that you would like to submit to the municipality."
                         name="label82_0"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
+                <wm-gridrow name="gridrow20" padding="unset unset 1em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn37">
                         <wm-composite name="compositeMunicipalities">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
@@ -245,9 +253,14 @@
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow85">
+                <wm-gridrow name="gridrow85" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn167">
                         <input type="file" name="docsToUpload" ng-file-model="docsToUpload" multiple="">
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow21">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn38_1">
+                        <wm-label padding="unset 0.5em" name="label3" caption="Note: you can only upload documents to municipalities where you have submitted a company application. If a municipality is not listed, browse to the &quot;My Company&quot; dashboard, then the &quot;Municipalities&quot; tile, where you can apply to additional municipalities."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
