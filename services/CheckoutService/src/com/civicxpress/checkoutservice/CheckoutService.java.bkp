@@ -104,6 +104,7 @@ public class CheckoutService {
 	    	
 	    	if (transactionSuccess) {
     	        checkoutStatement = connection.prepareCall("{call municipalityCheckout(?,?,?,?,?,?)}");
+    	        checkoutStatement.setQueryTimeout(60);
     	        checkoutStatement.setString("paymentMethod", paymentMethod);
     	        checkoutStatement.setString("paymentNumber", paymentNumber);
     	        checkoutStatement.setBigDecimal("amountReceived", amountReceived);

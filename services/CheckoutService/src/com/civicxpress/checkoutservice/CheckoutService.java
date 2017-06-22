@@ -127,7 +127,7 @@ public class CheckoutService {
     	         for (Long feeId : feeIds) { // Mark fees as paid.
     	        
         			// Check for AdvanceOnZeroBalance	
-    	            // checkAdvanceOnZeroBalance(feeId,connection);
+    	             checkAdvanceOnZeroBalance(feeId,connection);
     	        }
     	        
 	        }
