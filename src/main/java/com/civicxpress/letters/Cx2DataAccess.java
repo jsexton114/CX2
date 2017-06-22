@@ -3,6 +3,7 @@ package com.civicxpress.letters;
 import com.civicxpress.PaymentReceipt;
 import com.civicxpress.cx2.Fees;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -567,38 +568,37 @@ public class Cx2DataAccess {
         CallableStatement statement = null;
         ResultSet rsPaymentReceipt = null;
         ResultSet rsPaymentReceiptDetail = null;
-        logger.debug("getPaymentReceipt()");
         paymentReceipt = new PaymentReceipt();
         try {
             connection = getDbConnection();
-            logger.debug("getDbConnection()");
-            logger.debug("connection: " + connection);
             statement = connection.prepareCall("{call getPaymentReceipt(?)}");
-            logger.debug("statement = connection.prepareCall(...)");
             statement.setLong("transactionId", transactionId);
             logger.debug("transactionId: " + transactionId);
             statement.execute();
-            logger.debug("statement.execute();");
             rsPaymentReceipt = statement.getResultSet();
-            logger.debug("rsPaymentReceipt = statement.getResultSet();");
-            logger.debug("rsPaymentReceipt: " + rsPaymentReceipt);
             if (rsPaymentReceipt.next()) {
-                logger.debug("rsPaymentReceipt.next()");
-                paymentReceipt.setTransactionId(rsPaymentReceipt.getInt("TransactionId"));
-                paymentReceipt.setPaymentMethod(rsPaymentReceipt.getString("PaymentMethod"));
-                paymentReceipt.setPaymentNumber(rsPaymentReceipt.getString("PaymentNumber"));
-                paymentReceipt.setAmountReceived(rsPaymentReceipt.getFloat("AmountReceived"));
-                paymentReceipt.setComments(rsPaymentReceipt.getString("Comments"));
-                paymentReceipt.setDateCreated(new LocalDateTime(rsPaymentReceipt.getDate("DateCreated")));
-                paymentReceipt.setUserFullName(rsPaymentReceipt.getString("UserFullName"));
-                paymentReceipt.setUserEmail(rsPaymentReceipt.getString("UserEmail"));
+                String paymentMethod = rsPaymentReceipt.getString("PaymentMethod");
+                String paymentNumber = rsPaymentReceipt.getString("PaymentNumber");
+                Float amountReceived = rsPaymentReceipt.getFloat("AmountReceived");
+                String comments = rsPaymentReceipt.getString("Comments");
+                Date dateCreated = rsPaymentReceipt.getDate("DateCreated");
+                LocalDateTime localDateTimeDateCreated = new LocalDateTime(dateCreated);
+                String userFullName = rsPaymentReceipt.getString("UserFullName");
+                String userEmail = rsPaymentReceipt.getString("UserEmail");
+                paymentReceipt.setTransactionId(new BigDecimal(transactionId).intValueExact());
+                if (paymentMethod != null) paymentReceipt.setPaymentMethod(paymentMethod);
+                if (paymentNumber != null) paymentReceipt.setPaymentNumber(paymentNumber);
+                if (amountReceived != null) paymentReceipt.setAmountReceived(amountReceived);
+                if (comments != null) paymentReceipt.setComments(comments);
+                if (localDateTimeDateCreated != null) paymentReceipt.setDateCreated(localDateTimeDateCreated);
+                if (userFullName != null) paymentReceipt.setUserFullName(userFullName);
+                if (userEmail != null) paymentReceipt.setUserEmail(userEmail);
             }
             if (statement.getMoreResults()) {
                 logger.debug("statement.getMoreResults()");
-                Fees[] fees = new Fees[0];
+                ArrayList<Fees> fees = new ArrayList<Fees>();
             	rsPaymentReceiptDetail = statement.getResultSet();
             	while (rsPaymentReceiptDetail.next()) {
-            	    logger.debug("rsPaymentReceiptDetail.next()");
             	    Fees fee = new Fees();
             	    fee.setFeeType(rsPaymentReceiptDetail.getString("FeeType"));
             	    fee.setAccountingCode(rsPaymentReceiptDetail.getString("AccountingCode"));
@@ -609,8 +609,9 @@ public class Cx2DataAccess {
             	    fee.setAmount(rsPaymentReceiptDetail.getBigDecimal("Amount"));
             	    fee.setTransactionComments(rsPaymentReceiptDetail.getString("TransactionComments"));
             	    //fee.setMunicipalityName(rsPaymentReceiptDetail.getString("MunicipalityName"));
-                    //fees.add(fee);
+                    fees.add(fee);
             	}
+            	paymentReceipt.setFees(fees.toArray(new Fees[fees.size()]));
             }
         } catch (SQLException e) {
             try {

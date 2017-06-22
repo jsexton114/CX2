@@ -11,6 +11,11 @@ public class PaymentReceipt {
     private String userEmail = null;
     private Fees[] fees = null;
 
+    public PaymentReceipt() {
+        this.paymentHistory = new PaymentHistory();
+        this.fees = new Fees[0];
+    }
+    
     public Integer getTransactionId() {
         return this.paymentHistory.getTransactionId();
     }
