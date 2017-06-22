@@ -67,6 +67,17 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         $scope.Variables.svCheckout.update();
     };
 
+    $scope.svCheckoutonError = function(variable, data) {
+
+        $scope.Variables.svCartItemIds.update();
+        if ($scope.Widgets.wizardCheckOut) $scope.Widgets.wizardCheckOut.show = false;
+        if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentError.show = true;
+
+        tdUtils.eraseCookie("stripeToken");
+        $scope.stripeToken = null;
+
+    };
+
     $scope.svCheckoutonSuccess = function(variable, data) {
 
         $scope.Variables.svCartItemIds.update();

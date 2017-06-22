@@ -132,7 +132,14 @@ public class CheckoutService {
     	        
 	        }
 	        
-	        connection.commit();
+	        if (transactionSuccess) {
+	            connection.commit();
+	        } else {
+	            connection.rollback();
+	            logger.info("There was a problem processing payment and the transaction has been rolled back.");
+	            logger.info("paymentNumber: " + paymentNumber);
+	            logger.info("currentUserId: " + currentUserId);
+	        }
 
 	    	if (transactionId != null && transactionSuccess) {
     	        byte[] receiptBytes = createReceiptPdf(transactionId);
