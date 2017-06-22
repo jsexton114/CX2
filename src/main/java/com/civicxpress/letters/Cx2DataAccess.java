@@ -571,7 +571,9 @@ public class Cx2DataAccess {
         paymentReceipt = new PaymentReceipt();
         try {
             connection = getDbConnection();
+            connection.setAutoCommit(false);
             statement = connection.prepareCall("{call getPaymentReceipt(?)}");
+            statement.setQueryTimeout(120);
             statement.setLong("transactionId", transactionId);
             logger.debug("transactionId: " + transactionId);
             statement.execute();
@@ -595,19 +597,39 @@ public class Cx2DataAccess {
                 if (userEmail != null) paymentReceipt.setUserEmail(userEmail);
             }
             if (statement.getMoreResults()) {
-                logger.debug("statement.getMoreResults()");
+                //logger.debug("statement.getMoreResults()");
                 ArrayList<Fees> fees = new ArrayList<Fees>();
             	rsPaymentReceiptDetail = statement.getResultSet();
+            	//logger.debug("rsPaymentReceiptDetail: " + rsPaymentReceiptDetail);
             	while (rsPaymentReceiptDetail.next()) {
+            	    //logger.debug("rsPaymentReceiptDetail.next()");
             	    Fees fee = new Fees();
-            	    fee.setFeeType(rsPaymentReceiptDetail.getString("FeeType"));
-            	    fee.setAccountingCode(rsPaymentReceiptDetail.getString("AccountingCode"));
-            	    fee.setPaidStatus(rsPaymentReceiptDetail.getString("PaidStatus"));
-            	    fee.setPaidDate(rsPaymentReceiptDetail.getDate("PaidDate"));
-            	    fee.setComments(rsPaymentReceiptDetail.getString("Comment"));
-            	    fee.setItemTitle(rsPaymentReceiptDetail.getString("ItemTitle"));
-            	    fee.setAmount(rsPaymentReceiptDetail.getBigDecimal("Amount"));
-            	    fee.setTransactionComments(rsPaymentReceiptDetail.getString("TransactionComments"));
+            	    String feeType = rsPaymentReceiptDetail.getString("FeeType");
+            	    String accountingCode = rsPaymentReceiptDetail.getString("AccountingCode");
+            	    String paidStatus = rsPaymentReceiptDetail.getString("PaidStatus");
+                    Date paidDate = rsPaymentReceiptDetail.getDate("PaidDate");
+                    String comments = rsPaymentReceiptDetail.getString("Comments");
+                    String itemTitle = rsPaymentReceiptDetail.getString("ItemTitle");
+                    BigDecimal amount = rsPaymentReceiptDetail.getBigDecimal("Amount");
+                    String transactionComments = rsPaymentReceiptDetail.getString("TransactionComments");
+                    /*
+                    logger.debug("feeType: " + feeType);
+                    logger.debug("accountingCode: " + accountingCode);
+                    logger.debug("paidStatus: " + paidStatus);
+                    logger.debug("paidDate: " + paidDate);
+                    logger.debug("comments: " + comments);
+                    logger.debug("itemTitle: " + itemTitle);
+                    logger.debug("amount: " + amount);
+                    logger.debug("transactionComments: " + transactionComments);
+                    */
+            	    if (feeType != null) fee.setFeeType(feeType);
+            	    if (accountingCode != null ) fee.setAccountingCode(accountingCode);
+            	    if (paidStatus != null) fee.setPaidStatus(paidStatus);
+            	    if (paidDate != null) fee.setPaidDate(paidDate);
+            	    if (comments != null) fee.setComments(comments);
+            	    if (itemTitle != null) fee.setItemTitle(itemTitle);
+            	    if (amount != null) fee.setAmount(amount);
+            	    if (transactionComments != null) fee.setTransactionComments(transactionComments);
             	    //fee.setMunicipalityName(rsPaymentReceiptDetail.getString("MunicipalityName"));
                     fees.add(fee);
             	}
@@ -616,7 +638,7 @@ public class Cx2DataAccess {
         } catch (SQLException e) {
             try {
         	    connection.rollback();
-        	    logger.debug("connection.rollback();");
+        	    //logger.debug("connection.rollback();");
         	    e.printStackTrace();
         	    throw e;
             } catch (SQLException ex) {

@@ -1,3 +1,4 @@
+<!-- MunicipalityCheckOut page is obsolete and replaced by MyCart -->
 <wm-page data-ng-controller="MunicipalityCheckOutPageController" pagetitle="Municipality Check Out" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
@@ -16,6 +17,7 @@
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4" padding="1em unset 4em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
+                                        <wm-label padding unser 0.5em " name=label5-0" caption "MunicipalityCheckOut page is obsolete and replaced by MyCart" class="h1"></wm-label>
                                         <wm-label padding="unset 0.5em" name="label5" caption="bind:'Total: '+ ((Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart || 0) | toCurrency:'$':2)" class="h1"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
@@ -26,8 +28,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn8">
-                                        <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType"
-                                        usekeys="false"></wm-radioset>
+                                        <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:Variables.stvPaymentOptions.dataSet[0].paymentType" usekeys="false"></wm-radioset>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow7" padding=".2em unset">

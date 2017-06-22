@@ -136,8 +136,17 @@ public class CheckoutService {
 
 	    	if (transactionId != null && transactionSuccess) {
     	        byte[] receiptBytes = createReceiptPdf(transactionId);
+        		Cx2DataAccess db = new Cx2DataAccess();
+        		PaymentReceipt paymentReceipt = null;
+            	ReceiptPdf receiptPdf = null;
+            	String userEmail = null;
+            	paymentReceipt = db.getPaymentReceipt(transactionId);
+                userEmail = paymentReceipt.getUserEmail();
+            	receiptPdf = new ReceiptPdf(paymentReceipt);
+                receiptBytes = receiptPdf.fileBytesOutput; 
     	        System.out.println("receiptBytes.length:" + receiptBytes.length);
-    	        sendReceipt("jason_sexton@hotmail.com", receiptBytes);
+    	        sendReceipt(userEmail, receiptBytes);
+    	        logger.info("CX2 payment receipt sent to " + userEmail);
 	    	}
 
     	} catch (Exception e) {

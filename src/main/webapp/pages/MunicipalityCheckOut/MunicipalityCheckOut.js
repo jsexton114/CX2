@@ -1,3 +1,4 @@
+// NOTE: MunicipalityCheckOut page is obsolete and replaced by MyCart
 Application.$controller("MunicipalityCheckOutPageController", ["$scope", function($scope) {
     "use strict";
 

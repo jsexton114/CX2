@@ -24,11 +24,6 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         console.log("$scope.stripeToken: " + $scope.stripeToken);
     };
 
-    $scope.svFeesInCartByUseronSuccess = function(variable, data) {
-        $scope.$broadcast('feeListUpdate', data.content);
-
-    };
-
     $scope.wizardstep1Next = function($isolateScope, currentStep, stepIndex) {
         $scope.Variables.svCartItemIds.update();
         $scope.Variables.svSumOfFeesInUsersCart.update();
@@ -39,6 +34,24 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         //         $scope.Variables.goToPage_MunicipalityCheckOut.navigate();
         //     }
         // }
+    };
+
+    $scope.wizardstep2Load = function($isolateScope, stepIndex) {
+        console.log("wizardstep2Load");
+        console.log("$scope.Widgets.radiosetPaymentOptions.datavalue: " + $scope.Widgets.radiosetPaymentOptions.datavalue);
+        console.log("!$scope.stripeToken: " + !$scope.stripeToken);
+        console.log("$scope.isMunicipalityEmployee(): " + $scope.isMunicipalityEmployee());
+        $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
+        if (!$scope.stripeToken || ($scope.isMunicipalityEmployee() && !$scope.stripeToken && $scope.Widgets.radiosetPaymentOptions.datavalue == 'Credit Card')) {
+            $scope.Widgets.wizardstep2.disabledone = true;
+        } else {
+            $scope.Widgets.wizardstep2.disabledone = false;
+        }
+    };
+
+    $scope.wizardstep2Prev = function($isolateScope, currentStep, stepIndex) {
+        tdUtils.eraseCookie("stripeToken");
+        $scope.stripeToken = null;
     };
 
     $scope.wizardCheckOutDone = function($isolateScope, steps) {
@@ -66,19 +79,23 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     };
 
-    $scope.wizardstep2Load = function($isolateScope, stepIndex) {
+    $scope.svFeesInCartByUseronSuccess = function(variable, data) {
+        $scope.$broadcast('feeListUpdate', data.content);
 
     };
 
-    $scope.isMunicipalityEmployee = function() {
-        var returnIsMunicipalityEmployee = false;
-        let temp = $scope.Variables.loggedInUser.dataSet.roles;
-        for (let i = 0; i < temp.length; i++) {
-            if ((temp[i] == "MunicipalityEmployee")) {
-                returnIsMunicipalityEmployee = true;
-            }
+    $scope.svSumOfFeesInUsersCartonSuccess = function(variable, data) {
+        // Stripe HTML is written programmatically so WM doesn't remove it
+        var html1 = document.getElementById('html1');
+        console.log("document.getElementById('html1'): " + document.getElementById('html1'));
+        if (html1) {
+            console.log("html1.children.length: " + html1.children.length);
         }
-        return returnIsMunicipalityEmployee;
+        if (html1 && html1.children.length === 0) {
+            console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
+            var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
+            html1.appendChild(form);
+        }
     };
 
     function createStripeButtonHtml(dataKeyValue, dataAmountValue, dataNameValue, dataDescriptionValue) {
@@ -121,6 +138,17 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         return form;
     }
 
+    $scope.isMunicipalityEmployee = function() {
+        var returnIsMunicipalityEmployee = false;
+        let temp = $scope.Variables.loggedInUser.dataSet.roles;
+        for (let i = 0; i < temp.length; i++) {
+            if ((temp[i] == "MunicipalityEmployee")) {
+                returnIsMunicipalityEmployee = true;
+            }
+        }
+        return returnIsMunicipalityEmployee;
+    };
+
     function TekDogUtilities() {}
 
     // cookie methods used from 
@@ -152,58 +180,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-
-    $scope.wizardstep2Prev = function($isolateScope, currentStep, stepIndex) {
-        tdUtils.eraseCookie("stripeToken");
-        $scope.stripeToken = null;
-    };
-
-
-    $scope.svSumOfFeesInUsersCartonSuccess = function(variable, data) {
-        // Stripe HTML is written programmatically so WM doesn't remove it
-        var html1 = document.getElementById('html1');
-        console.log("document.getElementById('html1'): " + document.getElementById('html1'));
-        if (html1) {
-            console.log("html1.children.length: " + html1.children.length);
-        }
-        if (html1 && html1.children.length === 0) {
-            console.log("$scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart: " + $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart);
-            var form = createStripeButtonHtml("pk_test_XPwevpSch24R4UhQqbH3bGPB", $scope.Variables.svSumOfFeesInUsersCart.dataSet.sumOfFeesInCart, "CivicXpress", "Municipality fees");
-            html1.appendChild(form);
-        }
-    };
-
 }]);
-
-Application.$controller("pagedialogNewFormController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-
-
-Application.$controller("iframedialog1Controller", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("pagedialogViewFormController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
-
-Application.$controller("pagedialogViewInspectionController", ["$scope",
-    function($scope) {
-        "use strict";
-        $scope.ctrlScope = $scope;
-    }
-]);
 
 Application.$controller("gridFeesListController", ["$scope",
     function($scope) {
@@ -231,5 +208,33 @@ Application.$controller("gridFeesListController", ["$scope",
                 $scope.Widgets.pagedialogViewInspection.open();
             }
         };
+    }
+]);
+
+Application.$controller("iframedialog1Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogNewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewFormController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("pagedialogViewInspectionController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
     }
 ]);
