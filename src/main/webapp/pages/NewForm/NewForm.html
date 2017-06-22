@@ -8,7 +8,7 @@
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn12">
                         <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner>
-                        <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
+                        <wm-spinner show="false" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstepInstructions" title="Instructions">
                                 <wm-layoutgrid name="layoutgriid56">
@@ -217,6 +217,13 @@
                                             <wm-label padding="unset 0.5em" name="label30" caption="Please specify which company or contractor is associated with this form." fontweight="bold"></wm-label>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
+                                    <wm-gridrow name="gridrow42" padding="1em unset">
+                                        <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
+                                            <wm-composite name="composite114" show="bind:Variables.lvFormType.firstRecord.allowOwnerToCompleteWork">
+                                                <wm-checkbox caption="Owner is Completing Work" class="col-md-push-3 col-md-9" name="checkboxOwnerWork" checkedvalue="true" uncheckedvalue="false" on-change="checkboxOwnerWorkChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                            </wm-composite>
+                                        </wm-gridcolumn>
+                                    </wm-gridrow>
                                     <wm-gridrow name="gridrow48_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn91_1">
                                             <wm-label padding="unset 0.5em" name="label20_1" caption="Use the &quot;+Add Contractor&quot; button to locate the contractor that you would like to link to the form, then proceed to the next step. If multiple contractors are involved, please specify the correct &quot;Primary&quot; contractor."></wm-label>
@@ -224,7 +231,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow49_1">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn93_1">
-                                            <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors" showrecordcount="true">
+                                            <wm-grid title="" dataset="bind:Variables.stvVendors.dataSet" navigation="Classic" name="gridVendors" showrecordcount="true" show="bind:!Widgets.checkboxOwnerWork.datavalue">
                                                 <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                 <wm-grid-column binding="Primary" caption="Primary" type="string" widget-type="checkbox" readonly="true" edit-widget-type="text" show="true">
                                                     <wm-checkbox scopedatavalue="row['Primary']" class="" data-ng-class="" ng-click="changePrimaryVendor($event, row)"></wm-checkbox>

@@ -6776,6 +6776,32 @@
       "sequenceSchema" : null,
       "sqlType" : "string",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : null
+      },
+      "fieldName" : "allowOwnerToCompleteWork",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "AllowOwnerToCompleteWork",
+      "nullable" : false,
+      "oldName" : "AllowOwnerToCompleteWork",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "FormTypes",

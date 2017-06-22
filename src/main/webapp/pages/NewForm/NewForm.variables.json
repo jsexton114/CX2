@@ -1743,6 +1743,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowOwnerToCompleteWork",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOwnerToCompleteWork",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -2912,13 +2924,25 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "allowOwnerToCompleteWork",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowOwnerToCompleteWork",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 2,
+    "bindCount" : 3,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -3668,6 +3692,18 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOwnerToCompleteWork",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOwnerToCompleteWork",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
@@ -5261,6 +5297,18 @@
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 5000,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "allowOwnerToCompleteWork",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOwnerToCompleteWork",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,

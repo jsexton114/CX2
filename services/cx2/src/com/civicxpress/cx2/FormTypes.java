@@ -81,6 +81,7 @@ public class FormTypes implements Serializable {
     private Integer expirationDays;
     private Integer expirationStatusId;
     private String description;
+    private boolean allowOwnerToCompleteWork;
     private Municipalities municipalities;
     private List<CodesToForm> codesToForms;
     private List<FormCategoryMapping> formCategoryMappings;
@@ -525,6 +526,15 @@ public class FormTypes implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Column(name = "`AllowOwnerToCompleteWork`", nullable = false)
+    public boolean isAllowOwnerToCompleteWork() {
+        return this.allowOwnerToCompleteWork;
+    }
+
+    public void setAllowOwnerToCompleteWork(boolean allowOwnerToCompleteWork) {
+        this.allowOwnerToCompleteWork = allowOwnerToCompleteWork;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -123,6 +123,12 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
                 $scope.Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue = 365;
             }
         };
+
+        $scope.requireOwnerChange = function($event, $isolateScope, newVal, oldVal) {
+
+            $scope.Widgets.liveformUpdateFormType.formWidgets.allowOwnerToCompleteWork.datavalue = false
+        };
+
     }
 ]);
 
