@@ -42,7 +42,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         console.log("!$scope.stripeToken: " + !$scope.stripeToken);
         console.log("$scope.isMunicipalityEmployee(): " + $scope.isMunicipalityEmployee());
         $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
-        if (!$scope.stripeToken || ($scope.isMunicipalityEmployee() && !$scope.stripeToken && $scope.Widgets.radiosetPaymentOptions.datavalue == 'Credit Card')) {
+        if ((!$scope.isMunicipalityEmployee() && !$scope.stripeToken) || ($scope.isMunicipalityEmployee() && !$scope.stripeToken && $scope.Widgets.radiosetPaymentOptions.datavalue == 'Credit Card')) {
             $scope.Widgets.wizardstep2.disabledone = true;
         } else {
             $scope.Widgets.wizardstep2.disabledone = false;
@@ -125,7 +125,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         var dataImage = document.createAttribute("data-image");
         var contextPath = window.location.origin + window.location.pathname;
         console.log("contextPath as formed by JavaScript: " + contextPath);
-        action.value = contextPath + "/services/payment/callback";
+        action.value = contextPath + "services/payment/callback";
         form.attributes.setNamedItem(action);
         method.value = "POST";
         form.attributes.setNamedItem(method);

@@ -102,7 +102,7 @@ public class PaymentService {
         String requestUrl = request.getRequestURL().toString();
         if (requestUrl.contains("civic-dev.com")) {
             // HACK: In leiu of finding a consistent path function that works in both WMO and deployment
-            requestUrl = "http://civic-dev.com/#/MyCart?stripeToken=" + stripeToken; 
+            returnUrl = "http://civic-dev.com/#/MyCart?stripeToken=" + stripeToken; 
         } else {
             returnUrl = request.getContextPath() + "/#/MyCart?stripeToken=" + stripeToken; 
         }
