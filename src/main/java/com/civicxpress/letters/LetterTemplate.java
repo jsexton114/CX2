@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 
 public class LetterTemplate {
     private static final String[] GLOBAL_TEXT_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "Location", "LocationMap", "Fees", "AmountDue", "Owner", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "Location", "LocationMap", "Fees", "AmountDue", "Owner", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_IMAGE_TOKENS = {"MunicipalityLogo"};
@@ -195,6 +195,9 @@ public class LetterTemplate {
             case "ContractorAddress":
                 returnValue = globalFormInfo.getVendorAddress().toString();
                 break;
+            case "LocationLot":
+                returnValue = globalFormInfo.getLocationLot().toString();
+                break;
             case "Location":
                 returnValue = globalFormInfo.getLocationAddress().toString();
                 break;
@@ -203,6 +206,10 @@ public class LetterTemplate {
                 double longitude = globalFormInfo.getLocationLongitude();
                 returnValue = latitude + ", " + longitude;
                 break;
+            case "LocationParcel":
+                returnValue = globalFormInfo.getLocationParcel();
+            case "Subdivision":
+                returnValue = globalFormInfo.getSubdivision();
             case "Fees":
                 BigDecimal totalFees = globalFormInfo.getTotalFees();
                 if (totalFees != null) {
@@ -218,6 +225,8 @@ public class LetterTemplate {
             case "Owner":
                 returnValue = globalFormInfo.getOwnerFirstName() + " " + globalFormInfo.getOwnerLastName();
                 break;
+            case "OwnerAddress":
+                returnValue = globalFormInfo.getOwnerAddress().toString();
             case "Tenant":
                 returnValue = globalFormInfo.getTenantFirstName() + " " + globalFormInfo.getTenantLastName();
                 break;
@@ -280,14 +289,21 @@ public class LetterTemplate {
             case "ContractorAddress":
                 returnValue = globalInspectionInfo.getVendorAddress().toString();
                 break;
+            case "LocationLot":
+                returnValue = globalInspectionInfo.getLocationLot().toString();
+                break;
             case "Location":
                 returnValue = globalInspectionInfo.getLocationAddress().toString();
-                break;
+                break;                
             case "LocationMap":
                 double latitude = globalInspectionInfo.getLocationLatitude();
                 double longitude = globalInspectionInfo.getLocationLongitude();
                 returnValue = latitude + ", " + longitude;
                 break;
+            case "LocationParcel":
+                returnValue = globalInspectionInfo.getLocationParcel();                
+            case "Subdivision":
+                returnValue = globalInspectionInfo.getSubdivision();
             case "Fees":
                 BigDecimal totalFees = globalInspectionInfo.getTotalFees();
                 if (totalFees != null) {
@@ -303,6 +319,8 @@ public class LetterTemplate {
             case "Owner":
                 returnValue = globalInspectionInfo.getOwnerFirstName() + " " + globalInspectionInfo.getOwnerLastName();
                 break;
+            case "OwnerAddress":
+                returnValue = globalInspectionInfo.getOwnerAddress().toString();
             case "Tenant":
                 returnValue = globalInspectionInfo.getTenantFirstName() + " " + globalInspectionInfo.getTenantLastName();
                 break;

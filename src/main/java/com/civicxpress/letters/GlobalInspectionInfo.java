@@ -24,6 +24,7 @@ public class GlobalInspectionInfo {
     private Date issuedDate;
     private String ownerFirstName;
     private String ownerLastName;
+    private Address ownerAddress;
     private String tenantFirstName;
     private String tenantLastName;
     private String locationParcel;
@@ -31,6 +32,7 @@ public class GlobalInspectionInfo {
     private Address locationAddress;
     private double locationLatitude;
     private double locationLongitude;
+    private String subdivision;
 
     public Long getInspectionDesignId() {
 		return inspectionDesignId;
@@ -184,6 +186,14 @@ public class GlobalInspectionInfo {
         this.ownerLastName = ownerLastName;
     }
 
+    public Address getOwnerAddress() {
+        return ownerAddress;
+    }
+
+    public void setOwnerAddress(Address ownerAddress) {
+        this.ownerAddress = ownerAddress;
+    }
+    
     public String getTenantFirstName() {
         return tenantFirstName;
     }
@@ -238,5 +248,13 @@ public class GlobalInspectionInfo {
 
     public void setLocationLongitude(double locationLongitude) {
         this.locationLongitude = locationLongitude;
+    }
+
+    public String getSubdivision() {
+        return this.subdivision;
+    }
+    
+    public void setSubdivision(String subdivision) {
+        this.subdivision = subdivision;
     }
 }

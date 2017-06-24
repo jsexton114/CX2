@@ -225,6 +225,14 @@ public class Cx2DataAccess {
                         rs.getString("VendorPostalCode"),
                         null
                 );
+                Address ownerAddress = new Address(null,
+                        rs.getString("OwnerAddress1"),
+                        rs.getString("OwnerAddress2"),
+                        rs.getString("OwnerCity"),
+                        rs.getString("OwnerState"),
+                        rs.getString("OwnerPostalCode"),
+                        null
+                );
                 globalInspectionInfo = new GlobalInspectionInfo();
                 // FormTypeId  FormType  FormTableName  MunicialityLogo  MunicipalityName
                 globalInspectionInfo.setInspectionDesignId(rs.getLong("InspectionDesignId"));
@@ -253,6 +261,7 @@ public class Cx2DataAccess {
                 // OwnerFirstName  OwnerLastName  TenantFirstName  TenantLastName  LocationParcel  LocationLot
                 globalInspectionInfo.setOwnerFirstName(rs.getString("OwnerFirstName"));
                 globalInspectionInfo.setOwnerLastName(rs.getString("OwnerLastName"));
+                globalInspectionInfo.setOwnerAddress(ownerAddress);
                 globalInspectionInfo.setTenantFirstName(rs.getString("TenantFirstName"));
                 globalInspectionInfo.setTenantLastName(rs.getString("TenantLastName"));
                 globalInspectionInfo.setLocationParcel(rs.getString("LocationParcel"));
@@ -266,6 +275,7 @@ public class Cx2DataAccess {
                         rs.getString("LocationPostalCode"),
                         null
                 ));
+                globalInspectionInfo.setSubdivision(rs.getString("Subdivision"));
                 // LocationLatitude  LocationLongitude
                 String locationLatitudeString = rs.getString("LocationLatitude");
                 if (!rs.wasNull() && locationLatitudeString.length() != 0) {
@@ -321,6 +331,14 @@ public class Cx2DataAccess {
                         rs.getString("VendorPostalCode"),
                         null
                 );
+                Address ownerAddress = new Address(null,
+                        rs.getString("OwnerAddress1"),
+                        rs.getString("OwnerAddress2"),
+                        rs.getString("OwnerCity"),
+                        rs.getString("OwnerState"),
+                        rs.getString("OwnerPostalCode"),
+                        null
+                );
                 globalFormInfo = new GlobalFormInfo();
                 // FormTypeId  FormType  FormTableName  MunicialityLogo  MunicipalityName
                 globalFormInfo.setFormTypeId(rs.getLong("FormTypeId"));
@@ -348,6 +366,7 @@ public class Cx2DataAccess {
                 // OwnerFirstName  OwnerLastName  TenantFirstName  TenantLastName  LocationParcel  LocationLot
                 globalFormInfo.setOwnerFirstName(rs.getString("OwnerFirstName"));
                 globalFormInfo.setOwnerLastName(rs.getString("OwnerLastName"));
+                globalFormInfo.setOwnerAddress(ownerAddress);
                 globalFormInfo.setTenantFirstName(rs.getString("TenantFirstName"));
                 globalFormInfo.setTenantLastName(rs.getString("TenantLastName"));
                 globalFormInfo.setLocationParcel(rs.getString("LocationParcel"));
@@ -361,6 +380,7 @@ public class Cx2DataAccess {
                         rs.getString("LocationPostalCode"),
                         null
                 ));
+                globalFormInfo.setSubdivision(rs.getString("Subdivision"));
                 // LocationLatitude  LocationLongitude
                 // look at how much extra code has to be written because the database is designed incorrectly
                 String locationLatitudeString = rs.getString("LocationLatitude");
