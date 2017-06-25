@@ -736,7 +736,10 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             return disable;
         }
         $scope.cannotAddInspection = function() {
-
+            console.log("((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling): " + $scope.$eval("((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling)"));
+            console.log("Variables.CurrentForm.dataSet.data[$i].balanceDue: " + $scope.$eval("Variables.CurrentForm.dataSet.data[$i].balanceDue"));
+            console.log("(Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber): " + $scope.$eval("(Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber)"));
+            console.log("inspectionObject.requireFeesPaidBeforeScheduling: " + $scope.$eval("inspectionObject.requireFeesPaidBeforeScheduling"));
             return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || ((Variables.CurrentForm.dataSet.data[$i].balanceDue | stringToNumber) > 0 && inspectionObject.requireFeesPaidBeforeScheduling)");
         };
 
