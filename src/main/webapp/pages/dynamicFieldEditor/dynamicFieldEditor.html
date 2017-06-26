@@ -25,7 +25,7 @@
                         <wm-composite name="composite7" required="true">
                             <wm-label class="col-md-3 form-control-static" name="label11" caption="Field Type" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container6">
-                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label" disabled="bind:!!formTypeFieldId" placeholder="Select Type"></wm-select>
+                                <wm-select name="selectFormFieldType" dataset="bind:Variables.lvFormFieldTypes.dataSet" datafield="All Fields" displayfield="label" disabled="bind:!!formTypeFieldId" placeholder="Select Type" orderby="label:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -188,17 +188,17 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow46">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn76">
-                        <wm-composite name="composite9" required="false">
-                            <wm-label class="col-md-3 form-control-static" name="label13" caption="Display Order" fontweight="bold"></wm-label>
+                        <wm-composite name="composite9" required="true">
+                            <wm-label class="col-md-3 form-control-static" name="label13" caption="Display Order" fontweight="bold" required="true"></wm-label>
                             <wm-container class="col-md-9" name="container8">
-                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1" maxvalue="1234567890" minvalue="1"></wm-text>
+                                <wm-text name="textFormFieldDisplayOrder" type="number" placeholder="Enter number" datavalue="bind:Variables.Cx2FormTypeFieldsData.dataSet.data.length+1" maxvalue="999999" minvalue="1" required="true" maxchars="6" step="1"></wm-text>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
             <wm-dialogactions name="dialogactions1">
-                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:(!Widgets.textFormFieldLabel.datavalue &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType) || !Widgets.selectFormFieldType.datavalue.id"></wm-button>
+                <wm-button class="btn-primary" caption="Save" type="button" margin="unset 0.5em" name="buttonSaveFormField" iconclass="wi wi-save" on-click="buttonSaveFormFieldClick($event, $scope)" disabled="bind:(!Widgets.textFormFieldLabel.datavalue &amp;&amp; !!Widgets.selectFormFieldType.datavalue.sqlType) || !Widgets.selectFormFieldType.datavalue.id || !Widgets.textFormFieldDisplayOrder.datavalue"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" on-click="button2Click($event, $scope)" name="button2" iconclass="wi wi-cancel"></wm-button>
             </wm-dialogactions>
         </wm-dialog>
