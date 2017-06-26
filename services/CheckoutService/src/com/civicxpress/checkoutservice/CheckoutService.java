@@ -49,6 +49,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
+import com.stripe.model.ChargeOutcome;
 import com.stripe.net.RequestOptions;
 
 //import com.civicxpress.checkoutservice.model.*;
@@ -139,6 +140,7 @@ public class CheckoutService {
 	            logger.info("There was a problem processing payment and the transaction has been rolled back.");
 	            logger.info("paymentNumber: " + paymentNumber);
 	            logger.info("currentUserId: " + currentUserId);
+	            throw new Exception("There was a problem processing payment and the transaction has been rolled back.");
 	        }
 
 	    	if (transactionId != null && transactionSuccess) {
@@ -190,19 +192,25 @@ public class CheckoutService {
 		try {
 		    
 		    String status = null;
+		    ChargeOutcome outcome = null;
+		    String outcomeType = null;
 			charge = Charge.create(params);
 			status = charge.getStatus();
+			outcome = charge.getOutcome();
+			outcomeType = outcome.getType();
 			System.out.println("charge.getId(): " + charge.getId());
 			System.out.println("charge.getOutcome(): " + charge.getOutcome());
+			System.out.println("outcomeType: " + outcomeType);
 
-    		if (status.equals("succeeded")) {
-    		    System.out.println("Succeed branch");
+            // outcomeType = "declined"; // simulate a decline, even though Stripe should handle it
+    		if (outcomeType.equals("authorized")) {
+    		    System.out.println("outcomeType authorized");
         		BigDecimal decimalAmount = new BigDecimal(charge.getAmount() / 100);
         		System.out.println("decimalAmount: " + decimalAmount.toString());
                 returnSuccess = true;
     		} else {
     		    // TODO: how will user know what the problem is? I need to pass an output value
-    		    System.out.println("Did not succeed branch");
+    		    System.out.println("outcomeType NOT authorized");
     		    returnSuccess = false;
     		}
 		} catch (AuthenticationException e) {
