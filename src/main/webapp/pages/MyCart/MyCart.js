@@ -249,3 +249,17 @@ Application.$controller("pagedialogViewInspectionController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("pagedialogViewForm Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
+
+Application.$controller("pagedialogViewInspection Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

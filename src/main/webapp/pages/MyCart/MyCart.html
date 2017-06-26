@@ -18,9 +18,11 @@
                                                 <wm-grid-column binding="feeType" caption="Fee" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="amount" caption="Amount" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-action key="addNewRow" display-name="bind:feeTotal | toCurrency:'$':'2'" show="true" class="btn-secondary" iconclass="" title="Total" action="" shortcutkey="" disabled="false"></wm-grid-action>
-                                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="false" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)" shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
+                                                <wm-grid-action key="customButton" display-name="Proceed to Checkout" show="false" class="btn-primary" iconclass="wi wi-navigate-next" title="Checkout" action="customButtonAction($event)"
+                                                shortcutkey="" disabled="bind:feeTotal <= 0"></wm-grid-action>
                                                 <wm-grid-row-action key="updaterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
-                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()" disabled="false"></wm-grid-row-action>
+                                                <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Remove From Cart" action="Variables.lvDeleteFromCart.deleteRecord()"
+                                                disabled="false"></wm-grid-row-action>
                                             </wm-grid>
                                         </wm-gridcolumn>
                                     </wm-gridrow>
@@ -46,8 +48,8 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow6" padding="unset unset 2em unset">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn8">
-                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:(isMunicipalityEmployee() && !stripeToken) ? Variables.stvPaymentOptions.dataSet[0].paymentType : Variables.stvPaymentOptions.dataSet[2].paymentType"
-                                            usekeys="false" show="bind:isMunicipalityEmployee() && !stripeToken"></wm-radioset>
+                                            <wm-radioset height="auto" name="radiosetPaymentOptions" layout="inline" dataset="bind:Variables.stvPaymentOptions.dataSet" datafield="paymentType" displayfield="paymentType" selectedvalue="bind:(isMunicipalityEmployee() &amp;&amp; !stripeToken) ? Variables.stvPaymentOptions.dataSet[0].paymentType : Variables.stvPaymentOptions.dataSet[2].paymentType"
+                                            usekeys="false" show="bind:isMunicipalityEmployee() &amp;&amp; !stripeToken"></wm-radioset>
                                             <!--<div ng-repeat="fee in Variables.svFeesInCartOfUser.dataSet" class="app-grid-column dynamic-field-column col-sm-12" name="fee{{$index}}">{{fee.feeType}}
                                             </div>-->
                                         </wm-gridcolumn>
@@ -65,7 +67,7 @@
                                         <wm-gridcolumn columnwidth="8" name="gridcolumn10">
                                             <wm-composite name="compositePaymentNumber" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )" required="{{((Widgets.radiosetPaymentOptions.datavalue=='Check'
                                             )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' ))}}">
-                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check' ? 'Check Number': 'Transaction ID'" fontweight="bold" required="false"></wm-label>
+                                                <wm-label class="col-md-3 form-control-static" name="labelPaymentNumber" caption="bind:Widgets.radiosetPaymentOptions.datavalue=='Check' ? 'Check Number': 'Payment Number'" fontweight="bold" required="false"></wm-label>
                                                 <wm-container class="col-md-9" name="container2">
                                                     <wm-text name="textPaymentNumber"></wm-text>
                                                 </wm-container>
@@ -76,7 +78,8 @@
                                     <wm-gridrow name="gridrow8">
                                         <wm-gridcolumn columnwidth="1" name="gridcolumn14_1"></wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="8" name="gridcolumn12">
-                                            <wm-composite name="compositeComments" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )" required="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )">
+                                            <wm-composite name="compositeComments" show="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )"
+                                            required="bind:(Widgets.radiosetPaymentOptions.datavalue=='Check' )||(Widgets.radiosetPaymentOptions.datavalue=='Cash' )||(Widgets.radiosetPaymentOptions.datavalue=='Offline Credit Card' )">
                                                 <wm-label class="col-md-3 form-control-static" name="labelComments" caption="Comments" fontweight="bold"></wm-label>
                                                 <wm-container class="col-md-9" name="container3">
                                                     <wm-textarea name="textareaComments" placeholder="Place Your Comments"></wm-textarea>
@@ -97,11 +100,11 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn14_2">
                         <wm-container name="containerPaymentRecieved" margin="1em" backgroundcolor="#ffffff" horizontalalign="center" show="false">
                             <wm-label padding="unset 0.5em" name="label8" class="h3" caption="Thank you! The payment you submitted has been processed."></wm-label>
-                            <wm-html><a href="/">Click here</a> to return to CivicXpress</wm-html>
+                            <wm-html name="html4"><a href="/">Click here</a> to return to CivicXpress</wm-html>
                         </wm-container>
                         <wm-container name="containerPaymentError" margin="1em" backgroundcolor="#ffffff" horizontalalign="center" show="false">
                             <wm-label padding="unset 0.5em" name="label8" class="h3" caption="There was a problem processing payment."></wm-label>
-                            <wm-html><a href="/">Click here</a> to return to CivicXpress</wm-html>
+                            <wm-html name="html5"><a href="/">Click here</a> to return to CivicXpress</wm-html>
                         </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
