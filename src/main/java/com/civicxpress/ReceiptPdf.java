@@ -25,7 +25,11 @@ public class ReceiptPdf {
         PdfDocument pdfDocument = new PdfDocument();
         Float rightMargin = 36.0f;
         Float documentWidth = 500.0f;
-        Float oneQuarterDocumentWidth = 250.0f;
+        Float oneQuarterDocumentWidth = 125.0f;
+        float columnOne = rightMargin;
+        float columnTwo = rightMargin + oneQuarterDocumentWidth;
+        float columnThree = rightMargin + oneQuarterDocumentWidth * 2;
+        float columnFour = rightMargin + oneQuarterDocumentWidth * 3;
         Float lineHeight = 20.0f;
         Float fontSizeNormal = 12.0f;
         Float fontSizeSmaller = 10.0f;
@@ -51,15 +55,16 @@ public class ReceiptPdf {
         for (PaymentReceiptFee f : paymentReceipt.getPaymentReceiptFees()) {
             yIndex -= lineHeight;
             lineItemTotal = lineItemTotal.add(f.getAmount());
-            pdfDocument.addText(rightMargin, yIndex, oneQuarterDocumentWidth, f.getMunicipalityName(), font, fontSizeNormal, TextJustification.Left);
-            pdfDocument.addText(rightMargin + oneQuarterDocumentWidth, yIndex, oneQuarterDocumentWidth, f.getFeeType(), font, fontSizeNormal, TextJustification.Left);
-            pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(f.getAmount()), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(columnOne, yIndex, oneQuarterDocumentWidth, f.getMunicipalityName(), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(columnTwo, yIndex, oneQuarterDocumentWidth, f.getFeeType(), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(columnThree, yIndex, oneQuarterDocumentWidth, f.getItemTitle(), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(columnFour, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(f.getAmount()), font, fontSizeNormal, TextJustification.Left);
         };
         yIndex -= lineHeight / 2;
-        pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, "----------", font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(columnFour, yIndex, oneQuarterDocumentWidth, "----------", font, fontSizeNormal, TextJustification.Left);
         yIndex -= lineHeight / 2;
-        pdfDocument.addText(rightMargin * 2, yIndex, oneQuarterDocumentWidth - rightMargin, "Total", font, fontSizeNormal, TextJustification.Left);
-        pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(lineItemTotal), font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(columnThree, yIndex, oneQuarterDocumentWidth - rightMargin, "Total", font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(columnFour, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(lineItemTotal), font, fontSizeNormal, TextJustification.Left);
         fileStream = new ByteArrayOutputStream();
         pdfDocument.saveToFile(fileStream);
         fileBytesOutput = fileStream.toByteArray();

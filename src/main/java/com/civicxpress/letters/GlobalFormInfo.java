@@ -23,6 +23,7 @@ public class GlobalFormInfo {
     private Date issuedDate;
     private String ownerFirstName;
     private String ownerLastName;
+    private String ownerPhone;
     private Address ownerAddress;
     private String tenantFirstName;
     private String tenantLastName;
@@ -177,6 +178,14 @@ public class GlobalFormInfo {
         this.ownerLastName = ownerLastName;
     }
 
+    public String getOwnerPhone() {
+        return ownerPhone;
+    }
+    
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
+    }
+    
     public Address getOwnerAddress() {
         return ownerAddress;
     }

@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 
 public class LetterTemplate {
     private static final String[] GLOBAL_TEXT_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerAddress", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerAddress", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_IMAGE_TOKENS = {"MunicipalityLogo"};

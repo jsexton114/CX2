@@ -262,6 +262,7 @@ public class Cx2DataAccess {
                 // OwnerFirstName  OwnerLastName  TenantFirstName  TenantLastName  LocationParcel  LocationLot
                 globalInspectionInfo.setOwnerFirstName(rs.getString("OwnerFirstName"));
                 globalInspectionInfo.setOwnerLastName(rs.getString("OwnerLastName"));
+                globalInspectionInfo.setOwnerPhone(rs.getString("OwnerPhone"));
                 globalInspectionInfo.setOwnerAddress(ownerAddress);
                 globalInspectionInfo.setTenantFirstName(rs.getString("TenantFirstName"));
                 globalInspectionInfo.setTenantLastName(rs.getString("TenantLastName"));
@@ -367,6 +368,7 @@ public class Cx2DataAccess {
                 // OwnerFirstName  OwnerLastName  TenantFirstName  TenantLastName  LocationParcel  LocationLot
                 globalFormInfo.setOwnerFirstName(rs.getString("OwnerFirstName"));
                 globalFormInfo.setOwnerLastName(rs.getString("OwnerLastName"));
+                globalFormInfo.setOwnerPhone(rs.getString("OwnerPhone"));
                 globalFormInfo.setOwnerAddress(ownerAddress);
                 globalFormInfo.setTenantFirstName(rs.getString("TenantFirstName"));
                 globalFormInfo.setTenantLastName(rs.getString("TenantLastName"));

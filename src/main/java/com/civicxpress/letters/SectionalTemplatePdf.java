@@ -14,9 +14,6 @@ import java.util.regex.Pattern;
 import static com.civicxpress.letters.PdfDocument.*;
 
 public class SectionalTemplatePdf {
-    private static final String[] GLOBAL_TOKENS = {"FormTitle", "MunicipalityName", "MunicipalityLogo", "MunicipalityAddress", "ContractorName", "ContractorAddress",
-            "Location", "LocationMap", "Fees", "AmountDue", "Owner", "Tenant",
-            "Violations", "ExpiresDate", "IssuedDate"};
     private static final String TOKEN_PATTERN = "\\[(.*?)\\]";
     private static final int COMPLETE_TOKEN_GROUP_INDEX = 0;
     private static final int TOKEN_NAME_GROUP_INDEX = 1;

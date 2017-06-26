@@ -24,6 +24,7 @@ public class GlobalInspectionInfo {
     private Date issuedDate;
     private String ownerFirstName;
     private String ownerLastName;
+    private String ownerPhone;
     private Address ownerAddress;
     private String tenantFirstName;
     private String tenantLastName;
@@ -186,6 +187,14 @@ public class GlobalInspectionInfo {
         this.ownerLastName = ownerLastName;
     }
 
+    public String getOwnerPhone() {
+        return ownerPhone;
+    }
+    
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
+    }
+    
     public Address getOwnerAddress() {
         return ownerAddress;
     }
