@@ -1,6 +1,7 @@
 package com.civicxpress.letters;
 
 import com.civicxpress.PaymentReceipt;
+import com.civicxpress.PaymentReceiptFee;
 import com.civicxpress.cx2.Fees;
 
 import java.math.BigDecimal;
@@ -618,12 +619,13 @@ public class Cx2DataAccess {
             }
             if (statement.getMoreResults()) {
                 //logger.debug("statement.getMoreResults()");
-                ArrayList<Fees> fees = new ArrayList<Fees>();
+                ArrayList<PaymentReceiptFee> fees = new ArrayList<PaymentReceiptFee>();
             	rsPaymentReceiptDetail = statement.getResultSet();
             	//logger.debug("rsPaymentReceiptDetail: " + rsPaymentReceiptDetail);
             	while (rsPaymentReceiptDetail.next()) {
             	    //logger.debug("rsPaymentReceiptDetail.next()");
-            	    Fees fee = new Fees();
+            	    PaymentReceiptFee fee = new PaymentReceiptFee();
+            	    String municipalityName = rsPaymentReceiptDetail.getString("MunicipalityName");
             	    String feeType = rsPaymentReceiptDetail.getString("FeeType");
             	    String accountingCode = rsPaymentReceiptDetail.getString("AccountingCode");
             	    String paidStatus = rsPaymentReceiptDetail.getString("PaidStatus");
@@ -632,16 +634,7 @@ public class Cx2DataAccess {
                     String itemTitle = rsPaymentReceiptDetail.getString("ItemTitle");
                     BigDecimal amount = rsPaymentReceiptDetail.getBigDecimal("Amount");
                     String transactionComments = rsPaymentReceiptDetail.getString("TransactionComments");
-                    /*
-                    logger.debug("feeType: " + feeType);
-                    logger.debug("accountingCode: " + accountingCode);
-                    logger.debug("paidStatus: " + paidStatus);
-                    logger.debug("paidDate: " + paidDate);
-                    logger.debug("comments: " + comments);
-                    logger.debug("itemTitle: " + itemTitle);
-                    logger.debug("amount: " + amount);
-                    logger.debug("transactionComments: " + transactionComments);
-                    */
+                    if (municipalityName !=null) fee.setMunicipalityName(municipalityName);
             	    if (feeType != null) fee.setFeeType(feeType);
             	    if (accountingCode != null ) fee.setAccountingCode(accountingCode);
             	    if (paidStatus != null) fee.setPaidStatus(paidStatus);
@@ -653,7 +646,7 @@ public class Cx2DataAccess {
             	    //fee.setMunicipalityName(rsPaymentReceiptDetail.getString("MunicipalityName"));
                     fees.add(fee);
             	}
-            	paymentReceipt.setFees(fees.toArray(new Fees[fees.size()]));
+            	paymentReceipt.setPaymentReceiptFees(fees.toArray(new PaymentReceiptFee[fees.size()]));
             }
         } catch (SQLException e) {
             try {

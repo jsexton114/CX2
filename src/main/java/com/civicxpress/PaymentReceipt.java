@@ -1,6 +1,7 @@
 package com.civicxpress;
 
 import com.civicxpress.cx2.Fees;
+import com.civicxpress.PaymentReceiptFee;
 import com.civicxpress.cx2.PaymentHistory;
 import org.joda.time.LocalDateTime;
 
@@ -9,11 +10,13 @@ public class PaymentReceipt {
     private PaymentHistory paymentHistory = null;
     private String userFullName = null;
     private String userEmail = null;
-    private Fees[] fees = null;
+    //private Fees[] fees = null;
+    private PaymentReceiptFee[] paymentReceiptFees = null;
 
     public PaymentReceipt() {
         this.paymentHistory = new PaymentHistory();
-        this.fees = new Fees[0];
+        //this.fees = new Fees[0];
+        this.paymentReceiptFees = new PaymentReceiptFee[0];
     }
     
     public Integer getTransactionId() {
@@ -80,6 +83,7 @@ public class PaymentReceipt {
         this.userEmail = userEmail;
     }
 
+/*
     public Fees[] getFees() {
         return this.fees;
     }
@@ -87,4 +91,14 @@ public class PaymentReceipt {
     public void setFees(Fees[] fees) {
         this.fees = fees;
     }
+ */
+ 
+    public PaymentReceiptFee[] getPaymentReceiptFees() {
+        return this.paymentReceiptFees;        
+    }
+    
+    public void setPaymentReceiptFees(PaymentReceiptFee[] paymentReceiptFees) {
+        this.paymentReceiptFees = paymentReceiptFees;
+    }
 }
+

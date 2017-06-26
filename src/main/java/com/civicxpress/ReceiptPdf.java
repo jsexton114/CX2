@@ -2,6 +2,7 @@ package com.civicxpress;
 
 import com.civicxpress.cx2.Fees;
 import com.civicxpress.PaymentReceipt;
+import com.civicxpress.PaymentReceiptFee;
 import com.civicxpress.letters.PdfDocument;
 import com.civicxpress.letters.PdfDocument.*;
 import java.io.ByteArrayOutputStream;
@@ -24,7 +25,7 @@ public class ReceiptPdf {
         PdfDocument pdfDocument = new PdfDocument();
         Float rightMargin = 36.0f;
         Float documentWidth = 500.0f;
-        Float halfDocumentWidth = 250.0f;
+        Float oneQuarterDocumentWidth = 250.0f;
         Float lineHeight = 20.0f;
         Float fontSizeNormal = 12.0f;
         Float fontSizeSmaller = 10.0f;
@@ -47,17 +48,18 @@ public class ReceiptPdf {
         yIndex -= lineHeight;
         pdfDocument.addText(rightMargin, yIndex, documentWidth, "Payment # " + paymentReceipt.getPaymentNumber(), font, fontSizeSmaller, TextJustification.Centered);
         yIndex -= lineHeight * 2;
-        for (Fees f : paymentReceipt.getFees()) {
+        for (PaymentReceiptFee f : paymentReceipt.getPaymentReceiptFees()) {
             yIndex -= lineHeight;
             lineItemTotal = lineItemTotal.add(f.getAmount());
-            pdfDocument.addText(rightMargin * 2, yIndex, halfDocumentWidth - rightMargin, f.getFeeType(), font, fontSizeNormal, TextJustification.Left);
-            pdfDocument.addText(rightMargin + halfDocumentWidth, yIndex, halfDocumentWidth, currencyFormatter.format(f.getAmount()), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(rightMargin, yIndex, oneQuarterDocumentWidth, f.getMunicipalityName(), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(rightMargin + oneQuarterDocumentWidth, yIndex, oneQuarterDocumentWidth, f.getFeeType(), font, fontSizeNormal, TextJustification.Left);
+            pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(f.getAmount()), font, fontSizeNormal, TextJustification.Left);
         };
         yIndex -= lineHeight / 2;
-        pdfDocument.addText(rightMargin + halfDocumentWidth, yIndex, halfDocumentWidth, "----------", font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, "----------", font, fontSizeNormal, TextJustification.Left);
         yIndex -= lineHeight / 2;
-        pdfDocument.addText(rightMargin * 2, yIndex, halfDocumentWidth - rightMargin, "Total", font, fontSizeNormal, TextJustification.Left);
-        pdfDocument.addText(rightMargin + halfDocumentWidth, yIndex, halfDocumentWidth, currencyFormatter.format(lineItemTotal), font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(rightMargin * 2, yIndex, oneQuarterDocumentWidth - rightMargin, "Total", font, fontSizeNormal, TextJustification.Left);
+        pdfDocument.addText(rightMargin + oneQuarterDocumentWidth * 2, yIndex, oneQuarterDocumentWidth, currencyFormatter.format(lineItemTotal), font, fontSizeNormal, TextJustification.Left);
         fileStream = new ByteArrayOutputStream();
         pdfDocument.saveToFile(fileStream);
         fileBytesOutput = fileStream.toByteArray();
