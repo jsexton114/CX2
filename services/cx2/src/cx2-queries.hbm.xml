@@ -1051,22 +1051,6 @@ INNER JOIN MasterForms MF ON MF.FormGUID=fees.FormGuid
 INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
 INNER JOIN Municipalities muni ON muni.ID=FT.MunicipalityID
 where MC.userId=:user and fees.PaidStatus='Unpaid'
-UNION
-select MC.id as id,
-       MI.InspectionTitle as itemTitle,
-       MI.InspectionGuid as itemGuid,
-       ID.InspectDesignName as parentItemName,
-       muni.MunicipalityName as municipalityName,
-         'inspection' as itemType,
-       (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MI.FormGUID) as fullAddress,
-       fees.feeType as feeType,
-       fees.amount as amount
-from MyCart MC
-INNER JOIN Fees fees ON fees.id=MC.feeId
-INNER JOIN MasterInspections MI ON MI.InspectionGuid=fees.InspectionGuid
-INNER JOIN InspectionDesign ID ON ID.ID=MI.InspectionDesignId
-INNER JOIN Municipalities muni ON muni.ID=ID.MunicipalityId
-where MC.userId=:user and fees.PaidStatus='Unpaid'
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
@@ -1087,22 +1071,6 @@ INNER JOIN Fees fees ON fees.id=MC.feeId
 INNER JOIN MasterForms MF ON MF.FormGUID=fees.FormGuid
 INNER JOIN FormTypes FT ON FT.ID=MF.FormTypeId
 INNER JOIN Municipalities muni ON muni.ID=FT.MunicipalityID
-where MC.userId=:user and fees.PaidStatus='Unpaid'
-UNION
-select MC.id as id,
-       MI.InspectionTitle as itemTitle,
-       MI.InspectionGuid as itemGuid,
-       ID.InspectDesignName as parentItemName,
-       muni.MunicipalityName as municipalityName,
-         'inspection' as itemType,
-       (select top 1 gis.fullAddress from GISRecords gis, GIS2Forms gtf where gis.ID=gtf.GisRecordID and gtf.RelatedFormGUID=MI.FormGUID) as fullAddress,
-       fees.feeType as feeType,
-       fees.amount as amount
-from MyCart MC
-INNER JOIN Fees fees ON fees.id=MC.feeId
-INNER JOIN MasterInspections MI ON MI.InspectionGuid=fees.InspectionGuid
-INNER JOIN InspectionDesign ID ON ID.ID=MI.InspectionDesignId
-INNER JOIN Municipalities muni ON muni.ID=ID.MunicipalityId
 where MC.userId=:user and fees.PaidStatus='Unpaid') wmTempTable
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
