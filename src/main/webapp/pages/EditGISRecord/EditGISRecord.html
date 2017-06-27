@@ -1,4 +1,4 @@
-<wm-page data-ng-controller="EditGISRecordPageController" pagetitle="Edit GIS Record" name="page1">
+<wm-page data-ng-controller="EditGISRecordPageController" pagetitle="Address Record" name="page1">
     <wm-header content="header" name="header1"></wm-header>
     <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
@@ -520,9 +520,7 @@
     </wm-content>
     <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view2">
-        <wm-pagedialog name="pagedialogViewForm" class="modal-larger" content="_viewForm" modal="true" title="View Form" oktext="Close" iconclass="wi wi-assignment">
-            <wm-param name="FormGUID" value="bind:Variables.stvFormLink.dataSet.dataValue" type="string"></wm-param>
-        </wm-pagedialog>
+        <wm-pagedialog name="pagedialogViewForm" class="modal-larger" content="_viewForm" modal="true" title="View Form" oktext="Close" iconclass="wi wi-assignment"></wm-pagedialog>
     </wm-view>
     <wm-view class="dialog-view" name="viewShowTaggedPeople" viewgroup="default">
         <wm-dialog dialogtype="design-dialog" modal="true" title="Tagged" iconclass="wi wi-tag" name="dialogShowTaggedPeople">
