@@ -1,6 +1,7 @@
 package com.civicxpress.letters;
 
 import org.apache.commons.lang3.builder.HashCodeExclude;
+import org.apache.log4j.Logger;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.*;
@@ -18,6 +19,8 @@ public class SectionalTemplatePdf {
     private static final int COMPLETE_TOKEN_GROUP_INDEX = 0;
     private static final int TOKEN_NAME_GROUP_INDEX = 1;
 
+    private static final Logger logger = Logger.getLogger(Cx2DataAccess.class);
+    
     // defaults
     private static final float letterHeight = 792.0f;
     private static final float letterWidth = 612.0f;
@@ -40,6 +43,7 @@ public class SectionalTemplatePdf {
     private int letterTemplateId;
     private String title = null;
     private byte[] municipalityLogo;
+    private HashMap<String, byte[]> additionalImages;
 
     public SectionalTemplatePdf() {
 //        PDRectangle.LETTER height: 792.0
@@ -74,6 +78,14 @@ public class SectionalTemplatePdf {
 	public void setMunicipalityLogo(byte[] municipalityLogo) {
 		this.municipalityLogo = municipalityLogo;
 	}
+
+    public HashMap<String, byte[]> getAdditionalImages() {
+        return this.additionalImages;
+    }
+
+    public void setAdditionalImages(HashMap<String, byte[]> additionalImages) {
+        this.additionalImages = additionalImages;
+    }
 
 	public void setUpDefaultSections() {
 		float yPosition = headerYPosition;
@@ -125,6 +137,8 @@ public class SectionalTemplatePdf {
     public byte[] createLetter(GlobalFormInfo globalFormInfo, Map<String, String> tokens) {
         byte[] fileBytesOutput = null;
         this.setMunicipalityLogo(globalFormInfo.getMunicipalityLogo());
+        this.setAdditionalImages(globalFormInfo.getAdditionalImages());
+        logger.debug("globalFormInfo.getAdditionalImages() == null: " + (globalFormInfo.getAdditionalImages() == null));
         this.generatePdfOutput(tokens);
         ByteArrayOutputStream fileStream = new ByteArrayOutputStream();
         this.saveToFile(fileStream);
@@ -182,6 +196,17 @@ public class SectionalTemplatePdf {
 	    if (section.getText().indexOf("[MunicipalityLogo]") >= 0) {
 	        section.setText("");
 	        section.setImage(municipalityLogo);
+	    } else {
+            for (Map.Entry<String, byte[]> imageEntry : additionalImages.entrySet()) {
+                String imageId = imageEntry.getKey();
+                String additionalImageToken = "[Document" + imageId + "]";
+                logger.debug("additionalImageToken: " + additionalImageToken);
+                if (section.getText().indexOf(additionalImageToken) >= 0) {
+                    byte[] imageBytes = imageEntry.getValue();
+                    section.setText("");
+                    section.setImage(imageBytes);
+                }
+            }
 	    }
 	    
         image = section.getImage();

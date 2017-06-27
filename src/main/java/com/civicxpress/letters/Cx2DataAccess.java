@@ -396,6 +396,18 @@ public class Cx2DataAccess {
                     Double locationLongitude = rs.getDouble("LocationLongitude");
                     if (!rs.wasNull()) globalFormInfo.setLocationLongitude(locationLongitude);
                 }
+                if (statement.getMoreResults()) {
+                    logger.debug("statement.getMoreResults()");
+                    ResultSet rsAdditionalImages = statement.getResultSet();
+                    HashMap<String, byte[]> additionalImages = new HashMap<String, byte[]>();
+                    while (rsAdditionalImages.next()) {
+                        Long imageId = rsAdditionalImages.getLong("ID");
+                        byte[] imageBytes = rsAdditionalImages.getBytes("Contents");
+                        logger.debug("imageId: " + imageId);
+                        additionalImages.put(imageId.toString(), imageBytes);
+                    }
+                    globalFormInfo.setAdditionalImages(additionalImages);
+                }                
             }
         } catch (Exception e) {
             throw e;
