@@ -3,7 +3,7 @@
         <wm-nav name="leftTopLinks" type="navbar" class="navbar-left"></wm-nav>
         <wm-nav name="rightTopLinks" type="navbar" class="navbar-right">
             <wm-nav-item name="list_cart">
-                <wm-anchor caption="My Cart" name="cartLink" iconclass="wi wi-shopping-cart" on-click="Widgets.pagedialog1.open()" margin="unset 2em unset unset" badgevalue="bind:Variables.stvCartCount.dataSet.dataValue" class="cartBadge"></wm-anchor>
+                <wm-anchor caption="My Cart" name="cartLink" iconclass="wi wi-shopping-cart" on-click="Variables.goToPage_MyCart.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.stvCartCount.dataSet.dataValue" class="cartBadge"></wm-anchor>
             </wm-nav-item>
             <wm-nav-item name="list_messages">
                 <wm-anchor caption="Messages" name="messagesLink" iconclass="wi wi-mail-outline" on-click="Variables.goToPage_MyMessages.invoke()" margin="unset 2em unset unset" badgevalue="bind:Variables.svCountUnReadMessagesByUser.dataSet[$i].unReadMessagesCount"
