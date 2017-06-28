@@ -13,9 +13,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         // if the stripeToken is avaiable, then $scope.Widgets.wizardCheckOut.next(); from wizardstep1Load
         $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
         if (!!$scope.stripeToken) {
-            console.log("!!$scope.stripeToken");
             $scope.Widgets.wizardCheckOut.next();
-            console.log("$scope.Widgets.wizardCheckOut.next();");
             //$scope.Widgets.wizardCheckOut.done();
             $scope.Variables.svCheckout.setInput("paymentNumber", $scope.stripeToken);
             $scope.Variables.svCheckout.setInput("comments", "Stripe payment transaction ID " + $scope.stripeToken);
@@ -38,15 +36,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     $scope.wizardstep2Load = function($isolateScope, stepIndex) {
         console.log("wizardstep2Load");
-        console.log("$scope.Widgets.radiosetPaymentOptions.datavalue: " + $scope.Widgets.radiosetPaymentOptions.datavalue);
-        console.log("!$scope.stripeToken: " + !$scope.stripeToken);
-        console.log("$scope.isMunicipalityEmployee(): " + $scope.isMunicipalityEmployee());
-        $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
-        if ((!$scope.isMunicipalityEmployee() && !$scope.stripeToken) || ($scope.isMunicipalityEmployee() && !$scope.stripeToken && $scope.Widgets.radiosetPaymentOptions.datavalue == 'Credit Card')) {
-            $scope.Widgets.wizardstep2.disabledone = true;
-        } else {
-            $scope.Widgets.wizardstep2.disabledone = false;
-        }
+        $scope.disableDoneIfNeeded();
     };
 
     $scope.wizardstep2Prev = function($isolateScope, currentStep, stepIndex) {
@@ -66,6 +56,11 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         $scope.Variables.svCheckout.setInput("Long", feeIds);
         $scope.Variables.svCheckout.update();
     };
+
+    $scope.paymentOnChange = function($event, $isolateScope) {
+        console.log("paymentOnChange()");
+        $scope.disableDoneIfNeeded();
+    }
 
     $scope.svCheckoutonError = function(variable, data) {
 
@@ -147,6 +142,15 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         script.attributes.setNamedItem(dataImage);
         form.appendChild(script);
         return form;
+    }
+
+    $scope.disableDoneIfNeeded = function() {
+        $scope.stripeToken = tdUtils.getCookieValue("stripeToken");
+        if ((!$scope.isMunicipalityEmployee() && !$scope.stripeToken) || ($scope.isMunicipalityEmployee() && !$scope.stripeToken && $scope.Widgets.radiosetPaymentOptions.datavalue == 'Credit Card')) {
+            $scope.Widgets.wizardstep2.disabledone = true;
+        } else {
+            $scope.Widgets.wizardstep2.disabledone = false;
+        }
     }
 
     $scope.isMunicipalityEmployee = function() {
@@ -251,15 +255,15 @@ Application.$controller("pagedialogViewInspectionController", ["$scope",
 ]);
 
 Application.$controller("pagedialogViewForm Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("pagedialogViewInspection Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
