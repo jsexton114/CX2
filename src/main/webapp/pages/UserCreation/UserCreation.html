@@ -42,7 +42,8 @@
                                     <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc" displayexpression="stateName"></wm-form-field>
+                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc"
+                                    displayexpression="stateName"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10" padding="unset unset 2em unset">
@@ -50,7 +51,8 @@
                                     <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA" readonly="false"></wm-form-field>
+                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                    defaultvalue="USA" readonly="false"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow21_1">
@@ -76,8 +78,8 @@
                         <wm-layoutgrid name="layoutgrid4">
                             <wm-gridrow name="gridrow20" padding="unset unset 2em unset">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn31_3">
-                                    <wm-label padding="unset 0.5em" name="Instructions" caption="Please select at least one municipality that you would like to interact with. You may add as many municipalities as you like by performing a search and selecting the municipality." horizontalalign="center"
-                                    textalign="left"></wm-label>
+                                    <wm-label padding="unset 0.5em" name="Instructions" caption="Please select at least one municipality that you would like to interact with. You may add as many municipalities as you like by performing a search and selecting the municipality."
+                                    horizontalalign="center" textalign="left"></wm-label>
                                     <wm-label padding="unset 0.5em" name="label19" caption="Subscribing to a municipality allows you to submit forms to that municipality."></wm-label>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -87,8 +89,8 @@
                                     <wm-composite name="composite5">
                                         <wm-label class="col-md-3 form-control-static" name="label8" caption="Municipality Search" width="20%" fontweight="bold"></wm-label>
                                         <wm-container class="col-md-9" name="container5" width="80%">
-                                            <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo" datafield="All Fields" required="false"
-                                            width="100%" type="autocomplete" orderby="municipalityName:asc" on-select="textSearchMunicipalitiesSelect($event, $scope, selectedValue)"></wm-search>
+                                            <wm-search name="textSearchMunicipalities" placeholder="Search by Municipality Name" dataset="bind:Variables.GetMunicipalities.dataSet" searchkey="municipalityName" displaylabel="municipalityName" displayimagesrc="logo"
+                                            datafield="All Fields" required="false" width="100%" type="autocomplete" orderby="municipalityName:asc" on-select="textSearchMunicipalitiesSelect($event, $scope, selectedValue)"></wm-search>
                                         </wm-container>
                                     </wm-composite>
                                 </wm-gridcolumn>
@@ -110,7 +112,8 @@
                                                             <wm-label padding="unset 0.5em" name="label11" caption="bind:Variables.MunicpalitiesList.dataSet[$i].municipalityName" class="col-md-3 form-control-static" width="100%" fontweight="bold"></wm-label>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="4" name="gridcolumn31_2">
-                                                            <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet.city + ', ' + Variables.MunicpalitiesList.dataSet[$i].states.stateName" class="col-md-3 form-control-static" width="100%"></wm-label>
+                                                            <wm-label padding="unset 0.5em" name="label12" caption="bind:Variables.MunicpalitiesList.dataSet.city + ', ' + Variables.MunicpalitiesList.dataSet[$i].states.stateName" class="col-md-3 form-control-static"
+                                                            width="100%"></wm-label>
                                                         </wm-gridcolumn>
                                                         <wm-gridcolumn columnwidth="3" name="gridcolumn29" horizontalalign="right">
                                                             <wm-button class="btn-primary" caption="Remove" type="button" margin="unset 0.5em" name="buttonRemove" iconclass="wi wi-trash" on-click="buttonRemoveClick($event, $scope, item, currentItemWidgets)"></wm-button>
@@ -142,17 +145,16 @@
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn34">
                                     <wm-label padding="unset 0.5em 2em 0.5em" name="label21" caption="Please select your company using the search below." width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
                                     <wm-container name="composite17_0" width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;" margin="unset unset 1em unset">
-                                        <wm-label padding="unset 0.5em" name="label17" class="col-md-3 form-control-static" fontweight="bold" caption="Company Search" required="false" show="true"></wm-label>
-                                        <wm-container class="col-md-9" name="container5_0">
-                                            <wm-search name="searchCompany" type="autocomplete" placeholder="Search by Company Name or Company Email" dataset="bind:Variables.lvVendorList.dataSet" displaylabel="companyName" datafield="All Fields" show="true" required="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot; &amp;&amp; !Widgets.checkboxIsCompanyListed.datavalue"
-                                            searchkey="companyEmail,companyName" orderby="companyName:asc" disabled="bind:Widgets.checkboxIsCompanyListed.datavalue" width="100%"></wm-search>
-                                        </wm-container>
+                                        <wm-label padding="unset 0.5em" name="label17" class="col-md-3 form-control-static" fontweight="bold" caption="Company Search" required="false" show="true" width="30%"></wm-label>
+                                        <wm-search name="searchCompany" type="autocomplete" placeholder="Search by Company Name or Company Email" dataset="bind:Variables.lvVendorList.dataSet" displaylabel="companyName" datafield="All Fields"
+                                        show="true" required="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot; &amp;&amp; !Widgets.checkboxIsCompanyListed.datavalue" searchkey="companyEmail,companyName" orderby="companyName:asc" disabled="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                        width="70%"></wm-search>
                                     </wm-container>
                                     <wm-composite name="composite6_1" captionposition="left" horizontalalign="left" width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;" margin="unset unset 2em unset">
                                         <wm-checkbox caption="Company Not Listed" class="col-md-push-3 col-md-9" name="checkboxIsCompanyListed" datavalue="false" checkedvalue="true" uncheckedvalue="false" show="true" on-change="checkboxIsCompanyListedChange($event, $scope, newVal, oldVal)"></wm-checkbox>
                                     </wm-composite>
-                                    <wm-label padding="unset 0.5em" name="label22" caption="If your company is not already registered in CivicXpress, please select &quot;Company Not Listed&quot;, then fill out the &quot;Contractor Application&quot; before moving on to the next step." width="100%"
-                                    show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
+                                    <wm-label padding="unset 0.5em" name="label22" caption="If your company is not already registered in CivicXpress, please select &quot;Company Not Listed&quot;, then fill out the &quot;Contractor Application&quot; before moving on to the next step."
+                                    width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="3" name="gridcolumn58_1"></wm-gridcolumn>
                             </wm-gridrow>
@@ -167,98 +169,108 @@
                                             </wm-gridrow>
                                             <wm-gridrow name="gridrow15">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn30_1">
-                                                    <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.lvVendorList.dataSet" captionalign="left" captionposition="top" name="liveformVendorApplication" on-error="liveformVendorApplicationError($event, $operation, $data)"
-                                                    insertmessage="Your application has been submitted and you have been set as a &quot;Company Admin&quot;." on-success="liveformVendorApplicationSuccess($event, $operation, $data)">
+                                                    <wm-liveform novalidate="false" errormessage="" title="" iconclass="" defaultmode="Edit" dataset="bind:Variables.lvVendorList.dataSet" captionalign="left" captionposition="top" name="liveformVendorApplication"
+                                                    on-error="liveformVendorApplicationError($event, $operation, $data)" insertmessage="Your application has been submitted and you have been set as a &quot;Company Admin&quot;." on-success="liveformVendorApplicationSuccess($event, $operation, $data)">
                                                         <wm-layoutgrid name="layoutgrid1">
                                                             <wm-gridrow name="gridrow1">
                                                                 <wm-gridcolumn name="gridcolumn1" columnwidth="4">
-                                                                    <wm-form-field name="companyName" displayname="Company Name" show="true" primary-key="false" generator="assigned" key="companyName" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255" validationmessage="Company Name is required"
-                                                                    inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="companyName" displayname="Company Name" show="true" primary-key="false" generator="assigned" key="companyName" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" validationmessage="Company Name is required" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn2" columnwidth="4">
-                                                                    <wm-form-field name="companyEmail" displayname="Company Email" show="true" primary-key="false" generator="assigned" key="companyEmail" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255"
-                                                                    inputtype="email" placeholder="Enter value" validationmessage="Company Email is required" on-blur="companyEmailBlur($event, $scope)" on-change="companyEmailChange($event, $scope, newVal, oldVal)"></wm-form-field>
+                                                                    <wm-form-field name="companyEmail" displayname="Company Email" show="true" primary-key="false" generator="assigned" key="companyEmail" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="email" placeholder="Enter value" validationmessage="Company Email is required" on-blur="companyEmailBlur($event, $scope)" on-change="companyEmailChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn3" columnwidth="4">
-                                                                    <wm-form-field name="companyPhone" displayname="Company Phone" show="true" primary-key="false" generator="assigned" key="companyPhone" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255"
-                                                                    inputtype="text" placeholder="Enter value" validationmessage="Company Phone is required"></wm-form-field>
+                                                                    <wm-form-field name="companyPhone" displayname="Company Phone" show="true" primary-key="false" generator="assigned" key="companyPhone" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Company Phone is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow2">
                                                                 <wm-gridcolumn name="gridcolumn4" columnwidth="4">
-                                                                    <wm-form-field name="address1" displayname="Address 1" show="true" primary-key="false" generator="assigned" key="address1" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255" validationmessage="Address 1 is required"
-                                                                    inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="address1" displayname="Address 1" show="true" primary-key="false" generator="assigned" key="address1" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" validationmessage="Address 1 is required" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn5" columnwidth="4">
-                                                                    <wm-form-field name="address2" displayname="Address 2" show="true" primary-key="false" generator="assigned" key="address2" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="address2" displayname="Address 2" show="true" primary-key="false" generator="assigned" key="address2" type="string" readonly="false" required="false" widget="text" maxchars="255"
+                                                                    inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn6" columnwidth="4">
-                                                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                                                    validationmessage="City is required"></wm-form-field>
+                                                                    <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="City is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow3">
                                                                 <wm-gridcolumn name="gridcolumn7" columnwidth="4">
-                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select" placeholder="Select value" displayexpression="stateName"
-                                                                    orderby="stateName:asc"></wm-form-field>
+                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select"
+                                                                    placeholder="Select value" displayexpression="stateName" orderby="stateName:asc"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn8" columnwidth="4">
-                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn9" columnwidth="4">
-                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA"></wm-form-field>
+                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255"
+                                                                    inputtype="text" placeholder="Enter value" defaultvalue="USA"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow4">
                                                                 <wm-gridcolumn name="gridcolumn10" columnwidth="4">
-                                                                    <wm-form-field name="altPhone" displayname="Alternate Phone" show="true" primary-key="false" generator="assigned" key="altPhone" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="altPhone" displayname="Alternate Phone" show="true" primary-key="false" generator="assigned" key="altPhone" type="string" readonly="false" required="false" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn11" columnwidth="4">
-                                                                    <wm-form-field name="faxNumber" displayname="Fax Number" show="true" primary-key="false" generator="assigned" key="faxNumber" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="faxNumber" displayname="Fax Number" show="true" primary-key="false" generator="assigned" key="faxNumber" type="string" readonly="false" required="false" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn12" columnwidth="4">
-                                                                    <wm-form-field name="companyWebsite" displayname="Company Website" show="true" primary-key="false" generator="assigned" key="companyWebsite" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="companyWebsite" displayname="Company Website" show="true" primary-key="false" generator="assigned" key="companyWebsite" type="string" readonly="false" required="false"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow5">
                                                                 <wm-gridcolumn name="gridcolumn13" columnwidth="4">
-                                                                    <wm-form-field name="typeOfBusiness" displayname="Type of Business" show="true" primary-key="false" generator="assigned" key="typeOfBusiness" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255"
-                                                                    inputtype="text" placeholder="Enter value" validationmessage="Type of Business is required"></wm-form-field>
+                                                                    <wm-form-field name="typeOfBusiness" displayname="Type of Business" show="true" primary-key="false" generator="assigned" key="typeOfBusiness" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Type of Business is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn14" columnwidth="4">
-                                                                    <wm-form-field name="businessClassification" displayname="Business Classification" show="true" primary-key="false" generator="assigned" key="businessClassification" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
-                                                                    widget="select" maxchars="255" placeholder="Select value" validationmessage="Business Classification is required" dataset="Individual,LLC,LLP,Corporation,Partnership,Professional Association, Other"></wm-form-field>
+                                                                    <wm-form-field name="businessClassification" displayname="Business Classification" show="true" primary-key="false" generator="assigned" key="businessClassification" type="string" readonly="false"
+                                                                    required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="select" maxchars="255" placeholder="Select value" validationmessage="Business Classification is required" dataset="Individual,LLC,LLP,Corporation,Partnership,Professional Association, Other"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn15" columnwidth="4">
-                                                                    <wm-form-field name="contractorTypes" displayname="Contractor Type" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="select"
-                                                                    placeholder="Select value" displayexpression="contractorType"></wm-form-field>
+                                                                    <wm-form-field name="contractorTypes" displayname="Contractor Type" show="true" primary-key="false" generator="assigned" key="contractorTypes" type="list" is-related="true" readonly="false"
+                                                                    required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="select" placeholder="Select value" displayexpression="contractorType"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow6">
                                                                 <wm-gridcolumn name="gridcolumn16" columnwidth="4">
-                                                                    <wm-form-field name="numberOfEmployees" displayname="Number of Employees" show="true" primary-key="false" generator="assigned" key="numberOfEmployees" type="integer" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" step="0" widget="number"
-                                                                    inputtype="number" placeholder="Enter value" validationmessage="Number of employees required" minvalue="1"></wm-form-field>
+                                                                    <wm-form-field name="numberOfEmployees" displayname="Number of Employees" show="true" primary-key="false" generator="assigned" key="numberOfEmployees" type="integer" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    step="0" widget="number" inputtype="number" placeholder="Enter value" validationmessage="Number of employees required" minvalue="1"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn17" columnwidth="4">
-                                                                    <wm-form-field name="stateRegNumber" displayname="State Registration Number" show="true" primary-key="false" generator="assigned" key="stateRegNumber" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="stateRegNumber" displayname="State Registration Number" show="true" primary-key="false" generator="assigned" key="stateRegNumber" type="string" readonly="false" required="false"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn18" columnwidth="4">
-                                                                    <wm-form-field name="insuranceCompany" displayname="Insurance Company" show="true" primary-key="false" generator="assigned" key="insuranceCompany" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="text" maxchars="255"
-                                                                    inputtype="text" placeholder="Enter value" validationmessage="Insurance Company is required"></wm-form-field>
+                                                                    <wm-form-field name="insuranceCompany" displayname="Insurance Company" show="true" primary-key="false" generator="assigned" key="insuranceCompany" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Insurance Company is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow7">
                                                                 <wm-gridcolumn name="gridcolumn19" columnwidth="4">
-                                                                    <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" show="true" primary-key="false" generator="assigned" key="insuranceExpires" type="date" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue" widget="date"
-                                                                    placeholder="Select date" outputformat="yyyy-MM-dd" validationmessage="Insurance Expiration Date is required" datepattern="MM-dd-yyyy" defaultvalue="CURRENT_DATE" mindate="bind:Variables.Today.dataSet.dataValue | toDate: 'yyyy-MM-dd'"></wm-form-field>
+                                                                    <wm-form-field name="insuranceExpires" displayname="Insurance Expiration Date" show="true" primary-key="false" generator="assigned" key="insuranceExpires" type="date" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="date" placeholder="Select date" outputformat="yyyy-MM-dd" validationmessage="Insurance Expiration Date is required" datepattern="MM-dd-yyyy" defaultvalue="CURRENT_DATE" mindate="bind:Variables.Today.dataSet.dataValue | toDate: 'yyyy-MM-dd'"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                         </wm-layoutgrid>
-                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="true" widget="checkbox" defaultvalue="true" checkedvalue="true" uncheckedvalue="false" placeholder=""></wm-form-field>
-                                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="false" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date" placeholder="Select date" outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE"
-                                                        datepattern="MM-dd-yyyy"></wm-form-field>
-                                                        <wm-form-field name="coi" displayname="Certificate of Insurance" show="false" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="false" widget="upload" maxchars="255" validationmessage="Certificate of Insurance is required"></wm-form-field>
+                                                        <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number"
+                                                        placeholder=""></wm-form-field>
+                                                        <wm-form-field name="active" displayname="Active" show="false" primary-key="false" generator="assigned" key="active" type="boolean" readonly="false" required="true" widget="checkbox"
+                                                        defaultvalue="true" checkedvalue="true" uncheckedvalue="false" placeholder=""></wm-form-field>
+                                                        <wm-form-field name="lastUpdated" displayname="Last Updated" show="false" primary-key="false" generator="assigned" key="lastUpdated" type="date" readonly="true" required="false" widget="date"
+                                                        placeholder="Select date" outputformat="yyyy-MM-dd" defaultvalue="CURRENT_DATE" datepattern="MM-dd-yyyy"></wm-form-field>
+                                                        <wm-form-field name="coi" displayname="Certificate of Insurance" show="false" primary-key="false" generator="assigned" key="coi" type="blob" readonly="false" required="false" widget="upload"
+                                                        maxchars="255" validationmessage="Certificate of Insurance is required"></wm-form-field>
                                                     </wm-liveform>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
@@ -306,7 +318,8 @@
                                         <wm-container class="col-md-9" name="container3" width="300px">
                                             <wm-text name="textPwd" placeholder="Enter Password" type="password" regexp=".*" required="true" updateon="default" updatedelay="300" on-change="textPwdChange($event, $scope, newVal, oldVal)" autocomplete="false"></wm-text>
                                         </wm-container>
-                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password." color="#ef6262" class="form-control-static"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label12_2" show="bind:pwordRequirementsMet === false" caption="<i class=&quot;fa fa-warning&quot;></i> Password requirements have not been met. Please choose a strong password."
+                                        color="#ef6262" class="form-control-static"></wm-label>
                                     </wm-composite>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -327,7 +340,8 @@
                         <wm-layoutgrid name="layoutgrid7">
                             <wm-gridrow name="gridrow23">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                                    <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9" name="checkboxAcceptEULA" required="true"></wm-checkbox>
+                                    <wm-checkbox caption="bind:'By signing up for an account on CivicXpress, I acknowledge that I have read and accepted the <a href=&quot;&quot; class=&quot;eulaLink&quot;>End User License Agreement</a>'" class="col-md-9"
+                                    name="checkboxAcceptEULA" required="true"></wm-checkbox>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                         </wm-layoutgrid>
