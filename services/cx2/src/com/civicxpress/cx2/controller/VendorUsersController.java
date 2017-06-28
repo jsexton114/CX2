@@ -102,7 +102,7 @@ public class VendorUsersController {
 
     @RequestMapping(value = "/vendorId-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching VendorUsers with given unique key values.")
-    public VendorUsers getByVendorIdAndUserId(@RequestParam("vendorId") Integer vendorId, @RequestParam("userId") Integer userId) {
+    public VendorUsers getByVendorIdAndUserId(@RequestParam("vendorId") int vendorId, @RequestParam("userId") int userId) {
         LOGGER.debug("Getting VendorUsers with uniques key VendorIdAndUserId");
         return vendorUsersService.getByVendorIdAndUserId(vendorId, userId);
     }

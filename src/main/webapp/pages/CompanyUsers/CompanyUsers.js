@@ -84,6 +84,10 @@ Application.$controller("dialogAddAdminController", ["$scope",
                     'UserId': $scope.Widgets.searchForAdmin.datavalue.id
                 });
                 $scope.Variables.AddUsersToCompany.update();
+                $scope.Variables.lvGiveCompanyEmployeeRole.setInput({
+                    'userId': $scope.Widgets.searchForAdmin.datavalue.id
+                });
+                $scope.Variables.lvGiveCompanyEmployeeRole.insertRecord();
 
 
             }

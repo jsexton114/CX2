@@ -59,7 +59,7 @@ public interface VendorAdminsService {
 	 * @return VendorAdmins associated with the given inputs.
      * @throws EntityNotFoundException if no matching VendorAdmins found.
 	 */
-    VendorAdmins getByUserIdAndVendorId(Integer userId, Integer vendorId)throws EntityNotFoundException;
+    VendorAdmins getByUserIdAndVendorId(int userId, int vendorId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing VendorAdmins. It replaces all fields of the existing VendorAdmins with the given vendorAdmins.

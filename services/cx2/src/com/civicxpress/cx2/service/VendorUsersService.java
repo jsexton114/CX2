@@ -59,7 +59,7 @@ public interface VendorUsersService {
 	 * @return VendorUsers associated with the given inputs.
      * @throws EntityNotFoundException if no matching VendorUsers found.
 	 */
-    VendorUsers getByVendorIdAndUserId(Integer vendorId, Integer userId)throws EntityNotFoundException;
+    VendorUsers getByVendorIdAndUserId(int vendorId, int userId)throws EntityNotFoundException;
 
 	/**
 	 * Updates the details of an existing VendorUsers. It replaces all fields of the existing VendorUsers with the given vendorUsers.

@@ -24157,7 +24157,7 @@
       "javaType" : "integer",
       "length" : 0,
       "name" : "UserId",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "UserId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
@@ -24183,7 +24183,7 @@
       "javaType" : "integer",
       "length" : 0,
       "name" : "VendorId",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "VendorId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
@@ -24199,7 +24199,7 @@
     "constraints" : [ {
       "columns" : [ "UserId", "VendorId" ],
       "composite" : true,
-      "name" : "UK_VendorAdmins_UserId_VfZ2Cq",
+      "name" : "UK_VendorAdmins_UserId_Vk2Yn5",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false
@@ -24677,7 +24677,7 @@
       "javaType" : "integer",
       "length" : 0,
       "name" : "VendorId",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "VendorId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
@@ -24703,7 +24703,7 @@
       "javaType" : "integer",
       "length" : 0,
       "name" : "UserId",
-      "nullable" : true,
+      "nullable" : false,
       "oldName" : "UserId",
       "partOfAnyRelation" : true,
       "partOfForeignKey" : true,
@@ -24745,7 +24745,7 @@
     "constraints" : [ {
       "columns" : [ "VendorId", "UserId" ],
       "composite" : true,
-      "name" : "UK_VendorUsers_VendorId_8TnR0",
+      "name" : "UK_VendorUsers_VendorId_Keb6j",
       "schemaName" : null,
       "type" : "UNIQUE",
       "virtual" : false

@@ -28,8 +28,8 @@ import javax.persistence.UniqueConstraint;
 public class VendorAdmins implements Serializable {
 
     private Integer id;
-    private Integer userId;
-    private Integer vendorId;
+    private int userId;
+    private int vendorId;
     private Users users;
     private Vendor vendor;
 
@@ -44,21 +44,21 @@ public class VendorAdmins implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "`UserId`", nullable = true, scale = 0, precision = 10)
-    public Integer getUserId() {
+    @Column(name = "`UserId`", nullable = false, scale = 0, precision = 10)
+    public int getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    @Column(name = "`VendorId`", nullable = true, scale = 0, precision = 10)
-    public Integer getVendorId() {
+    @Column(name = "`VendorId`", nullable = false, scale = 0, precision = 10)
+    public int getVendorId() {
         return this.vendorId;
     }
 
-    public void setVendorId(Integer vendorId) {
+    public void setVendorId(int vendorId) {
         this.vendorId = vendorId;
     }
 

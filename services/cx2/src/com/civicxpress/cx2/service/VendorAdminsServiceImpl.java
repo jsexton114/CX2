@@ -75,7 +75,7 @@ public class VendorAdminsServiceImpl implements VendorAdminsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public VendorAdmins getByUserIdAndVendorId(Integer userId, Integer vendorId) {
+    public VendorAdmins getByUserIdAndVendorId(int userId, int vendorId) {
         Map<String, Object> userIdAndVendorIdMap = new HashMap<>();
         userIdAndVendorIdMap.put("userId", userId);
         userIdAndVendorIdMap.put("vendorId", vendorId);
