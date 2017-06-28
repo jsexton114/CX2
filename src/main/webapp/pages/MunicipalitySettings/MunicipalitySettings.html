@@ -76,8 +76,7 @@
                                         <wm-composite name="composite6">
                                             <wm-label class="col-md-3 form-control-static" name="label7" caption="State" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container6">
-                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"
-                                                orderby="stateName:asc" displayfield="stateName"></wm-select>
+                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id" orderby="stateName:asc" displayfield="stateName"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -158,8 +157,8 @@
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
                                             <wm-label class="col-md-4 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
                                             <wm-container class="col-md-8" name="container11">
-                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
-                                                placeholder="Select Form" orderby="formType:asc" required="true"></wm-select>
+                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId" placeholder="Select Form"
+                                                orderby="formType:asc" required="true"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-label padding="0.8em unset unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
@@ -205,6 +204,35 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
+                <wm-gridrow name="gridrow43">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn52_2">
+                        <wm-panel iconclass="wi wi-photo" name="panel4" title="Additional Images" class="panel-primary">
+                            <wm-layoutgrid name="layoutgrid6">
+                                <wm-gridrow name="gridrow43" padding="1em unset unset unset">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn54_1" horizontalalign="center">
+                                        <wm-label padding="0.5em" name="label14" caption="Upload additional images for use throughout CivicXpress." width="100%"></wm-label>
+                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="Images can be placed in letters with the token [DocumentXXX] where XXX is the Document table ID." width="100%"></wm-label>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow38_1">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn48_1"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn49_1" horizontalalign="center" padding="2em unset unset unset">
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn50_1"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow41">
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn63"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn61" horizontalalign="center" padding="1em unset">
+                                        <wm-button class="btn-primary" caption="Upload Image" type="button" name="button5" iconclass="wi wi-upload" on-click="Widgets.dialog2.open()"></wm-button>
+                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="2" name="gridcolumn62" horizontalalign="left"></wm-gridcolumn>
+                                </wm-gridrow>
+                            </wm-layoutgrid>
+                        </wm-panel>
+                    </wm-gridcolumn>
+                </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
@@ -225,6 +253,27 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn49" horizontalalign="left">
                         <wm-picture name="picture2" width="160px" height="160px"></wm-picture>
                         <input name="logo" type="file" generator="assigned" ng-file-model="newMunicipalityLogo" filetype="image/*">
+                    </wm-gridcolumn>
+                </wm-gridrow>
+            </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="view2">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Additional Images" iconclass="wi wi-photo" name="dialog2" on-opened="dialog2Opened($event, $scope)">
+            <wm-dialogactions name="dialogactions2">
+                <wm-button class="btn-raised btn-primary" caption="Upload" on-click="buttonSaveClick()" name="button4" iconclass="wi wi-upload"></wm-button>
+                <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog2.close()" iconclass="wi wi-cancel"></wm-button>
+            </wm-dialogactions>
+            <wm-layoutgrid columns="1" name="layoutgrid5">
+                <wm-gridrow name="gridrow19">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn32">
+                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then click &quot;Upload&quot; to add it to your images."></wm-label>
+                    </wm-gridcolumn>
+                </wm-gridrow>
+                <wm-gridrow name="gridrow29">
+                    <wm-gridcolumn columnwidth="12" name="gridcolumn49" horizontalalign="left">
+                        <wm-picture name="picture3" width="160px" height="160px"></wm-picture>
+                        <input name="image" type="file" generator="assigned" ng-file-model="newAdditionalImage" filetype="image/*">
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>

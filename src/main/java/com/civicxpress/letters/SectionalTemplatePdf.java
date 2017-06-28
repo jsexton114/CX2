@@ -138,7 +138,6 @@ public class SectionalTemplatePdf {
         byte[] fileBytesOutput = null;
         this.setMunicipalityLogo(globalFormInfo.getMunicipalityLogo());
         this.setAdditionalImages(globalFormInfo.getAdditionalImages());
-        logger.debug("globalFormInfo.getAdditionalImages() == null: " + (globalFormInfo.getAdditionalImages() == null));
         this.generatePdfOutput(tokens);
         ByteArrayOutputStream fileStream = new ByteArrayOutputStream();
         this.saveToFile(fileStream);
@@ -149,6 +148,7 @@ public class SectionalTemplatePdf {
     public byte[] createLetter(GlobalInspectionInfo globalInspectionInfo, Map<String, String> tokens) {
         byte[] fileBytesOutput = null;
         this.setMunicipalityLogo(globalInspectionInfo.getMunicipalityLogo());
+        this.setAdditionalImages(globalInspectionInfo.getAdditionalImages());
         this.generatePdfOutput(tokens);
         ByteArrayOutputStream fileStream = new ByteArrayOutputStream();
         this.saveToFile(fileStream);

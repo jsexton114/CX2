@@ -54,6 +54,22 @@ public class UserService {
     	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE Municipalities SET logo=:newPhoto WHERE ID=:municipalityId", queryParams);
     	cx2Conn.close();
     }
+
+    public void saveAdditionalImage(MultipartFile photo[], Long municipalityId) throws Exception { // TODO: Move me
+        logger.debug("*** saveAdditionalImage()");
+    	Connection cx2Conn = DBConnectionService.getConnection();
+    	DBQueryParams queryParams = new DBQueryParams();
+    	
+    	queryParams.addLong("municipalityId", municipalityId);
+    	if (photo != null && photo.length > 0) {
+    		queryParams.addBytes("newPhoto", photo[0].getBytes());
+    	} else {
+    		queryParams.addObject("newPhoto", null);
+    	}
+    	
+    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO Document (mimetype, municipalityid, contents) VALUES ('image/png', :municipalityId, :newPhoto)", queryParams);
+    	cx2Conn.close();
+    }
     
     public void saveUserPhoto(MultipartFile photo[], Long userId) throws Exception {
     	Connection cx2Conn = DBConnectionService.getConnection();

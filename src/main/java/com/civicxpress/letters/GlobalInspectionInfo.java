@@ -2,6 +2,7 @@ package com.civicxpress.letters;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 
 public class GlobalInspectionInfo {
 
@@ -34,7 +35,8 @@ public class GlobalInspectionInfo {
     private double locationLatitude;
     private double locationLongitude;
     private String subdivision;
-
+    private HashMap<String, byte[]> additionalImages;
+    
     public Long getInspectionDesignId() {
 		return inspectionDesignId;
 	}
@@ -266,4 +268,13 @@ public class GlobalInspectionInfo {
     public void setSubdivision(String subdivision) {
         this.subdivision = subdivision;
     }
+
+    public HashMap<String, byte[]> getAdditionalImages() {
+        return this.additionalImages;
+    }
+
+    public void setAdditionalImages(HashMap<String, byte[]> additionalImages) {
+        this.additionalImages = additionalImages;
+    }
+
 }

@@ -49,3 +49,33 @@ Application.$controller("dialog1Controller", ["$scope",
         };
     }
 ]);
+
+
+Application.$controller("dialog2Controller", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.newAdditionalImage = {};
+        var newImage;
+
+        $scope.$watch('newAdditionalImage.Contents', function(newVal, oldVal) {
+            if (!!newVal && !!newVal) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    newImage = e.target.result;
+                    $scope.Widgets.picture3.picturesource = newImage;
+                    $scope.$root.$safeApply($scope);
+                };
+
+                reader.readAsDataURL(newVal);
+            }
+        });
+
+        $scope.buttonSaveClick = function($event, $isolateScope) {
+            $scope.Variables.svAddImage.setInput('photo', [$scope.newAdditionalImage.Contents]);
+            $scope.Variables.svAddImage.update();
+        };
+    }
+]);
