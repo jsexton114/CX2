@@ -754,9 +754,10 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
                 return null;
             }
             if ($scope.inspectionObject.callInOnly) {
-                if ($scope.Variables.svUserPermissions.dataSet.isEmployee) {
-                    return false;
-                }
+                // Commented as Derek requested to show this for Employees
+                // if ($scope.Variables.svUserPermissions.dataSet.isEmployee) {
+                //     return false;
+                // }
                 return true;
             } else {
                 return false;
