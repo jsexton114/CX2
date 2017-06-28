@@ -1,6 +1,9 @@
 <wm-page data-ng-controller="MyCartPageController" pagetitle="My Cart" name="page1">
+    <wm-header content="header" name="header1"></wm-header>
+    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
     <wm-content name="content1">
-        <wm-page-content columnwidth="12" name="page_content1">
+        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+        <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow3_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3_2">
@@ -97,17 +100,16 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn14_2">
                         <wm-container name="containerPaymentRecieved" margin="1em" backgroundcolor="#ffffff" horizontalalign="center" show="false">
                             <wm-label padding="unset 0.5em" name="label8" class="h3" caption="Thank you! The payment you submitted has been processed."></wm-label>
-                            <wm-html name="html4"><a href="/">Click here</a> to return to CivicXpress</wm-html>
                         </wm-container>
                         <wm-container name="containerPaymentError" margin="1em" backgroundcolor="#ffffff" horizontalalign="center" show="false">
                             <wm-label padding="unset 0.5em" name="label8" class="h3" caption="There was a problem processing payment."></wm-label>
-                            <wm-html name="html5"><a href="/">Click here</a> to return to CivicXpress</wm-html>
                         </wm-container>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
+    <wm-footer content="footer" name="footer1"></wm-footer>
     <wm-view class="dialog-view" name="view3">
         <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
