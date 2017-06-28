@@ -23,6 +23,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -52,6 +55,10 @@ public class Fees implements Serializable {
     private String formGuid;
     private BigDecimal amount;
     private String transactionComments;
+    @Type(type = "DateTime")
+    private LocalDateTime dateCreated;
+    @Type(type = "DateTime")
+    private LocalDateTime dateModified;
     private MasterForms masterForms;
     private MasterInspections masterInspections;
     private Projects projects;
@@ -232,6 +239,24 @@ public class Fees implements Serializable {
 
     public void setTransactionComments(String transactionComments) {
         this.transactionComments = transactionComments;
+    }
+
+    @Column(name = "`DateCreated`", nullable = false, insertable = false, updatable = false)
+    public LocalDateTime getDateCreated() {
+        return this.dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    @Column(name = "`DateModified`", nullable = false, insertable = false, updatable = false)
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -42,12 +42,12 @@ public class FeesOfMunicipalityResponse implements Serializable {
     private String paidBy;
     @ColumnAlias("transactionId")
     private String transactionId;
+    @ColumnAlias("dateModified")
+    private LocalDateTime dateModified;
     @ColumnAlias("feeType")
     private String feeType;
     @ColumnAlias("formGuid")
     private String formGuid;
-    @ColumnAlias("dateModified")
-    private LocalDateTime dateModified;
     @ColumnAlias("formTitle")
     private String formTitle;
     @ColumnAlias("municipalityName")
@@ -123,6 +123,14 @@ public class FeesOfMunicipalityResponse implements Serializable {
         this.transactionId = transactionId;
     }
 
+    public LocalDateTime getDateModified() {
+        return this.dateModified;
+    }
+
+    public void setDateModified(LocalDateTime dateModified) {
+        this.dateModified = dateModified;
+    }
+
     public String getFeeType() {
         return this.feeType;
     }
@@ -137,14 +145,6 @@ public class FeesOfMunicipalityResponse implements Serializable {
 
     public void setFormGuid(String formGuid) {
         this.formGuid = formGuid;
-    }
-
-    public LocalDateTime getDateModified() {
-        return this.dateModified;
-    }
-
-    public void setDateModified(LocalDateTime dateModified) {
-        this.dateModified = dateModified;
     }
 
     public String getFormTitle() {
@@ -262,9 +262,9 @@ public class FeesOfMunicipalityResponse implements Serializable {
                 Objects.equals(getAccountingCode(), feesOfMunicipalityResponse.getAccountingCode()) &&
                 Objects.equals(getPaidBy(), feesOfMunicipalityResponse.getPaidBy()) &&
                 Objects.equals(getTransactionId(), feesOfMunicipalityResponse.getTransactionId()) &&
+                Objects.equals(getDateModified(), feesOfMunicipalityResponse.getDateModified()) &&
                 Objects.equals(getFeeType(), feesOfMunicipalityResponse.getFeeType()) &&
                 Objects.equals(getFormGuid(), feesOfMunicipalityResponse.getFormGuid()) &&
-                Objects.equals(getDateModified(), feesOfMunicipalityResponse.getDateModified()) &&
                 Objects.equals(getFormTitle(), feesOfMunicipalityResponse.getFormTitle()) &&
                 Objects.equals(getMunicipalityName(), feesOfMunicipalityResponse.getMunicipalityName()) &&
                 Objects.equals(getCreatedBy(), feesOfMunicipalityResponse.getCreatedBy()) &&
@@ -288,9 +288,9 @@ public class FeesOfMunicipalityResponse implements Serializable {
                 getAccountingCode(),
                 getPaidBy(),
                 getTransactionId(),
+                getDateModified(),
                 getFeeType(),
                 getFormGuid(),
-                getDateModified(),
                 getFormTitle(),
                 getMunicipalityName(),
                 getCreatedBy(),

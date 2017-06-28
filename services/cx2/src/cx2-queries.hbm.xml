@@ -3505,9 +3505,9 @@ VA.VendorId=:vendorId and VA.MunicipalityId=M.ID and ApprovalStatus=:approvalSta
     FE.AccountingCode as accountingCode,
     PU.FullName as paidBy,
     FE.TransactionId as transactionId,
+    FE.DateModified as dateModified,
     FE.FeeType as feeType,
     MF.FormGuid as formGuid,
-	DateModified as dateModified,
 	MF.FormTitle as formTitle,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
@@ -3538,7 +3538,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.PaidDate BETWEEN :startDate and :endDate
+where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.DateCreated BETWEEN :startDate and :endDate
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="paidStatus" type="java.lang.String"/>
@@ -3555,9 +3555,9 @@ where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidS
     FE.AccountingCode as accountingCode,
     PU.FullName as paidBy,
     FE.TransactionId as transactionId,
+    FE.DateModified as dateModified,
     FE.FeeType as feeType,
     MF.FormGuid as formGuid,
-	DateModified as dateModified,
 	MF.FormTitle as formTitle,
 	MU.MunicipalityName as municipalityName,
 	U.FullName as createdBy,
@@ -3588,7 +3588,7 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
 				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
 ) AS GR ON GR.FormGuid=MF.FormGUID AND GR.rn=1
-where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.PaidDate BETWEEN :startDate and :endDate) wmTempTable
+where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidStatus IS NULL OR FE.PaidStatus=:paidStatus) and FE.DateCreated BETWEEN :startDate and :endDate) wmTempTable
         ]]>
     <query-param name="municipalityId" type="java.lang.Integer"/>
     <query-param name="paidStatus" type="java.lang.String"/>
