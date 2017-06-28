@@ -76,7 +76,8 @@
                                         <wm-composite name="composite6">
                                             <wm-label class="col-md-3 form-control-static" name="label7" caption="State" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container6">
-                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id" orderby="stateName:asc" displayfield="stateName"></wm-select>
+                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"
+                                                orderby="stateName:asc" displayfield="stateName"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -157,8 +158,8 @@
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
                                             <wm-label class="col-md-4 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
                                             <wm-container class="col-md-8" name="container11">
-                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId" placeholder="Select Form"
-                                                orderby="formType:asc" required="true"></wm-select>
+                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
+                                                placeholder="Select Form" orderby="formType:asc" required="true"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-label padding="0.8em unset unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
@@ -218,8 +219,7 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow38_1">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn48_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn49_1" horizontalalign="center" padding="2em unset unset unset">
-                                    </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="8" name="gridcolumn49_1" horizontalalign="center" padding="2em unset unset unset"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn50_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow41">

@@ -55,19 +55,19 @@ public class UserService {
     	cx2Conn.close();
     }
 
-    public void saveAdditionalImage(MultipartFile photo[], Long municipalityId) throws Exception { // TODO: Move me
+    public void saveAdditionalImage(MultipartFile photo[], Long municipalityId, Long userId) throws Exception { // TODO: Move me
     	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
-    	
-    	logger.debug("saveAdditionalImage() municipalityId: " + municipalityId.toString());
+
     	queryParams.addLong("municipalityId", municipalityId);
     	if (photo != null && photo.length > 0) {
     		queryParams.addBytes("newPhoto", photo[0].getBytes());
     	} else {
     		queryParams.addObject("newPhoto", null);
     	}
+    	queryParams.addLong("userId", userId);
     	
-    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO Document (mimetype, municipalityid, contents) VALUES ('image/png', :municipalityId, :newPhoto)", queryParams);
+    	DBUtils.simpleQuery(cx2Conn, "INSERT INTO [Document] ([Mimetype], [MunicipalityId], [Filename], [Contents], [CreatedBy]) VALUES ('image/png', :municipalityId, 'image' + CONVERT(NVARCHAR(50), @@IDENTITY) + '.png', :newPhoto, :userId)", queryParams);
     	cx2Conn.close();
     }
     

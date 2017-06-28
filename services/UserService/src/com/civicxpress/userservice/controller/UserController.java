@@ -22,8 +22,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/saveAdditionalImage", method = RequestMethod.POST, consumes = "multipart/form-data")
-    public void saveAdditionalImage(@RequestPart(value = "photo") MultipartFile[] photo, @RequestParam(value = "municipalityId", required = false) Long municipalityId) throws Exception {
-        userService.saveAdditionalImage(photo, municipalityId);
+    public void saveAdditionalImage(@RequestPart(value = "photo") MultipartFile[] photo, @RequestParam(value = "municipalityId", required = false) Long municipalityId, @RequestParam(value = "userId", required = false) Long userId) throws Exception {
+        userService.saveAdditionalImage(photo, municipalityId, userId);
     }
 
     @RequestMapping(value = "/saveMunicipalityLogo", method = RequestMethod.POST, consumes = "multipart/form-data")
