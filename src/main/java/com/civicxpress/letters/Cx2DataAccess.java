@@ -278,6 +278,8 @@ public class Cx2DataAccess {
                         null
                 ));
                 globalInspectionInfo.setSubdivision(rs.getString("Subdivision"));
+                globalInspectionInfo.setUserSubmitted(rs.getString("UserSubmitted"));
+                globalInspectionInfo.setDateGenerated(rs.getDate("DateGenerated"));
                 // LocationLatitude  LocationLongitude
                 String locationLatitudeString = rs.getString("LocationLatitude");
                 if (!rs.wasNull() && locationLatitudeString.length() != 0) {

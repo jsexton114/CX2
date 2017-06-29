@@ -17,7 +17,7 @@ public class LetterTemplate {
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "UserSubmitted", "DateGenerated", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_IMAGE_TOKENS = {"MunicipalityLogo"};
@@ -316,6 +316,15 @@ public class LetterTemplate {
                 break;
             case "Subdivision":
                 returnValue = globalInspectionInfo.getSubdivision();
+                break;
+            case "UserSubmitted":
+                returnValue = globalInspectionInfo.getUserSubmitted();
+                break;
+            case "DateGenerated":
+                Date dateGenerated = globalInspectionInfo.getDateGenerated();
+                if (dateGenerated != null) {
+                    returnValue =  dateGenerated.toString();
+                }
                 break;
             case "Fees":
                 BigDecimal totalFees = globalInspectionInfo.getTotalFees();
