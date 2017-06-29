@@ -394,6 +394,8 @@ public class Cx2DataAccess {
                         null
                 ));
                 globalFormInfo.setSubdivision(rs.getString("Subdivision"));
+                globalFormInfo.setUserSubmitted(rs.getString("UserSubmitted"));
+                globalFormInfo.setDateGenerated(rs.getDate("DateGenerated"));
                 // LocationLatitude  LocationLongitude
                 // look at how much extra code has to be written because the database is designed incorrectly
                 String locationLatitudeString = rs.getString("LocationLatitude");

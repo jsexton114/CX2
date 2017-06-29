@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public class LetterTemplate {
     private static final String[] GLOBAL_TEXT_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
-            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
+            "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "UserSubmitted", "DateGenerated", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
             "Violations", "ExpiresDate", "IssuedDate"};
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
@@ -208,8 +208,19 @@ public class LetterTemplate {
                 break;
             case "LocationParcel":
                 returnValue = globalFormInfo.getLocationParcel();
+                break;
             case "Subdivision":
                 returnValue = globalFormInfo.getSubdivision();
+                break;
+            case "UserSubmitted":
+                returnValue = globalFormInfo.getUserSubmitted();
+                break;
+            case "DateGenerated":
+                Date dateGenerated = globalFormInfo.getDateGenerated();
+                if (dateGenerated != null) {
+                    returnValue =  dateGenerated.toString();
+                }
+                break;
             case "Fees":
                 BigDecimal totalFees = globalFormInfo.getTotalFees();
                 if (totalFees != null) {
@@ -302,8 +313,10 @@ public class LetterTemplate {
                 break;
             case "LocationParcel":
                 returnValue = globalInspectionInfo.getLocationParcel();                
+                break;
             case "Subdivision":
                 returnValue = globalInspectionInfo.getSubdivision();
+                break;
             case "Fees":
                 BigDecimal totalFees = globalInspectionInfo.getTotalFees();
                 if (totalFees != null) {

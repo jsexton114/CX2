@@ -34,6 +34,8 @@ public class GlobalFormInfo {
     private double locationLatitude;
     private double locationLongitude;
     private String subdivision;
+    private String userSubmitted;
+    private Date dateGenerated;
     private HashMap<String, byte[]> additionalImages;
     
     public Long getFormTypeId() {
@@ -260,6 +262,22 @@ public class GlobalFormInfo {
         this.subdivision = subdivision;
     }
 
+    public String getUserSubmitted() {
+        return this.userSubmitted;
+    }
+    
+    public void setUserSubmitted(String userSubmitted) {
+        this.userSubmitted = userSubmitted;    
+    }
+    
+    public Date getDateGenerated() {
+        return this.dateGenerated;        
+    }
+    
+    public void setDateGenerated(Date dateGenerated) {
+        this.dateGenerated = dateGenerated;
+    }
+    
     public HashMap<String, byte[]> getAdditionalImages() {
         return this.additionalImages;
     }
