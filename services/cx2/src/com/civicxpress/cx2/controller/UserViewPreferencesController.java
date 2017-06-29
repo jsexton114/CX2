@@ -102,6 +102,7 @@ public class UserViewPreferencesController {
 
     @RequestMapping(value = "/userId-preferenceId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching UserViewPreferences with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public UserViewPreferences getByUserIdAndPreferenceId(@RequestParam("userId") Integer userId, @RequestParam("preferenceId") Integer preferenceId) {
         LOGGER.debug("Getting UserViewPreferences with uniques key UserIdAndPreferenceId");
         return userViewPreferencesService.getByUserIdAndPreferenceId(userId, preferenceId);

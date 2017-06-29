@@ -102,6 +102,7 @@ public class ProjectGisrecordsController {
 
     @RequestMapping(value = "/relatedProjectGuid-gisrecordId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching ProjectGisrecords with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public ProjectGisrecords getByRelatedProjectGuidAndGisrecordId(@RequestParam("relatedProjectGuid") String relatedProjectGuid, @RequestParam("gisrecordId") Integer gisrecordId) {
         LOGGER.debug("Getting ProjectGisrecords with uniques key RelatedProjectGuidAndGisrecordId");
         return projectGisrecordsService.getByRelatedProjectGuidAndGisrecordId(relatedProjectGuid, gisrecordId);

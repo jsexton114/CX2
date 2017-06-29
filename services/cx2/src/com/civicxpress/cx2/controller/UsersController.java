@@ -183,6 +183,7 @@ public class UsersController {
 
     @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Users with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Users getByEmail(@PathVariable("email") String email) {
         LOGGER.debug("Getting Users with uniques key Email");
         return usersService.getByEmail(email);

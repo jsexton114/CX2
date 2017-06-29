@@ -102,6 +102,7 @@ public class VendorsToProjectController {
 
     @RequestMapping(value = "/projectGuid-vendorId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching VendorsToProject with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public VendorsToProject getByProjectGuidAndVendorId(@RequestParam("projectGuid") String projectGuid, @RequestParam("vendorId") Integer vendorId) {
         LOGGER.debug("Getting VendorsToProject with uniques key ProjectGuidAndVendorId");
         return vendorsToProjectService.getByProjectGuidAndVendorId(projectGuid, vendorId);

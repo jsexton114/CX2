@@ -754,15 +754,26 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
                 return null;
             }
             if ($scope.inspectionObject.callInOnly) {
-                // Commented as Derek requested to show this for Employees
-                // if ($scope.Variables.svUserPermissions.dataSet.isEmployee) {
-                //     return false;
-                // }
+                if ($scope.Variables.svUserPermissions.dataSet.isEmployee) {
+                    return false;
+                }
                 return true;
             } else {
                 return false;
             }
 
+        };
+
+        $scope.callInOnlyLabel = function() {
+
+            if (!$scope.inspectionObject) {
+                return null;
+            }
+            if ($scope.inspectionObject.callInOnly) {
+                return true;
+            } else {
+                return false;
+            }
 
         };
 
@@ -828,6 +839,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
             $scope.callInOnly();
+            $scope.callInOnlyLabel();
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
@@ -839,6 +851,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             $scope.Widgets.dateInspectionRequest.excludedays = excludeDays();
             $scope.Widgets.datetimeInspectionRequest.excludedays = excludeDays();
             $scope.callInOnly();
+            $scope.callInOnlyLabel();
 
         };
 

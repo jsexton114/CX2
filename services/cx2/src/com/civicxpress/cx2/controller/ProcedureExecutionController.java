@@ -8,6 +8,8 @@ package com.civicxpress.cx2.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/fetchUnpaidFeesOfFormsForCreatedByAndSharedWith", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "fetchUnpaidFeesOfFormsForCreatedByAndSharedWith")
-    public FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith(@RequestParam(value = "MunicipalityId") Integer municipalityId, @RequestParam(value = "UserId") Integer userId) {
+    public FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith(@RequestParam(value = "MunicipalityId") Integer municipalityId, @RequestParam(value = "UserId") Integer userId, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: fetchUnpaidFeesOfFormsForCreatedByAndSharedWith");
         FetchUnpaidFeesOfFormsForCreatedByAndSharedWithResponse _result = procedureService.executeFetchUnpaidFeesOfFormsForCreatedByAndSharedWith(municipalityId, userId);
         LOGGER.debug("got the result for named procedure: fetchUnpaidFeesOfFormsForCreatedByAndSharedWith, result:{}", _result);
@@ -51,7 +53,7 @@ public class ProcedureExecutionController {
     @RequestMapping(value = "/procedure/execute/getLetterTemplatesForFormStatus", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getLetterTemplatesForFormStatus")
-    public GetLetterTemplatesForFormStatusResponse executeGetLetterTemplatesForFormStatus(@RequestParam(value = "formStatusId") Integer formStatusId) {
+    public GetLetterTemplatesForFormStatusResponse executeGetLetterTemplatesForFormStatus(@RequestParam(value = "formStatusId") Integer formStatusId, HttpServletRequest _request) {
         LOGGER.debug("Executing named procedure: getLetterTemplatesForFormStatus");
         GetLetterTemplatesForFormStatusResponse _result = procedureService.executeGetLetterTemplatesForFormStatus(formStatusId);
         LOGGER.debug("got the result for named procedure: getLetterTemplatesForFormStatus, result:{}", _result);

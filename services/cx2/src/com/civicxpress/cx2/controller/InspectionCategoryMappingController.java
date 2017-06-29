@@ -102,6 +102,7 @@ public class InspectionCategoryMappingController {
 
     @RequestMapping(value = "/inspectionCategoryId-inspectionDesignId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching InspectionCategoryMapping with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public InspectionCategoryMapping getByInspectionCategoryIdAndInspectionDesignId(@RequestParam("inspectionCategoryId") Integer inspectionCategoryId, @RequestParam("inspectionDesignId") Integer inspectionDesignId) {
         LOGGER.debug("Getting InspectionCategoryMapping with uniques key InspectionCategoryIdAndInspectionDesignId");
         return inspectionCategoryMappingService.getByInspectionCategoryIdAndInspectionDesignId(inspectionCategoryId, inspectionDesignId);

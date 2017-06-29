@@ -102,6 +102,7 @@ public class UserDeviceDetailsController {
 
     @RequestMapping(value = "/deviceId-userId-deviceOs", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching UserDeviceDetails with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public UserDeviceDetails getByDeviceIdAndUserIdAndDeviceOs(@RequestParam("deviceId") String deviceId, @RequestParam("userId") Integer userId, @RequestParam("deviceOs") String deviceOs) {
         LOGGER.debug("Getting UserDeviceDetails with uniques key DeviceIdAndUserIdAndDeviceOs");
         return userDeviceDetailsService.getByDeviceIdAndUserIdAndDeviceOs(deviceId, userId, deviceOs);
@@ -109,6 +110,7 @@ public class UserDeviceDetailsController {
 
     @RequestMapping(value = "/deviceUuid-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching UserDeviceDetails with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public UserDeviceDetails getByDeviceUuidAndUserId(@RequestParam("deviceUuid") String deviceUuid, @RequestParam("userId") Integer userId) {
         LOGGER.debug("Getting UserDeviceDetails with uniques key DeviceUuidAndUserId");
         return userDeviceDetailsService.getByDeviceUuidAndUserId(deviceUuid, userId);

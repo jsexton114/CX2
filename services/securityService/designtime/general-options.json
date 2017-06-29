@@ -30,5 +30,9 @@
     "parameter" : "WM_AUTH_TOKEN",
     "tokenValiditySeconds" : 1800
   },
-  "authProviders" : [ "DATABASE" ]
+  "authProviders" : [ "DATABASE" ],
+  "xFrameOptions" : {
+    "mode" : "SAMEORIGIN",
+    "allowFromUrl" : null
+  }
 }

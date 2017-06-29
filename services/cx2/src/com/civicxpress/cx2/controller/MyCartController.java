@@ -102,6 +102,7 @@ public class MyCartController {
 
     @RequestMapping(value = "/feeId-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching MyCart with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public MyCart getByFeeIdAndUserId(@RequestParam("feeId") Integer feeId, @RequestParam("userId") Integer userId) {
         LOGGER.debug("Getting MyCart with uniques key FeeIdAndUserId");
         return myCartService.getByFeeIdAndUserId(feeId, userId);

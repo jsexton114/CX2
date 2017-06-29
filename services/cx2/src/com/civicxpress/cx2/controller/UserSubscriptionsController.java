@@ -102,6 +102,7 @@ public class UserSubscriptionsController {
 
     @RequestMapping(value = "/municipalityId-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching UserSubscriptions with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public UserSubscriptions getByMunicipalityIdAndUserId(@RequestParam("municipalityId") Integer municipalityId, @RequestParam("userId") Integer userId) {
         LOGGER.debug("Getting UserSubscriptions with uniques key MunicipalityIdAndUserId");
         return userSubscriptionsService.getByMunicipalityIdAndUserId(municipalityId, userId);

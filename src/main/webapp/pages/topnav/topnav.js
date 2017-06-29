@@ -15,10 +15,10 @@ Application.$controller("topnavPageController", ["$scope", "$location", "$window
     };
 
 
-    $scope.logoutLinkClick = function($event, $isolateScope) {
-        $location.path("/Login").search({});
-        $window.location.reload();
-    };
+    // $scope.logoutLinkClick = function($event, $isolateScope) {
+    //     $location.path("/Login").search({});
+    //     $window.location.reload();
+    // };
 
 }]);
 

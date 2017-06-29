@@ -102,6 +102,7 @@ public class VendorApprovalsController {
 
     @RequestMapping(value = "/municipalityId-vendorId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching VendorApprovals with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public VendorApprovals getByMunicipalityIdAndVendorId(@RequestParam("municipalityId") Integer municipalityId, @RequestParam("vendorId") Integer vendorId) {
         LOGGER.debug("Getting VendorApprovals with uniques key MunicipalityIdAndVendorId");
         return vendorApprovalsService.getByMunicipalityIdAndVendorId(municipalityId, vendorId);

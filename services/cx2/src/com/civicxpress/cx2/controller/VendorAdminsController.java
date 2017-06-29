@@ -102,6 +102,7 @@ public class VendorAdminsController {
 
     @RequestMapping(value = "/userId-vendorId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching VendorAdmins with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public VendorAdmins getByUserIdAndVendorId(@RequestParam("userId") int userId, @RequestParam("vendorId") int vendorId) {
         LOGGER.debug("Getting VendorAdmins with uniques key UserIdAndVendorId");
         return vendorAdminsService.getByUserIdAndVendorId(userId, vendorId);

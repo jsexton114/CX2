@@ -102,6 +102,7 @@ public class FormToInspectionCategoryMappingController {
 
     @RequestMapping(value = "/formTypeId-inspectionCategoryId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching FormToInspectionCategoryMapping with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public FormToInspectionCategoryMapping getByFormTypeIdAndInspectionCategoryId(@RequestParam("formTypeId") Integer formTypeId, @RequestParam("inspectionCategoryId") Integer inspectionCategoryId) {
         LOGGER.debug("Getting FormToInspectionCategoryMapping with uniques key FormTypeIdAndInspectionCategoryId");
         return formToInspectionCategoryMappingService.getByFormTypeIdAndInspectionCategoryId(formTypeId, inspectionCategoryId);

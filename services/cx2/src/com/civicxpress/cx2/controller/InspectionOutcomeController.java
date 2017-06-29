@@ -106,6 +106,7 @@ public class InspectionOutcomeController {
 
     @RequestMapping(value = "/inspectDesignId-outcomeOrder", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching InspectionOutcome with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public InspectionOutcome getByInspectDesignIdAndOutcomeOrder(@RequestParam("inspectDesignId") Integer inspectDesignId, @RequestParam("outcomeOrder") Integer outcomeOrder) {
         LOGGER.debug("Getting InspectionOutcome with uniques key InspectDesignIdAndOutcomeOrder");
         return inspectionOutcomeService.getByInspectDesignIdAndOutcomeOrder(inspectDesignId, outcomeOrder);

@@ -102,6 +102,7 @@ public class MunicipalityGroupMembersController {
 
     @RequestMapping(value = "/municipalityGroupId-userId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching MunicipalityGroupMembers with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public MunicipalityGroupMembers getByMunicipalityGroupIdAndUserId(@RequestParam("municipalityGroupId") Integer municipalityGroupId, @RequestParam("userId") Integer userId) {
         LOGGER.debug("Getting MunicipalityGroupMembers with uniques key MunicipalityGroupIdAndUserId");
         return municipalityGroupMembersService.getByMunicipalityGroupIdAndUserId(municipalityGroupId, userId);

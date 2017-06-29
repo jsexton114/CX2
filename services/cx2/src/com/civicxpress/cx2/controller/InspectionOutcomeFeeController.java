@@ -102,6 +102,7 @@ public class InspectionOutcomeFeeController {
 
     @RequestMapping(value = "/inspectOutcomeId-orderToApply", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching InspectionOutcomeFee with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public InspectionOutcomeFee getByInspectOutcomeIdAndOrderToApply(@RequestParam("inspectOutcomeId") Integer inspectOutcomeId, @RequestParam("orderToApply") Integer orderToApply) {
         LOGGER.debug("Getting InspectionOutcomeFee with uniques key InspectOutcomeIdAndOrderToApply");
         return inspectionOutcomeFeeService.getByInspectOutcomeIdAndOrderToApply(inspectOutcomeId, orderToApply);

@@ -157,6 +157,7 @@ public class VendorController {
 
     @RequestMapping(value = "/companyEmail/{companyEmail}", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching Vendor with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public Vendor getByCompanyEmail(@PathVariable("companyEmail") String companyEmail) {
         LOGGER.debug("Getting Vendor with uniques key CompanyEmail");
         return vendorService.getByCompanyEmail(companyEmail);

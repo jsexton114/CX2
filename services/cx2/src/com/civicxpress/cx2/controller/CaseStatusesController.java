@@ -103,6 +103,7 @@ public class CaseStatusesController {
 
     @RequestMapping(value = "/caseTypeId-sortNumber", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching CaseStatuses with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public CaseStatuses getByCaseTypeIdAndSortNumber(@RequestParam("caseTypeId") Integer caseTypeId, @RequestParam("sortNumber") Integer sortNumber) {
         LOGGER.debug("Getting CaseStatuses with uniques key CaseTypeIdAndSortNumber");
         return caseStatusesService.getByCaseTypeIdAndSortNumber(caseTypeId, sortNumber);

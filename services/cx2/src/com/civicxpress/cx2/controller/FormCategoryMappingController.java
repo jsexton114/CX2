@@ -102,6 +102,7 @@ public class FormCategoryMappingController {
 
     @RequestMapping(value = "/formTypeId-formCategoryId", method = RequestMethod.GET)
     @ApiOperation(value = "Returns the matching FormCategoryMapping with given unique key values.")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     public FormCategoryMapping getByFormTypeIdAndFormCategoryId(@RequestParam("formTypeId") Integer formTypeId, @RequestParam("formCategoryId") Integer formCategoryId) {
         LOGGER.debug("Getting FormCategoryMapping with uniques key FormTypeIdAndFormCategoryId");
         return formCategoryMappingService.getByFormTypeIdAndFormCategoryId(formTypeId, formCategoryId);
