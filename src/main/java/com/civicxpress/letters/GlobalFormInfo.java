@@ -1,7 +1,5 @@
 package com.civicxpress.letters;
 
-//import com.civicxpress.StatusHistory;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,8 +36,12 @@ public class GlobalFormInfo {
     private String subdivision;
     private String userSubmitted;
     private Date dateGenerated;
+    private String currentStatus;
+    private String currentStatusUser;
+    private Date currentStatusDate;
+    private String currentStatusYear;
     private HashMap<String, byte[]> additionalImages;
-//    private HashMap<String, StatusHistory> statusHistory;
+    
     
     public Long getFormTypeId() {
         return formTypeId;
@@ -284,18 +286,42 @@ public class GlobalFormInfo {
     public HashMap<String, byte[]> getAdditionalImages() {
         return this.additionalImages;
     }
+    
+    public String getCurrentStatus() {
+        return this.currentStatus;
+    }
+    
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
+    }
 
+    public String getCurrentStatusUser() {
+        return this.currentStatusUser;
+    }
+    
+    public void setCurrentStatusUser(String currentStatusUser) {
+        this.currentStatusUser = currentStatusUser;        
+    }
+    
+    public Date getCurrentStatusDate() {
+        return this.currentStatusDate;
+    }
+    
+    public void setCurrentStatusDate(Date currentStatusDate) {
+        this.currentStatusDate = currentStatusDate;
+    }
+    
+    public String getCurrentStatusYear() {
+        return this.currentStatusYear;
+    }
+    
+    public void setCurrentStatusYear(String currentStatusYear) {
+        this.currentStatusYear = currentStatusYear;
+    }
+    
     public void setAdditionalImages(HashMap<String, byte[]> additionalImages) {
         this.additionalImages = additionalImages;
     }
-/*
-    public HashMap<String, StatusHistory> getStatusHistory() {
-        return this.statusHistory;
-    }
-    
-    public void setStatusHistory(HashMap<String, StatusHistory> statusHistory) {
-        this.statusHistory = statusHistory;        
-    }
-*/
+
 }
 

@@ -398,6 +398,10 @@ public class Cx2DataAccess {
                 globalFormInfo.setSubdivision(rs.getString("Subdivision"));
                 globalFormInfo.setUserSubmitted(rs.getString("UserSubmitted"));
                 globalFormInfo.setDateGenerated(rs.getDate("DateGenerated"));
+                globalFormInfo.setCurrentStatus(rs.getString("CurrentStatus"));
+                globalFormInfo.setCurrentStatusUser(rs.getString("CurrentStatusUser"));
+                globalFormInfo.setCurrentStatusDate(rs.getDate("CurrentStatusDate"));
+                globalFormInfo.setCurrentStatusYear(rs.getString("CurrentStatusYear"));
                 // LocationLatitude  LocationLongitude
                 // look at how much extra code has to be written because the database is designed incorrectly
                 String locationLatitudeString = rs.getString("LocationLatitude");
@@ -419,13 +423,6 @@ public class Cx2DataAccess {
                         additionalImages.put(imageId.toString(), imageBytes);
                     }
                     globalFormInfo.setAdditionalImages(additionalImages);
-                }
-                if (statement.getMoreResults()) {
-                    ResultSet rsStatusHistory = statement.getResultSet();
-                    HashMap<String, String> statusHistory = new HashMap<String, String>();
-                    while (rsStatusHistory.next()) {
-
-                    }
                 }
             }
         } catch (Exception e) {

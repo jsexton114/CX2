@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class LetterTemplate {
     private static final String[] GLOBAL_TEXT_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
             "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "UserSubmitted", "DateGenerated", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
-            "Violations", "ExpiresDate", "IssuedDate"};
+            "Violations", "ExpiresDate", "IssuedDate", "CurrentStatus", "CurrentStatusUser", "CurrentStatusDate", "CurrentStatusYear"};
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
             "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "UserSubmitted", "DateGenerated", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
@@ -255,6 +255,21 @@ public class LetterTemplate {
                 if (issuedDate != null) {
                     returnValue = issuedDate.toString();
                 }
+                break;
+            case "CurrentStatus":
+                returnValue = globalFormInfo.getCurrentStatus();
+                break;
+            case "CurrentStatusUser":
+                returnValue = globalFormInfo.getCurrentStatusUser();
+                break;
+            case "CurrentStatusDate":
+                Date currentStatusDate = globalFormInfo.getCurrentStatusDate();
+                if (currentStatusDate != null) {
+                    returnValue = currentStatusDate.toString();
+                }
+                break;
+            case "CurrentStatusYear":
+                returnValue = globalFormInfo.getCurrentStatusYear();
                 break;
         }
         return returnValue;
