@@ -1,8 +1,7 @@
 <wm-page data-ng-controller="MyCartPageController" pagetitle="My Cart" name="page1">
-    <wm-header content="header" name="header1"></wm-header>
-    <wm-top-nav content="topnav" name="top_nav1"></wm-top-nav>
+
     <wm-content name="content1">
-        <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
+
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid1">
                 <wm-gridrow name="gridrow3_1">
@@ -109,7 +108,7 @@
             </wm-layoutgrid>
         </wm-page-content>
     </wm-content>
-    <wm-footer content="footer" name="footer1"></wm-footer>
+
     <wm-view class="dialog-view" name="view3">
         <wm-pagedialog name="pagedialogViewForm" oktext="Close" content="_viewForm" modal="true" class="modal-larger" title="View Form" iconclass="wi wi-assignment">
             <wm-param name="FormGUID" value="bind:Widgets.gridFeesList.selecteditem.itemGuid" type="string"></wm-param>
