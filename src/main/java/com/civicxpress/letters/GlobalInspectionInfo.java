@@ -37,6 +37,10 @@ public class GlobalInspectionInfo {
     private String subdivision;
     private String userSubmitted;
     private Date dateGenerated;
+    private String currentStatus;
+    private String currentStatusUser;
+    private Date currentStatusDate;
+    private String currentStatusYear;
     private HashMap<String, byte[]> additionalImages;
     
     public Long getInspectionDesignId() {
@@ -287,6 +291,38 @@ public class GlobalInspectionInfo {
         this.dateGenerated = dateGenerated;
     }
 
+    public String getCurrentStatus() {
+        return this.currentStatus;
+    }
+    
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public String getCurrentStatusUser() {
+        return this.currentStatusUser;
+    }
+    
+    public void setCurrentStatusUser(String currentStatusUser) {
+        this.currentStatusUser = currentStatusUser;        
+    }
+    
+    public Date getCurrentStatusDate() {
+        return this.currentStatusDate;
+    }
+    
+    public void setCurrentStatusDate(Date currentStatusDate) {
+        this.currentStatusDate = currentStatusDate;
+    }
+    
+    public String getCurrentStatusYear() {
+        return this.currentStatusYear;
+    }
+    
+    public void setCurrentStatusYear(String currentStatusYear) {
+        this.currentStatusYear = currentStatusYear;
+    }
+    
     public HashMap<String, byte[]> getAdditionalImages() {
         return this.additionalImages;
     }

@@ -432,10 +432,11 @@ Application.$controller("gridLettersController", ["$scope",
         $scope.ctrlScope = $scope;
 
         $scope.customRow1Action = function($event, $rowData) {
+            let tempLink;
             if (window.location.hostname == "www.wavemakeronline.com") {
-                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/ViewInspection?inspectionGuid=" + $scope.pageParams.inspectionGuid;
             } else {
-                tempLink = "https://" + window.location.hostname + "/#/ViewInspection?inspectionGuid=" +
+                tempLink = "https://" + window.location.hostname + "#/ViewInspection?inspectionGuid=" +
                     $scope.pageParams.inspectionGuid;
             }
 

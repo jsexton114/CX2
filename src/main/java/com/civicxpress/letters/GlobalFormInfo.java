@@ -283,10 +283,6 @@ public class GlobalFormInfo {
         this.dateGenerated = dateGenerated;
     }
     
-    public HashMap<String, byte[]> getAdditionalImages() {
-        return this.additionalImages;
-    }
-    
     public String getCurrentStatus() {
         return this.currentStatus;
     }
@@ -317,6 +313,10 @@ public class GlobalFormInfo {
     
     public void setCurrentStatusYear(String currentStatusYear) {
         this.currentStatusYear = currentStatusYear;
+    }
+    
+    public HashMap<String, byte[]> getAdditionalImages() {
+        return this.additionalImages;
     }
     
     public void setAdditionalImages(HashMap<String, byte[]> additionalImages) {

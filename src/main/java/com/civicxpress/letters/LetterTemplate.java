@@ -18,7 +18,7 @@ public class LetterTemplate {
     
     private static final String[] GLOBAL_INSPECTION_TOKENS = {"FormType", "FormTitle", "MunicipalityName", "MunicipalityAddress", "MunicipalityAddressLine1", "MunicipalityAddressLine2", "MunicipalityCity", "MunicipalityState", "MunicipalityPostalCode", "ContractorName", "ContractorAddress",
             "LocationLot", "Location", "LocationMap", "LocationParcel", "Subdivision", "UserSubmitted", "DateGenerated", "Fees", "AmountDue", "Owner", "OwnerPhone", "OwnerAddress", "Tenant",
-            "Violations", "ExpiresDate", "IssuedDate"};
+            "Violations", "ExpiresDate", "IssuedDate", "CurrentStatus", "CurrentStatusUser", "CurrentStatusDate", "CurrentStatusYear"};
     
     private static final String[] GLOBAL_IMAGE_TOKENS = {"MunicipalityLogo"};
     private static final String TOKEN_PATTERN = "\\[(.*?)\\]";
@@ -375,6 +375,21 @@ public class LetterTemplate {
                 if (issuedDate != null) {
                     returnValue = issuedDate.toString();
                 }
+                break;
+            case "CurrentStatus":
+                returnValue = globalInspectionInfo.getCurrentStatus();
+                break;
+            case "CurrentStatusUser":
+                returnValue = globalInspectionInfo.getCurrentStatusUser();
+                break;
+            case "CurrentStatusDate":
+                Date currentStatusDate = globalInspectionInfo.getCurrentStatusDate();
+                if (currentStatusDate != null) {
+                    returnValue = currentStatusDate.toString();
+                }
+                break;
+            case "CurrentStatusYear":
+                returnValue = globalInspectionInfo.getCurrentStatusYear();
                 break;
         }
         return returnValue;
