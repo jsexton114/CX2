@@ -1363,6 +1363,8 @@ public class FormService {
         params.addLong("formTypeId", formTypeId);
         params.addLong("draftId", draftId);
         params.addString("formData", formData);
+        logger.info("FormService.saveDraft()");
+        logger.debug("securityService.getUserId(): " + securityService.getUserId());
     	params.addLong("userId", Long.parseLong(securityService.getUserId()));
 
     	if (draftId == null) {

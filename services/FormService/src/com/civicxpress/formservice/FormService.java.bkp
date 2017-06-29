@@ -1240,15 +1240,9 @@ public class FormService {
     	}
     }
     private void setOnZeroFormStatus(String formGuid, Long formStatusId, String comments, Connection cx2Conn) throws SQLException {
-          	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
-    		cx2Conn.close();
-    		throw new SQLException("Permission Denied");
-    	}
-    	
+          	
     	Connection muniDbConn = null;
-    	cx2Conn.setAutoCommit(false);
-    	
-    	try {
+       	try {
     		DBQueryParams queryParams = new DBQueryParams();
     		queryParams.addString("formGuid", formGuid);
     		queryParams.addLong("newFormStatusId", formStatusId);
@@ -1289,7 +1283,7 @@ public class FormService {
 	    		}
     		}
     		
-    		cx2Conn.commit();
+    	
     	} catch (Exception e) {
     		cx2Conn.rollback();
     		if (muniDbConn!=null) {
@@ -1369,6 +1363,7 @@ public class FormService {
         params.addLong("formTypeId", formTypeId);
         params.addLong("draftId", draftId);
         params.addString("formData", formData);
+        logger.debug("securityService.getUserId(): " + securityService.getUserId());
     	params.addLong("userId", Long.parseLong(securityService.getUserId()));
 
     	if (draftId == null) {
@@ -1383,6 +1378,8 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
+        logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+primaryVendorId);
+        logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++"+vendorIds);
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -1491,6 +1488,7 @@ public class FormService {
 	    	
 	    	// Add Vendor(s)
 	    	if (formTypeData.getBoolean("VendorSelection")) {
+	    	    if(vendorIds!=null){
 		    	StringBuilder vendorsQuery = new StringBuilder("INSERT INTO Vendors2Form (RelatedFormGUID, VendorId, PrimaryVendor, SharedOn) VALUES ");
 		    	int vendorIndex = 0;
 		    	
@@ -1512,6 +1510,7 @@ public class FormService {
 	    		}
 	    		
 	    		DBUtils.simpleUpdateQuery(cx2Conn, vendorsQuery.toString(), queryParams);
+	    	    }
 	    	}
 	    	
 	    	// Add sharing
