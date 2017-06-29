@@ -5,9 +5,9 @@
         <wm-left-panel columnwidth="2" content="leftnav" name="left_panel1"></wm-left-panel>
         <wm-page-content columnwidth="10" name="page_content1">
             <wm-layoutgrid name="layoutgrid2">
-                <wm-gridrow name="gridrow19" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn30">
-                        <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="User Details" badgetype="primary" class="panel-primary">
+                        <wm-panel iconclass="wi wi-account-circle" name="panelProfileInfo" title="User Details" badgetype="primary" class="panel-primary" margin="unset unset 1em unset">
                             <wm-layoutgrid name="layoutgrid5">
                                 <wm-gridrow name="gridrow20">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn33">
@@ -91,11 +91,12 @@
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow43_1">
                                     <wm-gridcolumn columnwidth="6" name="gridcolumn43_2"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn44_1" padding="2em">
-                                        <wm-composite name="composite14">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn44_1">
+                                        <wm-composite name="composite14" padding="2em" accessroles="CXAdmin">
                                             <wm-checkbox caption="I have a different billing address" class="col-md-push-3 col-md-9" name="checkboxDifferentBillingInfo" checkedvalue="true" uncheckedvalue="false" on-change="Variables.svUpdateUserBillingInfoPreference.invoke()"
-                                            datavalue="bind:Variables.CurrentUserDetails.dataSet.differentBillingInfo"></wm-checkbox>
+                                            datavalue="bind:Variables.CurrentUserDetails.dataSet.differentBillingInfo" accessroles="CXAdmin"></wm-checkbox>
                                         </wm-composite>
+                                        <wm-label padding="unset 0.5em" name="label25_1" caption="This setting is currently only visible to CXAdmin pending future development" accessroles="CXAdmin" fontweight="bold" fontstyle="italic" class="col-md-push-3 col-md-9"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow22">
@@ -107,10 +108,15 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow7_1" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
-                        <wm-panel iconclass="wi wi-attach-money" name="panelMyBillingInfo" title="Billing Information" class="panel-primary" show="bind:Widgets.checkboxDifferentBillingInfo.datavalue">
+                        <wm-panel iconclass="wi wi-attach-money" name="panelMyBillingInfo" title="Billing Information" class="panel-primary" show="bind:Widgets.checkboxDifferentBillingInfo.datavalue" accessroles="CXAdmin" margin="unset unset 1em unset">
                             <wm-layoutgrid name="layoutgrid5_2">
+                                <wm-gridrow name="gridrow43">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn44_2">
+                                        <wm-label padding="unset 0.5em" name="label26_1" caption="This panel is currently only visible to CXAdmin pending future development" fontstyle="italic" fontweight="bold" accessroles="CXAdmin"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow25">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn34_1" horizontalalign="center">
                                         <wm-livegrid formlayout="dialog" name="livegridBillingInfo" show="true">
@@ -202,9 +208,9 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow7_1" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow7_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn16_1">
-                        <wm-panel iconclass="wi wi-account-balance" name="panelMyMunicipalities" title="My Municipalities" class="panel-primary">
+                        <wm-panel iconclass="wi wi-account-balance" name="panelMyMunicipalities" title="My Municipalities" class="panel-primary" margin="unset unset 1em unset">
                             <wm-layoutgrid name="layoutgrid5_2">
                                 <wm-gridrow name="gridrow29_2">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn29">
@@ -261,9 +267,9 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow31" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow31">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                        <wm-panel iconclass="wi wi-work" autoclose="outsideClick" name="panel4" title="My Companies" class="panel-primary" show="bind:Variables.GetUserVendors.dataSet.data[$i].id != null">
+                        <wm-panel iconclass="wi wi-work" autoclose="outsideClick" name="panel4" title="My Companies" class="panel-primary" show="bind:Variables.GetUserVendors.dataSet.data[$i].id != null" margin="unset unset 1em unset">
                             <wm-layoutgrid name="layoutgrid9">
                                 <wm-gridrow name="gridrow42_2">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn43_1">
@@ -303,9 +309,9 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow35" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow35">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn35_1">
-                        <wm-panel iconclass="wi wi-remove-red-eye" title="Display Preferences" class="panel-primary" name="panelPreferences">
+                        <wm-panel iconclass="wi wi-remove-red-eye" title="Display Preferences" class="panel-primary" name="panelPreferences" margin="unset unset 1em unset">
                             <wm-layoutgrid name="layoutgrid11">
                                 <wm-gridrow name="gridrow36" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn36_3">
@@ -328,8 +334,13 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow22_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn36">
-                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="Notification Settings" class="panel-primary" show="false">
+                        <wm-panel iconclass="wi wi-notifications" name="panelMyNotifications" title="Notification Settings" class="panel-primary" show="true" margin="unset unset 1em unset" accessroles="CXAdmin">
                             <wm-layoutgrid name="layoutgrid8_1">
+                                <wm-gridrow name="gridrow44">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn45">
+                                        <wm-label padding="unset 0.5em" name="label27_1" caption="This panel is currently only visible to CXAdmin pending future development" fontweight="bold" fontstyle="italic"></wm-label>
+                                    </wm-gridcolumn>
+                                </wm-gridrow>
                                 <wm-gridrow name="gridrow28_1" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn29_1">
                                         <wm-label padding="unset 0.5em" name="label32" caption="How often would you like to receive email notifications?"></wm-label>
@@ -349,10 +360,10 @@
                         </wm-panel>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow17_1" padding="unset unset 1em unset">
+                <wm-gridrow name="gridrow17_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn20_1">
                         <wm-form errormessage="" captionposition="top" title="Update Password" enctype="application/x-www-form-urlencoded" method="put" dataset="bind:Variables.UpdateNewPassword.dataSet" captionalign="left" name="form1" postmessage="Password updated successfully"
-                        messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key">
+                        messagelayout="Toaster" class="panel-primary" iconclass="wi wi-vpn-key" margin="unset unset 1em unset">
                             <wm-layoutgrid columns="1" name="layoutgrid5_1">
                                 <wm-gridrow name="gridrow38_1">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn38_2">

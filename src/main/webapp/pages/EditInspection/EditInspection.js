@@ -163,24 +163,32 @@ Application.$controller("lfUpdateInspectionDesignController", ["$scope",
             }
         };
 
-        $scope.scheduleDateOnlyChange = function($event, $isolateScope, newVal, oldVal) {
-            if (newVal === true) {
-                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = false;
-                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.totalInspectionsHourly.datavalue = "";
-
-            }
-            if (newVal === false) {
-                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = true;
-            }
-        };
+        // DEPRECATED
+        //        $scope.scheduleDateOnlyChange = function($event, $isolateScope, newVal, oldVal) {
+        //           if (newVal === true) {
+        //                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = false;
+        //                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.totalInspectionsHourly.datavalue = "";
+        //
+        //            }
+        //            if (newVal === false) {
+        //                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateAndTime.datavalue = true;
+        //            }
+        //        };
+        //
+        //        $scope.scheduleDateAndTimeChange = function($event, $isolateScope, newVal, oldVal) {
+        //            if (newVal === true) {
+        //                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = false;
+        //
+        //            }
+        //            if (newVal === false) {
+        //                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = true;
+        //
+        //            }
+        //        };
 
         $scope.scheduleDateAndTimeChange = function($event, $isolateScope, newVal, oldVal) {
-            if (newVal === true) {
-                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = false;
-
-            }
             if (newVal === false) {
-                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.scheduleDateOnly.datavalue = true;
+                $scope.Widgets.lfUpdateInspectionDesign.formWidgets.totalInspectionsHourly.datavalue = "";
 
             }
         };

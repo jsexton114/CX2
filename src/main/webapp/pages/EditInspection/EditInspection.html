@@ -171,7 +171,7 @@
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn77" padding="unset 1em unset unset">
                                                                 <wm-form-field name="scheduleDateAndTime" displayname="Schedule By" show="true" primary-key="false" generator="assigned" key="scheduleDateAndTime" type="boolean" readonly="false" required="true"
-                                                                widget="radioset" defaultvalue="FALSE" dataset="bind:Variables.stvScheduleDateTimeOptions.dataSet" datafield="value" displayfield="label" placeholder=""></wm-form-field>
+                                                                widget="radioset" defaultvalue="FALSE" dataset="bind:Variables.stvScheduleDateTimeOptions.dataSet" datafield="value" displayfield="label" placeholder="" on-change="scheduleDateAndTimeChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn72_1" padding="unset 1em unset unset">
                                                                 <wm-form-field name="allowUnscheduledInspection" displayname="Allow Unscheduled Inspections" show="true" primary-key="false" generator="assigned" key="allowUnscheduledInspection" type="boolean"
