@@ -419,7 +419,14 @@ public class Cx2DataAccess {
                         additionalImages.put(imageId.toString(), imageBytes);
                     }
                     globalFormInfo.setAdditionalImages(additionalImages);
-                }                
+                }
+                if (statement.getMoreResults()) {
+                    ResultSet rsStatusHistory = statement.getResultSet();
+                    HashMap<String, String> statusHistory = new HashMap<String, String>();
+                    while (rsStatusHistory.next()) {
+
+                    }
+                }
             }
         } catch (Exception e) {
             throw e;
