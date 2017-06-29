@@ -6,7 +6,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-
+        $scope.Widgets.spinner1.show = false;
     };
 
     $scope.wizardstep1Load = function($isolateScope, stepIndex) {
@@ -47,6 +47,9 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
     $scope.wizardCheckOutDone = function($isolateScope, steps) {
         var feeIds = [];
 
+        $scope.Widgets.wizardstep2.disabledone = true;
+        $scope.Widgets.spinner1.show = true;
+
         if ($scope.Variables.svCartItemIds) {
             $scope.Variables.svCartItemIds.dataSet.content.forEach(function(cartItem, index) {
                 feeIds.push(cartItem.feeId);
@@ -66,8 +69,9 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
 
         $scope.Variables.svCartItemIds.update();
         if ($scope.Widgets.wizardCheckOut) $scope.Widgets.wizardCheckOut.show = false;
-        if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentError.show = true;
+        if ($scope.Widgets.containerPaymentError && $scope.Widgets.containerPaymentRecieved.show !== true) $scope.Widgets.containerPaymentError.show = true;
 
+        $scope.Widgets.spinner1.show = false;
         tdUtils.eraseCookie("stripeToken");
         $scope.stripeToken = null;
 
@@ -80,6 +84,7 @@ Application.$controller("MyCartPageController", ["$scope", function($scope) {
         if ($scope.Widgets.containerPaymentRecieved) $scope.Widgets.containerPaymentRecieved.show = true;
         // $scope.$parent.Widgets.pagedialog1.close();
 
+        $scope.Widgets.spinner1.show = false;
         tdUtils.eraseCookie("stripeToken");
         $scope.stripeToken = null;
 
