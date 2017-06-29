@@ -119,7 +119,7 @@
                                                 <wm-grid-column binding="paidStatus" caption="Payment Status" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="paidBy" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                                                <wm-grid-column binding="paidDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('paidDate') | toLocalDateString:true}}</wm-grid-column>
+                                                <wm-grid-column binding="paidDate" caption="Transaction Date" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
                                         </wm-gridcolumn>
