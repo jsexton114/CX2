@@ -39,7 +39,7 @@ public class GlobalFormInfo {
     private String userSubmitted;
     private Date dateGenerated;
     private HashMap<String, byte[]> additionalImages;
-    private HashMap<String, String> statusHistory;
+//    private HashMap<String, StatusHistory> statusHistory;
     
     public Long getFormTypeId() {
         return formTypeId;
@@ -288,13 +288,14 @@ public class GlobalFormInfo {
     public void setAdditionalImages(HashMap<String, byte[]> additionalImages) {
         this.additionalImages = additionalImages;
     }
-
-    public HashMap<String, String> getStatusHistory() {
+/*
+    public HashMap<String, StatusHistory> getStatusHistory() {
         return this.statusHistory;
     }
     
-    public void setStatusHistory(HashMap<String, String> statusHistory) {
+    public void setStatusHistory(HashMap<String, StatusHistory> statusHistory) {
         this.statusHistory = statusHistory;        
     }
+*/
 }
 
