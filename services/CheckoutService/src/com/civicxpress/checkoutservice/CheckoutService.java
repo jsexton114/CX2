@@ -37,7 +37,7 @@ import com.tekdog.dbutils.*;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
 
-import com.civicxpress.formservice.*;
+import com.civicxpress.formservice.FormService;
 import com.civicxpress.letters.Cx2DataAccess;
 import com.civicxpress.PaymentReceipt;
 import com.civicxpress.ReceiptPdf;
@@ -73,8 +73,11 @@ public class CheckoutService {
 
     @Autowired
     private SecurityService securityService;
+    
+     @Autowired
+    private FormService formService;
 
-    public void municipalityCheckout(Long municipalityId, String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long[] feeIds) throws Exception {
+    public void municipalityCheckout(Long municipalityId, String paymentMethod, String paymentNumber, BigDecimal amountReceived, String comments, Long[] feeIds,HttpServletRequest request) throws Exception {
         DBQueryParams queryParams = new DBQueryParams();
     	Connection connection = DBConnectionService.getConnection();
     	CallableStatement checkoutStatement = null;
@@ -122,13 +125,12 @@ public class CheckoutService {
                        // Updating TransactionComments
     	        		DBUtils.simpleUpdateQuery(connection, " UPDATE Fees SET TransactionComments=:comments where ID="+feeId,
         				queryParams);
-        			// Check for AdvanceOnZeroBalance	
-    	             //checkAdvanceOnZeroBalance(feeId,connection);
+        		
     	        }
     	         for (Long feeId : feeIds) { // Mark fees as paid.
     	        
         			// Check for AdvanceOnZeroBalance	
-    	             checkAdvanceOnZeroBalance(feeId,connection);
+    	             checkAdvanceOnZeroBalance(feeId,connection,comments,request);
     	        }
     	        
 	        }
@@ -275,20 +277,35 @@ public class CheckoutService {
         
     }
     
-   private void checkAdvanceOnZeroBalance(Long feeId, Connection connection) throws SQLException {
-       	String formGuid = "";
-    	 DBQueryParams params = new DBQueryParams();
-         formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID="+feeId, params).get(0).getString("FormGuid");
-           logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+formGuid);
-           params.addString("formGuid", formGuid);
-           
-           Long isClear=DBUtils.selectQuery(connection ,"SELECT count(*) as isClear from MasterForms where BalanceDue=0 and FormGUID=:formGuid",params).get(0).getLong("isClear");
-             logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+isClear);
-        //  DBRow feeData=DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId from cx2.masterforms Inner Join cx2.masterforms MF on MF.FormGUID=:formGuid and MF.BalanceDue = 0  Inner join cx2.FormStatuses FS on MF.FormStatusId = FS.ID and AdvanceOnZero = 1 ", params);
-        //  Long newStatusId=feeData.getLong("newStatusId");
-          
-        //   logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+newStatusId);
-   }
+    private void checkAdvanceOnZeroBalance(Long feeId, Connection connection, String comments, HttpServletRequest request) throws SQLException, MessagingException {
+     String formGuid = "";
+     DBQueryParams params = new DBQueryParams();
+     formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID=" + feeId, params).get(0).getString("FormGuid");
+
+     params.addString("formGuid", formGuid);
+
+     BigDecimal balanceDue = DBUtils.selectQuery(connection, "SELECT BalanceDue as balanceDue from MasterForms where FormGUID=:formGuid", params).get(0).getBigDecimal("balanceDue");
+
+     // Check if form has Zero balance
+     BigDecimal zero = new BigDecimal("0");
+
+     if (balanceDue.compareTo(zero) == 0) {
+         DBRow feeData = DBUtils.selectOne(connection, "SELECT FS.StatusToBeOnForAdvanceOnZero as newStatusId,FS.AdvanceOnZero as advanceOnZero from MasterForms MF, FormStatuses FS  where  MF.FormGUID=:formGuid and  MF.FormStatusId = FS.ID  ", params);
+         Boolean advanceOnZero = feeData.getBoolean("advanceOnZero");
+         if (advanceOnZero) {
+             Long newStatusId = feeData.getLong("newStatusId");
+             String formLink = null;
+             String requestUrl = request.getRequestURL().toString();
+             if (requestUrl.contains("civic-dev.com")) {
+                 formLink = "http://civic-dev.com/#/Forms?FormGUID=" + formGuid;
+             } else {
+                 formLink ="https://www.wavemakeronline.com"+ request.getContextPath() + "/#/Forms?FormGUID=" + formGuid;
+             }
+             formService.setOnZeroFormStatus(formGuid, newStatusId, comments, formLink, connection);
+
+         }
+     }
+ }
     
     
 }
