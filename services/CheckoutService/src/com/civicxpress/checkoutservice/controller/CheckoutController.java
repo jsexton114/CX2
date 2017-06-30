@@ -3,6 +3,7 @@ package com.civicxpress.checkoutservice.controller;
 
 import com.civicxpress.checkoutservice.CheckoutService;
 import java.lang.Long;
+import com.wavemaker.runtime.file.model.DownloadResponse;
 import java.lang.String;
 import java.math.BigDecimal;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,11 @@ public class CheckoutController {
     @ApiOperation(value = "")
     public byte[] createReceiptPdf(@RequestParam(value = "transactionId", required = false) Long transactionId) {
         return checkoutService.createReceiptPdf(transactionId);
+    }
+
+    @RequestMapping(value = "/downloadReceiptPdf", produces = "application/octet-stream", method = RequestMethod.GET)
+    public DownloadResponse downloadReceiptPdf(@RequestParam(value = "transactionId", required = false) Long transactionId) {
+        return checkoutService.downloadReceiptPdf(transactionId);
     }
 
     @RequestMapping(value = "/municipalityCheckout", method = RequestMethod.POST)

@@ -70,7 +70,9 @@
                     <wm-gridcolumn columnwidth="4" name="gridcolumn15_2">
                         <wm-label padding="unset 0.5em unset 1em" name="label7_3" caption="bind:'<h4>Payment Number</h4><p>' + Widgets.gridTransactions.selecteditem.paymentNumber + '</p>'"></wm-label>
                     </wm-gridcolumn>
-                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_5"></wm-gridcolumn>
+                    <wm-gridcolumn columnwidth="8" name="gridcolumn16_5">
+                        <wm-button class="btn-primary" caption="Download PDF Receipt" type="button" margin="unset unset unset 0.5em" name="btnDownloadPdfReceipt" iconclass="wi wi-equalizer" on-click="Variables.svCreateReceiptPdf.invoke()"></wm-button>
+                    </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn11" padding="1em unset">

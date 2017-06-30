@@ -1,1 +1,101 @@
-{"Breadcrumb":{"_id":"wm-Breadcrumb-wm.Variable-1498830143126","name":"Breadcrumb","owner":"Page","category":"wm.Variable","dataBinding":[],"dataSet":[{"label":"My Dashboard","icon":"wi wi-apps","link":"#/Main"},{"label":"Payment History","icon":"wi wi-receipt","link":"#/PaymentHistory"}],"type":"string","isList":true,"saveInPhonegap":false},"svGetTransactionsByMunicipality":{"_id":"wm-svGetTransactionsByMunicipality-wm.ServiceVariable-1498839665161","name":"svGetTransactionsByMunicipality","owner":"Page","category":"wm.ServiceVariable","dataBinding":[{"target":"userId","value":"bind:Variables.loggedInUser.dataSet.id","type":"integer"}],"type":"com.civicxpress.cx2.models.query.GetTransactionsByUserResponse","service":"cx2","operation":"executeGetTransactionsByUser","operationId":"QueryExecutionController_executeGetTransactionsByUser","operationType":"get","serviceType":"DataService","dataSet":[],"isList":true,"maxResults":20,"orderBy":"transactionDate desc","startUpdate":false,"autoUpdate":true,"inFlightBehavior":"executeLast","transformationRequired":false,"saveInPhonegap":false,"isDefault":true,"controller":"QueryExecution"},"svFeesForTransaction":{"_id":"wm-svFeesForTransaction-wm.ServiceVariable-1493580439814","name":"svFeesForTransaction","owner":"Page","category":"wm.ServiceVariable","dataBinding":[{"target":"transactionId","value":"bind:Widgets.gridTransactions.selecteditem.transactionId","type":"integer"}],"type":"com.civicxpress.cx2.models.query.GetFeesForTransactionResponse","service":"cx2","operation":"executeGetFeesForTransaction","operationId":"QueryExecutionController_executeGetFeesForTransaction","operationType":"get","serviceType":"DataService","dataSet":[],"isList":true,"maxResults":20,"startUpdate":false,"autoUpdate":true,"inFlightBehavior":"executeLast","transformationRequired":false,"saveInPhonegap":false,"controller":"QueryExecution"}}
+{
+  "Breadcrumb" : {
+    "_id" : "wm-Breadcrumb-wm.Variable-1498830143126",
+    "name" : "Breadcrumb",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : [ {
+      "label" : "My Dashboard",
+      "icon" : "wi wi-apps",
+      "link" : "#/Main"
+    }, {
+      "label" : "Payment History",
+      "icon" : "wi wi-receipt",
+      "link" : "#/PaymentHistory"
+    } ],
+    "type" : "string",
+    "isList" : true,
+    "saveInPhonegap" : false
+  },
+  "svCreateReceiptPdf" : {
+    "_id" : "wm-svCreateReceiptPdf-wm.ServiceVariable-1498843880683",
+    "name" : "svCreateReceiptPdf",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "transactionId",
+      "value" : "bind:Widgets.gridTransactions.selecteditem.transactionId",
+      "type" : "integer"
+    } ],
+    "type" : "com.wavemaker.runtime.file.model.DownloadResponse",
+    "service" : "CheckoutService",
+    "operation" : "downloadReceiptPdf",
+    "operationId" : "CheckoutController_downloadReceiptPdf",
+    "operationType" : "get",
+    "serviceType" : "JavaService",
+    "dataSet" : [ ],
+    "isList" : false,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "Checkout"
+  },
+  "svFeesForTransaction" : {
+    "_id" : "wm-svFeesForTransaction-wm.ServiceVariable-1493580439814",
+    "name" : "svFeesForTransaction",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "transactionId",
+      "value" : "bind:Widgets.gridTransactions.selecteditem.transactionId",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetFeesForTransactionResponse",
+    "service" : "cx2",
+    "operation" : "executeGetFeesForTransaction",
+    "operationId" : "QueryExecutionController_executeGetFeesForTransaction",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
+  "svGetTransactionsByMunicipality" : {
+    "_id" : "wm-svGetTransactionsByMunicipality-wm.ServiceVariable-1498839665161",
+    "name" : "svGetTransactionsByMunicipality",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "userId",
+      "value" : "bind:Variables.loggedInUser.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.GetTransactionsByUserResponse",
+    "service" : "cx2",
+    "operation" : "executeGetTransactionsByUser",
+    "operationId" : "QueryExecutionController_executeGetTransactionsByUser",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "orderBy" : "transactionDate desc",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "isDefault" : true,
+    "controller" : "QueryExecution"
+  }
+}

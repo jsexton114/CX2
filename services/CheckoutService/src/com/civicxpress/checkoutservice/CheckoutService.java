@@ -3,6 +3,7 @@
  with the terms of the source code license agreement you entered into with wavemaker-com*/
 package com.civicxpress.checkoutservice;
 
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -36,6 +37,7 @@ import com.civicxpress.dbconnectionservice.DBConnectionService;
 import com.tekdog.dbutils.*;
 import com.wavemaker.runtime.security.SecurityService;
 import com.wavemaker.runtime.service.annotations.ExposeToClient;
+import com.wavemaker.runtime.file.model.DownloadResponse;
 
 import com.civicxpress.formservice.FormService;
 import com.civicxpress.letters.Cx2DataAccess;
@@ -168,8 +170,6 @@ public class CheckoutService {
     	}
     }
     
-   
-    
     public byte[] createReceiptPdf(Long transactionId) {
 		Cx2DataAccess db = new Cx2DataAccess();
 		PaymentReceipt paymentReceipt = null;
@@ -180,6 +180,16 @@ public class CheckoutService {
         return fileBytes;
     }
 
+    public DownloadResponse downloadReceiptPdf(Long transactionId) {
+        byte[] fileBytes = createReceiptPdf(transactionId);
+        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
+        DownloadResponse dr = new DownloadResponse();
+        dr.setContents(downloadBais);
+        dr.setContentType("application/pdf");
+        dr.setFileName("receipt" + transactionId.toString() + ".pdf");
+        return dr;
+    }
+    
     private Boolean chargeCreditCard(BigDecimal amount, String description, String stripeToken) {
         Boolean returnSuccess = false;
         Charge charge = null;
