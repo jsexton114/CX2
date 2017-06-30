@@ -946,3 +946,10 @@ Application.$controller("dialogOwnerDetailsController", ["$scope",
         $scope.ctrlScope = $scope;
     }
 ]);
+
+Application.$controller("dialogManageGISDetailsController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);

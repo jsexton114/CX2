@@ -154,6 +154,8 @@
                                                     <wm-grid-column binding="gisrecords.inspectionZone" caption="Inspection Zone" type="string" readonly="true" edit-widget-type="text" show="true"></wm-grid-column>
                                                     <wm-grid-action key="customButton" display-name="Add Location" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Location" action="Widgets.dialogAddGISRecord.open()"
                                                     shortcutkey="" disabled="bind:(!Variables.lvFormType.dataSet.data[$i].multipleGisrecords &amp;&amp; Variables.Gis2formsData.dataSet.totalElements >0) || !Variables.svUserPermissions.dataSet.canEdit"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow2" display-name="" show="true" class="btn-transparent" iconclass="wi wi-edit" title="Manage Details" action="Widgets.dialogManageGISDetails.open()"
+                                                    accessroles="CXAdmin,MunicipalityEmployee,MunicipalityAdmin" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Details" action="Widgets.dialogParcel.open()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="customRow1" display-name="" show="bind:Variables.svUserPermissions.dataSet.canEdit" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="Widgets.dialogDeleteGISRecordConf.open()"
                                                     disabled="false"></wm-grid-row-action>
@@ -1279,6 +1281,16 @@
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
+        </wm-dialog>
+    </wm-view>
+    <wm-view class="dialog-view" name="viewManageGISDetails">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="GISDetails" iconclass="wi wi-edit-location" name="dialogManageGISDetails" width="80%" on-close="Variables.Gis2formsData.invoke()">
+            <wm-dialogactions name="dialogactions14">
+                <wm-button class="btn-primary" caption="Close" on-click="closeDialog()" name="button28"></wm-button>
+            </wm-dialogactions>
+            <wm-container name="containerManageGISDetails" content="GISDetails">
+                <wm-param name="GISRecordId" value="bind:Widgets.gridLocation.selecteditem.gisrecordId" type="integer"></wm-param>
+            </wm-container>
         </wm-dialog>
     </wm-view>
 </wm-partial>
