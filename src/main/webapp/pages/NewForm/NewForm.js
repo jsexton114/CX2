@@ -293,12 +293,11 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     };
 
     $scope.svSubmitFormonSuccess = function(variable, data) {
+
         // Logic for contractor application
         if ($scope.pageParams.draftId === undefined) {
 
             if (($scope.Variables.lvFormType.dataSet.data[0].municipalities.separateContractorApplicationRequired) && ($scope.Variables.lvFormType.dataSet.data[0].municipalities.contractorApplicationFormId == $scope.pageParams.formTypeId)) {
-
-
 
                 if ($scope.pageParams.companyId === undefined) {
                     $scope.Variables.lvSubmitContractorApplication.setInput({
@@ -320,7 +319,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
 
         } else {
             // If form is loaded from draft checking if it is VendorApplication form, if yes submitContract application else navigate to Openforms
-            if ($scope.Variables.CompanyId.dataSet.dataValue === undefined) {
+            if (($scope.Variables.CompanyId.dataSet.dataValue === undefined) || ($scope.Variables.CompanyId.dataSet.dataValue === 0)) {
                 $scope.Variables.goToPage_UserOpenForms.navigate();
 
             } else {
