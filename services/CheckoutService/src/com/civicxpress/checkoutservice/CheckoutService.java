@@ -301,6 +301,7 @@ public class CheckoutService {
              } else {
                  formLink ="https://www.wavemakeronline.com"+ request.getContextPath() + "/#/Forms?FormGUID=" + formGuid;
              }
+             comments= "Form advanced to next status on zero balance.";
              formService.setOnZeroFormStatus(formGuid, newStatusId, comments, formLink, connection);
 
          }
