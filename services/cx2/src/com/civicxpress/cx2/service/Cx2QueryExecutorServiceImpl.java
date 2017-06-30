@@ -1525,6 +1525,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         return queryExecutor.executeNamedQueryForUpdate("InsertFormsToInspectionsMapping", params);
     }
 
+    @Transactional(value = "cx2TransactionManager")
+    @Override
+    public Integer executeResetPasswordWithTokenForUser(Integer userid, String token) {
+        Map params = new HashMap(2);
+
+        params.put("userid", userid);
+        params.put("token", token);
+
+        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+    }
+
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
     public Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(String relatedFormGuid, Pageable pageable) {
@@ -1558,17 +1569,6 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("RelatedFormGUID", relatedFormGuid);
 
         return queryExecutor.exportNamedQueryData("VendorsLinkedWithForm", params, exportType, VendorsLinkedWithFormResponse.class, pageable);
-    }
-
-    @Transactional(value = "cx2TransactionManager")
-    @Override
-    public Integer executeResetPasswordWithTokenForUser(Integer userid, String token) {
-        Map params = new HashMap(2);
-
-        params.put("userid", userid);
-        params.put("token", token);
-
-        return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
@@ -1732,6 +1732,26 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
         params.put("vendor", vendor);
 
         return queryExecutor.exportNamedQueryData("CheckingUserWithInVendorUsers", params, exportType, CheckingUserWithInVendorUsersResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<GetTransactionsByUserResponse> executeGetTransactionsByUser(Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.executeNamedQuery("getTransactionsByUser", params, GetTransactionsByUserResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportGetTransactionsByUser(ExportType exportType, Integer userId, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("userId", userId);
+
+        return queryExecutor.exportNamedQueryData("getTransactionsByUser", params, exportType, GetTransactionsByUserResponse.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

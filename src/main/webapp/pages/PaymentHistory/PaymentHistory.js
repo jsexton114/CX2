@@ -1,8 +1,8 @@
-Application.$controller("PaymentHistoryPageController", ["$scope", function ($scope) {
+Application.$controller("PaymentHistoryPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
+    $scope.onPageReady = function() {
         /*
          * variables can be accessed through '$scope.Variables' property here
          * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
@@ -15,3 +15,17 @@ Application.$controller("PaymentHistoryPageController", ["$scope", function ($sc
     };
 
 }]);
+
+Application.$controller("gridTransactionsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogFeeDetailsController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);

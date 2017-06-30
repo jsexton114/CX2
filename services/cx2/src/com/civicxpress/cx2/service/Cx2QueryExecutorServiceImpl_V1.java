@@ -555,16 +555,6 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         return queryExecutor.executeNamedQueryForUpdate("AddMemeberToProject", params);
     }
 
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid) {
-        Map params = new HashMap(1);
-
-        params.put("RelatedFormGUID", relatedFormGuid);
-
-        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, Object.class, pageable);
-    }
-
     @Transactional(value = "cx2TransactionManager")
     @Override
     public int executeResetPasswordWithTokenForUser(Integer userid, String token) {
@@ -574,6 +564,16 @@ public class Cx2QueryExecutorServiceImpl_V1 implements Cx2QueryExecutorService_V
         params.put("token", token);
 
         return queryExecutor.executeNamedQueryForUpdate("resetPasswordWithTokenForUser", params);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid) {
+        Map params = new HashMap(1);
+
+        params.put("RelatedFormGUID", relatedFormGuid);
+
+        return queryExecutor.executeNamedQuery("VendorsLinkedWithForm", params, Object.class, pageable);
     }
 
     @Transactional(value = "cx2TransactionManager")

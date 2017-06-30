@@ -1577,6 +1577,15 @@ userId IN (select userId from Roles where municipalityId=:municipality and roleN
     <query-param name="AddedBy" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="resetPasswordWithTokenForUser">
+        <![CDATA[
+        DELETE FROM UserPasswordResetTokens WHERE UserId = :userid 
+INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
+        ]]>
+    <query-param name="userid" type="java.lang.Integer"/>
+    <query-param name="token" type="java.lang.String"/>
+    </sql-query>
+
     <query name="VendorsLinkedWithForm">
         <![CDATA[
         from Vendor where id IN (select vendorId from Vendors2form where relatedFormGuid=:RelatedFormGUID)
@@ -1590,15 +1599,6 @@ userId IN (select userId from Roles where municipalityId=:municipality and roleN
         ]]>
     <query-param name="RelatedFormGUID" type="java.lang.String"/>
     </query>
-
-    <sql-query name="resetPasswordWithTokenForUser">
-        <![CDATA[
-        DELETE FROM UserPasswordResetTokens WHERE UserId = :userid 
-INSERT INTO UserPasswordResetTokens (UserId, Token, ExpirationDate) VALUES ( :userid, :token, DATEADD(day, 2, GETDATE()))
-        ]]>
-    <query-param name="userid" type="java.lang.Integer"/>
-    <query-param name="token" type="java.lang.String"/>
-    </sql-query>
 
     <sql-query name="GISContactsOfForm">
         <![CDATA[
@@ -1718,6 +1718,46 @@ from MasterInspections where closed=:isClosed and assignedTo=:assignedTo and dat
         ]]>
     <query-param name="user" type="java.lang.Integer"/>
     <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getTransactionsByUser">
+        <![CDATA[
+        select 
+PH.TransactionId as transactionId,
+(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,
+PH.CreatedBy as userId,
+U.email as userEmail,
+U.fullName as userName,
+PH.PaymentMethod as paymentMethod,
+PH.PaymentNumber as paymentNumber,
+PH.AmountReceived as totalTransactionAmount,
+PH.Comments as transactionComments,
+PH.DateCreated as transactionDate
+from PaymentHistory PH
+LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
+where ([U].[ID] = :userId)
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getTransactionsByUser__count">
+        <![CDATA[
+        select count(*) from (select 
+PH.TransactionId as transactionId,
+(select SUM(Amount) From Fees WHERE TransactionId=PH.TransactionId) as feeAmount,
+PH.CreatedBy as userId,
+U.email as userEmail,
+U.fullName as userName,
+PH.PaymentMethod as paymentMethod,
+PH.PaymentNumber as paymentNumber,
+PH.AmountReceived as totalTransactionAmount,
+PH.Comments as transactionComments,
+PH.DateCreated as transactionDate
+from PaymentHistory PH
+LEFT OUTER JOIN Users U ON U.ID=PH.CreatedBy
+where ([U].[ID] = :userId)) wmTempTable
+        ]]>
+    <query-param name="userId" type="java.lang.Integer"/>
     </sql-query>
 
     <sql-query name="UpdateVendorStatus">

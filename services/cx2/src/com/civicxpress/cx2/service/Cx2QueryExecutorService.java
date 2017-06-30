@@ -293,13 +293,13 @@ public interface Cx2QueryExecutorService {
 
     Integer executeInsertFormsToInspectionsMapping(InsertFormsToInspectionsMappingRequest insertFormsToInspectionsMappingRequest);
 
+    Integer executeResetPasswordWithTokenForUser(Integer userid, String token);
+
     Page<VendorsLinkedWithFormResponse> executeVendorsLinkedWithForm(String relatedFormGuid, Pageable pageable);
 
     InputStream getCoiContentForVendorsLinkedWithForm(String relatedFormGuid) throws EntityNotFoundException;
 
     Downloadable exportVendorsLinkedWithForm(ExportType exportType, String relatedFormGuid, Pageable pageable);
-
-    Integer executeResetPasswordWithTokenForUser(Integer userid, String token);
 
     Page<GiscontactsOfFormResponse> executeGISContactsOfForm(String relatedFormGuid, Pageable pageable);
 
@@ -328,6 +328,10 @@ public interface Cx2QueryExecutorService {
     Page<CheckingUserWithInVendorUsersResponse> executeCheckingUserWithInVendorUsers(Integer user, Integer vendor, Pageable pageable);
 
     Downloadable exportCheckingUserWithInVendorUsers(ExportType exportType, Integer user, Integer vendor, Pageable pageable);
+
+    Page<GetTransactionsByUserResponse> executeGetTransactionsByUser(Integer userId, Pageable pageable);
+
+    Downloadable exportGetTransactionsByUser(ExportType exportType, Integer userId, Pageable pageable);
 
     Integer executeUpdateVendorStatus(UpdateVendorStatusRequest updateVendorStatusRequest);
 

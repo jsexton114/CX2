@@ -1368,6 +1368,16 @@ public class QueryExecutionController {
         return new IntegerWrapper(_result);
     }
 
+    @RequestMapping(value = "/queries/resetPasswordWithTokenForUser", method = RequestMethod.DELETE)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "This saves a reset password token in the DB given a User ID and Token.")
+    public Integer executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) Integer userid, @RequestParam(value = "token", required = false) String token, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: resetPasswordWithTokenForUser");
+        Integer _result = queryService.executeResetPasswordWithTokenForUser(userid, token);
+        LOGGER.debug("got the result for named query: resetPasswordWithTokenForUser, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/VendorsLinkedWithForm", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "VendorsLinkedWithForm")
@@ -1406,16 +1416,6 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: VendorsLinkedWithForm");
 
         return queryService.exportVendorsLinkedWithForm(exportType, relatedFormGuid, pageable);
-    }
-
-    @RequestMapping(value = "/queries/resetPasswordWithTokenForUser", method = RequestMethod.DELETE)
-    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
-    @ApiOperation(value = "This saves a reset password token in the DB given a User ID and Token.")
-    public Integer executeResetPasswordWithTokenForUser(@RequestParam(value = "userid", required = false) Integer userid, @RequestParam(value = "token", required = false) String token, HttpServletRequest _request) {
-        LOGGER.debug("Executing named query: resetPasswordWithTokenForUser");
-        Integer _result = queryService.executeResetPasswordWithTokenForUser(userid, token);
-        LOGGER.debug("got the result for named query: resetPasswordWithTokenForUser, result:{}", _result);
-        return _result;
     }
 
     @RequestMapping(value = "/queries/GISContactsOfForm", method = RequestMethod.GET)
@@ -1551,6 +1551,25 @@ public class QueryExecutionController {
         LOGGER.debug("Exporting named query: CheckingUserWithInVendorUsers");
 
         return queryService.exportCheckingUserWithInVendorUsers(exportType, user, vendor, pageable);
+    }
+
+    @RequestMapping(value = "/queries/getTransactionsByUser", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "getTransactionsByUser")
+    public Page<GetTransactionsByUserResponse> executeGetTransactionsByUser(@RequestParam(value = "userId") Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: getTransactionsByUser");
+        Page<GetTransactionsByUserResponse> _result = queryService.executeGetTransactionsByUser(userId, pageable);
+        LOGGER.debug("got the result for named query: getTransactionsByUser, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query getTransactionsByUser")
+    @RequestMapping(value = "/queries/getTransactionsByUser/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportGetTransactionsByUser(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "userId") Integer userId, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: getTransactionsByUser");
+
+        return queryService.exportGetTransactionsByUser(exportType, userId, pageable);
     }
 
     @RequestMapping(value = "/queries/UpdateVendorStatus", method = RequestMethod.PUT)

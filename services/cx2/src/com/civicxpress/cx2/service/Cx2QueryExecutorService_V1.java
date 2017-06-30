@@ -168,10 +168,10 @@ public interface Cx2QueryExecutorService_V1 {
     public int executeAddMemeberToProject(String relatedProjectGuid, Timestamp projectSharedOn, Integer projectSharedWith, Integer projectSharedBy);
 
     @Deprecated
-    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid);
+    public int executeResetPasswordWithTokenForUser(Integer userid, String token);
 
     @Deprecated
-    public int executeResetPasswordWithTokenForUser(Integer userid, String token);
+    public Page<Object> executeVendorsLinkedWithForm(Pageable pageable, String relatedFormGuid);
 
     @Deprecated
     public int executeUpdateRoleForMunicipality(String role, Integer municipality, Integer user);
