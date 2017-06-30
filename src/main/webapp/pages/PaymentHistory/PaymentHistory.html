@@ -10,37 +10,33 @@
                         <wm-breadcrumb dataset="bind:Variables.Breadcrumb.dataSet" name="breadcrumb1"></wm-breadcrumb>
                     </wm-gridcolumn>
                 </wm-gridrow>
-                <wm-gridrow name="gridrow1">
-                    <wm-gridcolumn columnwidth="12" name="gridcolumn5"></wm-gridcolumn>
-                </wm-gridrow>
                 <wm-gridrow name="gridrow2">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn3">
                         <wm-panel iconclass="wi wi-receipt" autoclose="outsideClick" title="Payment History" name="panelPayHist" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid2">
                                 <wm-gridrow name="gridrow4">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn4">
-                                        <wm-label padding="unset 0.5em" name="label1" caption="A complete history of all credit card payments you have submitted to municipalities through CivicXpress is displayed below. Use the &quot;View Details&quot; action icon to see a detailed breakdown of the transaction and to print or save a PDF of your receipt."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label1" caption="A complete history of all credit card payments you have submitted to municipalities through CivicXpress is displayed below. Use the &quot;Transaction Details&quot; action icon to see a detailed breakdown of the transaction and to print or save a PDF of your receipt."></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow5">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn6"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn6">
+                                        <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="transactionDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('transactionDate') | toLocalDateString}}</wm-grid-column>
+                                            <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2"
+                                            edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="userName" caption="Paid By" type="string" show="true" readonly="undefined"></wm-grid-column>
+                                            <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()"
+                                            disabled="false"></wm-grid-row-action>
+                                        </wm-grid>
+                                    </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
-                    </wm-gridcolumn>
-                </wm-gridrow>
-                <wm-gridrow name="gridrow3">
-                    <wm-gridcolumn columnwidth="12" id="gridcolumn7" name="gridcolumn6_1">
-                        <wm-grid title="" dataset="bind:Variables.svGetTransactionsByMunicipality.dataSet" navigation="Classic" name="gridTransactions" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                            <wm-grid-column binding="transactionId" caption="Transaction ID" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="transactionDate" caption="Transaction Date" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('transactionDate') | toLocalDateString}}</wm-grid-column>
-                            <wm-grid-column binding="feeAmount" caption="Transaction Total" type="string" formatpattern="toCurrency" currencypattern="USD" fractionsize="2" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="userName" caption="Paid By" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="paymentMethod" caption="Payment Method" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-column binding="paymentNumber" caption="Payment Number" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-format-list-bulleted" title="Transaction Details" action="Widgets.dialogFeeDetails.open()" disabled="false"></wm-grid-row-action>
-                        </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
             </wm-layoutgrid>
