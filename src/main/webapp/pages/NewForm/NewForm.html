@@ -8,7 +8,7 @@
                 <wm-gridrow name="gridrow7">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn12">
                         <wm-spinner show="false" name="spinnerFormSubmit" caption="" servicevariabletotrack="svSubmitForm"></wm-spinner>
-                        <wm-spinner show="bind:!loaded" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
+                        <wm-spinner show="false" name="spinnerPageLoad" caption="" deferload="false"></wm-spinner>
                         <wm-wizard stepstyle="auto" name="newFormWizard" donebtnlabel="Submit" on-done="newFormWizardDone($scope, steps)" on-cancel="newFormWizardCancel($scope, steps)">
                             <wm-wizardstep name="wizardstepInstructions" title="Instructions">
                                 <wm-layoutgrid name="layoutgriid56">
@@ -267,7 +267,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow42">
                                         <wm-gridcolumn columnwidth="6" name="gridcolumn82_1">
-                                            <wm-composite name="composite4" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection || Variables.svGetOwners.dataSet.content.length > 0">
+                                            <wm-composite name="composite4" show="true">
                                                 <wm-checkbox caption="New Owner" class="col-md-push-3 col-md-9" name="checkboxOtherOwner" disabled="bind:Widgets.checkboxVendorIsOwner.datavalue" datavalue="false" on-change="checkboxOtherOwnerChange($event, $scope, newVal, oldVal)" checkedvalue="true"
                                                 uncheckedvalue="false"></wm-checkbox>
                                             </wm-composite>
