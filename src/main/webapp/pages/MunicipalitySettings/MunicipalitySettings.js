@@ -79,3 +79,10 @@ Application.$controller("dialog2Controller", ["$scope",
         };
     }
 ]);
+
+Application.$controller("gridAdditionalImagesController", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
