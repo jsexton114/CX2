@@ -169,7 +169,7 @@
                                         </wm-gridrow>
                                     </wm-layoutgrid>
                                 </wm-tabpane>
-                                <wm-tabpane name="tabpaneOwner" title="CONTACTS" show="bind:Variables.lvFormType.dataSet.data[$i].requireOwner" content="GISContactsOfForm" deferload="false">
+                                <wm-tabpane name="tabpaneOwner" title="CONTACTS" show="bind:showContactsTab" content="GISContactsOfForm" deferload="false">
                                     <wm-param name="FormGUID" value="bind:pageParams.FormGUID" type="string"></wm-param>
                                 </wm-tabpane>
                                 <wm-tabpane name="tabpaneVendor" title="CONTRACTOR" show="bind:Variables.lvFormType.dataSet.data[$i].vendorSelection">

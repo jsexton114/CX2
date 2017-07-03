@@ -23,6 +23,7 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     $scope.sharedWith;
     $scope.allFormStatus;
+    $scope.showContactsTab = false;
 
     $scope.FormStatusonSuccess = function(variable, data) {
         setFormStatusProgressValue();
@@ -30,6 +31,11 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
 
     $scope.canAddVendor = function() {
         return ($scope.Variables.lvFormType.dataSet.data[0].multipleVendors || $scope.Variables.Cx2Vendors2formData.dataSet.data.length == 1);
+    };
+
+    function showContacts() {
+        debugger
+        return ($scope.Variables.lvFormType.dataSet.data[0].requireOwner || $scope.Variables.lvFormType.dataSet.data[0].multipleGisrecords || $scope.Variables.lvFormType.dataSet.data[0].gisrecord);
     };
 
     $scope.currentProgress = 0;
@@ -71,7 +77,8 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
-        // currentBreadCrumb.label = data[0].formType;
+        debugger
+        $scope.showContactsTab = showContacts();
     };
 
     $scope.RemoveOtherPrimaryVendorsonSuccess = function(variable, data) {
@@ -948,8 +955,8 @@ Application.$controller("dialogOwnerDetailsController", ["$scope",
 ]);
 
 Application.$controller("dialogManageGISDetailsController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
