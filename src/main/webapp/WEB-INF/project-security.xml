@@ -104,6 +104,7 @@
         <security:intercept-url pattern="/services/cx2/VendorAdmins" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/VendorUsers" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/CheckForCompany" access="permitAll" method="GET"/>
+        <security:intercept-url pattern="/services/cx2/queryExecutor/queries/EmailAlreadyExsist" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/FetchCXMessage" access="permitAll" method="GET"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/InsertUserPreference" access="permitAll" method="POST"/>
         <security:intercept-url pattern="/services/cx2/queryExecutor/queries/UpdatePasswordAndCF" access="permitAll" method="PUT"/>

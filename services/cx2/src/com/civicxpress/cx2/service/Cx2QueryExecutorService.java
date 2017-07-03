@@ -669,6 +669,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateInfoFromMyProfile(UpdateInfoFromMyProfileRequest updateInfoFromMyProfileRequest);
 
+    EmailAlreadyExsistResponse executeEmailAlreadyExsist(String email);
+
     Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);
 
     Downloadable exportGetUserMessages(ExportType exportType, Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);

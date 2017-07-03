@@ -3699,6 +3699,16 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public EmailAlreadyExsistResponse executeEmailAlreadyExsist(String email) {
+        Map params = new HashMap(1);
+
+        params.put("email", email);
+
+        return queryExecutor.executeNamedQuery("EmailAlreadyExsist", params, EmailAlreadyExsistResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable) {
         Map params = new HashMap(3);
 

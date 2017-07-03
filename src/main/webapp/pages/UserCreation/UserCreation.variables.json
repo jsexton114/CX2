@@ -1957,7 +1957,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "UserId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -2213,7 +2213,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "VendorId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -2624,7 +2624,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "UserId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -2880,7 +2880,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "VendorId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -5532,6 +5532,29 @@
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
   },
+  "svCheckForUser" : {
+    "_id" : "wm-svCheckForUser-wm.ServiceVariable-1499072125964",
+    "name" : "svCheckForUser",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ ],
+    "type" : "com.civicxpress.cx2.models.query.EmailAlreadyExsistResponse",
+    "service" : "cx2",
+    "operation" : "executeEmailAlreadyExsist",
+    "operationId" : "QueryExecutionController_executeEmailAlreadyExsist",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 1,
+    "onSuccess" : "Javascript",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "Today" : {
     "_id" : "wm-Today-wm.Variable-1481126057341",
     "name" : "Today",
@@ -5567,6 +5590,34 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "QueryExecution"
+  },
+  "userAlreadyExisted" : {
+    "_id" : "wm-userAlreadyExisted-wm.NotificationVariable-1499072489192",
+    "name" : "userAlreadyExisted",
+    "owner" : "Page",
+    "category" : "wm.NotificationVariable",
+    "dataBinding" : [ {
+      "target" : "content",
+      "value" : "inline",
+      "type" : "string"
+    }, {
+      "target" : "text",
+      "value" : "This Email Address is already in use. Please login or use the \"Forgot Password\" link to recover your account.",
+      "type" : "string"
+    }, {
+      "target" : "duration",
+      "value" : "5000",
+      "type" : "number"
+    }, {
+      "target" : "class",
+      "value" : "Error",
+      "type" : "string"
+    }, {
+      "target" : "toasterPosition",
+      "value" : "bottom right",
+      "type" : "string"
+    } ],
+    "operation" : "toast"
   },
   "welcomeEmail" : {
     "_id" : "wm-welcomeEmail-wm.ServiceVariable-1481091802220",

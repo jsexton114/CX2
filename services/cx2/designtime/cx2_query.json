@@ -3194,6 +3194,45 @@
       "responseType" : "SINGLE"
     }
   },
+  "EmailAlreadyExsist" : {
+    "name" : "EmailAlreadyExsist",
+    "description" : "EmailAlreadyExsist",
+    "version" : "V2",
+    "queryString" : "select count(*) as emailExist from Users where Email=:email",
+    "countQueryString" : "select count(*) from (select count(*) as emailExist from Users where Email=:email) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "email",
+      "type" : "string",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "sagar.vemala@wavemaker.com",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.EmailAlreadyExsistResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "emailExist",
+        "fieldName" : "emailExist",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "EmployeesMunicipalities" : {
     "name" : "EmployeesMunicipalities",
     "description" : "EmployeesMunicipalities",

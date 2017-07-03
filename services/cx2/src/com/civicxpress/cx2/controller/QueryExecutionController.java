@@ -3230,6 +3230,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/EmailAlreadyExsist", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "EmailAlreadyExsist")
+    public EmailAlreadyExsistResponse executeEmailAlreadyExsist(@RequestParam(value = "email") String email, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: EmailAlreadyExsist");
+        EmailAlreadyExsistResponse _result = queryService.executeEmailAlreadyExsist(email);
+        LOGGER.debug("got the result for named query: EmailAlreadyExsist, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/getUserMessages", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "getUserMessages")

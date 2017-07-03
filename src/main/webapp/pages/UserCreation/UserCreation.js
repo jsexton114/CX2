@@ -243,12 +243,32 @@ Application.$controller("UserCreationPageController", ["$scope", "$timeout", "pw
         }
     };
 
+
+    $scope.svCheckForUseronSuccess = function(variable, data) {
+
+        if (data.emailExist === 1) {
+            $scope.Variables.userAlreadyExisted.notify();
+            $scope.Widgets.email.datavalue = undefined;
+        }
+
+    };
+
 }]);
 
 Application.$controller("liveform2Controller", ["$scope",
     function($scope) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.emailBlur = function($event, $isolateScope) {
+            if ($isolateScope.datavalue != "") {
+                $scope.Variables.svCheckForUser.setInput({
+                    email: $isolateScope.datavalue
+                });
+                $scope.Variables.svCheckForUser.update();
+            }
+        };
+
     }
 ]);
 

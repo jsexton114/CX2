@@ -3903,6 +3903,20 @@ where
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="EmailAlreadyExsist">
+        <![CDATA[
+        select count(*) as emailExist from Users where Email=:email
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
+    <sql-query name="EmailAlreadyExsist__count">
+        <![CDATA[
+        select count(*) from (select count(*) as emailExist from Users where Email=:email) wmTempTable
+        ]]>
+    <query-param name="email" type="java.lang.String"/>
+    </sql-query>
+
     <sql-query name="getUserMessages">
         <![CDATA[
         select FMT.ID,
