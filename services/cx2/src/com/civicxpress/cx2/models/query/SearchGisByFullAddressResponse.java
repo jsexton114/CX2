@@ -52,6 +52,9 @@ public class SearchGisByFullAddressResponse implements Serializable {
     @ColumnAlias("StreetName")
     private String streetName;
 
+    @ColumnAlias("UnitNumber")
+    private String unitNumber;
+
     @ColumnAlias("City")
     private String city;
 
@@ -120,6 +123,14 @@ public class SearchGisByFullAddressResponse implements Serializable {
         this.streetName = streetName;
     }
 
+    public String getUnitNumber() {
+        return this.unitNumber;
+    }
+
+    public void setUnitNumber(String unitNumber) {
+        this.unitNumber = unitNumber;
+    }
+
     public String getCity() {
         return this.city;
     }
@@ -164,6 +175,7 @@ public class SearchGisByFullAddressResponse implements Serializable {
                 Objects.equals(getSection(), searchGisByFullAddressResponse.getSection()) &&
                 Objects.equals(getStreetNumber(), searchGisByFullAddressResponse.getStreetNumber()) &&
                 Objects.equals(getStreetName(), searchGisByFullAddressResponse.getStreetName()) &&
+                Objects.equals(getUnitNumber(), searchGisByFullAddressResponse.getUnitNumber()) &&
                 Objects.equals(getCity(), searchGisByFullAddressResponse.getCity()) &&
                 Objects.equals(getStateName(), searchGisByFullAddressResponse.getStateName()) &&
                 Objects.equals(getInspectionZone(), searchGisByFullAddressResponse.getInspectionZone()) &&
@@ -179,6 +191,7 @@ public class SearchGisByFullAddressResponse implements Serializable {
                 getSection(),
                 getStreetNumber(),
                 getStreetName(),
+                getUnitNumber(),
                 getCity(),
                 getStateName(),
                 getInspectionZone(),

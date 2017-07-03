@@ -15797,8 +15797,8 @@
     "name" : "searchGisByFullAddress",
     "description" : "search that stuff",
     "version" : "V2",
-    "queryString" : "Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand (\n        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))\n        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))\n)",
-    "countQueryString" : "select count(*) from (Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand (\n        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))\n        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))\n)) wmTempTable",
+    "queryString" : "Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.UnitNumber,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand (\n        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))\n        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))\n)",
+    "countQueryString" : "select count(*) from (Select GIS.ID,\n    sub.Subdivision as subdivisionName,\n    GIS.Parcel,\n    GIS.Lot,\n    GIS.Section,\n    GIS.StreetNumber,\n    GIS.StreetName,\n    GIS.UnitNumber,\n    GIS.City,\n    state.StateName,\n    GIS.InspectionZone,\n    GIS.FullAddress\nFROM GISRecords GIS\nLEFT OUTER JOIN Subdivisions sub ON sub.ID=GIS.SubdivisionId\nLEFT OUTER JOIN States state ON state.ID=GIS.StateId\nWHERE GIS.MunicipalityId=:municipalityId\nand (\n        (:fullAddress is not null and lower(concat('%',GIS.FullAddress,'%')) LIKE LOWER(CONCAT('%',:fullAddress,'%')))\n        or (:parcel is not null AND concat('%',GIS.Parcel,'%') LIKE concat('%',:parcel,'%'))\n)) wmTempTable",
     "nativeSql" : true,
     "fetchCount" : true,
     "type" : "SELECT",
@@ -15891,6 +15891,15 @@
       }, {
         "name" : "StreetName",
         "fieldName" : "streetName",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.String",
+          "list" : false
+        }
+      }, {
+        "name" : "UnitNumber",
+        "fieldName" : "unitNumber",
         "optional" : false,
         "fieldType" : {
           "type" : "PRIMITIVE",
