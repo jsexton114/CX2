@@ -5,7 +5,8 @@
     <bean class="com.wavemaker.runtime.web.filter.SSLSecureFilter" id="sslSecureFilter"/>
     <bean class="com.wavemaker.runtime.security.xss.filter.WMXSSFilter" id="wmXSSFilter"/>
     <bean class="com.wavemaker.runtime.security.filter.WMXFrameOptionsHeaderFilter" id="wmXFrameOptionsFilter">
-        <property name="xFrameOptionsMode" value="SAMEORIGIN"/>
+        <property name="xFrameOptionsMode" value="${general.xFrameOptions.mode}"/>
+        <property name="allowFromUrl" value="${general.xFrameOptions.allowFromUrl}"/>
     </bean>
     <bean class="com.wavemaker.runtime.security.filter.WMXContentTypeOptionsFilter" id="wmXContentTypeOptionsFilter"/>
     <bean class="org.springframework.security.web.FilterChainProxy" id="wmCompositeSecurityFilter">
@@ -71,6 +72,7 @@
         <security:intercept-url pattern="/pages/CompanyMunicipalities/**" access="hasAnyRole('ROLE_CXVendorAdmin','ROLE_CXAdmin')"/>
         <security:intercept-url pattern="/pages/CompanyUsers/**" access="hasAnyRole('ROLE_CXAdmin','ROLE_CXVendorAdmin')"/>
         <security:intercept-url pattern="/pages/ForgotPassword/**" access="permitAll"/>
+        <security:intercept-url pattern="/pages/Login/**" access="permitAll"/>
         <security:intercept-url pattern="/pages/MyCompany/**" access="hasAnyRole('ROLE_CXVendorAdmin','ROLE_CXAdmin','ROLE_CompanyEmployee')"/>
         <security:intercept-url pattern="/pages/ResetPassword/**" access="permitAll"/>
         <security:intercept-url pattern="/pages/UserCreation/**" access="permitAll"/>
@@ -194,10 +196,10 @@
         <property name="pageName" value="Login"/>
         <property name="sessionTimeout">
             <bean class="com.wavemaker.commons.model.security.SessionTimeoutConfig">
-                <property name="pageName" value=""/>
+                <property name="pageName" value="Login"/>
                 <property name="timeoutValue" value="${general.session.timeout}"/>
                 <property name="type">
-                    <value type="com.wavemaker.commons.model.security.LoginType">DIALOG</value>
+                    <value type="com.wavemaker.commons.model.security.LoginType">PAGE</value>
                 </property>
             </bean>
         </property>
