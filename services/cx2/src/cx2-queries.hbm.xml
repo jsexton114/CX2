@@ -364,7 +364,7 @@ MF.FormTitle as formTitle,
 U.FullName as createdBy,
 MF.DateSubmitted as dateSubmitted,
 MU.MunicipalityName as municipalityName,
-
+MG.GroupName as assignedToGroup,
 FT.FormType as formDesign,
 FS.Status as formStatus,
 GR.Lot as lot,GR.Subdivision as subdivision,
@@ -377,6 +377,7 @@ FT.MunicipalityInternalForm as municipalityInternalForm,
 FC.ID as FormCategory,
 MF.DateModified as dateModified
 FROM MasterForms MF
+LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
@@ -408,7 +409,7 @@ MF.FormTitle as formTitle,
 U.FullName as createdBy,
 MF.DateSubmitted as dateSubmitted,
 MU.MunicipalityName as municipalityName,
-
+MG.GroupName as assignedToGroup,
 FT.FormType as formDesign,
 FS.Status as formStatus,
 GR.Lot as lot,GR.Subdivision as subdivision,
@@ -421,6 +422,7 @@ FT.MunicipalityInternalForm as municipalityInternalForm,
 FC.ID as FormCategory,
 MF.DateModified as dateModified
 FROM MasterForms MF
+LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
 LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId

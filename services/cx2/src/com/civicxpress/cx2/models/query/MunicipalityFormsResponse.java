@@ -33,6 +33,9 @@ public class MunicipalityFormsResponse implements Serializable {
     @ColumnAlias("municipalityName")
     private String municipalityName;
 
+    @ColumnAlias("assignedToGroup")
+    private String assignedToGroup;
+
     @ColumnAlias("formDesign")
     private String formDesign;
 
@@ -107,6 +110,14 @@ public class MunicipalityFormsResponse implements Serializable {
 
     public void setMunicipalityName(String municipalityName) {
         this.municipalityName = municipalityName;
+    }
+
+    public String getAssignedToGroup() {
+        return this.assignedToGroup;
+    }
+
+    public void setAssignedToGroup(String assignedToGroup) {
+        this.assignedToGroup = assignedToGroup;
     }
 
     public String getFormDesign() {
@@ -215,6 +226,7 @@ public class MunicipalityFormsResponse implements Serializable {
                 Objects.equals(getCreatedBy(), municipalityFormsResponse.getCreatedBy()) &&
                 Objects.equals(getDateSubmitted(), municipalityFormsResponse.getDateSubmitted()) &&
                 Objects.equals(getMunicipalityName(), municipalityFormsResponse.getMunicipalityName()) &&
+                Objects.equals(getAssignedToGroup(), municipalityFormsResponse.getAssignedToGroup()) &&
                 Objects.equals(getFormDesign(), municipalityFormsResponse.getFormDesign()) &&
                 Objects.equals(getFormStatus(), municipalityFormsResponse.getFormStatus()) &&
                 Objects.equals(getLot(), municipalityFormsResponse.getLot()) &&
@@ -236,6 +248,7 @@ public class MunicipalityFormsResponse implements Serializable {
                 getCreatedBy(),
                 getDateSubmitted(),
                 getMunicipalityName(),
+                getAssignedToGroup(),
                 getFormDesign(),
                 getFormStatus(),
                 getLot(),
