@@ -369,6 +369,22 @@ public class UsersServiceImpl implements UsersService {
             }
         }
 
+        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
+            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
+                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
+                masterCasesService.create(masterCasesesForCreatedBy);
+            }
+        }
+
+        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
+            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
+                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
+                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
+                masterCasesService.create(masterCasesesForModifiedBy);
+            }
+        }
+
         if(usersCreated.getMasterFormses() != null) {
             for(MasterForms masterFormse : usersCreated.getMasterFormses()) {
                 masterFormse.setUsers(usersCreated);
@@ -398,22 +414,6 @@ public class UsersServiceImpl implements UsersService {
                 masterInspectionsesForModifiedBy.setUsersByModifiedBy(usersCreated);
                 LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionsesForModifiedBy);
                 masterInspectionsService.create(masterInspectionsesForModifiedBy);
-            }
-        }
-
-        if(usersCreated.getMasterCasesesForCreatedBy() != null) {
-            for(MasterCases masterCasesesForCreatedBy : usersCreated.getMasterCasesesForCreatedBy()) {
-                masterCasesesForCreatedBy.setUsersByCreatedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForCreatedBy);
-                masterCasesService.create(masterCasesesForCreatedBy);
-            }
-        }
-
-        if(usersCreated.getMasterCasesesForModifiedBy() != null) {
-            for(MasterCases masterCasesesForModifiedBy : usersCreated.getMasterCasesesForModifiedBy()) {
-                masterCasesesForModifiedBy.setUsersByModifiedBy(usersCreated);
-                LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasesesForModifiedBy);
-                masterCasesService.create(masterCasesesForModifiedBy);
             }
         }
 
@@ -888,6 +888,28 @@ public class UsersServiceImpl implements UsersService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
+
+        return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<MasterForms> findAssociatedMasterFormses(Integer id, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterFormses");
 
@@ -928,28 +950,6 @@ public class UsersServiceImpl implements UsersService {
         queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
 
         return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForCreatedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForCreatedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByCreatedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
-    public Page<MasterCases> findAssociatedMasterCasesesForModifiedBy(Integer id, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterCasesesForModifiedBy");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("usersByModifiedBy.id = '" + id + "'");
-
-        return masterCasesService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

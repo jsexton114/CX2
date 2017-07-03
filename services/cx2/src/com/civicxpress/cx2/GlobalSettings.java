@@ -38,6 +38,9 @@ public class GlobalSettings implements Serializable {
     private String cxpostalCode;
     private String cxeula;
     private String cxmessage;
+    private String cxwelcomeMessage;
+    private String cxresetPassword1;
+    private String cxresetPassword2;
     private States states;
 
     @Id
@@ -157,6 +160,33 @@ public class GlobalSettings implements Serializable {
 
     public void setCxmessage(String cxmessage) {
         this.cxmessage = cxmessage;
+    }
+
+    @Column(name = "`CXWelcomeMessage`", nullable = true, length = 5000)
+    public String getCxwelcomeMessage() {
+        return this.cxwelcomeMessage;
+    }
+
+    public void setCxwelcomeMessage(String cxwelcomeMessage) {
+        this.cxwelcomeMessage = cxwelcomeMessage;
+    }
+
+    @Column(name = "`CXResetPassword1`", nullable = true, length = 5000)
+    public String getCxresetPassword1() {
+        return this.cxresetPassword1;
+    }
+
+    public void setCxresetPassword1(String cxresetPassword1) {
+        this.cxresetPassword1 = cxresetPassword1;
+    }
+
+    @Column(name = "`CXResetPassword2`", nullable = true, length = 5000)
+    public String getCxresetPassword2() {
+        return this.cxresetPassword2;
+    }
+
+    public void setCxresetPassword2(String cxresetPassword2) {
+        this.cxresetPassword2 = cxresetPassword2;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

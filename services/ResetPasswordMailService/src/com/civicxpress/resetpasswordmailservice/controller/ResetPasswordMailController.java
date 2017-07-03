@@ -4,6 +4,7 @@ package com.civicxpress.resetpasswordmailservice.controller;
 import com.civicxpress.resetpasswordmailservice.ResetPasswordMailService;
 import java.lang.String;
 import javax.mail.MessagingException;
+import java.sql.SQLException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,14 @@ public class ResetPasswordMailController {
     @RequestMapping(value = "/sendEmail", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String sendEmail(@RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "token", required = false) String token, @RequestParam(value = "resetLink", required = false) String resetLink) throws MessagingException {
+    public String sendEmail(@RequestParam(value = "recipient", required = false) String recipient, @RequestParam(value = "token", required = false) String token, @RequestParam(value = "resetLink", required = false) String resetLink) throws MessagingException, SQLException {
         return resetPasswordMailService.sendEmail(recipient, token, resetLink);
     }
 
     @RequestMapping(value = "/sendWelcomeEmail", produces = "application/json", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public String sendWelcomeEmail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient) throws MessagingException {
+    public String sendWelcomeEmail(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "recipient", required = false) String recipient) throws MessagingException, SQLException {
         return resetPasswordMailService.sendWelcomeEmail(username, recipient);
     }
 }

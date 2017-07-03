@@ -17,6 +17,7 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import java.util.*;
 
+import java.sql.SQLException;
 import javax.mail.MessagingException;
 
 @ExposeToClient
@@ -32,7 +33,7 @@ public class CXPasswordResetService {
     @Autowired
     private ResetPasswordMailService resetPasswordMailService;
 
-    public int generateAndSendPasswordTokenForUser(int userID,String resetLink) throws MessagingException{
+    public int generateAndSendPasswordTokenForUser(int userID,String resetLink) throws MessagingException, SQLException{
         String UUID = generateUUID();
         String email = "";
         Page<Object> objects = queryService.executeGetEmailId(null,userID);
@@ -60,7 +61,7 @@ public class CXPasswordResetService {
     // Given a valid token and password, reset user's password
     // This calls a SQL query on the backend
     //This method reverifies the token and updates the password
-    public int resetPasswordUsingToken(String token, String newPassword){
+    public int resetPasswordUsingToken(String token, String newPassword) {
        
         //This method needs to check if the supplied token is invalid or not.
         // find if the token exists in the database

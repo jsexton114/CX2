@@ -110,19 +110,19 @@ public class ProjectsServiceImpl implements ProjectsService {
             }
         }
 
-        if(projectsCreated.getMasterInspectionses() != null) {
-            for(MasterInspections masterInspectionse : projectsCreated.getMasterInspectionses()) {
-                masterInspectionse.setProjects(projectsCreated);
-                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
-                masterInspectionsService.create(masterInspectionse);
-            }
-        }
-
         if(projectsCreated.getMasterCaseses() != null) {
             for(MasterCases masterCasese : projectsCreated.getMasterCaseses()) {
                 masterCasese.setProjects(projectsCreated);
                 LOGGER.debug("Creating a new child MasterCases with information: {}", masterCasese);
                 masterCasesService.create(masterCasese);
+            }
+        }
+
+        if(projectsCreated.getMasterInspectionses() != null) {
+            for(MasterInspections masterInspectionse : projectsCreated.getMasterInspectionses()) {
+                masterInspectionse.setProjects(projectsCreated);
+                LOGGER.debug("Creating a new child MasterInspections with information: {}", masterInspectionse);
+                masterInspectionsService.create(masterInspectionse);
             }
         }
 
@@ -269,17 +269,6 @@ public class ProjectsServiceImpl implements ProjectsService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
-    public Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable) {
-        LOGGER.debug("Fetching all associated masterInspectionses");
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
-
-        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
-    }
-
-    @Transactional(readOnly = true, value = "cx2TransactionManager")
-    @Override
     public Page<MasterCases> findAssociatedMasterCaseses(String projectGuid, Pageable pageable) {
         LOGGER.debug("Fetching all associated masterCaseses");
 
@@ -287,6 +276,17 @@ public class ProjectsServiceImpl implements ProjectsService {
         queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
 
         return masterCasesService.findAll(queryBuilder.toString(), pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Page<MasterInspections> findAssociatedMasterInspectionses(String projectGuid, Pageable pageable) {
+        LOGGER.debug("Fetching all associated masterInspectionses");
+
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("projects.projectGuid = '" + projectGuid + "'");
+
+        return masterInspectionsService.findAll(queryBuilder.toString(), pageable);
     }
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")

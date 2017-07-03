@@ -73,12 +73,12 @@ public class Users implements Serializable {
     private List<InspectionHistory> inspectionHistories;
     private List<LetterTemplates> letterTemplatesesForCreatedBy;
     private List<LetterTemplates> letterTemplatesesForModifiedBy;
+    private List<MasterCases> masterCasesesForCreatedBy;
+    private List<MasterCases> masterCasesesForModifiedBy;
     private List<MasterForms> masterFormses;
     private List<MasterInspections> masterInspectionsesForAssignedTo;
     private List<MasterInspections> masterInspectionsesForRequestedBy;
     private List<MasterInspections> masterInspectionsesForModifiedBy;
-    private List<MasterCases> masterCasesesForCreatedBy;
-    private List<MasterCases> masterCasesesForModifiedBy;
     private List<MunicipalityGroupMembers> municipalityGroupMemberses;
     private List<MyCart> myCarts;
     private List<PaymentHistory> paymentHistories;
@@ -461,6 +461,26 @@ public class Users implements Serializable {
     }
 
     @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
+    public List<MasterCases> getMasterCasesesForCreatedBy() {
+        return this.masterCasesesForCreatedBy;
+    }
+
+    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
+        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
+    public List<MasterCases> getMasterCasesesForModifiedBy() {
+        return this.masterCasesesForModifiedBy;
+    }
+
+    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
+        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
+    }
+
+    @JsonInclude(Include.NON_EMPTY)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "users")
     public List<MasterForms> getMasterFormses() {
         return this.masterFormses;
@@ -498,26 +518,6 @@ public class Users implements Serializable {
 
     public void setMasterInspectionsesForModifiedBy(List<MasterInspections> masterInspectionsesForModifiedBy) {
         this.masterInspectionsesForModifiedBy = masterInspectionsesForModifiedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByCreatedBy")
-    public List<MasterCases> getMasterCasesesForCreatedBy() {
-        return this.masterCasesesForCreatedBy;
-    }
-
-    public void setMasterCasesesForCreatedBy(List<MasterCases> masterCasesesForCreatedBy) {
-        this.masterCasesesForCreatedBy = masterCasesesForCreatedBy;
-    }
-
-    @JsonInclude(Include.NON_EMPTY)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "usersByModifiedBy")
-    public List<MasterCases> getMasterCasesesForModifiedBy() {
-        return this.masterCasesesForModifiedBy;
-    }
-
-    public void setMasterCasesesForModifiedBy(List<MasterCases> masterCasesesForModifiedBy) {
-        this.masterCasesesForModifiedBy = masterCasesesForModifiedBy;
     }
 
     @JsonInclude(Include.NON_EMPTY)
