@@ -1324,6 +1324,20 @@
     "dataSet" : [ ],
     "pageTransitions" : "none"
   },
+  "RedirectToLogin" : {
+    "_id" : "wm-RedirectToLogin-wm.NavigationVariable-1499058881544",
+    "name" : "RedirectToLogin",
+    "owner" : "App",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "Login",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
+  },
   "ResetPaswordSuccess" : {
     "_id" : "wm-ResetPaswordSuccess-wm.NotificationVariable-1486358204737",
     "name" : "ResetPaswordSuccess",

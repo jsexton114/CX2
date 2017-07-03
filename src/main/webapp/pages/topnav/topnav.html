@@ -19,7 +19,7 @@
                 </wm-gridcolumn>
             </wm-nav-item>
             <wm-nav-item name="list_logout">
-                <wm-anchor caption="Logout" name="logoutLink" iconclass="wi wi-sign-out" on-click="Variables.logoutVariable.invoke();logoutLinkClick($event, $scope)"></wm-anchor>
+                <wm-anchor caption="Logout" name="logoutLink" iconclass="wi wi-sign-out" on-click="Variables.RedirectToLogin.invoke();Variables.logoutVariable.invoke()"></wm-anchor>
             </wm-nav-item>
         </wm-nav>
     </wm-navbar>
