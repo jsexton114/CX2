@@ -3488,6 +3488,47 @@ public class QueryExecutionController {
         return queryService.exportMunicipalityCount(exportType, pageable);
     }
 
+    @RequestMapping(value = "/queries/CompanyListOfEmployee", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "CompanyListOfEmployee")
+    public Page<CompanyListOfEmployeeResponse> executeCompanyListOfEmployee(@RequestParam(value = "user") Integer user, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: CompanyListOfEmployee");
+        Page<CompanyListOfEmployeeResponse> _result = queryService.executeCompanyListOfEmployee(user, pageable);
+        LOGGER.debug("got the result for named query: CompanyListOfEmployee, result:{}", _result);
+        UriComponentsBuilder _uriBuilder = ServletUriComponentsBuilder.fromRequest(_request);
+        _uriBuilder.path("/{id}/content/{_fieldName_}");
+        for(CompanyListOfEmployeeResponse _content : _result.getContent()) {
+            Map<String, Object> _properties = new HashMap(2);
+            _properties.put("id", _content.getId());
+            _properties.put("_fieldName_", "coi");
+            if(_content.getCoi() != null) {
+                _content.setCoi(_uriBuilder.buildAndExpand(_properties).toUriString().getBytes());
+            } else {
+                _content.setCoi(null);
+            }
+        }
+        return _result;
+    }
+
+    @ApiOperation(value = "Retrives the BLOB content for property coi in query CompanyListOfEmployee")
+    @RequestMapping(value = "/queries/CompanyListOfEmployee/{id}/content/coi", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable getCoiContentForCompanyListOfEmployee(@PathVariable("id") Integer id, @RequestParam(value = "user") Integer user, @RequestParam(value="downloadAsAttachment", defaultValue = "false") boolean downloadAsAttachment, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: CompanyListOfEmployee");
+
+        InputStream _result = queryService.getCoiContentForCompanyListOfEmployee(id, user);
+        return WMMultipartUtils.buildDownloadResponse(_request, _result, downloadAsAttachment);
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query CompanyListOfEmployee")
+    @RequestMapping(value = "/queries/CompanyListOfEmployee/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportCompanyListOfEmployee(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "user") Integer user, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: CompanyListOfEmployee");
+
+        return queryService.exportCompanyListOfEmployee(exportType, user, pageable);
+    }
+
     @RequestMapping(value = "/queries/CasesByMunicipalityAndAfterDate", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "formsWithCodeEnforcementByMunicipalityAndAfterDate")

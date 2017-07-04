@@ -15,11 +15,12 @@ Application.$controller("selectCompanyPageController", ["$scope", function($scop
     };
 
     $scope.getSelectedCompany = function(variable, data) {
-        variable = variable || $scope.Variables.AdminVendorsList;
+        debugger
+        variable = variable || $scope.Variables.CompanyListOfEmployee;
         data = data || variable.dataSet;
 
         return (!!$scope.pageParams.companyId ? _.find(data.content, {
-            ID: parseInt($scope.pageParams.companyId)
+            id: parseInt($scope.pageParams.companyId)
         }) : variable.firstRecord);
     };
 

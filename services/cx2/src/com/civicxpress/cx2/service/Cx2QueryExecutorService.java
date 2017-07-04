@@ -723,6 +723,12 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportMunicipalityCount(ExportType exportType, Pageable pageable);
 
+    Page<CompanyListOfEmployeeResponse> executeCompanyListOfEmployee(Integer user, Pageable pageable);
+
+    InputStream getCoiContentForCompanyListOfEmployee(Integer id, Integer user) throws EntityNotFoundException;
+
+    Downloadable exportCompanyListOfEmployee(ExportType exportType, Integer user, Pageable pageable);
+
     Page<CasesByMunicipalityAndAfterDateResponse> executeCasesByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);
 
     Downloadable exportCasesByMunicipalityAndAfterDate(ExportType exportType, Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable);

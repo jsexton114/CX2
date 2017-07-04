@@ -3993,6 +3993,42 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public Page<CompanyListOfEmployeeResponse> executeCompanyListOfEmployee(Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.executeNamedQuery("CompanyListOfEmployee", params, CompanyListOfEmployeeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public InputStream getCoiContentForCompanyListOfEmployee(Integer id, Integer user) throws EntityNotFoundException {
+        Map params = new HashMap(1);
+
+        params.put("id", id);
+        params.put("user", user);
+
+        CompanyListOfEmployeeResponse _result =  queryExecutor.executeNamedQuery("CompanyListOfEmployee__identifier", params, CompanyListOfEmployeeResponse.class);
+        if(_result.getCoi() == null) {
+            LOGGER.debug("Blob content not exists for coi in query CompanyListOfEmployee");
+            throw new BlobContentNotFoundException("Blob content not found for coi in query CompanyListOfEmployee");
+        }
+        return new ByteArrayInputStream(_result.getCoi());
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
+    public Downloadable exportCompanyListOfEmployee(ExportType exportType, Integer user, Pageable pageable) {
+        Map params = new HashMap(1);
+
+        params.put("user", user);
+
+        return queryExecutor.exportNamedQueryData("CompanyListOfEmployee", params, exportType, CompanyListOfEmployeeResponse.class, pageable);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public Page<CasesByMunicipalityAndAfterDateResponse> executeCasesByMunicipalityAndAfterDate(Boolean codeEnforcement, Boolean closed, Integer municipalityId, Timestamp dateSubmitted, Pageable pageable) {
         Map params = new HashMap(4);
 

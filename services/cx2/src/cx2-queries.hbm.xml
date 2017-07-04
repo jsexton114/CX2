@@ -4363,6 +4363,28 @@ group by formTypes.formType
         ]]>
     </sql-query>
 
+    <sql-query name="CompanyListOfEmployee">
+        <![CDATA[
+        select V.* from Vendor V,VendorUsers VU,Users U where U.ID=:user and VU.UserId=U.ID and VU.VendorId=V.ID
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CompanyListOfEmployee__count">
+        <![CDATA[
+        select count(*) from (select V.* from Vendor V,VendorUsers VU,Users U where U.ID=:user and VU.UserId=U.ID and VU.VendorId=V.ID) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="CompanyListOfEmployee__identifier">
+        <![CDATA[
+        select * from (select V.* from Vendor V,VendorUsers VU,Users U where U.ID=:user and VU.UserId=U.ID and VU.VendorId=V.ID) wmTempTable where [ID]=:id
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="id" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="CasesByMunicipalityAndAfterDate">
         <![CDATA[
         SELECT MF.FormGuid as formGuid,

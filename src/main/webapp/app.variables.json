@@ -71,6 +71,32 @@
     } ],
     "operation" : "toast"
   },
+  "CompanyListOfEmployee" : {
+    "_id" : "wm-CompanyListOfEmployee-wm.ServiceVariable-1499163031711",
+    "name" : "CompanyListOfEmployee",
+    "owner" : "App",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.CompanyListOfEmployeeResponse",
+    "service" : "cx2",
+    "operation" : "executeCompanyListOfEmployee",
+    "operationId" : "QueryExecutionController_executeCompanyListOfEmployee",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 90,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution"
+  },
   "CompanyOpenFormsCount" : {
     "_id" : "wm-CompanyOpenFormsCount-wm.Variable-1486467750119",
     "name" : "CompanyOpenFormsCount",
