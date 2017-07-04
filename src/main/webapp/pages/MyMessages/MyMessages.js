@@ -271,7 +271,7 @@ Application.$controller("dialogTagPeopleController", ["$scope",
         var selectedPeople = [];
         $scope.ButtonTagPeopleClick = function($event, $isolateScope) {
             var temp;
-            if ($scope.Variables.stvTagSelection.dataSet.dataValue == true) {
+            if ($scope.Widgets.checkboxInternal.datavalue == true) {
                 temp = $scope.Widgets.textSearchInternalPeople.datavalue;
             } else {
                 temp = $scope.Widgets.textSearchPeople.datavalue;
@@ -326,13 +326,18 @@ Application.$controller("gridInboxController", ["$scope",
         "use strict";
         $scope.ctrlScope = $scope;
         $scope.updaterowAction = function($event, $rowData) {
-            let messagesList = $scope.Variables.svGetUserMessages.dataSet.content
+            $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue = angular.copy($rowData)
+            $scope.Variables.svSetMessageReadStatus.setInput({
+                'id': $rowData.id
+            });
+            $scope.Variables.svSetMessageReadStatus.update();
+
             _.forEach($scope.Variables.svGetUserMessages.dataSet.content, function(obj) {
                 if ($rowData.id == obj.id) {
                     obj.messageRead = true;
                 }
             });
-            //$rowData.messageRead = true;
+
         };
 
 
@@ -365,6 +370,11 @@ Application.$controller("gridInboxController", ["$scope",
 
 
         $scope.customRowAction = function($event, $rowData) {
+            $scope.Variables.stvSelectedInboxMessage.dataSet.dataValue = angular.copy($rowData)
+            $scope.Variables.svSetMessageReadStatus.setInput({
+                'id': $rowData.id
+            });
+            $scope.Variables.svSetMessageReadStatus.update();
             let messagesList = $scope.Variables.svGetUserMessages.dataSet.content
             _.forEach($scope.Variables.svGetUserMessages.dataSet.content, function(obj) {
                 if ($rowData.id == obj.id) {

@@ -50,10 +50,9 @@
                                                     edit-widget-type="text" show="true" readonly="false">
                                                         <wm-checkbox scopedatavalue="row['municipalityMessage']" disabled="{{colDef.readonly || !isGridEditMode}}" class="" data-ng-class=""></wm-checkbox>
                                                     </wm-grid-column>
-                                                    <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="Variables.svSetMessageReadStatus.invoke();updaterowAction($event)"
-                                                    disabled="false"></wm-grid-row-action>
+                                                    <wm-grid-row-action key="updaterow" display-name="" show="bind:!row['messageRead']" class="btn-transparent" iconclass="wi wi-check" title="Mark as Read" action="updaterowAction($event)" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Source" action="deleterowAction($event)" disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="Widgets.dialogReply.open();Variables.svSetMessageReadStatus.invoke();customRowAction($event)"
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-reply" title="Reply" action="customRowAction($event);Widgets.dialogReply.open()"
                                                     disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
@@ -119,7 +118,7 @@
                             <wm-layoutgrid name="layoutgrid6">
                                 <wm-gridrow name="gridrow16">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn27">
-                                        <wm-grid title="" dataset="bind:Widgets.gridInbox.selecteditem" navigation="None" name="gridCurrentMessage">
+                                        <wm-grid title="" dataset="bind:Variables.stvSelectedInboxMessage.dataSet.dataValue" navigation="None" name="gridCurrentMessage">
                                             <wm-grid-column binding="sourceType" caption="Source" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="sourceTitle" caption="Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="municipalityName" caption="Municipality" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -137,7 +136,7 @@
                                         <wm-composite name="compositeSelectedMessage">
                                             <wm-label class="col-md-3 form-control-static" name="label6" caption="Message Text" fontweight="bold" padding="unset 0.5em"></wm-label>
                                             <wm-container class="col-md-9" name="container1">
-                                                <wm-textarea name="textareaSelectedMessage" readonly="true" datavalue="bind:Widgets.gridInbox.selecteditem.message" placeholder=""></wm-textarea>
+                                                <wm-textarea name="textareaSelectedMessage" readonly="true" datavalue="bind:Variables.stvSelectedInboxMessage.dataSet.dataValue.message" placeholder=""></wm-textarea>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -156,8 +155,8 @@
                                         <wm-label padding="unset 0.5em" name="label9" caption="Type your reply below. The user who tagged you on the Message Received above will automatically be tagged on your reply, and you can tag additional users with the &quot;Tag People&quot; button. Click &quot;Post&quot; when your reply is ready."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="3" name="gridcolumn27_1">
-                                        <wm-checkbox caption="Internal Reply" class="col-md-12" name="checkboxInternal" datavalue="bind:Widgets.gridInbox.selecteditem.municipalityMessage" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
-                                        disabled="true" show="bind:Widgets.gridInbox.selecteditem.municipalityMessage"></wm-checkbox>
+                                        <wm-checkbox caption="Internal Reply" class="col-md-12" name="checkboxInternal" datavalue="bind:Variables.stvSelectedInboxMessage.dataSet.dataValue.municipalityMessage" checkedvalue="true" uncheckedvalue="false" accessroles="CodeManager,CodeOfficer,CXAdmin,Inspector,InspectorManager,MunicipalityAdmin,MunicipalityEmployee"
+                                        disabled="true" show="bind:Variables.stvSelectedInboxMessage.dataSet.dataValue.municipalityMessage"></wm-checkbox>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow81" padding="2em unset unset unset">
@@ -196,14 +195,14 @@
                 <wm-gridrow name="gridrow13" padding="unset unset 2em unset">
                     <wm-gridcolumn columnwidth="2" name="gridcolumn28_1"></wm-gridcolumn>
                     <wm-gridcolumn columnwidth="7" name="gridcolumn18_1">
-                        <wm-composite name="composite5" show="bind:!Variables.stvTagSelection.dataSet.dataValue">
+                        <wm-composite name="composite5" show="bind:!Widgets.checkboxInternal.datavalue">
                             <wm-label class="col-md-3 form-control-static" name="label8" caption="User Search" width="20%" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container5" width="80%">
                                 <wm-search name="textSearchPeople" placeholder="Search by Name or Email Address" dataset="bind:Variables.GetPeople.dataSet" searchkey="email,fullName" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" displayimagesrc="photo"
                                 datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)" required="true" width="100%" orderby="fullName:asc"></wm-search>
                             </wm-container>
                         </wm-composite>
-                        <wm-composite name="composite7" show="bind:Variables.stvTagSelection.dataSet.dataValue">
+                        <wm-composite name="composite7" show="bind:Widgets.checkboxInternal.datavalue">
                             <wm-label class="col-md-3 form-control-static" caption="Employee Search" width="30%" fontweight="bold" name="label100"></wm-label>
                             <wm-container class="col-md-9" width="70%" name="container14">
                                 <wm-search placeholder="Search by Name or Email Address" dataset="bind:Variables.svGetMunicipalityEmployees.dataSet" displaylabel="bind:$[data[$i].fullName]+' ('+$[data[$i].email]+')'" datafield="All Fields" on-submit="textSearchMunicipalitiesSubmit($event, $scope)"

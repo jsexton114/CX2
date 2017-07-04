@@ -2547,10 +2547,7 @@
     "name" : "stvSelectedInboxMessage",
     "owner" : "Page",
     "category" : "wm.Variable",
-    "dataBinding" : [ {
-      "target" : "dataValue",
-      "value" : "bind:Widgets.gridInbox.selecteditem"
-    } ],
+    "dataBinding" : [ ],
     "dataSet" : {
       "dataValue" : ""
     },
@@ -2601,7 +2598,7 @@
       "value" : "bind:Widgets.checkboxInternal.datavalue"
     } ],
     "dataSet" : {
-      "dataValue" : true
+      "dataValue" : false
     },
     "type" : "boolean",
     "isList" : false,
