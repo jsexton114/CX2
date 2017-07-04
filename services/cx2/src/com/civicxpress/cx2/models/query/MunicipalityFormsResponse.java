@@ -66,9 +66,6 @@ public class MunicipalityFormsResponse implements Serializable {
     @ColumnAlias("municipalityInternalForm")
     private Boolean municipalityInternalForm;
 
-    @ColumnAlias("FormCategory")
-    private Integer formCategory;
-
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
 
@@ -200,14 +197,6 @@ public class MunicipalityFormsResponse implements Serializable {
         this.municipalityInternalForm = municipalityInternalForm;
     }
 
-    public Integer getFormCategory() {
-        return this.formCategory;
-    }
-
-    public void setFormCategory(Integer formCategory) {
-        this.formCategory = formCategory;
-    }
-
     public LocalDateTime getDateModified() {
         return this.dateModified;
     }
@@ -237,7 +226,6 @@ public class MunicipalityFormsResponse implements Serializable {
                 Objects.equals(getFormTypeId(), municipalityFormsResponse.getFormTypeId()) &&
                 Objects.equals(getCodeEnforcement(), municipalityFormsResponse.getCodeEnforcement()) &&
                 Objects.equals(getMunicipalityInternalForm(), municipalityFormsResponse.getMunicipalityInternalForm()) &&
-                Objects.equals(getFormCategory(), municipalityFormsResponse.getFormCategory()) &&
                 Objects.equals(getDateModified(), municipalityFormsResponse.getDateModified());
     }
 
@@ -259,7 +247,6 @@ public class MunicipalityFormsResponse implements Serializable {
                 getFormTypeId(),
                 getCodeEnforcement(),
                 getMunicipalityInternalForm(),
-                getFormCategory(),
                 getDateModified());
     }
 }

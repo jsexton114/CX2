@@ -374,14 +374,11 @@ MF.BalanceDue as balanceDue,
 FT.ID as formTypeID,
 FT.CodeEnforcement as codeEnforcement,
 FT.MunicipalityInternalForm as municipalityInternalForm,
-FC.ID as FormCategory,
 MF.DateModified as dateModified
 FROM MasterForms MF
 LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
-LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
@@ -419,14 +416,11 @@ MF.BalanceDue as balanceDue,
 FT.ID as formTypeID,
 FT.CodeEnforcement as codeEnforcement,
 FT.MunicipalityInternalForm as municipalityInternalForm,
-FC.ID as FormCategory,
 MF.DateModified as dateModified
 FROM MasterForms MF
 LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
-LEFT JOIN FormCategoryMapping AS FCM ON FT.ID = FCM.FormTypeId
-LEFT JOIN FormCategories AS FC ON FCM.FormCategoryId=FC.ID
 LEFT OUTER JOIN Municipalities AS MU ON MU.ID=FT.MunicipalityId
 LEFT JOIN Users AS U ON U.ID=MF.UserId
 LEFT OUTER JOIN Vendor AS V ON V.ID=MF.CXVendorId
