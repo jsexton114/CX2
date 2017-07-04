@@ -23,7 +23,11 @@
     "name" : "svAssignInspector",
     "owner" : "Page",
     "category" : "wm.ServiceVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "assignedByManager",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.fullName",
+      "type" : "string"
+    } ],
     "service" : "InspectionService",
     "operation" : "assignInspector",
     "operationId" : "InspectionController_assignInspector",

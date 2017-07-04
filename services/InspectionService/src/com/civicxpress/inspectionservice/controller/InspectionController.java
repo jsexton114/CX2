@@ -38,8 +38,8 @@ public class InspectionController {
     @RequestMapping(value = "/assignInspector", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void assignInspector(@RequestParam(value = "inspectorId", required = false) Long inspectorId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "dateAssigned", required = false) Date dateAssigned) throws SQLException {
-        inspectionService.assignInspector(inspectorId, inspectionGuid, dateAssigned);
+    public void assignInspector(@RequestParam(value = "inspectorId", required = false) Long inspectorId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "dateAssigned", required = false) Date dateAssigned, @RequestParam(value = "assignedByManager", required = false) String assignedByManager) throws SQLException {
+        inspectionService.assignInspector(inspectorId, inspectionGuid, dateAssigned, assignedByManager);
     }
 
     @RequestMapping(value = "/dynamicFielddata", method = RequestMethod.GET)

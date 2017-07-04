@@ -273,7 +273,7 @@ public class InspectionService {
     	}
     }
     
-    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned) throws SQLException {
+    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned, String assignedByManager) throws SQLException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
@@ -739,5 +739,81 @@ public class InspectionService {
     	} finally {
     		cx2Conn.close();
     	}
+    }
+    
+    
+     private String sendInspectionScheduledMail(String inspectorAssigned,String InspectorManager, Date dateAssigned, String municipality, String inspectionDesign, String lot, String fullAddress, String subdivision, String municipalitySignature,String inspectionTitle, String inspectionLink) throws MessagingException {
+//         Properties props = System.getProperties();
+//         props.put("mail.smtp.starttls.enable", "true");
+//         props.put("mail.smtp.host", "smtp.gmail.com");
+//         props.put("mail.smtp.port", "587");
+//         props.put("mail.smtp.auth", "true");
+//         props.put("mail.smtp.starttls.required", "true");
+//         props.put("mail.smtp.ssl.enabled","true");
+//         props.put("mail.imap.ssl.enabled", "true");
+
+//         Session session = Session.getDefaultInstance(props, null);
+
+//         MimeMessage message = new MimeMessage(session);
+//         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+//         ArrayList<String> recipientList = new ArrayList<String>(Arrays.asList(requestorEmail.split(",")));
+
+//         InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        
+//         for (int i = 0; i < recipientList.size(); i++) {
+//             recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+//         }
+        
+//         message.setRecipients(Message.RecipientType.TO, recipientAddress);
+        
+//         String emailSubject= inspectionTitle+" assigned for "+ dateAssigned;
+//         StringBuilder emailContent = new StringBuilder("Hi "+inspectorAssigned+",<br /><br />");
+        
+//         emailContent.append(emailBody);
+//         emailContent.append("<br /><br />");
+        
+//         emailContent.append(municipality);
+//         emailContent.append("<br />");
+//         emailContent.append(inspectionDesign);
+//         emailContent.append("<br />");
+//         emailContent.append(inspectionTitle);
+//         emailContent.append("<br />");
+//         emailContent.append("<a href ='"+formLink+ "'>"+formLink+"</a>");
+//         emailContent.append("<br />");
+//         emailContent.append("Outcome: "+inspectionOutcome);
+//         emailContent.append("<br /><br />");
+//         emailContent.append("Address: "+fullAddress);
+//         emailContent.append("<br />");
+//         emailContent.append("Subdivision: "+subdivision);
+//         emailContent.append("<br />");
+//         emailContent.append("Lot: "+lot);
+//         emailContent.append("<br /><br />");
+//         emailContent.append(municipalitySignature +"<br/><br/>");
+
+// 		Multipart messageContents = new MimeMultipart();
+//         MimeBodyPart messageBody = new MimeBodyPart();
+//         messageBody.setContent(emailContent.toString(), "text/html");
+//         messageContents.addBodyPart(messageBody);
+// 		if (letterPdf != null) {
+// 			ByteArrayDataSource fileDS = new ByteArrayDataSource(letterPdf, "application/pdf");
+// 			MimeBodyPart letterAttachment = new MimeBodyPart();
+// 			letterAttachment.setDataHandler(new DataHandler(fileDS));
+// 			letterAttachment.setFileName(filename);
+// 			messageContents.addBodyPart(letterAttachment);
+// 		}
+
+//         message.setSubject(emailSubject);
+//         message.setContent(messageContents);
+//         // Send smtp message
+//         Transport tr = session.getTransport("smtp");
+//         tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+//         message.saveChanges();
+//         tr.sendMessage(message, message.getAllRecipients());
+//         tr.close();
+        String displayMessage = "Message sent successfully with body " + "emailBody";
+        logger.info(displayMessage);
+
+        return displayMessage;
     }
 }
