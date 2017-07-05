@@ -273,7 +273,7 @@ public class InspectionService {
     	}
     }
     
-    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned, String assignedByManager) throws SQLException {
+    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned, String assignedByManager) throws SQLException, MessagingException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
@@ -296,6 +296,27 @@ public class InspectionService {
     		}
     		
     		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterInspections SET AssignedTo=:inspectorId, DateAssigned=:dateAssigned WHERE InspectionGuid=:inspectionGuid", params);
+    		
+    		//Fetching Details to send Mail to Assigned Inspector
+    	    DBRow inspectorData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Users WHERE ID=:inspectorId", params);
+    	    String inspectorAssigned=inspectorData.getString("FullName");
+    	    String inspectorEmail=inspectorData.getString("Email");
+    	    String formGuid=inspectionData.getString("FormGuid");
+    	    params.addString("formGuid", formGuid);
+    	    Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM MasterForms WHERE FormGUID=:formGuid", params).getLong("ID");
+    	    params.addLong("municipalityId", municipalityId);
+            DBRow municipalityData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Municipalities WHERE ID=:municipalityId", params);
+            DBRow gisRecordData = DBUtils.selectOne(cx2Conn, "SELECT TOP 1 GR.*, SUB.Subdivision FROM GIS2Forms GF INNER JOIN GISRecords GR ON GR.ID=GF.GISRecordId LEFT OUTER JOIN Subdivisions SUB ON SUB.ID=GR.SubdivisionId WHERE GF.RelatedFormGUID=:formGuid", params);
+            String lot=gisRecordData.getString("Lot");
+	        String fullAddress=gisRecordData.getString("FullAddress");
+	        String subdivision=gisRecordData.getString("Subdivision");
+	        String municipality=municipalityData.getString("MunicipalityName");
+	        String municipalitySignature=municipalityData.getString("GlobalEmailSig");
+	        String inspectionDesign=inspectionData.getString("InspectDesignName");
+	        String inspectionTitle=inspectionData.getString("InspectionTitle");
+	        String inspectionZone=inspectionData.getString("InspectionZone");
+            sendInspectionScheduledMail(inspectorAssigned, inspectorEmail, assignedByManager,  dateAssigned,  municipality,  inspectionDesign,  lot,  fullAddress,  subdivision,  municipalitySignature, inspectionTitle,  inspectionGuid,  inspectionZone);
+            
     		
     		cx2Conn.commit();
     	} catch (SQLException e) {
@@ -742,75 +763,65 @@ public class InspectionService {
     }
     
     
-     private String sendInspectionScheduledMail(String inspectorAssigned,String InspectorManager, Date dateAssigned, String municipality, String inspectionDesign, String lot, String fullAddress, String subdivision, String municipalitySignature,String inspectionTitle, String inspectionLink) throws MessagingException {
-//         Properties props = System.getProperties();
-//         props.put("mail.smtp.starttls.enable", "true");
-//         props.put("mail.smtp.host", "smtp.gmail.com");
-//         props.put("mail.smtp.port", "587");
-//         props.put("mail.smtp.auth", "true");
-//         props.put("mail.smtp.starttls.required", "true");
-//         props.put("mail.smtp.ssl.enabled","true");
-//         props.put("mail.imap.ssl.enabled", "true");
+     private String sendInspectionScheduledMail(String inspectorAssigned,String inspectorEmail,String InspectorManager, Date dateAssigned, String municipality, String inspectionDesign, String lot, String fullAddress, String subdivision, String municipalitySignature,String inspectionTitle, String inspectionLink, String inspectionZone) throws MessagingException {
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
 
-//         Session session = Session.getDefaultInstance(props, null);
+        Session session = Session.getDefaultInstance(props, null);
 
-//         MimeMessage message = new MimeMessage(session);
-//         message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
         
-//         ArrayList<String> recipientList = new ArrayList<String>(Arrays.asList(requestorEmail.split(",")));
+        ArrayList<String> recipientList = new ArrayList<String>(Arrays.asList(inspectorEmail.split(",")));
 
-//         InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
         
-//         for (int i = 0; i < recipientList.size(); i++) {
-//             recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
-//         }
+        for (int i = 0; i < recipientList.size(); i++) {
+            recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+        }
         
-//         message.setRecipients(Message.RecipientType.TO, recipientAddress);
+        message.setRecipients(Message.RecipientType.TO, recipientAddress);
         
-//         String emailSubject= inspectionTitle+" assigned for "+ dateAssigned;
-//         StringBuilder emailContent = new StringBuilder("Hi "+inspectorAssigned+",<br /><br />");
+        String emailSubject= inspectionTitle+" assigned for "+ dateAssigned;
+        StringBuilder emailContent = new StringBuilder("Hi "+inspectorAssigned+",<br /><br />");
         
-//         emailContent.append(emailBody);
-//         emailContent.append("<br /><br />");
-        
-//         emailContent.append(municipality);
-//         emailContent.append("<br />");
-//         emailContent.append(inspectionDesign);
-//         emailContent.append("<br />");
-//         emailContent.append(inspectionTitle);
-//         emailContent.append("<br />");
-//         emailContent.append("<a href ='"+formLink+ "'>"+formLink+"</a>");
-//         emailContent.append("<br />");
-//         emailContent.append("Outcome: "+inspectionOutcome);
-//         emailContent.append("<br /><br />");
-//         emailContent.append("Address: "+fullAddress);
-//         emailContent.append("<br />");
-//         emailContent.append("Subdivision: "+subdivision);
-//         emailContent.append("<br />");
-//         emailContent.append("Lot: "+lot);
-//         emailContent.append("<br /><br />");
-//         emailContent.append(municipalitySignature +"<br/><br/>");
+        emailContent.append("<br /><br />");
+        emailContent.append("You have been assigned an inspection by "+InspectorManager+". Please review the details below and contact the municipality if you have any questions.");
+        emailContent.append("<br /><br />");
+        emailContent.append("Date Assigned: "+dateAssigned);
+         emailContent.append("<br />");
+        emailContent.append("inspectionDesign: "+inspectionDesign);
+        emailContent.append("<br />");
+         emailContent.append("Inspection Zone: "+inspectionZone);
+        emailContent.append("<br />");
+        emailContent.append("Development: "+subdivision);
+        emailContent.append("<br />");
+        emailContent.append("Lot: "+lot);
+         emailContent.append("Address: "+fullAddress);
+        emailContent.append("<br /><br />");
+         emailContent.append(municipality);
+        emailContent.append("<br />");
+         emailContent.append(inspectionTitle);
+         emailContent.append("<br />");
+        emailContent.append("<a href ='"+inspectionLink+ "'>"+inspectionLink+"</a>");
+        emailContent.append("<br /><br />");
+        emailContent.append(municipalitySignature +"<br/><br/>");
 
-// 		Multipart messageContents = new MimeMultipart();
-//         MimeBodyPart messageBody = new MimeBodyPart();
-//         messageBody.setContent(emailContent.toString(), "text/html");
-//         messageContents.addBodyPart(messageBody);
-// 		if (letterPdf != null) {
-// 			ByteArrayDataSource fileDS = new ByteArrayDataSource(letterPdf, "application/pdf");
-// 			MimeBodyPart letterAttachment = new MimeBodyPart();
-// 			letterAttachment.setDataHandler(new DataHandler(fileDS));
-// 			letterAttachment.setFileName(filename);
-// 			messageContents.addBodyPart(letterAttachment);
-// 		}
-
-//         message.setSubject(emailSubject);
-//         message.setContent(messageContents);
-//         // Send smtp message
-//         Transport tr = session.getTransport("smtp");
-//         tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
-//         message.saveChanges();
-//         tr.sendMessage(message, message.getAllRecipients());
-//         tr.close();
+	
+        message.setContent(emailContent.toString(), "text/html");
+		 message.setSubject(emailSubject);
+        // Send smtp message
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
         String displayMessage = "Message sent successfully with body " + "emailBody";
         logger.info(displayMessage);
 

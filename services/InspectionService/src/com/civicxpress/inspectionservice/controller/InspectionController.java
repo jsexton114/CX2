@@ -8,12 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.sql.SQLException;
 import java.io.IOException;
 import java.util.Date;
+import javax.mail.MessagingException;
 import java.lang.Object;
 import java.util.Map;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.util.HashMap;
-import javax.mail.MessagingException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class InspectionController {
     @RequestMapping(value = "/assignInspector", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void assignInspector(@RequestParam(value = "inspectorId", required = false) Long inspectorId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "dateAssigned", required = false) Date dateAssigned, @RequestParam(value = "assignedByManager", required = false) String assignedByManager) throws SQLException {
+    public void assignInspector(@RequestParam(value = "inspectorId", required = false) Long inspectorId, @RequestParam(value = "inspectionGuid", required = false) String inspectionGuid, @RequestParam(value = "dateAssigned", required = false) Date dateAssigned, @RequestParam(value = "assignedByManager", required = false) String assignedByManager) throws SQLException, MessagingException {
         inspectionService.assignInspector(inspectorId, inspectionGuid, dateAssigned, assignedByManager);
     }
 
