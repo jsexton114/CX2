@@ -8305,6 +8305,52 @@
       } ]
     }
   },
+  "IsCurrentVendorAdmin" : {
+    "name" : "IsCurrentVendorAdmin",
+    "description" : "IsCurrentVendorAdmin",
+    "version" : "V2",
+    "queryString" : "select count(*) as isCurrentVendorAdmin from VendorAdmins where UserId=:user and VendorId=:vendor",
+    "countQueryString" : "select count(*) from (select count(*) as isCurrentVendorAdmin from VendorAdmins where UserId=:user and VendorId=:vendor) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "user",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "3",
+      "required" : true
+    }, {
+      "name" : "vendor",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "28",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.IsCurrentVendorAdminResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "SINGLE",
+      "properties" : [ {
+        "name" : "isCurrentVendorAdmin",
+        "fieldName" : "isCurrentVendorAdmin",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "ManualFeeTypeCountForMunicipality" : {
     "name" : "ManualFeeTypeCountForMunicipality",
     "description" : "ManualFeeTypeCountForMunicipality",

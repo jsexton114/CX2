@@ -3897,6 +3897,19 @@
     } ],
     "operation" : "toast"
   },
+  "stvIsCurrentVendorAdmin" : {
+    "_id" : "wm-stvIsCurrentVendorAdmin-wm.Variable-1499233170649",
+    "name" : "stvIsCurrentVendorAdmin",
+    "owner" : "Page",
+    "category" : "wm.Variable",
+    "dataBinding" : [ ],
+    "dataSet" : {
+      "dataValue" : false
+    },
+    "type" : "boolean",
+    "isList" : false,
+    "saveInPhonegap" : false
+  },
   "svDownloadDocument" : {
     "_id" : "wm-svDownloadDocument-wm.ServiceVariable-1486566888008",
     "name" : "svDownloadDocument",
@@ -3923,6 +3936,38 @@
     "transformationRequired" : false,
     "saveInPhonegap" : false,
     "controller" : "Form"
+  },
+  "svIsCurrentVendorAdmin" : {
+    "_id" : "wm-svIsCurrentVendorAdmin-wm.ServiceVariable-1499232039794",
+    "name" : "svIsCurrentVendorAdmin",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "user",
+      "value" : "bind:Variables.CurrentUserDetails.dataSet.id",
+      "type" : "integer"
+    }, {
+      "target" : "vendor",
+      "value" : "bind:Variables.CurrentVendorObj.firstRecord.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.IsCurrentVendorAdminResponse",
+    "service" : "cx2",
+    "operation" : "executeIsCurrentVendorAdmin",
+    "operationId" : "QueryExecutionController_executeIsCurrentVendorAdmin",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 20,
+    "onSuccess" : "svIsCurrentVendorAdminonSuccess($event, $scope)",
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
   },
   "svUploadDocument" : {
     "_id" : "wm-svUploadDocument-wm.ServiceVariable-1486502420070",

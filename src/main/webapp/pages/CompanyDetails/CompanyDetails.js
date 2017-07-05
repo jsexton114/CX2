@@ -5,7 +5,6 @@ Application.$controller("CompanyDetailsPageController", ["$scope", function($sco
     $scope.onPageReady = function() {
 
     };
-
     $scope.CurrentVendorObjonBeforeDatasetReady = function(variable, data) {
         _.forEach(data, function(row) {
             row.coi = row.coi === null ? null : '';
@@ -35,13 +34,21 @@ Application.$controller("CompanyDetailsPageController", ["$scope", function($sco
         $scope.Variables.lvDocuments.update();
     };
 
+
+    $scope.svIsCurrentVendorAdminonSuccess = function(variable, data) {
+        debugger
+        $scope.Variables.stvIsCurrentVendorAdmin.dataSet.dataValue = (data.isCurrentVendorAdmin == 1) ? true : false;
+    };
+
 }]);
 
 
 Application.$controller("liveform1Controller", ["$scope",
     function($scope) {
         "use strict";
+
         $scope.ctrlScope = $scope;
+
     }
 ]);
 
@@ -121,15 +128,22 @@ Application.$controller("confirmdialogDeleteDocumentController", ["$scope",
 ]);
 
 Application.$controller("grid3Controller", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
 
 Application.$controller("gridVendorUsersController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
+]);
+
+Application.$controller("dialogUserProfileController", ["$scope",
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

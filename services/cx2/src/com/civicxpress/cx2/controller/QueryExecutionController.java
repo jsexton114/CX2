@@ -3230,6 +3230,16 @@ public class QueryExecutionController {
         return _result;
     }
 
+    @RequestMapping(value = "/queries/IsCurrentVendorAdmin", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "IsCurrentVendorAdmin")
+    public IsCurrentVendorAdminResponse executeIsCurrentVendorAdmin(@RequestParam(value = "user") Integer user, @RequestParam(value = "vendor") Integer vendor, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: IsCurrentVendorAdmin");
+        IsCurrentVendorAdminResponse _result = queryService.executeIsCurrentVendorAdmin(user, vendor);
+        LOGGER.debug("got the result for named query: IsCurrentVendorAdmin, result:{}", _result);
+        return _result;
+    }
+
     @RequestMapping(value = "/queries/EmailAlreadyExsist", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "EmailAlreadyExsist")

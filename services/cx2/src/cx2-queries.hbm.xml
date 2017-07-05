@@ -3899,6 +3899,22 @@ where
     <query-param name="user" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="IsCurrentVendorAdmin">
+        <![CDATA[
+        select count(*) as isCurrentVendorAdmin from VendorAdmins where UserId=:user and VendorId=:vendor
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="IsCurrentVendorAdmin__count">
+        <![CDATA[
+        select count(*) from (select count(*) as isCurrentVendorAdmin from VendorAdmins where UserId=:user and VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="user" type="java.lang.Integer"/>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
     <sql-query name="EmailAlreadyExsist">
         <![CDATA[
         select count(*) as emailExist from Users where Email=:email

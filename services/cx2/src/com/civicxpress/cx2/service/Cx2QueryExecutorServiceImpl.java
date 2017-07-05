@@ -3699,6 +3699,17 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
 
     @Transactional(readOnly = true, value = "cx2TransactionManager")
     @Override
+    public IsCurrentVendorAdminResponse executeIsCurrentVendorAdmin(Integer user, Integer vendor) {
+        Map params = new HashMap(2);
+
+        params.put("user", user);
+        params.put("vendor", vendor);
+
+        return queryExecutor.executeNamedQuery("IsCurrentVendorAdmin", params, IsCurrentVendorAdminResponse.class);
+    }
+
+    @Transactional(readOnly = true, value = "cx2TransactionManager")
+    @Override
     public EmailAlreadyExsistResponse executeEmailAlreadyExsist(String email) {
         Map params = new HashMap(1);
 

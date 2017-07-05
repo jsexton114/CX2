@@ -669,6 +669,8 @@ public interface Cx2QueryExecutorService {
 
     Integer executeUpdateInfoFromMyProfile(UpdateInfoFromMyProfileRequest updateInfoFromMyProfileRequest);
 
+    IsCurrentVendorAdminResponse executeIsCurrentVendorAdmin(Integer user, Integer vendor);
+
     EmailAlreadyExsistResponse executeEmailAlreadyExsist(String email);
 
     Page<GetUserMessagesResponse> executeGetUserMessages(Integer taggedPersonId, Integer municipalityId, Boolean messageStatus, Pageable pageable);

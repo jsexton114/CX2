@@ -15,7 +15,7 @@ Application.$controller("selectCompanyPageController", ["$scope", function($scop
     };
 
     $scope.getSelectedCompany = function(variable, data) {
-        debugger
+
         variable = variable || $scope.Variables.CompanyListOfEmployee;
         data = data || variable.dataSet;
 
