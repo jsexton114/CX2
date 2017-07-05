@@ -12,8 +12,18 @@ Application.$controller("ScheduleInspectionsPageController", ["$scope", function
          * e.g. to get value of text widget named 'username' use following script
          * '$scope.Widgets.username.datavalue'
          */
+        $scope.inspectionLink = getInspectionLink();
     };
 
+    function getInspectionLink() {
+        var tempLink;
+        if (window.location.hostname == "www.wavemakeronline.com") {
+            tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/ViewInspection?inspectionGuid=";
+        } else {
+            tempLink = "https://" + window.location.hostname + "/#/ViewInspection?inspectionGuid=";
+        }
+        return tempLink;
+    };
     $scope.inspectorAssignmentQueue = [];
 
     $scope.buttonAssignInspectorClick = function($event, $isolateScope) {

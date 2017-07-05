@@ -273,7 +273,7 @@ public class InspectionService {
     	}
     }
     
-    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned, String assignedByManager) throws SQLException, MessagingException {
+    public void assignInspector(Long inspectorId, String inspectionGuid, Date dateAssigned, String assignedByManager,String inspectionLink) throws SQLException, MessagingException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	
@@ -286,6 +286,7 @@ public class InspectionService {
     		DBRow inspectionData = DBUtils.selectOne(cx2Conn, "SELECT * FROM MasterInspections WHERE InspectionGuid=:inspectionGuid", params);
     		
     		params.addLong("inspectionDesignId", inspectionData.getLong("InspectionDesignId"));
+    		
     		
     		Long newInspectionOutcomeId = DBUtils.selectOne(cx2Conn, "SELECT ID FROM InspectionOutcome WHERE InspectDesignId=:inspectionDesignId AND Outcome='Scheduled'", params).getLong("ID");
     		
@@ -303,7 +304,7 @@ public class InspectionService {
     	    String inspectorEmail=inspectorData.getString("Email");
     	    String formGuid=inspectionData.getString("FormGuid");
     	    params.addString("formGuid", formGuid);
-    	    Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM MasterForms WHERE FormGUID=:formGuid", params).getLong("ID");
+    	    Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM MasterForms WHERE FormGUID=:formGuid", params).getLong("MunicipalityId");
     	    params.addLong("municipalityId", municipalityId);
             DBRow municipalityData = DBUtils.selectOne(cx2Conn, "SELECT * FROM Municipalities WHERE ID=:municipalityId", params);
             DBRow gisRecordData = DBUtils.selectOne(cx2Conn, "SELECT TOP 1 GR.*, SUB.Subdivision FROM GIS2Forms GF INNER JOIN GISRecords GR ON GR.ID=GF.GISRecordId LEFT OUTER JOIN Subdivisions SUB ON SUB.ID=GR.SubdivisionId WHERE GF.RelatedFormGUID=:formGuid", params);
@@ -312,10 +313,11 @@ public class InspectionService {
 	        String subdivision=gisRecordData.getString("Subdivision");
 	        String municipality=municipalityData.getString("MunicipalityName");
 	        String municipalitySignature=municipalityData.getString("GlobalEmailSig");
-	        String inspectionDesign=inspectionData.getString("InspectDesignName");
+	        String inspectionDesign=DBUtils.selectOne(cx2Conn, "SELECT InspectDesignName FROM InspectionDesign WHERE ID=:inspectionDesignId ", params).getString("InspectDesignName");
 	        String inspectionTitle=inspectionData.getString("InspectionTitle");
 	        String inspectionZone=inspectionData.getString("InspectionZone");
-            sendInspectionScheduledMail(inspectorAssigned, inspectorEmail, assignedByManager,  dateAssigned,  municipality,  inspectionDesign,  lot,  fullAddress,  subdivision,  municipalitySignature, inspectionTitle,  inspectionGuid,  inspectionZone);
+	        String sendInspectionLink=inspectionLink.concat(inspectionGuid);
+            sendInspectionScheduledMail(inspectorAssigned, inspectorEmail, assignedByManager,  dateAssigned,  municipality,  inspectionDesign,  lot,  fullAddress,  subdivision,  municipalitySignature, inspectionTitle,  sendInspectionLink,  inspectionZone);
             
     		
     		cx2Conn.commit();
