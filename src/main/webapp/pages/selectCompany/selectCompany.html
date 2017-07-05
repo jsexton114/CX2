@@ -5,7 +5,7 @@
                 <wm-composite name="composite1" show="bind:Variables.CompanyListOfEmployee.dataSet.content.length > 1">
                     <wm-label class="col-md-3 form-control-static" name="label1" caption="Select Company" fontweight="bold"></wm-label>
                     <wm-container class="col-md-9" name="container1">
-                        <wm-select name="selectCompany" dataset="bind:Variables.CompanyListOfEmployee.dataSet" datafield="All Fields" displayfield="companyName" orderby="companyName:desc" datavalue="bind:getSelectedCompany()"></wm-select>
+                        <wm-select name="selectCompany" dataset="bind:Variables.CompanyListOfEmployee.dataSet" datafield="All Fields" displayfield="companyName" orderby="companyName:asc" datavalue="bind:getSelectedCompany()"></wm-select>
                     </wm-container>
                 </wm-composite>
             </wm-gridcolumn>
