@@ -1159,7 +1159,7 @@
                                 <wm-label class="col-md-3 form-control-static" name="label118" caption="Date+Time" fontweight="bold" padding="unset 0.5em"></wm-label>
                                 <wm-container class="col-md-9" name="container17">
                                     <wm-datetime name="datetimeInspectionRequest" mindate="bind:minDaysForInspection" maxdate="bind:maxDaysForInspection" on-change="datetimeInspectionRequestChange($event, $scope, newVal, oldVal)" excludedates="bind:holidayDateList"
-                                    excludedays="0,1,2,3,4,5,6" placeholder="Select Date+Time" datepattern="MM-dd-yyyy hh:mm a"></wm-datetime>
+                                    excludedays="0,1,2,3,4,5,6" placeholder="Select Date+Time" datepattern="MM-dd-yyyy hh:mm a" minutestep="60"></wm-datetime>
                                 </wm-container>
                             </wm-composite>
                         </wm-container>

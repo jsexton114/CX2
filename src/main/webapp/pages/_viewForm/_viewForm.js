@@ -893,7 +893,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         });
 
         $scope.datetimeInspectionRequestChange = function($event, $isolateScope, newVal, oldVal) {
-
             updateDailyInspectionLimit(newVal);
 
             $scope.Variables.svCountInspectionsHourly.setInput({
