@@ -6,7 +6,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "VendorId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     }, {
       "target" : "UserId",
@@ -372,7 +372,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "vendor",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CheckIfCompanyUserIsVendorAdminResponse",
@@ -405,7 +405,7 @@
       "type" : "integer"
     }, {
       "target" : "vendor",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "com.civicxpress.cx2.models.query.CheckingUserWithInVendorUsersResponse",
@@ -465,7 +465,7 @@
       "type" : "integer"
     }, {
       "target" : "vendor",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "integer",
@@ -494,7 +494,7 @@
     "category" : "wm.ServiceVariable",
     "dataBinding" : [ {
       "target" : "vendor",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     }, {
       "target" : "user",
@@ -531,7 +531,7 @@
       "type" : "integer"
     }, {
       "target" : "vendor",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "integer",
@@ -2287,7 +2287,7 @@
       "type" : "integer"
     }, {
       "target" : "VendorId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "integer"
     } ],
     "type" : "integer",
@@ -2401,7 +2401,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "vendorId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -2425,7 +2425,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "UserId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -2681,7 +2681,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "VendorId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -3071,7 +3071,7 @@
     "category" : "wm.LiveVariable",
     "dataBinding" : [ {
       "target" : "vendorId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id",
       "type" : "number"
     } ],
     "operation" : "read",
@@ -3095,7 +3095,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "UserId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
@@ -3351,7 +3351,7 @@
         "fullyQualifiedType" : "integer",
         "columnName" : "VendorId",
         "isPrimaryKey" : false,
-        "notNull" : false,
+        "notNull" : true,
         "length" : 0,
         "precision" : 10,
         "generator" : "assigned",
