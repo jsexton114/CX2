@@ -1,4 +1,4 @@
-Application.$controller("CompanyProfilePageController", ["$scope", "_", function($scope, _) {
+Application.$controller("CompanyProfilePageController", ["$scope", "_", "$location", function($scope, _, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -6,7 +6,7 @@ Application.$controller("CompanyProfilePageController", ["$scope", "_", function
 
         //current date
         $scope._ = _;
-        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyID);
+        //$scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyID);
 
         // $('[name="liveform1"]').on('change', '.app-blob-upload', function() {
         //     debugger;
@@ -33,6 +33,12 @@ Application.$controller("CompanyProfilePageController", ["$scope", "_", function
 
     $scope.liveform1Beforeservicecall = function($event, $operation, $data) {
         $data.lastUpdated = new Date().getTime();
+    };
+
+
+    $scope.breadcrumb1Beforenavigate = function($isolateScope, $item) {
+        $location.path($item.link);
+        return false;
     };
 
 }]);

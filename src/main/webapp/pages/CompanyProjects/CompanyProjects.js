@@ -1,4 +1,4 @@
-Application.$controller("CompanyProjectsPageController", ["$scope", function($scope) {
+Application.$controller("CompanyProjectsPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -15,6 +15,12 @@ Application.$controller("CompanyProjectsPageController", ["$scope", function($sc
             'primaryVendor': true
         });
         $scope.Variables.lvMapProjectAndVendor.createRecord();
+    };
+
+
+    $scope.breadcrumb1Beforenavigate = function($isolateScope, $item) {
+        $location.path($item.link);
+        return false;
     };
 
 }]);
@@ -45,8 +51,8 @@ Application.$controller("confirmdialogSoftDeleteProjectCoController", ["$scope",
 ]);
 
 Application.$controller("pagedialogViewProjectController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);

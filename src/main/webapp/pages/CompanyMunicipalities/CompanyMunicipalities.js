@@ -1,4 +1,4 @@
-Application.$controller("CompanyMunicipalitiesPageController", ["$scope", function($scope) {
+Application.$controller("CompanyMunicipalitiesPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -13,8 +13,14 @@ Application.$controller("CompanyMunicipalitiesPageController", ["$scope", functi
          * '$scope.Widgets.username.datavalue'
          */
 
-        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
+        //$scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
     };
+
+    $scope.breadcrumb1Beforenavigate = function($isolateScope, $item) {
+        $location.path($item.link);
+        return false;
+    };
+
 }]);
 
 Application.$controller("grid2_1Controller", ["$scope",

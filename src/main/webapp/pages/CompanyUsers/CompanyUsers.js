@@ -1,9 +1,9 @@
-Application.$controller("CompanyUsersPageController", ["$scope", "$filter", function($scope, $filter) {
+Application.$controller("CompanyUsersPageController", ["$scope", "$filter", "$location", function($scope, $filter, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
     $scope.onPageReady = function() {
-        $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
+        // $scope.Variables.BreadCrum.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
     };
 
 
@@ -25,6 +25,12 @@ Application.$controller("CompanyUsersPageController", ["$scope", "$filter", func
 
     $scope.lvGiveCompanyEmployeeRoleonError = function(variable, data) {
         //Nothing		
+    };
+
+
+    $scope.breadcrumb1Beforenavigate = function($isolateScope, $item) {
+        $location.path($item.link);
+        return false;
     };
 
 }]);

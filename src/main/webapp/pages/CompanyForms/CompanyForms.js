@@ -1,4 +1,4 @@
-Application.$controller("CompanyFormsPageController", ["$scope", function($scope) {
+Application.$controller("CompanyFormsPageController", ["$scope", "$location", function($scope, $location) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
@@ -13,7 +13,13 @@ Application.$controller("CompanyFormsPageController", ["$scope", function($scope
          * '$scope.Widgets.username.datavalue'
          */
 
-        $scope.Variables.Breadcrumb.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
+        //$scope.Variables.Breadcrumb.dataSet[0].link += ('?companyId=' + $scope.pageParams.companyId);
+    };
+
+
+    $scope.breadcrumb1Beforenavigate = function($isolateScope, $item) {
+        $location.path($item.link);
+        return false;
     };
 
 }]);
