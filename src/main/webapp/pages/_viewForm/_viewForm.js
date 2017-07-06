@@ -34,7 +34,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     function showContacts() {
-        debugger
         return ($scope.Variables.lvFormType.dataSet.data[0].requireOwner || $scope.Variables.lvFormType.dataSet.data[0].multipleGisrecords || $scope.Variables.lvFormType.dataSet.data[0].gisrecord);
     };
 
@@ -77,7 +76,6 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.lvFormTypeonSuccess = function(variable, data) {
-        debugger
         $scope.showContactsTab = showContacts();
     };
 
@@ -157,7 +155,7 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
     };
 
     $scope.svSetFormStatusonSuccess = function(variable, data) {
-        setFormStatusProgressValue($scope.Widgets.selectStatus._proxyModel.id);
+        setFormStatusProgressValue($scope.Widgets.selectStatus.datavalue.id);
         $scope.Widgets.textareaNotes.reset();
     };
 
