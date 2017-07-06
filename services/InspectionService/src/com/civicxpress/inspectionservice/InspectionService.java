@@ -793,18 +793,18 @@ public class InspectionService {
         String emailSubject= inspectionTitle+" assigned for "+ dateAssigned;
         StringBuilder emailContent = new StringBuilder("Hi "+inspectorAssigned+",<br /><br />");
         
-        emailContent.append("<br /><br />");
         emailContent.append("You have been assigned an inspection by "+InspectorManager+". Please review the details below and contact the municipality if you have any questions.");
         emailContent.append("<br /><br />");
         emailContent.append("Date Assigned: "+dateAssigned);
          emailContent.append("<br />");
-        emailContent.append("inspectionDesign: "+inspectionDesign);
+        emailContent.append("Inspection Type: "+inspectionDesign);
         emailContent.append("<br />");
          emailContent.append("Inspection Zone: "+inspectionZone);
         emailContent.append("<br />");
         emailContent.append("Development: "+subdivision);
         emailContent.append("<br />");
         emailContent.append("Lot: "+lot);
+        emailContent.append("<br />");
          emailContent.append("Address: "+fullAddress);
         emailContent.append("<br /><br />");
          emailContent.append(municipality);
