@@ -248,7 +248,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "companyId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id"
     } ],
     "pageTransitions" : "none"
   },
@@ -267,7 +267,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "companyId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id"
     } ],
     "pageTransitions" : "none"
   },
@@ -286,7 +286,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "companyID",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID | stringToNumber"
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id | stringToNumber"
     } ],
     "pageTransitions" : "none"
   },
@@ -295,10 +295,18 @@
     "name" : "goToPage_CompanyProjects",
     "owner" : "App",
     "category" : "wm.NavigationVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "CompanyProjects",
+      "type" : "string"
+    } ],
     "operation" : "gotoPage",
     "pageName" : "CompanyProjects",
-    "dataSet" : [ ],
+    "dataSet" : [ {
+      "type" : "integer",
+      "target" : "companyID",
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id | stringToNumber"
+    } ],
     "pageTransitions" : "none"
   },
   "goToPage_CompanyUsers" : {
@@ -316,7 +324,7 @@
     "dataSet" : [ {
       "type" : "integer",
       "target" : "companyId",
-      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.ID"
+      "value" : "bind:Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.id"
     } ],
     "pageTransitions" : "none"
   },
