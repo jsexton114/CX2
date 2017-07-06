@@ -67,6 +67,10 @@ public interface Cx2QueryExecutorService {
 
     Downloadable exportGetEmailId(ExportType exportType, Integer userId, Pageable pageable);
 
+    Page<MunicipalityIdsOfVendorResponse> executeMunicipalityIdsOfVendor(Integer vendor, Pageable pageable);
+
+    Downloadable exportMunicipalityIdsOfVendor(ExportType exportType, Integer vendor, Pageable pageable);
+
     MunicipalityInspectionCountResponse executeMunicipalityInspectionCount(Integer municipality);
 
     Page<OutcomeByDesignResponse> executeOutcomeByDesign(Integer inspectionDesign, String outcome, Pageable pageable);

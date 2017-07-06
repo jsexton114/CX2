@@ -8708,6 +8708,45 @@
       } ]
     }
   },
+  "MunicipalityIdsOfVendor" : {
+    "name" : "MunicipalityIdsOfVendor",
+    "description" : "MunicipalityIdsOfVendor",
+    "version" : "V2",
+    "queryString" : "select MunicipalityId as municipalityIds  from VendorApprovals where VendorId=:vendor",
+    "countQueryString" : "select count(*) from (select MunicipalityId as municipalityIds  from VendorApprovals where VendorId=:vendor) wmTempTable",
+    "nativeSql" : true,
+    "fetchCount" : true,
+    "type" : "SELECT",
+    "parameters" : [ {
+      "name" : "vendor",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "26",
+      "required" : true
+    } ],
+    "request" : {
+      "wrapped" : false,
+      "typeRef" : null,
+      "method" : "GET"
+    },
+    "identifiers" : [ ],
+    "response" : {
+      "typeRef" : "com.civicxpress.cx2.models.query.MunicipalityIdsOfVendorResponse",
+      "returns" : "CUSTOM",
+      "responseType" : "PAGINATED",
+      "properties" : [ {
+        "name" : "municipalityIds",
+        "fieldName" : "municipalityIds",
+        "optional" : false,
+        "fieldType" : {
+          "type" : "PRIMITIVE",
+          "typeRef" : "java.lang.Integer",
+          "list" : false
+        }
+      } ]
+    }
+  },
   "MunicipalityInspectionCount" : {
     "name" : "MunicipalityInspectionCount",
     "description" : "MunicipalityInspectionCount",

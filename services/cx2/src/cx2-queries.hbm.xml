@@ -256,6 +256,20 @@ where formTypes.codeEnforcement=:codeEnforcement and closed=:closed and municipa
     <query-param name="userID" type="java.lang.Integer"/>
     </sql-query>
 
+    <sql-query name="MunicipalityIdsOfVendor">
+        <![CDATA[
+        select MunicipalityId as municipalityIds  from VendorApprovals where VendorId=:vendor
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="MunicipalityIdsOfVendor__count">
+        <![CDATA[
+        select count(*) from (select MunicipalityId as municipalityIds  from VendorApprovals where VendorId=:vendor) wmTempTable
+        ]]>
+    <query-param name="vendor" type="java.lang.Integer"/>
+    </sql-query>
+
     <query name="MunicipalityInspectionCount">
         <![CDATA[
         select count(*) as inspectionsCount from MasterInspections where inspectionDesign.municipalityId=:municipality

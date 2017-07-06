@@ -235,6 +235,25 @@ public class QueryExecutionController {
         return queryService.exportGetEmailId(exportType, userId, pageable);
     }
 
+    @RequestMapping(value = "/queries/MunicipalityIdsOfVendor", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "MunicipalityIdsOfVendor")
+    public Page<MunicipalityIdsOfVendorResponse> executeMunicipalityIdsOfVendor(@RequestParam(value = "vendor") Integer vendor, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Executing named query: MunicipalityIdsOfVendor");
+        Page<MunicipalityIdsOfVendorResponse> _result = queryService.executeMunicipalityIdsOfVendor(vendor, pageable);
+        LOGGER.debug("got the result for named query: MunicipalityIdsOfVendor, result:{}", _result);
+        return _result;
+    }
+
+    @ApiOperation(value = "Returns downloadable file for query MunicipalityIdsOfVendor")
+    @RequestMapping(value = "/queries/MunicipalityIdsOfVendor/export/{exportType}", method = RequestMethod.GET, produces = "application/octet-stream")
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    public Downloadable exportMunicipalityIdsOfVendor(@PathVariable("exportType") ExportType exportType, @RequestParam(value = "vendor") Integer vendor, Pageable pageable, HttpServletRequest _request) {
+        LOGGER.debug("Exporting named query: MunicipalityIdsOfVendor");
+
+        return queryService.exportMunicipalityIdsOfVendor(exportType, vendor, pageable);
+    }
+
     @RequestMapping(value = "/queries/MunicipalityInspectionCount", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "MunicipalityInspectionCount")

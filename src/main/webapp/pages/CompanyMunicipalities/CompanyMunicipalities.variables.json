@@ -461,6 +461,33 @@
     "filterFields" : { },
     "package" : "com.civicxpress.cx2.Vendor"
   },
+  "svMunicipalityIdsOfVendor" : {
+    "_id" : "wm-svMunicipalityIdsOfVendor-wm.ServiceVariable-1499339646170",
+    "name" : "svMunicipalityIdsOfVendor",
+    "owner" : "Page",
+    "category" : "wm.ServiceVariable",
+    "dataBinding" : [ {
+      "target" : "vendor",
+      "value" : "bind:Variables.CurrentVendorObj.firstRecord.id",
+      "type" : "integer"
+    } ],
+    "type" : "com.civicxpress.cx2.models.query.MunicipalityIdsOfVendorResponse",
+    "service" : "cx2",
+    "operation" : "executeMunicipalityIdsOfVendor",
+    "operationId" : "QueryExecutionController_executeMunicipalityIdsOfVendor",
+    "operationType" : "get",
+    "serviceType" : "DataService",
+    "dataSet" : [ ],
+    "isList" : true,
+    "maxResults" : 100,
+    "startUpdate" : false,
+    "autoUpdate" : true,
+    "inFlightBehavior" : "executeLast",
+    "transformationRequired" : false,
+    "saveInPhonegap" : false,
+    "controller" : "QueryExecution",
+    "spinnerContext" : "page"
+  },
   "VendorApprovalsData" : {
     "_id" : "wm-VendorApprovalsData-wm.LiveVariable-1480505124424",
     "name" : "VendorApprovalsData",
