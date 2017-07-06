@@ -173,9 +173,9 @@ Application.$controller("gridCasesController", ["$scope",
             $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
             var tempLink;
             if (window.location.hostname == "www.wavemakeronline.com") {
-                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/Forms?FormGUID=" + $rowData.formGuid;
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/Forms?FormGUID=" + $rowData.formGuid;
             } else {
-                tempLink = "https://" + window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid;
+                tempLink = "https://" + window.location.hostname + "#/Forms?FormGUID=" + $rowData.formGuid;
             }
             window.open(tempLink, '_blank');
             // $scope.Widgets.pagedialogViewForm.open();
@@ -193,9 +193,9 @@ Application.$controller("gridFormsController", ["$scope",
             $scope.Variables.stvFormLink.dataSet.dataValue = $rowData.formGuid;
             var tempLink;
             if (window.location.hostname == "www.wavemakeronline.com") {
-                tempLink = "https://" + window.location.hostname + window.location.pathname + "/#/Forms?FormGUID=" + $rowData.formGuid;
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/Forms?FormGUID=" + $rowData.formGuid;
             } else {
-                tempLink = "https://" + window.location.hostname + "/#/Forms?FormGUID=" + $rowData.formGuid;
+                tempLink = "https://" + window.location.hostname + "#/Forms?FormGUID=" + $rowData.formGuid;
             }
             window.open(tempLink, '_blank');
             // $scope.Widgets.pagedialogViewForm.open();
