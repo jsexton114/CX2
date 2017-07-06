@@ -81,8 +81,8 @@
                                                 <wm-grid-column binding="assignedTo" caption="Assigned To" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                 <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             </wm-grid>
-                                            <wm-button class="btn-primary" caption="Reassign" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem" name="buttonReassign"
-                                            on-click="buttonReassignClick($event, $scope)" iconclass="wi wi-update"></wm-button>
+                                            <wm-button class="btn-primary" caption="bind:'Reassign' + (!!Widgets.gridInspectorsA.selecteditem.id ? (' to ' + Widgets.gridInspectorsA.selecteditem.fullName) : '')" type="button" margin="unset 0.5em" disabled="bind:!Widgets.gridAssignedInspections.selecteditem.length || !Widgets.gridInspectorsA.selecteditem.id"
+                                            name="buttonReassign" on-click="buttonReassignClick($event, $scope)" iconclass="wi wi-update"></wm-button>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="3" name="gridcolumn8">
                                             <wm-panel iconclass="wi wi-contacts" autoclose="outsideClick" title="Inspectors" name="panel3" class="panel-primary">
