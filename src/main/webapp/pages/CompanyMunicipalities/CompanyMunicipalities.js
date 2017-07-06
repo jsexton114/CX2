@@ -29,7 +29,7 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
         "use strict";
         //$scope.ctrlScope = $scope;
         $scope.saveAction1 = function($event) {
-            $scope.InsuranceDate = $scope.Widgets.panelSelectCompany.Widgets.selectCompany.datavalue.InsuranceExpires;
+            $scope.InsuranceDate = $scope.Variables.CurrentVendorObj.dataSet.data[0].insuranceExpires;
             $scope.InsuranceDate = moment($scope.InsuranceDate);
             var curDate = moment()
             var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
@@ -42,11 +42,9 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                 $scope.Variables.goToPage_CompanyProfile.navigate();
                 return;
             } else if ($scope.formFields[0].value.separateContractorApplicationRequired) {
-
-
                 $scope.Variables.goToPage_NewForm.setData({
                     'formTypeId': $scope.formFields[0].value.contractorApplicationFormId,
-                    'companyId': $scope.pageParams.companyId
+                    'companyId': $scope.Variables.CurrentVendorObj.dataSet.data[0].id
                 });
                 $scope.Variables.goToPage_NewForm.navigate();
 

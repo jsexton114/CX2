@@ -36,7 +36,6 @@ Application.$controller("CompanyDetailsPageController", ["$scope", function($sco
 
 
     $scope.svIsCurrentVendorAdminonSuccess = function(variable, data) {
-        debugger
         $scope.Variables.stvIsCurrentVendorAdmin.dataSet.dataValue = (data.isCurrentVendorAdmin == 1) ? true : false;
     };
 
