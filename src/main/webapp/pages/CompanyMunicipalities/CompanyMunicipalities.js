@@ -62,7 +62,7 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                     $scope.Widgets.liveform2_12.save();
                 }
             } else {
-                wmToaster.show('error', 'ERROR', 'You have already applied to that municipality.', 12000);
+                wmToaster.show('error', 'ERROR', 'You have already applied to that municipality.', 5000);
             }
 
         };
