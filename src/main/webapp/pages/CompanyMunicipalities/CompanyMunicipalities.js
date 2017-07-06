@@ -44,11 +44,11 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
                 var curDate = moment()
                 var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
                 if (differnceDays <= 0) {
-                    wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired. Please provide a new Certificate of Insurance, update your Insurance Expiration Date, then reapply to the municipality.', 12000);
+                    wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired. Please update your Insurance Expiration Date before reapplying to the municipality.', 10000);
                     $scope.Variables.goToPage_CompanyProfile.navigate();
                     return;
                 } else if (differnceDays <= 30) {
-                    wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days. Please provide a new Certificate of Insurance, update your Insurance Expiration Date, then reapply to the municipality.', 12000);
+                    wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance is expiring in the next 30 days. Please update your Insurance Expiration Date before reapplying to the municipality.', 10000);
                     $scope.Variables.goToPage_CompanyProfile.navigate();
                     return;
                 } else if ($scope.formFields[0].value.separateContractorApplicationRequired) {
