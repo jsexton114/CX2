@@ -3976,17 +3976,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayInspectionFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayInspectionFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayInspectionFeeAcctCode",
           "type" : "string",
@@ -4015,17 +4015,17 @@
           "scale" : 0
         }, {
           "fieldName" : "cancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "CancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "cancelFeeAccount",
           "type" : "string",
@@ -4054,17 +4054,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayCancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayCancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayCancelAcctCode",
           "type" : "string",
@@ -5811,17 +5811,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayInspectionFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayInspectionFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayInspectionFeeAcctCode",
           "type" : "string",
@@ -5850,17 +5850,17 @@
           "scale" : 0
         }, {
           "fieldName" : "cancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "CancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "cancelFeeAccount",
           "type" : "string",
@@ -5889,17 +5889,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayCancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayCancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayCancelAcctCode",
           "type" : "string",
@@ -12033,17 +12033,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayInspectionFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayInspectionFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayInspectionFeeAcctCode",
           "type" : "string",
@@ -12072,17 +12072,17 @@
           "scale" : 0
         }, {
           "fieldName" : "cancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "CancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "cancelFeeAccount",
           "type" : "string",
@@ -12111,17 +12111,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayCancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayCancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayCancelAcctCode",
           "type" : "string",
@@ -15113,17 +15113,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayInspectionFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayInspectionFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayInspectionFeeAcctCode",
           "type" : "string",
@@ -15152,17 +15152,17 @@
           "scale" : 0
         }, {
           "fieldName" : "cancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "CancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "cancelFeeAccount",
           "type" : "string",
@@ -15191,17 +15191,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayCancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayCancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayCancelAcctCode",
           "type" : "string",
@@ -18432,17 +18432,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayInspectionFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayInspectionFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayInspectionFeeAcctCode",
           "type" : "string",
@@ -18471,17 +18471,17 @@
           "scale" : 0
         }, {
           "fieldName" : "cancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "CancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "cancelFeeAccount",
           "type" : "string",
@@ -18510,17 +18510,17 @@
           "scale" : 0
         }, {
           "fieldName" : "sameDayCancelFee",
-          "type" : "integer",
-          "fullyQualifiedType" : "integer",
+          "type" : "big_decimal",
+          "fullyQualifiedType" : "big_decimal",
           "columnName" : "SameDayCancelFee",
           "isPrimaryKey" : false,
           "notNull" : false,
           "length" : 0,
-          "precision" : 10,
+          "precision" : 36,
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
-          "scale" : 0
+          "scale" : 2
         }, {
           "fieldName" : "sameDayCancelAcctCode",
           "type" : "string",

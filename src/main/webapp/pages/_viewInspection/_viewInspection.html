@@ -160,20 +160,24 @@
                                 <wm-tabpane name="tabpaneViolations" title="VIOLATIONS" show="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.trackViolations">
                                     <wm-layoutgrid name="layoutgrid24">
                                         <wm-gridrow name="gridrow78_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn134"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn134">
+                                                <wm-label padding="unset 0.5em" name="label112_1" caption="Use the &quot;+Add Violation&quot; button to cite violations of specific ordinances on this inspection." accessroles="CXAdmin,Inspector,InspectorManager"></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label118" caption="Violations of municipal codes that have been cited as a result of this inspection are shown here."></wm-label>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow79_1">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn136">
                                                 <wm-grid title="" dataset="bind:Variables.lvViolations.dataSet" navigation="Classic" name="gridViolations" filtermode="multicolumn" showrecordcount="true" exportformat="EXCEL">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
-                                                    <wm-grid-column binding="code.codeNumber" caption="Code Number" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
-                                                    <wm-grid-column binding="code.codeTitle" caption="Code Title" type="string" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
-                                                    <wm-grid-column binding="notes" caption="Comments" type="string" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                                    <wm-grid-column binding="code.codeNumber" caption="Code Number" type="string" width="20%" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true"
+                                                    related-entity-name="Code"></wm-grid-column>
+                                                    <wm-grid-column binding="code.codeTitle" caption="Code Title" type="string" width="30%" primary-key="false" generator="assigned" readonly="true" edit-widget-type="text" show="true" related-entity-name="Code"></wm-grid-column>
+                                                    <wm-grid-column binding="notes" caption="Inspector Notes" type="string" width="50%" generator="assigned" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                                     <wm-grid-action key="addNewRow" display-name="Add Violation" show="true" class="btn-success" iconclass="wi wi-plus" title="New" action="Widgets.dialogViolation.open()" accessroles="Inspector,InspectorManager,CXAdmin"
                                                     shortcutkey="" disabled="false"></wm-grid-action>
+                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogViewViolation.open()" disabled="false"></wm-grid-row-action>
                                                     <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="" accessroles="Inspector,InspectorManager,CXAdmin"
                                                     disabled="false"></wm-grid-row-action>
-                                                    <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View" action="Widgets.dialogViewViolation.open()" disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
@@ -182,7 +186,10 @@
                                 <wm-tabpane name="tabpaneAttachments" title="ATTACHMENTS" show="true">
                                     <wm-layoutgrid name="layoutgrid23_1">
                                         <wm-gridrow name="gridrow76_1">
-                                            <wm-gridcolumn columnwidth="12" name="gridcolumn130"></wm-gridcolumn>
+                                            <wm-gridcolumn columnwidth="12" name="gridcolumn130">
+                                                <wm-label padding="unset 0.5em" name="label119" caption="Documents or photos that are related to this inspection are displayed here."></wm-label>
+                                                <wm-label padding="unset 0.5em" name="label115" caption="Note: photos that have been attached to Violations will also appear here on the Attachments list." show="bind:Variables.lvInspection.dataSet.data[$i].inspectionDesign.trackViolations"></wm-label>
+                                            </wm-gridcolumn>
                                         </wm-gridrow>
                                         <wm-gridrow name="gridrow77_1">
                                             <wm-gridcolumn columnwidth="12" name="gridcolumn132">
@@ -780,9 +787,9 @@
                                 </wm-composite>
                             </wm-gridcolumn>
                         </wm-gridrow>
-                        <wm-gridrow name="gridrow56" padding="unset unset 2em unset">
+                        <wm-gridrow name="gridrow56" padding="1em unset 2em unset">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn104">
-                                <wm-label padding="unset 0.5em" name="labelSelectedCode" caption="bind:'<h4>' + Widgets.searchCode.datavalue.codeNumber + ': ' + Widgets.searchCode.datavalue.codeSets.codeSetTitle + '</h4><br>' + Widgets.searchCode.datavalue.code"
+                                <wm-label padding="unset 0.5em" name="labelSelectedCode" caption="bind:'<h4>' + Widgets.searchCode.datavalue.codeSets.codeSetTitle + '</h4>' + '<h3>' + Widgets.searchCode.datavalue.codeNumber + ': ' + Widgets.searchCode.datavalue.codeTitle + '</h3>' + Widgets.searchCode.datavalue.code"
                                 show="bind:!!Widgets.searchCode.datavalue.id" class="col-md-push-3"></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
@@ -794,16 +801,16 @@
                         <wm-gridrow name="gridrow52" padding="unset unset 2em unset">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn98_1">
                                 <wm-composite name="composite6" required="true">
-                                    <wm-label class="col-md-3 form-control-static" name="label70" caption="Notes" fontweight="bold" padding="unset 0.5em"></wm-label>
+                                    <wm-label class="col-md-3 form-control-static" name="label70" caption="Inspector Notes" fontweight="bold" padding="unset 0.5em"></wm-label>
                                     <wm-container class="col-md-9" name="container14_1">
-                                        <wm-textarea name="textareaViolationNotes" placeholder="Enter notes" maxchars="5000" height="250"></wm-textarea>
+                                        <wm-textarea name="textareaViolationNotes" placeholder="Enter notes" maxchars="5000" height="200px"></wm-textarea>
                                     </wm-container>
                                 </wm-composite>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow86_1">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn142_1">
-                                <wm-label padding="unset 0.5em" name="label112" caption="Note: if there is an additional code set that should be cited on this inspection design, or a specific code missing from the search results, please contact your Municipality Admin."></wm-label>
+                                <wm-label padding="unset 0.5em" name="label112" caption="Note: if there is an additional code set that should be cited on this inspection design, or a specific code is missing from the search results, please contact your Municipality Administrator."></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
                     </wm-layoutgrid>
@@ -813,6 +820,7 @@
                         <wm-gridrow name="gridrow87" padding="unset unset 1em unset">
                             <wm-gridcolumn columnwidth="12" name="gridcolumn143">
                                 <wm-label padding="unset 0.5em" name="label113" caption="Please use the &quot;Choose Files&quot; button to upload detailed photos that indicate why this violation is being cited."></wm-label>
+                                <wm-label padding="unset 0.5em" name="label113_1" caption="Note: photos are recommended but not required to add a violation. The Code and Inspector Notes on the &quot;Violation&quot; tab are required."></wm-label>
                             </wm-gridcolumn>
                         </wm-gridrow>
                         <wm-gridrow name="gridrow54" padding="unset unset 1em unset">
@@ -859,12 +867,14 @@
             <wm-layoutgrid name="layoutgrid18">
                 <wm-gridrow name="gridrow59_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn108">
-                        <wm-label padding="unset 0.5em" name="label78" caption="bind:Widgets.gridViolations.selecteditem.code.codeNumber + ' ' + Widgets.gridViolations.selecteditem.code.codeSets.codeSetTitle + '<br></wm-label>' + Widgets.gridViolations.selecteditem.code.code"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label117" class="h4" fontweight="bold" caption="bind:Widgets.gridViolations.selecteditem.code.codeSets.codeSetTitle"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label78" caption="bind:Widgets.gridViolations.selecteditem.code.codeNumber + ': ' + Widgets.gridViolations.selecteditem.code.codeTitle + '<br/ >'" fontweight="bold"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label114" caption="bind:Widgets.gridViolations.selecteditem.code.code"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow60_1">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn110">
-                        <wm-label padding="unset 0.5em" name="label79" caption="Notes" class="h4" fontweight="bold"></wm-label>
+                        <wm-label padding="unset 0.5em" name="label79" caption="Inspector Notes" class="h4" fontweight="bold"></wm-label>
                         <wm-label padding="unset 0.5em" name="label80" caption="bind:Widgets.gridViolations.selecteditem.notes"></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
@@ -879,8 +889,8 @@
                                             <wm-gridrow name="gridrow57_1">
                                                 <wm-gridcolumn columnwidth="12" name="gridcolumn105_1" horizontalalign="center">
                                                     <wm-picture name="Picture_1" picturesource="bind:Variables.lvViolationDocuments.dataSet.contents" class="picture-thumb"></wm-picture>
-                                                    <wm-label name="Filename_1" caption="bind:'Filename: ' + Variables.lvViolationDocuments.dataSet.filename" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
-                                                    <wm-label name="Mimetype_1" caption="bind:'File Type: ' + Variables.lvViolationDocuments.dataSet.mimetype" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap"></wm-label>
+                                                    <wm-label name="Filename_1" caption="bind:Variables.lvViolationDocuments.dataSet.filename" class="h4" margin="0px unset" whitespace="nowrap"></wm-label>
+                                                    <wm-label name="Mimetype_1" caption="bind:Variables.lvViolationDocuments.dataSet.mimetype" class="p text-muted" margin="unset unset 0px unset" whitespace="nowrap"></wm-label>
                                                 </wm-gridcolumn>
                                             </wm-gridrow>
                                         </wm-layoutgrid>
