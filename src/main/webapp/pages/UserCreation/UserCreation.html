@@ -203,16 +203,16 @@
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow3">
                                                                 <wm-gridcolumn name="gridcolumn7" columnwidth="4">
-                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="false" widget="select"
-                                                                    placeholder="Select value" displayexpression="stateName" orderby="stateName:asc"></wm-form-field>
+                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="true" widget="select"
+                                                                    placeholder="Select value" displayexpression="stateName" orderby="stateName:asc" validationmessage="State is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn8" columnwidth="4">
-                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="false" widget="text"
-                                                                    maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="true" widget="text"
+                                                                    maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Postal Code is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn9" columnwidth="4">
-                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="false" widget="text" maxchars="255"
-                                                                    inputtype="text" placeholder="Enter value" defaultvalue="USA"></wm-form-field>
+                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="true" widget="text" maxchars="255"
+                                                                    inputtype="text" placeholder="Enter value" defaultvalue="USA" validationmessage="Country is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow4">

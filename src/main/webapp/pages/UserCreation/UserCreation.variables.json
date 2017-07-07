@@ -1102,6 +1102,42 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "cxwelcomeMessage",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "CXWelcomeMessage",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 5000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "cxresetPassword1",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "CXResetPassword1",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 5000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
+      }, {
+        "fieldName" : "cxresetPassword2",
+        "type" : "text",
+        "fullyQualifiedType" : "text",
+        "columnName" : "CXResetPassword2",
+        "isPrimaryKey" : false,
+        "notNull" : false,
+        "length" : 5000,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "GlobalSettings",
       "fullyQualifiedName" : "com.civicxpress.cx2.GlobalSettings",
