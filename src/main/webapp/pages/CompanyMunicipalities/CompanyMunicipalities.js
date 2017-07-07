@@ -38,7 +38,7 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
             var isMunicipalityExist = _.find($scope.Variables.svMunicipalityIdsOfVendor.dataSet.content, function(obj) {
                 return obj.municipalityIds == $scope.formFields[0].value.id;
             });
-            if (isMunicipalityExist != undefined) {
+            if (isMunicipalityExist == undefined) {
                 $scope.InsuranceDate = $scope.Variables.CurrentVendorObj.dataSet.data[0].insuranceExpires;
                 $scope.InsuranceDate = moment($scope.InsuranceDate);
                 var curDate = moment()
