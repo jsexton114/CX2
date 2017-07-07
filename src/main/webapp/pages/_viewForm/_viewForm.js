@@ -709,29 +709,29 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 
 
         function excludeDays() {
-
-            var daysStrings;
+            var daysStrings = ",";
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.sundayYn) {
-                daysStrings = 0 + ",";
+                daysStrings = daysStrings.concat("0,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.mondayYn) {
-                daysStrings = daysStrings + 1 + ",";
+                daysStrings = daysStrings.concat("1,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.tuesdayYn) {
-                daysStrings = daysStrings + 2 + ",";
+                daysStrings = daysStrings.concat("2,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.wednesdayYn) {
-                daysStrings = daysStrings + 3 + ",";
+                daysStrings = daysStrings.concat("3,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.thursdayYn) {
-                daysStrings = daysStrings + 4 + ",";
+                daysStrings = daysStrings.concat("4,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.fridayYn) {
-                daysStrings = daysStrings + 5 + ",";
+                daysStrings = daysStrings.concat("5,");
             }
             if (!$scope.Variables.CurrentForm.dataSet.data[0].municipalities.saturdayYn) {
-                daysStrings = daysStrings + 6 + ",";
+                daysStrings = daysStrings.concat("6,");
             }
+            daysStrings = daysStrings.substring(1);
             return daysStrings.substring(0, daysStrings.length - 1);
         }
 
@@ -836,7 +836,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignChange = function($event, $isolateScope, newVal, oldVal) {
-
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone(newVal);
             $scope.inspectionObject = newVal;
             updateMinMaxDates(newVal);
@@ -848,7 +847,6 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.selectInspectionDesignBySequenceChange = function($event, $isolateScope, newVal, oldVal) {
-
             $scope.inspectionObject = !!newVal ? newVal.inspectionDesign : null;
             $scope.Variables.stvSelectedInspectionDesign.dataSet = _.clone($scope.inspectionObject);
             updateMinMaxDates(newVal);

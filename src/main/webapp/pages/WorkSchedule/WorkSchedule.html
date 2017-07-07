@@ -15,10 +15,10 @@
                         <wm-label caption="Municipality Schedule" fontweight="bold" name="label1" class="h4"></wm-label>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="6" name="gridcolumn2" padding="unset unset 1em unset">
-                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalities.dataSet.content.length > 1">
+                        <wm-composite name="composite1" show="bind:Variables.AdminsMunicipalitiesList.dataSet.content.length > 1">
                             <wm-label class="col-md-3 form-control-static" name="label2" caption="Select Municipality" fontweight="bold"></wm-label>
                             <wm-container class="col-md-9" name="container1">
-                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalities.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalities.firstRecord" orderby="MunicipalityName:asc"></wm-select>
+                                <wm-select name="selectMunicipality" dataset="bind:Variables.AdminsMunicipalitiesList.dataSet" datafield="All Fields" displayfield="MunicipalityName" datavalue="bind:Variables.AdminsMunicipalitiesList.firstRecord" orderby="MunicipalityName:asc"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
