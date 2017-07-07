@@ -38,11 +38,11 @@ Application.$controller("liveform2_12Controller", ["$scope", "wmToaster",
             var isMunicipalityExist = _.find($scope.Variables.svMunicipalityIdsOfVendor.dataSet.content, function(obj) {
                 return obj.municipalityIds == $scope.formFields[0].value.id;
             });
-            if (isMunicipalityExist == undefined) {
+            if (isMunicipalityExist === undefined) {
                 $scope.InsuranceDate = $scope.Variables.CurrentVendorObj.dataSet.data[0].insuranceExpires;
                 $scope.InsuranceDate = moment($scope.InsuranceDate);
-                var curDate = moment()
-                var differnceDays = $scope.InsuranceDate.diff(curDate, 'days')
+                var curDate = moment();
+                var differnceDays = $scope.InsuranceDate.diff(curDate, 'days');
                 if (differnceDays <= 0) {
                     wmToaster.show('error', 'ERROR', 'You may not add municipalities at this time because your business insurance has expired. Please update your Insurance Expiration Date before reapplying to the municipality.', 10000);
                     $scope.Variables.goToPage_CompanyProfile.navigate();

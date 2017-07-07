@@ -740,9 +740,28 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             var disable = ($scope.Variables.CurrentForm.dataSet.data[0].formTypes.forceInspectionSequence ? ($scope.Widgets.selectInspectionDesignBySequence.datavalue === undefined) : ($scope.Widgets.selectInspectionDesign.datavalue === undefined));
             return disable;
         }
+
+        function isCXAdmin() {
+
+            let temp = $scope.Variables.loggedInUser.dataSet.roles;
+            //Checking if user is  cxadmin or muniemp
+            let found = _.indexOf(temp, "CXAdmin");
+            if (found === -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
         $scope.cannotAddInspection = function(balanceDue) {
             var isBalanceDueString = (balanceDue > 0) ? "true" : "false";
-            return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || (" + isBalanceDueString + " && inspectionObject.requireFeesPaidBeforeScheduling)");
+            if ($scope.Variables.svUserPermissions.dataSet.isEmployee || isCXAdmin()) {
+                return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay ");
+            } else {
+                return $scope.$eval("!inspectionObject || (inspectionObject.scheduleDateAndTime ? !Widgets.datetimeInspectionRequest.datavalue : !Widgets.dateInspectionRequest.datavalue) || (isSameDayRequest() && inspectionObject.sameDayInspectionFee > 0 && !Widgets.checkboxSameDayFeeConfirm.datavalue) || tooManyInspectionsForHour || tooManyInspectionsForDay || (" + isBalanceDueString + " && inspectionObject.requireFeesPaidBeforeScheduling)");
+            }
+
         };
 
         function getRequestedFor() {
