@@ -41,17 +41,17 @@ Application.run(['$rootScope', 'Utils', '$window', function($rootScope, Utils, $
     };
 
     // Gets value of a cookie by its name
-    function getCookie(name) {
-        var val = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-        return val ? val.pop() : '';
-    }
+    // function getCookie(name) {
+    //     var val = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    //     return val ? val.pop() : '';
+    // }
 
-    var _simulateFileDownload = Utils.simulateFileDownload;
-    Utils.simulateFileDownload = function(params) {
-        // add csrf cookie to the query params for download requests
-        params.url += '&_csrf=' + getCookie('wm_xsrf_token');
-        _simulateFileDownload(params);
-    };
+    // var _simulateFileDownload = Utils.simulateFileDownload;
+    // Utils.simulateFileDownload = function(params) {
+    //     // add csrf cookie to the query params for download requests
+    //     params.url += '&_csrf=' + getCookie('wm_xsrf_token');
+    //     _simulateFileDownload(params);
+    // };
 }]);
 
 Application.factory('_', ['$window', function($window) {

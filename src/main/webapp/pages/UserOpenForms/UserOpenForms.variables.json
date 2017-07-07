@@ -685,6 +685,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowOwnerToCompleteWork",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOwnerToCompleteWork",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -800,6 +812,20 @@
     "saveInPhonegap" : false,
     "controller" : "QueryExecution",
     "spinnerContext" : "page"
+  },
+  "nvgSubmitDraft" : {
+    "_id" : "wm-nvgSubmitDraft-wm.NavigationVariable-1499413924957",
+    "name" : "nvgSubmitDraft",
+    "owner" : "Page",
+    "category" : "wm.NavigationVariable",
+    "dataBinding" : [ {
+      "target" : "pageName",
+      "value" : "NewForm",
+      "type" : "string"
+    } ],
+    "operation" : "gotoPage",
+    "dataSet" : [ ],
+    "pageTransitions" : "none"
   },
   "PreferenceForUser" : {
     "_id" : "wm-PreferenceForUser-wm.ServiceVariable-1487744360594",

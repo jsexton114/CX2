@@ -94,9 +94,13 @@ Application.$controller("grid2Controller", ["$scope", "$location",
         $scope.ctrlScope = $scope;
 
         $scope.updaterowAction = function($event, $rowData) {
-            $location.path("/NewForm").search({
-                draftId: $rowData.id
+            $scope.Variables.nvgSubmitDraft.setData({
+                'draftId': $rowData.id
             });
+            $scope.Variables.nvgSubmitDraft.navigate();
+            // $location.path("/NewForm").search({
+            //     draftId: $rowData.id
+            // });
         };
 
     }

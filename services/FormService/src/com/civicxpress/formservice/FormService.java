@@ -1379,8 +1379,6 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
-        logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+primaryVendorId);
-        logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++"+vendorIds);
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
