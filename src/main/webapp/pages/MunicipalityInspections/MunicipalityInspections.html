@@ -20,45 +20,45 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow8">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn17" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="tileYesterdayInspections" width="240px" on-click="goToInspectionList($event, 'previous')" height="160px" class="bg-primary">
+                        <wm-tile name="tileYesterdayInspections" width="240px" on-click="goToInspectionList($event, 'previous')" height="160px" class="bg-primary tilehover">
                             <wm-layoutgrid height="100%" name="layoutgrid7">
                                 <wm-gridrow height="100%" name="gridrow11_1">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn26_1" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-skip-previous"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="0.8em unset unset unset" horizontalalign="center" name="gridcolumn27" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Previous Inspections" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountYesterdayInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p"></wm-label>
+                                        <wm-label name="tileTitle" caption="Previous Inspections" class="p tilehover" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountYesterdayInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p tilehover"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn18" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="tileTodayInspections" width="240px" height="160px" on-click="goToInspectionList($event, 'today')" class="bg-primary">
+                        <wm-tile name="tileTodayInspections" width="240px" height="160px" on-click="goToInspectionList($event, 'today')" class="bg-primary tilehover">
                             <wm-layoutgrid height="100%" name="layoutgrid3">
                                 <wm-gridrow height="100%" name="gridrow11">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn25" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-today"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="0.8em unset unset unset" horizontalalign="center" name="gridcolumn26" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Today's Inspections" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountTodayInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p"></wm-label>
+                                        <wm-label name="tileTitle" caption="Today's Inspections" class="p tilehover" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountTodayInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p tilehover"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn19" horizontalalign="center" padding="2em unset">
-                        <wm-tile name="tileTomorrowInspections" width="240px" on-click="goToInspectionList($event, 'upcoming')" height="160px" class="bg-primary">
+                        <wm-tile name="tileTomorrowInspections" width="240px" on-click="goToInspectionList($event, 'upcoming')" height="160px" class="bg-primary tilehover">
                             <wm-layoutgrid height="100%" name="layoutgrid4">
                                 <wm-gridrow height="100%" name="gridrow8_1">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn20_1" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-skip-next"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="0.8em unset unset unset" horizontalalign="center" name="gridcolumn21_1" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Upcoming Inspections" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountTomorrowInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p"></wm-label>
+                                        <wm-label name="tileTitle" caption="Upcoming Inspections" class="p tilehover" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileStatLabel" caption="bind:Variables.svCountTomorrowInspections.dataSet[$i].inspectionsCount" fontsize="3" fontunit="em" class="p tilehover"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -67,44 +67,44 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow5">
                     <wm-gridcolumn columnwidth="4" name="gridcolumn13" padding="2em unset" horizontalalign="center">
-                        <wm-tile width="240px" height="160px" class="bg-primary" name="tileSubmitCase" on-click="Widgets.dialogNewCase.open()">
+                        <wm-tile width="240px" height="160px" class="bg-primary tilehover" name="tileSubmitCase" on-click="Widgets.dialogNewCase.open()">
                             <wm-layoutgrid height="100%" name="layoutgrid8">
                                 <wm-gridrow height="100%" name="gridrow11_3">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn24_3" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-note-add"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="3em unset unset unset" horizontalalign="center" name="gridcolumn25_2" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Submit Case" class="p" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label name="tileTitle" caption="Submit Case" class="p tilehover" fontsize="1.5" fontunit="em"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn11" padding="2em unset" horizontalalign="center">
-                        <wm-tile width="240px" height="160px" class="bg-primary" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin" on-click="Variables.goToPage_AllMunicipalityInspections.invoke()" name="tile6">
+                        <wm-tile width="240px" height="160px" class="bg-primary tilehover" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin" on-click="Variables.goToPage_AllMunicipalityInspections.invoke()" name="tile6">
                             <wm-layoutgrid height="100%" name="layoutgrid7_1">
                                 <wm-gridrow height="100%" name="gridrow10">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" class="col-xs-3" name="gridcolumn22_1">
                                         <wm-icon iconsize="3em" iconclass="wi wi-event-note" name="icon6"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="2.5em unset unset unset" horizontalalign="center" class="col-xs-9" name="gridcolumn23">
-                                        <wm-label caption="All Inspections" class="p" fontsize="1.5" fontunit="em" name="label12"></wm-label>
-                                        <wm-label caption="bind:Variables.svMunicipalityInspectionCount.dataSet.inspectionsCount" fontsize="3" fontunit="em" class="p" name="label13"></wm-label>
+                                        <wm-label caption="All Inspections" class="p tilehover" fontsize="1.5" fontunit="em" name="label12"></wm-label>
+                                        <wm-label caption="bind:Variables.svMunicipalityInspectionCount.dataSet.inspectionsCount" fontsize="3" fontunit="em" class="p tilehover" name="label13"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-tile>
                     </wm-gridcolumn>
                     <wm-gridcolumn columnwidth="4" name="gridcolumn12" padding="2em unset" horizontalalign="center">
-                        <wm-tile name="tileScheduleInspections" width="240px" height="160px" class="bg-primary" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin" on-click="Variables.goToPage_ScheduleInspections.invoke()">
+                        <wm-tile name="tileScheduleInspections" width="240px" height="160px" class="bg-primary tilehover" accessroles="InspectorManager,MunicipalityAdmin,CXAdmin" on-click="Variables.goToPage_ScheduleInspections.invoke()">
                             <wm-layoutgrid height="100%" name="layoutgrid6">
                                 <wm-gridrow height="100%" name="gridrow10_1">
                                     <wm-gridcolumn columnwidth="3" horizontalalign="center" padding="1.4em unset unset unset" name="gridcolumn24_1" class="col-xs-3">
                                         <wm-icon iconsize="3em" name="tileIcon" iconclass="wi wi-schedule"></wm-icon>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="9" padding="0.8em unset unset unset" horizontalalign="center" name="gridcolumn25_1" class="col-xs-9">
-                                        <wm-label name="tileTitle" caption="Inspection Assignment" class="p" fontsize="1.5" fontunit="em"></wm-label>
-                                        <wm-label caption="bind:Variables.svCountInspectionsToBeScheduledByMunicipality.dataSet[$i].inspectionsToBeScheduled" fontsize="3" fontunit="em" class="p" name="label14"></wm-label>
+                                        <wm-label name="tileTitle" caption="Inspection Assignment" class="p tilehover" fontsize="1.5" fontunit="em"></wm-label>
+                                        <wm-label caption="bind:Variables.svCountInspectionsToBeScheduledByMunicipality.dataSet[$i].inspectionsToBeScheduled" fontsize="3" fontunit="em" class="p tilehover" name="label14"></wm-label>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
