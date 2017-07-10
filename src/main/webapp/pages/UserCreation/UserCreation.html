@@ -8,7 +8,7 @@
                     defaultmode="Edit" dataset="bind:Variables.CreateUser.dataSet" captionalign="left" captionposition="top" name="liveform2" insertmessage="Your account has been created successfully. You may now log in." updatemessage="User updated successfully"
                     deletemessage="User deleted successfully" on-success="liveform2Success($event, $operation, $data)" on-error="Variables.NewUserToLogin.invoke()">
                         <wm-layoutgrid columns="2" name="layoutgrid2">
-                            <wm-gridrow name="gridrow34" padding="unset unset 2em unset">
+                            <wm-gridrow name="gridrow34">
                                 <wm-gridcolumn columnwidth="12" name="gridcolumn58">
                                     <wm-label padding="unset 0.5em" name="label20" caption="Please provide the following information in order to create a CivicXpress user account."></wm-label>
                                 </wm-gridcolumn>
@@ -43,16 +43,16 @@
                                     <wm-form-field name="city" displayname="City" show="true" primary-key="false" generator="assigned" key="city" type="string" required="required" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn18">
-                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="false" widget="select" placeholder="Search" orderby="stateName:asc"
+                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" required="true" widget="select" placeholder="Search" orderby="stateName:asc"
                                     displayexpression="stateName"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
                             <wm-gridrow name="gridrow10" padding="unset unset 2em unset">
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn19">
-                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
+                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"></wm-form-field>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn20">
-                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="false" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" required="true" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
                                     defaultvalue="USA" readonly="false"></wm-form-field>
                                 </wm-gridcolumn>
                             </wm-gridrow>
@@ -144,18 +144,23 @@
                                     <wm-radioset height="auto" name="radiosetContractor" dataset="Yes,No" selectedvalue="No" on-change="radiosetContractorChange($event, $scope, newVal, oldVal)" layout="stacked"></wm-radioset>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="6" name="gridcolumn34">
-                                    <wm-label padding="unset 0.5em 2em 0.5em" name="label21" caption="Please select your company using the search below." width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
+                                    <wm-label padding="unset 0.5em 2em 0.5em" name="label21" caption="Please select your company using the search below. If your company is not already registered in CivicXpress, please select &quot;Company Not Listed&quot;, then fill out the &quot;Contractor Application&quot; before moving on to the next step."
+                                    width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
                                     <wm-container name="composite17_0" width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;" margin="unset unset 1em unset">
                                         <wm-label padding="unset 0.5em" name="label17" class="col-md-3 form-control-static" fontweight="bold" caption="Company Search" required="false" show="true" width="30%"></wm-label>
                                         <wm-search name="searchCompany" type="autocomplete" placeholder="Search by Company Name or Company Email" dataset="bind:Variables.lvVendorList.dataSet" displaylabel="companyName" datafield="All Fields"
                                         show="true" required="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot; &amp;&amp; !Widgets.checkboxIsCompanyListed.datavalue" searchkey="companyEmail,companyName" orderby="companyName:asc" disabled="bind:Widgets.checkboxIsCompanyListed.datavalue"
-                                        width="70%"></wm-search>
+                                        width="70%" class="col-md-9"></wm-search>
                                     </wm-container>
-                                    <wm-composite name="composite6_1" captionposition="left" horizontalalign="left" width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;" margin="unset unset 2em unset">
-                                        <wm-checkbox caption="Company Not Listed" class="col-md-push-3 col-md-9" name="checkboxIsCompanyListed" datavalue="false" checkedvalue="true" uncheckedvalue="false" show="true" on-change="checkboxIsCompanyListedChange($event, $scope, newVal, oldVal)"></wm-checkbox>
+                                    <wm-composite name="composite6_1" captionposition="left" horizontalalign="left" width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot; &amp;&amp; !Widgets.searchCompany.datavalue.id" margin="unset unset 2em unset">
+                                        <wm-checkbox caption="Company Not Listed" class="col-md-push-3 col-md-9" name="checkboxIsCompanyListed" datavalue="false" checkedvalue="true" uncheckedvalue="false" show="true" on-change="checkboxIsCompanyListedChange($event, $scope, newVal, oldVal)"
+                                        margin="unset unset unset 2em"></wm-checkbox>
                                     </wm-composite>
-                                    <wm-label padding="unset 0.5em" name="label22" caption="If your company is not already registered in CivicXpress, please select &quot;Company Not Listed&quot;, then fill out the &quot;Contractor Application&quot; before moving on to the next step."
-                                    width="100%" show="bind:Widgets.radiosetContractor.datavalue==&quot;Yes&quot;"></wm-label>
+                                    <wm-composite name="composite22_1" captionposition="left" horizontalalign="center" show="bind:!!Widgets.searchCompany.datavalue.id" margin="1em unset 2em unset" class="col-md-push-3 col-md-9" padding="unset unset unset 2em">
+                                        <wm-label padding="unset 0.5em" name="label22_1" class="h4" caption="Company Details" show="true"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label23" caption="bind:Widgets.searchCompany.datavalue.companyName+&quot;, &quot;+Widgets.searchCompany.datavalue.fullAddress+&quot;, &quot;+Widgets.searchCompany.datavalue.companyPhone+&quot;, &quot;+Widgets.searchCompany.datavalue.companyEmail"
+                                        class="col-md-12" show="true"></wm-label>
+                                    </wm-composite>
                                 </wm-gridcolumn>
                                 <wm-gridcolumn columnwidth="3" name="gridcolumn58_1"></wm-gridcolumn>
                             </wm-gridrow>
@@ -203,16 +208,16 @@
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow3">
                                                                 <wm-gridcolumn name="gridcolumn7" columnwidth="4">
-                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="true" widget="select"
-                                                                    placeholder="Select value" displayexpression="stateName" orderby="stateName:asc" validationmessage="State is required"></wm-form-field>
+                                                                    <wm-form-field name="states" displayname="State" show="true" primary-key="false" generator="assigned" key="states" type="list" is-related="true" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="select" placeholder="Select value" displayexpression="stateName" orderby="stateName:asc" validationmessage="State is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn8" columnwidth="4">
-                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="true" widget="text"
-                                                                    maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Postal Code is required"></wm-form-field>
+                                                                    <wm-form-field name="postalCode" displayname="Postal Code" show="true" primary-key="false" generator="assigned" key="postalCode" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" validationmessage="Postal Code is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                                 <wm-gridcolumn name="gridcolumn9" columnwidth="4">
-                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="true" widget="text" maxchars="255"
-                                                                    inputtype="text" placeholder="Enter value" defaultvalue="USA" validationmessage="Country is required"></wm-form-field>
+                                                                    <wm-form-field name="country" displayname="Country" show="true" primary-key="false" generator="assigned" key="country" type="string" readonly="false" required="bind:Widgets.checkboxIsCompanyListed.datavalue"
+                                                                    widget="text" maxchars="255" inputtype="text" placeholder="Enter value" defaultvalue="USA" validationmessage="Country is required"></wm-form-field>
                                                                 </wm-gridcolumn>
                                                             </wm-gridrow>
                                                             <wm-gridrow name="gridrow4">
