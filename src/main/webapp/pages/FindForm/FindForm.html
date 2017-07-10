@@ -160,8 +160,8 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Contractor" width="100%" name="label20" fontweight="bold" required="true"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn80">
-                                            <wm-select dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc" placeholder="Select Contractor"
-                                            required="true"></wm-select>
+                                            <wm-search dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc" placeholder="Search Contractor"
+                                            required="true" displaylabel="vendor.companyName" type="autocomplete" searchkey="vendor.companyName"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn81"></wm-gridcolumn>
                                     </wm-gridrow>
