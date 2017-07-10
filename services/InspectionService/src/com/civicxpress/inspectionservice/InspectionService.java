@@ -829,4 +829,62 @@ public class InspectionService {
 
         return displayMessage;
     }
+    
+    private void requestedInspectionMail(Connection cx2Conn,String inspectionTitle,String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException,MessagingException{
+        	DBQueryParams queryParams = new DBQueryParams();
+        	queryParams.addLong("inspectionDesignId", inspectionDesignId);
+        	DBRow inspectionOutcome = DBUtils.selectOne(cx2Conn, "SELECT * from InspectionOutcome where InspectDesignId=:inspectionDesignId and Outcome='Requested' ", queryParams);
+        	if(inspectionOutcome.getBoolean("SendEmail")){
+        
+        String userEmail="";	    
+       Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enabled","true");
+        props.put("mail.imap.ssl.enabled", "true");
+
+        Session session = Session.getDefaultInstance(props, null);
+
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+        
+        ArrayList<String> recipientList = new ArrayList<String>(Arrays.asList(userEmail.split(",")));
+
+        InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+        
+        for (int i = 0; i < recipientList.size(); i++) {
+            recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+        }
+        
+        message.setRecipients(Message.RecipientType.TO, recipientAddress);
+        
+        String emailSubject= "";
+        StringBuilder emailContent = new StringBuilder("Hi ,<br /><br />");
+        
+       
+        //  emailContent.append(municipality);
+        // emailContent.append("<br />");
+        //  emailContent.append(inspectionTitle);
+        //  emailContent.append("<br />");
+        // emailContent.append("<a href ='"+inspectionLink+ "'>"+inspectionLink+"</a>");
+        // emailContent.append("<br /><br />");
+        // emailContent.append(municipalitySignature +"<br/><br/>");
+
+	
+        message.setContent(emailContent.toString(), "text/html");
+		 message.setSubject(emailSubject);
+        // Send smtp message
+        Transport tr = session.getTransport("smtp");
+        tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+        message.saveChanges();
+        tr.sendMessage(message, message.getAllRecipients());
+        tr.close();
+        String displayMessage = "Message sent successfully with body " + "emailBody";
+        logger.info(displayMessage);
+
+        	}
+    }
 }
