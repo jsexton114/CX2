@@ -160,10 +160,24 @@
                                             <wm-label class="col-md-3 form-control-static" caption="Select Contractor" width="100%" name="label20" fontweight="bold" required="true"></wm-label>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn80">
-                                            <wm-search dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc" placeholder="Search Contractor"
-                                            required="true" displaylabel="vendor.companyName" type="autocomplete" searchkey="vendor.companyName"></wm-search>
+                                            <wm-search dataset="bind:Variables.GetVendorsForMunicipality.dataSet" datafield="All Fields" displayfield="vendor.companyName" name="selectVendor" orderby="vendor.companyName:asc" placeholder="Search by Company Name"
+                                            required="true" displaylabel="vendor.companyName" type="search" searchkey="vendor.companyName"></wm-search>
                                         </wm-gridcolumn>
                                         <wm-gridcolumn columnwidth="5" name="gridcolumn81"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow56_2">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn127_1"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="5" name="gridcolumn128_1" horizontalalign="center">
+                                            <wm-label padding="unset 0.5em" name="label39" caption="Company Details" class="h4" show="bind:!!Widgets.selectVendor.datavalue.id"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="5" name="gridcolumn129_1"></wm-gridcolumn>
+                                    </wm-gridrow>
+                                    <wm-gridrow name="gridrow57_2" padding="unset unset 0.5em unset">
+                                        <wm-gridcolumn columnwidth="2" name="gridcolumn130_2"></wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="5" name="gridcolumn131_1" horizontalalign="center">
+                                            <wm-label padding="unset 0.5em" name="label40_1" show="bind:!!Widgets.selectVendor.datavalue.id" caption="bind:Widgets.selectVendor.datavalue.vendor.companyName+&quot;, &quot;+Widgets.selectVendor.datavalue.vendor.fullAddress+&quot;, &quot;+Widgets.selectVendor.datavalue.vendor.companyPhone+&quot;, &quot;+Widgets.selectVendor.datavalue.vendor.companyEmail"></wm-label>
+                                        </wm-gridcolumn>
+                                        <wm-gridcolumn columnwidth="5" name="gridcolumn132_2"></wm-gridcolumn>
                                     </wm-gridrow>
                                     <wm-container name="containerFilterContractor" show="bind:(Widgets.selectVendor.datavalue.id)!=undefined">
                                         <wm-gridrow name="gridrow57_1" padding="0.5em unset">
