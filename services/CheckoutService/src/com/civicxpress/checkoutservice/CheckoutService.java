@@ -133,6 +133,8 @@ public class CheckoutService {
     	        
         			// Check for AdvanceOnZeroBalance	
     	             checkAdvanceOnZeroBalance(feeId,connection,comments,request);
+    	             // Record Payment history on form
+    	             recordFeeHistoryOnForm(feeId,transactionId,connection);
     	        }
     	        
 	        }
@@ -319,12 +321,19 @@ public class CheckoutService {
  }
  
 private void recordFeeHistoryOnForm(Long feeId, Long transactionId, Connection connection) throws SQLException{
-     String formGuid = "";
      DBQueryParams params = new DBQueryParams();
-     formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID=" + feeId, params).get(0).getString("FormGuid");
-
-     params.addString("formGuid", formGuid);
-
+     DBRow feeData = DBUtils.selectOne(connection, "SELECT Amount, FeeType, FormGuid from Fees where ID=" + feeId, params);
+     BigDecimal amount =feeData.getBigDecimal("Amount");
+     String feeType=  feeData.getString("FeeType");
+      String formGuid=  feeData.getString("FormGuid");
+      Long createdBy=Long.parseLong(securityService.getUserId());
+      String comments="The "+feeType+" fee $"+amount+" was paid in Transaction "+ transactionId;
+        params.addString("formGuid", formGuid);
+            params.addString("comments", comments);
+            params.addLong("createdBy", createdBy);
+      	DBUtils.simpleUpdateQuery(connection, "INSERT INTO FormHistory (FormGUID,Comments,CreatedBy,CreatedTime) "
+    				+"VALUES (:formGuid,:comments,:createdBy,SYSUTCDATETIME())",
+    				params);
 }
  
     
