@@ -317,6 +317,16 @@ public class CheckoutService {
          }
      }
  }
+ 
+private void recordFeeHistoryOnForm(Long feeId, Long transactionId, Connection connection) throws SQLException{
+     String formGuid = "";
+     DBQueryParams params = new DBQueryParams();
+     formGuid = DBUtils.selectQuery(connection, "SELECT FormGuid from Fees where ID=" + feeId, params).get(0).getString("FormGuid");
+
+     params.addString("formGuid", formGuid);
+
+}
+ 
     
     
 }

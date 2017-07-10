@@ -134,7 +134,39 @@ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER
 JOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId
 JOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID
 where IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)
-Order By requestedFor, dateAssigned ASC
+        ]]>
+    <query-param name="outcome" type="java.lang.String"/>
+    <query-param name="municipality" type="java.lang.Integer"/>
+    </sql-query>
+
+    <sql-query name="getInspectionsByOutcome__count">
+        <![CDATA[
+        select count(*) from (select 
+I.inspectionGuid as inspectionGuid,
+U.FullName as assignedTo,
+IO.outcome as outcome,
+I.inspectionTitle as inspectionTitle,
+I.requestedFor as requestedFor,
+I.DateAssigned as dateAssigned,
+ID.inspectDesignName as inspectDesignName,
+gis.inspectionZone as inspectionZone,
+gis.fullAddress as fullAddress,
+gis.lot as lot,
+gis.subdivision as subdivision
+from MasterInspections I
+LEFT OUTER JOIN Users U ON U.ID=I.AssignedTo
+LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (PARTITION BY GF.RelatedFormGUID ORDER BY GF.AddedTime) AS rn,
+				GF.RelatedFormGuid as formGuid,
+				GR.Lot,
+				GR.InspectionZone,
+				SD.Subdivision,
+				GR.FullAddress
+				FROM GIS2Forms GF, GisRecords GR, Subdivisions SD
+				WHERE GR.ID=GF.GISRecordId AND SD.ID=GR.SubdivisionId
+) AS gis ON gis.FormGuid=I.FormGUID AND gis.rn=1
+JOIN InspectionDesign ID ON ID.ID=I.InspectionDesignId
+JOIN InspectionOutcome IO ON I.InspectionOutcomeId=IO.ID
+where IO.outcome=:outcome and (:municipality IS NULL OR ID.MunicipalityId=:municipality)) wmTempTable
         ]]>
     <query-param name="outcome" type="java.lang.String"/>
     <query-param name="municipality" type="java.lang.Integer"/>

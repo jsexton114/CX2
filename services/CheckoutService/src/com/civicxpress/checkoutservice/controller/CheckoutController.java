@@ -33,6 +33,8 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "/downloadReceiptPdf", produces = "application/octet-stream", method = RequestMethod.GET)
+    @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
+    @ApiOperation(value = "")
     public DownloadResponse downloadReceiptPdf(@RequestParam(value = "transactionId", required = false) Long transactionId) {
         return checkoutService.downloadReceiptPdf(transactionId);
     }

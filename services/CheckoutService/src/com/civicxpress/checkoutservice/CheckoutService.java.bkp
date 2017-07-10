@@ -180,7 +180,16 @@ public class CheckoutService {
         return fileBytes;
     }
 
-
+    public DownloadResponse downloadReceiptPdf(Long transactionId) {
+        byte[] fileBytes = createReceiptPdf(transactionId);
+        ByteArrayInputStream downloadBais = new ByteArrayInputStream(fileBytes);
+        DownloadResponse dr = new DownloadResponse();
+        dr.setContents(downloadBais);
+        dr.setContentType("application/pdf");
+        dr.setFileName("receipt" + transactionId.toString() + ".pdf");
+        return dr;
+    }
+    
     private Boolean chargeCreditCard(BigDecimal amount, String description, String stripeToken) {
         Boolean returnSuccess = false;
         Charge charge = null;
@@ -308,6 +317,9 @@ public class CheckoutService {
          }
      }
  }
+ 
+private void recordFeeHistoryOnForm(Long feeId, Long transactionId, Connection connection){}
+ 
     
     
 }
