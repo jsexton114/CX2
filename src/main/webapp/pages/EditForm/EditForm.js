@@ -140,10 +140,17 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
     }
 ]);
 
-Application.$controller("gridFormTypeStatusController", ["$scope",
-    function($scope) {
+Application.$controller("gridFormTypeStatusController", ["$scope", "$timeout",
+    function($scope, $timeout) {
         "use strict";
         $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $timeout(function() {
+                $scope.Widgets.municipalityGroupsByProcessOwners.datavalue = JSON.parse(angular.toJson($scope.Widgets.gridFormTypeStatus.selecteditem.municipalityGroupsByProcessOwners));
+                $scope.Widgets.municipalityGroupsByWriteAccess.datavalue = JSON.parse(angular.toJson($scope.Widgets.gridFormTypeStatus.selecteditem.municipalityGroupsByWriteAccess));
+            });
+        };
     }
 ]);
 
