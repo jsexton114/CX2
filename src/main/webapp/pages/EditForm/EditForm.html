@@ -435,7 +435,7 @@
                                     </wm-gridrow>
                                     <wm-gridrow name="gridrow59">
                                         <wm-gridcolumn columnwidth="12" name="gridcolumn87">
-                                            <wm-livegrid formlayout="dialog" name="livegrid1">
+                                            <wm-livegrid formlayout="inline" name="livegrid1">
                                                 <wm-grid gridfirstrowselect="true" editmode="dialog" title="" dataset="bind:Variables.StatusesData.dataSet" navigation="Classic" name="gridFormTypeStatus" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
                                                     <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                                                     <wm-grid-column binding="sortOrder" caption="Sort Order" type="long" width="8%" generator="assigned" edit-widget-type="number" show="true" readonly="false"></wm-grid-column>
@@ -473,7 +473,7 @@
                                                     <wm-grid-row-action key="deleterow" display-name="" show="bind:Variables.StatusesData.dataSet.data.length > 1" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()"
                                                     disabled="false"></wm-grid-row-action>
                                                 </wm-grid>
-                                                <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="dialog" iconclass="wi wi-control-point" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
+                                                <wm-liveform novalidate="false" errormessage="" title="Form Status Options" formlayout="inline" iconclass="wi wi-control-point" dataset="bind:Variables.StatusesData.dataSet" captionalign="left" captionposition="top"
                                                 name="lfFormTypeStatus" on-error="liveform2Error($event, $operation, $data)">
                                                     <wm-layoutgrid columns="3" name="StatusLayout">
                                                         <wm-gridrow name="gridrowHeader">
@@ -509,7 +509,7 @@
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="municipalityGroupsByProcessOwners" displayname="Process Owner Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByProcessOwners"
                                                                             type="list" is-related="true" readonly="false" required="true" widget="select" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields" displayfield="groupName"
-                                                                            orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord" placeholder="Select User Group"></wm-form-field>
+                                                                            orderby="groupName:asc" defaultvalue="bind:Widgets.gridFormTypeStatus.selecteditem.municipalityGroupsByProcessOwners" placeholder="Select User Group"></wm-form-field>
                                                                             <wm-anchor margin="unset 1em unset 1em" name="anchorProceessOwner" iconclass="wi wi-group" caption="Manage Groups" on-click="Widgets.dialogShowMunicipalityGroups.open()"></wm-anchor>
                                                                             <wm-label padding="unset 1em" name="label27_1" caption="This is the municipality user group that is assigned to process the form while in this status." class="help-block"
                                                                             fontsize="0.8" fontunit="em"></wm-label>
@@ -517,7 +517,7 @@
                                                                         <wm-gridcolumn name="gridcolumn1" columnwidth="4" padding="unset 1em unset unset">
                                                                             <wm-form-field name="municipalityGroupsByWriteAccess" displayname="Write Access Group" show="true" primary-key="false" generator="assigned" key="municipalityGroupsByWriteAccess" type="list"
                                                                             is-related="true" readonly="false" required="true" widget="select" placeholder="Select User Group" dataset="bind:Variables.MunicipalityGroupsForProcess.dataSet" datafield="All Fields"
-                                                                            displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Variables.MunicipalityGroupsForProcess.firstRecord"></wm-form-field>
+                                                                            displayfield="groupName" orderby="groupName:asc" defaultvalue="bind:Widgets.gridFormTypeStatus.selecteditem.municipalityGroupsByWriteAccess"></wm-form-field>
                                                                             <wm-anchor margin="unset 1em unset 1em" name="anchorWriteAcces" caption="Manage Groups" iconclass="wi wi-group" on-click="Widgets.dialogShowMunicipalityGroups.open()"></wm-anchor>
                                                                             <wm-label padding="unset 1em" name="label27_1" caption="This is the municipality user group that has can make edits to the form information while in this status."
                                                                             class="help-block" fontsize="0.8" fontunit="em"></wm-label>

@@ -448,7 +448,11 @@
     "name" : "Cx2VendorUsersData",
     "owner" : "Page",
     "category" : "wm.LiveVariable",
-    "dataBinding" : [ ],
+    "dataBinding" : [ {
+      "target" : "vendorId",
+      "value" : "bind:Variables.CurrentVendorObj.firstRecord.id",
+      "type" : "number"
+    } ],
     "operation" : "read",
     "dataSet" : [ ],
     "type" : "VendorUsers",
@@ -1120,6 +1124,7 @@
       "watchOn" : "Cx2VendorData",
       "package" : "com.civicxpress.cx2.VendorUsers"
     } ],
+    "filterFields" : { },
     "package" : "com.civicxpress.cx2.VendorUsers"
   },
   "lvDeleteDocument" : {
