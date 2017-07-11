@@ -38,7 +38,7 @@
     "liveSource" : "cx2",
     "ignoreCase" : true,
     "matchMode" : "start",
-    "orderBy" : "fullName asc",
+    "orderBy" : "dateCreated desc",
     "propertiesMap" : {
       "columns" : [ {
         "fieldName" : "states",
@@ -318,6 +318,8 @@
         "precision" : 0,
         "generator" : "assigned",
         "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
         "scale" : 0
       } ],
       "entityName" : "Users",

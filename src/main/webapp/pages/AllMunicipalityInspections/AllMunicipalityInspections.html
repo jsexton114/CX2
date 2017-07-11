@@ -28,8 +28,8 @@
                         <wm-composite name="composite3" show="true">
                             <wm-label class="col-md-5 form-control-static" name="label19" caption="Select Date Range" fontweight="bold" padding="unset 0.5em"></wm-label>
                             <wm-container class="col-md-7" name="container3">
-                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)" placeholder=""
-                                width="169px"></wm-select>
+                                <wm-select name="selectTerms" dataset="bind:Variables.stvPeriods.dataSet" datavalue="bind:Variables.stvPeriods.dataSet[0].dataValue" datafield="dataValue" displayfield="dataValue" on-change="selectTermsChange($event, $scope, newVal, oldVal)"
+                                placeholder="" width="169px"></wm-select>
                             </wm-container>
                         </wm-composite>
                     </wm-gridcolumn>
@@ -74,8 +74,9 @@
                 </wm-gridrow>
                 <wm-gridrow name="gridrow3">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn5">
-                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Inspections Found" exportformat="EXCEL">
-                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="100px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                        <wm-grid title="" dataset="bind:Variables.svSearchAllInspections.dataSet" navigation="Classic" name="gridMunicipalityInspections" filtermode="multicolumn" showrecordcount="true" loadingdatamsg="Searching" nodatamessage="No Inspections Found"
+                        exportformat="EXCEL">
+                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="80px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
                             <wm-grid-column binding="inspectionTitle" caption="Inspection Title" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="inspectionZone" caption="Inspection Zone" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="fullAddress" caption="Address" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
@@ -85,7 +86,8 @@
                             <wm-grid-column binding="dateAssigned" caption="Date Assigned" type="string" datepattern="MM-dd-yyyy" formatpattern="toDate" edit-widget-type="text" show="true" filterwidget="date" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="outcome" caption="Outcome" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                             <wm-grid-column binding="dateCreated" caption="Date Created" type="string" edit-widget-type="text" show="true" filterwidget="date" readonly="false">{{row.getProperty('dateCreated') | toLocalDateString}}</wm-grid-column>
-                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="customRowAction($event)" disabled="false"></wm-grid-row-action>
+                            <wm-grid-row-action key="customRow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-pageview" title="View Inspection" action="customRowAction($event)"
+                            disabled="false"></wm-grid-row-action>
                         </wm-grid>
                     </wm-gridcolumn>
                 </wm-gridrow>
