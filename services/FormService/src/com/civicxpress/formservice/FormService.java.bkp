@@ -525,8 +525,8 @@ public class FormService {
 	    			+"CreatedDate datetime2 NOT NULL DEFAULT sysdatetime(), "
 	    			+"ModifiedDate datetime2, "
 	    			+"ModifiedBy varchar(255), "
-	    			+"TotalSqft numeric(38), "
-	    			+"TotalUnits numeric(38), "
+	    			+"TotalSqft numeric(38,2), "
+	    			+"TotalUnits numeric(38,2), "
 	    			+"Basement bit, "
 	    			+"VendorId numeric(10)"
 	            	+")");
@@ -1363,6 +1363,7 @@ public class FormService {
         params.addLong("formTypeId", formTypeId);
         params.addLong("draftId", draftId);
         params.addString("formData", formData);
+        logger.info("FormService.saveDraft()");
         logger.debug("securityService.getUserId(): " + securityService.getUserId());
     	params.addLong("userId", Long.parseLong(securityService.getUserId()));
 
@@ -1378,8 +1379,6 @@ public class FormService {
     }
     
     public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
-        logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"+primaryVendorId);
-        logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++"+vendorIds);
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";

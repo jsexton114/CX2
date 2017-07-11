@@ -525,8 +525,8 @@ public class FormService {
 	    			+"CreatedDate datetime2 NOT NULL DEFAULT sysdatetime(), "
 	    			+"ModifiedDate datetime2, "
 	    			+"ModifiedBy varchar(255), "
-	    			+"TotalSqft numeric(38), "
-	    			+"TotalUnits numeric(38), "
+	    			+"TotalSqft numeric(36,2), "
+	    			+"TotalUnits numeric(36,2), "
 	    			+"Basement bit, "
 	    			+"VendorId numeric(10)"
 	            	+")");
