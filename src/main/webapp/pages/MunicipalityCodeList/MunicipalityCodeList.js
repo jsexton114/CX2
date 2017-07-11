@@ -1,32 +1,33 @@
-Application.$controller("MunicipalityCodeListPageController", ["$scope", function ($scope) {
+Application.$controller("MunicipalityCodeListPageController", ["$scope", function($scope) {
     "use strict";
 
     /* perform any action on widgets/variables within this block */
-    $scope.onPageReady = function () {
-        /*
-         * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
-         *
-         * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
-         */
+    $scope.onPageReady = function() {
+        if ($scope.pageParams.CodeSetId === undefined) {
+            $scope.Variables.goToPage_MunicipalityCodeSets.navigate();
+        }
     };
 
 }]);
 
 
-Application.$controller("gridCodeListController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+Application.$controller("gridCodeListController", ["$scope", "$timeout",
+    function($scope, $timeout) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+
+        $scope.updaterowAction = function($event, $rowData) {
+            $timeout(function() {
+                $scope.Widgets.codeSets.datavalue = JSON.parse(angular.toJson($scope.Variables.lvCurrentCodeSetObj.firstRecord));
+            })
+        };
+
+    }
 ]);
 
 Application.$controller("liveformCodeListController", ["$scope",
-	function($scope) {
-		"use strict";
-		$scope.ctrlScope = $scope;
-	}
+    function($scope) {
+        "use strict";
+        $scope.ctrlScope = $scope;
+    }
 ]);
