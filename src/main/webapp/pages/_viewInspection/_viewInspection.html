@@ -30,8 +30,9 @@
                                 <wm-gridrow name="gridrow16">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn34"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn35" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label9" caption="bind:'Source Form: <a href=&quot;#/Forms?FormGUID=' + Variables.lvInspection.dataSet.data[$i].formGuid + '&quot;>' + Variables.lvInspection.dataSet.data[$i].masterForms.formTitle + '</a>'"
-                                        fontsize="15" show="bind:!!Variables.lvInspection.dataSet.data[$i].formGuid" margin="0px unset"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label9" caption="bind:'Source Form: '+Variables.lvInspection.dataSet.data[$i].masterForms.formTitle" fontsize="15" show="bind:!!Variables.lvInspection.dataSet.data[$i].formGuid"
+                                        margin="0px unset"></wm-label>
+                                        <wm-anchor name="iconForm" iconclass="wi wi-assignment" caption="" hyperlink="bind:'#/Forms?FormGUID='+Variables.lvInspection.dataSet.data[$i].formGuid" show="bind:!!Variables.lvInspection.dataSet.data[$i].formGuid"></wm-anchor>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn36"></wm-gridcolumn>
                                 </wm-gridrow>
