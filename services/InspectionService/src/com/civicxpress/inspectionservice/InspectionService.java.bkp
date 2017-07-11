@@ -117,7 +117,7 @@ public class InspectionService {
         return newInspectionDesignId;
     }
     
-    public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor) throws SQLException,MessagingException {
+    public void scheduleInspection(String formGuid, Long inspectionDesignId, Date requestedFor, String targetLink) throws SQLException,MessagingException {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	DBQueryParams queryParams = new DBQueryParams();
     	queryParams.addLong("inspectionDesignId", inspectionDesignId);
@@ -258,7 +258,9 @@ public class InspectionService {
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormsToInspections (RelatedFormGUID, RelatedInspectionGUID, AddedBy) VALUES (:formGuid, :newInspectionGuid, :requestedBy)", queryParams);
 	    	
 	    	DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE InspectionDesign SET CurrentPrefixNumber=:newPrefixNumber, PrefixNumberResetOn=:newResetTime WHERE ID=:inspectionDesignId", queryParams);
-	    		
+	    	
+	    	// Check for scheduleInspection Mail
+	    	requestedInspectionMail(cx2Conn, inspectionTitle.toString(), formGuid, inspectionDesignId, requestedFor, municipalityId, newInspectionGuid,targetLink);	
 	      	
 	    	muniDbConn.commit();
 	    	cx2Conn.commit();
@@ -793,18 +795,18 @@ public class InspectionService {
         String emailSubject= inspectionTitle+" assigned for "+ dateAssigned;
         StringBuilder emailContent = new StringBuilder("Hi "+inspectorAssigned+",<br /><br />");
         
-        emailContent.append("<br /><br />");
         emailContent.append("You have been assigned an inspection by "+InspectorManager+". Please review the details below and contact the municipality if you have any questions.");
         emailContent.append("<br /><br />");
         emailContent.append("Date Assigned: "+dateAssigned);
          emailContent.append("<br />");
-        emailContent.append("inspectionDesign: "+inspectionDesign);
+        emailContent.append("Inspection Type: "+inspectionDesign);
         emailContent.append("<br />");
          emailContent.append("Inspection Zone: "+inspectionZone);
         emailContent.append("<br />");
         emailContent.append("Development: "+subdivision);
         emailContent.append("<br />");
         emailContent.append("Lot: "+lot);
+        emailContent.append("<br />");
          emailContent.append("Address: "+fullAddress);
         emailContent.append("<br /><br />");
          emailContent.append(municipality);
@@ -829,4 +831,71 @@ public class InspectionService {
 
         return displayMessage;
     }
+    
+    private void requestedInspectionMail(Connection cx2Conn, String inspectionTitle, String formGuid, Long inspectionDesignId, Date requestedFor, Long municipalityId, String newInspectionGuid, String targetLink) throws SQLException, MessagingException {
+	DBQueryParams queryParams = new DBQueryParams();
+	queryParams.addLong("inspectionDesignId", inspectionDesignId);
+	DBRow inspectionOutcomeData = DBUtils.selectOne(cx2Conn, "SELECT * from InspectionOutcome where InspectDesignId=:inspectionDesignId and Outcome='Requested' ", queryParams);
+	if (inspectionOutcomeData.getBoolean("SendEmail")) {
+		queryParams.addLong("municipalityId", municipalityId);
+		queryParams.addString("formGuid", formGuid);
+		queryParams.addLong("userId", Long.parseLong(securityService.getUserId()));
+		DBRow municipalityData = DBUtils.selectOne(cx2Conn, "SELECT * from Municipalities where ID=:municipalityId ", queryParams);
+		String formTitle = DBUtils.selectOne(cx2Conn, "SELECT FormTitle from MasterForms where FormGUID=:formGuid", queryParams).getString("FormTitle");
+		DBRow userData = DBUtils.selectOne(cx2Conn, "SELECT * from Users where ID=:userId ", queryParams);
+		String userEmail = userData.getString("Email");
+		Properties props = System.getProperties();
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.required", "true");
+		props.put("mail.smtp.ssl.enabled", "true");
+		props.put("mail.imap.ssl.enabled", "true");
+
+		Session session = Session.getDefaultInstance(props, null);
+
+		MimeMessage message = new MimeMessage(session);
+		message.setFrom(new InternetAddress(RESET_NOTIFICATION_MAIL_ID));
+
+		ArrayList < String > recipientList = new ArrayList < String > (Arrays.asList(userEmail.split(",")));
+
+		InternetAddress[] recipientAddress = new InternetAddress[recipientList.size()];
+
+		for (int i = 0; i < recipientList.size(); i++) {
+			recipientAddress[i] = new InternetAddress(recipientList.get(i).toString());
+		}
+
+		message.setRecipients(Message.RecipientType.TO, recipientAddress);
+
+		String emailSubject = inspectionOutcomeData.getString("EmailSubjectLine");
+		StringBuilder emailContent = new StringBuilder("Hi "+userData.getString("FullName")+",<br /><br />");
+        String formLink=targetLink+"Forms?FormGUID="+formGuid;
+        String inspectionLink=targetLink+"ViewInspection?inspectionGuid="+newInspectionGuid;
+		emailContent.append("An Inspection as been requested on the Form: ");
+		emailContent.append("<a href ='" + formLink + "'>" + formTitle + "</a>");
+		emailContent.append("<br />");
+		emailContent.append(inspectionOutcomeData.getString("EmailBodyText"));
+		emailContent.append("<br />");
+		emailContent.append(municipalityData.getString("MunicipalityName"));
+		emailContent.append("<br />");
+		emailContent.append(inspectionTitle);
+		emailContent.append("<br />");
+		emailContent.append("<a href ='" + inspectionLink + "'>" + inspectionLink + "</a>");
+		emailContent.append("<br /><br />");
+		emailContent.append(municipalityData.getString("GlobalEmailSig") + "<br/><br/>");
+
+		message.setContent(emailContent.toString(), "text/html");
+		message.setSubject(emailSubject);
+		// Send smtp message
+		Transport tr = session.getTransport("smtp");
+		tr.connect("smtp.gmail.com", 587, RESET_NOTIFICATION_MAIL_ID, RESET_NOTIFICATION_MAIL_PASSWORD);
+		message.saveChanges();
+		tr.sendMessage(message, message.getAllRecipients());
+		tr.close();
+		String displayMessage = "Message sent successfully with body " + "emailBody";
+		logger.info(displayMessage);
+
+	}
+}
 }

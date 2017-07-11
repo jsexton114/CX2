@@ -21,6 +21,8 @@ Application.$controller("_viewFormPageController", ["$scope", "$timeout", "$filt
         };
     };
 
+
+
     $scope.sharedWith;
     $scope.allFormStatus;
     $scope.showContactsTab = false;
@@ -764,6 +766,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
 
         };
 
+
         function getRequestedFor() {
             if (!$scope.inspectionObject) {
                 return null;
@@ -843,12 +846,23 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
             }
         }
 
+        function getTargetLink() {
+            let tempLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                tempLink = "https://" + window.location.hostname + window.location.pathname + "#/";
+            } else {
+                tempLink = "https://" + window.location.hostname + "#/";
+            }
+            return tempLink;
+        }
+
         $scope.button2InspectionRequestClick = function($event, $isolateScope) {
 
             // Scheduling Inspections
             $scope.Variables.svScheduleInspection.setInput({
                 inspectionDesignId: $scope.inspectionObject.id,
-                requestedFor: getRequestedFor()
+                requestedFor: getRequestedFor(),
+                targetLink: getTargetLink()
             });
             $scope.Variables.svScheduleInspection.update();
 

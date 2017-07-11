@@ -969,6 +969,20 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "dateCreated",
+        "type" : "datetime",
+        "fullyQualifiedType" : "datetime",
+        "columnName" : "DateCreated",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",

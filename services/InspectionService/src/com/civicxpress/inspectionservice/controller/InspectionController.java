@@ -71,8 +71,8 @@ public class InspectionController {
     @RequestMapping(value = "/scheduleInspection", method = RequestMethod.GET)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void scheduleInspection(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "requestedFor", required = false) Date requestedFor) throws SQLException, MessagingException {
-        inspectionService.scheduleInspection(formGuid, inspectionDesignId, requestedFor);
+    public void scheduleInspection(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "inspectionDesignId", required = false) Long inspectionDesignId, @RequestParam(value = "requestedFor", required = false) Date requestedFor, @RequestParam(value = "targetLink", required = false) String targetLink) throws SQLException, MessagingException {
+        inspectionService.scheduleInspection(formGuid, inspectionDesignId, requestedFor, targetLink);
     }
 
     @RequestMapping(value = "/sendLetter", method = RequestMethod.GET)
