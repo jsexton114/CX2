@@ -15,7 +15,7 @@ Application.$controller("gridCodeListController", ["$scope", "$timeout",
     function($scope, $timeout) {
         "use strict";
         $scope.ctrlScope = $scope;
-
+        // This parsing was done to remove '$$hashKey' from object which was broken on WM Release 8.5
         $scope.updaterowAction = function($event, $rowData) {
             $timeout(function() {
                 $scope.Widgets.codeSets.datavalue = JSON.parse(angular.toJson($scope.Variables.lvCurrentCodeSetObj.firstRecord));

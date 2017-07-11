@@ -166,8 +166,8 @@ Application.$controller("gridFieldsController", ["$scope",
 
 var formTypeFieldToEdit = null;
 
-Application.$controller("dlgFormTypeFieldController", ["$scope",
-    function($scope) {
+Application.$controller("dlgFormTypeFieldController", ["$scope", "$timeout",
+    function($scope, $timeout) {
         "use strict";
         $scope.ctrlScope = $scope;
 
@@ -239,7 +239,10 @@ Application.$controller("dlgFormTypeFieldController", ["$scope",
             var formTypeFieldData = formTypeFieldToEdit;
             if (!!formTypeFieldData) {
                 $scope.Widgets.textFormFieldLabel.datavalue = formTypeFieldData.label;
-                $scope.Widgets.selectFormFieldType.datavalue = formTypeFieldData.formFieldTypes;
+                // This parsing was done to remove '$$hashKey' from object which was broken on WM Release 8.5
+                $timeout(function() {
+                    $scope.Widgets.selectFormFieldType.datavalue = JSON.parse(angular.toJson(formTypeFieldData.formFieldTypes));
+                });
                 $scope.Widgets.selectFormFieldType.setProperty('disabled', true);
                 $scope.Widgets.checkboxFormFieldRequired.datavalue = formTypeFieldData.required;
                 getDefaultValueWidgetByType(formTypeFieldData.formFieldTypes.label).datavalue = formTypeFieldData.formFieldTypes.label === 'Boolean' ? formTypeFieldData.defaultValue === 'true' : (formTypeFieldData.defaultValue || '');
