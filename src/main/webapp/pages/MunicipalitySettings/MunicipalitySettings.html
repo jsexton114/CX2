@@ -76,7 +76,8 @@
                                         <wm-composite name="composite6">
                                             <wm-label class="col-md-3 form-control-static" name="label7" caption="State" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container6">
-                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id" orderby="stateName:asc" displayfield="stateName"></wm-select>
+                                                <wm-select name="textState" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].stateId" dataset="bind:Variables.AllSates.dataSet" searchkey="stateName" displaylabel="stateName" datafield="id"
+                                                orderby="stateName:asc" displayfield="stateName"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                     </wm-gridcolumn>
@@ -140,30 +141,37 @@
                     <wm-gridcolumn columnwidth="12" name="gridcolumn33">
                         <wm-panel iconclass="wi wi-work" title="Contractor Management" class="panel-primary" name="panelContractorManagment">
                             <wm-layoutgrid name="layoutgrid6_1">
-                                <wm-gridrow padding="1em unset unset unset" name="gridrow21">
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn34" padding="unset 1em unset unset">
+                                <wm-gridrow padding="1em unset" name="gridrow21">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn52"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn34" padding="unset 1em unset unset">
                                         <wm-composite name="composite11">
                                             <wm-checkbox caption="Auto-Approve Contractors" class="col-md-12" name="checkboxAutoApproveContractors" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractors"></wm-checkbox>
                                         </wm-composite>
                                         <wm-label padding="unset 0.5em unset 1em" name="label17" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors who submit their company information to your municipality will skip the municipality review process (managed on the &quot;Municipality Contractor Management&quot; page) and automatically be granted a review status of &quot;Approved&quot;."></wm-label>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn46" padding="unset 1em unset unset">
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn46" padding="unset 1em unset unset"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn47" padding="0.5em 2em unset unset"></wm-gridcolumn>
+                                </wm-gridrow>
+                                <wm-gridrow name="gridrow29_1" padding="unset unset 1em unset">
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn48"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn49_3" padding="unset 1em unset unset">
                                         <wm-composite name="composite12">
                                             <wm-checkbox caption="Separate Contractor Application Required" class="col-md-12" name="checkboxSeparateContractorApplic" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].separateContractorApplicationRequired"></wm-checkbox>
                                         </wm-composite>
                                         <wm-label padding="unset 0.5em unset 1em" name="label18_1" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the system-level contractor application."></wm-label>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="4" name="gridcolumn47" padding="0.5em 2em unset unset">
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn50" padding="unset 1em unset unset">
                                         <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
                                             <wm-label class="col-md-4 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
                                             <wm-container class="col-md-8" name="container11">
-                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId" placeholder="Select Form"
-                                                orderby="formType:asc" required="true"></wm-select>
+                                                <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
+                                                placeholder="Select Form" orderby="formType:asc" required="true"></wm-select>
                                             </wm-container>
                                         </wm-composite>
                                         <wm-label padding="0.8em unset unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
                                         show="bind:Widgets.checkboxSeparateContractorApplic.datavalue"></wm-label>
                                     </wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="1" name="gridcolumn51"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow26">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn49_2" horizontalalign="right">
