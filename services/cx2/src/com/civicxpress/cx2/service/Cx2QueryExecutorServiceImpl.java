@@ -2670,11 +2670,12 @@ public class Cx2QueryExecutorServiceImpl implements Cx2QueryExecutorService {
     @Transactional(value = "cx2TransactionManager")
     @Override
     public Integer executeUpdateContractorManagementSettings(UpdateContractorManagementSettingsRequest updateContractorManagementSettingsRequest) {
-        Map params = new HashMap(4);
+        Map params = new HashMap(5);
 
         params.put("autoApproveContractors", updateContractorManagementSettingsRequest.getAutoApproveContractors());
         params.put("separateContractorApplicationRequired", updateContractorManagementSettingsRequest.getSeparateContractorApplicationRequired());
         params.put("formId", updateContractorManagementSettingsRequest.getFormId());
+        params.put("contractorsDaysForExpiration", updateContractorManagementSettingsRequest.getContractorsDaysForExpiration());
         params.put("municipality", updateContractorManagementSettingsRequest.getMunicipality());
 
         return queryExecutor.executeNamedQueryForUpdate("UpdateContractorManagementSettings", params);

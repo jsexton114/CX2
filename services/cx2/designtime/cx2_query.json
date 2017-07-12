@@ -11050,7 +11050,7 @@
     "name" : "UpdateContractorManagementSettings",
     "description" : "UpdateContractorManagementSettings",
     "version" : "V2",
-    "queryString" : "update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId where ID=:municipality",
+    "queryString" : "update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId,AutoApproveContractorsDaysForExpiration=:contractorsDaysForExpiration where ID=:municipality",
     "countQueryString" : null,
     "nativeSql" : true,
     "fetchCount" : false,
@@ -11076,6 +11076,13 @@
       "variableType" : "PROMPT",
       "testValue" : "1",
       "required" : false
+    }, {
+      "name" : "contractorsDaysForExpiration",
+      "type" : "integer",
+      "list" : false,
+      "variableType" : "PROMPT",
+      "testValue" : "0",
+      "required" : true
     }, {
       "name" : "municipality",
       "type" : "integer",

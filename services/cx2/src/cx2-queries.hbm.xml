@@ -2741,11 +2741,12 @@ where  FT.CodeEnforcement=:codeEnforcement and
 
     <sql-query name="UpdateContractorManagementSettings">
         <![CDATA[
-        update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId where ID=:municipality
+        update Municipalities set AutoApproveContractors=:autoApproveContractors,SeparateContractorApplicationRequired=:separateContractorApplicationRequired,ContractorApplicationFormId=:formId,AutoApproveContractorsDaysForExpiration=:contractorsDaysForExpiration where ID=:municipality
         ]]>
     <query-param name="autoApproveContractors" type="java.lang.Boolean"/>
     <query-param name="separateContractorApplicationRequired" type="java.lang.Boolean"/>
     <query-param name="formId" type="java.lang.Integer"/>
+    <query-param name="contractorsDaysForExpiration" type="java.lang.Integer"/>
     <query-param name="municipality" type="java.lang.Integer"/>
     </sql-query>
 

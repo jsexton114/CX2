@@ -627,6 +627,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -1563,13 +1575,25 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "autoApproveContractorsDaysForExpiration",
+        "type" : "big_integer",
+        "fullyQualifiedType" : "big_integer",
+        "columnName" : "AutoApproveContractorsDaysForExpiration",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "scale" : 0
       } ],
       "entityName" : "Municipalities",
       "fullyQualifiedName" : "com.civicxpress.cx2.Municipalities",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 37,
+    "bindCount" : 38,
     "tableName" : "Municipalities",
     "tableType" : "TABLE",
     "properties" : [ "states" ],
@@ -1661,6 +1685,10 @@
       "target" : "autoApproveContractors",
       "value" : "bind:Widgets.checkboxAutoApproveContractors.datavalue",
       "type" : "boolean"
+    }, {
+      "target" : "contractorsDaysForExpiration",
+      "value" : "bind:Widgets.textContractorsDaysForExpiration.datavalue",
+      "type" : "integer"
     } ],
     "type" : "com.wavemaker.commons.wrapper.IntegerWrapper",
     "service" : "cx2",
@@ -2237,6 +2265,18 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "autoApproveContractorsDaysForExpiration",
+        "type" : "big_integer",
+        "fullyQualifiedType" : "big_integer",
+        "columnName" : "AutoApproveContractorsDaysForExpiration",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 10,
+        "generator" : "assigned",
+        "isRelated" : false,
         "scale" : 0
       } ],
       "entityName" : "Municipalities",

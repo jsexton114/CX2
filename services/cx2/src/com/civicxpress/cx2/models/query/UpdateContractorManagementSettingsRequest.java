@@ -33,6 +33,10 @@ public class UpdateContractorManagementSettingsRequest implements Serializable {
     @JsonProperty("formId")
     private Integer formId;
 
+    @JsonProperty("contractorsDaysForExpiration")
+    @NotNull
+    private Integer contractorsDaysForExpiration;
+
     @JsonProperty("municipality")
     @NotNull
     private Integer municipality;
@@ -61,6 +65,14 @@ public class UpdateContractorManagementSettingsRequest implements Serializable {
         this.formId = formId;
     }
 
+    public Integer getContractorsDaysForExpiration() {
+        return this.contractorsDaysForExpiration;
+    }
+
+    public void setContractorsDaysForExpiration(Integer contractorsDaysForExpiration) {
+        this.contractorsDaysForExpiration = contractorsDaysForExpiration;
+    }
+
     public Integer getMunicipality() {
         return this.municipality;
     }
@@ -77,6 +89,7 @@ public class UpdateContractorManagementSettingsRequest implements Serializable {
         return Objects.equals(getAutoApproveContractors(), updateContractorManagementSettingsRequest.getAutoApproveContractors()) &&
                 Objects.equals(getSeparateContractorApplicationRequired(), updateContractorManagementSettingsRequest.getSeparateContractorApplicationRequired()) &&
                 Objects.equals(getFormId(), updateContractorManagementSettingsRequest.getFormId()) &&
+                Objects.equals(getContractorsDaysForExpiration(), updateContractorManagementSettingsRequest.getContractorsDaysForExpiration()) &&
                 Objects.equals(getMunicipality(), updateContractorManagementSettingsRequest.getMunicipality());
     }
 
@@ -85,6 +98,7 @@ public class UpdateContractorManagementSettingsRequest implements Serializable {
         return Objects.hash(getAutoApproveContractors(),
                 getSeparateContractorApplicationRequired(),
                 getFormId(),
+                getContractorsDaysForExpiration(),
                 getMunicipality());
     }
 }

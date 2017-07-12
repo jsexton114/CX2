@@ -149,7 +149,14 @@
                                         </wm-composite>
                                         <wm-label padding="unset 0.5em unset 1em" name="label17" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors who submit their company information to your municipality will skip the municipality review process (managed on the &quot;Municipality Contractor Management&quot; page) and automatically be granted a review status of &quot;Approved&quot;."></wm-label>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="5" name="gridcolumn46" padding="unset 1em unset unset"></wm-gridcolumn>
+                                    <wm-gridcolumn columnwidth="5" name="gridcolumn46" padding="unset 1em unset unset">
+                                        <wm-composite name="composite14" show="bind:Widgets.checkboxAutoApproveContractors.datavalue">
+                                            <wm-label class="col-md-3 control-label" name="label23" caption="Days Until Expiration" width="40%"></wm-label>
+                                            <wm-container class="col-md-9" name="container12" width="60%">
+                                                <wm-text name="textContractorsDaysForExpiration" type="number" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractorsDaysForExpiration" required="true" minvalue="0"></wm-text>
+                                            </wm-container>
+                                        </wm-composite>
+                                    </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn47" padding="0.5em 2em unset unset"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow29_1" padding="unset unset 1em unset">
