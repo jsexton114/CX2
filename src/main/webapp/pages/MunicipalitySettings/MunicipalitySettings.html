@@ -198,8 +198,8 @@
                                 <wm-gridrow name="gridrow43" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn54_1" horizontalalign="center">
-                                        <wm-label padding="unset 0.5em" name="label14" caption="Your Municipality Logo is used to brand your forms, inspections, letters, and other content throughout CivicXpress. For the best results, please upload an image with a transparent background."
-                                        width="100%"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label14" caption="Your Municipality Logo is used to brand your forms, inspections, letters, and other content throughout CivicXpress." width="100%"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label24_1" caption="For the best results, please upload an image with a transparent background."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -234,11 +234,13 @@
                                 <wm-gridrow name="gridrow39">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn39_1">
                                         <wm-grid name="gridAdditionalImages" dataset="bind:Variables.lvAdditionalDocuments.dataSet" title="" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                            <wm-grid-column binding="id" caption="ID" type="big_integer" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="rowOperations" caption="Actions" type="custom" width="80px" readonly="true" edit-widget-type="text" sortable="false" searchable="false" show="true" rowactionsposition="0"></wm-grid-column>
+                                            <wm-grid-column binding="id" caption="ID" type="big_integer" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="mimetype" caption="File Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-column binding="itemGuid" caption="Item GUID (test- CXAdmin only)" type="string" accessroles="CXAdmin" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
                                             <wm-grid-action key="customButton" display-name="Add Image" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Image" action="Widgets.dialog2.open()" shortcutkey="" disabled="false"></wm-grid-action>
+                                            <wm-grid-row-action key="deleterow" display-name="" show="true" class="btn-transparent" iconclass="wi wi-trash" title="Delete" action="deleteRow()" disabled="false"></wm-grid-row-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
