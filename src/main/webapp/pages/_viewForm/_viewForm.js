@@ -772,6 +772,7 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
                 return null;
             }
 
+
             return $scope.inspectionObject.scheduleDateAndTime === true ? $scope.Widgets.datetimeInspectionRequest.datavalue : $scope.Widgets.dateInspectionRequest.datavalue;
         }
 
@@ -827,11 +828,13 @@ Application.$controller("dialogInspectionRequestController", ["$scope",
         };
 
         $scope.isSameDayRequest = function() {
+
             return moment().startOf('day').diff(moment(getRequestedFor()).startOf('day'), 'days') === 0;
         };
 
         function updateMinMaxDates(inspectionDesignData) {
             $scope.Widgets.dateInspectionRequest.reset();
+            $scope.Widgets.datetimeInspectionRequest.reset();
 
             if (!inspectionDesignData) {
                 return;

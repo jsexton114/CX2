@@ -127,13 +127,13 @@ public class CheckoutService {
 					DBUtils.simpleUpdateQuery(connection, " UPDATE Fees SET TransactionComments=:comments where ID=" + feeId, queryParams);
 
 				}
-				for (Long feeId: feeIds) {
-				 Long currentStatusId = DBUtils.selectQuery(connection, "select MF.FormStatusId as formStatusId from Fees F Inner Join MasterForms MF on F.FormGuid=MF.FormGuid Where F.ID="+feeId, null).get(0).getLong("formStatusId");
-					// Check for AdvanceOnZeroBalance	
-				 Long newStatusId=checkAdvanceOnZeroBalance(feeId, connection, comments, request);
-					// Record Payment history on form
-					recordFeeHistoryOnForm(feeId, transactionId, newStatusId, currentStatusId, connection);
-				}
+				// for (Long feeId: feeIds) {
+				//  Long currentStatusId = DBUtils.selectQuery(connection, "select MF.FormStatusId as formStatusId from Fees F Inner Join MasterForms MF on F.FormGuid=MF.FormGuid Where F.ID="+feeId, null).get(0).getLong("formStatusId");
+				// 	// Check for AdvanceOnZeroBalance	
+				//  Long newStatusId=checkAdvanceOnZeroBalance(feeId, connection, comments, request);
+				// 	// Record Payment history on form
+				// 	recordFeeHistoryOnForm(feeId, transactionId, newStatusId, currentStatusId, connection);
+				// }
 
 			}
 
