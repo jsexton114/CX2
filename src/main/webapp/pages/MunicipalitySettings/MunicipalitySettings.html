@@ -28,10 +28,10 @@
                         <wm-panel iconclass="wi wi-info-outline" name="panel2" title="Municipality Details" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid3">
                                 <wm-gridrow name="gridrow6_1">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn8" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn8" padding="1em 2em 1em 1em">
                                         <wm-composite name="composite2">
-                                            <wm-label class="col-md-3 form-control-static" name="label3" caption="Municipality Name" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-8" name="container2">
+                                            <wm-label class="col-md-3 form-control-static" name="label3" caption="Municipality" fontweight="bold"></wm-label>
+                                            <wm-container class="col-md-9" name="container2">
                                                 <wm-text name="textMunicipalityName" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.municipalityName"></wm-text>
                                             </wm-container>
                                         </wm-composite>
@@ -46,10 +46,10 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow8">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn13" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn13" padding="1em 2em 1em 1em">
                                         <wm-composite name="composite3">
                                             <wm-label class="col-md-3 form-control-static" name="label4" caption="Address 1" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-8" name="container3">
+                                            <wm-container class="col-md-9" name="container3">
                                                 <wm-text name="textAddress1" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].address1"></wm-text>
                                             </wm-container>
                                         </wm-composite>
@@ -64,10 +64,10 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow9">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn16" padding="1em 2em 1em 1em">
                                         <wm-composite name="composite5">
                                             <wm-label class="col-md-3 form-control-static" name="label6_1" caption="City" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-8" name="container5">
+                                            <wm-container class="col-md-9" name="container5">
                                                 <wm-text name="textCity" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].city"></wm-text>
                                             </wm-container>
                                         </wm-composite>
@@ -83,10 +83,10 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow10">
-                                    <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em unset">
+                                    <wm-gridcolumn columnwidth="6" name="gridcolumn19" padding="1em 2em 1em 1em">
                                         <wm-composite name="composite7">
                                             <wm-label class="col-md-3 form-control-static" name="label8" caption="Postal Code" fontweight="bold"></wm-label>
-                                            <wm-container class="col-md-8" name="container7">
+                                            <wm-container class="col-md-9" name="container7">
                                                 <wm-text name="textPostalCode" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].postalCode"></wm-text>
                                             </wm-container>
                                         </wm-composite>
@@ -119,8 +119,8 @@
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow15_1">
-                                    <wm-gridcolumn columnwidth="12" name="gridcolumn35_1" padding="unset 2em">
-                                        <wm-composite name="composite10" margin="1em unset">
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn35_1" padding="1em 2em">
+                                        <wm-composite name="composite10">
                                             <wm-label class="col-md-3 form-control-static" name="label11" caption="Global Email Signature" fontweight="bold"></wm-label>
                                             <wm-container class="col-md-9" name="container10">
                                                 <wm-textarea name="textareaSignature" placeholder="Enter text" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].globalEmailSig"></wm-textarea>
@@ -147,15 +147,17 @@
                                         <wm-composite name="composite11">
                                             <wm-checkbox caption="Auto-Approve Contractors" class="col-md-12" name="checkboxAutoApproveContractors" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractors"></wm-checkbox>
                                         </wm-composite>
-                                        <wm-label padding="unset 0.5em unset 1em" name="label17" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors who submit their company information to your municipality will skip the municipality review process (managed on the &quot;Municipality Contractor Management&quot; page) and automatically be granted a review status of &quot;Approved&quot;."></wm-label>
+                                        <wm-label padding="0.35em 0.5em unset 1em" name="label17" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors who submit their company information to your municipality will skip the municipality review process (managed on the &quot;Municipality Contractor Management&quot; page) and automatically be granted a review status of &quot;Approved&quot;."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="5" name="gridcolumn46" padding="unset 1em unset unset">
-                                        <wm-composite name="composite14" show="bind:Widgets.checkboxAutoApproveContractors.datavalue">
-                                            <wm-label class="col-md-3 control-label" name="label23" caption="Days Until Expiration" width="40%"></wm-label>
-                                            <wm-container class="col-md-9" name="container12" width="60%">
-                                                <wm-text name="textContractorsDaysForExpiration" type="number" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractorsDaysForExpiration" required="true" minvalue="0"></wm-text>
+                                        <wm-composite name="composite14" show="bind:Widgets.checkboxAutoApproveContractors.datavalue" required="true" padding="0.45em unset unset unset">
+                                            <wm-label class="col-md-6 form-control-static" name="label23" caption="Days Until Expiration" fontweight="bold" required="true"></wm-label>
+                                            <wm-container class="col-md-6" name="container12">
+                                                <wm-text name="textContractorsDaysForExpiration" type="number" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.autoApproveContractorsDaysForExpiration" required="true" minvalue="1" placeholder="Enter value"
+                                                maxvalue="4383"></wm-text>
                                             </wm-container>
                                         </wm-composite>
+                                        <wm-label padding="unset 0.5em unset unset" name="label24" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.checkboxAutoApproveContractors.datavalue" caption="This value specifies how long an auto-approved contractor will remain in &quot;Approved&quot; status, and sets the &quot;Expiration Date&quot; on the &quot;Municipality Contractor Management&quot; page."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn47" padding="0.5em 2em unset unset"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -165,24 +167,24 @@
                                         <wm-composite name="composite12">
                                             <wm-checkbox caption="Separate Contractor Application Required" class="col-md-12" name="checkboxSeparateContractorApplic" checkedvalue="true" uncheckedvalue="false" datavalue="bind:Variables.SelectedMunicipalityObj.dataSet.data[$i].separateContractorApplicationRequired"></wm-checkbox>
                                         </wm-composite>
-                                        <wm-label padding="unset 0.5em unset 1em" name="label18_1" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the system-level contractor application."></wm-label>
+                                        <wm-label padding="0.2em 0.5em unset 1em" name="label18_1" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="If selected, contractors will be required to submit a separate &quot;Contractor Application Form&quot; for your municipality in addition to the system-level contractor application."></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="5" name="gridcolumn50" padding="unset 1em unset unset">
-                                        <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue">
-                                            <wm-label class="col-md-4 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="true"></wm-label>
+                                        <wm-composite name="composite13" show="bind:Widgets.checkboxSeparateContractorApplic.datavalue" required="true" padding="0.45em unset unset unset">
+                                            <wm-label class="col-md-4 form-control-static" name="label18" caption="Select Form" fontweight="bold" required="false"></wm-label>
                                             <wm-container class="col-md-8" name="container11">
                                                 <wm-select name="selectForm" dataset="bind:Variables.svFormTypesForMunicipalitySettings.dataSet" datafield="id" displayfield="formType" datavalue="bind:Variables.SelectedMunicipalityObj.firstRecord.contractorApplicationFormId"
-                                                placeholder="Select Form" orderby="formType:asc" required="true"></wm-select>
+                                                placeholder="Select Form" orderby="formType:asc" required="false"></wm-select>
                                             </wm-container>
                                         </wm-composite>
-                                        <wm-label padding="0.8em unset unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
+                                        <wm-label padding="0.8em 0.5em unset unset" name="label19" class="col-md-12 help-block" fontsize="0.8" fontunit="em" caption="The form specified here will be used as your &quot;Contractor Application Form&quot;, which will be required from all contractors who submit their company for approval to do business within your municipality."
                                         show="bind:Widgets.checkboxSeparateContractorApplic.datavalue"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="1" name="gridcolumn51"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow26">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn49_2" horizontalalign="right">
-                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()" disabled="bind:Widgets.checkboxSeparateContractorApplic.datavalue &amp;&amp; !Widgets.selectForm.datavalue"></wm-button>
+                                        <wm-button class="btn-primary" caption="Save" type="button" margin="1em 2em 1em unset" iconclass="wi wi-save" name="buttonContractorDetails" on-click="Variables.svUpdateContractorManagementSettings.invoke()" disabled="bind:(Widgets.checkboxAutoApproveContractors.datavalue &amp;&amp; !Widgets.textContractorsDaysForExpiration.datavalue) || (Widgets.checkboxSeparateContractorApplic.datavalue &amp;&amp; !Widgets.selectForm.datavalue)"></wm-button>
                                     </wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
@@ -196,8 +198,8 @@
                                 <wm-gridrow name="gridrow43" padding="1em unset unset unset">
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="8" name="gridcolumn54_1" horizontalalign="center">
-                                        <wm-label padding="0.5em" name="label14" caption="Upload your Municipality Logo for use throughout CivicXpress." width="100%"></wm-label>
-                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="For the best results, please use an image with a transparent background." width="100%"></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label14" caption="Your Municipality Logo is used to brand your forms, inspections, letters, and other content throughout CivicXpress. For the best results, please upload an image with a transparent background."
+                                        width="100%"></wm-label>
                                     </wm-gridcolumn>
                                     <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
                                 </wm-gridrow>
@@ -224,34 +226,21 @@
                         <wm-panel iconclass="wi wi-photo" name="panel4" title="Additional Images" class="panel-primary">
                             <wm-layoutgrid name="layoutgrid6">
                                 <wm-gridrow name="gridrow43" padding="1em unset unset unset">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn53_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn54_1" horizontalalign="center">
-                                        <wm-label padding="0.5em" name="label14" caption="Upload additional images for use throughout CivicXpress." width="100%"></wm-label>
-                                        <wm-label padding="0.5em 0.5em unset 0.5em" name="label13" caption="Images can be placed in letters with the token [DocumentXXX] where XXX is the Document table ID." width="100%"></wm-label>
+                                    <wm-gridcolumn columnwidth="12" name="gridcolumn54_1" horizontalalign="left">
+                                        <wm-label padding="unset 0.5em" name="label14" caption="Additional images maintained here can be used in the letter template designer for display on form and inspection letters."></wm-label>
+                                        <wm-label padding="unset 0.5em" name="label13" caption="To use these images in letters, enter the token [DocumentYYY] in the letter template designer, where &quot;YYY&quot; is the ID displayed below."></wm-label>
                                     </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn55_1"></wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow38_1">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn48_1"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn49_1" horizontalalign="center" padding="2em unset unset unset"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn50_1"></wm-gridcolumn>
                                 </wm-gridrow>
                                 <wm-gridrow name="gridrow39">
                                     <wm-gridcolumn columnwidth="12" name="gridcolumn39_1">
                                         <wm-grid name="gridAdditionalImages" dataset="bind:Variables.lvAdditionalDocuments.dataSet" title="" navigation="Classic" filtermode="multicolumn" exportformat="EXCEL" showrecordcount="true">
-                                            <wm-grid-column binding="id" caption="ID"></wm-grid-column>
-                                            <wm-grid-column binding="filename" caption="Filename"></wm-grid-column>
-                                            <wm-grid-column binding="itemGuid" caption="Item GUID (test)"></wm-grid-column>
-                                            <wm-grid-column binding="mimetype" caption="Media Type"></wm-grid-column>
+                                            <wm-grid-column binding="id" caption="ID" type="big_integer" edit-widget-type="text" show="true" filterwidget="text" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="filename" caption="File Name" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="mimetype" caption="File Type" type="string" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-column binding="itemGuid" caption="Item GUID (test- CXAdmin only)" type="string" accessroles="CXAdmin" edit-widget-type="text" show="true" readonly="false"></wm-grid-column>
+                                            <wm-grid-action key="customButton" display-name="Add Image" show="true" class="btn-primary" iconclass="wi wi-plus" title="Add Image" action="Widgets.dialog2.open()" shortcutkey="" disabled="false"></wm-grid-action>
                                         </wm-grid>
                                     </wm-gridcolumn>
-                                </wm-gridrow>
-                                <wm-gridrow name="gridrow41">
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn63"></wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="8" name="gridcolumn61" horizontalalign="center" padding="1em unset">
-                                        <wm-button class="btn-primary" caption="Upload Image" type="button" name="button5" iconclass="wi wi-upload" on-click="Widgets.dialog2.open()"></wm-button>
-                                    </wm-gridcolumn>
-                                    <wm-gridcolumn columnwidth="2" name="gridcolumn62" horizontalalign="left"></wm-gridcolumn>
                                 </wm-gridrow>
                             </wm-layoutgrid>
                         </wm-panel>
@@ -270,7 +259,7 @@
             <wm-layoutgrid columns="1" name="layoutgrid5">
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then click &quot;Upload&quot; to update your municipality logo."></wm-label>
+                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then use the &quot;Upload&quot; button to update your municipality logo."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow29">
@@ -283,7 +272,7 @@
         </wm-dialog>
     </wm-view>
     <wm-view class="dialog-view" name="view2">
-        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Additional Images" iconclass="wi wi-photo" name="dialog2" on-opened="dialog2Opened($event, $scope)">
+        <wm-dialog dialogtype="design-dialog" modal="true" title="Upload Image" iconclass="wi wi-photo" name="dialog2" on-opened="dialog2Opened($event, $scope)">
             <wm-dialogactions name="dialogactions2">
                 <wm-button class="btn-raised btn-primary" caption="Upload" on-click="buttonSaveClick()" name="button4" iconclass="wi wi-upload"></wm-button>
                 <wm-button class="btn-secondary" caption="Cancel" type="button" margin="unset 0.5em" name="button5_1" on-click="Widgets.dialog2.close()" iconclass="wi wi-cancel"></wm-button>
@@ -291,7 +280,7 @@
             <wm-layoutgrid columns="1" name="layoutgrid5">
                 <wm-gridrow name="gridrow19">
                     <wm-gridcolumn columnwidth="12" name="gridcolumn32">
-                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then click &quot;Upload&quot; to add it to your images."></wm-label>
+                        <wm-label padding="unset 0.5em 2em 0.5em" name="label15" caption="Use the &quot;Choose File&quot; button to select an image, then use the &quot;Upload&quot; button to add it to your &quot;Additional Images&quot;."></wm-label>
                     </wm-gridcolumn>
                 </wm-gridrow>
                 <wm-gridrow name="gridrow29">
