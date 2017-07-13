@@ -275,7 +275,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         } else {
             $scope.Variables.svSubmitForm.setInput('attachments', []);
         }
-        debugger
+
         // Is form Incomplete ?
         if ($scope.$eval("Widgets.checkboxContractorTBD.datavalue")) {
             $scope.Variables.svSubmitForm.setInput('incomplete', 1);
