@@ -153,7 +153,7 @@
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn141">
                                                                 <wm-form-field name="inspections" displayname="Enable Inspections" show="true" primary-key="false" generator="assigned" key="inspections" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional settings." defaultvalue="false"
+                                                                placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional inspection settings." defaultvalue="false"
                                                                 checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn131_2"></wm-gridcolumn>
@@ -163,17 +163,17 @@
                                                                 <wm-label caption="Require Location" name="label2"></wm-label>
                                                                 <wm-select displayname="GIS Record" widget="select" show="true" type="custom" name="gisOptionSelect" datavalue="bind:Variables.CurrentFormObj.dataSet.data[$i].gisrecord &amp;&amp; Variables.CurrentFormObj.dataSet.data[$i].multipleGisrecords ? 'Multiple' : (Variables.CurrentFormObj.dataSet.data[$i].gisrecord ? 'Single' : 'None')"
                                                                 dataset="None,Single,Multiple" on-change="gisOptionSelectChange($event, $scope, newVal, oldVal)" width="180px"></wm-select>
-                                                                <wm-label padding="unset 0.5em" name="label27" caption="This requires the user to add a GIS record to the form. You can allow for one or many GIS records." class="help-block"
+                                                                <wm-label padding="unset 0.5em" name="label27" caption="This requires the user to add an address record to the form. You can allow for one or many addresses." class="help-block"
                                                                 fontsize="0.8" fontunit="em"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn60_1" padding="unset 1em unset unset">
                                                                 <wm-form-field name="gismap" displayname="Show Location Map" show="true" primary-key="false" generator="assigned" key="gismap" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This enables a map that displays the GIS Records that have been added to the form. &quot;Require Location&quot; must be active to use this option."
+                                                                placeholder="" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This enables a map that displays the addresses that have been added to the form. &quot;Require Location&quot; must be active to use this option."
                                                                 defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn63_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="requireOwner" displayname="Require Owner" show="true" primary-key="false" generator="assigned" key="requireOwner" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This option requires the user to specify the Owner of the GIS record added to the form. They can select an already-existing owner record, provide details for a new owner, or (if a contractor is required) indicate that the contractor is considered the property owner. &quot;Require Location&quot; must be active to use this option."
+                                                                disabled="bind:Widgets.liveformUpdateFormType.formWidgets.gisOptionSelect.displayValue === 'None'" hint="This option requires the user to specify the Owner of the address that has been added to the form. They can select from existing owner records, specify a new owner, or (if a contractor is required) indicate that the contractor is considered the property owner. &quot;Require Location&quot; must be active to use this option."
                                                                 placeholder="" defaultvalue="false" checkedvalue="true" uncheckedvalue="false" on-change="requireOwnerChange($event, $scope, newVal, oldVal)"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
@@ -199,11 +199,12 @@
                                                         <wm-gridrow name="gridrow98" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn131_1">
                                                                 <wm-form-field name="attachments" displayname="Allow Attachments" show="true" primary-key="false" generator="assigned" key="attachments" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                placeholder="" hint="This enables attaching multiple documents to a form." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                placeholder="" hint="This enables both users and municipality employees to attach documents to a form." defaultvalue="false" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn132_1">
                                                                 <wm-form-field name="sharedWith" displayname="Allow Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="true" placeholder="" hint="This enables sharing the form with other registered CivicXpress users." checkedvalue="true" uncheckedvalue="false"></wm-form-field>
+                                                                defaultvalue="true" placeholder="" hint="This enables sharing the form with other registered CivicXpress users. If the form requires a contractor, it will be shared with company employees by default during the new form wizard."
+                                                                checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
@@ -217,26 +218,26 @@
                                                                 key="expirationDays" type="integer" maxvalue="29220" readonly="false" required="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue" step="1" widget="text" inputtype="number"
                                                                 placeholder="Enter value" minvalue="1" width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label33_2" class="help-block" fontsize="0.8" fontunit="em" show="bind:!!Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue"
-                                                                caption="This form will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
+                                                                caption="Submitted forms will be set to expire after the specified number of days when the selected trigger event occurs."></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn109_2" padding="unset 1em unset unset">
                                                                 <wm-form-field name="expirationStatusId" displayname="Expiration Trigger Status" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" primary-key="false"
                                                                 generator="assigned" key="expirationStatusId" type="integer" readonly="false" required="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'" step="0"
                                                                 widget="select" dataset="bind:Variables.StatusesData.dataSet" datafield="id" displayfield="status" placeholder="Select status" width="180px"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label34_1" class="help-block" fontsize="0.8" fontunit="em" show="bind:Widgets.liveformUpdateFormType.formWidgets.expirationType.datavalue === 'FormStatusId'"
-                                                                caption="bind:'This form will be set to expire ' + (!!Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue ? (Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue + ' days') : 'immediately') + ' after the form enters the form status selected here.'"></wm-label>
+                                                                caption="bind:'Submitted forms will be set to expire ' + (!!Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue ? (Widgets.liveformUpdateFormType.formWidgets.expirationDays.datavalue + ' days') : 'immediately') + ' after the form enters the form status selected here.'"></wm-label>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow81">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn111_3">
                                                                 <wm-form-field name="requireSignature" displayname="Require Digital Signature" show="true" primary-key="false" generator="assigned" key="requireSignature" type="boolean" readonly="false" required="false"
-                                                                widget="checkbox" defaultvalue="false" hint="When enabled, people will be required to provide an electronic signature upon submitting their form." placeholder="" checkedvalue="true" uncheckedvalue="false"
-                                                                accessroles="CXAdmin" disabled="false"></wm-form-field>
+                                                                widget="checkbox" defaultvalue="false" hint="When enabled, users will be required to provide an electronic signature at the end of the new form wizard." placeholder="" checkedvalue="true"
+                                                                uncheckedvalue="false" accessroles="CXAdmin" disabled="false"></wm-form-field>
                                                                 <wm-label padding="unset 0.5em" name="label51" caption="This setting is only visible to CXAdmin pending future development." accessroles="CXAdmin" fontweight="bold" fontstyle="italic"></wm-label>
                                                             </wm-gridcolumn>
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn128_3">
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" readonly="false" required="false" widget="checkbox"
-                                                                defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. The &quot;Automatic&quot; fees set below are generated when a user submits the form and &quot;Manual&quot; fees must be added to the form by a municipality employee."></wm-form-field>
+                                                                defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. The &quot;Automatic&quot; fees set below are generated on form submission. &quot;Manual&quot; fees can be added to the form by a municipality employee."></wm-form-field>
                                                             </wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
