@@ -381,7 +381,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.checkboxVendorIsOwnerChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal === true) {
             $scope.Widgets.checkboxOtherOwner.datavalue = false
-            $scope.Widgets.checkboxOtherOwner.disabled = true
+                // $scope.Widgets.checkboxOtherOwner.disabled = true
             var vendorInfo = _.find($scope.Variables.stvVendors.dataSet, {
                 'Primary': true
             });
@@ -464,7 +464,7 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         setLFFieldsRO($scope.Widgets.lfOwner, !newVal);
         if (newVal) {
             $scope.Widgets.checkboxVendorIsOwner.datavalue = false;
-            $scope.Widgets.checkboxVendorIsOwner.disabled = true;
+            //$scope.Widgets.checkboxVendorIsOwner.disabled = true;
             $scope.Widgets.lfOwner.clearData();
         } else {
             $scope.Widgets.checkboxVendorIsOwner.disabled = false;
