@@ -87,6 +87,10 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
     @ColumnAlias("balanceDue")
     private BigDecimal balanceDue;
 
+    @JsonProperty("incomplete")
+    @ColumnAlias("incomplete")
+    private Boolean incomplete;
+
     public String getFormGuid() {
         return this.formGuid;
     }
@@ -191,6 +195,14 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
         this.balanceDue = balanceDue;
     }
 
+    public Boolean getIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(Boolean incomplete) {
+        this.incomplete = incomplete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -208,7 +220,8 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
                 Objects.equals(getSubdivision(), companyFormsByVendorIdResponse.getSubdivision()) &&
                 Objects.equals(getAddress(), companyFormsByVendorIdResponse.getAddress()) &&
                 Objects.equals(getPrimaryVendor(), companyFormsByVendorIdResponse.getPrimaryVendor()) &&
-                Objects.equals(getBalanceDue(), companyFormsByVendorIdResponse.getBalanceDue());
+                Objects.equals(getBalanceDue(), companyFormsByVendorIdResponse.getBalanceDue()) &&
+                Objects.equals(getIncomplete(), companyFormsByVendorIdResponse.getIncomplete());
     }
 
     @Override
@@ -225,6 +238,7 @@ public class CompanyFormsByVendorIdResponse implements Serializable {
                 getSubdivision(),
                 getAddress(),
                 getPrimaryVendor(),
-                getBalanceDue());
+                getBalanceDue(),
+                getIncomplete());
     }
 }

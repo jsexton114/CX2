@@ -50,6 +50,7 @@ public class MasterForms implements Serializable {
     private Integer ownerId;
     private Timestamp dateModified;
     private Timestamp dateSubmitted;
+    private boolean incomplete;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -228,6 +229,15 @@ public class MasterForms implements Serializable {
 
     public void setDateSubmitted(Timestamp dateSubmitted) {
         this.dateSubmitted = dateSubmitted;
+    }
+
+    @Column(name = "`Incomplete`", nullable = false)
+    public boolean isIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(boolean incomplete) {
+        this.incomplete = incomplete;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

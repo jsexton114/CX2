@@ -76,11 +76,15 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
 
     @JsonProperty("balanceDue")
     @ColumnAlias("balanceDue")
-    private String balanceDue;
+    private BigDecimal balanceDue;
 
     @JsonProperty("formTypeID")
     @ColumnAlias("formTypeID")
     private Integer formTypeId;
+
+    @JsonProperty("incomplete")
+    @ColumnAlias("incomplete")
+    private Boolean incomplete;
 
     public String getFormGuid() {
         return this.formGuid;
@@ -170,11 +174,11 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
         this.primaryVendor = primaryVendor;
     }
 
-    public String getBalanceDue() {
+    public BigDecimal getBalanceDue() {
         return this.balanceDue;
     }
 
-    public void setBalanceDue(String balanceDue) {
+    public void setBalanceDue(BigDecimal balanceDue) {
         this.balanceDue = balanceDue;
     }
 
@@ -184,6 +188,14 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
 
     public void setFormTypeId(Integer formTypeId) {
         this.formTypeId = formTypeId;
+    }
+
+    public Boolean getIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(Boolean incomplete) {
+        this.incomplete = incomplete;
     }
 
     @Override
@@ -203,7 +215,8 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
                 Objects.equals(getAddress(), formsTaggedWithGisrecordsResponse.getAddress()) &&
                 Objects.equals(getPrimaryVendor(), formsTaggedWithGisrecordsResponse.getPrimaryVendor()) &&
                 Objects.equals(getBalanceDue(), formsTaggedWithGisrecordsResponse.getBalanceDue()) &&
-                Objects.equals(getFormTypeId(), formsTaggedWithGisrecordsResponse.getFormTypeId());
+                Objects.equals(getFormTypeId(), formsTaggedWithGisrecordsResponse.getFormTypeId()) &&
+                Objects.equals(getIncomplete(), formsTaggedWithGisrecordsResponse.getIncomplete());
     }
 
     @Override
@@ -220,6 +233,7 @@ public class FormsTaggedWithGisrecordsResponse implements Serializable {
                 getAddress(),
                 getPrimaryVendor(),
                 getBalanceDue(),
-                getFormTypeId());
+                getFormTypeId(),
+                getIncomplete());
     }
 }

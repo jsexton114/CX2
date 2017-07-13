@@ -486,6 +486,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -741,6 +753,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -2603,6 +2629,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -2858,6 +2896,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -3350,6 +3402,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "incomplete",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Incomplete",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
         "scale" : 0
       } ],
       "entityName" : "MasterForms",
@@ -5192,6 +5257,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -5447,6 +5524,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -5939,6 +6030,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "incomplete",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Incomplete",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
         "scale" : 0
       } ],
       "entityName" : "MasterForms",
@@ -6511,6 +6615,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -7248,6 +7364,20 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalities",
@@ -7710,6 +7840,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -8576,6 +8718,20 @@
           "isRelated" : false,
           "defaultValue" : "false",
           "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "municipalities",
@@ -9038,6 +9194,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -10123,6 +10291,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -10869,6 +11049,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {

@@ -69,6 +69,9 @@ public class MunicipalityFormsResponse implements Serializable {
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
 
+    @ColumnAlias("incomplete")
+    private Boolean incomplete;
+
     public String getFormGuid() {
         return this.formGuid;
     }
@@ -205,6 +208,14 @@ public class MunicipalityFormsResponse implements Serializable {
         this.dateModified = dateModified;
     }
 
+    public Boolean getIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(Boolean incomplete) {
+        this.incomplete = incomplete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -226,7 +237,8 @@ public class MunicipalityFormsResponse implements Serializable {
                 Objects.equals(getFormTypeId(), municipalityFormsResponse.getFormTypeId()) &&
                 Objects.equals(getCodeEnforcement(), municipalityFormsResponse.getCodeEnforcement()) &&
                 Objects.equals(getMunicipalityInternalForm(), municipalityFormsResponse.getMunicipalityInternalForm()) &&
-                Objects.equals(getDateModified(), municipalityFormsResponse.getDateModified());
+                Objects.equals(getDateModified(), municipalityFormsResponse.getDateModified()) &&
+                Objects.equals(getIncomplete(), municipalityFormsResponse.getIncomplete());
     }
 
     @Override
@@ -247,6 +259,7 @@ public class MunicipalityFormsResponse implements Serializable {
                 getFormTypeId(),
                 getCodeEnforcement(),
                 getMunicipalityInternalForm(),
-                getDateModified());
+                getDateModified(),
+                getIncomplete());
     }
 }

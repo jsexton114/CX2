@@ -74,6 +74,10 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
     @ColumnAlias("codeEnforcement")
     private Boolean codeEnforcement;
 
+    @JsonProperty("incomplete")
+    @ColumnAlias("incomplete")
+    private Boolean incomplete;
+
     public String getFormGuid() {
         return this.formGuid;
     }
@@ -186,6 +190,14 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
         this.codeEnforcement = codeEnforcement;
     }
 
+    public Boolean getIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(Boolean incomplete) {
+        this.incomplete = incomplete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -204,7 +216,8 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
                 Objects.equals(getAddress(), processFormsForUserByMunicipalityResponse.getAddress()) &&
                 Objects.equals(getPrimaryVendor(), processFormsForUserByMunicipalityResponse.getPrimaryVendor()) &&
                 Objects.equals(getBalanceDue(), processFormsForUserByMunicipalityResponse.getBalanceDue()) &&
-                Objects.equals(getCodeEnforcement(), processFormsForUserByMunicipalityResponse.getCodeEnforcement());
+                Objects.equals(getCodeEnforcement(), processFormsForUserByMunicipalityResponse.getCodeEnforcement()) &&
+                Objects.equals(getIncomplete(), processFormsForUserByMunicipalityResponse.getIncomplete());
     }
 
     @Override
@@ -222,6 +235,7 @@ public class ProcessFormsForUserByMunicipalityResponse implements Serializable {
                 getAddress(),
                 getPrimaryVendor(),
                 getBalanceDue(),
-                getCodeEnforcement());
+                getCodeEnforcement(),
+                getIncomplete());
     }
 }

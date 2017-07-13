@@ -729,6 +729,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowOwnerToCompleteWork",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowOwnerToCompleteWork",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -1808,6 +1820,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -2063,6 +2087,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -2555,6 +2593,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "defaultValue" : "",
+        "scale" : 0
+      }, {
+        "fieldName" : "incomplete",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Incomplete",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
         "scale" : 0
       } ],
       "entityName" : "MasterForms",

@@ -60,6 +60,9 @@ public class SearchWithFormTitleResponse implements Serializable {
     @ColumnAlias("dateModified")
     private LocalDateTime dateModified;
 
+    @ColumnAlias("incomplete")
+    private Boolean incomplete;
+
     public String getFormGuid() {
         return this.formGuid;
     }
@@ -172,6 +175,14 @@ public class SearchWithFormTitleResponse implements Serializable {
         this.dateModified = dateModified;
     }
 
+    public Boolean getIncomplete() {
+        return this.incomplete;
+    }
+
+    public void setIncomplete(Boolean incomplete) {
+        this.incomplete = incomplete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -190,7 +201,8 @@ public class SearchWithFormTitleResponse implements Serializable {
                 Objects.equals(getBalanceDue(), searchWithFormTitleResponse.getBalanceDue()) &&
                 Objects.equals(getFormTypeId(), searchWithFormTitleResponse.getFormTypeId()) &&
                 Objects.equals(getFormCategory(), searchWithFormTitleResponse.getFormCategory()) &&
-                Objects.equals(getDateModified(), searchWithFormTitleResponse.getDateModified());
+                Objects.equals(getDateModified(), searchWithFormTitleResponse.getDateModified()) &&
+                Objects.equals(getIncomplete(), searchWithFormTitleResponse.getIncomplete());
     }
 
     @Override
@@ -208,6 +220,7 @@ public class SearchWithFormTitleResponse implements Serializable {
                 getBalanceDue(),
                 getFormTypeId(),
                 getFormCategory(),
-                getDateModified());
+                getDateModified(),
+                getIncomplete());
     }
 }

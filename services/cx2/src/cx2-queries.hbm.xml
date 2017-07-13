@@ -420,7 +420,8 @@ MF.BalanceDue as balanceDue,
 FT.ID as formTypeID,
 FT.CodeEnforcement as codeEnforcement,
 FT.MunicipalityInternalForm as municipalityInternalForm,
-MF.DateModified as dateModified
+MF.DateModified as dateModified,
+MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
@@ -462,7 +463,8 @@ MF.BalanceDue as balanceDue,
 FT.ID as formTypeID,
 FT.CodeEnforcement as codeEnforcement,
 FT.MunicipalityInternalForm as municipalityInternalForm,
-MF.DateModified as dateModified
+MF.DateModified as dateModified,
+MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN MunicipalityGroups AS MG ON MF.AssignedToGroupId=MG.ID
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
@@ -518,7 +520,8 @@ where
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
 	MF.BalanceDue as balanceDue,
-	FT.CodeEnforcement as codeEnforcement
+	FT.CodeEnforcement as codeEnforcement,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -559,7 +562,8 @@ where
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
 	MF.BalanceDue as balanceDue,
-	FT.CodeEnforcement as codeEnforcement
+	FT.CodeEnforcement as codeEnforcement,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -640,7 +644,7 @@ group by FeeType) wmTempTable
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified
+	,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -673,7 +677,7 @@ where   (:municipalityId IS NULL OR FT.MunicipalityId=:municipalityId)
         <![CDATA[
         select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified
+	,FT.ID as formTypeID,FC.ID as FormCategory,MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -1917,7 +1921,7 @@ from Fees where masterForms.formStatuses.allowPayment=:allowPayment and paidStat
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -1959,7 +1963,7 @@ where    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorI
         select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -2000,7 +2004,7 @@ where    (MF.FormGUID IN (select RelatedFormGUID from Vendors2Form where VendorI
         <![CDATA[
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus, MF.DateModified as dateModified,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID
+	,FT.ID as formTypeID,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -2023,7 +2027,7 @@ where   FT.CodeEnforcement=:codeEnforcement
         <![CDATA[
         select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus, MF.DateModified as dateModified,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
-	,FT.ID as formTypeID
+	,FT.ID as formTypeID,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -2518,7 +2522,7 @@ group by V.companyName) wmTempTable
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -2562,7 +2566,7 @@ where   FT.CodeEnforcement=:codeEnforcement
         select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3377,7 +3381,8 @@ group by FC.Category) wmTempTable
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3417,7 +3422,8 @@ where (:codeEnforcement IS NULL OR FT.CodeEnforcement=:codeEnforcement) and
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3754,7 +3760,7 @@ where (:municipalityId IS NULL OR FE.MunicipalityId=:municipalityId) and (:paidS
         SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3792,7 +3798,7 @@ where   ( UserId=:sharedWithUser or MF.FormGUID IN
         select count(*) from (SELECT MF.FormGuid as formGuid,MF.FormTitle as formTitle,MU.MunicipalityName as municipalityName,U.FullName as createdBy,FT.FormType as formDesign,FS.Status as formStatus,
 	GR.Lot as lot,GR.Subdivision as subdivision,GR.FullAddress as address,V.CompanyName as primaryVendor,MF.BalanceDue as balanceDue
 	,FT.ID as formTypeID,FC.ID as FormCategory,
-	MF.DateModified as dateModified
+	MF.DateModified as dateModified,MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3867,7 +3873,8 @@ where   ( UserId=:sharedWithUser or MF.FormGUID IN
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
@@ -3905,7 +3912,8 @@ where
 	GR.Subdivision as subdivision,
 	GR.FullAddress as address,
 	V.CompanyName as primaryVendor,
-	MF.BalanceDue as balanceDue
+	MF.BalanceDue as balanceDue,
+	MF.Incomplete as incomplete
 FROM MasterForms MF
 LEFT OUTER JOIN FormStatuses AS FS ON FS.ID=MF.FormStatusId
 LEFT OUTER JOIN FormTypes AS FT ON FT.ID=MF.FormTypeId
