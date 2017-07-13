@@ -134,6 +134,7 @@ Application.$controller("liveformUpdateFormTypeController", ["$scope",
         $scope.selectVendorOptionChange = function($event, $isolateScope, newVal, oldVal) {
             if (newVal === 'None') {
                 $scope.Widgets.liveformUpdateFormType.formWidgets.allowOwnerToCompleteWork.datavalue = false;
+                $scope.Widgets.liveformUpdateFormType.formWidgets.allowContractorTbd.datavalue = false;
             }
         };
 
