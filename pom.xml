@@ -41,6 +41,13 @@
             </resource>
             <resource>
                 <filtering>true</filtering>
+                <directory>services/ContractorExpiration/src</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <filtering>true</filtering>
                 <directory>services/DBConnectionService/src</directory>
                 <excludes>
                     <exclude>**/*.java</exclude>
@@ -264,6 +271,7 @@
                                 <source>services/CXPasswordResetService/src</source>
                                 <source>services/CheckoutService/src</source>
                                 <source>services/CompanyService/src</source>
+                                <source>services/ContractorExpiration/src</source>
                                 <source>services/DBConnectionService/src</source>
                                 <source>services/DocumentProxyService/src</source>
                                 <source>services/DynamicFieldService/src</source>

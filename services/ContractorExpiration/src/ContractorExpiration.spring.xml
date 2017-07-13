@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task-4.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:task="http://www.springframework.org/schema/task" 
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<bean class="com.civicxpress.contractorexpiration.ContractorExpiration" scope="singleton" lazy-init="true" id="ContractorExpiration"/>
+<bean class="com.wavemaker.runtime.service.reflect.ReflectServiceWire" scope="singleton" lazy-init="false">
+        <property name="serviceId" value="ContractorExpiration"/>
+        <property name="serviceType" ref="JavaService"/>
+</bean>
+<bean class="com.civicxpress.contractorexpiration.controller.ContractorExpirationController" id="ContractorExpirationController"/>
+
+<task:annotation-driven scheduler="taskScheduler" />
+    <task:scheduler id="taskScheduler" pool-size="5" />
+    <task:scheduled-tasks >
+        <task:scheduled cron="*/10 * * * * ?" method="sampleTest" ref="ContractorExpiration"/>
+    </task:scheduled-tasks>
+</beans>
