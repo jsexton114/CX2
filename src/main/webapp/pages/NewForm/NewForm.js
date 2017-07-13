@@ -275,6 +275,13 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
         } else {
             $scope.Variables.svSubmitForm.setInput('attachments', []);
         }
+        debugger
+        // Is form Incomplete ?
+        if ($scope.$eval("Widgets.checkboxContractorTBD.datavalue")) {
+            $scope.Variables.svSubmitForm.setInput('incomplete', 1);
+        } else {
+            $scope.Variables.svSubmitForm.setInput('incomplete', 0);
+        }
 
         $scope.Variables.svSubmitForm.update();
     }
@@ -668,6 +675,19 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
     $scope.checkboxOwnerWorkChange = function($event, $isolateScope, newVal, oldVal) {
         if (newVal) {
             $scope.Widgets.textVendorString.datavalue = 0;
+            $scope.Widgets.checkboxContractorTBD.datavalue = false;
+        } else {
+            $scope.Widgets.textVendorString.datavalue = '';
+        }
+
+        $scope.Variables.stvVendors.dataSet = [];
+    };
+
+
+    $scope.checkboxContractorTBDChange = function($event, $isolateScope, newVal, oldVal) {
+        if (newVal) {
+            $scope.Widgets.textVendorString.datavalue = 0;
+            $scope.Widgets.checkboxOwnerWork.datavalue = false;
         } else {
             $scope.Widgets.textVendorString.datavalue = '';
         }

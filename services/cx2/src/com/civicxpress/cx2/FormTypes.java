@@ -82,6 +82,7 @@ public class FormTypes implements Serializable {
     private Integer expirationStatusId;
     private String description;
     private boolean allowOwnerToCompleteWork;
+    private boolean allowContractorTbd;
     private Municipalities municipalities;
     private List<CodesToForm> codesToForms;
     private List<FormCategoryMapping> formCategoryMappings;
@@ -535,6 +536,15 @@ public class FormTypes implements Serializable {
 
     public void setAllowOwnerToCompleteWork(boolean allowOwnerToCompleteWork) {
         this.allowOwnerToCompleteWork = allowOwnerToCompleteWork;
+    }
+
+    @Column(name = "`AllowContractorTBD`", nullable = false)
+    public boolean isAllowContractorTbd() {
+        return this.allowContractorTbd;
+    }
+
+    public void setAllowContractorTbd(boolean allowContractorTbd) {
+        this.allowContractorTbd = allowContractorTbd;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

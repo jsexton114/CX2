@@ -553,8 +553,9 @@ public class FormService {
         return newFormTypeId;
     }
     
-    private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId) throws SQLException {
+    private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId, Long  incomplete) throws SQLException {
     	DBQueryParams queryParams = new DBQueryParams();
+    		queryParams.addLong("incomplete", incomplete);
     	queryParams.addLong("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).getLong("MunicipalityId");
     	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
@@ -610,8 +611,8 @@ public class FormService {
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 	    	queryParams.addLong("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed) "
-	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0)", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed, Incomplete) "
+	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0, :incomplete)", queryParams);
 
 	    	muniDbConn.commit();
     	} catch (SQLException e) {
@@ -1378,7 +1379,7 @@ public class FormService {
     	return draftId;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
+    public String submitForm(Long incomplete, Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -1395,7 +1396,7 @@ public class FormService {
 	    	
 	    	Long createUserId = (behalfOfUserId != null ? behalfOfUserId : Long.parseLong(securityService.getUserId()));
     		queryParams.addLong("createUserId", createUserId);
-	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId);
+	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId, incomplete);
 	    	
 	    	queryParams.addString("formGuid", formGuid);
 	    	

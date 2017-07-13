@@ -1056,6 +1056,20 @@
         "isRelated" : false,
         "defaultValue" : "false",
         "scale" : 0
+      }, {
+        "fieldName" : "dateCreated",
+        "type" : "datetime",
+        "fullyQualifiedType" : "datetime",
+        "columnName" : "DateCreated",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "systemInserted" : true,
+        "systemUpdated" : true,
+        "scale" : 0
       } ],
       "entityName" : "Users",
       "fullyQualifiedName" : "com.civicxpress.cx2.Users",
@@ -1755,6 +1769,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -2314,6 +2341,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -2936,13 +2975,26 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "allowContractorTbd",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowContractorTBD",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
       "tableType" : "TABLE",
       "primaryFields" : [ "id" ]
     },
-    "bindCount" : 3,
+    "bindCount" : 4,
     "tableName" : "FormTypes",
     "tableType" : "TABLE",
     "properties" : [ "municipalities" ],
@@ -3707,6 +3759,19 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         } ]
       }, {
@@ -5313,6 +5378,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -5734,6 +5812,20 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "false",
+          "scale" : 0
+        }, {
+          "fieldName" : "dateCreated",
+          "type" : "datetime",
+          "fullyQualifiedType" : "datetime",
+          "columnName" : "DateCreated",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "systemInserted" : true,
+          "systemUpdated" : true,
           "scale" : 0
         } ]
       }, {
@@ -6197,6 +6289,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {
@@ -7330,6 +7434,18 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "id",
@@ -7909,6 +8025,18 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "autoApproveContractorsDaysForExpiration",
+          "type" : "big_integer",
+          "fullyQualifiedType" : "big_integer",
+          "columnName" : "AutoApproveContractorsDaysForExpiration",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 10,
+          "generator" : "assigned",
+          "isRelated" : false,
           "scale" : 0
         } ]
       }, {

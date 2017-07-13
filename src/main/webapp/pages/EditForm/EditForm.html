@@ -81,7 +81,6 @@
                                                                 <wm-form-field name="titlePrefix" displayname="Prefix" show="true" primary-key="false" generator="assigned" key="titlePrefix" type="string" readonly="false" required="true" widget="text" maxchars="12"
                                                                 placeholder="Enter prefix" width="160px" disabled="bind:Variables.CurrentFormObj.dataSet.data[$i].currentPrefixNumber != null" inputtype="text"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn134"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow45_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn72_1">
@@ -89,7 +88,6 @@
                                                                 defaultvalue="MonthYear" maxchars="255" dataset="bind:Variables.stvPrefixDateOptions.dataSet" datafield="value" displayfield="label" usekeys="false" layout="inline" on-change="prefixDateChange($event, $scope, newVal, oldVal)"
                                                                 disabled="bind:Variables.CurrentFormObj.dataSet.data[$i].currentPrefixNumber != null" placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn135"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow44_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn70">
@@ -121,7 +119,6 @@
                                                                 <wm-form-field name="prefixDashes" displayname="Separate by Dashes" show="true" primary-key="false" generator="assigned" key="prefixDashes" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="false" disabled="bind:Variables.CurrentFormObj.dataSet.data[$i].currentPrefixNumber != null" placeholder="" checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn136"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow46_1">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn75_1">
@@ -138,7 +135,6 @@
                                                                     </wm-gridrow>
                                                                 </wm-layoutgrid>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn137_2"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
                                                 </wm-panel>
@@ -160,7 +156,6 @@
                                                                 placeholder="" hint="This option allows inspections as part of the form process and enables an &quot;Inspections&quot; tab on this page that contains additional settings." defaultvalue="false"
                                                                 checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn55" padding="unset 1em unset unset"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn76_4" padding="unset 1em unset unset">
@@ -192,9 +187,13 @@
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn57" padding="unset 1em unset unset">
                                                                 <wm-form-field name="allowOwnerToCompleteWork" displayname="Allow Owner to Complete Work" show="true" primary-key="false" generator="assigned" key="allowOwnerToCompleteWork" type="boolean" readonly="false"
                                                                 required="false" widget="checkbox" disabled="bind:!Widgets.liveformUpdateFormType.formWidgets.requireOwner.datavalue || Widgets.liveformUpdateFormType.formWidgets.selectVendorOption.displayValue==='None'"
-                                                                hint="When enabled, users will be able to specify that the property owner is completing the work associated with the form, instead of selecting a registered contractor. &quot;Require Location&quot;, &quot;Require Owner&quot;, and &quot;Require Contractor&quot; must be active to use this setting."></wm-form-field>
+                                                                hint="When enabled, users will be able to specify that the property owner is completing the work associated with the form, instead of selecting a registered contractor. &quot;Require Location&quot;, &quot;Require Owner&quot;, and &quot;Require Contractor&quot; must be active to use this setting."
+                                                                placeholder=""></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn56" padding="unset 1em unset unset"></wm-gridcolumn>
+                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn138">
+                                                                <wm-form-field name="allowContractorTbd" displayname="Allow Contractor TBD" show="true" primary-key="false" generator="assigned" key="allowContractorTbd" type="boolean" readonly="false" required="false"
+                                                                widget="checkbox" defaultvalue="bind:Widgets.liveformUpdateFormType.formWidgets.selectVendorOption.displayValue!='None'" checkedvalue="true" uncheckedvalue="false" disabled="bind:Widgets.liveformUpdateFormType.formWidgets.selectVendorOption.displayValue=='None'"></wm-form-field>
+                                                            </wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow98" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn131_1">
@@ -205,7 +204,6 @@
                                                                 <wm-form-field name="sharedWith" displayname="Allow Sharing" show="true" primary-key="false" generator="assigned" key="sharedWith" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="true" placeholder="" hint="This enables sharing the form with other registered CivicXpress users." checkedvalue="true" uncheckedvalue="false"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn133_1"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow39_1" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="4" name="gridcolumn107" padding="unset 1em unset unset">
@@ -239,7 +237,6 @@
                                                                 <wm-form-field name="collectFees" displayname="Collect Fees" show="true" primary-key="false" generator="assigned" key="collectFees" type="boolean" readonly="false" required="false" widget="checkbox"
                                                                 defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" on-change="collectFeesChange($event, $scope, newVal, oldVal)" hint="This enables fees to be collected with this form. The &quot;Automatic&quot; fees set below are generated when a user submits the form and &quot;Manual&quot; fees must be added to the form by a municipality employee."></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="4" name="gridcolumn129_1"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                     </wm-layoutgrid>
                                                 </wm-panel>
@@ -255,7 +252,6 @@
                                                                 widget="checkbox" defaultvalue="false" placeholder="" checkedvalue="true" uncheckedvalue="false" hint="When enabled, the &quot;Automatic&quot; fees that are set here will be assessed when the form is submitted. &quot;Collect Fees&quot; must be active to use this setting."
                                                                 disabled="bind:!Widgets.liveformUpdateFormType.formWidgets.collectFees.datavalue"></wm-form-field>
                                                             </wm-gridcolumn>
-                                                            <wm-gridcolumn columnwidth="6" name="gridcolumn130_1"></wm-gridcolumn>
                                                         </wm-gridrow>
                                                         <wm-gridrow name="gridrow17" padding="unset unset 1em unset">
                                                             <wm-gridcolumn columnwidth="6" name="gridcolumn30" padding="unset 1em unset unset">
@@ -321,20 +317,23 @@
                                                 </wm-panel>
                                             </wm-gridcolumn>
                                         </wm-gridrow>
+                                        <wm-gridrow name="gridrow1">
+                                            <wm-gridcolumn name="gridcolumn1" columnwidth="6"></wm-gridcolumn>
+                                        </wm-gridrow>
                                     </wm-layoutgrid>
-                                    <wm-form-field name="tbLocation" displayname="Tb Location" show="false" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].tbLocation"></wm-form-field>
-                                    <wm-form-field name="pageName" displayname="Page Name" show="false" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
-                                    defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].pageName"></wm-form-field>
-                                    <wm-form-field name="report" displayname="Report" show="false" primary-key="false" generator="assigned" key="report" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
-                                    placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].report"></wm-form-field>
-                                    <wm-form-field name="createdDate" displayname="Created Date" show="false" primary-key="false" generator="assigned" key="createdDate" type="date" readonly="false" required="false" widget="date" placeholder="Select date"
-                                    outputformat="yyyy-MM-dd"></wm-form-field>
+                                    <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="false" primary-key="false" generator="assigned" key="formTypeGuid" type="string" readonly="true" required="false" widget="text" maxchars="255" inputtype="text"
+                                    placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.formTypeGuid"></wm-form-field>
+                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
                                     <wm-form-field name="municipalities" displayname="Municipalities" show="false" primary-key="false" generator="assigned" key="municipalities" type="list" is-related="true" readonly="false" required="true"
                                     widget="select" placeholder="Select value"></wm-form-field>
-                                    <wm-form-field name="id" displayname="Id" show="false" primary-key="true" generator="identity" key="id" type="integer" readonly="true" required="true" step="0" widget="number" inputtype="number" placeholder="Enter value"></wm-form-field>
-                                    <wm-form-field name="formTypeGuid" displayname="Form Type Guid" show="false" primary-key="false" generator="assigned" key="formTypeGuid" type="string" readonly="true" required="false" widget="text" maxchars="255"
-                                    inputtype="text" placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.firstRecord.formTypeGuid"></wm-form-field>
+                                    <wm-form-field name="createdDate" displayname="Created Date" show="false" primary-key="false" generator="assigned" key="createdDate" type="date" readonly="false" required="false" widget="date" placeholder="Select date"
+                                    outputformat="yyyy-MM-dd"></wm-form-field>
+                                    <wm-form-field name="report" displayname="Report" show="false" primary-key="false" generator="assigned" key="report" type="string" readonly="false" required="false" widget="text" maxchars="255" inputtype="text"
+                                    placeholder="Enter value" defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].report"></wm-form-field>
+                                    <wm-form-field name="pageName" displayname="Page Name" show="false" primary-key="false" generator="assigned" key="pageName" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                    defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].pageName"></wm-form-field>
+                                    <wm-form-field name="tbLocation" displayname="Tb Location" show="false" primary-key="false" generator="assigned" key="tbLocation" type="string" widget="text" maxchars="255" inputtype="text" placeholder="Enter value"
+                                    defaultvalue="bind:Variables.ReadFormType.dataSet.data[$i].tbLocation"></wm-form-field>
                                     <wm-form-action key="save" display-name="Update" show="true" class="form-save btn-primary" iconclass="wi wi-update" title="Save" disabled="false" type="submit" update-mode="true"></wm-form-action>
                                 </wm-liveform>
                             </wm-tabpane>
