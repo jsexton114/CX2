@@ -51,6 +51,7 @@ public class MasterForms implements Serializable {
     private Timestamp dateModified;
     private Timestamp dateSubmitted;
     private boolean incomplete;
+    private boolean ownerCompletingWork;
     private FormTypes formTypes;
     private FormStatuses formStatuses;
     private Giscontacts giscontacts;
@@ -238,6 +239,15 @@ public class MasterForms implements Serializable {
 
     public void setIncomplete(boolean incomplete) {
         this.incomplete = incomplete;
+    }
+
+    @Column(name = "`OwnerCompletingWork`", nullable = false)
+    public boolean isOwnerCompletingWork() {
+        return this.ownerCompletingWork;
+    }
+
+    public void setOwnerCompletingWork(boolean ownerCompletingWork) {
+        this.ownerCompletingWork = ownerCompletingWork;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

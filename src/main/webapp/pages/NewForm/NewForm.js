@@ -283,6 +283,13 @@ Application.$controller("NewFormPageController", ["$scope", "$location", "$timeo
             $scope.Variables.svSubmitForm.setInput('incomplete', 0);
         }
 
+        // Is Owner Completing Work ?
+        if ($scope.$eval("Widgets.checkboxOwnerWork.datavalue")) {
+            $scope.Variables.svSubmitForm.setInput('ownerCompletingWork', 1);
+        } else {
+            $scope.Variables.svSubmitForm.setInput('ownerCompletingWork', 0);
+        }
+
         $scope.Variables.svSubmitForm.update();
     }
 

@@ -14899,6 +14899,32 @@
       "sequenceSchema" : null,
       "sqlType" : "boolean",
       "unique" : false
+    }, {
+      "columnValue" : {
+        "type" : "user-defined",
+        "insertable" : true,
+        "updatable" : true,
+        "defaultValue" : "0"
+      },
+      "fieldName" : "ownerCompletingWork",
+      "foreignKey" : false,
+      "generatorType" : "assigned",
+      "generatorValue" : null,
+      "javaType" : "boolean",
+      "length" : 0,
+      "name" : "OwnerCompletingWork",
+      "nullable" : false,
+      "oldName" : "OwnerCompletingWork",
+      "partOfAnyRelation" : false,
+      "partOfForeignKey" : false,
+      "partOfPrimaryKey" : false,
+      "partOfUniqueKey" : false,
+      "precision" : 0,
+      "primaryKey" : false,
+      "scale" : 0,
+      "sequenceSchema" : null,
+      "sqlType" : "boolean",
+      "unique" : false
     } ],
     "constraints" : [ ],
     "entityName" : "MasterForms",
