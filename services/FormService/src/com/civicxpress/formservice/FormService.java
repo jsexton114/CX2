@@ -579,8 +579,11 @@ public class FormService {
 
 			Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 			queryParams.addLong("newFormStatusId", newFormStatusId);
+			
+			Long processOwnersGroupId = DBUtils.selectQuery(cx2Conn, "SELECT ProcessOwners from FormStatuses WHERE ID=:newFormStatusId ", queryParams).get(0).getLong("ProcessOwners");
+			queryParams.addLong("processOwnersGroupId", processOwnersGroupId);
 
-			DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed, Incomplete, OwnerCompletingWork) " + "VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0, :incomplete, :ownerCompletingWork)", queryParams);
+			DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed, Incomplete, OwnerCompletingWork, AssignedToGroupId) " + "VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0, :incomplete, :ownerCompletingWork, :processOwnersGroupId)", queryParams);
 
 			muniDbConn.commit();
 		} catch(SQLException e) {

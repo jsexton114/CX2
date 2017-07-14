@@ -38,7 +38,7 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
                 '<label>' + 'Requested By: ' + aM.requestedByFullName + '</label></br>' +
                 '<label>' + 'Date Requested: ' + moment(aM.requestedFor).format('MM-DD-YYYY') + '</label></br>' +
                 '<label>' + 'Assigned To: ' + aM.assignedToPersonName + '</label></br>' +
-                '<a target="_blank" href=' + inspectionLink + '>View Inspection</a>'
+                '<a target="_blank" href=' + inspectionLink + '>View Inspection</a>';
         };
     };
 
