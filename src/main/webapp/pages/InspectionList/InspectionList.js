@@ -24,9 +24,15 @@ Application.$controller("InspectionListPageController", ["$scope", function($sco
     $scope.dateRanges = $scope.getDateRanges();
 
     $scope.googlemaps1Load = function($isolateScope) {
+
         $isolateScope.setInfoWindow = function() {
             var aM = $isolateScope.activeMarker;
-            var inspectionLink = window.location.hostname + "/#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
+            var inspectionLink;
+            if (window.location.hostname == "www.wavemakeronline.com") {
+                inspectionLink = "https://" + window.location.hostname + window.location.pathname + "#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
+            } else {
+                inspectionLink = "https://" + window.location.hostname + "#/ViewInspection?inspectionGuid=" + aM.inspectionGuid;
+            }
             return '<label>' + 'Location: ' + aM.fullAddress + '</label> </br>' +
                 '<label>' + 'Inspection Title: ' + aM.inspectionTitle + '</label></br>' +
                 '<label>' + 'Requested By: ' + aM.requestedByFullName + '</label></br>' +
