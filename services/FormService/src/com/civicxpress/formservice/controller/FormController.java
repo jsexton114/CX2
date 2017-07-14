@@ -126,8 +126,8 @@ public class FormController {
     @RequestMapping(value = "/formStatus", method = RequestMethod.PUT)
     @WMAccessVisibility(value = AccessSpecifier.APP_ONLY)
     @ApiOperation(value = "")
-    public void setFormStatus(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formStatusId", required = false) Long formStatusId, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
-        formService.setFormStatus(formGuid, formStatusId, comments, formLink);
+    public void setFormStatus(@RequestParam(value = "formGuid", required = false) String formGuid, @RequestParam(value = "formStatusId", required = false) Long formStatusId, @RequestParam(value = "incomplete", required = false) Long incomplete, @RequestParam(value = "comments", required = false) String comments, @RequestParam(value = "formLink", required = false) String formLink) throws SQLException, MessagingException {
+        formService.setFormStatus(formGuid, formStatusId, incomplete, comments, formLink);
     }
 
     @RequestMapping(value = "/onZeroFormStatus", method = RequestMethod.PUT)

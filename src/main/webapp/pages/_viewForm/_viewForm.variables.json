@@ -783,6 +783,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "formStatuses",
@@ -2636,13 +2649,26 @@
         "isRelated" : false,
         "defaultValue" : "",
         "scale" : 0
+      }, {
+        "fieldName" : "incomplete",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "Incomplete",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
+        "scale" : 0
       } ],
       "entityName" : "MasterForms",
       "fullyQualifiedName" : "com.civicxpress.cx2.MasterForms",
       "tableType" : "TABLE",
       "primaryFields" : [ "formGuid" ]
     },
-    "bindCount" : 8,
+    "bindCount" : 10,
     "spinnerContext" : "panelFormInfo",
     "tableName" : "MasterForms",
     "tableType" : "TABLE",
@@ -3894,6 +3920,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         } ]
       }, {
@@ -6497,6 +6536,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "vendor",
@@ -8410,6 +8462,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -9845,6 +9910,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "projects",
@@ -11165,6 +11243,19 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         } ]
       }, {
@@ -14900,6 +14991,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "users",
@@ -16679,6 +16783,19 @@
         "generator" : "assigned",
         "isRelated" : false,
         "scale" : 0
+      }, {
+        "fieldName" : "allowContractorTbd",
+        "type" : "boolean",
+        "fullyQualifiedType" : "boolean",
+        "columnName" : "AllowContractorTBD",
+        "isPrimaryKey" : false,
+        "notNull" : true,
+        "length" : 0,
+        "precision" : 0,
+        "generator" : "assigned",
+        "isRelated" : false,
+        "defaultValue" : "0",
+        "scale" : 0
       } ],
       "entityName" : "FormTypes",
       "fullyQualifiedName" : "com.civicxpress.cx2.FormTypes",
@@ -17937,6 +18054,19 @@
           "precision" : 0,
           "generator" : "assigned",
           "isRelated" : false,
+          "scale" : 0
+        }, {
+          "fieldName" : "allowContractorTbd",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "AllowContractorTBD",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         } ]
       }, {
@@ -21252,6 +21382,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "projects",
@@ -23168,6 +23311,19 @@
           "isRelated" : false,
           "defaultValue" : "",
           "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
+          "scale" : 0
         } ]
       }, {
         "fieldName" : "projects",
@@ -24149,6 +24305,19 @@
           "generator" : "assigned",
           "isRelated" : false,
           "defaultValue" : "",
+          "scale" : 0
+        }, {
+          "fieldName" : "incomplete",
+          "type" : "boolean",
+          "fullyQualifiedType" : "boolean",
+          "columnName" : "Incomplete",
+          "isPrimaryKey" : false,
+          "notNull" : true,
+          "length" : 0,
+          "precision" : 0,
+          "generator" : "assigned",
+          "isRelated" : false,
+          "defaultValue" : "0",
           "scale" : 0
         } ]
       }, {
@@ -26738,6 +26907,10 @@
       "target" : "comments",
       "value" : "bind:Widgets.textareaNotes.datavalue",
       "type" : "string"
+    }, {
+      "target" : "incomplete",
+      "value" : "bind:Widgets.checkboxFormIsIncomplete.datavalue?1:0",
+      "type" : "integer"
     } ],
     "service" : "FormService",
     "operation" : "setFormStatus",

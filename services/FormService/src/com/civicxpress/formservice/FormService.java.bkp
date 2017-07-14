@@ -525,8 +525,8 @@ public class FormService {
 	    			+"CreatedDate datetime2 NOT NULL DEFAULT sysdatetime(), "
 	    			+"ModifiedDate datetime2, "
 	    			+"ModifiedBy varchar(255), "
-	    			+"TotalSqft numeric(38,2), "
-	    			+"TotalUnits numeric(38,2), "
+	    			+"TotalSqft numeric(36,2), "
+	    			+"TotalUnits numeric(36,2), "
 	    			+"Basement bit, "
 	    			+"VendorId numeric(10)"
 	            	+")");
@@ -553,8 +553,9 @@ public class FormService {
         return newFormTypeId;
     }
     
-    private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId) throws SQLException {
+    private String createForm(Connection cx2Conn, Long formTypeId, Long primaryVendorId, Long createUserId, Long ownerId, Long  incomplete) throws SQLException {
     	DBQueryParams queryParams = new DBQueryParams();
+    		queryParams.addLong("incomplete", incomplete);
     	queryParams.addLong("formTypeId", formTypeId);
     	Long municipalityId = DBUtils.selectOne(cx2Conn, "SELECT MunicipalityId FROM FormTypes WHERE ID=:formTypeId", queryParams).getLong("MunicipalityId");
     	Connection muniDbConn = DBConnectionService.getMunicipalityDBConnection(municipalityId);
@@ -610,8 +611,8 @@ public class FormService {
 	    	Long newFormStatusId = DBUtils.selectQuery(cx2Conn, "SELECT ID FROM FormStatuses WHERE FormTypeId=:formTypeId ORDER BY SortOrder ASC", queryParams).get(0).getLong("ID");
 	    	queryParams.addLong("newFormStatusId", newFormStatusId);
 	    	
-	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed) "
-	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0)", queryParams);
+	    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO MasterForms (MunicipalityId, FormTypeId, FormGUID, UserId, CXVendorId, OwnerId, FormStatusId, Closed, Incomplete) "
+	    			+"VALUES (:municipalityId, :formTypeId, :newFormGUID, :currentUserId, :primaryVendorId, :ownerId, :newFormStatusId, 0, :incomplete)", queryParams);
 
 	    	muniDbConn.commit();
     	} catch (SQLException e) {
@@ -1162,9 +1163,9 @@ public class FormService {
 		return returnTitle;
     }
     
-    public void setFormStatus(String formGuid, Long formStatusId, String comments, String formLink) throws SQLException, MessagingException {
+    public void setFormStatus(String formGuid, Long formStatusId, Long incomplete, String comments, String formLink) throws SQLException, MessagingException {
        
-    	setFormStatus(formGuid, formStatusId, comments);
+    	setFormStatus(formGuid, formStatusId, incomplete, comments);
     	sendStatusUpdateMail(formGuid, formStatusId, formLink);
     }
     
@@ -1173,8 +1174,7 @@ public class FormService {
     	sendOnZeroStatusUpdateMail(formGuid, formStatusId, formLink, cx2Conn);
     }
     
-    private void setFormStatus(String formGuid, Long formStatusId, String comments) throws SQLException {
-        
+    private void setFormStatus(String formGuid, Long formStatusId, Long incomplete, String comments) throws SQLException {
     		Connection cx2Conn = DBConnectionService.getConnection();
     	
     	if (!userIsAdmin(cx2Conn, formGuid) && !userIsProcessOwner(cx2Conn, formGuid)) {
@@ -1189,17 +1189,29 @@ public class FormService {
     		DBQueryParams queryParams = new DBQueryParams();
     		queryParams.addString("formGuid", formGuid);
     		queryParams.addLong("newFormStatusId", formStatusId);
+    		queryParams.addLong("newIncompleteFlag", incomplete);
     		queryParams.addString("Comments", comments);
     		
     		DBRow masterFormData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM MasterForms WHERE FormGUID=:formGuid", queryParams).get(0);
-
+           
     		queryParams.addLong("OldStatusId", masterFormData.getLong("FormStatusId"));
+    	
     		queryParams.addLong("FormTypeId", masterFormData.getLong("FormTypeId"));
     		queryParams.addLong("CreatedBy", Long.parseLong(securityService.getUserId()));
     		
+    		long oldIncompleteFlag= masterFormData.getBoolean("Incomplete")?1:0;
+    		 queryParams.addLong("oldIncompleteFlag",oldIncompleteFlag );
+    		 
+    		 if(oldIncompleteFlag!=incomplete){
+    		  String flagComments=(incomplete==1)?"The form is no longer considered incomplete.":"This form has been flagged as incomplete.";
+    		    queryParams.addString("flagComments", flagComments);
+    		    	DBUtils.simpleUpdateQuery(cx2Conn, "INSERT INTO FormHistory (FormGUID,FormTypeId,NewStatusId,OldStatusId,Comments,CreatedBy,CreatedTime) "
+    				+"VALUES (:formGuid,:FormTypeId,:newFormStatusId,:OldStatusId,:flagComments,:CreatedBy,SYSUTCDATETIME())",
+    				queryParams);  
+    		 }
+  	
     		DBRow formTypeData = DBUtils.selectQuery(cx2Conn, "SELECT * FROM FormTypes WHERE ID=:FormTypeId", queryParams).get(0);
-    		
-    		DBUtils.simpleUpdateQuery(cx2Conn, "UPDATE MasterForms SET FormStatusId=:newFormStatusId, "
+    		DBUtils.simpleUpdateQuery(cx2Conn,"UPDATE MasterForms SET Incomplete=:newIncompleteFlag, FormStatusId=:newFormStatusId,"
     				+"Closed=(SELECT ConsiderClosed FROM FormStatuses WHERE ID=:newFormStatusId) WHERE FormGUID=:formGuid",
     				queryParams);
     		
@@ -1378,7 +1390,7 @@ public class FormService {
     	return draftId;
     }
     
-    public String submitForm(Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
+    public String submitForm(Long incomplete, Long formTypeId, Long behalfOfUserId, Long ownerId, String locationIds, String vendorIds, Long primaryVendorId, String usersWithWhomToShare, String fieldDataJsonString, Long draftId, MultipartFile[] attachments) throws Exception {
     	Connection cx2Conn = DBConnectionService.getConnection();
     	cx2Conn.setAutoCommit(false);
     	String formGuid = "";
@@ -1395,7 +1407,7 @@ public class FormService {
 	    	
 	    	Long createUserId = (behalfOfUserId != null ? behalfOfUserId : Long.parseLong(securityService.getUserId()));
     		queryParams.addLong("createUserId", createUserId);
-	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId);
+	    	formGuid = createForm(cx2Conn, formTypeId, primaryVendorId, createUserId, ownerId, incomplete);
 	    	
 	    	queryParams.addString("formGuid", formGuid);
 	    	
